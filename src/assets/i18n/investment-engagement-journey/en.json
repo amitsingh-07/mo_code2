@@ -21,7 +21,15 @@
   },
   "PORTFOLIO": {
     "TITLE": "Select Portfolio Goal",
-    "SUB_HEADING": "What is your investment goal?",
+    "SUB_HEADING": "I am using <span class='txt-bold'>Cash / SRS</span> to fund the portfolio",
+    "CPF_SUB_HEADING": "I am using <span class='txt-bold'>CPF OA</span> to fund the portfolio",
+    "JA_SUB_HEADING": "I am using <span class='txt-bold'>Cash</span> to fund the portfolio",
+    "TAB_LBL_1":"Cash / SRS",
+    "TAB_LBL_2":"CPF OA",
+    "DIMENSIONAL_PORTFOLIO": "Dimensional",
+    "WISEINCOME_PORTFOLIO": "WiseIncome",
+    "WISESAVER_PORTFOLIO": "WiseSaver",
+    "SELECT_LBL": "Select",
     "INVESTMENT": {
       "TITLE": "Grow your wealth",
       "DESC": "Invest in our globally diversified portfolios to grow your wealth faster",

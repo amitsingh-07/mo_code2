@@ -197,30 +197,30 @@ export class SelectPortfolioComponent implements OnInit {
   // }
   setSelectPortfolioType(value,form) {
     this.selectPortfolioForm.controls.selectPortfolioType.setValue(value);
-    // if (value === INVESTMENT_ENGAGEMENT_JOURNEY_CONSTANTS.SELECT_POROFOLIO_TYPE.INVEST_PORTFOLIO) {
-    //   this.investmentEnabled = !this.investmentEnabled;
-    //   this.wiseSaverEnabled = false;
-    //   this.wiseIncomeEnabled = false;
-    //   this.cpfEnabled = false; // cpf portfolio flag
-    // }
-    // if (value === INVESTMENT_ENGAGEMENT_JOURNEY_CONSTANTS.SELECT_POROFOLIO_TYPE.WISESAVER_PORTFOLIO) {
-    //   this.wiseSaverEnabled = !this.wiseSaverEnabled;
-    //   this.investmentEnabled = false;
-    //   this.wiseIncomeEnabled = false;
-    //   this.cpfEnabled = false; // cpf portfolio flag
-    // }
-    // if (value === INVESTMENT_ENGAGEMENT_JOURNEY_CONSTANTS.SELECT_POROFOLIO_TYPE.WISEINCOME_PORTFOLIO) {
-    //   this.wiseIncomeEnabled = !this.wiseIncomeEnabled;
-    //   this.investmentEnabled = false;
-    //   this.wiseSaverEnabled = false;
-    //   this.cpfEnabled = false; // cpf portfolio flag
-    // }
-    // if (value === INVESTMENT_ENGAGEMENT_JOURNEY_CONSTANTS.SELECT_POROFOLIO_TYPE.CPF_PORTFOLIO) {
-    //   this.cpfEnabled = !this.cpfEnabled;
-    //   this.investmentEnabled = false;
-    //   this.wiseSaverEnabled = false;
-    //   this.wiseIncomeEnabled = false;
-    // }
+    if (value === INVESTMENT_ENGAGEMENT_JOURNEY_CONSTANTS.SELECT_POROFOLIO_TYPE.INVEST_PORTFOLIO) {
+      this.investmentEnabled = !this.investmentEnabled;
+      this.wiseSaverEnabled = false;
+      this.wiseIncomeEnabled = false;
+      this.cpfEnabled = false; // cpf portfolio flag
+    }
+    if (value === INVESTMENT_ENGAGEMENT_JOURNEY_CONSTANTS.SELECT_POROFOLIO_TYPE.WISESAVER_PORTFOLIO) {
+      this.wiseSaverEnabled = !this.wiseSaverEnabled;
+      this.investmentEnabled = false;
+      this.wiseIncomeEnabled = false;
+      this.cpfEnabled = false; // cpf portfolio flag
+    }
+    if (value === INVESTMENT_ENGAGEMENT_JOURNEY_CONSTANTS.SELECT_POROFOLIO_TYPE.WISEINCOME_PORTFOLIO) {
+      this.wiseIncomeEnabled = !this.wiseIncomeEnabled;
+      this.investmentEnabled = false;
+      this.wiseSaverEnabled = false;
+      this.cpfEnabled = false; // cpf portfolio flag
+    }
+    if (value === INVESTMENT_ENGAGEMENT_JOURNEY_CONSTANTS.SELECT_POROFOLIO_TYPE.CPF_PORTFOLIO) {
+      this.cpfEnabled = !this.cpfEnabled;
+      this.investmentEnabled = false;
+      this.wiseSaverEnabled = false;
+      this.wiseIncomeEnabled = false;
+    }
     this.goNext(form);
   }
   // Go to next slide

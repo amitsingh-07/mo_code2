@@ -17,34 +17,37 @@ app-select-portfolio {
     text-align: center;
     font-family: $muli-semi-bold;
     font-size: 30px;
-    margin-bottom: 15px;
+    letter-spacing: -0.31px;
   }
   .portfolio-subheading {
-    margin: 30px 0 20px 0;
-    @include allmobiles {
-      margin: 10px 0 20px 0;
-    }
-    font-size: 18px;
-    font-family: $muli-bold;
+    margin: 10px 0 20px;
+    font-size: 16px;
+    font-family: $muli-regular;
     text-align: center;
+    letter-spacing: -0.12px;
+    .txt-bold{
+      font-family: $muli-bold;
+    }
+    @include min568max767{
+      padding-top: 30px;
+    }
   }
   .portfolio-cards {
     border-radius: 6px;
-    // padding: 20px 17px 20px 23px;
     padding: 25px;
     display: flex;
-    align-items: center;
     justify-content: space-between;
     background-color: $portfolio-card-bg-color;
     color: $portfolio-card-text-color;
     margin-bottom: 15px;
     position: relative;
     z-index: 998;
-    // height: 160px;
-    cursor: pointer;
     line-height: normal;
     letter-spacing: normal;
     min-height: 180px;
+    @include allmobiles{
+      margin-bottom: 10px;
+    }
 
     &.active {
       background-color: $portfolio-card-text-color;
@@ -81,13 +84,13 @@ app-select-portfolio {
         height: 28px;
         padding: 6px 10px;
         border-radius: 17px;
-        background-color: #fff;
+        background-color: $white-color;
         font-family: $muli-semi-bold;
         font-size: 13px;
         line-height: normal;
         letter-spacing: -0.12px;
         text-align: left;
-        color: #00a7a7;
+        color: $teal-color;
         display: flex;
         align-items: center;
         margin-bottom: 12px;
@@ -121,12 +124,6 @@ app-select-portfolio {
       &__desc {
         font-size: 13px;
         font-family: $muli-regular;
-        @include desktop {
-          // margin-bottom: 10px;
-        }
-        @include iphone6 {
-          // padding-right: 20px;
-        }
       }
 
       &__more {
@@ -143,15 +140,6 @@ app-select-portfolio {
     .portfolio-new {
       position: absolute;
       top: 10px;
-      @include iphoneX {
-        top: 5px;
-      }
-      @include max360 {
-        top: 5px;
-      }
-      @include desktop {
-        top: 7px;
-      }
       right: 0;
     }
   }
@@ -234,34 +222,34 @@ app-select-portfolio {
   .portfolio-select{
     margin-top: 7px;
     border-radius: 14px;
-    background-color: #00c5c4;
+    background-color: $robins-egg-blue-color;
     font-family: $muli-bold;
     font-size: 14px;
     line-height: normal;
     letter-spacing: -0.14px;
     text-align: center;
-    color: #fff;
+    color: $white-color;
     padding: 4px 0;
+    cursor: pointer;
   }
   .nav-tabs{
     border: none;
       .portfolio-tab{
         &.nav-link{
           width: 140px;
-          // height: 28px;
           border-radius: 14px;
-          border: 1px solid #fff;
-          background-color: #029898;
+          border: 1px solid $white-color;
+          background-color: $persian-dark-teal-color;
           font-family: $muli-bold;
           font-size: 14px;
           line-height: normal;
           letter-spacing: -0.14px;
           text-align: center;
-          color: #fff;
+          color: $white-color;
           padding: 3px 0;
           &.active{
-            background-color: #00c5c4;
-            border: 1px solid #00c5c4;
+            background-color: $robins-egg-blue-color;
+            border: 1px solid $robins-egg-blue-color;
           }
         }
     }
