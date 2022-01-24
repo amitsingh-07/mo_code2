@@ -21,6 +21,7 @@
   },
   "PORTFOLIO": {
     "TITLE": "Select Portfolio Goal",
+    "TITLE_NEW": "Your Portfolio Goal",
     "SUB_HEADING": "I am using <span class='txt-bold'>Cash / SRS</span> to fund the portfolio",
     "CPF_SUB_HEADING": "I am using <span class='txt-bold'>CPF OA</span> to fund the portfolio",
     "JA_SUB_HEADING": "I am using <span class='txt-bold'>Cash</span> to fund the portfolio",

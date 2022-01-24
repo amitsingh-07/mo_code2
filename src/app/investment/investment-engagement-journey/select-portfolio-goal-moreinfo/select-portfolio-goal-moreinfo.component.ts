@@ -7,7 +7,6 @@ import { Router } from '@angular/router';
 import { TranslateService } from '@ngx-translate/core';
 import { SlickCarouselComponent } from 'ngx-slick-carousel';
 
-import { appConstants } from '../../../app.constants';
 import { AppService } from '../../../app.service';
 import { LoaderService } from '../../../shared/components/loader/loader.service';
 import { FooterService } from '../../../shared/footer/footer.service';
@@ -68,7 +67,7 @@ export class SelectPortfolioGoalMoreinfoComponent implements OnInit {
   ) { 
     this.translate.use('en');
     this.translate.get('COMMON').subscribe((result: string) => {
-      this.pageTitle = this.translate.instant('PORTFOLIO.TITLE');
+      this.pageTitle = this.translate.instant('PORTFOLIO.TITLE_NEW');
       this.setPageTitle(this.pageTitle);
       // Meta Tag and Title Methods
       this.seoService.setTitle(this.translate.instant('START.META.META_TITLE'));
@@ -88,6 +87,7 @@ export class SelectPortfolioGoalMoreinfoComponent implements OnInit {
       selectPortfolioType: new FormControl(
         this.selectedPortfolioType, Validators.required)
     });
+    this.getOptionListCollection();
   }
   @HostListener('input', ['$event'])
 
@@ -99,6 +99,22 @@ export class SelectPortfolioGoalMoreinfoComponent implements OnInit {
   }
   goNext(Form) {
     this.redirectToNextScreen();
+  }
+  getOptionListCollection() {
+    this.loaderService.showLoader({
+      title: this.loaderTitle,
+      desc: this.loaderDesc
+    });
+    this.investmentAccountService.getSpecificDropList('portfolioFundingMethod').subscribe((data) => {
+      this.loaderService.hideLoader();
+      this.fundingMethods = data.objectList.portfolioFundingMethod;
+      this.investmentEngagementJourneyService.sortByProperty(this.fundingMethods, 'name', 'asc');
+
+    },
+      (err) => {
+        this.loaderService.hideLoader();
+        this.investmentAccountService.showGenericErrorModal();
+      });
   }
   getFundingMethodNameByName(fundingMethodName, fundingOptions) {
     if (fundingMethodName && fundingOptions) {
@@ -123,12 +139,8 @@ export class SelectPortfolioGoalMoreinfoComponent implements OnInit {
         this.router.navigate([INVESTMENT_ENGAGEMENT_JOURNEY_ROUTE_PATHS.INVESTMENT_AMOUNT]);
       }
     }
-    // meed to change when CPF is available
     // CPF_PORTFOLIO
     else if (this.selectPortfolioForm.controls.selectPortfolioType && this.selectPortfolioForm.controls.selectPortfolioType.value === INVESTMENT_ENGAGEMENT_JOURNEY_CONSTANTS.SELECT_POROFOLIO_TYPE.CPF_PORTFOLIO) {
-      // redirecting to pre trquisite screen but the entire logic in this Method
-      // should be given in your portfolio goal screen
-      // INVESTMENT_COMMON_ROUTE_PATHS.CPF_PREREQUISITES
       this.router.navigate([INVESTMENT_COMMON_ROUTE_PATHS.CPF_PREREQUISITES]);
     }
     else {
