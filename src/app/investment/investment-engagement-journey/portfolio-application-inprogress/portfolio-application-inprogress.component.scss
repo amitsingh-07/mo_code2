@@ -1,0 +1,66 @@
+@import "../../../../_variables.scss";
+@import "../../../../_mixins.scss";
+.portfolio-app-inprogress {
+    background-color: $dark-teal-color;
+    min-height: calc(100vh - 45px);
+}
+.portfolio-app-inprogress__content {
+    @include desktop {
+        margin: 0 auto;
+        text-align: center;
+        max-width: 430px;
+        .btn__footer--fixed {
+            width: 337px;
+        }
+    }
+}
+.portfolio-app-inprogress__content__title {
+    font-family: "Muli Semi Bold", sans-serif;
+    font-size: 24px;
+    letter-spacing: -0.18px;
+    text-align: center;
+    margin-top: 25px;
+}
+.portfolio-app-inprogress__content__sub-title {
+    font-size: 16px;
+    line-height: 1.22;
+    letter-spacing: -0.12px;
+    text-align: center;
+    font-family: "Muli Regular", sans-serif;
+    padding: 0 5px;
+}
+.banner-image {
+    position: relative;
+    padding-top: 20px;
+    img {
+        padding-top: 0 !important;
+        width: 180px;
+        height: 180px;
+    }
+    .tick-icon {
+        position: absolute;
+        top: -20px;
+        right: 65px;
+        img {
+            width: 80px;
+            height: 80px;
+        }
+    }
+    @include desktop {
+        padding-top: 80px;
+        img {
+            width: 220px;
+            height: 220px;
+            padding-top: 0 !important;
+        }
+        .tick-icon {
+            img {
+                width: 60px;
+                height: 60px;
+            }
+            position: absolute;
+            top: 60px;
+            right: 125px
+        }
+    }
+}

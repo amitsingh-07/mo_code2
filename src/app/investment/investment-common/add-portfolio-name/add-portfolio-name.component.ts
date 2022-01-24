@@ -15,6 +15,7 @@ import {
 } from '../../investment-account/investment-account-routes.constants';
 import { InvestmentAccountService } from '../../investment-account/investment-account-service';
 import { INVESTMENT_ACCOUNT_CONSTANTS } from '../../investment-account/investment-account.constant';
+import { INVESTMENT_ENGAGEMENT_JOURNEY_ROUTE_PATHS } from '../../investment-engagement-journey/investment-engagement-journey-routes.constants';
 import { INVESTMENT_ENGAGEMENT_JOURNEY_CONSTANTS } from '../../investment-engagement-journey/investment-engagement-journey.constants';
 import { InvestmentEngagementJourneyService } from '../../investment-engagement-journey/investment-engagement-journey.service';
 import { ProfileIcons } from '../../investment-engagement-journey/recommendation/profileIcons';
@@ -93,11 +94,16 @@ export class AddPortfolioNameComponent implements OnInit, OnDestroy {
 
   submitForm() {
     if (this.form.valid) {
-      if (this.form.controls.portfolioName.value) {
-        const userPortfolioNameTitleCase = this.convertToTitleCase(this.form.controls.portfolioName.value);
-        this.saveNameOrContinueAccountCreation(userPortfolioNameTitleCase);
+      // Integration with getCKAInfo api and post api is pending.
+      if(true) {
+        this.updatePortfolioAccountStatus();
       } else {
-        this.saveNameOrContinueAccountCreation(null);
+        if (this.form.controls.portfolioName.value) {
+          const userPortfolioNameTitleCase = this.convertToTitleCase(this.form.controls.portfolioName.value);
+          this.saveNameOrContinueAccountCreation(userPortfolioNameTitleCase);
+        } else {
+          this.saveNameOrContinueAccountCreation(null);
+        }
       }
     }
   }
@@ -123,6 +129,12 @@ export class AddPortfolioNameComponent implements OnInit, OnDestroy {
     };
   }
 
+  constructUpdatePortfolioAccountStatusParams() {
+    return {
+      customerPortfolioId: this.formValues.recommendedCustomerPortfolioId,
+    };
+  }
+
   savePortfolioName(portfolioName) {
     this.loaderService.showLoader({
       title: this.translate.instant(
@@ -144,6 +156,37 @@ export class AddPortfolioNameComponent implements OnInit, OnDestroy {
         } else {
           this.redirectToPortfolioSummary();
         }
+      } else if (response.responseMessage.responseCode === 5120) {
+        this.showErrorMessage = true;
+      } else {
+        this.investmentAccountService.showGenericErrorModal();
+      }
+    },
+      (err) => {
+        this.loaderService.hideLoaderForced();
+        this.investmentAccountService.showGenericErrorModal();
+      });
+  }
+
+  updatePortfolioAccountStatus() {
+    this.loaderService.showLoader({
+      title: this.translate.instant(
+        'PORTFOLIO_RECOMMENDATION.CREATING_ADDITIONAL_ACCOUNT_LOADER.TITLE'
+      ),
+      desc: this.translate.instant(
+        'PORTFOLIO_RECOMMENDATION.CREATING_ADDITIONAL_ACCOUNT_LOADER.DESCRIPTION'
+      ),
+      autoHide: false
+    });
+    const param = this.constructUpdatePortfolioAccountStatusParams();
+    
+    //service call to update the investment account status to CKA_CHECK_PENDING will go here
+    
+    this.investmentCommonService.savePortfolioName(param).subscribe((response) => {
+      this.loaderService.hideLoaderForced();
+      if (response.responseMessage.responseCode === 6000) {
+        this.redirectToPortfolioInProgress();
+        this.showErrorMessage = false;
       } else if (response.responseMessage.responseCode === 5120) {
         this.showErrorMessage = true;
       } else {
@@ -391,6 +434,10 @@ export class AddPortfolioNameComponent implements OnInit, OnDestroy {
 
   redirectToYourInvestment() {
     this.router.navigate([MANAGE_INVESTMENTS_ROUTE_PATHS.YOUR_INVESTMENT]);
+  }
+
+  redirectToPortfolioInProgress() {
+    this.router.navigate([INVESTMENT_ENGAGEMENT_JOURNEY_ROUTE_PATHS.PORTFOLIO_APP_INPROGRESS_SCREEN]);
   }
 
   clearData() {
