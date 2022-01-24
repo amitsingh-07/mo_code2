@@ -404,4 +404,9 @@ export class PortfolioListComponent implements OnInit, OnChanges {
   verify(customerPortfolioId) {
     this.router.navigate([INVESTMENT_ENGAGEMENT_JOURNEY_ROUTE_PATHS.ADD_SECONDARY_HOLDER_DETAILS + "/" + customerPortfolioId]);
   }
+
+  getPortFolioBadgeData(portfolio: any): string {
+    let textKey = portfolio?.fundingTypeValue == 'SRS' ? 'YOUR_INVESTMENT.SRS'  : 'YOUR_INVESTMENT.CPF_OA';
+    return this.translate.instant(textKey);
+  }
 }
