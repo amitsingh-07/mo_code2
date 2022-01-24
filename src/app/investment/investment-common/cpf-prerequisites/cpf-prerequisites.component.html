@@ -28,7 +28,7 @@
               </div>
             </div>
             <ng-template #ckapassed>
-              <div class="flex-col">
+              <div class="flex-col" (click)="startAssessment()">
                 <div>{{'CPF_PREREQUISITES.START_NOW_BTN' | translate}}</div>
                 <div class="sub-txt">{{'CPF_PREREQUISITES.ESTIMATED_TIME_TEXT' | translate}}</div>
               </div>
@@ -51,7 +51,7 @@
                 <div class="flex-col-9">
                   <div class="dropdown-control">
                     <div ngbDropdown>
-                      <button class="btn btn-dropdown" id="additional_declaration_sourse-drpdown" ngbDropdownToggle>
+                      <button [disabled]="disableOperatorBank()" class="btn btn-dropdown" id="additional_declaration_sourse-drpdown" ngbDropdownToggle>
                         {{preRequisitesForm.controls.cpfOperator.value ?
                           preRequisitesForm.controls.cpfOperator.value.name :
                             'CPF_PREREQUISITES.CPFIA_OPERATOR_PLACEHOLDER'
@@ -75,7 +75,7 @@
                   [ngClass]="{'inline-error':getInlineErrorStatus(preRequisitesForm.controls.cpfAccountNo)}">
                   <input id="srs-act-num-value" type="text" [textMask]="maskConfig()" placeholder="{{
                   'CPF_PREREQUISITES.CPFIA_NUMBER_PLACEHOLDER'
-                  | translate}}" class="form-control" formControlName="cpfAccountNo" autocomplete="off">
+                  | translate}}" [attr.disabled]=true class="form-control" formControlName="cpfAccountNo" autocomplete="off">
                 </div>
               </div>
               <div class="characters" *ngIf="preRequisitesForm.get('cpfOperator').value">
@@ -91,7 +91,7 @@
             </div>
           </div>
         </form>
-        <button type="button" (click)="goToNext()"
+        <button type="button" (click)="goToNext()" [disabled]="disableContinue()"
           class="btn btn-primary btn__footer--fixed width100">{{'CPF_PREREQUISITES.CONTINUE' | translate}}</button>
       </div>
     </div>

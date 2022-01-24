@@ -611,7 +611,8 @@
     "QUE_2": "How do I find out more?",
     "STEP_4": "Visit our website for more <a class=\"hyperlink_color\" target=\"_blank\" href=\"https://www.moneyowl.com.sg/faq-investment/#investment|8\">Frequently Asked Questions</a> on investing with MoneyOwl.",
     "STEP_5": "For assistance on investment pre-requisites, please email <a class=\"hyperlink_color\" target='_blank' href='mailto:enquiries@moneyowl.com.sg'>enquiries@moneyowl.com.sg</a>.",
-    "BACK_TO_PROFILE_LBL": "Back to profile"
+    "BACK_TO_PROFILE_LBL": "Back to profile",
+    "TAKE_CERTIFICATION_LBL": "<a target='_blank' href='https://sips.abs.org.sg/Default.aspx'>Take Certification</a>"
   },
   "CKA_RESULT": {
     "TITLE": "You have passed CKA!",

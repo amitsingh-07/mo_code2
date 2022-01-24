@@ -43,7 +43,6 @@ export class YourInvestmentAmountComponent implements OnInit {
   selectedPortfolioType;
   loaderTitle: string; 
   loaderDescTwo: string;
-
   portfolioType
 
   constructor(
@@ -248,4 +247,8 @@ export class YourInvestmentAmountComponent implements OnInit {
     };
   }
  
+  showCPFText() {
+    const portfolioSelected = this.investmentEngagementJourneyService.getSelectPortfolioType();
+    return portfolioSelected === INVESTMENT_ENGAGEMENT_JOURNEY_CONSTANTS.SELECT_POROFOLIO_TYPE.CPF_PORTFOLIO;
+  }
 }
