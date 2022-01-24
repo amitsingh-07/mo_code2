@@ -17,7 +17,6 @@ export class ProductCategoryComponent implements DoCheck, OnInit {
   link;
   active;
   @Output() Details = new EventEmitter();
-
   ngDoCheck() {
     if (this.data) {
       this.active = this.data.active;
@@ -30,9 +29,7 @@ export class ProductCategoryComponent implements DoCheck, OnInit {
       }
     }
   }
-
   constructor() { }
-
   ngOnInit() {
   }
 }

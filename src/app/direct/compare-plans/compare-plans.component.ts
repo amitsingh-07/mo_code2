@@ -22,6 +22,7 @@ export class ComparePlansComponent implements OnInit {
   underwritingTooltipData;
   frequencyFilter: string;
   protectionType: string;
+  retirementIncome: any;
   constructor(
     public headerService: HeaderService, public directService: DirectService,
     public readonly translate: TranslateService, private _location: Location,
@@ -36,6 +37,8 @@ export class ComparePlansComponent implements OnInit {
     });
     this.frequencyFilter = this.directService.getPremiumFrequencyFilter();
     this.protectionType = this.directService.getProtectionType();
+    this.retirementIncome = this.directService.getRetirementIncomeForm();
+    
   }
 
   ngOnInit() {
