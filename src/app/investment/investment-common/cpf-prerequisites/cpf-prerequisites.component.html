@@ -1,10 +1,11 @@
 <div class="container-fluid max-width--1024 investment">
   <div class="row">
     <div class="col-lg-7 col-md-6">
-      <h2 class="hidden-sm">{{'CPF_PREREQUISITES.TITLE' | translate}}</h2>
+      <h2 class="hidden-sm-md">{{'CPF_PREREQUISITES.TITLE' | translate}}</h2>
       <div>{{'CPF_PREREQUISITES.DESC' | translate}}</div>
       <div class="banner-image">
-        <img src="assets/images/investment-account/cka-banner.svg" />
+        <img class="hidden-sm" src="assets/images/investment-account/cka-banner.svg" />
+        <img class="show-sm" src="assets/images/investment-account/cka-banner-mobile.svg" />
       </div>
     </div>
     <div class="col-lg-5 col-md-6">
@@ -44,11 +45,11 @@
         <form [formGroup]="preRequisitesForm">
           <div class="operator-block">
             <div class="width100">
-              <div class="flex-row">
+              <div class="flex-row space-between mb15">
                 <div class="flex-col-3">
                   <label for="name">{{'CPF_PREREQUISITES.CPFIA_OPERATOR_TITLE' | translate}}</label>
                 </div>
-                <div class="flex-col-9">
+                <div class="flex-col-8">
                   <div class="dropdown-control">
                     <div ngbDropdown>
                       <button [disabled]="disableOperatorBank()" class="btn btn-dropdown" id="additional_declaration_sourse-drpdown" ngbDropdownToggle>
@@ -66,12 +67,12 @@
                   </div>
                 </div>
               </div>
-              <div class="flex-row">
+              <div class="flex-row space-between">
                 <div class="flex-col-3">
                   <label for="name" placeholder="account number">{{'CPF_PREREQUISITES.CPFIA_NUMBER_TITLE' | translate}}
                   </label>
                 </div>
-                <div class="flex-col-9"
+                <div class="flex-col-8"
                   [ngClass]="{'inline-error':getInlineErrorStatus(preRequisitesForm.controls.cpfAccountNo)}">
                   <input id="srs-act-num-value" type="text" [textMask]="maskConfig()" placeholder="{{
                   'CPF_PREREQUISITES.CPFIA_NUMBER_PLACEHOLDER'
