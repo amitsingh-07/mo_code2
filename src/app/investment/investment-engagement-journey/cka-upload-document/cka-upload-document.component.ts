@@ -114,7 +114,6 @@ export class CkaUploadDocumentComponent implements OnInit {
     if (this.saveAndContinue) {
       const redirectURL = this.investmentCommonService.getCKARedirectFromLocation();
       this.investmentCommonService.setCKARedirectFromLocation(null);
-      // this.router.navigate([SIGN_UP_ROUTE_PATHS.EDIT_PROFILE]);
       this.router.navigate([redirectURL]);
     }
 
