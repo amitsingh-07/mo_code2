@@ -134,30 +134,31 @@ export class YourFinancialsComponent implements IPageComponent, OnInit {
         form.get(key).markAsDirty();
       });
     }
-    const error = this.investmentEngagementJourneyService.financialValidation(form, this.financialFormValue);
-    if (error) {
-      // tslint:disable-next-line:no-commented-code
-      const ref = this.modal.open(ModelWithButtonComponent, { centered: true });
-      ref.componentInstance.errorTitle = error.errorTitle;
-      ref.componentInstance.errorMessageHTML = error.errorMessage;
-      // tslint:disable-next-line:triple-equals
-      if (error.isButtons) {
-        ref.componentInstance.primaryActionLabel = this.translator.REVIEW_INPUT;
-        ref.componentInstance.secondaryActionLabel = this.translator.PROCEED_NEXT;
-        ref.componentInstance.secondaryActionDim = true;
-        ref.componentInstance.primaryAction.subscribe((emittedValue) => {
-          // tslint:disable-next-line:triple-equals
-          this.goBack(form);
-        });
-        ref.componentInstance.secondaryAction.subscribe((emittedValue) => {
-          // tslint:disable-next-line:triple-equals
-          this.saveAndProceed(form);
-        });
-      } else {
-        ref.componentInstance.ButtonTitle = this.translator.TRY_AGAIN;
-        return false;
-      }
-    } else {
+    // const error = this.investmentEngagementJourneyService.financialValidation(form, this.financialFormValue);
+    // if (error) {
+    //   // tslint:disable-next-line:no-commented-code
+    //   const ref = this.modal.open(ModelWithButtonComponent, { centered: true });
+    //   ref.componentInstance.errorTitle = error.errorTitle;
+    //   ref.componentInstance.errorMessageHTML = error.errorMessage;
+    //   // tslint:disable-next-line:triple-equals
+    //   if (error.isButtons) {
+    //     ref.componentInstance.primaryActionLabel = this.translator.REVIEW_INPUT;
+    //     ref.componentInstance.secondaryActionLabel = this.translator.PROCEED_NEXT;
+    //     ref.componentInstance.secondaryActionDim = true;
+    //     ref.componentInstance.primaryAction.subscribe((emittedValue) => {
+    //       // tslint:disable-next-line:triple-equals
+    //       this.goBack(form);
+    //     });
+    //     ref.componentInstance.secondaryAction.subscribe((emittedValue) => {
+    //       // tslint:disable-next-line:triple-equals
+    //       this.saveAndProceed(form);
+    //     });
+    //   } else {
+    //     ref.componentInstance.ButtonTitle = this.translator.TRY_AGAIN;
+    //     return false;
+    //   }
+    // } 
+    else {
       this.saveAndProceed(form);
     }
   }

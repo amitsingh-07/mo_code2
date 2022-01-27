@@ -357,5 +357,8 @@
       }
     }
   },
-  "defaultProject": "bfa-frontend"
+  "defaultProject": "bfa-frontend",
+  "cli": {
+    "analytics": "f7627723-1279-417d-a92d-aa67aee060cd"
+  }
 }
