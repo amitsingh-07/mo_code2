@@ -46,7 +46,7 @@
                   <div class="flex-row space-between">
                     <div class="portfolio-type align-center">
                       <div class="flex align-center">
-                        <span *ngIf="portfolio?.fundingTypeValue == 'SRS' || portfolio?.fundingTypeValue == 'CPF OA'" [ngClass]="portfolio?.fundingTypeValue == 'SRS' ? 'portfolio-fund-type mr5' : 'portfolio-fund-type-cpf-oa mr5'">
+                        <span *ngIf="portfolio?.fundingTypeValue == fundingMethods.SRS || portfolio?.fundingTypeValue == fundingMethods.CPF_OA" [ngClass]="portfolio?.fundingTypeValue == fundingMethods.SRS ? 'portfolio-fund-type mr5' : 'portfolio-fund-type-cpf-oa mr5'">
                           {{getPortFolioBadgeData(portfolio)}}
                         </span>
                         <ng-container *ngIf="portfolio?.riskProfile; else nonInvestPortfolio">
@@ -380,7 +380,7 @@
               <span>{{pendingBuyRequests.value.length}}</span>
             </div>
           </div>
-          <div *ngIf="portfolio?.fundingTypeValue === 'CPF OA'" class="pending-request">
+          <div *ngIf="portfolio?.fundingTypeValue === fundingMethods.CPF_OA" class="pending-request">
             <div class="your-portfolio-tab-title"
               innerHTML="{{'YOUR_PORTFOLIO.PENDING_REQUESTS_CPFOA_ACCOUNT' | translate}}"></div>
             <div class="circle" *ngIf="pendingBuyRequests && pendingBuyRequests.value">
@@ -657,7 +657,7 @@
             </div>
 
             <!-- cpf-oa a/c -->
-            <div *ngIf="portfolio?.fundingTypeValue === 'CPF OA'" class="srs-account">
+            <div *ngIf="portfolio?.fundingTypeValue === fundingMethods.CPF_OA" class="srs-account">
               <div class="srs-account-lbl">{{'YOUR_PORTFOLIO.CPFOA_ACCOUNT' | translate}}</div>
               <div class="form-group-with-bg">
                 <!--Form Content-->

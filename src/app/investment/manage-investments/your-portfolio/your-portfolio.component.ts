@@ -75,6 +75,7 @@ export class YourPortfolioComponent implements OnInit, OnDestroy {
   startTime: string;
   endTime: string;
   wiPayoutEligible: any;
+  fundingMethods = INVESTMENT_COMMON_CONSTANTS.FUNDING_METHODS;
 
   constructor(
     public readonly translate: TranslateService,
@@ -587,7 +588,7 @@ export class YourPortfolioComponent implements OnInit, OnDestroy {
   }
 
   getCpfIaAccDetails() {
-    if (this.portfolio.fundingTypeValue === 'CPF OA') {
+    if (this.portfolio.fundingTypeValue === INVESTMENT_COMMON_CONSTANTS.FUNDING_METHODS.CPF_OA) {
       // this.subscription = this.authService.get2faUpdateEvent.subscribe((token) => {
         this.manageInvestmentsService.getProfileCPFIAccountDetails().subscribe((data) => {
           if (data) {
@@ -643,7 +644,7 @@ export class YourPortfolioComponent implements OnInit, OnDestroy {
   }
 
   getPortFolioBadgeData(portfolio: any): string {
-    let textKey = portfolio?.fundingTypeValue == 'SRS' ? 'YOUR_INVESTMENT.SRS'  : 'YOUR_INVESTMENT.CPF_OA';
+    let textKey = portfolio?.fundingTypeValue == INVESTMENT_COMMON_CONSTANTS.FUNDING_METHODS.SRS ? 'YOUR_INVESTMENT.SRS'  : 'YOUR_INVESTMENT.CPF_OA';
     return this.translate.instant(textKey);
   }
 }

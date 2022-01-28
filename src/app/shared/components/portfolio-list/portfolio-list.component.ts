@@ -92,6 +92,7 @@ export class PortfolioListComponent implements OnInit, OnChanges {
   hours: any;
   minutes: any;
   day: any;
+  fundingMethods = INVESTMENT_COMMON_CONSTANTS.FUNDING_METHODS;
 
   constructor(
     public readonly translate: TranslateService,
@@ -406,7 +407,7 @@ export class PortfolioListComponent implements OnInit, OnChanges {
   }
 
   getPortFolioBadgeData(portfolio: any): string {
-    let textKey = portfolio?.fundingTypeValue == 'SRS' ? 'YOUR_INVESTMENT.SRS'  : 'YOUR_INVESTMENT.CPF_OA';
+    let textKey = portfolio?.fundingTypeValue == INVESTMENT_COMMON_CONSTANTS.FUNDING_METHODS.SRS ? 'YOUR_INVESTMENT.SRS'  : 'YOUR_INVESTMENT.CPF_OA';
     return this.translate.instant(textKey);
   }
 }
