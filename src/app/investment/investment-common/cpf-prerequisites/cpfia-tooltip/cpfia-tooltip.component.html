@@ -1,0 +1,20 @@
+<div class="modal-body white-bg">
+  <div class="modal-body-title">
+    <div>
+      <span>{{'CPF_PREREQUISITES.TOOLTIP.TITLE' | translate}} </span>
+      <span>
+        <button type="button" class="close" aria-label="Close" (click)="closeIconAction()">
+          <span aria-hidden="true" id="errorModelCloseIcon"></span>
+        </button>
+      </span>
+    </div>
+  </div>
+  <div class="para1" [innerHTML]="'CPF_PREREQUISITES.TOOLTIP.PARA1' | translate"></div>
+  <div class="quest1" [innerHTML]="'CPF_PREREQUISITES.TOOLTIP.QUEST1' | translate"></div>
+  <div class="quest1" [innerHTML]="'CPF_PREREQUISITES.TOOLTIP.QUEST2' | translate"> </div>
+  <div class="quest1" [innerHTML]="'CPF_PREREQUISITES.TOOLTIP.QUEST3' | translate"> </div>
+  <div class="width100">
+    <button class="got-it-btn btn btn-primary width100"
+      (click)="activeModal.dismiss('Cross click')">{{'CPF_PREREQUISITES.TOOLTIP.OKAY_BTN' | translate}}</button>
+  </div>
+</div>
