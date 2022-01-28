@@ -18,7 +18,7 @@ import {
   InvestmentEngagementJourneyService
 } from '../../investment-engagement-journey/investment-engagement-journey.service';
 import { ProfileIcons } from '../../investment-engagement-journey/recommendation/profileIcons';
-import { IToastMessage } from '../manage-investments-form-data';
+import { ICPFIAccountDetails, IToastMessage } from '../manage-investments-form-data';
 import { MANAGE_INVESTMENTS_ROUTE_PATHS } from '../manage-investments-routes.constants';
 import { MANAGE_INVESTMENTS_CONSTANTS, PORTFOLIO_WITHDRAWAL_KEYS } from '../manage-investments.constants';
 import { ManageInvestmentsService } from '../manage-investments.service';
@@ -52,6 +52,7 @@ export class YourPortfolioComponent implements OnInit, OnDestroy {
   toastMsg: any;
   activeTab: string;
   srsAccDetail;
+  cpfiaAccDetail: ICPFIAccountDetails;
   portfolioWithdrawRequests = false;
   showAnnualizedReturns = false;
   addTopMargin: boolean;
@@ -206,6 +207,7 @@ export class YourPortfolioComponent implements OnInit, OnDestroy {
         }
       }
       this.getSrsAccDetails();
+      this.getCpfIaAccDetails();
       this.showOrHideWhatsNextSection();
     },
       (err) => {
@@ -269,6 +271,9 @@ export class YourPortfolioComponent implements OnInit, OnDestroy {
         break;
       case MANAGE_INVESTMENTS_CONSTANTS.WITHDRAW_PAYMENT_MODE_KEYS.PORTFOLIO_TO_SRS_ACCOUNT:
         withdrawType = this.translate.instant('YOUR_PORTFOLIO.PORTFOLIO_TO_SRS_ACCOUNT');
+        break;
+      case MANAGE_INVESTMENTS_CONSTANTS.WITHDRAW_PAYMENT_MODE_KEYS.PORTFOLIO_TO_CPFOA_ACCOUNT:
+        withdrawType = this.translate.instant('YOUR_PORTFOLIO.PORTFOLIO_TO_CPFOA_ACCOUNT');
         break;
       default:
         withdrawType = '';
@@ -581,6 +586,23 @@ export class YourPortfolioComponent implements OnInit, OnDestroy {
     }
   }
 
+  getCpfIaAccDetails() {
+    if (this.portfolio.fundingTypeValue === 'CPF OA') {
+      // this.subscription = this.authService.get2faUpdateEvent.subscribe((token) => {
+        this.manageInvestmentsService.getProfileCPFIAccountDetails().subscribe((data) => {
+          if (data) {
+            this.cpfiaAccDetail = data;
+          } else {
+            this.cpfiaAccDetail = null;
+          }
+        },
+          (err) => {
+            this.investmentAccountService.showGenericErrorModal();
+          });
+      // });
+    }
+  }
+
   toggleReturns() {
     if (!this.isWiseIncomePortfolio) {
       this.showTimeWeightedReturns = !this.showTimeWeightedReturns;
@@ -618,5 +640,10 @@ export class YourPortfolioComponent implements OnInit, OnDestroy {
     this.router.navigate([MANAGE_INVESTMENTS_ROUTE_PATHS.DIVIDEND]);
     event.stopPropagation();
     event.preventDefault();
+  }
+
+  getPortFolioBadgeData(portfolio: any): string {
+    let textKey = portfolio?.fundingTypeValue == 'SRS' ? 'YOUR_INVESTMENT.SRS'  : 'YOUR_INVESTMENT.CPF_OA';
+    return this.translate.instant(textKey);
   }
 }

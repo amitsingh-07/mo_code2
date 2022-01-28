@@ -51,6 +51,7 @@ export let investmentApiConstants = {
             gerSrsDetails: ACCOUNT_API_BASE_URL + '/customer/getSrsBankDetails?handleError=true',
             saveSrsAccountDetails: ACCOUNT_API_BASE_URL + '/customer/$CUSTOMER_PORTFOLIO_ID$/srsbankDetails',
             getProfileSrsDetails: ACCOUNT_API_BASE_URL + '/customer/profile/getSrsBankDetails?handleError=true',
+            getProfileCpfIaDetails: ACCOUNT_API_BASE_URL + '/customer/getCPFOperatorDetails',
             saveProfileSrsAccountDetails: ACCOUNT_API_BASE_URL + '/customer/profile/$CUSTOMER_ID$/srsbankDetails',
             getInvestmentNote: INVESTMENT_API_BASE_URL + '/holiday/alert?handleError=true',
             getCashPortfolioList: INVESTMENT_API_BASE_URL + '/customers/portfolios/cashAccountList',
