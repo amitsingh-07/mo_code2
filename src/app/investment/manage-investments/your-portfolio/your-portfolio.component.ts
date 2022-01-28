@@ -272,8 +272,8 @@ export class YourPortfolioComponent implements OnInit, OnDestroy {
       case MANAGE_INVESTMENTS_CONSTANTS.WITHDRAW_PAYMENT_MODE_KEYS.PORTFOLIO_TO_SRS_ACCOUNT:
         withdrawType = this.translate.instant('YOUR_PORTFOLIO.PORTFOLIO_TO_SRS_ACCOUNT');
         break;
-      case MANAGE_INVESTMENTS_CONSTANTS.WITHDRAW_PAYMENT_MODE_KEYS.PORTFOLIO_TO_CPFOA_ACCOUNT:
-        withdrawType = this.translate.instant('YOUR_PORTFOLIO.PORTFOLIO_TO_CPFOA_ACCOUNT');
+      case MANAGE_INVESTMENTS_CONSTANTS.WITHDRAW_PAYMENT_MODE_KEYS.PORTFOLIO_TO_CPF_ACCOUNT:
+        withdrawType = this.translate.instant('YOUR_PORTFOLIO.PORTFOLIO_TO_CPF_ACCOUNT');
         break;
       default:
         withdrawType = '';
