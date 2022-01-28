@@ -1,6 +1,6 @@
 import {throwError as observableThrowError,  Observable } from 'rxjs';
 import {map, finalize,  catchError } from 'rxjs/operators';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 
 import { ConfigService, IConfig } from '../../config/config.service';
@@ -31,6 +31,28 @@ export class BaseService {
     this.helperService.showLoader();
     return this.httpClient
       .get<IServerResponse>(`${this.apiBaseUrl}/${url}`).pipe(
+      finalize(() => {
+        this.helperService.hideLoader();
+      }))
+      .pipe(
+        catchError(this.errorHandler.handleError)
+      );
+  }
+
+  /**
+   * 
+   * @param url The api URL string
+   * @param paramsData JSON object coded key value Query params e.g. param = {"qa": 123} to api/someMethod?qa=123
+   * @returns Observable<IServerResponse>
+   */
+  getWithParams(url: string, paramsData: any): Observable<IServerResponse> {
+    let params = new HttpParams();
+    Object.keys(paramsData).forEach(key => {
+      params = params.append(key, paramsData[key]);
+    });
+    this.helperService.showLoader();
+    return this.httpClient
+      .get<IServerResponse>(`${this.apiBaseUrl}/${url}`, {params: params}).pipe(
       finalize(() => {
         this.helperService.hideLoader();
       }))

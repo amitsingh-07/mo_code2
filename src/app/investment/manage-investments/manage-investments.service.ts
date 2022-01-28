@@ -22,7 +22,7 @@ import {
   InvestmentEngagementJourneyService
 } from '../investment-engagement-journey/investment-engagement-journey.service';
 import { INVESTMENT_COMMON_CONSTANTS } from './../investment-common/investment-common.constants';
-import { ISrsAccountDetails, ManageInvestmentsFormData } from './manage-investments-form-data';
+import { ICPFIAccountDetails, ISrsAccountDetails, ManageInvestmentsFormData } from './manage-investments-form-data';
 import { ManageInvestmentsFormError } from './manage-investments-form-error';
 import { MANAGE_INVESTMENTS_ROUTE_PATHS } from './manage-investments-routes.constants';
 import { MANAGE_INVESTMENTS_CONSTANTS } from './manage-investments.constants';
@@ -644,8 +644,33 @@ export class ManageInvestmentsService {
       }));
   }
 
+  getProfileCPFIAccountDetails(): Observable<ICPFIAccountDetails> {
+    return this.investmentApiService.getProfileCpfIAccountDetails().pipe(map((data: any) => {
+      if (data && data.objectList && data.objectList.accountNumber &&
+        data.objectList.bankOperator && data.objectList.bankOperator.name) {
+        const cpfiaAccountDetails: ICPFIAccountDetails = {
+          // srsAccountNumber: data.objectList.accountNumber,
+          cpfiaAccountNumber: data.objectList.accountNumber,
+          cpfiaOperator: data.objectList.srsBankOperator.name,
+        };
+        this.setCpfiaAccountDetails(cpfiaAccountDetails);
+        return cpfiaAccountDetails;
+      } else {
+        return null;
+      }
+    },
+      (err) => {
+        this.investmentAccountService.showGenericErrorModal();
+      }));
+  }
+
   setSrsAccountDetails(srsAccountDetails: ISrsAccountDetails) {
     this.manageInvestmentsFormData.srsAccountDetails = srsAccountDetails;
+    this.commit();
+  }
+
+  setCpfiaAccountDetails(cpfiaAccountDetails: ICPFIAccountDetails) {
+    this.manageInvestmentsFormData.cpfiaAccountDetails = cpfiaAccountDetails;
     this.commit();
   }
 
