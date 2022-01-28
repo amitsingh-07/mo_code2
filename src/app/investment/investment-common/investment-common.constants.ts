@@ -19,7 +19,8 @@ export let INVESTMENT_COMMON_CONSTANTS = {
   ],
   FUNDING_METHODS: {
     CASH: 'CASH',
-    SRS: 'SRS'
+    SRS: 'SRS',
+    CPFOA: 'CPFOA'
   },
   SRS_OPERATOR: {
     DBS: 'DBS',
@@ -30,7 +31,8 @@ export let INVESTMENT_COMMON_CONSTANTS = {
     ALL: 'All',
     INVESTMENT: 'Investment',
     WISEINCOME: 'WiseIncome',
-    WISESAVER: 'WiseSaver'
+    WISESAVER: 'WiseSaver',
+    CPF: 'CPF'
   },
   PORTFOLIO_CATEGORY_TYPE: {
     INVESTMENT: 'INVESTMENT',
@@ -110,6 +112,8 @@ export let INVESTMENT_COMMON_CONSTANTS = {
     OTHERS: 'OTHERS',
     CKA_PASSED_STATUS: 'CKA_PASSED',
     CKA_FAILED_STATUS: 'CKA_FAILED',
+    CKA_CERTIFICATE_UPLOADED: 'UPLOADED',
+    CKA_BE_CERTIFICATE_UPLOADED: 'CKA_CERTIFICATE_UPLOAD',
     METHODS: [
       "educational",
       "professional",
@@ -134,5 +138,10 @@ export let INVESTMENT_COMMON_CONSTANTS = {
         EMPLOYER: "ckaWork"
       }
     }
-  }
+  },
+  CPF_BANK_KEYS: { /* ACCOUNT NUMBER LENGTH FOR LIST OF BANK CODES */
+    DBS: 'DBS',
+    OCBC: 'OCBC',
+    UOB: 'UOB',
+  },
 };

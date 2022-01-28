@@ -1,0 +1,168 @@
+<div class="container-fluid max-width--1024 select-portfolio full-height">
+    <div class="portfolio-page-title hidden-sm">{{'PORTFOLIO.TITLE_NEW' | translate}}</div>
+    <!--CPF Card-->
+    <div class="portfolio-goal-card-wrapper" *ngIf="selectPortfolioInfo == 'CPF'">
+        <div class="portfolio-goal-card">
+            <div class="portfolio-goal-card__top">
+               <div class="portfolio-goal-card__top--left">
+                    <h2>{{'PORTFOLIO.CPFOA.TITLE' | translate}}</h2>
+                    {{'PORTFOLIO.CPFOA.DESC' | translate}} 
+               </div>
+               <div class="portfolio-goal-card__top--left">
+                    <img src="assets/images/cpf/cpf-card-img.svg">
+               </div>
+            </div>
+            <div class="portfolio-goal-card__bottom">
+                <div class="portfolio-info">
+                    <ngx-slick-carousel class="carousel" #carousel [config]="slideConfig"
+                        (beforeChange)="beforeSlideChange($event)">
+                        <div ngxSlickItem>
+                            <div class="portfolio-info__slide-item">
+                                <div class="portfolio-info__heading">{{'PORTFOLIO.CPFOA.SLIDES.HEADING' | translate}}</div>
+                                <ul>
+                                    <li>{{'PORTFOLIO.CPFOA.SLIDES.LIST_ITEM_1' | translate}}</li>
+                                    <li>{{'PORTFOLIO.CPFOA.SLIDES.LIST_ITEM_2' | translate}}</li>
+                                    <li>{{'PORTFOLIO.CPFOA.SLIDES.LIST_ITEM_3' | translate}}</li>
+                                    <li>{{'PORTFOLIO.CPFOA.SLIDES.LIST_ITEM_4' | translate}}</li>
+                                    <li>{{'PORTFOLIO.CPFOA.SLIDES.LIST_ITEM_5' | translate}}</li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div ngxSlickItem>
+                            <div class="portfolio-info__slide-item">
+                                <p>{{'PORTFOLIO.CPFOA.SLIDES.P1' | translate}}
+                                </p>
+                                <p> {{'PORTFOLIO.CPFOA.SLIDES.P2' | translate}}</p>
+                            </div>
+                        </div>
+                    </ngx-slick-carousel>
+                    <div class="learn-more"><a href="/" target="_blank">{{'PORTFOLIO.LEARN_MORE' | translate}}</a></div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--DFA Card-->
+    <div class="portfolio-goal-card-wrapper" *ngIf="selectPortfolioInfo == 'investPortfolio'">
+        <div class="portfolio-goal-card">
+            <div class="portfolio-goal-card__top">
+               <div class="portfolio-goal-card__top--left">
+                <h2>{{'PORTFOLIO.INVESTMENT.TITLE' | translate}}</h2>
+                {{'PORTFOLIO.INVESTMENT.DESC' | translate}} 
+               </div>
+               <div class="portfolio-goal-card__top--left">
+                    <img src="assets/images/wisesaver/investment-guy.svg">
+               </div>
+            </div>
+            <div class="portfolio-goal-card__bottom">
+                <div class="portfolio-info">
+                    <ngx-slick-carousel class="carousel" #carousel [config]="slideConfig"
+                        (beforeChange)="beforeSlideChange($event)">
+                        <div ngxSlickItem>
+                            <div class="portfolio-info__slide-item">
+                                <div class="portfolio-info__heading">{{'PORTFOLIO.INVESTMENT.SLIDES.HEADING' | translate}}</div>
+                                <ul>
+                                    <li>{{'PORTFOLIO.INVESTMENT.SLIDES.LIST_ITEM_1' | translate}}</li>
+                                    <li>{{'PORTFOLIO.INVESTMENT.SLIDES.LIST_ITEM_2' | translate}}</li>
+                                    <li>{{'PORTFOLIO.INVESTMENT.SLIDES.LIST_ITEM_3' | translate}}</li>
+                                    <li>{{'PORTFOLIO.INVESTMENT.SLIDES.LIST_ITEM_4' | translate}}</li>
+                                    <li>{{'PORTFOLIO.INVESTMENT.SLIDES.LIST_ITEM_5' | translate}}</li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div ngxSlickItem>
+                            <div class="portfolio-info__slide-item">
+                                <p>{{'PORTFOLIO.INVESTMENT.SLIDES.P1' | translate}}
+                                </p>
+                                <p> {{'PORTFOLIO.INVESTMENT.SLIDES.P2' | translate}}</p>
+                            </div>
+                        </div>
+                    </ngx-slick-carousel>
+                    <div class="learn-more"><a href="/" target="_blank">{{'PORTFOLIO.LEARN_MORE' | translate}}</a></div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--WI Card-->
+    <div class="portfolio-goal-card-wrapper" *ngIf="selectPortfolioInfo == 'wiseIncomePortfolio'">
+        <div class="portfolio-goal-card">
+            <div class="portfolio-goal-card__top">
+               <div class="portfolio-goal-card__top--left">
+                <h2>{{'PORTFOLIO.WISEINCOME.TITLE' | translate}}</h2>
+                {{'PORTFOLIO.WISEINCOME.DESC' | translate}}
+               </div>
+               <div class="portfolio-goal-card__top--left">
+                    <img src="assets/images/wiseincome/investment-guy.svg">
+               </div>
+            </div>
+            <div class="portfolio-goal-card__bottom">
+                <div class="portfolio-info">
+                    <ngx-slick-carousel class="carousel" #carousel [config]="slideConfig"
+                        (beforeChange)="beforeSlideChange($event)">
+                        <div ngxSlickItem>
+                            <div class="portfolio-info__slide-item">
+                                <div class="portfolio-info__heading">{{'PORTFOLIO.WISEINCOME.SLIDES.HEADING' | translate}}</div>
+                                <ul>
+                                    <li>{{'PORTFOLIO.WISEINCOME.SLIDES.LIST_ITEM_1' | translate}}</li>
+                                    <li>{{'PORTFOLIO.WISEINCOME.SLIDES.LIST_ITEM_2' | translate}}</li>
+                                    <li>{{'PORTFOLIO.WISEINCOME.SLIDES.LIST_ITEM_3' | translate}}</li>
+                                    <li>{{'PORTFOLIO.WISEINCOME.SLIDES.LIST_ITEM_4' | translate}}</li>
+                                    <li>{{'PORTFOLIO.WISEINCOME.SLIDES.LIST_ITEM_5' | translate}}</li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div ngxSlickItem>
+                            <div class="portfolio-info__slide-item">
+                                <p>{{'PORTFOLIO.WISEINCOME.SLIDES.P1' | translate}}
+                                </p>
+                                <p> {{'PORTFOLIO.WISEINCOME.SLIDES.P2' | translate}}</p>
+                            </div>
+                        </div>
+                    </ngx-slick-carousel>
+                    <div class="learn-more"><a href="/" target="_blank">{{'PORTFOLIO.LEARN_MORE' | translate}}</a></div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--WS Card-->
+    <div class="portfolio-goal-card-wrapper" *ngIf="selectPortfolioInfo == 'wiseSaverPortfolio'">
+        <div class="portfolio-goal-card">
+            <div class="portfolio-goal-card__top">
+               <div class="portfolio-goal-card__top--left">
+                <h2>{{'PORTFOLIO.WISESAVER.TITLE' | translate}}</h2>
+                {{'PORTFOLIO.WISESAVER.DESC' | translate}}
+               </div>
+               <div class="portfolio-goal-card__top--left">
+                    <img src="assets/images/wisesaver/wisesaver-family.svg">
+               </div>
+            </div>
+            <div class="portfolio-goal-card__bottom">
+                <div class="portfolio-info">
+                    <ngx-slick-carousel class="carousel" #carousel [config]="slideConfig"
+                        (beforeChange)="beforeSlideChange($event)">
+                        <div ngxSlickItem>
+                            <div class="portfolio-info__slide-item">
+                                <div class="portfolio-info__heading">{{'PORTFOLIO.WISESAVER.SLIDES.HEADING' | translate}}</div>
+                                <ul>
+                                    <li>{{'PORTFOLIO.WISESAVER.SLIDES.LIST_ITEM_1' | translate}}</li>
+                                    <li>{{'PORTFOLIO.WISESAVER.SLIDES.LIST_ITEM_2' | translate}}</li>
+                                    <li>{{'PORTFOLIO.WISESAVER.SLIDES.LIST_ITEM_3' | translate}}</li>
+                                    <li>{{'PORTFOLIO.WISESAVER.SLIDES.LIST_ITEM_4' | translate}}</li>
+                                    <li>{{'PORTFOLIO.WISESAVER.SLIDES.LIST_ITEM_5' | translate}}</li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div ngxSlickItem>
+                            <div class="portfolio-info__slide-item">
+                                <p>{{'PORTFOLIO.WISESAVER.SLIDES.P1' | translate}}
+                                </p>
+                                <p> {{'PORTFOLIO.WISESAVER.SLIDES.P2' | translate}}</p>
+                            </div>
+                        </div>
+                    </ngx-slick-carousel>
+                    <div class="learn-more"><a href="/" target="_blank">{{'PORTFOLIO.LEARN_MORE' | translate}}</a></div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="continue-button"><button type="button" (click)="redirectToNextScreen()" class="btn btn-primary btn__footer--fixed width100">{{ 'LABEL.CONTINUE' | translate}}</button></div>  
+</div>

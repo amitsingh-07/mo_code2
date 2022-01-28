@@ -636,6 +636,7 @@ export class EditProfileComponent implements OnInit, OnDestroy {
   }
 
   openCKAModal() {
+    this.investmentCommonService.setCKARedirectFromLocation(SIGN_UP_ROUTE_PATHS.EDIT_PROFILE);
     const ref = this.modal.open(ModelWithButtonComponent, { centered: true });
     ref.componentInstance.errorTitle = this.translate.instant(
       'OPEN_CKA.TITLE'

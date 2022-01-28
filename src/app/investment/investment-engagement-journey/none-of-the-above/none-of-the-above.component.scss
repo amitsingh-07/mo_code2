@@ -89,6 +89,15 @@ app-none-of-the-above{
                     margin: 0 auto 30px;
                 }
             }
+        .btn-primary{
+            a{
+                color: $white-color;
+                &:hover{
+                    color: $white-color;
+                    text-decoration: none;
+                }
+            }
+        }
     }
   
 }

@@ -20,8 +20,17 @@
     }
   },
   "PORTFOLIO": {
-    "TITLE": "Select Portfolio",
-    "SUB_HEADING": "What is your investment goal?",
+    "TITLE": "Select Portfolio Goal",
+    "TITLE_NEW": "Your Portfolio Goal",
+    "SUB_HEADING": "I am using <span class='txt-bold'>Cash / SRS</span> to fund the portfolio",
+    "CPF_SUB_HEADING": "I am using <span class='txt-bold'>CPF OA</span> to fund the portfolio",
+    "JA_SUB_HEADING": "I am using <span class='txt-bold'>Cash</span> to fund the portfolio",
+    "TAB_LBL_1":"Cash / SRS",
+    "TAB_LBL_2":"CPF OA",
+    "DIMENSIONAL_PORTFOLIO": "Dimensional",
+    "WISEINCOME_PORTFOLIO": "WiseIncome",
+    "WISESAVER_PORTFOLIO": "WiseSaver",
+    "SELECT_LBL": "Select",
     "INVESTMENT": {
       "TITLE": "Grow your wealth",
       "DESC": "Invest in our globally diversified portfolios to grow your wealth faster",
@@ -71,8 +80,26 @@
         "LIST_ITEM_5": "No lock-in period",
         "LIST_ITEM_6": "Exclusive to MoneyOwl"
       }
-    }
+    },
+    "CPFOA": {
+      "TITLE": "Grow your CPF",
+      "DESC": "Invest in our globally diversified portfolios that tracks the MSCI World to grow your CPF OA savings faster.",
+      "MORE_INFO": "More info",
+      "FOOTER_BTN_TXT": "Continue",
+      "SLIDES": {
+        "P1": "Invest in a portfolio of global indexed equities, Asian bonds, Singapore/US Government bonds and Singapore REITs designed to provide a stream of passive income for the long term.",
+        "P2": "Choose the right asset allocation based on your financial situation so that you can stay invested for the long haul with as little guesswork and and as little stress as possible.",
+        "HEADING": "What's great?",
+        "LIST_ITEM_1": "Grow your CPF OA savings faster at potential returns of more than 2.5% p.a.",
+        "LIST_ITEM_2": "Suitable for longer term investing",
+        "LIST_ITEM_3": "Globally diversified portfolios",
+        "LIST_ITEM_4": "Tracks the MSCI World Index",
+        "LIST_ITEM_5": "Low costs"
+      }
+    },
+    "LEARN_MORE": "Learn More"
   },
+
   "WISE_INCOME_PAYOUT": {
     "TITLE": "WiseIncome Portfolio",
     "CAPTION": "Select a Payout Option",
@@ -212,6 +239,7 @@
     "MONTHLY_DEPOSIT_LBL": "Monthly Amount",
     "AT_LEAST_ONE": "Select at least one of the following.",
     "INVESTMENT_LBL": "I want to fund",
+    "INVESTMENT_CPF_LBL": "<p>Please note that the first $20,000 in your CPF OA cannot be invested.</p>As the agent bank that operates your CPF Investment Account levies a fee of $2.50 (excluding gst) for each buy and sell CPF investments. It is recommended that you opt for one-time amount or a higher monthly amount to optimise your investments.",
     "MIN_100": "Min. $100",
     "MIN_50": "Min. $50",
     "MIN": "Min.",
@@ -593,7 +621,8 @@
     "QUE_2": "How do I find out more?",
     "STEP_4": "Visit our website for more <a class=\"hyperlink_color\" target=\"_blank\" href=\"https://www.moneyowl.com.sg/faq-investment/#investment|8\">Frequently Asked Questions</a> on investing with MoneyOwl.",
     "STEP_5": "For assistance on investment pre-requisites, please email <a class=\"hyperlink_color\" target='_blank' href='mailto:enquiries@moneyowl.com.sg'>enquiries@moneyowl.com.sg</a>.",
-    "BACK_TO_PROFILE_LBL": "Back to profile"
+    "BACK_TO_PROFILE_LBL": "Back to profile",
+    "TAKE_CERTIFICATION_LBL": "<a target='_blank' href='https://sips.abs.org.sg/Default.aspx'>Take Certification</a>"
   },
   "CKA_RESULT": {
     "TITLE": "You have passed CKA!",

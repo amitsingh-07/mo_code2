@@ -43,7 +43,6 @@ export class YourInvestmentAmountComponent implements OnInit {
   selectedPortfolioType;
   loaderTitle: string; 
   loaderDescTwo: string;
-
   portfolioType
 
   constructor(
@@ -118,6 +117,9 @@ export class YourInvestmentAmountComponent implements OnInit {
     } else if (selectedPortfolioValue ===
       INVESTMENT_ENGAGEMENT_JOURNEY_CONSTANTS.SELECT_POROFOLIO_TYPE.INVEST_PORTFOLIO) {
       return INVESTMENT_ENGAGEMENT_JOURNEY_CONSTANTS.SELECT_POROFOLIO_TYPE.INVESTMENT
+    } else if (selectedPortfolioValue ===
+      INVESTMENT_ENGAGEMENT_JOURNEY_CONSTANTS.SELECT_POROFOLIO_TYPE.CPF_PORTFOLIO) {
+      return INVESTMENT_ENGAGEMENT_JOURNEY_CONSTANTS.SELECT_POROFOLIO_TYPE.CPF_PORTFOLIO
     } else {
       return INVESTMENT_ENGAGEMENT_JOURNEY_CONSTANTS.SELECT_POROFOLIO_TYPE.WISEINCOME
     }
@@ -245,4 +247,8 @@ export class YourInvestmentAmountComponent implements OnInit {
     };
   }
  
+  showCPFText() {
+    const portfolioSelected = this.investmentEngagementJourneyService.getSelectPortfolioType();
+    return portfolioSelected === INVESTMENT_ENGAGEMENT_JOURNEY_CONSTANTS.SELECT_POROFOLIO_TYPE.CPF_PORTFOLIO;
+  }
 }
