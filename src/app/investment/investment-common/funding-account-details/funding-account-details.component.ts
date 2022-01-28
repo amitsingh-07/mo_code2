@@ -460,7 +460,7 @@ export class FundingAccountDetailsComponent implements OnInit {
   isCPFAccount(fundingMethodId, fundingMethods) {
     const fundingMethodName = this.getFundingMethodNameById(fundingMethodId, fundingMethods);
     // const fundingMethodName = 'CPFOA';
-    if (fundingMethodName.toUpperCase() === INVESTMENT_COMMON_CONSTANTS.FUNDING_METHODS.CPFOA) {
+    if (fundingMethodName.toUpperCase() === INVESTMENT_COMMON_CONSTANTS.FUNDING_METHODS.CPF_OA) {
       return true;
     } else {
       return false;
