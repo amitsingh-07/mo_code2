@@ -385,6 +385,14 @@ export class TopUpComponent implements OnInit, OnDestroy {
     this.reviewBuyRequestModal.componentInstance.submitRequest.subscribe((emittedValue) => {
       this.checkIfExistingBuyRequest(form);
     });
+    this.reviewBuyRequestModal.componentInstance.closeAction.subscribe((emittedValue) => {
+      if(this.showOnetimeInvestmentAmount){
+        this.topForm.controls['oneTimeInvestmentAmount'].setValue(0);
+      } 
+      if(this.showMonthlyInvestmentAmount){
+        this.topForm.controls['MonthlyInvestmentAmount'].setValue(0);
+      } 
+    });
   }
 
   checkIfExistingBuyRequest(form) {

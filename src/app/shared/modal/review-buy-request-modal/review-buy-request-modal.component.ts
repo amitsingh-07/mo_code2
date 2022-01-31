@@ -35,6 +35,7 @@ export class ReviewBuyRequestModalComponent implements OnInit {
   @Output() submitRequest: EventEmitter<any> = new EventEmitter();
   @Input() srsDetails;
   portfolioCatagories: any;
+  @Output() closeAction = new EventEmitter<any>();
 
   constructor(public activeModal: NgbActiveModal,
               public readonly translate: TranslateService,
@@ -87,5 +88,10 @@ export class ReviewBuyRequestModalComponent implements OnInit {
   onSubmit() {
     this.submitRequest.emit();
     this.activeModal.close();
+  }
+
+  closeIconAction() {
+    this.closeAction.emit();
+    this.activeModal.dismiss('Cross click');    
   }
 }

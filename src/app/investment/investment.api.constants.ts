@@ -27,6 +27,7 @@ export let investmentApiConstants = {
             allDropdownlist: INVESTMENT_API_BASE_URL + '/optionListCollection',
             fundingMethodList: INVESTMENT_API_BASE_URL + '/optionListCollection?groupName=portfolioFundingMethod',
             getSpecificDropList: INVESTMENT_API_BASE_URL + '/optionListCollection?groupName=$GROUP_NAME$',
+            getArrayOfDropList: INVESTMENT_API_BASE_URL + '/optionListCollections?groupNames=$GROUP_NAME$',
             investmentsSummary: INVESTMENT_API_BASE_URL + '/customers/investment-profile/summary',
             updateInvestment: INVESTMENT_API_BASE_URL + '/customers/portfolios/$CUSTOMER_PORTFOLIO_ID$/UpdateCustomerInvestmentObjective',
             createInvestmentAccount: INVESTMENT_API_BASE_URL + '/customers/investment-accounts?handleError=true',
@@ -50,6 +51,7 @@ export let investmentApiConstants = {
             gerSrsDetails: ACCOUNT_API_BASE_URL + '/customer/getSrsBankDetails?handleError=true',
             saveSrsAccountDetails: ACCOUNT_API_BASE_URL + '/customer/$CUSTOMER_PORTFOLIO_ID$/srsbankDetails',
             getProfileSrsDetails: ACCOUNT_API_BASE_URL + '/customer/profile/getSrsBankDetails?handleError=true',
+            getProfileCpfIaDetails: ACCOUNT_API_BASE_URL + '/customer/getCPFOperatorDetails',
             saveProfileSrsAccountDetails: ACCOUNT_API_BASE_URL + '/customer/profile/$CUSTOMER_ID$/srsbankDetails',
             getInvestmentNote: INVESTMENT_API_BASE_URL + '/holiday/alert?handleError=true',
             getCashPortfolioList: INVESTMENT_API_BASE_URL + '/customers/portfolios/cashAccountList',
@@ -70,7 +72,9 @@ export let investmentApiConstants = {
             monthlyInvestmentInfo: INVESTMENT_API_BASE_URL + '/customers/portfolios/$CUSTOMER_PORTFOLIO_ID$/CustomerInvestmentObjective',
             getFirstInvAccountCreationStatus: INVESTMENT_API_BASE_URL + '/customer/investmentAccount/actions',
             featurePromotions: INVESTMENT_API_BASE_URL + '/featurePromotions?handleError=true',
-            wrapFrees: INVESTMENT_API_BASE_URL + '/wrapfees/getCustomerWrapFees'
+            wrapFrees: INVESTMENT_API_BASE_URL + '/wrapfees/getCustomerWrapFees',
+            saveCKAMethodQNA: ACCOUNT_API_BASE_URL + '/saveCKA/',
+            getCKADocument: ACCOUNT_API_BASE_URL + '/s3/fetchDocument?docType=$DOCUMENT_TYPE$'
         }
     }
 };
