@@ -54,6 +54,7 @@ export class PlanDetailsWidgetComponent implements DoCheck, OnInit, AfterViewChe
 
   perMonth = '';
   perYear = '';
+  premiumAmountLength = 0;
 
   constructor(
     private currency: CurrencyPipe, private translate: TranslateService, public modal: NgbModal,
@@ -74,6 +75,10 @@ export class PlanDetailsWidgetComponent implements DoCheck, OnInit, AfterViewChe
       this.icon = this.data.icon;
       this.insurerLogo = 'assets/images/' + this.data.insurer.logoName;
       this.premiumAmount = this.data.premium.premiumAmount;
+      if(this.premiumAmount > 0){
+        const tempValue = this.premiumAmount.toFixed(2);
+        this.premiumAmountLength = tempValue.toString().length;
+      }
       if (this.data.promotion && this.data.promotion.promoDiscount) {
         this.promoDiscount = this.data.promotion.promoDiscount;
         this.isPromoDiscountHidden = this.data.promotion.expired === 'FALSE' ? false : true;
@@ -82,12 +87,16 @@ export class PlanDetailsWidgetComponent implements DoCheck, OnInit, AfterViewChe
       this.coverageDuration = this.data.premium.durationName;
       this.premiumDuration = this.data.premium.premiumTerm;
       this.premiumAmountYearly = this.data.premium.premiumAmountYearly;
+      if(this.premiumAmountYearly > 0 && this.frequencyType == "yearly"){
+        const tempValue = this.premiumAmountYearly.toFixed(2);
+        this.premiumAmountLength = tempValue.toString().length;
+      }
 
       this.temp = this.data;
       this.type = this.type.toLowerCase();
 
-       // Coverage Duration field should not be displayed for all Retirement and SRS types
-       if (this.type.indexOf('retirement') < 0 && this.type.indexOf('srs') < 0) {
+      // Coverage Duration field should not be displayed for all Retirement and SRS types
+      if (this.type.indexOf('retirement') < 0 && this.type.indexOf('srs') < 0) {
         this.highlights.push(
           { title: 'Coverage Duration:', description: this.titleCasePipe.transform(this.coverageDuration) }
         );
@@ -153,7 +162,7 @@ export class PlanDetailsWidgetComponent implements DoCheck, OnInit, AfterViewChe
         this.highlights.push({ title: 'Escalating Benefit:', description: this.data.premium.escalatingBenefit });
       }
       if (this.type.indexOf('retirement') > -1) {
-        this.highlights.push({ title: 'Payout Period:', description: this.data.premium.retirementPayPeriodDisplay + ' Years' });
+        this.highlights.push({ title: 'Payout Period:', description: this.data.premium.retirementPayPeriodDisplay });
         if (this.data.premium.retirementPayoutDuration
           && this.data.premium.retirementPayoutDuration.toLowerCase() === 'limited years') {
           this.highlights.push({
@@ -190,7 +199,7 @@ export class PlanDetailsWidgetComponent implements DoCheck, OnInit, AfterViewChe
       }
       this.highlights.push({ title: 'Needs Medical Underwriting:', description: this.data.underWritting });
       if (this.type === 'long-term care' && this.data.premium.payoutType) {
-          this.highlights.push({ title: 'Payout Type:', description: this.data.premium.payoutType });
+        this.highlights.push({ title: 'Payout Type:', description: this.data.premium.payoutType });
       }
     }
   }

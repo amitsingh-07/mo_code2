@@ -215,7 +215,7 @@ app-plan-details-widget {
             padding-top: 5px;
             @include allmobiles {
                 position: absolute;
-                bottom: -5px;
+                bottom: 16px;
             }
         }
         .plan-value-main {
@@ -224,8 +224,24 @@ app-plan-details-widget {
             float: left;
             margin-bottom: 0px;
             @include allmobiles {
-                width: 100%;
+                width: 50%;
                 margin-bottom: 10px;
+            }
+            &.prd-left{
+                border: 1px solid #c2d9ec;
+                padding: 10px;
+                border-radius: 6px;
+                font-size: 22px;
+                font-family: $muli-light;
+                @include allmobiles{
+                    float: right;
+                }
+                .text-small{
+                    font-size: 16px;
+                    &.subtitle{
+                        position: unset;
+                    }
+                }
             }
         }
         .plan-value-sub {
@@ -235,6 +251,9 @@ app-plan-details-widget {
             padding: 10px;
             border: solid 1px #c2d9ec;
             border-radius: 6px;
+            @include max360{
+                margin-left: 10px;
+            }
             h2 {
                 color: #00a7a7;
                 width: auto;
@@ -247,11 +266,68 @@ app-plan-details-widget {
                     font-family: $muli-regular;
                 }
             }
+            &.drp-left{
+                border: none;
+                padding: 0;
+                h2{
+                    font-family: $muli-semi-bold;
+                    font-size: 36px;
+                    @include max360{
+                        font-size: 32px;
+                    }
+                    .text-small{
+                        font-size: 18px;
+                        &.unit-label{
+                            @include allmobiles{
+                                position: relative;
+                                top: -20px;
+                            }
+                            @include max360{
+                                top: -15px;
+                            }
+                        }
+                        &.subtitle{
+                            @include allmobiles{
+                             bottom: 16px;
+                            }
+                        }
+                    }
+                }
+                &.ri-font34{
+                    @include allmobiles{
+                        h2{
+                            font-size: 34px;
+                            .unit-label{
+                                top: -14px
+                            }
+                        }
+                    }
+                }
+                &.ri-font30{
+                    @include allmobiles{
+                        h2{
+                            font-size: 30px;
+                            .unit-label{
+                                top: -12px
+                            }
+                        }
+                    }
+                }
+            }
         }
     }
     .grey subtitle--rider-name {
         @include allmobiles {
             text-align: center;
+        }
+    }
+    .drp-left {
+        margin-left: 0px!important;
+    }
+    .prd-left {
+        margin-left: 15px!important;
+        @include allmobiles{
+            margin-left: 0 !important;
         }
     }
 }

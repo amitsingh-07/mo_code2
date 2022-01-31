@@ -116,9 +116,10 @@
       "INCOME": "Retirement Income",
       "PAYOUT_AGE": "Payout Start Age",
       "PAYOUT_DURATION": "Payout Duration",
+      "PREMIUM_DURATION": "Premium Duration",
       "PAYOUT_FEATURE": "Payout Feature",
       "PAYOUT_DURATION_LIST": [ "Limited Years" ],
-      "PAYOUT_FEATURE_LIST": ["Guaranteed", "Variable"],
+      "PAYOUT_FEATURE_LIST": ["Variable"],
       "FIXED_TOOLTIP": {
           "TITLE": "Payout Feature",
           "MESSAGE": "<p><strong>Fixed payouts:</strong> These monthly payouts are guaranteed amounts that you will receive.</p><p><strong>Variable payouts:</strong> These monthly payouts consist of a guaranteed amount that you will receive and a non-guaranteed amount that is dependent on the performance of the insurer’s participating fund.</p>"
@@ -142,7 +143,9 @@
         "RESULTS": "Results",
         "TITLE": "Results",
         "INSURER_FINANCIAL_RATING": "Insurer Financial Rating",
+        "PREMIUMS": "Premiums",
         "COVARAGE_DURATION": "Coverage Duration",
+        "PAYOUT_DURATION": "Payout Duration",
         "PREMIUM_DURATION": "Premium Duration",
         "NEED_UNDERWRITING": "Need Underwriting",
         "PAYOUT_TYPE": "Payout Type",

@@ -214,7 +214,8 @@ export class DirectApiService {
             retirementIncome: incomeForm.retirementIncome,
             payoutStartAge: incomeForm.payoutAge,
             payoutDuration: incomeForm.payoutDuration,
-            payoutFeature: incomeForm.payoutFeature
+            payoutFeature: incomeForm.payoutFeature,
+            premiumDuration: incomeForm.premiumDuration
         };
     }
 }

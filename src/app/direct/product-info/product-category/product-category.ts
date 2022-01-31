@@ -5,4 +5,5 @@ export interface IProductCategory {
     prodCatIconAlt: string;
     prodLink: string;
     active: boolean;
+    isHidden: boolean;
 }

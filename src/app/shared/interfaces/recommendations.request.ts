@@ -109,6 +109,7 @@ export interface IRetirementIncomePlan {
     payoutStartAge: number;
     payoutDuration: string;
     payoutFeature: string;
+    premiumDuration: string;
 }
 
 export interface IEnquiryByEmail {
