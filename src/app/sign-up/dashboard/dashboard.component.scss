@@ -527,8 +527,8 @@ app-dashboard {
                 background: url("/assets/images/dashboard-invest-portfolio.svg") no-repeat;
               }
               .dashboard-cpf-portfolio {
-                background-color: $pine-green-color;
-                border-radius: 10px;
+                background: url("/assets/images/dashboard-cpf-portfolio.svg") no-repeat;
+                height: 7px;
               }
               .dashboard-wise-income-portfolio{   
                 background: url("/assets/images/dashboard-wise-income-portfolio.svg") no-repeat;
