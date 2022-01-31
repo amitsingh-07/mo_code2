@@ -36,6 +36,35 @@ app-select-portfolio-goal-moreinfo {
                         margin-bottom: 10px;
                     }
                 }
+                &__portfolio-type{
+                  width: 110px;
+                  height: 28px;
+                  padding: 6px 10px;
+                  border-radius: 17px;
+                  background-color: $white-color;
+                  font-family: $muli-semi-bold;
+                  font-size: 13px;
+                  line-height: normal;
+                  letter-spacing: -0.12px;
+                  text-align: left;
+                  color: $teal-color;
+                  display: flex;
+                  align-items: center;
+                  margin-bottom: 12px;
+                  .circle{
+                    width: 9px;
+                    height: 9px;
+                    border: 2px solid $anzac-tango-color;
+                    border-radius: 50%;
+                    margin-right: 5px;
+                    &.wise-income{
+                      border-color: $chetwode-blue-color;
+                    }
+                    &.wise-saver{
+                      border-color: $shakespeare-teal-color;
+                    }
+                  }
+                }
             }
             &__bottom {
                 padding: 30px;

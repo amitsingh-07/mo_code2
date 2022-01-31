@@ -445,6 +445,10 @@ export class InvestmentApiService {
   getProfileSrsAccountDetails() {
     return this.http.get(investmentApiConstants.endpoint.investmentAccount.getProfileSrsDetails);
   }
+
+  getProfileCpfIAccountDetails(twoFaRequired=false) {
+    return this.http.getWithParams(investmentApiConstants.endpoint.investmentAccount.getProfileCpfIaDetails, {twoFaRequired});
+  }
   saveSrsAccountDetails(data, customerPortfolioId) {
     return this.http.post(
       investmentApiConstants.endpoint.investmentAccount.saveSrsAccountDetails.replace('$CUSTOMER_PORTFOLIO_ID$', customerPortfolioId), data)

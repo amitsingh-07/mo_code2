@@ -20,6 +20,7 @@ export let INVESTMENT_COMMON_CONSTANTS = {
   FUNDING_METHODS: {
     CASH: 'CASH',
     SRS: 'SRS',
+    CPF_OA: 'CPF OA',
     CPFOA: 'CPFOA'
   },
   SRS_OPERATOR: {
