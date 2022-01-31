@@ -34,7 +34,6 @@
                       </button>
                       <button *ngIf="this.fundingAccountDetailsForm.controls.confirmedFundingMethodId.value"
                         class="btn btn-dropdown" id="additional_declaration_sourse-drpdown" ngbDropdownToggle>
-                        <!-- {{getFundingMethodNameById(this.fundingAccountDetailsForm.controls.confirmedFundingMethodId.value, fundingMethods) }} -->
                       </button>
                       <div class="dropdown" ngbDropdownMenu aria-labelledby="courseDropdown">
                         <button class="dropdown-item" *ngFor="let fundingMethod of fundingMethods; let i = index;"
