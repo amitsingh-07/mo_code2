@@ -74,6 +74,16 @@ showBannerInfo)">
                     <span>{{'YOUR_INVESTMENT.DIMENSIONAL' | translate}}</span>
                   </div>
                 </label>
+                <label for="{{portfolioCategories.CPF}}">
+                  <input type="radio" id="{{portfolioCategories.CPF}}" name="categories"
+                    [checked]="selectedCategory === portfolioCategories.CPF"
+                    (click)="setSelectedCategory($event.target.id)">
+                  <div>
+                    <span class="category-filter-tab"><img
+                        src="assets/images/manage-investments/filter-ringicon-cpf.svg"></span>
+                    <span>{{'YOUR_INVESTMENT.CPF' | translate}}</span>
+                  </div>
+                </label>
                 <label for="{{portfolioCategories.WISEINCOME}}">
                   <input type="radio" id="{{portfolioCategories.WISEINCOME}}" name="categories"
                     [checked]="selectedCategory === portfolioCategories.WISEINCOME"
@@ -112,7 +122,7 @@ showBannerInfo)">
                   </div>
                 </div>
                 <div class="form-group-with-bg--content">
-                  <div class="flex-row mb15 total_cash_balance">
+                  <div class="flex-row mb15 total_cash_balance" *ngIf="selectedCategory !== portfolioCategories.CPF">
                     <div class="flex-col">
                       <div class="total_cash_label" id="investment_overview_total_returns_labl">
                         <ng-container *ngIf="selectedCategory === portfolioCategories.ALL;else cashBalance">
