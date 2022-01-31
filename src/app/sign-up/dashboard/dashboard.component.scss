@@ -515,38 +515,26 @@ app-dashboard {
                 color: $dusty-grey-color;
                 margin-bottom: 0;
               }
-              .dashboard-invest-portfolio {    
-                background: url("/assets/images/dashboard-invest-portfolio.svg") no-repeat;
+              .dashboard-invest-portfolio,  .dashboard-wise-income-portfolio, .dashboard-wise-portfolio, .dashboard-cpf-portfolio {    
                 width: 55px;
-                @include desktop {
-                    width: 71px;
-                }
                 height: 6px;
                 background-repeat: no-repeat;
                 position: absolute;
                 top: 0;
                 left: 0;
               }
+              .dashboard-invest-portfolio {
+                background: url("/assets/images/dashboard-invest-portfolio.svg") no-repeat;
+              }
+              .dashboard-cpf-portfolio {
+                background-color: $pine-green-color;
+                border-radius: 10px;
+              }
               .dashboard-wise-income-portfolio{   
                 background: url("/assets/images/dashboard-wise-income-portfolio.svg") no-repeat;
-                width: 55px;
-                @include desktop {
-                    width: 71px;
-                }
-                height: 6px;
-                background-repeat: no-repeat;
-                position: absolute;
-                top: 0;
-                left: 0;
               } 
               .dashboard-wise-portfolio{   
                 background: url("/assets/images/dashboard-wise-portfolio.svg") no-repeat;
-                width: 55px;
-                height: 6px;
-                background-repeat: no-repeat;
-                position: absolute;
-                top: 0;
-                left: 0;
               }              
               @media (min-width: 768px){
                 .widget-portfolio-type-right{
