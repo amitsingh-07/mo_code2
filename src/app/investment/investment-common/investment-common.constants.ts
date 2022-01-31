@@ -88,6 +88,7 @@ export let INVESTMENT_COMMON_CONSTANTS = {
     SUBMISSION: 'SUBMISSION',
     DELETE: 'DELETE'
   },
+  CPF_PENDING_STATUS: 'CKA_PENDING',
   PORTFOLIO: [
     {
       KEY: "WiseIncome R - 4.5 percent (Payout) - Cash",
