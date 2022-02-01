@@ -215,7 +215,9 @@ app-fund-details {
     font-family: $muli-bold !important;
     font-size: 16px !important;
   }
-
+  .funding-cpf {
+    padding: 30px 30px 20px!important;
+  } 
   .cpf-oa{
     .nav-tabs{
       border: none;
@@ -228,21 +230,17 @@ app-fund-details {
             width: 162px;
             border-top-left-radius: 6px;
             border-top-right-radius: 6px;
-            // border: 1px solid $white-color;
-            // background-color: $persian-dark-teal-color;
-            background-color: #e7e7e7;
+            background-color: $mercury-smoke-color;
             font-family: $muli-semi-bold;
             font-size: 16px;
             line-height: normal;
             letter-spacing: -0.34px;
             text-align: center;
-            color: #5e5e5e;
+            color: $silver-grey-color;
             padding: 15px 40px 13px;
             &.active{
-              // background-color: $robins-egg-blue-color;
-              // border: 1px solid $robins-egg-blue-color;
               color: $black-color;
-              background-color: #fff;
+              background-color: $white-color;
               box-shadow: 0 -3px 5px 0 rgba(0, 0, 0, 0.15);
             }
           }
@@ -256,18 +254,14 @@ app-fund-details {
         font-size: 24px;
         letter-spacing: -0.3px;
         line-height: normal;
-        color: #000;
+        color: $black-color;
         display: flex;
         align-items: center;
         .lgi-lbl{
-          @include allmobiles{
-            width: 225px;
-          }
+          width: 225px;
         }
         .uob-lbl{
-          @include allmobiles{
-            width: 123px;
-          }
+          width: 123px;
         }
       }
     }
