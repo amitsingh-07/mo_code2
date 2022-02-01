@@ -345,7 +345,13 @@
     "FUND_DETAILS": {
         "TITLE": "Fund Details",
         "DOWNLOAD_PRIMARY": "Download Product Highlights Sheet",
-        "DOWNLOAD_SECONDARY": "Download Prospectus"
+        "DOWNLOAD_SECONDARY": "Download Prospectus",
+        "CPF": {
+            "LGI_TAB_LBL": "LGI",
+            "UOB_TAB_LBL": "UOB",
+            "LGI_TAB_TITLE": "Infinity Global Stock Index Fund",
+            "UOB_TAB_TITLE": "United SGD Fund"
+        }
     },
     "IFAST_ERROR_TITLE": "Error !",
     "FACEBOOK_IN_APP_BROWSER_WARNING": {
