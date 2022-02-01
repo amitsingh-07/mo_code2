@@ -68,6 +68,7 @@ app-allocation {
                     cursor: pointer;
                     display: flex;
                     justify-content: space-between;
+                    align-items: center;
                     .arrow {
                         border: solid $white-color;
                         border-width: 0 3px 3px 0;
@@ -82,7 +83,6 @@ app-allocation {
                         border-bottom-right-radius: 0px;
                         border-bottom-width: 0px;
                         .arrow {
-                            margin-top: 14px;
                             transform: rotate(-135deg);
                             -webkit-transform: rotate(-135deg);
                         }

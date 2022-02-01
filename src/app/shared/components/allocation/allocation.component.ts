@@ -1,12 +1,10 @@
 import { Component, Input, OnChanges, OnInit, ViewEncapsulation } from '@angular/core';
-import { Router } from '@angular/router';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 
 import { FundDetailsComponent } from '../../../investment/investment-common/fund-details/fund-details.component';
 import { InvestmentEngagementJourneyService } from '../../../investment/investment-engagement-journey/investment-engagement-journey.service';
 import { INVESTMENT_COMMON_CONSTANTS } from '../../../investment/investment-common/investment-common.constants';
 import { INVESTMENT_ENGAGEMENT_JOURNEY_CONSTANTS } from  './../../../investment/investment-engagement-journey/investment-engagement-journey.constants';
-import { InvestmentCommonService } from '../../../investment/investment-common/investment-common.service';
 @Component({
   selector: 'app-allocation',
   templateUrl: './allocation.component.html',
@@ -30,9 +28,7 @@ export class AllocationComponent implements OnInit, OnChanges {
 
   constructor(
     private investmentEngagementJourneyService: InvestmentEngagementJourneyService,
-    private router: Router,
     public modal: NgbModal,
-    private investmentCommonService: InvestmentCommonService
   ) { 
     this.assetTypeConst = INVESTMENT_COMMON_CONSTANTS.ASSET_TYPE;
   }

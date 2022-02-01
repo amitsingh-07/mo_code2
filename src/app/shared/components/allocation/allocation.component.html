@@ -12,8 +12,7 @@
     </div>
     <div *ngIf="investmentEnabled">
       <div class="bonds_equity" *ngFor="let asset of assets; let i = index">
-        <div class="bonds_equity_title" id="panel-button-{{i}}" (click)="showHidePanel(acc, 'panel-' + i, $event)" 
-        [ngClass]="{ 'align-center':cpfEnabled }">
+        <div class="bonds_equity_title" id="panel-button-{{i}}" (click)="showHidePanel(acc, 'panel-' + i, $event)" >
             <div>
               <div>{{asset.type.type}}</div>
               <div class="sub-lbl" *ngIf="cpfEnabled && asset.type.type === assetTypeConst.EQUITIES">{{'PORTFOLIO_RECOMMENDATION.LGI_SUB_LBL' | translate}}</div>
