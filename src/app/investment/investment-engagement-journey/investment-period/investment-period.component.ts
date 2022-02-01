@@ -35,7 +35,7 @@ export class InvestmentPeriodComponent implements OnInit, AfterViewInit, IPageCo
   sliderMinValue = 0;
   sliderMaxValue = INVESTMENT_ENGAGEMENT_JOURNEY_CONSTANTS.personal_info.max_investment_years;
   isSufficientInvYears = false;
-
+  isCpfEnabled: boolean;
 
   constructor(
     // tslint:disable-next-line
@@ -44,7 +44,7 @@ export class InvestmentPeriodComponent implements OnInit, AfterViewInit, IPageCo
     public navbarService: NavbarService,
     public footerService: FooterService,
     private config: NgbDatepickerConfig,
-    public investmentEngagementJourneyService: InvestmentEngagementJourneyService,
+    private investmentEngagementJourneyService: InvestmentEngagementJourneyService,
     private modal: NgbModal,
     private elRef: ElementRef,
     private parserFormatter: NgbDateParserFormatter,
@@ -93,6 +93,7 @@ export class InvestmentPeriodComponent implements OnInit, AfterViewInit, IPageCo
       this.piInvestmentSlider.writeValue(value);
       this.onSliderChange(value);
     });
+    this.isCpfEnabled = this.investmentEngagementJourneyService.isCpfSelected();
   }
 
 

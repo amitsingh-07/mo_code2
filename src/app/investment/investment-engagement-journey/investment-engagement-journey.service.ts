@@ -24,15 +24,12 @@ export class InvestmentEngagementJourneyService {
   private investmentEngagementJourneyFormData: InvestmentEngagementJourneyFormData = new InvestmentEngagementJourneyFormData();
   private investmentEngagementJourneyFormErrors: any = new InvestmentEngagementJourneyFormErrors();
   investmentAccountCommon: InvestmentAccountCommon = new InvestmentAccountCommon();
-  isCPF: boolean;
   constructor(
     private apiService: ApiService,
     private investmentApiService: InvestmentApiService,
     public authService: AuthenticationService
   ) {
-    this.getPortfolioFormData().selectPortfolioType == INVESTMENT_ENGAGEMENT_JOURNEY_CONSTANTS.SELECT_POROFOLIO_TYPE.CPF_PORTFOLIO ? this.isCPF = true : this.isCPF = false;
     this.getPortfolioFormData();
-    
   }
 
   commit() {
@@ -757,4 +754,8 @@ export class InvestmentEngagementJourneyService {
     }
     return errors;
   }
+
+  isCpfSelected(){
+      return this.getPortfolioFormData().selectPortfolioType == INVESTMENT_ENGAGEMENT_JOURNEY_CONSTANTS.SELECT_POROFOLIO_TYPE.CPF_PORTFOLIO;
+    }
 }
