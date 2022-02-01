@@ -297,7 +297,8 @@
       "modalTitle": "Emergency Fund",
       "modalDesc": "Emergency Fund is money that must be set aside to <b>cover your living expenses for a period of at least 3 months</b>. In the event of an emergency, such as a loss of income, the emergency fund helps cover some of your expenses."
     },
-    "QUESTATION": "Do you have at least 3 months’ worth of Emergency Fund?"
+    "QUESTATION": "Do you have at least 3 months’ worth of Emergency Fund?",
+    "QUESTATION_1": "Have you set aside at least 3 months of buffer in your CPF OA"
   },
   "PORTFOLIO_RECOMMENDATION": {
     "STEP1": "Step 1",

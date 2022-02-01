@@ -33,7 +33,9 @@
                 <div class="flex-row">
                   <div class=flex-col-10>
                     <div class="form-group-with-bg--content-label" for="name" id="myFinancialQuestaion">
-                      {{ 'MY_FINANCIALS.QUESTATION' | translate}}
+                      <div *ngIf="investmentCommonService.selectPortfolioType === investmentCommonService.portfolioType.CPF_PORTFOLIO;else other_content">{{ 'MY_FINANCIALS.QUESTATION_1' | translate}}</div>
+                      <ng-template #other_content>{{ 'MY_FINANCIALS.QUESTATION' | translate}}</ng-template>
+                      
                     </div>
                   </div>
                   <div class="flex-col-2">

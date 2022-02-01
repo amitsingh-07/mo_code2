@@ -14,6 +14,7 @@ import { NgbDateCustomParserFormatter } from '../../../shared/utils/ngb-date-cus
 import { INVESTMENT_ENGAGEMENT_JOURNEY_ROUTE_PATHS } from '../investment-engagement-journey-routes.constants';
 import { InvestmentEngagementJourneyService } from '../investment-engagement-journey.service';
 import { ModelWithButtonComponent } from '../../../shared/modal/model-with-button/model-with-button.component';
+import { InvestmentCommonService } from '../../investment-common/investment-common.service';
 
 const assetImgPath = './assets/images/';
 
@@ -49,6 +50,7 @@ export class InvestmentPeriodComponent implements OnInit, AfterViewInit, IPageCo
     private elRef: ElementRef,
     private parserFormatter: NgbDateParserFormatter,
     public readonly translate: TranslateService,
+    public investmentCommonService: InvestmentCommonService,
     private cd: ChangeDetectorRef
   ) {
     this.translate.use('en');
@@ -95,13 +97,6 @@ export class InvestmentPeriodComponent implements OnInit, AfterViewInit, IPageCo
     });
   }
 
-  get selectPortfolioType() {
-    return JSON.parse(sessionStorage.getItem('app_engage_journey_session')).selectPortfolioType;
-  }
-
-  get portfolioType() {
-    return INVESTMENT_ENGAGEMENT_JOURNEY_CONSTANTS.SELECT_POROFOLIO_TYPE
-  }
 
   setPageTitle(title: string) {
     const stepLabel = this.translate.instant('PERSONAL_INFO.STEP_1_LABEL');
@@ -155,10 +150,10 @@ export class InvestmentPeriodComponent implements OnInit, AfterViewInit, IPageCo
         'errorMessage'
       ];
       return false;
-    } else if (form.value.investmentPeriod < 4 && this.selectPortfolioType === this.portfolioType.INVEST_PORTFOLIO) {
-      this.showModalPopUp(form.value.investmentPeriod, this.translate.instant('PERSONAL_INFO.MODAL.TITLE'), this.translate.instant('PERSONAL_INFO.MODAL.BTN_LBL1'), this.translate.instant('PERSONAL_INFO.MODAL.BTN_LBL2'));
-    } else if(form.value.investmentPeriod < 11 && this.selectPortfolioType === this.portfolioType.CPF_PORTFOLIO){
-      this.showModalPopUp(form.value.investmentPeriod, this.translate.instant('PERSONAL_INFO.CPF.MODAL.TITLE'), this.translate.instant('PERSONAL_INFO.CPF.MODAL.BTN_LBL1'), this.translate.instant('PERSONAL_INFO.CPF.MODAL.BTN_LBL2'))
+    } else if (form.value.investmentPeriod < 4 && this.investmentCommonService.selectPortfolioType === this.investmentCommonService.portfolioType.INVEST_PORTFOLIO) {
+      this.showModalPopUp(form.value.investmentPeriod, this.translate.instant('PERSONAL_INFO.MODAL.TITLE'), this.translate.instant('PERSONAL_INFO.MODAL.BTN_LBL1'), this.translate.instant('PERSONAL_INFO.MODAL.BTN_LBL2'), this.translate.instant('PERSONAL_INFO.MODAL.MESSAGE'));
+    } else if(form.value.investmentPeriod < 11 && this.investmentCommonService.selectPortfolioType === this.investmentCommonService.portfolioType.CPF_PORTFOLIO){
+      this.showModalPopUp(form.value.investmentPeriod, this.translate.instant('PERSONAL_INFO.CPF.MODAL.TITLE'), this.translate.instant('PERSONAL_INFO.CPF.MODAL.BTN_LBL1'), this.translate.instant('PERSONAL_INFO.CPF.MODAL.BTN_LBL2'), this.translate.instant('PERSONAL_INFO.CPF.MODAL.MESSAGE'))
     }
      else {
       this.investmentEngagementJourneyService.setPersonalInfo(form.value);
@@ -166,13 +161,13 @@ export class InvestmentPeriodComponent implements OnInit, AfterViewInit, IPageCo
     }
   }
 
-  showModalPopUp(value, title, btn1, btn2) {
+  showModalPopUp(value, title, btn1, btn2, msg) {
     const investmentPeriodValue = {
       period: value == 1 ?  value  + ' ' + 'year' : value  + ' ' +'years'
     };
     const ref = this.modal.open(ModelWithButtonComponent, { centered: true });
     ref.componentInstance.errorTitle = title;
-    ref.componentInstance.errorMessageHTML = this.translate.instant('PERSONAL_INFO.MODAL.MESSAGE', investmentPeriodValue);
+    ref.componentInstance.errorMessageHTML = this.translate.instant(msg, investmentPeriodValue);
     ref.componentInstance.investmentPeriodImg = true;
     ref.componentInstance.primaryActionLabel = btn1;
     ref.componentInstance.secondaryActionLabel = btn2;

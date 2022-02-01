@@ -54,7 +54,7 @@ export class YourFinancialsComponent implements IPageComponent, OnInit {
     public authService: AuthenticationService,
     public readonly translate: TranslateService,
     private investmentAccountService: InvestmentAccountService,
-    private investmentCommonService: InvestmentCommonService,
+    public investmentCommonService: InvestmentCommonService,
     private loaderService: LoaderService
   ) {
     this.translate.use('en');
