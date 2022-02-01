@@ -61,7 +61,8 @@ export class InvestmentEngagementJourneyService {
       riskProfileName: this.investmentEngagementJourneyFormData.riskProfileName,
       htmlDescription: this.investmentEngagementJourneyFormData.htmlDescription,
       alternateRiskProfileId: this.investmentEngagementJourneyFormData.alternateRiskProfileId,
-      alternateRiskProfileType: this.investmentEngagementJourneyFormData.alternateRiskProfileType
+      alternateRiskProfileType: this.investmentEngagementJourneyFormData.alternateRiskProfileType,
+      showRecommendationCheckbox: this.investmentEngagementJourneyFormData.showRecommendationCheckbox
     };
   }
 
@@ -71,6 +72,7 @@ export class InvestmentEngagementJourneyService {
     this.investmentEngagementJourneyFormData.htmlDescription = data.htmlDescObject;
     this.investmentEngagementJourneyFormData.alternateRiskProfileId = data.alternateRiskProfileId;
     this.investmentEngagementJourneyFormData.alternateRiskProfileType = data.alternateRiskProfileType;
+    this.investmentEngagementJourneyFormData.showRecommendationCheckbox = data && data.showRecommendationCheckbox ? data.showRecommendationCheckbox : false;
 
     this.commit();
   }
