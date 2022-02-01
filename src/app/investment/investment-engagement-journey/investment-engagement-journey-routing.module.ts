@@ -178,6 +178,7 @@ const routes: Routes = [
     canActivate: [InvestmentEngagementJourneyGuard]
   },
   { path: '**', redirectTo: '/page-not-found' }
+];
 
 @NgModule({
   imports: [RouterModule.forChild(routes)],
