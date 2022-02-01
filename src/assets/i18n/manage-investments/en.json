@@ -49,6 +49,7 @@
     "DIMENSIONAL": "Dimensional",
     "WISEINCOME": "WiseIncome",
     "WISESAVER": "WiseSaver",
+    "CPF": "CPF",
     "TOTAL_PORTFOLIO_VALUE": "Total Portfolio Value",
     "PORTFOLIO_VALUE": "Portfolio Value",
     "TOTAL_RETURNS": "Total Returns ",
@@ -151,7 +152,8 @@
     "DAYS": "days",
     "MINUTES": "minutes",
     "HOURS": "hours",
-    "DAY": "day"
+    "DAY": "day",
+    "CPF_APPLICATION_IN_PROGRESS": "Portfolio Approval in Progress"
   },
   "YOUR_PORTFOLIO": {
     "TITLE": "Your Portfolio",
