@@ -33,6 +33,8 @@
     "EXPENSIVE_RATIO_WISE_INCOME": " This excludes fund level fees (such as annual management fees of {{expensiveRatio}} p.a.) which are factored into the price of the fund.<span> <a target='_blank' href=\"/pricing/\">View our fees table.</a></span>",
     "FUND_EXPENSIVE_RATIO": "Fund Expense Ratio",
     "TOTAL_FEE": "Total Fee",
+    "LGI_SUB_LBL":"LGI Infinity Global Stock Index Fund",
+    "UOB_SUB_LBL":"UOB United SGD Fund",
     "JA_ACCEPTANCE_TITLE": "Joint Account Portfolio",
     "JOINT_ACCOUNT_LBL": "Joint Account Portfolio",
     "JA_SUB_LBL": "JA Investment Plan for My Family and Future",
@@ -288,7 +290,12 @@
     "SHOW_MODAL": {
       "TITLE": "Reassess Risk Profile?",
       "DESC": "You have just changed how you want to fund this {{userGivenPortfolioName}} to using {{userFundingMethod}}. Do you want to reassess your risk profile?"
-    }
+    },
+    "CPFIA_TITLE": "CPF Investment Account (CPFIA) Details",
+    "CPF_OPERATOR": "CPFIA Operator",
+    "CPF_ACC_NO": "CPFIA  Number ",
+    "CPF_NOTE": "You <u>MUST</u> ensure sufficient fund in your CPF Ordinary Account. Amount will be deducted immediately and invest within 2-3 working days. ",
+    "CPF_CORRECT_ACC_NO_TEXT": "Please ensure you have entered the correct account information. "
   },
   "COMMON_LOADER": {
     "TITLE": "Loading",
@@ -425,5 +432,38 @@
         "DROPDOWN1_PLACEHOLDER": "Name of Financial Institution"
       }
     }
+  },
+  "CPF_PREREQUISITES": {
+    "TITLE": "Investment Pre-requisites",
+    "DESC": "Before you invest using your CPF-OA monies, it is important to assess that you have the knowledge in investing in Unlisted Specified Investment Products (SIPs). You should have also set up your CPF Investment Account.",
+    "STEP_TEXT": "Please complete the 2 steps below:",
+    "STEP1_TEXT": "Step 1: Complete Customer Knowledge Assessment (CKA)",
+    "STEP2_TEXT": "Step 2: Fill in CPF Investment Account details",
+    "START_NOW_BTN": "Start Now",
+    "CKA_PASSED": "CKA Passed",
+    "CERT_UPLOADED": "CKA Certificate Uploaded",
+    "ESTIMATED_TIME_TEXT": "Estimated 2 mins",
+    "CPFIA_OPERATOR_TITLE": "CPFIA Operator",
+    "CPFIA_OPERATOR_PLACEHOLDER": "Select CPFIA Operator",
+    "CPFIA_NUMBER_TITLE": "CPFIA Number ",
+    "CPFIA_NUMBER_PLACEHOLDER": "Enter Account No.",
+    "INFO_TEXT": "Please ensure you have entered the correct account information. ",
+    "CONTINUE": "Continue",
+    "TOOLTIP": {
+      "TITLE": "CPF Ordinary Account (CPF OA)",
+      "PARA1": "<p>Invest your CPF Ordinary Account savings for potentially higher returns. </br></br> Before you can invest using your CPF OA, you must have your CPF Investment Account (CPFIA) ready. </p>",
+      "QUEST1": "<p><b>How to start investing your CPF OA with MoneyOwl</b></p><p>Simply select CPF OA as your source of funds when you create your investment portfolio. We will then deduct the funds from your CPF OA to fund your investment. Be sure that your CPF OA has sufficient amount for the deduction to go through smoothly!</p> ",
+      "QUEST2": "<p><b>How do I set up a CPF Investment Account?</b></p><p>To invest your CPF OA with MoneyOwl, you would first need to open a CPF Investment Account (CPFIA) with any of the 3 local banks (DBS, OCBC and UOB) online or at bank branches. </p><p>If you are investing your CPF OA for the first time, you will be asked to take the CPFIS Self-Awareness Questionnaire (SAQ) found on CPF website. </p>",
+      "QUEST3": "<p><b>How to find out more?</b></p><p>When investing your CPF OA, please be mindful that while it is highly probable that you can get better returns than the 2.5% p.a., it is not guaranteed and the returns are subject to fluctuations. <span><u>To learn more about investing your CPF, read on.</u></span> </p><p>Visit our website for more <span><u>Frequently Asked Questions</u></span> on investing with MoneyOwl.</p><p>For assistance on updating your CPF Investment Account (CPFIA) information, please email <span><u>enquiries@moneyowl.com.sg.</u><span></p>",
+      "QUEST3_ANS_PARA1": "When investing your CPF OA, please be mindful that while it is highly probable that you can get better returns than the 2.5% p.a., it is not guaranteed and the returns are subject to fluctuations. <a target='_blank' href=\"/pricing/\">To learn more about investing your CPF, read on.</a>",
+      "QUEST3_ANS_PARA2": "Visit our website for more <a target='_blank' href=\"https://www.moneyowl.com.sg/faq-investment/#investment|3/\">Frequently Asked Questions</a> on investing with MoneyOwl.",
+      "QUEST3_ANS_PARA3": "For assistance on updating your CPF Investment Account (CPFIA) information, please email enquiries@moneyowl.com.sg.",
+      "OKAY_BTN": "Okay, Got It!"
+    }
+  },
+  "OPEN_CKA": {
+    "TITLE": "Before you proceed…",
+    "DESC": "<p>We will assess if you have the knowledge or investment experience in understanding the risks and features of unlisted Specified Investment Products (‘SIPs’).</p>If you have undergone and passed the ABS e-Learning (Module 5), you may upload the certificate. Otherwise, you will be asked to go through the e-learning.",
+    "BTN-TEXT": "Continue"
   }
 }

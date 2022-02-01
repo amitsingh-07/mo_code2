@@ -1,0 +1,99 @@
+<div class="container-fluid max-width--1024 investment">
+  <div class="row">
+    <div class="col-lg-7 col-md-6">
+      <h2 class="hidden-sm-md">{{'CPF_PREREQUISITES.TITLE' | translate}}</h2>
+      <div>{{'CPF_PREREQUISITES.DESC' | translate}}</div>
+      <div class="banner-image">
+        <img class="hidden-sm" src="assets/images/investment-account/cka-banner.svg" />
+        <img class="show-sm" src="assets/images/investment-account/cka-banner-mobile.svg" />
+      </div>
+    </div>
+    <div class="col-lg-5 col-md-6">
+      <div class="form-group-single-column flex-col pre-requisites-content">
+        <div class="text-lyt mb20">{{'CPF_PREREQUISITES.STEP_TEXT' | translate}}</div>
+        <div class="steps">{{'CPF_PREREQUISITES.STEP1_TEXT' | translate}}</div>
+        <div class="cka-status-btn">
+          <button type="button" class="btn btn-orange width100 " [ngClass]="{'btn-passed':isCKACompleted()}">
+            <!-- btn-passed -->
+            <div class="" *ngIf="ckaInfo && ckaInfo.cKAStatusMessage; else ckapassed">
+              <div class="cka-status-lbl" *ngIf="ckaInfo && ckaInfo.cKAStatusMessage === 'CKA_PASSED'">
+                <span class="status-icon">
+                  <img src="./assets/images/check-icon-white.svg">
+                </span>
+                <span>{{'CPF_PREREQUISITES.CKA_PASSED' | translate}}</span>
+              </div>
+              <div class="cka-status-lbl" *ngIf="ckaInfo && ckaInfo.cKAStatusMessage === 'CKA_CERTIFICATE_UPLOAD'">
+                <span class="status-icon"><img src="./assets/images/check-icon-white.svg"></span>
+                <span>{{'CPF_PREREQUISITES.CERT_UPLOADED' | translate}}</span>
+              </div>
+            </div>
+            <ng-template #ckapassed>
+              <div class="flex-col" (click)="startAssessment()">
+                <div>{{'CPF_PREREQUISITES.START_NOW_BTN' | translate}}</div>
+                <div class="sub-txt">{{'CPF_PREREQUISITES.ESTIMATED_TIME_TEXT' | translate}}</div>
+              </div>
+            </ng-template>
+          </button>
+        </div>
+        <div class="flex justify-between">
+          <div class="steps pb20">{{'CPF_PREREQUISITES.STEP2_TEXT' | translate}}</div>
+          <div class="tooltip-icon" (click)="showTooltip()">
+            <img src="./assets/images/tooltip-icon-white.svg">
+          </div>
+        </div>
+        <form [formGroup]="preRequisitesForm">
+          <div class="operator-block">
+            <div class="width100">
+              <div class="flex-row space-between mb15">
+                <div class="flex-col-3">
+                  <label for="name">{{'CPF_PREREQUISITES.CPFIA_OPERATOR_TITLE' | translate}}</label>
+                </div>
+                <div class="flex-col-8">
+                  <div class="dropdown-control">
+                    <div ngbDropdown>
+                      <button [disabled]="disableOperatorBank()" class="btn btn-dropdown" id="additional_declaration_sourse-drpdown" ngbDropdownToggle>
+                        {{preRequisitesForm.controls.cpfOperator.value ?
+                          preRequisitesForm.controls.cpfOperator.value.name :
+                            'CPF_PREREQUISITES.CPFIA_OPERATOR_PLACEHOLDER'
+                            | translate}}
+                      </button>
+                      <div class="dropdown" ngbDropdownMenu aria-labelledby="courseDropdown">
+                        <button class="dropdown-item" *ngFor="let cpfBankOperator of cpfBankOperators; let i = index;"
+                          (click)="selectCPFOperator('cpfOperator', cpfBankOperator)"
+                          id="additional_declaration_sourse-drpdown-option-{{i}}">{{cpfBankOperator.name}}</button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="flex-row space-between">
+                <div class="flex-col-3">
+                  <label for="name" placeholder="account number">{{'CPF_PREREQUISITES.CPFIA_NUMBER_TITLE' | translate}}
+                  </label>
+                </div>
+                <div class="flex-col-8"
+                  [ngClass]="{'inline-error':getInlineErrorStatus(preRequisitesForm.controls.cpfAccountNo)}">
+                  <input id="srs-act-num-value" type="text" [textMask]="maskConfig()" placeholder="{{
+                  'CPF_PREREQUISITES.CPFIA_NUMBER_PLACEHOLDER'
+                  | translate}}" [attr.disabled]=true class="form-control" formControlName="cpfAccountNo" autocomplete="off">
+                </div>
+              </div>
+              <div class="characters" *ngIf="preRequisitesForm.get('cpfOperator').value">
+                {{getAccNoLength() ? getAccNoLength() :0}} /
+                {{getAccNoMaxLength(preRequisitesForm.get('cpfOperator').value)}}
+              </div>
+            </div>
+            <div class="note-info mt20 pb20 flex">
+              <div class="note-icon">
+                <img src="assets/images/investment-account/note-icon-white.svg" />
+              </div>
+              <div>{{'CPF_PREREQUISITES.INFO_TEXT' | translate}} </div>
+            </div>
+          </div>
+        </form>
+        <button type="button" (click)="goToNext()" [disabled]="disableContinue()"
+          class="btn btn-primary btn__footer--fixed width100">{{'CPF_PREREQUISITES.CONTINUE' | translate}}</button>
+      </div>
+    </div>
+  </div>
+</div>
