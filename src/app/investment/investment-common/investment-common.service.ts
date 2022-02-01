@@ -534,12 +534,4 @@ export class InvestmentCommonService {
   getCKAStatus() {
     return this.investmentCommonFormData.ckaStatus;
   }
-
-  get selectPortfolioType() {
-    return JSON.parse(sessionStorage.getItem('app_engage_journey_session')).selectPortfolioType;
-  }
-
-  get portfolioType() {
-    return INVESTMENT_ENGAGEMENT_JOURNEY_CONSTANTS.SELECT_POROFOLIO_TYPE
-  }
 }
