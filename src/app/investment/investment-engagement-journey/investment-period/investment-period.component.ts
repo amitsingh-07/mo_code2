@@ -129,13 +129,13 @@ export class InvestmentPeriodComponent implements OnInit, AfterViewInit, IPageCo
     return x > min && x <= max;
   }
 
-  changeSlide($event){
+  changeSlide($event) {
     const slideValue = ($event.target.value > 40) ? 40 : $event.target.value
     this.piInvestmentSlider.writeValue(slideValue);
     this.personalInfoForm.controls.investmentPeriod.setValue(slideValue);
     this.onSliderChange(slideValue);
   }
-  
+
   save(form: any) {
     if (!form.valid) {
       Object.keys(form.controls).forEach((key) => {
@@ -151,10 +151,10 @@ export class InvestmentPeriodComponent implements OnInit, AfterViewInit, IPageCo
       return false;
     } else if (form.value.investmentPeriod < 4 && this.investmentEngagementJourneyService.getPortfolioFormData().selectPortfolioType === INVESTMENT_ENGAGEMENT_JOURNEY_CONSTANTS.SELECT_POROFOLIO_TYPE.INVEST_PORTFOLIO) {
       this.showModalPopUp(form.value.investmentPeriod, this.translate.instant('PERSONAL_INFO.MODAL.TITLE'), this.translate.instant('PERSONAL_INFO.MODAL.BTN_LBL1'), this.translate.instant('PERSONAL_INFO.MODAL.BTN_LBL2'), this.translate.instant('PERSONAL_INFO.MODAL.MESSAGE'));
-    } else if(form.value.investmentPeriod < 11 && this.investmentEngagementJourneyService.getPortfolioFormData().selectPortfolioType === INVESTMENT_ENGAGEMENT_JOURNEY_CONSTANTS.SELECT_POROFOLIO_TYPE.CPF_PORTFOLIO){
+    } else if (form.value.investmentPeriod < 11 && this.investmentEngagementJourneyService.getPortfolioFormData().selectPortfolioType === INVESTMENT_ENGAGEMENT_JOURNEY_CONSTANTS.SELECT_POROFOLIO_TYPE.CPF_PORTFOLIO) {
       this.showModalPopUp(form.value.investmentPeriod, this.translate.instant('PERSONAL_INFO.CPF.MODAL.TITLE'), this.translate.instant('PERSONAL_INFO.CPF.MODAL.BTN_LBL1'), this.translate.instant('PERSONAL_INFO.CPF.MODAL.BTN_LBL2'), this.translate.instant('PERSONAL_INFO.CPF.MODAL.MESSAGE'))
     }
-     else {
+    else {
       this.investmentEngagementJourneyService.setPersonalInfo(form.value);
       return true;
     }
@@ -162,7 +162,7 @@ export class InvestmentPeriodComponent implements OnInit, AfterViewInit, IPageCo
 
   showModalPopUp(value, title, btn1, btn2, msg) {
     const investmentPeriodValue = {
-      period: value == 1 ?  value  + ' ' + 'year' : value  + ' ' +'years'
+      period: value == 1 ? value + ' ' + 'year' : value + ' ' + 'years'
     };
     const ref = this.modal.open(ModelWithButtonComponent, { centered: true });
     ref.componentInstance.errorTitle = title;
@@ -175,8 +175,8 @@ export class InvestmentPeriodComponent implements OnInit, AfterViewInit, IPageCo
       ref.dismiss();
     });
     ref.componentInstance.secondaryAction.subscribe((emittedValue) => {
-    this.investmentEngagementJourneyService.setSelectPortfolioType({selectPortfolioType:INVESTMENT_ENGAGEMENT_JOURNEY_CONSTANTS.SELECT_POROFOLIO_TYPE.WISESAVER_PORTFOLIO});
-    this.router.navigate([INVESTMENT_ENGAGEMENT_JOURNEY_ROUTE_PATHS.SELECT_PORTFOLIO]);
+      this.investmentEngagementJourneyService.setSelectPortfolioType({ selectPortfolioType: INVESTMENT_ENGAGEMENT_JOURNEY_CONSTANTS.SELECT_POROFOLIO_TYPE.WISESAVER_PORTFOLIO });
+      this.router.navigate([INVESTMENT_ENGAGEMENT_JOURNEY_ROUTE_PATHS.SELECT_PORTFOLIO]);
     });
   }
 

@@ -46,17 +46,16 @@ export class YourFinancialsComponent implements IPageComponent, OnInit {
   userPortfolioType: any;
   isCpfEnabled: boolean;
 
-
   constructor(
     private router: Router,
     private modal: NgbModal,
-    public investmentEngagementJourneyService: InvestmentEngagementJourneyService,
+    private investmentEngagementJourneyService: InvestmentEngagementJourneyService,
     public navbarService: NavbarService,
     public footerService: FooterService,
     public authService: AuthenticationService,
     public readonly translate: TranslateService,
     private investmentAccountService: InvestmentAccountService,
-    public investmentCommonService: InvestmentCommonService,
+    private investmentCommonService: InvestmentCommonService,
     private loaderService: LoaderService
   ) {
     this.translate.use('en');
@@ -198,11 +197,11 @@ export class YourFinancialsComponent implements IPageComponent, OnInit {
       this.investmentEngagementJourneyService.getJAPortfolioAllocationDetails(params).subscribe((data) => {
         let secondaryHolderMajorData = this.investmentEngagementJourneyService.getMajorSecondaryHolderData();
         let secondaryHolderMinorData = this.investmentEngagementJourneyService.getMinorSecondaryHolderData();
-        if(secondaryHolderMajorData) {
+        if (secondaryHolderMajorData) {
           secondaryHolderMajorData.customerPortfolioId = data.objectList.customerPortfolioId;
           this.investmentEngagementJourneyService.setMajorSecondaryHolderData(secondaryHolderMajorData);
         }
-        if(secondaryHolderMinorData) {
+        if (secondaryHolderMinorData) {
           secondaryHolderMinorData.customerPortfolioId = data.objectList.customerPortfolioId;
           this.investmentEngagementJourneyService.setMinorSecondaryHolderData(secondaryHolderMinorData);
         }
