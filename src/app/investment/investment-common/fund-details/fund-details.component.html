@@ -42,7 +42,7 @@
      <a download target="_blank" (click)="getProspectusLink()" class="btn btn-white width100" id="fund_details_download_prospectus">{{'FUND_DETAILS.DOWNLOAD_SECONDARY' | translate}}</a>
     </div>
 <!-- cpf -->
-    <div class="fund-details-content" *ngIf="cpfEnabled || investmentEnabled">
+    <div class="fund-details-content" *ngIf="cpfEnabled">
       <div class="cpf-oa">
         <nav ngbNav #nav="ngbNav" class="nav-tabs mb30 flex justify-center" [(activeId)]="activeTabId">
             <ng-container [ngbNavItem]="1">
@@ -55,7 +55,7 @@
                       </div>
                       <div>
                         <div *ngFor="let fund of fundDetails; let i = index; let j = index;" #i id="fund-details-{{i}}">{{fundDetails.fund}}       
-                          <div class="funding-content funding-cpf"[ngClass]="{'border-0': cpfEnabled || investmentEnabled }" [class.first]="j === 0" id="fund-details-content_{{j}}">
+                          <div class="funding-content funding-cpf" [ngClass]="{ 'border-0': cpfEnabled }" [class.first]="j === 0" id="fund-details-content_{{j}}">
                             {{fund.htmlDesc}}        
                             <div class="btn-wrapper"><a download target="_blank" (click)="getHighlightSheetLink(fund)" class="btn btn-primary width100 mt20 fund-details-primary-btn" id="fund_details_download_btn_{{j}}">{{'FUND_DETAILS.DOWNLOAD_PRIMARY' | translate}}</a></div>   
                           </div>
@@ -75,7 +75,7 @@
                       </div>
                       <div>
                         <div *ngFor="let fund of fundDetails; let i = index; let j = index;" #i id="fund-details-{{i}}">{{fundDetails.fund}}
-                          <div class="funding-content funding-cpf"  [class.first]="j === 0" id="fund-details-content_{{j}}">
+                          <div class="funding-content funding-cpf" [ngClass]="{ 'border-0': cpfEnabled }" [class.first]="j === 0" id="fund-details-content_{{j}}">
                             {{fund.htmlDesc}}        
                             <div class="btn-wrapper"><a download target="_blank" (click)="getHighlightSheetLink(fund)" class="btn btn-primary width100 mt20 fund-details-primary-btn" id="fund_details_download_btn_{{j}}">{{'FUND_DETAILS.DOWNLOAD_PRIMARY' | translate}}</a></div>   
                           </div>

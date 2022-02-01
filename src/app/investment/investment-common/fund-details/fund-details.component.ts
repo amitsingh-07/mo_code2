@@ -69,7 +69,7 @@ export class FundDetailsComponent implements OnInit {
       this.wiseIncomeEnabled = false;
       this.cpfEnabled = false;
     }
-    if((this.portfolioType.toLowerCase() === INVESTMENT_ENGAGEMENT_JOURNEY_CONSTANTS.SELECT_POROFOLIO_TYPE.CPF_PORTFOLIO.toLowerCase() || this.portfolioType.toLowerCase() === INVESTMENT_ENGAGEMENT_JOURNEY_CONSTANTS.SELECT_POROFOLIO_TYPE.CPF_PORTFOLIO.toLowerCase() )){
+    if((this.portfolioType.toLowerCase() === INVESTMENT_ENGAGEMENT_JOURNEY_CONSTANTS.SELECT_POROFOLIO_TYPE.CPF_PORTFOLIO.toLowerCase())){
       this.investmentEnabled = false;
       this.wiseSaverEnabled = false;
       this.wiseIncomeEnabled = false;
