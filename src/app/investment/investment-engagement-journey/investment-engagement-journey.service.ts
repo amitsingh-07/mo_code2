@@ -756,4 +756,8 @@ export class InvestmentEngagementJourneyService {
     }
     return errors;
   }
+
+  isCpfSelected() {
+    return this.getPortfolioFormData().selectPortfolioType == INVESTMENT_ENGAGEMENT_JOURNEY_CONSTANTS.SELECT_POROFOLIO_TYPE.CPF_PORTFOLIO;
+  }
 }
