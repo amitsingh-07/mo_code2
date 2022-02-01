@@ -16,6 +16,7 @@ import { INVESTMENT_COMMON_ROUTE_PATHS } from '../investment-common-routes.const
 import { InvestmentAccountService } from '../../investment-account/investment-account-service';
 import { LoaderService } from '../../../shared/components/loader/loader.service';
 import { CpfiaTooltipComponent } from './cpfia-tooltip/cpfia-tooltip.component';
+import { InvestmentEngagementJourneyService } from '../../investment-engagement-journey/investment-engagement-journey.service';
 import { Util } from 'src/app/shared/utils/util';
 
 @Component({
@@ -30,6 +31,9 @@ export class CpfPrerequisitesComponent implements OnInit {
   preRequisitesForm: FormGroup;
   ckaInfo: any;
   cpfBankOperators: any;
+  cpfBankDetails: any;
+  showCpfAccountNumber = false;
+
   constructor(
     private router: Router,
     private route: ActivatedRoute,
@@ -41,6 +45,7 @@ export class CpfPrerequisitesComponent implements OnInit {
     private signUpService: SignUpService,
     private investmentCommonService: InvestmentCommonService,
     private investmentAccountService: InvestmentAccountService,
+    private investmentEngagementJourneyService: InvestmentEngagementJourneyService,
     private loaderService: LoaderService
   ) {
     this.translate.use('en');
@@ -62,8 +67,16 @@ export class CpfPrerequisitesComponent implements OnInit {
 
   buildPreRequisitesForm() {
     this.preRequisitesForm = new FormGroup({
-      cpfOperator: new FormControl('', Validators.required),
-      cpfAccountNo: new FormControl('', Validators.required)
+      cpfOperator: new FormControl({ value: '', disabled: true }, Validators.required),
+      cpfAccountNo: new FormControl({ value: '', disabled: true }, Validators.required)
+    });
+  }
+
+  getCPFBankList() {
+    this.investmentAccountService.getSpecificDropList('cpfAgentBank').subscribe((resp: any) => {
+      if (resp.responseMessage.responseCode >= 6000 && resp.objectList) {
+        this.cpfBankOperators = resp.objectList.cpfAgentBank;
+      }
     });
   }
 
@@ -91,13 +104,9 @@ export class CpfPrerequisitesComponent implements OnInit {
             [Validators.required, Validators.pattern(RegexConstants.cpfOperatorMaskForValidation.UOB)]);
           break;
       }
+      this.preRequisitesForm.controls['cpfAccountNo'].enable();
       this.preRequisitesForm.updateValueAndValidity();
     }
-  }
-
-  goToNext() {
-    this.investmentCommonService.setInitialFundingMethod({initialFundingMethodId: 390});
-    this.router.navigate([INVESTMENT_ENGAGEMENT_JOURNEY_ROUTE_PATHS.GET_STARTED_STEP1]);
   }
 
   startAssessment() {
@@ -120,30 +129,95 @@ export class CpfPrerequisitesComponent implements OnInit {
 
   getCKAData() {
     this.showLoader();
-    this.signUpService.getEditProfileInfo().subscribe((data) => {
+    this.investmentCommonService.getCKAAssessmentStatus().subscribe((data) => {
       this.loaderService.hideLoaderForced();
       const responseMessage = data.responseMessage;
-      if (responseMessage.responseCode === 6000) {
-        console.log(data.objectList);
+      if (responseMessage && responseMessage.responseCode === 6000) {
         if (data.objectList) {
-          this.ckaInfo = data.objectList.ckaInformation;
-          if (this.ckaInfo && this.ckaInfo.cKAStatusMessage && this.ckaInfo.cKAStatusMessage === INVESTMENT_COMMON_CONSTANTS.CKA.CKA_PASSED_STATUS) {
+          this.ckaInfo = data.objectList;
+          this.getCPFBankDetails();
+          if (this.ckaInfo.cKAStatusMessage && this.ckaInfo.cKAStatusMessage === INVESTMENT_COMMON_CONSTANTS.CKA.CKA_PASSED_STATUS) {
             this.investmentCommonService.setCKAStatus(INVESTMENT_COMMON_CONSTANTS.CKA.CKA_PASSED_STATUS);
+          } else if (this.ckaInfo.cKAStatusMessage && this.ckaInfo.cKAStatusMessage === INVESTMENT_COMMON_CONSTANTS.CKA.CKA_BE_CERTIFICATE_UPLOADED) {
+            this.investmentCommonService.setCKAStatus(INVESTMENT_COMMON_CONSTANTS.CKA.CKA_BE_CERTIFICATE_UPLOADED);
           }
         }
+      } else {
+        this.enableDisableStepTwo();
       }
-    }, err => {
+    }, () => {
       this.loaderService.hideLoaderForced();
       this.investmentAccountService.showGenericErrorModal();
-    })
-  };
-
-  getCPFBankList() {
-    this.investmentAccountService.getAllDropDownList().subscribe((resp: any) => {
-      if (resp.responseMessage.responseCode >= 6000 && resp.objectList) {
-        this.cpfBankOperators = resp.objectList.cpfAgentBank;
-      }
     });
+  }
+
+  getCPFBankDetails() {
+    this.showLoader();
+    this.investmentCommonService.getCKABankDetails(false).subscribe((resp: any) => {
+      this.loaderService.hideLoaderForced();
+      if (resp.responseMessage && resp.responseMessage.responseCode >= 6000) {
+        if (resp && resp.objectList) {
+          this.cpfBankDetails = resp.objectList;
+          this.investmentEngagementJourneyService.setCpfBankDetails(this.cpfBankDetails.id);
+          this.updateCkaFormDetails();
+        }
+      }
+    }, () => {
+      this.loaderService.hideLoaderForced();
+    });
+  }
+
+  updateCkaFormDetails() {
+    if (this.cpfBankDetails) {
+      this.preRequisitesForm.controls['cpfOperator'].setValue(this.cpfBankDetails.bankOperator);
+      this.preRequisitesForm.controls['cpfAccountNo'].setValue(this.cpfBankDetails.accountNumber);
+      this.enableDisableStepTwo();
+      this.addorRemoveAccNoValidator();
+    }
+  }
+
+  enableDisableStepTwo() {
+    if (this.ckaInfo && this.ckaInfo.cKAStatusMessage && (this.ckaInfo.cKAStatusMessage === INVESTMENT_COMMON_CONSTANTS.CKA.CKA_PASSED_STATUS
+      || this.ckaInfo.cKAStatusMessage === INVESTMENT_COMMON_CONSTANTS.CKA.CKA_BE_CERTIFICATE_UPLOADED)) {
+      this.preRequisitesForm.get('cpfOperator').enable();
+      this.preRequisitesForm.get('cpfOperator').value ? this.preRequisitesForm.controls['cpfAccountNo'].enable() : this.preRequisitesForm.controls['cpfAccountNo'].disable();
+    } else {
+      this.preRequisitesForm.get('cpfOperator').disable();
+      this.preRequisitesForm.get('cpfAccountNo').disable();
+    }
+  }
+
+  goToNext() {
+    if (!this.preRequisitesForm.valid) {
+      return false;
+    } else {
+      this.saveCPFAccountDetails(this.preRequisitesForm);
+    }
+  }
+  
+  saveCPFAccountDetails(form) {
+    const params = this.constructCpfAccountParams(form.value);
+    this.investmentCommonService.saveCKABankAccount(params).subscribe((data) => {
+      if (data && data.objectList) {
+        this.investmentEngagementJourneyService.setCpfBankDetails(data.objectList);
+        this.router.navigate([INVESTMENT_ENGAGEMENT_JOURNEY_ROUTE_PATHS.GET_STARTED_STEP1]);
+      }
+    }, () => {
+      this.investmentAccountService.showGenericErrorModal();
+    });
+  }
+
+  constructCpfAccountParams(data) {
+    let reqParams = {
+      accountNumber: data.cpfAccountNo ? data.cpfAccountNo.replace(/[-]/g, '') : null,
+      bankOperatorId: data.cpfOperator ? data.cpfOperator.id : null
+    };  
+
+    if(!Util.isEmptyOrNull(this.investmentEngagementJourneyService.getCpfBankDetails())) {
+      reqParams['id'] = this.investmentEngagementJourneyService.getCpfBankDetails();
+    }
+
+    return reqParams;
   }
 
   maskConfig() {
@@ -201,7 +275,9 @@ export class CpfPrerequisitesComponent implements OnInit {
   }
 
   isCKACompleted() {
-    return this.ckaInfo && this.ckaInfo.cKAStatusMessage && (this.ckaInfo.cKAStatusMessage === INVESTMENT_COMMON_CONSTANTS.CKA.CKA_PASSED_STATUS || this.ckaInfo.cKAStatusMessage === INVESTMENT_COMMON_CONSTANTS.CKA.CKA_BE_CERTIFICATE_UPLOADED)
+    return this.ckaInfo && this.ckaInfo.cKAStatusMessage &&
+      (this.ckaInfo.cKAStatusMessage === INVESTMENT_COMMON_CONSTANTS.CKA.CKA_PASSED_STATUS
+        || this.ckaInfo.cKAStatusMessage === INVESTMENT_COMMON_CONSTANTS.CKA.CKA_BE_CERTIFICATE_UPLOADED)
   }
 
   showLoader() {

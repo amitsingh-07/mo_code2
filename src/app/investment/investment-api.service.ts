@@ -568,4 +568,19 @@ export class InvestmentApiService {
         catchError((error: HttpErrorResponse) => this.handleError(error))
       );
   }
+
+  getCKAAssessmentStatus() {
+    return this.http.get(investmentApiConstants.endpoint.investment.getCKAAssessmentStatus);
+  }
+
+  getCKABankAccount(twoFaReq) {
+    return this.http.get(investmentApiConstants.endpoint.investment.getCKABankAccount.replace('$TWOFA_REQ$', twoFaReq));
+  }
+
+  saveCKABankAccount(data) {
+    return this.http.post(investmentApiConstants.endpoint.investment.saveCKABankAccount, data)
+      .pipe(
+        catchError((error: HttpErrorResponse) => this.handleError(error))
+      );
+  }
 }
