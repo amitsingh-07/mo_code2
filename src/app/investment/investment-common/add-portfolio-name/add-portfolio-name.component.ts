@@ -10,6 +10,7 @@ import { ErrorModalComponent } from '../../../shared/modal/error-modal/error-mod
 import { NavbarService } from '../../../shared/navbar/navbar.service';
 import { RegexConstants } from '../../../shared/utils/api.regex.constants';
 import { SIGN_UP_CONFIG } from '../../../sign-up/sign-up.constant';
+import { InvestmentAccountCommon } from '../../investment-account/investment-account-common';
 import {
   INVESTMENT_ACCOUNT_ROUTE_PATHS
 } from '../../investment-account/investment-account-routes.constants';
@@ -29,6 +30,7 @@ import {
 } from '../confirm-portfolio/account-creation-error-modal/account-creation-error-modal.component';
 import { IAccountCreationActions } from '../investment-common-form-data';
 import { INVESTMENT_COMMON_ROUTE_PATHS } from '../investment-common-routes.constants';
+import { INVESTMENT_COMMON_CONSTANTS } from '../investment-common.constants';
 import { InvestmentCommonService } from '../investment-common.service';
 import { PromoCodeService } from './../../../promo-code/promo-code.service';
 
@@ -95,8 +97,24 @@ export class AddPortfolioNameComponent implements OnInit, OnDestroy {
   submitForm() {
     if (this.form.valid) {
       // Integration with getCKAInfo api and post api is pending.
-      if(true) {
-        this.updatePortfolioAccountStatus();
+      let isCPFOA: boolean = JSON.parse(window.sessionStorage.getItem("app_inv_common_session")).portfolioDetails.fundingTypeValue === INVESTMENT_COMMON_CONSTANTS.FUNDING_METHODS.CPF_OA;
+
+      if(isCPFOA) {
+        this.investmentCommonService.getCustomerCKAInfo().subscribe((res) => {
+          if((res.responseMessage.responseCode === 6000)) {
+            let isCKACertificateUploadStatus: boolean = res.objectList.cKAStatusMessage === 'CKA_CERTIFICATE_UPLOAD';
+            if (isCKACertificateUploadStatus) {
+              this.updatePortfolioAccountStatus();
+            } else {
+              if (this.form.controls.portfolioName.value) {
+                const userPortfolioNameTitleCase = this.convertToTitleCase(this.form.controls.portfolioName.value);
+                this.saveNameOrContinueAccountCreation(userPortfolioNameTitleCase);
+              } else {
+                this.saveNameOrContinueAccountCreation(null);
+              }
+            }
+          }
+        });
       } else {
         if (this.form.controls.portfolioName.value) {
           const userPortfolioNameTitleCase = this.convertToTitleCase(this.form.controls.portfolioName.value);
@@ -131,7 +149,7 @@ export class AddPortfolioNameComponent implements OnInit, OnDestroy {
 
   constructUpdatePortfolioAccountStatusParams() {
     return {
-      customerPortfolioId: this.formValues.recommendedCustomerPortfolioId,
+      customerPortfolioId: +this.formValues.recommendedCustomerPortfolioId,
     };
   }
 
@@ -171,10 +189,10 @@ export class AddPortfolioNameComponent implements OnInit, OnDestroy {
   updatePortfolioAccountStatus() {
     this.loaderService.showLoader({
       title: this.translate.instant(
-        'PORTFOLIO_RECOMMENDATION.CREATING_ADDITIONAL_ACCOUNT_LOADER.TITLE'
+        'PORTFOLIO_RECOMMENDATION.UPDATING_PORTFOLIO_STATUS_LOADER.TITLE'
       ),
       desc: this.translate.instant(
-        'PORTFOLIO_RECOMMENDATION.CREATING_ADDITIONAL_ACCOUNT_LOADER.DESCRIPTION'
+        'PORTFOLIO_RECOMMENDATION.UPDATING_PORTFOLIO_STATUS_LOADER.DESCRIPTION'
       ),
       autoHide: false
     });
@@ -182,7 +200,7 @@ export class AddPortfolioNameComponent implements OnInit, OnDestroy {
     
     //service call to update the investment account status to CKA_CHECK_PENDING will go here
     
-    this.investmentCommonService.savePortfolioName(param).subscribe((response) => {
+    this.investmentCommonService.updatePortfolioStatus(param).subscribe((response) => {
       this.loaderService.hideLoaderForced();
       if (response.responseMessage.responseCode === 6000) {
         this.redirectToPortfolioInProgress();

@@ -17,7 +17,8 @@ export let investmentApiConstants = {
             saveMajorSecondaryHolder: ACCOUNT_API_BASE_URL + '/jointAccount/validateAndSaveMajorSecondaryHolder',
             acceptJAPortfolio: INVESTMENT_API_BASE_URL + '/secondary/customer/portfolio/$customerPortfolioId$/accept?handleError=true',
             setActionByHolder: INVESTMENT_API_BASE_URL + '/jointAccount/action?handleError=true',
-            portfolioSummary: INVESTMENT_API_BASE_URL + '/customer/jointAccountPortfolios/$CUSTOMER_PORTFOLIO_ID$/summary'
+            portfolioSummary: INVESTMENT_API_BASE_URL + '/customer/jointAccountPortfolios/$CUSTOMER_PORTFOLIO_ID$/summary',
+            updatePortfolioStatus: INVESTMENT_API_BASE_URL + '/customer/portfolio/status'
         },
         investmentAccount: {
             nationalityCountrylist: INVESTMENT_API_BASE_URL + '/groupedCountryList',
@@ -74,7 +75,8 @@ export let investmentApiConstants = {
             featurePromotions: INVESTMENT_API_BASE_URL + '/featurePromotions?handleError=true',
             wrapFrees: INVESTMENT_API_BASE_URL + '/wrapfees/getCustomerWrapFees',
             saveCKAMethodQNA: ACCOUNT_API_BASE_URL + '/saveCKA/',
-            getCKADocument: ACCOUNT_API_BASE_URL + '/s3/fetchDocument?docType=$DOCUMENT_TYPE$'
+            getCKADocument: ACCOUNT_API_BASE_URL + '/s3/fetchDocument?docType=$DOCUMENT_TYPE$',
+            getCustomerCKAInfo: ACCOUNT_API_BASE_URL + '/cka/assessment/status'
         }
     }
 };
