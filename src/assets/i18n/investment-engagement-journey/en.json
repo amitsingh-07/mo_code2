@@ -650,5 +650,9 @@
     "TITLE": "You have passed CKA!",
     "DESC": " Congratulations on completing your e-Learning! Please continue to the next step of investing CPF portfolio.",
     "BTN_CONTINUE": "Continue"
+  },
+  "PORTFOLIO_INPROGRESS": {
+    "TITLE": "Portfolio Application in Progress",
+    "DESC": "We will get back to you on your application in 1 - 2 working days. Your portfolio will be updated on your dashboard once your application is approved."
   }
 }

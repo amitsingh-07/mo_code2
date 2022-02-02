@@ -569,8 +569,21 @@ export class InvestmentApiService {
       );
   }
 
+  /**
+   * @param data of type {customerPortfolioId: number}
+   * this api method checks the cka status in backend for the customer and updates the Portfolio status for the provided Portfolio id in customer_portfolio table.
+   */
+  updatePortfolioStatus = (data: {customerPortfolioId: number}) => {
+    return this.http.put(investmentApiConstants.endpoint.portfolio.updatePortfolioStatus, data)
+    .pipe(
+      catchError((error: HttpErrorResponse) => this.handleError(error))
+    );
+  }
   getCKAAssessmentStatus() {
-    return this.http.get(investmentApiConstants.endpoint.investment.getCKAAssessmentStatus);
+    return this.http.get(investmentApiConstants.endpoint.investment.getCKAAssessmentStatus)
+    .pipe(
+      catchError((error: HttpErrorResponse) => this.handleError(error))
+    );
   }
 
   getCKABankAccount(twoFaReq) {

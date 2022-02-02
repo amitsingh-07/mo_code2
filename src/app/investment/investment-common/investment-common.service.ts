@@ -49,6 +49,10 @@ export class InvestmentCommonService {
     return this.investmentApiService.savePortfolioName(data);
   }
 
+  updatePortfolioStatus(data: {customerPortfolioId: number}) {
+    return this.investmentApiService.updatePortfolioStatus(data);
+  }
+
   confirmPortfolio(customerPortfolioId) {
     return this.investmentApiService.confirmPortfolio(customerPortfolioId);
   }
