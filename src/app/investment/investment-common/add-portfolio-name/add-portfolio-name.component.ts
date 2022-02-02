@@ -96,33 +96,31 @@ export class AddPortfolioNameComponent implements OnInit, OnDestroy {
 
   submitForm() {
     if (this.form.valid) {
-      // Integration with getCKAInfo api and post api is pending.
       let isCPFOA: boolean = JSON.parse(window.sessionStorage.getItem("app_inv_common_session")).portfolioDetails.fundingTypeValue === INVESTMENT_COMMON_CONSTANTS.FUNDING_METHODS.CPF_OA;
 
       if(isCPFOA) {
         this.investmentCommonService.getCustomerCKAInfo().subscribe((res) => {
           if((res.responseMessage.responseCode === 6000)) {
-            let isCKACertificateUploadStatus: boolean = res.objectList.cKAStatusMessage === 'CKA_CERTIFICATE_UPLOAD';
+            let isCKACertificateUploadStatus: boolean = res && res.objectList && res.objectList.cKAStatusMessage === 'CKA_CERTIFICATE_UPLOAD';
             if (isCKACertificateUploadStatus) {
               this.updatePortfolioAccountStatus();
             } else {
-              if (this.form.controls.portfolioName.value) {
-                const userPortfolioNameTitleCase = this.convertToTitleCase(this.form.controls.portfolioName.value);
-                this.saveNameOrContinueAccountCreation(userPortfolioNameTitleCase);
-              } else {
-                this.saveNameOrContinueAccountCreation(null);
-              }
+              this.continueIfastAccCreation();
             }
           }
         });
       } else {
-        if (this.form.controls.portfolioName.value) {
-          const userPortfolioNameTitleCase = this.convertToTitleCase(this.form.controls.portfolioName.value);
-          this.saveNameOrContinueAccountCreation(userPortfolioNameTitleCase);
-        } else {
-          this.saveNameOrContinueAccountCreation(null);
-        }
+        this.continueIfastAccCreation();
       }
+    }
+  }
+
+  private continueIfastAccCreation() {
+    if (this.form.controls.portfolioName.value) {
+      const userPortfolioNameTitleCase = this.convertToTitleCase(this.form.controls.portfolioName.value);
+      this.saveNameOrContinueAccountCreation(userPortfolioNameTitleCase);
+    } else {
+      this.saveNameOrContinueAccountCreation(null);
     }
   }
 
