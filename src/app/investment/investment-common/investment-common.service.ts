@@ -539,10 +539,6 @@ export class InvestmentCommonService {
     return this.investmentCommonFormData.ckaStatus;
   }
 
-  getCustomerCKAInfo() {
-    return this.investmentApiService.getCustomerCKAInfo();
-  }
-  
   getCKAAssessmentStatus() {
     return this.investmentApiService.getCKAAssessmentStatus();
   }

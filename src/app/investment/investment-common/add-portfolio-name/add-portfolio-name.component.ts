@@ -96,12 +96,12 @@ export class AddPortfolioNameComponent implements OnInit, OnDestroy {
 
   submitForm() {
     if (this.form.valid) {
-      let isCPFOA: boolean = JSON.parse(window.sessionStorage.getItem("app_inv_common_session")).portfolioDetails.fundingTypeValue === INVESTMENT_COMMON_CONSTANTS.FUNDING_METHODS.CPF_OA;
+      let isCPFOA: boolean = this.investmentCommonService.getInvestmentCommonFormData().portfolioDetails.fundingTypeValue === INVESTMENT_COMMON_CONSTANTS.FUNDING_METHODS.CPF_OA;
 
       if(isCPFOA) {
-        this.investmentCommonService.getCustomerCKAInfo().subscribe((res) => {
+        this.investmentCommonService.getCKAAssessmentStatus().subscribe((res) => {
           if((res.responseMessage.responseCode === 6000)) {
-            let isCKACertificateUploadStatus: boolean = res && res.objectList && res.objectList.cKAStatusMessage === 'CKA_CERTIFICATE_UPLOAD';
+            let isCKACertificateUploadStatus: boolean = res && res.objectList && res.objectList.cKAStatusMessage === INVESTMENT_COMMON_CONSTANTS.CKA.CKA_BE_CERTIFICATE_UPLOADED;
             if (isCKACertificateUploadStatus) {
               this.updatePortfolioAccountStatus();
             } else {
@@ -195,9 +195,7 @@ export class AddPortfolioNameComponent implements OnInit, OnDestroy {
       autoHide: false
     });
     const param = this.constructUpdatePortfolioAccountStatusParams();
-    
-    //service call to update the investment account status to CKA_CHECK_PENDING will go here
-    
+        
     this.investmentCommonService.updatePortfolioStatus(param).subscribe((response) => {
       this.loaderService.hideLoaderForced();
       if (response.responseMessage.responseCode === 6000) {

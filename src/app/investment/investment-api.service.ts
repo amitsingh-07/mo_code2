@@ -211,13 +211,6 @@ export class InvestmentApiService {
       );
   }
 
-  getCustomerCKAInfo() {
-    return this.http.get(investmentApiConstants.endpoint.investment.getCKAAssessmentStatus)
-      .pipe(
-        catchError((error: HttpErrorResponse) => this.handleError(error))
-      );
-  }
-
   saveInvestmentAccount(data) {
     return this.http.post(investmentApiConstants.endpoint.investmentAccount.saveInvestmentAccount, data)
       .pipe(
@@ -587,7 +580,10 @@ export class InvestmentApiService {
     );
   }
   getCKAAssessmentStatus() {
-    return this.http.get(investmentApiConstants.endpoint.investment.getCKAAssessmentStatus);
+    return this.http.get(investmentApiConstants.endpoint.investment.getCKAAssessmentStatus)
+    .pipe(
+      catchError((error: HttpErrorResponse) => this.handleError(error))
+    );
   }
 
   getCKABankAccount(twoFaReq) {

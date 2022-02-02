@@ -15,7 +15,7 @@
     }
 }
 .portfolio-app-inprogress__content__title {
-    font-family: "Muli Semi Bold", sans-serif;
+    font-family: $muli-semi-bold;
     font-size: 24px;
     letter-spacing: -0.18px;
     text-align: center;
@@ -26,7 +26,7 @@
     line-height: 1.22;
     letter-spacing: -0.12px;
     text-align: center;
-    font-family: "Muli Regular", sans-serif;
+    font-family: $muli-regular;
     padding: 0 5px;
 }
 .banner-image {
