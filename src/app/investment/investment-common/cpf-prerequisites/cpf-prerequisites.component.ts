@@ -32,7 +32,7 @@ export class CpfPrerequisitesComponent implements OnInit {
   ckaInfo: any;
   cpfBankOperators: any;
   cpfBankDetails: any;
-  showCpfAccountNumber = false;
+  showOperatorBank = false;
 
   constructor(
     private router: Router,
@@ -67,7 +67,7 @@ export class CpfPrerequisitesComponent implements OnInit {
 
   buildPreRequisitesForm() {
     this.preRequisitesForm = new FormGroup({
-      cpfOperator: new FormControl({ value: '', disabled: true }, Validators.required),
+      cpfOperator: new FormControl("", Validators.required),
       cpfAccountNo: new FormControl({ value: '', disabled: true }, Validators.required)
     });
   }
@@ -140,7 +140,12 @@ export class CpfPrerequisitesComponent implements OnInit {
             this.investmentCommonService.setCKAStatus(INVESTMENT_COMMON_CONSTANTS.CKA.CKA_PASSED_STATUS);
           } else if (this.ckaInfo.cKAStatusMessage && this.ckaInfo.cKAStatusMessage === INVESTMENT_COMMON_CONSTANTS.CKA.CKA_BE_CERTIFICATE_UPLOADED) {
             this.investmentCommonService.setCKAStatus(INVESTMENT_COMMON_CONSTANTS.CKA.CKA_BE_CERTIFICATE_UPLOADED);
+          } else if (this.ckaInfo.cKAStatusMessage && this.ckaInfo.cKAStatusMessage === INVESTMENT_COMMON_CONSTANTS.CKA.CKA_REJECTED_STATUS) {
+            this.investmentCommonService.setCKAStatus(INVESTMENT_COMMON_CONSTANTS.CKA.CKA_REJECTED_STATUS);
+            this.enableDisableStepTwo();
           }
+        } else {
+          this.enableDisableStepTwo();
         }
       } else {
         this.enableDisableStepTwo();
@@ -155,12 +160,14 @@ export class CpfPrerequisitesComponent implements OnInit {
     this.showLoader();
     this.investmentCommonService.getCKABankDetails(false).subscribe((resp: any) => {
       this.loaderService.hideLoaderForced();
-      if (resp.responseMessage && resp.responseMessage.responseCode >= 6000) {
-        if (resp && resp.objectList) {
+      if (resp && resp.responseMessage && resp.responseMessage.responseCode >= 6000) {
+        if (resp.objectList) {
           this.cpfBankDetails = resp.objectList;
           this.investmentEngagementJourneyService.setCpfBankDetails(this.cpfBankDetails.id);
           this.updateCkaFormDetails();
         }
+      } else {
+        this.enableDisableStepTwo();
       }
     }, () => {
       this.loaderService.hideLoaderForced();
@@ -177,14 +184,18 @@ export class CpfPrerequisitesComponent implements OnInit {
   }
 
   enableDisableStepTwo() {
-    if (this.ckaInfo && this.ckaInfo.cKAStatusMessage && (this.ckaInfo.cKAStatusMessage === INVESTMENT_COMMON_CONSTANTS.CKA.CKA_PASSED_STATUS
-      || this.ckaInfo.cKAStatusMessage === INVESTMENT_COMMON_CONSTANTS.CKA.CKA_BE_CERTIFICATE_UPLOADED)) {
-      this.preRequisitesForm.get('cpfOperator').enable();
+    this.setBankEnableStatus();
+    if (this.isCKACompleted()) {
       this.preRequisitesForm.get('cpfOperator').value ? this.preRequisitesForm.controls['cpfAccountNo'].enable() : this.preRequisitesForm.controls['cpfAccountNo'].disable();
     } else {
-      this.preRequisitesForm.get('cpfOperator').disable();
       this.preRequisitesForm.get('cpfAccountNo').disable();
     }
+  }
+
+  isCKACompleted() {
+    return this.ckaInfo && this.ckaInfo.cKAStatusMessage &&
+      (this.ckaInfo.cKAStatusMessage === INVESTMENT_COMMON_CONSTANTS.CKA.CKA_PASSED_STATUS
+        || this.ckaInfo.cKAStatusMessage === INVESTMENT_COMMON_CONSTANTS.CKA.CKA_BE_CERTIFICATE_UPLOADED)
   }
 
   goToNext() {
@@ -274,12 +285,6 @@ export class CpfPrerequisitesComponent implements OnInit {
     return !control.pristine && !control.valid;
   }
 
-  isCKACompleted() {
-    return this.ckaInfo && this.ckaInfo.cKAStatusMessage &&
-      (this.ckaInfo.cKAStatusMessage === INVESTMENT_COMMON_CONSTANTS.CKA.CKA_PASSED_STATUS
-        || this.ckaInfo.cKAStatusMessage === INVESTMENT_COMMON_CONSTANTS.CKA.CKA_BE_CERTIFICATE_UPLOADED)
-  }
-
   showLoader() {
     this.loaderService.showLoader({
       title: this.translate.instant('LOADER_MESSAGES.LOADING.TITLE'),
@@ -299,10 +304,12 @@ export class CpfPrerequisitesComponent implements OnInit {
     return false;
   }
 
-  disableOperatorBank() {
-    if (Util.isEmptyOrNull(this.ckaInfo)) {
-      return true;
+  setBankEnableStatus() {
+    if (Util.isEmptyOrNull(this.ckaInfo) || (!Util.isEmptyOrNull(this.ckaInfo) && this.ckaInfo.cKAStatusMessage
+      && this.ckaInfo.cKAStatusMessage === INVESTMENT_COMMON_CONSTANTS.CKA.CKA_REJECTED_STATUS)) {
+      this.showOperatorBank = true;
+    } else {
+      this.showOperatorBank = false;
     }
-    return false;
   }
 }

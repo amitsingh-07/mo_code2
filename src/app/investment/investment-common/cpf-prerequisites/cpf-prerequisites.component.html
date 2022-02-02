@@ -26,6 +26,10 @@
                 <span class="status-icon"><img src="./assets/images/check-icon-white.svg"></span>
                 <span>{{'CPF_PREREQUISITES.CERT_UPLOADED' | translate}}</span>
               </div>
+              <div *ngIf="ckaInfo && ckaInfo.cKAStatusMessage === 'CKA_REJECTED'">
+                <ng-container *ngTemplateOutlet="startCKA">
+                </ng-container>
+              </div>
             </div>
             <ng-template #startCKA>
               <div class="flex-col" (click)="startAssessment()">
@@ -51,7 +55,7 @@
                 <div class="flex-col-8">
                   <div class="dropdown-control">
                     <div ngbDropdown>
-                      <button [disabled]="disableOperatorBank()" class="btn btn-dropdown" id="additional_declaration_sourse-drpdown" ngbDropdownToggle>
+                      <button [disabled]="showOperatorBank" class="btn btn-dropdown" id="additional_declaration_sourse-drpdown" ngbDropdownToggle>
                         {{preRequisitesForm.controls.cpfOperator.value ?
                           preRequisitesForm.controls.cpfOperator.value.name :
                             'CPF_PREREQUISITES.CPFIA_OPERATOR_PLACEHOLDER'
