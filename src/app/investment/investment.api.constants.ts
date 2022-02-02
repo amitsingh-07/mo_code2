@@ -76,7 +76,9 @@ export let investmentApiConstants = {
             wrapFrees: INVESTMENT_API_BASE_URL + '/wrapfees/getCustomerWrapFees',
             saveCKAMethodQNA: ACCOUNT_API_BASE_URL + '/saveCKA/',
             getCKADocument: ACCOUNT_API_BASE_URL + '/s3/fetchDocument?docType=$DOCUMENT_TYPE$',
-            getCustomerCKAInfo: ACCOUNT_API_BASE_URL + '/cka/assessment/status'
+            getCKAAssessmentStatus: ACCOUNT_API_BASE_URL + '/cka/assessment/status',
+            getCKABankAccount: ACCOUNT_API_BASE_URL + '/customer/getCPFOperatorDetails?twoFaRequired=$TWOFA_REQ$&handleError=true',
+            saveCKABankAccount: ACCOUNT_API_BASE_URL + '/save/cpfia'
         }
     }
 };

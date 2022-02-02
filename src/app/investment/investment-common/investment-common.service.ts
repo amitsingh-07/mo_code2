@@ -542,4 +542,16 @@ export class InvestmentCommonService {
   getCustomerCKAInfo() {
     return this.investmentApiService.getCustomerCKAInfo();
   }
+  
+  getCKAAssessmentStatus() {
+    return this.investmentApiService.getCKAAssessmentStatus();
+  }
+  
+  getCKABankDetails(twoFaReq) {
+    return this.investmentApiService.getCKABankAccount(twoFaReq);
+  }
+
+  saveCKABankAccount(data) {
+    return this.investmentApiService.saveCKABankAccount(data);
+  }
 }
