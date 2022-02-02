@@ -50,6 +50,7 @@ export class SelectPortfolioGoalMoreinfoComponent implements OnInit {
   fundingMethods: any;
   loaderTitle: string;
   loaderDesc: string;
+  ckaInfo: any;
   constructor(
     public readonly translate: TranslateService,
     private router: Router,
@@ -143,7 +144,7 @@ export class SelectPortfolioGoalMoreinfoComponent implements OnInit {
     else if (this.selectPortfolioForm.controls.selectPortfolioType && this.selectPortfolioForm.controls.selectPortfolioType.value === INVESTMENT_ENGAGEMENT_JOURNEY_CONSTANTS.SELECT_POROFOLIO_TYPE.CPF_PORTFOLIO) {
       const fundingMethod = this.getFundingMethodNameByName(INVESTMENT_COMMON_CONSTANTS.FUNDING_METHODS.CPF_OA, this.fundingMethods);
       this.investmentCommonService.setInitialFundingMethod({ initialFundingMethodId: fundingMethod });
-      this.router.navigate([INVESTMENT_COMMON_ROUTE_PATHS.CPF_PREREQUISITES]);
+      this.getCKAData();
     }
     else {
       if (this.selectPortfolioForm.controls.selectPortfolioType && this.selectPortfolioForm.controls.selectPortfolioType.value === INVESTMENT_ENGAGEMENT_JOURNEY_CONSTANTS.SELECT_POROFOLIO_TYPE.WISEINCOME_PORTFOLIO) {
@@ -173,4 +174,41 @@ export class SelectPortfolioGoalMoreinfoComponent implements OnInit {
   get selectPortfolioInfo() {
     return JSON.parse(sessionStorage.getItem('app_engage_journey_session')).selectPortfolioType;
   }
+
+
+  showLoader() {
+    this.loaderService.showLoader({
+      title: this.translate.instant('LOADER_MESSAGES.LOADING.TITLE'),
+      desc: this.translate.instant('LOADER_MESSAGES.LOADING.MESSAGE'),
+      autoHide: false
+    });
+  }
+
+  getCKAData() {
+    this.showLoader();
+    this.investmentCommonService.getCKAAssessmentStatus().subscribe((data) => {
+      this.loaderService.hideLoaderForced();
+      const responseMessage = data.responseMessage;
+      if (responseMessage && responseMessage.responseCode === 6000) {
+        if (data.objectList) {
+          this.ckaInfo = data.objectList;
+          if (this.ckaInfo.cKAStatusMessage && this.ckaInfo.cKAStatusMessage === INVESTMENT_COMMON_CONSTANTS.CKA.CKA_PASSED_STATUS) {
+            this.investmentCommonService.setCKAStatus(INVESTMENT_COMMON_CONSTANTS.CKA.CKA_PASSED_STATUS);
+            this.router.navigate([INVESTMENT_ENGAGEMENT_JOURNEY_ROUTE_PATHS.GET_STARTED_STEP1]);
+          } else if (this.ckaInfo.cKAStatusMessage && this.ckaInfo.cKAStatusMessage === INVESTMENT_COMMON_CONSTANTS.CKA.CKA_BE_CERTIFICATE_UPLOADED) {
+            this.investmentCommonService.setCKAStatus(INVESTMENT_COMMON_CONSTANTS.CKA.CKA_BE_CERTIFICATE_UPLOADED);
+            this.router.navigate([INVESTMENT_COMMON_ROUTE_PATHS.CPF_PREREQUISITES]);
+          }
+        } else {
+          this.router.navigate([INVESTMENT_COMMON_ROUTE_PATHS.CPF_PREREQUISITES]);
+        }
+      } else {
+        this.router.navigate([INVESTMENT_COMMON_ROUTE_PATHS.CPF_PREREQUISITES]);
+      }
+    }, () => {
+      this.loaderService.hideLoaderForced();
+      this.investmentAccountService.showGenericErrorModal();
+    });
+  }
+
 }
