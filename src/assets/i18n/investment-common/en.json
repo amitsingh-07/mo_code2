@@ -117,6 +117,14 @@
       "TITLE": "Creating portfolio.",
       "DESCRIPTION": "Please wait while we set things up for you."
     },
+    "UPDATING_PORTFOLIO_STATUS_LOADER": {
+      "TITLE": "Updating portfolio status.",
+      "DESCRIPTION": "Please wait while we set things up for you."
+    },
+    "CHECKING_CUSTOMER_CKA_LOADER": {
+      "TITLE": "Checking customer CKA status.",
+      "DESCRIPTION": "Please wait while we set things up for you."
+    },
     "WISE_INCOME_PORTFOLIO": {
       "DESC_LBL": "The fund invest in the following asset classes in this proportions.",
       "ASSET_HOLDINGS_LBL": "Asset Class & Holdings",

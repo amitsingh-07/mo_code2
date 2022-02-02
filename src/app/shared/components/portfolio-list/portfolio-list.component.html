@@ -30,7 +30,7 @@
                                             src="assets/images/investment-account/ja-icon.svg" /></span><span>{{ (portfolio.primaryHolder) ? (portfolio.secondaryHolderName | titlecase) : (portfolio.primaryHolderName | titlecase) }}</span>
                                 </div>
                                 <div class="ja-investment mt10">
-                                    {{ (portfolio.portfolioCategory && portfolioTypes.INVESTMENT === portfolio.portfolioCategory.toUpperCase())? portfolio.riskProfileType : ((portfolio.portfolioCategory && portfolioTypes.WISEINCOME === portfolio.portfolioCategory.toUpperCase()) ? (portfolio.portfolioCategory + ' - ' + portfolio.payoutTypeValue)  : portfolio.portfolioCategory ) }}
+                                    {{ ((portfolio.portfolioCategory && portfolioTypes.INVESTMENT === portfolio.portfolioCategory.toUpperCase()) || portfolio?.fundingTypeValue == fundingMethods.CPF_OA) ? portfolio.riskProfileType : ((portfolio.portfolioCategory && portfolioTypes.WISEINCOME === portfolio.portfolioCategory.toUpperCase()) ? (portfolio.portfolioCategory + ' - ' + portfolio.payoutTypeValue)  : portfolio.portfolioCategory ) }}
                                 </div>
                                 <div class="ja-investment">{{'YOUR_INVESTMENT.ONE_TIME_AMOUNT' | translate}} {{ (portfolio.initialInvestment ? portfolio.initialInvestment : 0) |
                                 currency:'USD':'symbol-narrow':'1.2-2'}} </div>
@@ -345,9 +345,9 @@
                                     [src]="getImg(portfolio?.riskProfileId, portfolio?.portfolioCategory)" /></div>
                             <div class="portfolio-details">
                                 <div class="portfolio-name">
-                                    <span class="portfolio-lbl flex-col-11">{{portfolio?.portfolioName}}</span>
-                                    <span class="portfolio-fund-type" *ngIf="portfolio?.fundingTypeValue == 'SRS'">
-                                        {{'YOUR_INVESTMENT.SRS' | translate}}
+                                    <span class="portfolio-lbl flex-col-10">{{portfolio?.portfolioName}}</span>
+                                    <span *ngIf="portfolio?.fundingTypeValue == fundingMethods.SRS || portfolio?.fundingTypeValue == fundingMethods.CPF_OA" [ngClass]="portfolio?.fundingTypeValue == fundingMethods.SRS ? 'portfolio-fund-type' : 'portfolio-fund-type-cpf-oa'">
+                                        {{getPortFolioBadgeData(portfolio)}}
                                     </span>
                                 </div>
                                 <div class="ref-code">{{'YOUR_INVESTMENT.REF_LABEL' | translate}} {{portfolio.refNo}}
@@ -402,7 +402,7 @@
                                     [src]="getImg(portfolio?.riskProfileId, portfolio?.portfolioCategory)" /></div>
                             <div class="portfolio-details">
                                 <div class="portfolio-name">
-                                    <span class="portfolio-lbl flex-col-11">{{portfolio?.portfolioName}}</span>
+                                    <span class="portfolio-lbl flex-col-10">{{portfolio?.portfolioName}}</span>
                                     <span *ngIf="portfolio?.fundingTypeValue == fundingMethods.SRS || portfolio?.fundingTypeValue == fundingMethods.CPF_OA" [ngClass]="portfolio?.fundingTypeValue == fundingMethods.SRS ? 'portfolio-fund-type' : 'portfolio-fund-type-cpf-oa'">
                                         {{getPortFolioBadgeData(portfolio)}}
                                     </span>
