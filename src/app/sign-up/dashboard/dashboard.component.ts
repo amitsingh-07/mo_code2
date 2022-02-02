@@ -498,6 +498,28 @@ export class DashboardComponent implements OnInit {
       }, (error) => console.log('ERROR: ', error));
     }
   }
+  // Show CPF Popup
+  openCPFPopup() {
+    const ref = this.modal.open(CarouselModalComponent, { centered: true, windowClass: 'cpf-dashboard-modal' });
+    ref.componentInstance.slides = this.translate.instant('DASHBOARD.SRS_JOINT_ACCOUNT.SRS_JOINT_ACCOUNT_SLIDES');
+    ref.componentInstance.startBtnTxt = this.translate.instant('DASHBOARD.SRS_JOINT_ACCOUNT.START_BTN');
+    ref.componentInstance.endBtnTxt = this.translate.instant('DASHBOARD.SRS_JOINT_ACCOUNT.END_BTN');
+  }
+  // Check if user is first time seeing CPF popup
+  checkCPFPopStatus(customerId) {
+    if (customerId) {
+      this.signUpApiService.getPopupStatus(customerId, 'CPF_POP').subscribe((status) => {
+        // Check if track_status is available or false
+        if (!status.objectList || !status.objectList['trackStatus']) {
+          setTimeout(() => {
+            this.openCPFPopup();
+          });
+          this.signUpApiService.setPopupStatus(customerId, 'CPF_POP').subscribe((result) => {
+          }, (error) => console.log('ERROR: ', error));
+        }
+      }, (error) => console.log('ERROR: ', error));
+    }
+  }
   gotoTopUp() {
     this.manageInvestmentsService.setSelectedCustomerPortfolioId(null);
     this.manageInvestmentsService.setSelectedCustomerPortfolio(null);
