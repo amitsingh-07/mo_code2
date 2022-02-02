@@ -144,7 +144,7 @@ export class YourFinancialsComponent implements IPageComponent, OnInit {
   saveAndProceed(form: any) {
     const invCommonFormValues = this.investmentCommonService.getInvestmentCommonFormData();
     this.selectedPortfolioType = this.investmentEngagementJourneyService.getSelectPortfolioType();
-    const selectedPortfolioType = (this.selectedPortfolioType === INVESTMENT_ENGAGEMENT_JOURNEY_CONSTANTS.SELECT_POROFOLIO_TYPE.WISEINCOME_PORTFOLIO) ? INVESTMENT_ENGAGEMENT_JOURNEY_CONSTANTS.SELECT_POROFOLIO_TYPE.WISEINCOME : INVESTMENT_ENGAGEMENT_JOURNEY_CONSTANTS.SELECT_POROFOLIO_TYPE.INVESTMENT;
+    const selectedPortfolioType = (this.selectedPortfolioType === INVESTMENT_ENGAGEMENT_JOURNEY_CONSTANTS.SELECT_POROFOLIO_TYPE.CPF_PORTFOLIO) ? INVESTMENT_ENGAGEMENT_JOURNEY_CONSTANTS.SELECT_POROFOLIO_TYPE.CPF_PORTFOLIO : ((this.selectedPortfolioType === INVESTMENT_ENGAGEMENT_JOURNEY_CONSTANTS.SELECT_POROFOLIO_TYPE.WISEINCOME_PORTFOLIO) ? INVESTMENT_ENGAGEMENT_JOURNEY_CONSTANTS.SELECT_POROFOLIO_TYPE.WISEINCOME : INVESTMENT_ENGAGEMENT_JOURNEY_CONSTANTS.SELECT_POROFOLIO_TYPE.INVESTMENT);
     let portfolioTypeArray = this.investmentCommonService.getPortfolioType();
     let portfolioType = this.investmentEngagementJourneyService.filterDataByInput(portfolioTypeArray.portfolioType, 'name', selectedPortfolioType);
     form.value.portfolioTypeId = portfolioType.id;
