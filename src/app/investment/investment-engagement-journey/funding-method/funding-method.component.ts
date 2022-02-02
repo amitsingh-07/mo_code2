@@ -12,6 +12,7 @@ import { NavbarService } from '../../../shared/navbar/navbar.service';
 import { SignUpService } from '../../../sign-up/sign-up.service';
 import { InvestmentAccountService } from '../../investment-account/investment-account-service';
 import { InvestmentCommonService } from '../../investment-common/investment-common.service';
+import { INVESTMENT_COMMON_CONSTANTS } from './../../../investment/investment-common/investment-common.constants';
 import {
   INVESTMENT_ENGAGEMENT_JOURNEY_ROUTE_PATHS
 } from '../investment-engagement-journey-routes.constants';
@@ -36,7 +37,8 @@ export class FundingMethodComponent implements OnInit {
   loaderTitle: string;
   loaderDesc: string;
   selectedPortfolioType;
-
+  checkFund;
+  
   constructor(
     public readonly translate: TranslateService,
     public authService: AuthenticationService,
@@ -72,6 +74,7 @@ export class FundingMethodComponent implements OnInit {
       initialFundingMethodId: new FormControl(
         this.formValues.initialFundingMethodId, Validators.required)
     });
+    this.checkFund = INVESTMENT_COMMON_CONSTANTS.FUNDING_METHODS;
   }
   getOptionListCollection() {
     this.loaderService.showLoader({
@@ -97,7 +100,7 @@ export class FundingMethodComponent implements OnInit {
       const fundingMethod = fundingOptions.filter(
         (prop) => prop.id === fundingMethodId
       );
-      return fundingMethod[0].name;
+      return fundingMethod[0].name.toUpperCase();
     } else {
       return '';
     }
