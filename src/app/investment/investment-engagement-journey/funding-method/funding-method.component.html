@@ -22,7 +22,7 @@
                       class="input-label-black">{{fundingMethodOption.name}}</span>
                   </div>
                 </label>
-                <i *ngIf="fundingMethodOption.name == checkFund.SRS.toUpperCase()" class="tooltip-icon" id="myFinancialHelpIcon" (click)="showHelpModal()"></i>
+                <i *ngIf="fundingMethodOption.name.toUpperCase() == checkFund.SRS.toUpperCase()" class="tooltip-icon" id="myFinancialHelpIcon" (click)="showHelpModal()"></i>
               </div>
             </div>
             <div class="col-12">
