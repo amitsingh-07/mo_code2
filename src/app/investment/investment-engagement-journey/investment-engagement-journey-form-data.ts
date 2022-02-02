@@ -30,6 +30,7 @@ export class InvestmentEngagementJourneyFormData {
   alternateRiskProfileType: string;
   fundDetails;
   selectedriskProfileId: number;
+  showRecommendationCheckbox: boolean;
 
   // FUNDING METHOD
   fundingMethod: any;

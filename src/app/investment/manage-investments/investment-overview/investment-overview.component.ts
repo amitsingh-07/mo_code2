@@ -461,6 +461,13 @@ export class InvestmentOverviewComponent implements OnInit, OnDestroy {
           ? this.investmentoverviewlist['wisesaverTotalValue'] : 0;
         this.scrollFilterIntoView(INVESTMENT_COMMON_CONSTANTS.PORTFOLIO_CATEGORY.WISESAVER);
         break;
+      case INVESTMENT_COMMON_CONSTANTS.PORTFOLIO_CATEGORY.CPF:
+          this.cashAccountBalance = this.investmentoverviewlist['cpfTotalCashAccountBalance']
+            ? this.investmentoverviewlist['cpfTotalCashAccountBalance'] : 0;
+          this.totalValue = this.investmentoverviewlist['cpfTotalValue']
+            ? this.investmentoverviewlist['cpfTotalValue'] : 0;
+          this.scrollFilterIntoView(INVESTMENT_COMMON_CONSTANTS.PORTFOLIO_CATEGORY.CPF);
+          break;
     }
   }
   // Auto scroll the category filter into view

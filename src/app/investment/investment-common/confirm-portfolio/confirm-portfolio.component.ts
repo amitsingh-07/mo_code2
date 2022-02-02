@@ -264,7 +264,8 @@ export class ConfirmPortfolioComponent implements OnInit {
 
   openEditInvestmentModal() {
     const ref = this.modal.open(EditInvestmentModalComponent, {
-      centered: true
+      centered: true,
+      windowClass: 'limited-width'
     });
     ref.componentInstance.investmentData = {
       oneTimeInvestment: this.portfolio.initialInvestment,
