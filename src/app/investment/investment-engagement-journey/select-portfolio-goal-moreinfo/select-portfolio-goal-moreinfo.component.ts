@@ -3,7 +3,7 @@ import {
   Component, HostListener, OnInit, ViewChild, ViewEncapsulation
 } from '@angular/core';
 import { FormGroup, Validators, FormControl } from '@angular/forms';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { TranslateService } from '@ngx-translate/core';
 import { SlickCarouselComponent } from 'ngx-slick-carousel';
 
@@ -21,6 +21,7 @@ import { SeoServiceService } from './../../../shared/Services/seo-service.servic
 import { INVESTMENT_ENGAGEMENT_JOURNEY_CONSTANTS } from '../investment-engagement-journey.constants';
 import { INVESTMENT_COMMON_CONSTANTS } from '../../investment-common/investment-common.constants';
 import { INVESTMENT_COMMON_ROUTE_PATHS } from '../../investment-common/investment-common-routes.constants';
+import { appConstants } from 'src/app/app.constants';
 
 @Component({
   selector: 'app-select-portfolio-goal-moreinfo',
@@ -50,6 +51,7 @@ export class SelectPortfolioGoalMoreinfoComponent implements OnInit {
   fundingMethods: any;
   loaderTitle: string;
   loaderDesc: string;
+  queryParams;
   constructor(
     public readonly translate: TranslateService,
     private router: Router,
@@ -63,7 +65,8 @@ export class SelectPortfolioGoalMoreinfoComponent implements OnInit {
     private investmentCommonService: InvestmentCommonService,
     private investmentAccountService: InvestmentAccountService,
     private _location: Location,
-    private seoService: SeoServiceService
+    private seoService: SeoServiceService,
+    private route: ActivatedRoute,
   ) { 
     this.translate.use('en');
     this.translate.get('COMMON').subscribe((result: string) => {
@@ -88,6 +91,11 @@ export class SelectPortfolioGoalMoreinfoComponent implements OnInit {
         this.selectedPortfolioType, Validators.required)
     });
     this.getOptionListCollection();
+    this.queryParams = this.route.snapshot.queryParams;
+    if (this.queryParams && this.queryParams.key && this.queryParams.key === 'cpf-portfolio') {
+      this.appService.setJourneyType(appConstants.JOURNEY_TYPE_INVESTMENT);
+      this.investmentEngagementJourneyService.setSelectPortfolioType({ selectPortfolioType: 'CPF' });
+    }
   }
   @HostListener('input', ['$event'])
 
