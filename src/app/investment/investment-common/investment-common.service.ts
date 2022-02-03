@@ -49,6 +49,10 @@ export class InvestmentCommonService {
     return this.investmentApiService.savePortfolioName(data);
   }
 
+  updatePortfolioStatus(data: {customerPortfolioId: number}) {
+    return this.investmentApiService.updatePortfolioStatus(data);
+  }
+
   confirmPortfolio(customerPortfolioId) {
     return this.investmentApiService.confirmPortfolio(customerPortfolioId);
   }
@@ -533,5 +537,17 @@ export class InvestmentCommonService {
 
   getCKAStatus() {
     return this.investmentCommonFormData.ckaStatus;
+  }
+
+  getCKAAssessmentStatus() {
+    return this.investmentApiService.getCKAAssessmentStatus();
+  }
+  
+  getCKABankDetails(twoFaReq) {
+    return this.investmentApiService.getCKABankAccount(twoFaReq);
+  }
+
+  saveCKABankAccount(data) {
+    return this.investmentApiService.saveCKABankAccount(data);
   }
 }

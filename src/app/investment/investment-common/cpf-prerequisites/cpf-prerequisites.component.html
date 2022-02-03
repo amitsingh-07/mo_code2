@@ -15,7 +15,7 @@
         <div class="cka-status-btn">
           <button type="button" class="btn btn-orange width100 " [ngClass]="{'btn-passed':isCKACompleted()}">
             <!-- btn-passed -->
-            <div class="" *ngIf="ckaInfo && ckaInfo.cKAStatusMessage; else ckapassed">
+            <div class="" *ngIf="ckaInfo && ckaInfo.cKAStatusMessage; else startCKA">
               <div class="cka-status-lbl" *ngIf="ckaInfo && ckaInfo.cKAStatusMessage === 'CKA_PASSED'">
                 <span class="status-icon">
                   <img src="./assets/images/check-icon-white.svg">
@@ -26,8 +26,12 @@
                 <span class="status-icon"><img src="./assets/images/check-icon-white.svg"></span>
                 <span>{{'CPF_PREREQUISITES.CERT_UPLOADED' | translate}}</span>
               </div>
+              <div *ngIf="ckaInfo && ckaInfo.cKAStatusMessage === 'CKA_REJECTED'">
+                <ng-container *ngTemplateOutlet="startCKA">
+                </ng-container>
+              </div>
             </div>
-            <ng-template #ckapassed>
+            <ng-template #startCKA>
               <div class="flex-col" (click)="startAssessment()">
                 <div>{{'CPF_PREREQUISITES.START_NOW_BTN' | translate}}</div>
                 <div class="sub-txt">{{'CPF_PREREQUISITES.ESTIMATED_TIME_TEXT' | translate}}</div>
@@ -51,7 +55,7 @@
                 <div class="flex-col-8">
                   <div class="dropdown-control">
                     <div ngbDropdown>
-                      <button [disabled]="disableOperatorBank()" class="btn btn-dropdown" id="additional_declaration_sourse-drpdown" ngbDropdownToggle>
+                      <button [disabled]="showOperatorBank" class="btn btn-dropdown" id="additional_declaration_sourse-drpdown" ngbDropdownToggle>
                         {{preRequisitesForm.controls.cpfOperator.value ?
                           preRequisitesForm.controls.cpfOperator.value.name :
                             'CPF_PREREQUISITES.CPFIA_OPERATOR_PLACEHOLDER'
@@ -75,7 +79,7 @@
                   [ngClass]="{'inline-error':getInlineErrorStatus(preRequisitesForm.controls.cpfAccountNo)}">
                   <input id="srs-act-num-value" type="text" [textMask]="maskConfig()" placeholder="{{
                   'CPF_PREREQUISITES.CPFIA_NUMBER_PLACEHOLDER'
-                  | translate}}" [attr.disabled]=true class="form-control" formControlName="cpfAccountNo" autocomplete="off">
+                  | translate}}" class="form-control" formControlName="cpfAccountNo" autocomplete="off">
                 </div>
               </div>
               <div class="characters" *ngIf="preRequisitesForm.get('cpfOperator').value">

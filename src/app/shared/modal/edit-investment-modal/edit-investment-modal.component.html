@@ -12,6 +12,7 @@
       <button type="button" class="close" aria-label="Close" (click)="activeModal.dismiss('Cross click')">
         <span aria-hidden="true"></span>
       </button>
+      <div class="cpf-desc" *ngIf="showCPFText()" [innerHtml]="'PORTFOLIO_RECOMMENDATION.EDIT_INVESTMENT.CPF_DESC' | translate"></div>
       <div class="form-group">
         <div class="flex-row">
           <div class="flex-col-6">

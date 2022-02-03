@@ -41,4 +41,52 @@
      </div>
      <a download target="_blank" (click)="getProspectusLink()" class="btn btn-white width100" id="fund_details_download_prospectus">{{'FUND_DETAILS.DOWNLOAD_SECONDARY' | translate}}</a>
     </div>
+<!-- cpf -->
+    <div class="fund-details-content" *ngIf="cpfEnabled">
+      <div class="cpf-oa">
+        <nav ngbNav #nav="ngbNav" class="nav-tabs mb30 flex justify-center" [(activeId)]="activeTabId">
+            <ng-container [ngbNavItem]="1">
+                <a class="fund-tab mr10" ngbNavLink>{{'FUND_DETAILS.CPF.LGI_TAB_LBL' | translate}}</a>
+                <ng-template ngbNavContent>
+                    <div class="panel-tab-content">
+                      <div class="img-container">
+                        <span class="mr15"><img src="assets/images/investment-account/funds/lgi-logo.png" /></span>
+                        <span class="lgi-lbl">{{'FUND_DETAILS.CPF.LGI_TAB_TITLE' | translate}}</span>
+                      </div>
+                      <div>
+                        <div *ngFor="let fund of fundDetails; let i = index; let j = index;" #i id="fund-details-{{i}}">{{fundDetails.fund}}       
+                          <div class="funding-content funding-cpf" [ngClass]="{ 'border-0': cpfEnabled }" [class.first]="j === 0" id="fund-details-content_{{j}}">
+                            {{fund.htmlDesc}}        
+                            <div class="btn-wrapper"><a download target="_blank" (click)="getHighlightSheetLink(fund)" class="btn btn-primary width100 mt20 fund-details-primary-btn" id="fund_details_download_btn_{{j}}">{{'FUND_DETAILS.DOWNLOAD_PRIMARY' | translate}}</a></div>   
+                          </div>
+                        </div>
+                        <a download target="_blank" (click)="getProspectusLink()" class="btn btn-white width100" id="fund_details_download_prospectus">{{'FUND_DETAILS.DOWNLOAD_SECONDARY' | translate}}</a>
+                      </div>
+                    </div>
+                </ng-template>
+            </ng-container>
+            <ng-container [ngbNavItem]="2">
+                <a class="fund-tab" ngbNavLink>{{'FUND_DETAILS.CPF.UOB_TAB_LBL' | translate}}</a>
+                <ng-template ngbNavContent>
+                    <div class="panel-tab-content">
+                      <div class="img-container">
+                        <span class="mr15"><img src="assets/images/investment-account/funds/uob-logo.png" /></span>
+                        <span class="uob-lbl">{{'FUND_DETAILS.CPF.UOB_TAB_TITLE' | translate}}</span>
+                      </div>
+                      <div>
+                        <div *ngFor="let fund of fundDetails; let i = index; let j = index;" #i id="fund-details-{{i}}">{{fundDetails.fund}}
+                          <div class="funding-content funding-cpf" [ngClass]="{ 'border-0': cpfEnabled }" [class.first]="j === 0" id="fund-details-content_{{j}}">
+                            {{fund.htmlDesc}}        
+                            <div class="btn-wrapper"><a download target="_blank" (click)="getHighlightSheetLink(fund)" class="btn btn-primary width100 mt20 fund-details-primary-btn" id="fund_details_download_btn_{{j}}">{{'FUND_DETAILS.DOWNLOAD_PRIMARY' | translate}}</a></div>   
+                          </div>
+                        </div>
+                        <a download target="_blank" (click)="getProspectusLink()" class="btn btn-white width100" id="fund_details_download_prospectus">{{'FUND_DETAILS.DOWNLOAD_SECONDARY' | translate}}</a>
+                      </div>
+                    </div>
+                </ng-template>
+            </ng-container>
+        </nav>
+        <div [ngbNavOutlet]="nav"></div>
+      </div>
+    </div>
 </div>

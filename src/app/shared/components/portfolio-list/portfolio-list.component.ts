@@ -47,6 +47,7 @@ export class PortfolioListComponent implements OnInit, OnChanges {
   expiredList: any;
   progressList: any;
   verifyList: any;
+  progressCpfList: any;
   showAllForInvested: boolean;
   showAllForNotInvested: boolean;
   topClickedFlag: boolean;
@@ -59,6 +60,7 @@ export class PortfolioListComponent implements OnInit, OnChanges {
   showAllForProgress: boolean;
   showAllForVerify: boolean;
   portfolioTypes: any;
+  showAllForCpfProgress: boolean;
 
   @Input('portfolioList') portfolioList;
   @Input('showTotalReturn') showTotalReturn;
@@ -81,6 +83,7 @@ export class PortfolioListComponent implements OnInit, OnChanges {
   filteredExpiredList: any;
   filteredProgressList: any;
   filteredVerifyList: any;
+  filteredCpfProgressList: any;
 
   milliSecondsInASecond = 1000;
   hoursInADay = 24;
@@ -137,6 +140,7 @@ export class PortfolioListComponent implements OnInit, OnChanges {
     this.expiredList = [];
     this.progressList = [];
     this.verifyList = [];
+    this.progressCpfList = [];
     if (this.portfolioList) {
       for (const portfolio of this.portfolioList) {
         if (portfolio.portfolioStatus === 'PURCHASED' || portfolio.portfolioStatus === 'REDEEMING'
@@ -155,6 +159,8 @@ export class PortfolioListComponent implements OnInit, OnChanges {
           this.progressList.push(portfolio);
         } else if (portfolio.jointAccount && portfolio.portfolioStatus === INVESTMENT_COMMON_CONSTANTS.JA_PORTFOLIO_STATUS.VERIFY) {
           this.verifyList.push(portfolio);
+        } else if (this.portfolioData.cpfProgressPortfolio && portfolio.portfolioStatus === INVESTMENT_COMMON_CONSTANTS.CPF_PENDING_STATUS) {
+          this.progressCpfList.push(portfolio);
         } else {
           this.notInvestedList.push(portfolio);
         }
@@ -167,6 +173,7 @@ export class PortfolioListComponent implements OnInit, OnChanges {
       this.investmentEngagementService.sortByProperty(this.verifyList, 'createdDate', 'desc');
       this.investmentEngagementService.sortByProperty(this.investedList, 'createdDate', 'desc');
       this.investmentEngagementService.sortByProperty(this.notInvestedList, 'createdDate', 'desc');
+      this.investmentEngagementService.sortByProperty(this.progressCpfList, 'createdDate', 'desc');
     }
   }
 
@@ -245,6 +252,8 @@ export class PortfolioListComponent implements OnInit, OnChanges {
       this.filterAndCalculate(INVESTMENT_COMMON_CONSTANTS.PORTFOLIO_CATEGORY.WISEINCOME);
     } else if (this.portfolioCategory === INVESTMENT_COMMON_CONSTANTS.PORTFOLIO_CATEGORY.WISESAVER) {
       this.filterAndCalculate(INVESTMENT_COMMON_CONSTANTS.PORTFOLIO_CATEGORY.WISESAVER);
+    }  else if (this.portfolioCategory === INVESTMENT_COMMON_CONSTANTS.PORTFOLIO_CATEGORY.CPF) {
+      this.filterAndCalculate(INVESTMENT_COMMON_CONSTANTS.PORTFOLIO_CATEGORY.CPF);
     } else {
       this.filteredNotInvestedList = this.notInvestedList;
       this.filteredInvestedList = this.investedList;
@@ -254,6 +263,7 @@ export class PortfolioListComponent implements OnInit, OnChanges {
       this.filteredExpiredList = this.expiredList;
       this.filteredProgressList = this.progressList;
       this.filteredVerifyList = this.verifyList;
+      this.filteredCpfProgressList = this.progressCpfList;
       this.totalPortfoliosLength = this.portfolioList.length;
     }
     this.getTimeDifference();
@@ -285,7 +295,10 @@ export class PortfolioListComponent implements OnInit, OnChanges {
     this.filteredVerifyList = this.verifyList.filter((portfolio) => {
       return portfolio['portfolioCategory'].toUpperCase() === category.toUpperCase();
     });
-    this.totalPortfoliosLength = this.filteredNotInvestedList.length + this.filteredInvestedList.length + this.filteredAwaitingList.length + this.filteredWithdrawnList.length + this.filteredDeclinedList.length + this.filteredExpiredList.length + this.filteredProgressList.length + this.filteredVerifyList.length;
+    this.filteredCpfProgressList = this.progressCpfList.filter((portfolio) => {
+      return portfolio['portfolioCategory'].toUpperCase() === category.toUpperCase();
+    });
+    this.totalPortfoliosLength = this.filteredNotInvestedList.length + this.filteredInvestedList.length + this.filteredAwaitingList.length + this.filteredWithdrawnList.length + this.filteredDeclinedList.length + this.filteredExpiredList.length + this.filteredProgressList.length + this.filteredVerifyList.length + this.filteredCpfProgressList.length;
   }
 
   setBorderClass(portfolio) {
