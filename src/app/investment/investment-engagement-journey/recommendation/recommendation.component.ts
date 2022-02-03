@@ -72,7 +72,7 @@ export class RecommendationComponent implements OnInit, AfterViewInit {
     this.navbarService.setNavbarMode(6);
     this.footerService.setFooterVisibility(false);
     this.selectedRiskProfile = this.investmentEngagementJourneyService.getRiskProfile();
-    this.iconImage = ProfileIcons[this.selectedRiskProfile.riskProfileId - 1]['icon'];
+    this.iconImage = ProfileIcons[this.selectedRiskProfile.riskProfileId - 1] && ProfileIcons[this.selectedRiskProfile.riskProfileId - 1]['icon'] ? ProfileIcons[this.selectedRiskProfile.riskProfileId - 1]['icon'] : null;
     if (this.selectedRiskProfile.alternateRiskProfileId) {
       this.secondIcon = ProfileIcons[this.selectedRiskProfile.alternateRiskProfileId - 1]['icon'];
     }

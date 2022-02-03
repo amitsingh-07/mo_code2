@@ -480,6 +480,16 @@
           "IMAGE": "srs-joint-account/srs.svg",
           "IMG_TITLE": "You can now open your SRS Investment Account online!",
           "TEXT": "Invest your Supplementary Retirement Scheme (SRS) savings to get potentially higher returns while enjoying tax savings."
+        },
+        {
+          "TITLE": "New Updates",
+          "TITLE_IMG": "srs-joint-account/speaker.svg",
+          "IMAGE": "srs-joint-account/owl-cpf.svg",
+          "IMG_TITLE": "You can now invest your CPF savings with MoneyOwl online!",
+          "TEXT": "Invest your CPF savings in our curated portfolios to grow your retirement nest egg.",
+          "APP_URL": "/investment/engagement/select-portfolio-goal-moreinfo",
+          "QUERY_PARAMS": "cpf-portfolio",
+          "URL_TEXT": "Start now"
         }
       ],
       "START_BTN": "Dismiss",
