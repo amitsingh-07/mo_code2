@@ -95,7 +95,7 @@ export class SelectPortfolioGoalMoreinfoComponent implements OnInit {
     this.queryParams = this.route.snapshot.queryParams;
     if (this.queryParams && this.queryParams.key && this.queryParams.key === 'cpf-portfolio') {
       this.appService.setJourneyType(appConstants.JOURNEY_TYPE_INVESTMENT);
-      this.investmentEngagementJourneyService.setSelectPortfolioType({ selectPortfolioType: 'CPF' });
+      this.investmentEngagementJourneyService.setSelectPortfolioType({ selectPortfolioType: INVESTMENT_ENGAGEMENT_JOURNEY_CONSTANTS.SELECT_POROFOLIO_TYPE.CPF_PORTFOLIO });
     }
   }
   @HostListener('input', ['$event'])
