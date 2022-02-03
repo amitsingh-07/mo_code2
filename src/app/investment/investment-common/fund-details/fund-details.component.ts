@@ -31,6 +31,8 @@ export class FundDetailsComponent implements OnInit {
   investmentEnabled: boolean;
   wiseSaverEnabled : boolean;
   wiseIncomeEnabled: boolean;
+  cpfEnabled: boolean;
+  activeTabId = 1;
   
   @Input('portfolioType') portfolioType;
 
@@ -53,16 +55,25 @@ export class FundDetailsComponent implements OnInit {
       this.investmentEnabled = true;
       this.wiseSaverEnabled = false;
       this.wiseIncomeEnabled = false;
+      this.cpfEnabled = false;
     }
     if( (this.portfolioType.toLowerCase() === INVESTMENT_ENGAGEMENT_JOURNEY_CONSTANTS.SELECT_POROFOLIO_TYPE.WISEINCOME.toLowerCase() || this.portfolioType.toLowerCase() === INVESTMENT_ENGAGEMENT_JOURNEY_CONSTANTS.SELECT_POROFOLIO_TYPE.WISEINCOME_PORTFOLIO.toLowerCase() )){
       this.investmentEnabled = false;
       this.wiseSaverEnabled = false;
       this.wiseIncomeEnabled = true;
+      this.cpfEnabled = false;
     }
     if((this.portfolioType.toLowerCase() === INVESTMENT_ENGAGEMENT_JOURNEY_CONSTANTS.SELECT_POROFOLIO_TYPE.WISESAVER.toLowerCase() || this.portfolioType.toLowerCase() === INVESTMENT_ENGAGEMENT_JOURNEY_CONSTANTS.SELECT_POROFOLIO_TYPE.WISESAVER_PORTFOLIO.toLowerCase() )){
       this.investmentEnabled = false;
       this.wiseSaverEnabled = true;
       this.wiseIncomeEnabled = false;
+      this.cpfEnabled = false;
+    }
+    if((this.portfolioType.toLowerCase() === INVESTMENT_ENGAGEMENT_JOURNEY_CONSTANTS.SELECT_POROFOLIO_TYPE.CPF_PORTFOLIO.toLowerCase())){
+      this.investmentEnabled = false;
+      this.wiseSaverEnabled = false;
+      this.wiseIncomeEnabled = false;
+      this.cpfEnabled = true;
     }
   }
 

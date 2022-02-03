@@ -171,6 +171,9 @@ export class ConfirmPortfolioComponent implements OnInit {
       } else if (this.portfolio.portfolioType === INVESTMENT_COMMON_CONSTANTS.PORTFOLIO_CATEGORY.WISESAVER) {
         this.getWiseSaverDetails();
         this.investmentEngagementJourneyService.setSelectPortfolioType({ selectPortfolioType: INVESTMENT_ENGAGEMENT_JOURNEY_CONSTANTS.SELECT_POROFOLIO_TYPE.WISESAVER_PORTFOLIO });
+      } else if (this.portfolio.portfolioType === INVESTMENT_COMMON_CONSTANTS.PORTFOLIO_CATEGORY.CPF) {
+        this.investmentEngagementJourneyService.setSelectPortfolioType({ selectPortfolioType: INVESTMENT_ENGAGEMENT_JOURNEY_CONSTANTS.SELECT_POROFOLIO_TYPE.CPF_PORTFOLIO });
+        this.iconImage = ProfileIcons[this.portfolio.riskProfile.id - 1]['icon'];
       } else {
         this.investmentEngagementJourneyService.setSelectPortfolioType({ selectPortfolioType: INVESTMENT_ENGAGEMENT_JOURNEY_CONSTANTS.SELECT_POROFOLIO_TYPE.WISEINCOME_PORTFOLIO });
       }
@@ -264,7 +267,8 @@ export class ConfirmPortfolioComponent implements OnInit {
 
   openEditInvestmentModal() {
     const ref = this.modal.open(EditInvestmentModalComponent, {
-      centered: true
+      centered: true,
+      windowClass: 'limited-width'
     });
     ref.componentInstance.investmentData = {
       oneTimeInvestment: this.portfolio.initialInvestment,

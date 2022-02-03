@@ -30,6 +30,8 @@ import { CkaAssessmentComponent } from './cka-assessment/cka-assessment.componen
 import { NoneOfTheAboveComponent } from './none-of-the-above/none-of-the-above.component';
 import { CkaUploadDocumentComponent } from './cka-upload-document/cka-upload-document.component';
 import { CkaPassedResultComponent } from './cka-passed-result/cka-passed-result.component';
+import { PortfolioApplicationInprogressComponent } from './portfolio-application-inprogress/portfolio-application-inprogress.component';
+import { SelectPortfolioGoalMoreinfoComponent } from './select-portfolio-goal-moreinfo/select-portfolio-goal-moreinfo.component';
 
 const routes: Routes = [
   {
@@ -164,6 +166,16 @@ const routes: Routes = [
     path: INVESTMENT_ENGAGEMENT_JOURNEY_ROUTES.CKA_PASSED_SCREEN,
     component: CkaPassedResultComponent,
     canActivate: [InvestmentEngagementJourneyGuard, AuthGuard]
+  },
+  {
+    path: INVESTMENT_ENGAGEMENT_JOURNEY_ROUTES.PORTFOLIO_APP_IN_PROGRESS,
+    component: PortfolioApplicationInprogressComponent,
+    canActivate: [InvestmentEngagementJourneyGuard, AuthGuard]
+  },
+  {
+    path: INVESTMENT_ENGAGEMENT_JOURNEY_ROUTES.SELECT_PORTFOLIO_GOAL_MORE_INFO,
+    component: SelectPortfolioGoalMoreinfoComponent,
+    canActivate: [InvestmentEngagementJourneyGuard]
   },
   { path: '**', redirectTo: '/page-not-found' }
 ];

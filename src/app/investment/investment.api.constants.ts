@@ -17,7 +17,8 @@ export let investmentApiConstants = {
             saveMajorSecondaryHolder: ACCOUNT_API_BASE_URL + '/jointAccount/validateAndSaveMajorSecondaryHolder',
             acceptJAPortfolio: INVESTMENT_API_BASE_URL + '/secondary/customer/portfolio/$customerPortfolioId$/accept?handleError=true',
             setActionByHolder: INVESTMENT_API_BASE_URL + '/jointAccount/action?handleError=true',
-            portfolioSummary: INVESTMENT_API_BASE_URL + '/customer/jointAccountPortfolios/$CUSTOMER_PORTFOLIO_ID$/summary'
+            portfolioSummary: INVESTMENT_API_BASE_URL + '/customer/jointAccountPortfolios/$CUSTOMER_PORTFOLIO_ID$/summary',
+            updatePortfolioStatus: INVESTMENT_API_BASE_URL + '/customer/portfolio/status'
         },
         investmentAccount: {
             nationalityCountrylist: INVESTMENT_API_BASE_URL + '/groupedCountryList',
@@ -51,6 +52,7 @@ export let investmentApiConstants = {
             gerSrsDetails: ACCOUNT_API_BASE_URL + '/customer/getSrsBankDetails?handleError=true',
             saveSrsAccountDetails: ACCOUNT_API_BASE_URL + '/customer/$CUSTOMER_PORTFOLIO_ID$/srsbankDetails',
             getProfileSrsDetails: ACCOUNT_API_BASE_URL + '/customer/profile/getSrsBankDetails?handleError=true',
+            getProfileCpfIaDetails: ACCOUNT_API_BASE_URL + '/customer/getCPFOperatorDetails',
             saveProfileSrsAccountDetails: ACCOUNT_API_BASE_URL + '/customer/profile/$CUSTOMER_ID$/srsbankDetails',
             getInvestmentNote: INVESTMENT_API_BASE_URL + '/holiday/alert?handleError=true',
             getCashPortfolioList: INVESTMENT_API_BASE_URL + '/customers/portfolios/cashAccountList',
@@ -73,7 +75,10 @@ export let investmentApiConstants = {
             featurePromotions: INVESTMENT_API_BASE_URL + '/featurePromotions?handleError=true',
             wrapFrees: INVESTMENT_API_BASE_URL + '/wrapfees/getCustomerWrapFees',
             saveCKAMethodQNA: ACCOUNT_API_BASE_URL + '/saveCKA/',
-            getCKADocument: ACCOUNT_API_BASE_URL + '/s3/fetchDocument?docType=$DOCUMENT_TYPE$'
+            getCKADocument: ACCOUNT_API_BASE_URL + '/s3/fetchDocument?docType=$DOCUMENT_TYPE$',
+            getCKAAssessmentStatus: ACCOUNT_API_BASE_URL + '/cka/assessment/status',
+            getCKABankAccount: ACCOUNT_API_BASE_URL + '/customer/getCPFOperatorDetails?twoFaRequired=$TWOFA_REQ$&handleError=true',
+            saveCKABankAccount: ACCOUNT_API_BASE_URL + '/save/cpfia'
         }
     }
 };

@@ -43,6 +43,8 @@ import { CkaAssessmentComponent } from './cka-assessment/cka-assessment.componen
 import { CkaUploadDocumentComponent } from './cka-upload-document/cka-upload-document.component';
 import { NoneOfTheAboveComponent } from './none-of-the-above/none-of-the-above.component';
 import { CkaPassedResultComponent } from './cka-passed-result/cka-passed-result.component';
+import { PortfolioApplicationInprogressComponent } from './portfolio-application-inprogress/portfolio-application-inprogress.component';
+import { SelectPortfolioGoalMoreinfoComponent } from './select-portfolio-goal-moreinfo/select-portfolio-goal-moreinfo.component';
 
 export function createTranslateLoader(http: HttpClient) {
   return new MultiTranslateHttpLoader(http, [
@@ -94,7 +96,9 @@ export function createTranslateLoader(http: HttpClient) {
     CkaAssessmentComponent,
     CkaUploadDocumentComponent,
     NoneOfTheAboveComponent,
-    CkaPassedResultComponent
+    CkaPassedResultComponent,
+    PortfolioApplicationInprogressComponent,
+    SelectPortfolioGoalMoreinfoComponent
   ],
   providers: [CurrencyPipe, FormatCurrencyPipe],
   entryComponents: [SrsTooltipComponent]

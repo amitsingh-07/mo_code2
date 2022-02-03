@@ -66,13 +66,15 @@ app-allocation {
                     font-family: $muli-bold;
                     font-size: 18px;
                     cursor: pointer;
+                    display: flex;
+                    justify-content: space-between;
+                    align-items: center;
                     .arrow {
                         border: solid $white-color;
                         border-width: 0 3px 3px 0;
                         display: inline-block;
                         padding: 3px;
                         float: right;
-                        margin-top: 9px;
                         transform: rotate(45deg);
                         -webkit-transform: rotate(45deg);
                     }
@@ -81,10 +83,13 @@ app-allocation {
                         border-bottom-right-radius: 0px;
                         border-bottom-width: 0px;
                         .arrow {
-                            margin-top: 14px;
                             transform: rotate(-135deg);
                             -webkit-transform: rotate(-135deg);
                         }
+                    }
+                    .sub-lbl{
+                        font-size: 14px;
+                        font-family: $muli-semi-bold;
                     }
                 }
                 .card {

@@ -36,6 +36,8 @@ import { PromoCodeModule } from './../../promo-code/promo-code.module';
 import { ConfirmWithdrawalComponent } from './confirm-withdrawal/confirm-withdrawal.component';
 import { PortfolioSummaryComponent } from './portfolio-summary/portfolio-summary.component';
 import { CkaMethodQnaComponent } from './cka-method-qna/cka-method-qna.component';
+import { CpfPrerequisitesComponent } from './cpf-prerequisites/cpf-prerequisites.component';
+import { CpfiaTooltipComponent } from './cpf-prerequisites/cpfia-tooltip/cpfia-tooltip.component';
 
 @NgModule({
   imports: [
@@ -66,7 +68,9 @@ import { CkaMethodQnaComponent } from './cka-method-qna/cka-method-qna.component
     FundingAccountDetailsComponent,
     ConfirmWithdrawalComponent,
     PortfolioSummaryComponent,
-    CkaMethodQnaComponent
+    CkaMethodQnaComponent,
+    CpfPrerequisitesComponent,
+    CpfiaTooltipComponent
   ],
   entryComponents: [AccountCreationErrorModalComponent],
   providers: [CurrencyPipe, FormatCurrencyPipe]

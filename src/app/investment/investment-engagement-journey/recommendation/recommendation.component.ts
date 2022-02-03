@@ -16,7 +16,7 @@ import { InvestmentEngagementJourneyService } from '../investment-engagement-jou
 import { AppService } from './../../../app.service';
 import { AuthenticationService } from './../../../shared/http/auth/authentication.service';
 import { InvestmentCommonService } from './../../investment-common/investment-common.service';
-import { ProfileIcons } from './profileIcons';
+import { icon, ProfileIcons } from './profileIcons';
 import { RiskProfile } from './riskprofile';
 import { InvestmentAccountService } from '../../investment-account/investment-account-service';
 
@@ -43,6 +43,7 @@ export class RecommendationComponent implements OnInit, AfterViewInit {
   time;
   selectedRiskProfileId;
   portfolioButtonLabel;
+  acknowledgeCheckBox: boolean = false;
 
   constructor(
     public readonly translate: TranslateService,
@@ -71,12 +72,24 @@ export class RecommendationComponent implements OnInit, AfterViewInit {
     this.navbarService.setNavbarMode(6);
     this.footerService.setFooterVisibility(false);
     this.selectedRiskProfile = this.investmentEngagementJourneyService.getRiskProfile();
-    this.iconImage = ProfileIcons[this.selectedRiskProfile.riskProfileId - 1]['icon'];
+    this.iconImage = ProfileIcons[this.selectedRiskProfile.riskProfileId - 1] && ProfileIcons[this.selectedRiskProfile.riskProfileId - 1]['icon'] ? ProfileIcons[this.selectedRiskProfile.riskProfileId - 1]['icon'] : null;
     if (this.selectedRiskProfile.alternateRiskProfileId) {
       this.secondIcon = ProfileIcons[this.selectedRiskProfile.alternateRiskProfileId - 1]['icon'];
     }
     this.showButton();
     this.buttonLabel();
+    this.checkAndSetCPFISrecommendation();
+  }
+
+  checkAndSetCPFISrecommendation: () => void = () => {
+    if (this.selectedRiskProfile && this.selectedRiskProfile.showRecommendationCheckbox) {
+      this.iconImage = icon['balanced-cpfis-icon'];
+      this.selectedRiskProfile.htmlDescription.desc = null;
+    }
+  }
+
+  checkBoxClicked: () => void = () => {
+    this.acknowledgeCheckBox = !this.acknowledgeCheckBox;
   }
 
   ngAfterViewInit() {
