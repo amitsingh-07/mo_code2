@@ -601,6 +601,13 @@ export class ManageInvestmentsService {
     return this.formatedAccountNumber;
   }
 
+  accountFormat = (accountNumber, operatorKey: string, operator = MANAGE_INVESTMENTS_CONSTANTS.TOPUP.CPF_OPERATOR, options: any = { guide: false }) => {
+      return conformToMask(
+          accountNumber,
+          operator[operatorKey].regExp,
+          options);
+  }
+
   getSrsAccountDetails(): Observable<ISrsAccountDetails> {
     return this.investmentApiService.getSrsAccountDetails().pipe(map((data: any) => {
       if (data && data.objectList && data.objectList.accountNumber &&
@@ -649,8 +656,7 @@ export class ManageInvestmentsService {
       if (data && data.objectList && data.objectList.accountNumber &&
         data.objectList.bankOperator && data.objectList.bankOperator.name) {
         const cpfiaAccountDetails: ICPFIAccountDetails = {
-          // srsAccountNumber: data.objectList.accountNumber,
-          cpfiaAccountNumber: data.objectList.accountNumber,
+          cpfiaAccountNumber: this.accountFormat(data.objectList.accountNumber, data.objectList.bankOperator.name),
           cpfiaOperator: data.objectList.bankOperator.name,
         };
         this.setCpfiaAccountDetails(cpfiaAccountDetails);
