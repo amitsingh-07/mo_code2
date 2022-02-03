@@ -165,6 +165,7 @@ export class DashboardComponent implements OnInit {
         this.signUpService.setUserProfileInfo(userInfo.objectList);
         this.userProfileInfo = this.signUpService.getUserProfileInfo();
         this.checkSRSPopStatus(userInfo.objectList.id);
+        this.checkCPFPopStatus(userInfo.objectList.id);
       }
     },
       (err) => {
