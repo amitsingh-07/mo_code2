@@ -651,7 +651,7 @@ export class ManageInvestmentsService {
         const cpfiaAccountDetails: ICPFIAccountDetails = {
           // srsAccountNumber: data.objectList.accountNumber,
           cpfiaAccountNumber: data.objectList.accountNumber,
-          cpfiaOperator: data.objectList.srsBankOperator.name,
+          cpfiaOperator: data.objectList.bankOperator.name,
         };
         this.setCpfiaAccountDetails(cpfiaAccountDetails);
         return cpfiaAccountDetails;
