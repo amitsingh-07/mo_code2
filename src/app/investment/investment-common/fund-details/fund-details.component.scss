@@ -189,6 +189,9 @@ app-fund-details {
     padding: 29px 29px 33px;
     border-bottom: 1px solid $fund-details-dimentional-brdr;
     display: none;
+    &.funding-cpf{
+      display: block;
+    }
   }
 
   .funding-content.first {
