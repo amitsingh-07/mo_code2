@@ -11,5 +11,8 @@ export const ProfileIcons = [
 ];
 
 export const icon = {
-  "balanced-cpfis-icon": 'assets/images/balanced-cpfis-icon.svg'
+  "balanced-cpfis-icon": 'assets/images/balanced-cpfis-icon.svg',
+  16: 'assets/images/balanced.svg',
+  17: 'assets/images/growth.svg',
+  18: 'assets/images/equity.svg'
 };
