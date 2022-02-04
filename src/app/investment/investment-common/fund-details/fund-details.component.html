@@ -56,7 +56,7 @@
                       <div>
                         <div> 
                           <div class="funding-content funding-cpf" [ngClass]="{ 'border-0': cpfEnabled }">
-                            {{fundDetails[1].htmlDesc}}        
+                            <div [innerHtml]="fundDetails[1].htmlDesc"></div>
                             <div class="btn-wrapper"><a download target="_blank" (click)="getHighlightSheetLink(fundDetails[1])" class="btn btn-primary width100 mt20 fund-details-primary-btn" id="fund_details_download_btn_1">{{'FUND_DETAILS.DOWNLOAD_PRIMARY' | translate}}</a></div>   
                           </div>
                         </div>
@@ -75,8 +75,7 @@
                       </div>
                       <div>
                         <div>
-                          <div class="funding-content funding-cpf" [ngClass]="{ 'border-0': cpfEnabled }" >
-                            {{fundDetails[0].htmlDesc}}        
+                          <div class="funding-content funding-cpf" [ngClass]="{ 'border-0': cpfEnabled }" >{{fundDetails[0].htmlDesc}}      
                             <div class="btn-wrapper"><a download target="_blank" (click)="getHighlightSheetLink(fundDetails[0])" class="btn btn-primary width100 mt20 fund-details-primary-btn" id="fund_details_download_btn_2">{{'FUND_DETAILS.DOWNLOAD_PRIMARY' | translate}}</a></div>   
                           </div>
                         </div>
