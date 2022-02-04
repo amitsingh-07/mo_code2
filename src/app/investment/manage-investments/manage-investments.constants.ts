@@ -1,3 +1,5 @@
+import { RegexConstants } from "src/app/shared/utils/api.regex.constants";
+
 export let MANAGE_INVESTMENTS_CONSTANTS = {
   ALLOW_MANAGE_INVESTMENTS_GUARD: [
     'PORTFOLIO_PURCHASED',
@@ -17,6 +19,20 @@ export let MANAGE_INVESTMENTS_CONSTANTS = {
       DBS: 'DBS',
       OCBC: 'OCBC',
       UOB: 'UOB'
+    },
+    CPF_OPERATOR: {
+      DBS: {
+        name: 'DBS',
+        regExp: RegexConstants.cpfOperatorMask.DBS
+      },
+      OCBC: {
+        name: 'OCBC',
+        regExp: RegexConstants.cpfOperatorMask.OCBC
+      },
+      UOB: {
+        name: 'UOB',
+        regExp: RegexConstants.cpfOperatorMask.UOB
+      }
     },
     FUNDING_METHODS: {
       CASH: 'CASH',
