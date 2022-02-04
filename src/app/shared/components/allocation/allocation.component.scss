@@ -20,6 +20,9 @@ app-allocation {
                     align-items: center;
                     .flex-col {
                         padding-left: 18px;
+                        @include iphone6{
+                            padding-left: 16px;
+                        }
                     }
                 }
                 .wise-saver-bar {
