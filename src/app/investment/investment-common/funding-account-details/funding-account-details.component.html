@@ -34,11 +34,17 @@
                       </button>
                       <button *ngIf="this.fundingAccountDetailsForm.controls.confirmedFundingMethodId.value"
                         class="btn btn-dropdown" id="additional_declaration_sourse-drpdown" ngbDropdownToggle>
+                        {{getFundingMethodNameById(this.fundingAccountDetailsForm.controls.confirmedFundingMethodId.value, fundingMethods) }}
                       </button>
                       <div class="dropdown" ngbDropdownMenu aria-labelledby="courseDropdown">
-                        <button class="dropdown-item" *ngFor="let fundingMethod of fundingMethods; let i = index;"
-                          (click)="selectFundingMethod('confirmedFundingMethodId', fundingMethod.id)"
-                          id="additional_declaration_sourse-drpdown-option-{{i}}">{{fundingMethod.name}}</button>
+                        <div *ngFor="let fundingMethod of fundingMethods; let i = index;">
+                          <button class="dropdown-item"
+                            *ngIf="fundingMethod.name && (fundingMethod.name.toUpperCase() != fundList.CPF_OA.toUpperCase())"
+                            (click)="selectFundingMethod('confirmedFundingMethodId', fundingMethod.id)"
+                            id="additional_declaration_sourse-drpdown-option-{{i}}">
+                            {{fundingMethod.name}}
+                          </button>
+                        </div>
                       </div>
                     </div>
                   </div>
@@ -113,7 +119,7 @@
               <!-- SRS bLOCK -->
             </div>
             <!-- CPFIA BLOCK -->
-            <div class="srs-block">
+            <div class="srs-block" *ngIf="fundingAccountDetailsForm.controls.cpfIADetails">
               <div *ngIf="checkIfCPFPortfolio()" class="widget" formGroupName="cpfIADetails">
                 <div class="mb15">{{
                   'CONFIRM_ACCOUNT_DETAILS.ACCOUNT_DETAILS' | translate}}</div>
