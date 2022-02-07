@@ -185,7 +185,7 @@ export class YourPortfolioComponent implements OnInit, OnDestroy {
         this.riskProfileImage = ProfileIcons[7]['icon'];
         this.isWiseIncomePortfolio = true;
       } else {
-        this.riskProfileImage = ProfileIcons[this.portfolio.riskProfile.id - 1]['icon'];
+        this.riskProfileImage = this.investmentEngagementJourneyService.getRiskProfileIcon(this.portfolio.riskProfile.type, this.portfolio.riskProfile.showRecommendationCheckbox);
       }
       if (this.portfolio.pendingRequestDTO && this.portfolio.pendingRequestDTO.transactionDetailsDTO) { /* Pending Transactions ? */
         this.investmentEngagementJourneyService.sortByProperty(
