@@ -16,7 +16,6 @@ import { InvestmentEngagementJourneyService } from '../investment-engagement-jou
 import { AppService } from './../../../app.service';
 import { AuthenticationService } from './../../../shared/http/auth/authentication.service';
 import { InvestmentCommonService } from './../../investment-common/investment-common.service';
-import { icon, ProfileIcons } from './profileIcons';
 import { RiskProfile } from './riskprofile';
 import { InvestmentAccountService } from '../../investment-account/investment-account-service';
 
@@ -72,9 +71,9 @@ export class RecommendationComponent implements OnInit, AfterViewInit {
     this.navbarService.setNavbarMode(6);
     this.footerService.setFooterVisibility(false);
     this.selectedRiskProfile = this.investmentEngagementJourneyService.getRiskProfile();
-    this.iconImage = ProfileIcons[this.selectedRiskProfile.riskProfileId - 1] && ProfileIcons[this.selectedRiskProfile.riskProfileId - 1]['icon'] ? ProfileIcons[this.selectedRiskProfile.riskProfileId - 1]['icon'] : null;
+    this.iconImage = this.investmentEngagementJourneyService.getRiskProfileIcon(this.selectedRiskProfile.riskProfileName, this.selectedRiskProfile.showRecommendationCheckbox);
     if (this.selectedRiskProfile.alternateRiskProfileId) {
-      this.secondIcon = ProfileIcons[this.selectedRiskProfile.alternateRiskProfileId - 1]['icon'];
+      this.secondIcon = this.investmentEngagementJourneyService.getRiskProfileIcon(this.selectedRiskProfile.alternateRiskProfileType, this.selectedRiskProfile.showRecommendationCheckbox);
     }
     this.showButton();
     this.buttonLabel();
@@ -83,10 +82,7 @@ export class RecommendationComponent implements OnInit, AfterViewInit {
 
   checkAndSetCPFISrecommendation: () => void = () => {
     if (this.selectedRiskProfile && this.selectedRiskProfile.showRecommendationCheckbox) {
-      this.iconImage = icon['balanced-cpfis-icon'];
       this.selectedRiskProfile.htmlDescription.desc = null;
-    } else if (this.selectedRiskProfile && !this.selectedRiskProfile.showRecommendationCheckbox && this.selectedRiskProfile.riskProfileId) {
-      this.iconImage = icon[this.selectedRiskProfile.riskProfileId] ? icon[this.selectedRiskProfile.riskProfileId] : null;
     }
   }
 
