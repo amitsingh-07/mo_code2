@@ -205,11 +205,13 @@ export class PortfolioListComponent implements OnInit, OnChanges {
     this.investAgainSelected.emit(portfolio);
   }
 
-  getImg(i: number, category?: string) {
+  getImg(i: number, category: string, riskProfileType: any, isBalancedEnabled: boolean) {
     if (category && category.toUpperCase() === INVESTMENT_COMMON_CONSTANTS.PORTFOLIO_CATEGORY.WISEINCOME.toUpperCase()) {
       return (ProfileIcons[7] && ProfileIcons[7]['icon']) ? ProfileIcons[7]['icon'] : '';
+    } else  if (category && category.toUpperCase() === INVESTMENT_COMMON_CONSTANTS.PORTFOLIO_CATEGORY.WISESAVER.toUpperCase()) {
+      return (ProfileIcons[6] && ProfileIcons[6]['icon']) ? ProfileIcons[6]['icon'] : '';
     } else {
-      return (ProfileIcons[i - 1] && ProfileIcons[i - 1]['icon']) ? ProfileIcons[i - 1]['icon'] : '';
+      return this.investmentEngagementService.getRiskProfileIcon(riskProfileType, isBalancedEnabled);
     }
   }
 
