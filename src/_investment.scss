@@ -464,11 +464,25 @@
   height: 18px;
   padding: 3px;
   border-radius: 3px;
-  background-color: #bd10e0;
+  background-color: $srs-portfolio-badge;
   font-family: $muli-bold;
   font-size: 11px;
   line-height: 12px;
   letter-spacing: -0.21px;
   text-align: center;
-  color: #ffffff;
+  color: $white-color;
+}
+
+.portfolio-fund-type-cpf-oa {
+  width: 48px;
+  height: 18px;
+  padding: 3px;
+  border-radius: 3px;
+  background-color: $cpf-portfolio-badge;
+  font-family: $muli-bold;
+  font-size: 11px;
+  line-height: 12px;
+  letter-spacing: -0.21px;
+  text-align: center;
+  color: $white-color;
 }

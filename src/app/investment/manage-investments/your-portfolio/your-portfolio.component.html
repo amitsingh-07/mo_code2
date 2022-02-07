@@ -46,8 +46,9 @@
                   <div class="flex-row space-between">
                     <div class="portfolio-type align-center">
                       <div class="flex align-center">
-                        <span *ngIf="portfolio?.fundingTypeValue === 'SRS'" class="portfolio-fund-type mr5">{{'YOUR_INVESTMENT.SRS' |
-                          translate}}</span>
+                        <span *ngIf="portfolio?.fundingTypeValue == fundingMethods.SRS || portfolio?.fundingTypeValue == fundingMethods.CPF_OA" [ngClass]="portfolio?.fundingTypeValue == fundingMethods.SRS ? 'portfolio-fund-type mr5' : 'portfolio-fund-type-cpf-oa mr5'">
+                          {{getPortFolioBadgeData(portfolio)}}
+                        </span>
                         <ng-container *ngIf="portfolio?.riskProfile; else nonInvestPortfolio">
                           {{'YOUR_PORTFOLIO.RISK_PROFILE_NAME' | translate: {riskProfileName: portfolio.riskProfile.type}
                           }}</ng-container>
@@ -379,6 +380,13 @@
               <span>{{pendingBuyRequests.value.length}}</span>
             </div>
           </div>
+          <div *ngIf="portfolio?.fundingTypeValue === fundingMethods.CPF_OA" class="pending-request">
+            <div class="your-portfolio-tab-title"
+              innerHTML="{{'YOUR_PORTFOLIO.PENDING_REQUESTS_CPFOA_ACCOUNT' | translate}}"></div>
+            <div class="circle" *ngIf="pendingBuyRequests && pendingBuyRequests.value">
+              <span>{{pendingBuyRequests.value.length}}</span>
+            </div>
+          </div>
         </ng-template>
         <ng-template ngbTabContent>
           <div class="pending-request-panel-content">
@@ -647,6 +655,25 @@
                 </div>
               </div>
             </div>
+
+            <!-- cpf-oa a/c -->
+            <div *ngIf="portfolio?.fundingTypeValue === fundingMethods.CPF_OA" class="srs-account">
+              <div class="srs-account-lbl">{{'YOUR_PORTFOLIO.CPFOA_ACCOUNT' | translate}}</div>
+              <div class="form-group-with-bg">
+                <!--Form Content-->
+                <div class="form-group-with-bg--content">
+                  <div class="srs-account-content">
+                    <div class="srs-detail-lbl">{{'YOUR_PORTFOLIO.CPFIA_BANK_OPERATOR.BANK_OPERATOR' | translate}}
+                      <div>{{cpfiaAccDetail?.cpfiaOperator}}</div>
+                    </div>
+                    <div class="srs-detail-lbl mt15">{{'YOUR_PORTFOLIO.CPFIA_BANK_OPERATOR.ACCOUNT_NUMBER' | translate}}
+                      <div>{{cpfiaAccDetail?.cpfiaAccountNumber?.conformedValue}}</div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
           </div>
         </ng-template>
       </ngb-tab>

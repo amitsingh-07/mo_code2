@@ -30,6 +30,7 @@ export class InvestmentEngagementJourneyFormData {
   alternateRiskProfileType: string;
   fundDetails;
   selectedriskProfileId: number;
+  showRecommendationCheckbox: boolean;
 
   // FUNDING METHOD
   fundingMethod: any;
@@ -48,4 +49,7 @@ export class InvestmentEngagementJourneyFormData {
 
   // PROMO CODE SETTER
   promoCode: any;
+
+  // CPF BANK DETAILS
+  cpfBankId: any;
 }

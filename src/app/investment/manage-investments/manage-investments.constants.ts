@@ -1,3 +1,5 @@
+import { RegexConstants } from "src/app/shared/utils/api.regex.constants";
+
 export let MANAGE_INVESTMENTS_CONSTANTS = {
   ALLOW_MANAGE_INVESTMENTS_GUARD: [
     'PORTFOLIO_PURCHASED',
@@ -17,6 +19,20 @@ export let MANAGE_INVESTMENTS_CONSTANTS = {
       DBS: 'DBS',
       OCBC: 'OCBC',
       UOB: 'UOB'
+    },
+    CPF_OPERATOR: {
+      DBS: {
+        name: 'DBS',
+        regExp: RegexConstants.cpfOperatorMask.DBS
+      },
+      OCBC: {
+        name: 'OCBC',
+        regExp: RegexConstants.cpfOperatorMask.OCBC
+      },
+      UOB: {
+        name: 'UOB',
+        regExp: RegexConstants.cpfOperatorMask.UOB
+      }
     },
     FUNDING_METHODS: {
       CASH: 'CASH',
@@ -86,7 +102,8 @@ export let MANAGE_INVESTMENTS_CONSTANTS = {
     PORTFOLIO_TO_CASH_ACCOUNT: 'PORTFOLIO_TO_CASH_ACCOUNT',
     PORTFOLIO_TO_BANK_ACCOUNT: 'PORTFOLIO_TO_BANK_ACCOUNT',
     CASH_TO_BANK_ACCOUNT: 'CASH_TO_BANK_ACCOUNT',
-    PORTFOLIO_TO_SRS_ACCOUNT: 'PORTFOLIO_TO_SRS_ACCOUNT'
+    PORTFOLIO_TO_SRS_ACCOUNT: 'PORTFOLIO_TO_SRS_ACCOUNT',
+    PORTFOLIO_TO_CPF_ACCOUNT: "PORTFOLIO_TO_CPF_ACCOUNT"   // key to be mapped from BackEnd constant value from TransactionDetailDto paymentMode
   },
   WISEINCOME_PAYOUT_TYPE: {
     FOUR_FIVE_PAYOUT: '4.5% p.a. income payout',

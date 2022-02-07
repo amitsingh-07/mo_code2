@@ -39,6 +39,12 @@ import { WiseIncomePayoutComponent } from './wise-income-payout/wise-income-payo
 import { SelectPortfolioTypeComponent } from './select-portfolio-type/select-portfolio-type.component';
 import { AddSecondaryHolderComponent } from './add-secondary-holder/add-secondary-holder.component';
 import { UploadDocumentComponent } from './upload-document/upload-document.component';
+import { CkaAssessmentComponent } from './cka-assessment/cka-assessment.component';
+import { CkaUploadDocumentComponent } from './cka-upload-document/cka-upload-document.component';
+import { NoneOfTheAboveComponent } from './none-of-the-above/none-of-the-above.component';
+import { CkaPassedResultComponent } from './cka-passed-result/cka-passed-result.component';
+import { PortfolioApplicationInprogressComponent } from './portfolio-application-inprogress/portfolio-application-inprogress.component';
+import { SelectPortfolioGoalMoreinfoComponent } from './select-portfolio-goal-moreinfo/select-portfolio-goal-moreinfo.component';
 
 export function createTranslateLoader(http: HttpClient) {
   return new MultiTranslateHttpLoader(http, [
@@ -86,7 +92,13 @@ export function createTranslateLoader(http: HttpClient) {
     WiseIncomePayoutComponent,
     SelectPortfolioTypeComponent,
     AddSecondaryHolderComponent,
-    UploadDocumentComponent
+    UploadDocumentComponent,
+    CkaAssessmentComponent,
+    CkaUploadDocumentComponent,
+    NoneOfTheAboveComponent,
+    CkaPassedResultComponent,
+    PortfolioApplicationInprogressComponent,
+    SelectPortfolioGoalMoreinfoComponent
   ],
   providers: [CurrencyPipe, FormatCurrencyPipe],
   entryComponents: [SrsTooltipComponent]

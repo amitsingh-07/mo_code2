@@ -151,6 +151,22 @@ export class InvestmentApiService {
       );
   }
 
+  getArrayOfDropdownList(groupName) {
+    const url = investmentApiConstants.endpoint.investmentAccount.getArrayOfDropList.replace('$GROUP_NAME$', groupName)
+    return this.http.get(url)
+      .pipe(
+        catchError((error: HttpErrorResponse) => this.handleError(error))
+      );
+  }
+
+  saveCKAMethodQNA(json) {
+    const url = investmentApiConstants.endpoint.investment.saveCKAMethodQNA;
+    return this.http.post(url, json)
+      .pipe(
+        catchError((error: HttpErrorResponse) => this.handleError(error))
+      );
+  }
+
   getFundMethodList() {
     return this.http.get(investmentApiConstants.endpoint.investmentAccount.fundingMethodList)
       .pipe(
@@ -183,6 +199,13 @@ export class InvestmentApiService {
   // tslint:disable-next-line:no-identical-functions
   uploadDocument(data) {
     return this.http.post(investmentApiConstants.endpoint.investmentAccount.uploadDocument, data)
+      .pipe(
+        catchError((error: HttpErrorResponse) => this.handleError(error))
+      );
+  }
+
+  getCKADocument(documentType) {
+    return this.http.getBlob(investmentApiConstants.endpoint.investment.getCKADocument.replace('$DOCUMENT_TYPE$', documentType))
       .pipe(
         catchError((error: HttpErrorResponse) => this.handleError(error))
       );
@@ -422,6 +445,10 @@ export class InvestmentApiService {
   getProfileSrsAccountDetails() {
     return this.http.get(investmentApiConstants.endpoint.investmentAccount.getProfileSrsDetails);
   }
+
+  getProfileCpfIAccountDetails(twoFaRequired=false) {
+    return this.http.getWithParams(investmentApiConstants.endpoint.investmentAccount.getProfileCpfIaDetails, {twoFaRequired});
+  }
   saveSrsAccountDetails(data, customerPortfolioId) {
     return this.http.post(
       investmentApiConstants.endpoint.investmentAccount.saveSrsAccountDetails.replace('$CUSTOMER_PORTFOLIO_ID$', customerPortfolioId), data)
@@ -537,6 +564,34 @@ export class InvestmentApiService {
   //trigger action by primary/secondary holder 
   setActionByHolder(data) {
     return this.http.post(investmentApiConstants.endpoint.portfolio.setActionByHolder, data)
+      .pipe(
+        catchError((error: HttpErrorResponse) => this.handleError(error))
+      );
+  }
+
+  /**
+   * @param data of type {customerPortfolioId: number}
+   * this api method checks the cka status in backend for the customer and updates the Portfolio status for the provided Portfolio id in customer_portfolio table.
+   */
+  updatePortfolioStatus = (data: {customerPortfolioId: number}) => {
+    return this.http.put(investmentApiConstants.endpoint.portfolio.updatePortfolioStatus, data)
+    .pipe(
+      catchError((error: HttpErrorResponse) => this.handleError(error))
+    );
+  }
+  getCKAAssessmentStatus() {
+    return this.http.get(investmentApiConstants.endpoint.investment.getCKAAssessmentStatus)
+    .pipe(
+      catchError((error: HttpErrorResponse) => this.handleError(error))
+    );
+  }
+
+  getCKABankAccount(twoFaReq) {
+    return this.http.get(investmentApiConstants.endpoint.investment.getCKABankAccount.replace('$TWOFA_REQ$', twoFaReq));
+  }
+
+  saveCKABankAccount(data) {
+    return this.http.post(investmentApiConstants.endpoint.investment.saveCKABankAccount, data)
       .pipe(
         catchError((error: HttpErrorResponse) => this.handleError(error))
       );
