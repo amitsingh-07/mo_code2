@@ -373,10 +373,10 @@
                                     <span (click)="gotoTopUp(portfolio)" *ngIf="!portfolio?.buyRequestCount"
                                         class="top-up-btn cursorPointer">{{'YOUR_INVESTMENT.TOP_UP' | translate}}</span>
                                     <span
-                                        *ngIf="!portfolio?.cashAccountBalance  && portfolio?.fundingTypeValue !== 'SRS'"
+                                        *ngIf="!portfolio?.cashAccountBalance && portfolio?.fundingTypeValue !== fundingMethods.SRS && portfolio?.fundingTypeValue !== fundingMethods.CPF_OA"
                                         class="cash-account-value">{{'YOUR_INVESTMENT.CA_LABEL' | translate}} $0</span>
                                     <span
-                                        *ngIf="portfolio?.cashAccountBalance  && portfolio?.fundingTypeValue !== 'SRS'"
+                                        *ngIf="portfolio?.cashAccountBalance  && portfolio?.fundingTypeValue !== fundingMethods.SRS && portfolio?.fundingTypeValue !== fundingMethods.CPF_OA"
                                         class="cash-account-value">{{'YOUR_INVESTMENT.CA_LABEL' | translate}}
                                         {{portfolio?.cashAccountBalance | formatCurrency}}</span>
                                 </div>
@@ -432,9 +432,9 @@
                                         [class.negativeValue]="portfolio?.simpleReturns < 0"
                                         class="total-returns">{{formatReturns(portfolio?.simpleReturns)}}{{portfolio?.simpleReturns | number : '1.0-2'}}%</span>
                                     <span
-                                        *ngIf="!portfolio?.cashAccountBalance && portfolio?.fundingTypeValue !== 'SRS'"
+                                        *ngIf="!portfolio?.cashAccountBalance && portfolio?.fundingTypeValue !== fundingMethods.SRS && portfolio?.fundingTypeValue !== fundingMethods.CPF_OA"
                                         class="cash-account-value">{{'YOUR_INVESTMENT.CA_LABEL' | translate}} $0</span>
-                                    <span *ngIf="portfolio?.cashAccountBalance && portfolio?.fundingTypeValue !== 'SRS'"
+                                    <span *ngIf="portfolio?.cashAccountBalance && portfolio?.fundingTypeValue !== fundingMethods.SRS && portfolio?.fundingTypeValue !== fundingMethods.CPF_OA"
                                         class="cash-account-value">{{'YOUR_INVESTMENT.CA_LABEL' | translate}}
                                         {{portfolio?.cashAccountBalance | formatCurrency}}</span>
                                 </div>
