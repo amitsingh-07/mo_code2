@@ -85,6 +85,8 @@ export class RecommendationComponent implements OnInit, AfterViewInit {
     if (this.selectedRiskProfile && this.selectedRiskProfile.showRecommendationCheckbox) {
       this.iconImage = icon['balanced-cpfis-icon'];
       this.selectedRiskProfile.htmlDescription.desc = null;
+    } else if (this.selectedRiskProfile && !this.selectedRiskProfile.showRecommendationCheckbox && this.selectedRiskProfile.riskProfileId) {
+      this.iconImage = icon[this.selectedRiskProfile.riskProfileId] ? icon[this.selectedRiskProfile.riskProfileId] : null;
     }
   }
 

@@ -60,6 +60,6 @@ export interface ISrsAccountDetails {
 }
 
 export interface ICPFIAccountDetails {
-  cpfiaAccountNumber: string;
+  cpfiaAccountNumber: any;
   cpfiaOperator: string;
 }

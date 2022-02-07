@@ -2,7 +2,7 @@
   <div class="bonds_equity_block" *ngIf="!wiseIncomeEnabled">
     <div class="bond_progress_container">
       <div class="flex-row equity_bar" *ngFor="let asset of assets; let i = index"
-        [ngClass]="{'wise-saver-bar': !allocationDetails}">
+        [ngClass]="{'wise-saver-bar': !allocationDetails && !cpfEnabled}">
         <div class="flex-row flex-col-6 bar-container">
           <span [ngStyle]="{'background-color': colors[i], 'width': asset.allocationPercentage + '%'  }"
             class="bar"></span>
@@ -10,7 +10,7 @@
         <div class="flex-col">{{asset.allocationPercentage}}% {{asset.type.type}}</div>
       </div>
     </div>
-    <div *ngIf="investmentEnabled">
+    <div *ngIf="investmentEnabled || cpfEnabled">
       <div class="bonds_equity" *ngFor="let asset of assets; let i = index">
         <div class="bonds_equity_title" id="panel-button-{{i}}" (click)="showHidePanel(acc, 'panel-' + i, $event)" >
             <div>
