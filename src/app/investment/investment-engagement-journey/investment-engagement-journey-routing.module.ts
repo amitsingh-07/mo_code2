@@ -25,6 +25,7 @@ import { RiskAcknowledgementComponent } from './risk-acknowledgement/risk-acknow
 import { WiseIncomePayoutComponent } from './wise-income-payout/wise-income-payout.component';
 import { AddSecondaryHolderComponent } from './add-secondary-holder/add-secondary-holder.component';
 import { UploadDocumentComponent } from './upload-document/upload-document.component';
+import { InvestmentAuthGuardService as InvestmentAuthGuard } from '../../sign-up/auth-guard.service';
 import { AuthGuardService as AuthGuard } from '../../sign-up/auth-guard.service';
 import { CkaAssessmentComponent } from './cka-assessment/cka-assessment.component';
 import { NoneOfTheAboveComponent } from './none-of-the-above/none-of-the-above.component';
@@ -105,7 +106,7 @@ const routes: Routes = [
   {
     path: INVESTMENT_ENGAGEMENT_JOURNEY_ROUTES.START,
     component: StartJourneyComponent,
-    canActivate: [InvestmentEngagementJourneyGuard]
+    canActivate: [InvestmentEngagementJourneyGuard, InvestmentAuthGuard]
   },
   {
     path: INVESTMENT_ENGAGEMENT_JOURNEY_ROUTES.RISK_ACKNOWLEDGEMENT,
