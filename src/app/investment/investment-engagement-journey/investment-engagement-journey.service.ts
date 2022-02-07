@@ -366,6 +366,11 @@ export class InvestmentEngagementJourneyService {
       ? this.investmentEngagementJourneyFormData.cpfBankId : null;
   }
 
+  deleteCpfBankId() {
+    delete this.investmentEngagementJourneyFormData['cpfBankId'];
+    this.commit();
+  }
+
   // tslint:disable-next-line:cognitive-complexity
   sortByProperty(list, prop, order) {
     list.sort((a, b) => {

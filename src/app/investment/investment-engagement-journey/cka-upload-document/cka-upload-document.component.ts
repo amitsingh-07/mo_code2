@@ -18,6 +18,7 @@ import { ModelWithButtonComponent } from '../../../shared/modal/model-with-butto
 import { SIGN_UP_ROUTE_PATHS } from '../../../sign-up/sign-up.routes.constants';
 import { INVESTMENT_ACCOUNT_CONSTANTS } from '../../../investment/investment-account/investment-account.constant';
 import { INVESTMENT_ENGAGEMENT_JOURNEY_ROUTE_PATHS } from '../investment-engagement-journey-routes.constants';
+import { INVESTMENT_COMMON_CONSTANTS } from '../../investment-common/investment-common.constants';
 @Component({
   selector: 'app-cka-upload-document',
   templateUrl: './cka-upload-document.component.html',
@@ -85,11 +86,14 @@ export class CkaUploadDocumentComponent implements OnInit {
   }
 
   private getCKADocumentFromS3() {
-    this.investmentCommonService.getCKADocument(this.certificateName).subscribe((response: any) => {
-      if (response && response.body && response.body.type && response.body.type.split('/')[1].toLowerCase() != 'json') {
-        this.uploadDocumentService.setStreamResponse(response);
-      }
-    });
+    const ckaStatus = this.investmentCommonService.getCKAStatus();
+    if (ckaStatus && ckaStatus != INVESTMENT_COMMON_CONSTANTS.CKA.CKA_REJECTED_STATUS) {
+      this.investmentCommonService.getCKADocument(this.certificateName).subscribe((response: any) => {
+        if (response && response.body && response.body.type && response.body.type.split('/')[1].toLowerCase() != 'json') {
+          this.uploadDocumentService.setStreamResponse(response);
+        }
+      });
+    }
   }
 
   private addTncControllToForm() {
