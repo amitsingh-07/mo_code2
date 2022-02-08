@@ -366,14 +366,14 @@
       </ngb-tab>
       <ngb-tab id="tab-2">
         <ng-template ngbTabTitle>
-          <div *ngIf="portfolio?.fundingTypeValue !== 'SRS'" class="pending-request">
+          <div *ngIf="portfolio?.fundingTypeValue !== fundingMethods.SRS && portfolio?.fundingTypeValue !== fundingMethods.CPF_OA" class="pending-request">
             <div class="your-portfolio-tab-title"
               innerHTML="{{'YOUR_PORTFOLIO.PENDING_REQUESTS_CASH_ACCOUNT' | translate}}"></div>
             <div class="circle" *ngIf="pendingBuyRequests && pendingBuyRequests.value">
               <span>{{pendingBuyRequests.value.length}}</span>
             </div>
           </div>
-          <div *ngIf="portfolio?.fundingTypeValue === 'SRS'" class="pending-request">
+          <div *ngIf="portfolio?.fundingTypeValue === fundingMethods.SRS" class="pending-request">
             <div class="your-portfolio-tab-title"
               innerHTML="{{'YOUR_PORTFOLIO.PENDING_REQUESTS_SRS_ACCOUNT' | translate}}"></div>
             <div class="circle" *ngIf="pendingBuyRequests && pendingBuyRequests.value">

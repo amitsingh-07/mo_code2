@@ -56,7 +56,7 @@
                     <div class="portfolio-list" *ngFor="let portfolio of filteredAwaitingList; let i = index;">
                         <div *ngIf="(i <= 4) || showAllForAwaited" class="portfolio">
                             <div class="portfolio-icon" [ngClass]="setBorderClass(portfolio)"><img
-                                    [src]="getImg(portfolio?.riskProfileId, portfolio?.portfolioCategory)" /></div>
+                                    [src]="getImg(portfolio?.riskProfileId, portfolio?.portfolioCategory, portfolio?.riskProfileType, portfolio?.showRecommendationCheckbox)" /></div>
                             <div class="portfolio-details">
                                 <div class="portfolio-name">
                                     <span class="portfolio-lbl flex-col-11">{{portfolio?.portfolioName}}</span>
@@ -111,7 +111,7 @@
                         *ngFor="let portfolio of filteredWithdrawnList; let i = index;">
                         <div *ngIf="(i <= 4) || showAllForWithdrawn" class="portfolio">
                             <div class="portfolio-icon" [ngClass]="setBorderClass(portfolio)"><img
-                                    [src]="getImg(portfolio?.riskProfileId, portfolio?.portfolioCategory)" /></div>
+                                    [src]="getImg(portfolio?.riskProfileId, portfolio?.portfolioCategory, portfolio?.riskProfileType, portfolio?.showRecommendationCheckbox)" /></div>
                             <div class="portfolio-details">
                                 <div class="portfolio-name">
                                     <span class="portfolio-lbl flex-col-11">{{portfolio?.portfolioName}}</span>
@@ -159,7 +159,7 @@
                         *ngFor="let portfolio of filteredDeclinedList; let i = index;">
                         <div *ngIf="(i <= 4) || showAllForDeclined" class="portfolio">
                             <div class="portfolio-icon" [ngClass]="setBorderClass(portfolio)"><img
-                                    [src]="getImg(portfolio?.riskProfileId, portfolio?.portfolioCategory)" /></div>
+                                    [src]="getImg(portfolio?.riskProfileId, portfolio?.portfolioCategory, portfolio?.riskProfileType, portfolio?.showRecommendationCheckbox)" /></div>
                             <div class="portfolio-details">
                                 <div class="portfolio-name">
                                     <span class="portfolio-lbl flex-col-11">{{portfolio?.portfolioName}}</span>
@@ -207,7 +207,7 @@
                         *ngFor="let portfolio of filteredExpiredList; let i = index;">
                         <div *ngIf="(i <= 4) || showAllForExpired" class="portfolio">
                             <div class="portfolio-icon" [ngClass]="setBorderClass(portfolio)"><img
-                                    [src]="getImg(portfolio?.riskProfileId, portfolio?.portfolioCategory)" /></div>
+                                    [src]="getImg(portfolio?.riskProfileId, portfolio?.portfolioCategory, portfolio?.riskProfileType, portfolio?.showRecommendationCheckbox)" /></div>
                             <div class="portfolio-details">
                                 <div class="portfolio-name">
                                     <span class="portfolio-lbl flex-col-11">{{portfolio?.portfolioName}}</span>
@@ -254,7 +254,7 @@
                     <div class="portfolio-list" *ngFor="let portfolio of filteredProgressList; let i = index;">
                         <div *ngIf="(i <= 4) || showAllForProgress" class="portfolio">
                             <div class="portfolio-icon" [ngClass]="setBorderClass(portfolio)"><img
-                                    [src]="getImg(portfolio?.riskProfileId, portfolio?.portfolioCategory)" /></div>
+                                    [src]="getImg(portfolio?.riskProfileId, portfolio?.portfolioCategory, portfolio?.riskProfileType, portfolio?.showRecommendationCheckbox)" /></div>
                             <div class="portfolio-details">
                                 <div class="portfolio-name">
                                     <span class="portfolio-lbl flex-col-11">{{portfolio?.portfolioName}}</span>
@@ -293,7 +293,7 @@
                     <div class="portfolio-list" *ngFor="let portfolio of filteredVerifyList; let i = index;">
                         <div *ngIf="(i <= 4) || showAllForVerify" class="portfolio">
                             <div class="portfolio-icon" [ngClass]="setBorderClass(portfolio)"><img
-                                    [src]="getImg(portfolio?.riskProfileId, portfolio?.portfolioCategory)" /></div>
+                                    [src]="getImg(portfolio?.riskProfileId, portfolio?.portfolioCategory, portfolio?.riskProfileType, portfolio?.showRecommendationCheckbox)" /></div>
                             <div class="portfolio-details">
                                 <div class="portfolio-name">
                                     <span class="portfolio-lbl flex-col-11">{{portfolio?.portfolioName}}</span>
@@ -342,7 +342,7 @@
                         <div (click)="detail(portfolio)" class="portfolio cursorPointer"
                             *ngIf="(i <= 4) || showAllForNotInvested">
                             <div class="portfolio-icon" [ngClass]="setBorderClass(portfolio)"><img
-                                    [src]="getImg(portfolio?.riskProfileId, portfolio?.portfolioCategory)" /></div>
+                                    [src]="getImg(portfolio?.riskProfileId, portfolio?.portfolioCategory, portfolio?.riskProfileType, portfolio?.showRecommendationCheckbox)" /></div>
                             <div class="portfolio-details">
                                 <div class="portfolio-name">
                                     <span class="portfolio-lbl flex-col-10">{{portfolio?.portfolioName}}</span>
@@ -373,10 +373,10 @@
                                     <span (click)="gotoTopUp(portfolio)" *ngIf="!portfolio?.buyRequestCount"
                                         class="top-up-btn cursorPointer">{{'YOUR_INVESTMENT.TOP_UP' | translate}}</span>
                                     <span
-                                        *ngIf="!portfolio?.cashAccountBalance  && portfolio?.fundingTypeValue !== 'SRS'"
+                                        *ngIf="!portfolio?.cashAccountBalance && portfolio?.fundingTypeValue !== fundingMethods.SRS && portfolio?.fundingTypeValue !== fundingMethods.CPF_OA"
                                         class="cash-account-value">{{'YOUR_INVESTMENT.CA_LABEL' | translate}} $0</span>
                                     <span
-                                        *ngIf="portfolio?.cashAccountBalance  && portfolio?.fundingTypeValue !== 'SRS'"
+                                        *ngIf="portfolio?.cashAccountBalance  && portfolio?.fundingTypeValue !== fundingMethods.SRS && portfolio?.fundingTypeValue !== fundingMethods.CPF_OA"
                                         class="cash-account-value">{{'YOUR_INVESTMENT.CA_LABEL' | translate}}
                                         {{portfolio?.cashAccountBalance | formatCurrency}}</span>
                                 </div>
@@ -399,7 +399,7 @@
                         *ngFor="let portfolio of filteredInvestedList; let i = index;">
                         <div *ngIf="(i <= 4) || showAllForInvested" class="portfolio cursorPointer">
                             <div class="portfolio-icon" [ngClass]="setBorderClass(portfolio)"><img
-                                    [src]="getImg(portfolio?.riskProfileId, portfolio?.portfolioCategory)" /></div>
+                                    [src]="getImg(portfolio?.riskProfileId, portfolio?.portfolioCategory, portfolio?.riskProfileType, portfolio?.showRecommendationCheckbox)" /></div>
                             <div class="portfolio-details">
                                 <div class="portfolio-name">
                                     <span class="portfolio-lbl flex-col-10">{{portfolio?.portfolioName}}</span>
@@ -432,9 +432,9 @@
                                         [class.negativeValue]="portfolio?.simpleReturns < 0"
                                         class="total-returns">{{formatReturns(portfolio?.simpleReturns)}}{{portfolio?.simpleReturns | number : '1.0-2'}}%</span>
                                     <span
-                                        *ngIf="!portfolio?.cashAccountBalance && portfolio?.fundingTypeValue !== 'SRS'"
+                                        *ngIf="!portfolio?.cashAccountBalance && portfolio?.fundingTypeValue !== fundingMethods.SRS && portfolio?.fundingTypeValue !== fundingMethods.CPF_OA"
                                         class="cash-account-value">{{'YOUR_INVESTMENT.CA_LABEL' | translate}} $0</span>
-                                    <span *ngIf="portfolio?.cashAccountBalance && portfolio?.fundingTypeValue !== 'SRS'"
+                                    <span *ngIf="portfolio?.cashAccountBalance && portfolio?.fundingTypeValue !== fundingMethods.SRS && portfolio?.fundingTypeValue !== fundingMethods.CPF_OA"
                                         class="cash-account-value">{{'YOUR_INVESTMENT.CA_LABEL' | translate}}
                                         {{portfolio?.cashAccountBalance | formatCurrency}}</span>
                                 </div>

@@ -366,6 +366,11 @@ export class InvestmentEngagementJourneyService {
       ? this.investmentEngagementJourneyFormData.cpfBankId : null;
   }
 
+  deleteCpfBankId() {
+    delete this.investmentEngagementJourneyFormData['cpfBankId'];
+    this.commit();
+  }
+
   // tslint:disable-next-line:cognitive-complexity
   sortByProperty(list, prop, order) {
     list.sort((a, b) => {
@@ -770,4 +775,15 @@ export class InvestmentEngagementJourneyService {
   isCpfSelected() {
     return this.getPortfolioFormData().selectPortfolioType == INVESTMENT_ENGAGEMENT_JOURNEY_CONSTANTS.SELECT_POROFOLIO_TYPE.CPF_PORTFOLIO;
   }
+  //Get Risk Profile icon
+  getRiskProfileIcon(riskProfileType: string, isBalancedCpf: boolean) {
+    if(isBalancedCpf) {
+      return INVESTMENT_ENGAGEMENT_JOURNEY_CONSTANTS.riskProfileIcon['balanced-cpfis-icon'];
+    } else if(!Util.isEmptyOrNull(riskProfileType)) {
+      return INVESTMENT_ENGAGEMENT_JOURNEY_CONSTANTS.riskProfileIcon[riskProfileType.toLowerCase()];
+    } else {
+      return '';
+    }
+  }
 }
+ 

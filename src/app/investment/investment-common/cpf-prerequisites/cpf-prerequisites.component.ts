@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewEncapsulation } from '@angular/core';
+import { Component, OnDestroy, OnInit, ViewEncapsulation } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router, ActivatedRoute } from '@angular/router';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
@@ -25,7 +25,7 @@ import { Util } from 'src/app/shared/utils/util';
   styleUrls: ['./cpf-prerequisites.component.scss'],
   encapsulation: ViewEncapsulation.None
 })
-export class CpfPrerequisitesComponent implements OnInit {
+export class CpfPrerequisitesComponent implements OnInit, OnDestroy {
 
   pageTitle: string;
   preRequisitesForm: FormGroup;
@@ -52,17 +52,23 @@ export class CpfPrerequisitesComponent implements OnInit {
     this.translate.get('COMMON').subscribe((result: string) => {
       this.pageTitle = this.translate.instant('CPF_PREREQUISITES.TITLE');
       this.setPageTitle(this.pageTitle);
-      this.getCKAData();
+      this.buildPreRequisitesForm();
+      this.getCPFBankOptionList();
     });
   }
 
   ngOnInit(): void {
-    this.buildPreRequisitesForm();
-    this.getCPFBankList();
+    this.navbarService.setNavbarMobileVisibility(true);
+    this.navbarService.setNavbarMode(6);
+    this.footerService.setFooterVisibility(false);
   }
 
   setPageTitle(title: string) {
     this.navbarService.setPageTitle(title);
+  }
+
+  ngOnDestroy(): void {
+    this.investmentEngagementJourneyService.deleteCpfBankId();    
   }
 
   buildPreRequisitesForm() {
@@ -72,12 +78,18 @@ export class CpfPrerequisitesComponent implements OnInit {
     });
   }
 
-  getCPFBankList() {
-    this.investmentAccountService.getSpecificDropList('cpfAgentBank').subscribe((resp: any) => {
+  getCPFBankOptionList() {
+    this.showLoader();
+    this.investmentAccountService.getSpecificDropList('cpfAgentBank').subscribe((resp: any) => { 
+      this.loaderService.hideLoaderForced();
       if (resp.responseMessage.responseCode >= 6000 && resp.objectList) {
         this.cpfBankOperators = resp.objectList.cpfAgentBank;
       }
+    }, () => {
+      this.loaderService.hideLoaderForced();
     });
+    
+    this.getCKAAssessmentData();
   }
 
   selectCPFOperator(key, value) {
@@ -127,7 +139,7 @@ export class CpfPrerequisitesComponent implements OnInit {
     ref.componentInstance.closeBtn = false;
   }
 
-  getCKAData() {
+  getCKAAssessmentData() {
     this.showLoader();
     this.investmentCommonService.getCKAAssessmentStatus().subscribe((data) => {
       this.loaderService.hideLoaderForced();
