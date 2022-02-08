@@ -1,4 +1,4 @@
-import { Component, OnDestroy, OnInit, ViewEncapsulation } from '@angular/core';
+import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router, ActivatedRoute } from '@angular/router';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
@@ -25,7 +25,7 @@ import { Util } from 'src/app/shared/utils/util';
   styleUrls: ['./cpf-prerequisites.component.scss'],
   encapsulation: ViewEncapsulation.None
 })
-export class CpfPrerequisitesComponent implements OnInit, OnDestroy {
+export class CpfPrerequisitesComponent implements OnInit {
 
   pageTitle: string;
   preRequisitesForm: FormGroup;
@@ -65,10 +65,6 @@ export class CpfPrerequisitesComponent implements OnInit, OnDestroy {
 
   setPageTitle(title: string) {
     this.navbarService.setPageTitle(title);
-  }
-
-  ngOnDestroy(): void {
-    this.investmentEngagementJourneyService.deleteCpfBankId();    
   }
 
   buildPreRequisitesForm() {
@@ -175,7 +171,6 @@ export class CpfPrerequisitesComponent implements OnInit, OnDestroy {
       if (resp && resp.responseMessage && resp.responseMessage.responseCode >= 6000) {
         if (resp.objectList) {
           this.cpfBankDetails = resp.objectList;
-          this.investmentEngagementJourneyService.setCpfBankDetails(this.cpfBankDetails.id);
           this.updateCkaFormDetails();
         }
       } else {
@@ -222,7 +217,6 @@ export class CpfPrerequisitesComponent implements OnInit, OnDestroy {
     const params = this.constructCpfAccountParams(form.value);
     this.investmentCommonService.saveCKABankAccount(params).subscribe((data) => {
       if (data && data.objectList) {
-        this.investmentEngagementJourneyService.setCpfBankDetails(data.objectList);
         this.router.navigate([INVESTMENT_ENGAGEMENT_JOURNEY_ROUTE_PATHS.GET_STARTED_STEP1]);
       }
     }, () => {
@@ -235,11 +229,6 @@ export class CpfPrerequisitesComponent implements OnInit, OnDestroy {
       accountNumber: data.cpfAccountNo ? data.cpfAccountNo.replace(/[-]/g, '') : null,
       bankOperatorId: data.cpfOperator ? data.cpfOperator.id : null
     };  
-
-    if(!Util.isEmptyOrNull(this.investmentEngagementJourneyService.getCpfBankDetails())) {
-      reqParams['id'] = this.investmentEngagementJourneyService.getCpfBankDetails();
-    }
-
     return reqParams;
   }
 

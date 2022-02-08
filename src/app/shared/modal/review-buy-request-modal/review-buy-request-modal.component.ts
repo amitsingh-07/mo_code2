@@ -7,8 +7,8 @@ import {
     InvestmentAccountService
 } from '../../../investment/investment-account/investment-account-service';
 import {
-    ProfileIcons
-} from '../../../investment/investment-engagement-journey/recommendation/profileIcons';
+  InvestmentEngagementJourneyService
+} from '../../../investment/investment-engagement-journey/investment-engagement-journey.service';
 import {
     MANAGE_INVESTMENTS_CONSTANTS
 } from '../../../investment/manage-investments/manage-investments.constants';
@@ -40,7 +40,8 @@ export class ReviewBuyRequestModalComponent implements OnInit {
   constructor(public activeModal: NgbActiveModal,
               public readonly translate: TranslateService,
               public manageInvestmentsService: ManageInvestmentsService,
-              public investmentAccountService: InvestmentAccountService) {
+              public investmentAccountService: InvestmentAccountService,
+              public investmentEngagementJourneyService: InvestmentEngagementJourneyService) {
   }
 
   ngOnInit() {
@@ -53,7 +54,7 @@ export class ReviewBuyRequestModalComponent implements OnInit {
     this.portfolioType = this.fundDetails['portfolio']['riskProfileType'];
     if (this.fundDetails['portfolio']['riskProfileId']) {
       this.riskProfileImg =
-        ProfileIcons[this.fundDetails.portfolio.riskProfileId - 1]['icon'];
+       this.investmentEngagementJourneyService.getRiskProfileIcon(this.portfolioType, false);
     }
     this.portfolioCatagories = INVESTMENT_COMMON_CONSTANTS.PORTFOLIO_CATEGORY;
   }
