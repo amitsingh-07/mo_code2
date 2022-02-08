@@ -1,5 +1,5 @@
 
-import { Component, OnDestroy, OnInit, ViewEncapsulation } from '@angular/core';
+import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
@@ -32,7 +32,7 @@ import { Util } from '../../../shared/utils/util';
   encapsulation: ViewEncapsulation.None
 })
 
-export class FundingAccountDetailsComponent implements OnInit, OnDestroy {
+export class FundingAccountDetailsComponent implements OnInit {
   pageTitle: string;
   editPageTitle: string;
   fundingAccountDetailsForm: FormGroup;
@@ -103,10 +103,6 @@ export class FundingAccountDetailsComponent implements OnInit, OnDestroy {
       (this.portfolio.portfolioDetails.payoutType === INVESTMENT_COMMON_CONSTANTS.WISE_INCOME_PAYOUT.FOUR_PERCENT
         || this.portfolio.portfolioDetails.payoutType === INVESTMENT_COMMON_CONSTANTS.WISE_INCOME_PAYOUT.EIGHT_PERCENT)) || (this.userPortfolioType === INVESTMENT_ENGAGEMENT_JOURNEY_CONSTANTS.PORTFOLIO_TYPE.JOINT_ACCOUNT_ID) || (this.selectedPortfolio === INVESTMENT_ENGAGEMENT_JOURNEY_CONSTANTS.SELECT_POROFOLIO_TYPE.CPF_PORTFOLIO);
     this.getSrsAccDetailsAndOptionListCol();
-  }
-
-  ngOnDestroy(): void {
-    this.investmentEngagementJourneyService.deleteCpfBankId();    
   }
 
   getSrsAccDetailsAndOptionListCol() {
@@ -524,7 +520,6 @@ export class FundingAccountDetailsComponent implements OnInit, OnDestroy {
         if (resp && resp.responseMessage && resp.responseMessage.responseCode >= 6000) {
           if (resp.objectList) {
             this.cpfAccountDetails = resp.objectList;
-            this.investmentEngagementJourneyService.setCpfBankDetails(this.cpfAccountDetails.id);
             this.setCPFAccountDetails(this.cpfAccountDetails);
           }
         }
@@ -536,7 +531,6 @@ export class FundingAccountDetailsComponent implements OnInit, OnDestroy {
     const params = this.constructCpfAccountParams(form.value.cpfIADetails);
     this.investmentCommonService.saveCKABankAccount(params).subscribe((data) => {
       if (data && data.objectList) {
-        this.investmentEngagementJourneyService.setCpfBankDetails(data.objectList);
         this.router.navigate([INVESTMENT_COMMON_ROUTE_PATHS.ADD_PORTFOLIO_NAME]);      
       }
     }, () => {
@@ -549,11 +543,6 @@ export class FundingAccountDetailsComponent implements OnInit, OnDestroy {
       accountNumber: data.cpfAccountNumber ? data.cpfAccountNumber.replace(/[-]/g, '') : null,
       bankOperatorId: data.cpfOperatorBank ? data.cpfOperatorBank.id : null
     };  
-
-    if(!Util.isEmptyOrNull(this.investmentEngagementJourneyService.getCpfBankDetails())) {
-      reqParams['id'] = this.investmentEngagementJourneyService.getCpfBankDetails();
-    }
-
     return reqParams;
   }
 }
