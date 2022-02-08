@@ -170,7 +170,11 @@ export class PortfolioDetailsComponent implements OnInit {
         this.investmentCommonService.saveUpdateSessionData(this.portfolio);
         this.wiseIncomeEnabled = (this.portfolio.portfolioType.toLowerCase() == INVESTMENT_ENGAGEMENT_JOURNEY_CONSTANTS.SELECT_POROFOLIO_TYPE.WISEINCOME.toLowerCase());
         if (!this.wiseIncomeEnabled) {
-          this.iconImage = ProfileIcons[this.portfolio.riskProfile.id - 1]['icon'];
+          if(this.portfolio.portfolioType.toLowerCase() == INVESTMENT_ENGAGEMENT_JOURNEY_CONSTANTS.SELECT_POROFOLIO_TYPE.WISESAVER.toLowerCase()) {
+            this.iconImage = ProfileIcons[6]['icon'];
+          } else {
+            this.iconImage = this.investmentEngagementJourneyService.getRiskProfileIcon(this.portfolio.riskProfile.type, false);
+          }
         }
         this.getInvestmentCriteria(this.portfolio);
         this.userInputSubtext = {

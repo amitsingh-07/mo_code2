@@ -36,7 +36,8 @@ export let MANAGE_INVESTMENTS_CONSTANTS = {
     },
     FUNDING_METHODS: {
       CASH: 'CASH',
-      SRS: 'SRS'
+      SRS: 'SRS',
+      CPF: 'CPF OA'
     },
     TOPUP_TYPES: {
       ONE_TIME: {
