@@ -21,7 +21,6 @@ import {
 import {
   InvestmentEngagementJourneyService
 } from '../../investment-engagement-journey/investment-engagement-journey.service';
-import { ProfileIcons } from '../../investment-engagement-journey/recommendation/profileIcons';
 import { ManageInvestmentsService } from '../../manage-investments/manage-investments.service';
 import { IInvestmentCriteria } from '../investment-common-form-data';
 import { INVESTMENT_COMMON_ROUTES, INVESTMENT_COMMON_ROUTE_PATHS } from '../investment-common-routes.constants';
@@ -56,6 +55,7 @@ export class ConfirmPortfolioComponent implements OnInit {
   wiseIncomeEnabled: any;
   investmentEnabled: any;
   wiseSaverEnabled: any;
+  cpfEnabled: any;
   userPortfolioType: any;
   isJAEnabled: boolean;
   tncCheckboxForm: FormGroup;
@@ -164,16 +164,17 @@ export class ConfirmPortfolioComponent implements OnInit {
       this.investmentEnabled = (this.portfolio.portfolioType.toLowerCase() === INVESTMENT_ENGAGEMENT_JOURNEY_CONSTANTS.SELECT_POROFOLIO_TYPE.INVESTMENT.toLowerCase());
       this.wiseSaverEnabled = (this.portfolio.portfolioType.toLowerCase() === INVESTMENT_ENGAGEMENT_JOURNEY_CONSTANTS.SELECT_POROFOLIO_TYPE.WISESAVER.toLowerCase());
       this.wiseIncomeEnabled = (this.portfolio.portfolioType.toLowerCase() === INVESTMENT_ENGAGEMENT_JOURNEY_CONSTANTS.SELECT_POROFOLIO_TYPE.WISEINCOME.toLowerCase());
+      this.cpfEnabled = (this.portfolio.portfolioType.toLowerCase() === INVESTMENT_ENGAGEMENT_JOURNEY_CONSTANTS.SELECT_POROFOLIO_TYPE.CPF_PORTFOLIO.toLowerCase());
       this.getInvestmentCriteria(this.portfolio);
       if (this.portfolio.portfolioType === INVESTMENT_COMMON_CONSTANTS.PORTFOLIO_CATEGORY.INVESTMENT) {
         this.investmentEngagementJourneyService.setSelectPortfolioType({ selectPortfolioType: INVESTMENT_ENGAGEMENT_JOURNEY_CONSTANTS.SELECT_POROFOLIO_TYPE.INVEST_PORTFOLIO });
-        this.iconImage = ProfileIcons[this.portfolio.riskProfile.id - 1]['icon'];
+        this.iconImage = this.investmentEngagementJourneyService.getRiskProfileIcon(this.portfolio.riskProfile.type, false);
       } else if (this.portfolio.portfolioType === INVESTMENT_COMMON_CONSTANTS.PORTFOLIO_CATEGORY.WISESAVER) {
         this.getWiseSaverDetails();
         this.investmentEngagementJourneyService.setSelectPortfolioType({ selectPortfolioType: INVESTMENT_ENGAGEMENT_JOURNEY_CONSTANTS.SELECT_POROFOLIO_TYPE.WISESAVER_PORTFOLIO });
       } else if (this.portfolio.portfolioType === INVESTMENT_COMMON_CONSTANTS.PORTFOLIO_CATEGORY.CPF) {
         this.investmentEngagementJourneyService.setSelectPortfolioType({ selectPortfolioType: INVESTMENT_ENGAGEMENT_JOURNEY_CONSTANTS.SELECT_POROFOLIO_TYPE.CPF_PORTFOLIO });
-        this.iconImage = ProfileIcons[this.portfolio.riskProfile.id - 1]['icon'];
+        this.iconImage = this.investmentEngagementJourneyService.getRiskProfileIcon(this.portfolio.riskProfile.type, false);
       } else {
         this.investmentEngagementJourneyService.setSelectPortfolioType({ selectPortfolioType: INVESTMENT_ENGAGEMENT_JOURNEY_CONSTANTS.SELECT_POROFOLIO_TYPE.WISEINCOME_PORTFOLIO });
       }
@@ -320,7 +321,7 @@ export class ConfirmPortfolioComponent implements OnInit {
         const namingFormData = {
           defaultPortfolioName: data.objectList.portfolioName,
           recommendedCustomerPortfolioId: this.portfolio.customerPortfolioId,
-          recommendedRiskProfileId: this.portfolio.portfolioType === 'Investment' ? this.portfolio.riskProfile.id : this.portfolio.portfolioType === 'WiseSaver' ? 7 : 9
+          recommendedRiskProfileId: (this.portfolio.portfolioType === INVESTMENT_COMMON_CONSTANTS.PORTFOLIO_CATEGORY.INVESTMENT || this.portfolio.portfolioType === INVESTMENT_COMMON_CONSTANTS.PORTFOLIO_CATEGORY.CPF) ? this.portfolio.riskProfile : this.portfolio.portfolioType === INVESTMENT_COMMON_CONSTANTS.PORTFOLIO_CATEGORY.WISESAVER ? 7 : 9
         };
         this.investmentAccountService.setPortfolioNamingFormData(namingFormData);
         if (this.checkIfJointAccount()) {
@@ -405,14 +406,18 @@ export class ConfirmPortfolioComponent implements OnInit {
         this.investmentEnabled = (this.portfolio.portfolioType.toLowerCase() === INVESTMENT_ENGAGEMENT_JOURNEY_CONSTANTS.SELECT_POROFOLIO_TYPE.INVESTMENT.toLowerCase());
         this.wiseSaverEnabled = (this.portfolio.portfolioType.toLowerCase() === INVESTMENT_ENGAGEMENT_JOURNEY_CONSTANTS.SELECT_POROFOLIO_TYPE.WISESAVER.toLowerCase());
         this.wiseIncomeEnabled = (this.portfolio.portfolioType.toLowerCase() === INVESTMENT_ENGAGEMENT_JOURNEY_CONSTANTS.SELECT_POROFOLIO_TYPE.WISEINCOME.toLowerCase());
+        this.cpfEnabled = (this.portfolio.portfolioType.toLowerCase() === INVESTMENT_ENGAGEMENT_JOURNEY_CONSTANTS.SELECT_POROFOLIO_TYPE.CPF_PORTFOLIO.toLowerCase());
         this.getInvestmentCriteria(this.portfolio);
         if (this.portfolio.portfolioType === INVESTMENT_COMMON_CONSTANTS.PORTFOLIO_CATEGORY.INVESTMENT) {
           this.investmentEngagementJourneyService.setSelectPortfolioType({ selectPortfolioType: INVESTMENT_ENGAGEMENT_JOURNEY_CONSTANTS.SELECT_POROFOLIO_TYPE.INVEST_PORTFOLIO });
-          this.iconImage = ProfileIcons[this.portfolio.riskProfile.id - 1]['icon'];
+          this.iconImage = this.iconImage = this.investmentEngagementJourneyService.getRiskProfileIcon(this.portfolio.riskProfile.type, false);
         } else if (this.portfolio.portfolioType === INVESTMENT_COMMON_CONSTANTS.PORTFOLIO_CATEGORY.WISESAVER) {
           this.getWiseSaverDetails();
           this.investmentEngagementJourneyService.setSelectPortfolioType({ selectPortfolioType: INVESTMENT_ENGAGEMENT_JOURNEY_CONSTANTS.SELECT_POROFOLIO_TYPE.WISESAVER_PORTFOLIO });
-        } else {
+        } else if (this.portfolio.portfolioType === INVESTMENT_COMMON_CONSTANTS.PORTFOLIO_CATEGORY.CPF) {
+          this.investmentEngagementJourneyService.setSelectPortfolioType({ selectPortfolioType: INVESTMENT_ENGAGEMENT_JOURNEY_CONSTANTS.SELECT_POROFOLIO_TYPE.CPF_PORTFOLIO });
+          this.iconImage = this.iconImage = this.investmentEngagementJourneyService.getRiskProfileIcon(this.portfolio.riskProfile.type, false);
+        }else {
           this.investmentEngagementJourneyService.setSelectPortfolioType({ selectPortfolioType: INVESTMENT_ENGAGEMENT_JOURNEY_CONSTANTS.SELECT_POROFOLIO_TYPE.WISEINCOME_PORTFOLIO });
         }
         const fundingParams = this.constructFundingParams(data.objectList);

@@ -34,6 +34,7 @@ export class ReviewBuyRequestModalComponent implements OnInit {
   oneTimeMonthlyInfo: string;
   @Output() submitRequest: EventEmitter<any> = new EventEmitter();
   @Input() srsDetails;
+  @Input() cpfDetails;
   portfolioCatagories: any;
   @Output() closeAction = new EventEmitter<any>();
 
@@ -69,6 +70,9 @@ export class ReviewBuyRequestModalComponent implements OnInit {
       } else {
         this.noteArray = this.translate.instant('REVIEW_BUY_REQUEST.SUFFICIENT_ONETIME_CASH_NOTE');
       }
+    }  else if (this.fundDetails.portfolio.fundingTypeValue.toUpperCase() === MANAGE_INVESTMENTS_CONSTANTS.TOPUP.FUNDING_METHODS.CPF) {
+      this.noteArray = this.translate.instant('REVIEW_BUY_REQUEST.ONETIME_CPF_NOTE');
+      this.oneTimeMonthlyInfo = this.translate.instant('REVIEW_BUY_REQUEST.INFO_CPF_ONETIME');
     } else {
       this.noteArray = this.translate.instant('REVIEW_BUY_REQUEST.ONETIME_SRS_NOTE');
       this.oneTimeMonthlyInfo = this.translate.instant('REVIEW_BUY_REQUEST.INFO_SRS_ONETIME');
@@ -80,6 +84,9 @@ export class ReviewBuyRequestModalComponent implements OnInit {
     this.oneTimeMonthlyLbl = this.translate.instant('REVIEW_BUY_REQUEST.MONTHLY_LBL');
     if (this.fundDetails.portfolio.fundingTypeValue.toUpperCase() === MANAGE_INVESTMENTS_CONSTANTS.TOPUP.FUNDING_METHODS.CASH) {
       this.noteArray = this.translate.instant('REVIEW_BUY_REQUEST.MONTHLY_CASH_NOTE');
+    } else  if (this.fundDetails.portfolio.fundingTypeValue.toUpperCase() === MANAGE_INVESTMENTS_CONSTANTS.TOPUP.FUNDING_METHODS.CPF) {
+      this.noteArray = this.translate.instant('REVIEW_BUY_REQUEST.MONTHLY_CPF_NOTE');
+      this.oneTimeMonthlyInfo = this.translate.instant('REVIEW_BUY_REQUEST.INFO_CPF_MONTHLY');
     } else {
       this.noteArray = this.translate.instant('REVIEW_BUY_REQUEST.MONTHLY_SRS_NOTE');
       this.oneTimeMonthlyInfo = this.translate.instant('REVIEW_BUY_REQUEST.INFO_SRS_MONTHLY');

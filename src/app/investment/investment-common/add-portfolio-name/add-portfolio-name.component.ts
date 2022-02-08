@@ -88,7 +88,11 @@ export class AddPortfolioNameComponent implements OnInit, OnDestroy {
     this.footerService.setFooterVisibility(false);
     this.formValues = this.investmentAccountService.getInvestmentAccountFormData();
     this.fundingMethod = this.investmentCommonService.getConfirmedFundingMethodName();
-    this.riskProfileIcon = ProfileIcons[this.formValues.recommendedRiskProfileId - 1]['icon'];
+    if(this.formValues.recommendedRiskProfileId == 7 || this.formValues.recommendedRiskProfileId == 9) {
+      this.riskProfileIcon = ProfileIcons[this.formValues.recommendedRiskProfileId - 1]['icon'];
+    } else {
+      this.riskProfileIcon = this.investmentEngagementService.getRiskProfileIcon(this.formValues.recommendedRiskProfileId.type, false);
+    }
     this.form = this.formBuilder.group({
       portfolioName: new FormControl('', [Validators.pattern(RegexConstants.portfolioName)])
     });
