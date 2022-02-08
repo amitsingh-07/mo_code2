@@ -9,7 +9,3 @@ export const ProfileIcons = [
   { id: 8, icon: 'assets/images/investment-account/wise-income-icon.svg'},
   { id: 9, icon: 'assets/images/investment-account/wiseIncome_payout_tick_mark.svg'}
 ];
-
-export const icon = {
-  "balanced-cpfis-icon": 'assets/images/balanced-cpfis-icon.svg'
-};
