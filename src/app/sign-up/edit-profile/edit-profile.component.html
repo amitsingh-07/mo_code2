@@ -627,6 +627,64 @@
           </div>
         </div>
       </div>
+
+      <!-- cpf details -->
+      <div class="srs_details" >
+        <div class="edit-profile-section-bg">
+          <div class="flex-row cursor_pointer" (click)=showHide(showHideCpf)>
+            <div class="flex-col-11">
+              <div id="cpf-header-lbl" class="form-group-heading">{{'UPDATE_CPFIA.TITLE' | translate}}</div>
+            </div>
+            <div class="flex-col-1">
+              <div class="dropdown-img">
+                <span id="showHideSrs" class="arrow"
+                  [class.active]="showHideCpf.style.display === 'block' || showHideCpf.style.display === ''"></span>
+                <!-- <img id="edit_profile_dropdown_img" class="dropdown-img" src="assets/images/dropdown-icon.svg" /> -->
+              </div>
+            </div>
+          </div>
+          <div class="dots" #showHideCpf>
+            <div class="pb20">
+              <div class="flex-row">
+                <div class="flex-col-6">
+                  <div class="bank-account txt-bold">
+                  </div>
+                </div>
+                <div class="flex-col-6">
+                  <div class="icon-block">
+                    <span
+                      (click)="updateSrsDetails(srsDetails?.srsAccountNumber?.conformedValue, {name: srsDetails?.srsOperator}, srsDetails?.customerId, false)">
+                      <span *ngIf="is2faAuthorized"><img src="assets/images/button-edit.svg"></span>
+                      <span *ngIf="!is2faAuthorized"><img src="assets/images/accounts/edit-locked.svg"></span>
+                    </span>
+                  </div>
+                </div>
+              </div>
+              <div class="flex-row">
+                <div class="flex-col-6">
+                  <div id="cpf-operator-lbl" class="bank-account">
+                    {{'UPDATE_CPFIA.CPFIA_OPERATOR' | translate}}</div>
+                </div>
+                <div class="flex-col-6">
+                  <div id="srs-operator-value" class="bank-account-num">{{srsDetails?.srsOperator}}
+                  </div>
+                </div>
+              </div>
+              <div class="flex-row">
+                <div class="flex-col-6">
+                  <div id="cpf-act-num-lbl" class="bank-account">
+                    {{'UPDATE_CPFIA.CPFIA_ACCOUNT_NUMBER' | translate}}</div>
+                </div>
+                <div class="flex-col-6">
+                  <div id="srs-act-num-value" class="bank-account-num">
+                    {{srsDetails?.srsAccountNumber?.conformedValue}}</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- cpf details end-->
     </div>
     <!--CKA Card-->
     <div class="cka-card">

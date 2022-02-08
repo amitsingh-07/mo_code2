@@ -602,6 +602,11 @@
     "NOTE": "No account added",
     "ADD_ACCOUNT": "Add Account"
   },
+  "UPDATE_CPFIA": {
+    "TITLE": "CPF Investment Account",
+    "CPFIA_OPERATOR": "CPFIA Operator",
+    "CPFIA_ACCOUNT_NUMBER": "CPFIA Number"
+  },
   "CKA": {
     "HEADING": "Customer Knowledge Assessment",
     "NOT_STARTED": "Not started",
