@@ -49,7 +49,4 @@ export class InvestmentEngagementJourneyFormData {
 
   // PROMO CODE SETTER
   promoCode: any;
-
-  // CPF BANK DETAILS
-  cpfBankId: any;
 }
