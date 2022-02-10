@@ -654,4 +654,8 @@ export class EditProfileComponent implements OnInit, OnDestroy {
     });
     ref.componentInstance.closeBtn = false;
   }
+  showUploadDoc() {
+    const url = INVESTMENT_ENGAGEMENT_JOURNEY_ROUTE_PATHS.CKA_UPLOAD_DOCUMENT;
+    this.router.navigate([url]);
+  }
 }
