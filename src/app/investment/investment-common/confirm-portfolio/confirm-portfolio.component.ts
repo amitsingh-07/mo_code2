@@ -481,7 +481,8 @@ export class ConfirmPortfolioComponent implements OnInit {
           desc: this.translate.instant('TOAST_MESSAGES.PORTFOLIO_ACCEPTED', { userGivenPortfolioName: portfolioName }),
         };
         this.manageInvestmentsService.setToastMessage(toastMessage);
-        this.emitToastMessage.emit(portfolioName);
+        this.emitToastMessage.emit(portfolioName);      
+        this.investmentCommonService.clearConfirmedFundingMethod();
         this.router.navigate([MANAGE_INVESTMENTS_ROUTE_PATHS.YOUR_INVESTMENT]);
       } else {
         this.showErrorModal();

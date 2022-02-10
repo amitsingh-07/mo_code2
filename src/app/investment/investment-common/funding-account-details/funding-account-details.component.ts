@@ -379,11 +379,10 @@ export class FundingAccountDetailsComponent implements OnInit {
     } else {
       const fundingMethod = this.getFundingMethodNameById(form.getRawValue().confirmedFundingMethodId, this.fundingMethods);
       this.investmentCommonService.setFundingAccountDetails(form.getRawValue(), fundingMethod);
-
       const fundingMethodId = this.fundingAccountDetailsForm.get('confirmedFundingMethodId').value;
       if(this.isCPFAccount(fundingMethodId, this.fundingMethods)) {
         this.saveCPFAccountDetails(form);
-      } else if(this.isSRSAccount(fundingMethodId, this.fundingMethods)) {
+      } else {
         this.saveSRSAccountDetails(form);
       } 
     }
