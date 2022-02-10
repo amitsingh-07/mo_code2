@@ -21,6 +21,22 @@ export class AuthGuardService implements CanActivate {
     return true;
   }
 }
+@Injectable({
+  providedIn: 'root'
+})
+export class InvestmentAuthGuardService implements CanActivate {
+  constructor(private route: Router,
+              private authService: AuthenticationService
+  ) {
+  }
+  canActivate(): boolean {
+    if (!this.authService.isSignedUser()) {
+      this.route.navigate([SIGN_UP_ROUTE_PATHS.CREATE_ACCOUNT_MY_INFO]);
+      return false;
+    }
+    return true;
+  }
+}
 
 @Injectable({
   providedIn: 'root'
