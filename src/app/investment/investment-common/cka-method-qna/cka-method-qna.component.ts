@@ -79,6 +79,7 @@ export class CkaMethodQnaComponent implements OnInit {
     this.methodMetaData = {
       title: this.translate.instant('CKA.QNA.' + methodName + '.TITLE'),
       desc: this.translate.instant('CKA.QNA.' + methodName + '.DESC'),
+      pageDesc: this.translate.instant('CKA.QNA.' + methodName + '.PAGE_DESC'),
       subTitle1: this.translate.instant('CKA.QNA.' + methodName + '.SUB_TITLE_1'),
       subTitle2: this.translate.instant('CKA.QNA.' + methodName + '.SUB_TITLE_2'),
       placeholder: this.translate.instant('CKA.QNA.' + methodName + '.PLACEHOLDER'),
