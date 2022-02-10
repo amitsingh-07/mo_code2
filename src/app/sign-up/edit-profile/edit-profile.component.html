@@ -642,7 +642,7 @@
                   <span *ngIf="ckaInfo == null">{{'CKA.NOT_STARTED' | translate}}</span>
                   <span
                     *ngIf="ckaInfo?.cKAStatusMessage === 'CKA_PASSED'">{{'CKA.CKA_PASSED' | translate}}{{ckaInfo?.cKAExpiryDate}}{{'CKA.CKA_BRACKET' | translate}}</span>
-                  <span (click)="showAccessmentScreen()"
+                  <span
                     *ngIf="ckaInfo?.cKAStatusMessage === 'CKA_CERTIFICATE_UPLOAD'">{{'CKA.CKA_UPLOAD' | translate}}</span>
                 </div>
               </div>
