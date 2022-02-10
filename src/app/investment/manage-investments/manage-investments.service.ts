@@ -22,7 +22,7 @@ import {
   InvestmentEngagementJourneyService
 } from '../investment-engagement-journey/investment-engagement-journey.service';
 import { INVESTMENT_COMMON_CONSTANTS } from './../investment-common/investment-common.constants';
-import { ISrsAccountDetails, ManageInvestmentsFormData } from './manage-investments-form-data';
+import { ICPFIAccountDetails, ISrsAccountDetails, ManageInvestmentsFormData } from './manage-investments-form-data';
 import { ManageInvestmentsFormError } from './manage-investments-form-error';
 import { MANAGE_INVESTMENTS_ROUTE_PATHS } from './manage-investments-routes.constants';
 import { MANAGE_INVESTMENTS_CONSTANTS } from './manage-investments.constants';
@@ -601,6 +601,13 @@ export class ManageInvestmentsService {
     return this.formatedAccountNumber;
   }
 
+  accountFormat = (accountNumber, operatorKey: string, operator = MANAGE_INVESTMENTS_CONSTANTS.TOPUP.CPF_OPERATOR, options: any = { guide: false }) => {
+      return conformToMask(
+          accountNumber,
+          operator[operatorKey].regExp,
+          options);
+  }
+
   getSrsAccountDetails(): Observable<ISrsAccountDetails> {
     return this.investmentApiService.getSrsAccountDetails().pipe(map((data: any) => {
       if (data && data.objectList && data.objectList.accountNumber &&
@@ -644,8 +651,32 @@ export class ManageInvestmentsService {
       }));
   }
 
+  getProfileCPFIAccountDetails(maskEnabled: Boolean): Observable<ICPFIAccountDetails> {
+    return this.investmentApiService.getProfileCpfIAccountDetails(maskEnabled).pipe(map((data: any) => {
+      if (data && data.objectList && data.objectList.accountNumber &&
+        data.objectList.bankOperator && data.objectList.bankOperator.name) {
+        const cpfiaAccountDetails: ICPFIAccountDetails = {
+          cpfiaAccountNumber: this.accountFormat(data.objectList.accountNumber, data.objectList.bankOperator.name),
+          cpfiaOperator: data.objectList.bankOperator.name,
+        };
+        this.setCpfiaAccountDetails(cpfiaAccountDetails);
+        return cpfiaAccountDetails;
+      } else {
+        return null;
+      }
+    },
+      (err) => {
+        this.investmentAccountService.showGenericErrorModal();
+      }));
+  }
+
   setSrsAccountDetails(srsAccountDetails: ISrsAccountDetails) {
     this.manageInvestmentsFormData.srsAccountDetails = srsAccountDetails;
+    this.commit();
+  }
+
+  setCpfiaAccountDetails(cpfiaAccountDetails: ICPFIAccountDetails) {
+    this.manageInvestmentsFormData.cpfiaAccountDetails = cpfiaAccountDetails;
     this.commit();
   }
 

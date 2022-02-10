@@ -1,5 +1,4 @@
 import { Component, Input, OnChanges, OnInit, ViewEncapsulation } from '@angular/core';
-import { Router } from '@angular/router';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 
 import { FundDetailsComponent } from '../../../investment/investment-common/fund-details/fund-details.component';
@@ -24,27 +23,40 @@ export class AllocationComponent implements OnInit, OnChanges {
   investmentEnabled: boolean;
   wiseSaverEnabled : boolean;
   wiseIncomeEnabled: boolean;
+  cpfEnabled: boolean;
+  assetTypeConst : any;
+
   constructor(
     private investmentEngagementJourneyService: InvestmentEngagementJourneyService,
-    private router: Router,
-    public modal: NgbModal
-  ) { }
+    public modal: NgbModal,
+  ) { 
+    this.assetTypeConst = INVESTMENT_COMMON_CONSTANTS.ASSET_TYPE;
+  }
 
   ngOnInit() {
     if(this.portfolioType.toLowerCase() === INVESTMENT_ENGAGEMENT_JOURNEY_CONSTANTS.SELECT_POROFOLIO_TYPE.INVESTMENT.toLowerCase() || this.portfolioType.toLowerCase() === INVESTMENT_ENGAGEMENT_JOURNEY_CONSTANTS.SELECT_POROFOLIO_TYPE.INVEST_PORTFOLIO.toLowerCase()){
       this.investmentEnabled = true;
       this.wiseSaverEnabled = false;
       this.wiseIncomeEnabled = false;
+      this.cpfEnabled = false;
     }
     if(this.portfolioType.toLowerCase() === INVESTMENT_ENGAGEMENT_JOURNEY_CONSTANTS.SELECT_POROFOLIO_TYPE.WISEINCOME.toLowerCase() || this.portfolioType.toLowerCase() === INVESTMENT_ENGAGEMENT_JOURNEY_CONSTANTS.SELECT_POROFOLIO_TYPE.WISEINCOME_PORTFOLIO.toLowerCase()){
       this.investmentEnabled = false;
       this.wiseSaverEnabled = false;
       this.wiseIncomeEnabled = true;
+      this.cpfEnabled = false;
     }
     if(this.portfolioType.toLowerCase() === INVESTMENT_ENGAGEMENT_JOURNEY_CONSTANTS.SELECT_POROFOLIO_TYPE.WISESAVER.toLowerCase() || this.portfolioType.toLowerCase() === INVESTMENT_ENGAGEMENT_JOURNEY_CONSTANTS.SELECT_POROFOLIO_TYPE.WISESAVER_PORTFOLIO.toLowerCase()){
       this.investmentEnabled = false;
       this.wiseSaverEnabled = true;
       this.wiseIncomeEnabled = false;
+      this.cpfEnabled = false;
+    }
+    if((this.portfolioType.toLowerCase() === INVESTMENT_ENGAGEMENT_JOURNEY_CONSTANTS.SELECT_POROFOLIO_TYPE.CPF_PORTFOLIO.toLowerCase() || this.portfolioType.toLowerCase() === INVESTMENT_ENGAGEMENT_JOURNEY_CONSTANTS.SELECT_POROFOLIO_TYPE.CPF_PORTFOLIO.toLowerCase() )){
+      this.investmentEnabled = false;
+      this.wiseSaverEnabled = false;
+      this.wiseIncomeEnabled = false;
+      this.cpfEnabled = true;
     }
   }
   ngOnChanges() {

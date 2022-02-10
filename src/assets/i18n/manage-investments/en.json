@@ -19,6 +19,7 @@
       "DESC": "You have an <strong>existing monthly buy request of {{existingOrderAmount}}</strong>. Click 'Yes' to overwrite this with your new monthly buy request of {{newOrderAmount}}.",
       "ONE_TIME_DESC": "Please note that you have an <strong>existing one-time buy request of {{existingOrderAmount}}</strong>. Click 'Yes' to overwrite this with your new one-time buy request of {{newOrderAmount}}.",
       "SRS_ONE_TIME": "Please note that you have an <strong>existing one-time buy request of {{existingOrderAmount}}</strong> in processing status and can initiate new buy order only upon completion of this order.",
+      "CPF_ONE_TIME": "Please note that you have an <strong>existing one-time buy request of {{existingOrderAmount}}</strong> in processing status and can initiate new buy order only upon completion of this order.",
       "YES": "Yes",
       "NO": "No"
     }
@@ -49,6 +50,7 @@
     "DIMENSIONAL": "Dimensional",
     "WISEINCOME": "WiseIncome",
     "WISESAVER": "WiseSaver",
+    "CPF": "CPF",
     "TOTAL_PORTFOLIO_VALUE": "Total Portfolio Value",
     "PORTFOLIO_VALUE": "Portfolio Value",
     "TOTAL_RETURNS": "Total Returns ",
@@ -97,6 +99,7 @@
     "SRS_MSG": "SRS account portfolio currently handled offline.",
     "SRS_HYPERLINK": "Click here",
     "SRS": "SRS",
+    "CPF_OA": "CPF-OA",
     "SRS_JOINT_ACCOUNT_REMINDER": "You can open Joint Investment Account online now. Add Portfolio to get started!",
     "MP_WALKTHROUGH": {
       "NEW_INVESTMENT_UPDATE": "We’ve new investment updates.",
@@ -150,7 +153,8 @@
     "DAYS": "days",
     "MINUTES": "minutes",
     "HOURS": "hours",
-    "DAY": "day"
+    "DAY": "day",
+    "CPF_APPLICATION_IN_PROGRESS": "Portfolio Approval in Progress"
   },
   "YOUR_PORTFOLIO": {
     "TITLE": "Your Portfolio",
@@ -235,9 +239,15 @@
     "TRY_ANOTHER_RECOMMENDATION": "Try Another Recommendation",
     "PENDING_REQUESTS_CASH_ACCOUNT": "Pending Requests / <span>Cash Account</span>",
     "PENDING_REQUESTS_SRS_ACCOUNT": "Pending Requests / <span>SRS Account</span>",
+    "PENDING_REQUESTS_CPFOA_ACCOUNT": "Pending Requests / <span>CPF-OA Account</span>",
     "SRS_ACCOUNT": "SRS Account",
+    "CPFOA_ACCOUNT": "CPF Investment Account",
     "BANK_OPERATOR": "Bank Operator",
     "ACCOUNT_NUMBER": "Account Number",
+    "CPFIA_BANK_OPERATOR": {
+      "BANK_OPERATOR": "CPFIA Operator",
+      "ACCOUNT_NUMBER": "CPFIA Number"
+    },
     "WITHDRAWALS_IN_PROGRESS": "You have withdrawals in process.",
     "WITHDRAWALS_IN_QUEUE": "You have withdrawals in queue.",
     "ONE_TIME": "One-time",
@@ -255,6 +265,7 @@
     "PORTFOLIO_TO_BANK_ACCOUNT": "Portfolio to Bank Account",
     "PORTFOLIO_TO_CASH_ACCOUNT": "Portfolio to Cash Account",
     "PORTFOLIO_TO_SRS_ACCOUNT": "Portfolio to SRS Account",
+    "PORTFOLIO_TO_CPF_ACCOUNT": "Portfolio to CPFIA",
     "CASH_ACCOUNT_TO_BANK_ACCOUNT": "Cash Account to Bank Account",
     "JOINT_ACCOUNT": {
       "PRIMARY_HOLDER": "Primary holder",
@@ -407,6 +418,8 @@
     "EXPENSIVE_RATIO_WISE_INCOME": " This excludes fund level fees (such as annual management fees of {{expensiveRatio}} p.a.) which are factored into the price of the fund.<span> <a target='_blank' href=\"/pricing/\">View our fees table.</a></span>",
     "FUND_EXPENSIVE_RATIO": "Fund Expense Ratio",
     "TOTAL_FEE": "Total Fee",
+    "LGI_SUB_LBL":"LGI Infinity Global Stock Index Fund",
+    "UOB_SUB_LBL":"UOB United SGD Fund",
     "WISE_INCOME_PORTFOLIO": {
       "DESC_LBL": "The fund invest in the following asset classes in this proportions.",
       "ASSET_HOLDINGS_LBL": "Asset Class & Holdings",
@@ -456,6 +469,21 @@
     "ONETIME_SRS_NOTE": [
       "This request will be processed immediately once request is submitted.",
       "If there are insufficient funds in your SRS account, this request will fail, and you may incur transactional costs.",
+      "Once this request is being processed, it cannot be changed or deleted."
+    ],
+    "INFO_CPF_ONETIME": "Please ensure you have sufficient fund in your CPFIA. Amount will be deducted immediately.",
+    "INFO_CPF_MONTHLY": "Please ensure you have sufficient fund by the 10th of every month in your CPFIA.",
+    "CPF_LBL": "Transfer from CPFIA",
+    "CPF_OPERATOR": "CPFIA Operator:",
+    "CPF_ACCOUNT_NUMBER": "CPFIA Number:",
+    "MONTHLY_CPF_NOTE": [
+      "Please ensure sufficient funds in your CPFIA by the 10th of every month as the monthly buy request will be processed on the 15th or next working day if the 15th is a weekend or public holiday.",
+      "If there are insufficient funds in your CPFIA, this request will fail, and you may incur transactional costs.",
+      "You may submit a new monthly buy request before the 15th to overwrite this."
+    ],
+    "ONETIME_CPF_NOTE": [
+      "This request will be processed immediately once request is submitted.",
+      "If there are insufficient funds in your CPFIA, this request will fail, and you may incur transactional costs.",
       "Once this request is being processed, it cannot be changed or deleted."
     ],
     "MONTHLY_CASH_NOTE": [

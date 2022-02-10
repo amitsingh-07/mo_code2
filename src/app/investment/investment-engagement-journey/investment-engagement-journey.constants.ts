@@ -18,12 +18,14 @@ export let INVESTMENT_ENGAGEMENT_JOURNEY_CONSTANTS = {
     WISEINCOME_PORTFOLIO: 'wiseIncomePortfolio',
     INVESTMENT: 'Investment',
     WISESAVER: 'Wisesaver',
-    WISEINCOME: 'WiseIncome'
+    WISEINCOME: 'WiseIncome',
+    CPF_PORTFOLIO: 'CPF'
   },
   PROSPECTUS_FILE: {
     INVESTMENT: 'prospectus_investment.pdf',
     WISESAVER: 'prospectus_wise_saver.pdf',
-    WISEINCOME: 'prospectus_wise_income.pdf'
+    WISEINCOME: 'prospectus_wise_income.pdf',
+    CPF: 'prospectus_wise_income.pdf'
   },
   PAYOUT_FUNDLIST: {
     GROW: 'Grow & invest payout_Cash',
@@ -53,5 +55,14 @@ export let INVESTMENT_ENGAGEMENT_JOURNEY_CONSTANTS = {
   NATIONALITY: {
     COUNTRY_NAME: "SINGAPOREAN",
     COUNTRY_CODE: "SG"
+  },
+  riskProfileIcon: {
+    "balanced-cpfis-icon": 'assets/images/balanced-cpfis-icon.svg',
+    "conservative": 'assets/images/conservative.svg',
+    "moderate": 'assets/images/moderate.svg',
+    "balanced": 'assets/images/balanced.svg',
+    "growth": 'assets/images/growth.svg',
+    "norisk": 'assets/images/nosutable.svg',
+    "equity": 'assets/images/equity.svg'
   }
 };

@@ -392,6 +392,10 @@ app-investment-overview {
                         background-color: $withdrawn-bg-color;
                         color: $black-color;
                     }
+                    .cpf-progress-list {                        
+                        background-color: $awaiting-bg-color;
+                        color: $darker-teal-color;
+                    }
                     .delete-btn  {
                         border-radius: 6px;
                         background-color: $teal-color;

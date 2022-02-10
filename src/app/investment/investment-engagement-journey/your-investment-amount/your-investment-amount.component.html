@@ -19,6 +19,7 @@
                       <div class="form-group-with-bg--header-label" id="My_financialInvestment_Lbl">
                         {{ 'INVESTMENT_AMOUNT.INVESTMENT_LBL' | translate}}
                       </div>
+                      <div *ngIf="showCPFText()" class="cpf-note" [innerHtml]=" 'INVESTMENT_AMOUNT.INVESTMENT_CPF_LBL' | translate "></div>
                     </div>
                   </div>
                 </div>

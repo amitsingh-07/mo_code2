@@ -5,8 +5,10 @@ import { AuthGuardService as AuthGuard } from '../../sign-up/auth-guard.service'
 import { FundingIntroComponent } from '../investment-common/funding-intro/funding-intro.component';
 import { AcknowledgementComponent } from './acknowledgement/acknowledgement.component';
 import { AddPortfolioNameComponent } from './add-portfolio-name/add-portfolio-name.component';
+import { CkaMethodQnaComponent } from './cka-method-qna/cka-method-qna.component';
 import { ConfirmPortfolioComponent } from './confirm-portfolio/confirm-portfolio.component';
 import { ConfirmWithdrawalComponent } from './confirm-withdrawal/confirm-withdrawal.component';
+import { CpfPrerequisitesComponent } from './cpf-prerequisites/cpf-prerequisites.component';
 import {
   FundingAccountDetailsComponent
 } from './funding-account-details/funding-account-details.component';
@@ -52,7 +54,7 @@ const routes: Routes = [
     path: INVESTMENT_COMMON_ROUTES.FUNDING_ACCOUNT_DETAILS,
     component: FundingAccountDetailsComponent,
     canActivate: [AuthGuard]
-  }, 
+  },
   {
     path: INVESTMENT_COMMON_ROUTES.ACCEPT_JA_HOLDER + '/:customerPortfolioId',
     component: ConfirmPortfolioComponent,
@@ -76,6 +78,16 @@ const routes: Routes = [
   {
     path: INVESTMENT_COMMON_ROUTES.EDIT_WITHDRAWAL,
     component: ConfirmWithdrawalComponent,
+    canActivate: [AuthGuard]
+  },
+  {
+    path: INVESTMENT_COMMON_ROUTES.CKA_METHOD_BASED_QNA + '/:methodname',
+    component: CkaMethodQnaComponent,
+    canActivate: [AuthGuard]
+  },
+  {
+    path: INVESTMENT_COMMON_ROUTES.CPF_PREREQUISITES,
+    component: CpfPrerequisitesComponent,
     canActivate: [AuthGuard]
   },
   { path: '**', redirectTo: '/page-not-found' }

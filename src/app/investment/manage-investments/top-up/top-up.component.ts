@@ -50,6 +50,7 @@ export class TopUpComponent implements OnInit, OnDestroy {
   currentOneTimeInvAmount; // current monthly rsp amount
   isRequestSubmitted = false;
   srsAccountDetails;
+  cpfAccountDetails;
   awaitingOrPendingAmount;
   topupTypes = MANAGE_INVESTMENTS_CONSTANTS.TOPUP.TOPUP_TYPES;
   investmentCriteria: IInvestmentCriteria;
@@ -115,6 +116,10 @@ export class TopUpComponent implements OnInit, OnDestroy {
       (this.formValues['selectedCustomerPortfolio'].fundingTypeValue === MANAGE_INVESTMENTS_CONSTANTS.TOPUP.FUNDING_METHODS.SRS)) {
       this.getSrsAccountDetails();
     }
+    if (this.formValues['selectedCustomerPortfolio'] &&
+      (this.formValues['selectedCustomerPortfolio'].fundingTypeValue === MANAGE_INVESTMENTS_CONSTANTS.TOPUP.FUNDING_METHODS.CPF)) {
+      this.getCpfIaAccDetails();
+    }
     this.buildFormInvestment();
     this.setSelectedPortfolio(); 
   }
@@ -148,6 +153,26 @@ export class TopUpComponent implements OnInit, OnDestroy {
     });
   }
 
+  getCpfIaAccDetails() {     
+    this.subscription = this.authService.get2faUpdateEvent.subscribe((token) => {
+      if (!token) {
+        this.manageInvestmentsService.getProfileCPFIAccountDetails(true).subscribe((data) => {
+          if (data) {
+            this.cpfAccountDetails = data;
+            if (this.reviewBuyRequestModal) {
+              this.reviewBuyRequestModal.componentInstance.cpfDetails = data;
+            }
+          } else {
+            this.cpfAccountDetails = null;
+          }
+        },
+          (err) => {
+            this.investmentAccountService.showGenericErrorModal();
+          });
+      }
+    });
+    }
+
   // set the selected portfolio if there when page loaded
   setSelectedPortfolio() {
     if (this.formValues['selectedCustomerPortfolioId']) {
@@ -169,7 +194,10 @@ export class TopUpComponent implements OnInit, OnDestroy {
       this.awaitingOrPendingReq(value.fundingTypeValue));
     if (value.fundingTypeValue.toUpperCase() === MANAGE_INVESTMENTS_CONSTANTS.TOPUP.FUNDING_METHODS.SRS) {
       this.getSrsAccountDetails();
-    }
+    } 
+    if (value.fundingTypeValue.toUpperCase() === MANAGE_INVESTMENTS_CONSTANTS.TOPUP.FUNDING_METHODS.CPF) {
+      this.getCpfIaAccDetails();
+    } 
   }
 
   getInvestmentCriteria(portfolioType) {
@@ -306,7 +334,8 @@ export class TopUpComponent implements OnInit, OnDestroy {
         : MANAGE_INVESTMENTS_CONSTANTS.FUNDING_INSTRUCTIONS.ONETIME,
       isAmountExceedBalance: this.topupAmount > 0 ? true : false,
       exceededAmount: this.topupAmount,
-      srsDetails: this.srsAccountDetails    // SRS Details
+      srsDetails: this.srsAccountDetails,   // SRS Details
+      cpfDetails: this.cpfAccountDetails
     };
     // Set and also update the fund details for use in this component
     this.manageInvestmentsService.setFundingDetails(topupValues);
@@ -381,9 +410,18 @@ export class TopUpComponent implements OnInit, OnDestroy {
     this.reviewBuyRequestModal = this.modal.open(ReviewBuyRequestModalComponent,
       { centered: true, windowClass: 'review-buy-request-modal' });
     this.reviewBuyRequestModal.componentInstance.srsDetails = this.srsAccountDetails;
+    this.reviewBuyRequestModal.componentInstance.cpfDetails = this.cpfAccountDetails;
     this.reviewBuyRequestModal.componentInstance.fundDetails = this.fundDetails;
     this.reviewBuyRequestModal.componentInstance.submitRequest.subscribe((emittedValue) => {
       this.checkIfExistingBuyRequest(form);
+    });
+    this.reviewBuyRequestModal.componentInstance.closeAction.subscribe((emittedValue) => {
+      if(this.showOnetimeInvestmentAmount){
+        this.topForm.controls['oneTimeInvestmentAmount'].setValue(0);
+      } 
+      if(this.showMonthlyInvestmentAmount){
+        this.topForm.controls['MonthlyInvestmentAmount'].setValue(0);
+      } 
     });
   }
 
@@ -397,6 +435,8 @@ export class TopUpComponent implements OnInit, OnDestroy {
         this.showConfirmOverwriteModal(form, this.awaitingOrPendingAmount, 'oneTimeInvestmentAmount',
           'TOPUP.CONFIRM_OVERWRITE_MODAL.ONE_TIME_DESC');
       } else if (this.fundDetails.portfolio.fundingTypeValue.toUpperCase() === MANAGE_INVESTMENTS_CONSTANTS.TOPUP.FUNDING_METHODS.SRS) {
+        this.showMessage(this.awaitingOrPendingAmount, 'TOPUP.CONFIRM_OVERWRITE_MODAL.CPF_ONE_TIME');
+      } else if (this.fundDetails.portfolio.fundingTypeValue.toUpperCase() === MANAGE_INVESTMENTS_CONSTANTS.TOPUP.FUNDING_METHODS.CPF) {
         this.showMessage(this.awaitingOrPendingAmount, 'TOPUP.CONFIRM_OVERWRITE_MODAL.SRS_ONE_TIME');
       }
     } else {

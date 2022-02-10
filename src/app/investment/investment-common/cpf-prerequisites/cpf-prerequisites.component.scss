@@ -1,0 +1,175 @@
+@import '../../../../_variables.scss';
+@import '../../../../_mixins.scss';
+
+app-cpf-prerequisites {
+  .container-fluid {
+    &.max-width--1024 {
+      @include min568max767{
+        padding-top: 100px;
+      }
+      .col-lg-7{
+        padding-right: 25px;
+        @include allmobiles{
+          padding-right: 15px;
+        }
+        h2{
+          letter-spacing: -0.31px;
+        }
+       div{
+         font-size: 18px;
+         letter-spacing: -0.18px;
+         line-height: 22px;
+         @include allmobiles{
+           padding-top: 10px;
+           font-size: 16px;
+          letter-spacing: -0.16px;
+         }
+       }
+       .banner-image{
+         padding-top: 30px;
+         @include allmobiles{
+           padding: 20px 0 20px;
+         }
+         .show-sm{
+           display: flex;
+           justify-self: center
+         }
+       }
+      }
+    }
+  }
+
+  .pre-requisites-content {
+    max-width: 337px;
+    margin-left: auto;
+    @include min568max767{
+      margin: 0 auto;
+    }
+    @include allmobiles {
+      max-width: 100%;
+    }
+
+    .text-lyt {
+      font-family: $muli-semi-bold;
+      line-height: normal;
+      letter-spacing: -0.17px;
+    }
+
+    .steps {
+      font-family: $muli-bold;
+      font-size: 18px;
+      line-height: normal;
+      letter-spacing: normal;
+    }
+
+    .tooltip-icon {
+      height: 18px;
+      width: 18px;
+      cursor: pointer;
+      display: block;
+
+      img {
+        width: 100%;
+        height: 100%;
+      }
+    }
+
+    .cka-status-btn {
+      font-size: 18px;
+      line-height: normal;
+      letter-spacing: -0.14px;
+
+      .sub-txt {
+        font-family: $muli-regular;
+        font-size: 13px;
+        line-height: normal;
+        letter-spacing: -0.1px;
+        padding-top: 2px;
+      }
+
+      .status-icon {
+        width: 24px;
+        height: 24px;
+        float: left;
+      }
+
+      .cka-status-lbl {
+        padding: 10px 0;
+      }
+
+      .btn-passed {
+        background: $light-green-color !important;
+      }
+
+      .btn {
+        padding: 0.5rem 20px;
+        margin: 20px 0 30px;
+        box-shadow: 0 12px 14px 0 rgba(0, 0, 0, 0.21) !important;
+      }
+    }
+  }
+
+  label {
+    font-family: $muli-semi-bold;
+    font-size: 18px;
+    letter-spacing: -0.34px;
+  }
+
+  .operator-block {
+    .flex-row{
+      .flex-col-3{
+        label{
+          margin-bottom: 0px;
+        }
+      }
+    }
+
+    .characters{
+      font-family: $muli-italic;
+      font-size: 15px;
+      line-height: normal;
+      letter-spacing: -0.15px;
+      text-align: right;
+      margin-top: 10px;
+    }
+
+    .note-info {
+      font-family: $muli-regular;
+      font-size: 13px;
+
+      .note-icon {
+        padding-right: 15px;
+      }
+    }
+
+    .btn-dropdown {
+      &:disabled {
+        background-color: $iceberg-blue-color !important;
+        border-color: $form-control-disabled-border-color !important;
+        cursor: not-allowed;
+        color: $app-backgrnd-color !important;
+        opacity: 1 !important;
+      }
+    }
+
+    .form-control {
+      color: $app-backgrnd-color;
+      font-family: $muli-regular;
+
+      &:disabled,
+      &.disabled {
+        background-color: $iceberg-blue-color !important;
+        border-color: $form-control-disabled-border-color !important;
+        cursor: not-allowed;
+
+        input {
+          padding: 0 !important;
+        }
+      }
+
+      &:focus {
+        border-color: $form-control-disabled-border-color !important;
+      }
+    }
+  }
+}
