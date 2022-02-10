@@ -50,6 +50,7 @@ export class EditProfileComponent implements OnInit, OnDestroy {
   residentialAddress: any;
   empolymentDetails: any;
   bankDetails: any;
+  cpfBankDetails: any;
   customerJointAccBankDetails: CustomerJointAccountInfo[] = [];
   mailingAddress: any;
   contactDetails: any;
@@ -269,7 +270,9 @@ export class EditProfileComponent implements OnInit, OnDestroy {
             this.customerJointAccBankDetails = data.objectList.customerJointAccountBankDetails;
           }
           this.showBankInfo = data.objectList.cashPortfolioAvailable ? data.objectList.cashPortfolioAvailable : false;
-
+          if (data.objectList.customerCpfOperator) {
+            this.cpfBankDetails = data.objectList.customerCpfOperator;
+          }
           // Hidden the mailing address for future use
           // if ((data.objectList.contactDetails && data.objectList.contactDetails.mailingAddress)) {
           //   this.mailingAddress = data.objectList.contactDetails.mailingAddress;
@@ -657,5 +660,13 @@ export class EditProfileComponent implements OnInit, OnDestroy {
       this.router.navigate([routerURL]);
     });
     ref.componentInstance.closeBtn = false;
+  }
+
+  // cpf 
+  updateCpfDetails(cpfAccountNumber, cpfBankOperator, customerId, cpfBankFlag) {
+    this.signUpService.setOldContactDetails(this.personalData.countryCode, this.personalData.mobileNumber, this.personalData.email);
+    this.signUpService.setEditProfileCpfDetails(cpfAccountNumber, cpfBankOperator, customerId);
+    this.authService.set2faVerifyAllowed(true);
+    this.router.navigate([SIGN_UP_ROUTE_PATHS.UPDATE_CPFIA], { queryParams: { cpfBank: cpfBankFlag }, fragment: 'bank' });
   }
 }

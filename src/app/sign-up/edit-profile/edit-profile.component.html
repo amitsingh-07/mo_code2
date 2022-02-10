@@ -653,7 +653,7 @@
                 <div class="flex-col-6">
                   <div class="icon-block">
                     <span
-                      (click)="updateSrsDetails(srsDetails?.srsAccountNumber?.conformedValue, {name: srsDetails?.srsOperator}, srsDetails?.customerId, false)">
+                      (click)="updateCpfDetails(cpfDetails?.accountNumber, {name: cpfBankDetails?.bankOperator}, cpfDetails?.customerId, false)">
                       <span *ngIf="is2faAuthorized"><img src="assets/images/button-edit.svg"></span>
                       <span *ngIf="!is2faAuthorized"><img src="assets/images/accounts/edit-locked.svg"></span>
                     </span>
@@ -666,7 +666,7 @@
                     {{'UPDATE_CPFIA.CPFIA_OPERATOR' | translate}}</div>
                 </div>
                 <div class="flex-col-6">
-                  <div id="srs-operator-value" class="bank-account-num">{{srsDetails?.srsOperator}}
+                  <div id="srs-operator-value" class="bank-account-num">{{cpfBankDetails?.bankOperator.name}}
                   </div>
                 </div>
               </div>
@@ -677,7 +677,7 @@
                 </div>
                 <div class="flex-col-6">
                   <div id="srs-act-num-value" class="bank-account-num">
-                    {{srsDetails?.srsAccountNumber?.conformedValue}}</div>
+                    {{cpfBankDetails?.accountNumber}}</div>
                 </div>
               </div>
             </div>

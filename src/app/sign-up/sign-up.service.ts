@@ -785,4 +785,20 @@ export class SignUpService {
     // API Call here
     return this.apiService.getRefereeList();
   }
+
+  // cpf
+   setEditProfileCpfDetails(accountNumber, cpfBankOperator, customerId) {
+    this.signUpFormData.cpfAccountNumber = accountNumber;
+    this.signUpFormData.cpfOperatorBank = cpfBankOperator;
+    this.signUpFormData.customerId = customerId;
+    this.commit();
+  }
+
+  getCpfDetails() {
+    return {
+      cpfAccountNumber: this.signUpFormData.cpfAccountNumber,
+      cpfOperatorBank: this.signUpFormData.cpfOperatorBank,
+      customerId: this.signUpFormData.customerId
+    };
+  }
 }
