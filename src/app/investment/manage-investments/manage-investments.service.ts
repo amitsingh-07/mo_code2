@@ -651,8 +651,8 @@ export class ManageInvestmentsService {
       }));
   }
 
-  getProfileCPFIAccountDetails(): Observable<ICPFIAccountDetails> {
-    return this.investmentApiService.getProfileCpfIAccountDetails().pipe(map((data: any) => {
+  getProfileCPFIAccountDetails(maskEnabled: Boolean): Observable<ICPFIAccountDetails> {
+    return this.investmentApiService.getProfileCpfIAccountDetails(maskEnabled).pipe(map((data: any) => {
       if (data && data.objectList && data.objectList.accountNumber &&
         data.objectList.bankOperator && data.objectList.bankOperator.name) {
         const cpfiaAccountDetails: ICPFIAccountDetails = {

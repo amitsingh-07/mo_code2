@@ -156,7 +156,7 @@ export class TopUpComponent implements OnInit, OnDestroy {
   getCpfIaAccDetails() {     
     this.subscription = this.authService.get2faUpdateEvent.subscribe((token) => {
       if (!token) {
-        this.manageInvestmentsService.getProfileCPFIAccountDetails().subscribe((data) => {
+        this.manageInvestmentsService.getProfileCPFIAccountDetails(true).subscribe((data) => {
           if (data) {
             this.cpfAccountDetails = data;
             if (this.reviewBuyRequestModal) {

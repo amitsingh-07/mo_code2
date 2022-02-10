@@ -590,7 +590,7 @@ export class YourPortfolioComponent implements OnInit, OnDestroy {
   getCpfIaAccDetails() {
     if (this.portfolio.fundingTypeValue === INVESTMENT_COMMON_CONSTANTS.FUNDING_METHODS.CPF_OA) {
       // this.subscription = this.authService.get2faUpdateEvent.subscribe((token) => {
-        this.manageInvestmentsService.getProfileCPFIAccountDetails().subscribe((data) => {
+        this.manageInvestmentsService.getProfileCPFIAccountDetails(true).subscribe((data) => {
           if (data) {
             this.cpfiaAccDetail = data;
           } else {
