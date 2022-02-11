@@ -7,6 +7,9 @@ app-select-portfolio-goal-moreinfo {
             max-width: 485px;
             @include desktop {
             max-width: 600px;
+            } 
+            @include min568max767{
+              padding-top: 65px;
             }
         }
     }
