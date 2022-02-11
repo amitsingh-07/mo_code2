@@ -59,7 +59,8 @@ export let INVESTMENT_COMMON_CONSTANTS = {
   },
   ALLOCATION_DETAILS: {
     MATURITY: 'maturity',
-    CREDIT_RATING: 'credit rating'
+    CREDIT_RATING: 'credit rating',
+    CREDIT_RATING_ALLOCATION: 'credit rating allocation'
   },
   WISE_INCOME_PAYOUT: {
     GROW: '0%',
@@ -149,6 +150,7 @@ export let INVESTMENT_COMMON_CONSTANTS = {
   },
   ASSET_TYPE:{
     EQUITIES: 'Equities',
-    FIXED_INCOME: 'Fixed Income'
+    FIXED_INCOME: 'Fixed Income',
+    BONDS: 'Bonds'
   }
 };
