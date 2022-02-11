@@ -611,7 +611,7 @@
     "SELECT_OPTION_5": "Upload e-Learning Certificate",
     "SELECT_OPTION_5_DESC": "I have undergone and passed the ABS e-Learning module <br>(Module 5).",
     "SELECT_OPTION_6": "None of the Above Applies",
-    "SELECT_OPTION_6_DESC": "You will be guided through the ABS e-Learning Module in order to pass your CKA. (est. time ~20min)"
+    "SELECT_OPTION_6_DESC": "You will be guided through the ABS e-Learning Module in order to pass your CKA. (est. time ~20mins)"
   },
   "CKA_UPLOAD_DOCUMENT":{
     "PAGE_TITLE": "Customer Knowledge Assessment",
