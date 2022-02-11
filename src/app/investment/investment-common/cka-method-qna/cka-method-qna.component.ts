@@ -136,6 +136,8 @@ export class CkaMethodQnaComponent implements OnInit {
     this.methodForm.controls[control].setValue(event);
     if (event.name.toUpperCase() === INVESTMENT_COMMON_CONSTANTS.CKA.OTHERS) {
       this.methodForm.addControl('others', new FormControl('', Validators.required));
+    } else {
+      this.methodForm.removeControl('others');
     }
   }
   selectedQuestion1(event, control) {
