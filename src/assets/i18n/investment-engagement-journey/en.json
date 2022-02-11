@@ -256,7 +256,7 @@
     "MONTHLY_DEPOSIT_LBL": "Monthly Amount",
     "AT_LEAST_ONE": "Select at least one of the following.",
     "INVESTMENT_LBL": "I want to fund",
-    "INVESTMENT_CPF_LBL": "<p>Please note that the first $20,000 in your CPF OA cannot be invested.</p>As the agent bank that operates your CPF Investment Account levies a fee of $2.50 (excluding gst) for each buy and sell CPF investments. It is recommended that you opt for one-time amount or a higher monthly amount to optimise your investments.",
+    "INVESTMENT_CPF_LBL": "<p>Please note that the first $20,000 in your CPF OA cannot be invested.</p>As the agent bank that operates your CPF Investment Account levies a fee of $2.50 (excluding gst) for each buy and sell CPF investments, it is recommended that you opt for one-time amount or a higher monthly amount to optimise your investments.",
     "MIN_100": "Min. $100",
     "MIN_50": "Min. $50",
     "MIN": "Min.",
@@ -334,7 +334,7 @@
       "TITLE": "Review My Inputs",
       "ONE_TIME_INVESTMENT": "One-time Amount",
       "MONTHLY_INVESTMENT": "Monthly Amount",
-      "CPF_DESC": "<p>Please note that the first $20,000 in your CPF OA cannot be invested.</p>As the agent bank that operates your CPF Investment Account levies a fee of $2.50 (excluding gst) for each buy and sell CPF investments. It is recommended that you opt for one-time amount or a higher monthly amount to optimise your investments."
+      "CPF_DESC": "<p>Please note that the first $20,000 in your CPF OA cannot be invested.</p>As the agent bank that operates your CPF Investment Account levies a fee of $2.50 (excluding gst) for each buy and sell CPF investments, it is recommended that you opt for one-time amount or a higher monthly amount to optimise your investments."
     },
     "WISE_SAVER_PORTOFOLIO": {
       "TITLE_DESC": "The underlying cash fund holds assets primarily in <span class=\"bold-text\">Singapore Dollar</span> deposits. ",
@@ -611,7 +611,7 @@
     "SELECT_OPTION_5": "Upload e-Learning Certificate",
     "SELECT_OPTION_5_DESC": "I have undergone and passed the ABS e-Learning module <br>(Module 5).",
     "SELECT_OPTION_6": "None of the Above Applies",
-    "SELECT_OPTION_6_DESC": "You will be guided through the ABS e-Learning Module in order to pass your CKA. (est. time ~20min)"
+    "SELECT_OPTION_6_DESC": "You will be guided through the ABS e-Learning Module in order to pass your CKA. (est. time ~20mins)"
   },
   "CKA_UPLOAD_DOCUMENT":{
     "PAGE_TITLE": "Customer Knowledge Assessment",
