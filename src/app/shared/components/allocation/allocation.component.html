@@ -16,7 +16,7 @@
             <div>
               <div>{{asset.type.type}}</div>
               <div class="sub-lbl" *ngIf="cpfEnabled && asset.type.type === assetTypeConst.EQUITIES">{{'PORTFOLIO_RECOMMENDATION.LGI_SUB_LBL' | translate}}</div>
-              <div class="sub-lbl" *ngIf="cpfEnabled && asset.type.type === assetTypeConst.FIXED_INCOME" >{{'PORTFOLIO_RECOMMENDATION.UOB_SUB_LBL' | translate}}</div>
+              <div class="sub-lbl" *ngIf="cpfEnabled && asset.type.type === assetTypeConst.BONDS" >{{'PORTFOLIO_RECOMMENDATION.UOB_SUB_LBL' | translate}}</div>
             </div>
             <div><i class='arrow'></i></div>
         </div>
