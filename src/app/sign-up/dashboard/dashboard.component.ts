@@ -354,7 +354,8 @@ export class DashboardComponent implements OnInit {
       }
       case SIGN_UP_CONFIG.INVESTMENT.CDD_CHECK_PENDING:
       case SIGN_UP_CONFIG.INVESTMENT.EDD_CHECK_CLEARED:
-      case SIGN_UP_CONFIG.INVESTMENT.EDD_CHECK_PENDING: {
+      case SIGN_UP_CONFIG.INVESTMENT.EDD_CHECK_PENDING: 
+      case SIGN_UP_CONFIG.INVESTMENT.CKA_PENDING: {
         this.showCddCheckOngoing = true;
         this.enableInvestment();
         break;

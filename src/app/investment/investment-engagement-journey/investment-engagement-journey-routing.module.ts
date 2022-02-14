@@ -25,6 +25,7 @@ import { RiskAcknowledgementComponent } from './risk-acknowledgement/risk-acknow
 import { WiseIncomePayoutComponent } from './wise-income-payout/wise-income-payout.component';
 import { AddSecondaryHolderComponent } from './add-secondary-holder/add-secondary-holder.component';
 import { UploadDocumentComponent } from './upload-document/upload-document.component';
+import { InvestmentAuthGuardService as InvestmentAuthGuard } from '../../sign-up/auth-guard.service';
 import { AuthGuardService as AuthGuard } from '../../sign-up/auth-guard.service';
 import { CkaAssessmentComponent } from './cka-assessment/cka-assessment.component';
 import { NoneOfTheAboveComponent } from './none-of-the-above/none-of-the-above.component';
@@ -38,7 +39,7 @@ const routes: Routes = [
     path: INVESTMENT_ENGAGEMENT_JOURNEY_ROUTES.ROOT,
     redirectTo: INVESTMENT_ENGAGEMENT_JOURNEY_ROUTES.START,
     pathMatch: 'full',
-    canActivate: [InvestmentEngagementJourneyGuard]
+    canActivate: [InvestmentEngagementJourneyGuard, AuthGuard]
   },
   {
     path: INVESTMENT_ENGAGEMENT_JOURNEY_ROUTES.SELECT_PORTFOLIO_TYPE,
@@ -48,74 +49,74 @@ const routes: Routes = [
   {
     path: INVESTMENT_ENGAGEMENT_JOURNEY_ROUTES.SELECT_PORTFOLIO,
     component: SelectPortfolioComponent,
-    canActivate: [InvestmentEngagementJourneyGuard]
+    canActivate: [InvestmentEngagementJourneyGuard, AuthGuard]
   },
   {
     path: INVESTMENT_ENGAGEMENT_JOURNEY_ROUTES.FUNDING_METHOD,
     component: FundingMethodComponent,
-    canActivate: [InvestmentEngagementJourneyGuard]
+    canActivate: [InvestmentEngagementJourneyGuard, AuthGuard]
   },
   {
     path: INVESTMENT_ENGAGEMENT_JOURNEY_ROUTES.GET_STARTED_STEP1,
     component: GetStartedStep1Component,
-    canActivate: [InvestmentEngagementJourneyGuard]
+    canActivate: [InvestmentEngagementJourneyGuard, AuthGuard]
   },
   { path: INVESTMENT_ENGAGEMENT_JOURNEY_ROUTES.PORTFOLIO_EXIST, component: PortfolioExistComponent },
   {
     path: INVESTMENT_ENGAGEMENT_JOURNEY_ROUTES.PERSONAL_INFO,
     component: InvestmentPeriodComponent,
-    canActivate: [InvestmentEngagementJourneyGuard]
+    canActivate: [InvestmentEngagementJourneyGuard, AuthGuard]
   },
   {
     path: INVESTMENT_ENGAGEMENT_JOURNEY_ROUTES.INVESTMENT_AMOUNT,
     component: YourInvestmentAmountComponent,
-    canActivate: [InvestmentEngagementJourneyGuard]
+    canActivate: [InvestmentEngagementJourneyGuard, AuthGuard]
   },
   {
     path: INVESTMENT_ENGAGEMENT_JOURNEY_ROUTES.MY_FINANCIAL,
     component: YourFinancialsComponent,
-    canActivate: [InvestmentEngagementJourneyGuard]
+    canActivate: [InvestmentEngagementJourneyGuard, AuthGuard]
   },
   {
     path: INVESTMENT_ENGAGEMENT_JOURNEY_ROUTES.GET_STARTED_STEP2,
     component: GetStartedStep2Component,
-    canActivate: [InvestmentEngagementJourneyGuard]
+    canActivate: [InvestmentEngagementJourneyGuard, AuthGuard]
   },
   {
     path: INVESTMENT_ENGAGEMENT_JOURNEY_ROUTES.RISK_ASSESSMENT,
     redirectTo: INVESTMENT_ENGAGEMENT_JOURNEY_ROUTES.RISK_ASSESSMENT + '/1',
     pathMatch: 'full',
-    canActivate: [InvestmentEngagementJourneyGuard]
+    canActivate: [InvestmentEngagementJourneyGuard, AuthGuard]
   },
   {
     path: INVESTMENT_ENGAGEMENT_JOURNEY_ROUTES.RISK_ASSESSMENT + '/:id',
     component: RiskWillingnessComponent,
-    canActivate: [InvestmentEngagementJourneyGuard]
+    canActivate: [InvestmentEngagementJourneyGuard, AuthGuard]
   },
   {
     path: INVESTMENT_ENGAGEMENT_JOURNEY_ROUTES.RISK_PROFILE,
     component: RecommendationComponent,
-    canActivate: [InvestmentEngagementJourneyGuard]
+    canActivate: [InvestmentEngagementJourneyGuard, AuthGuard]
   },
   {
     path: INVESTMENT_ENGAGEMENT_JOURNEY_ROUTES.PORTFOLIO_RECOMMENDATION,
     component: PortfolioDetailsComponent,
-    canActivate: [InvestmentEngagementJourneyGuard]
+    canActivate: [InvestmentEngagementJourneyGuard, AuthGuard]
   },
   {
     path: INVESTMENT_ENGAGEMENT_JOURNEY_ROUTES.START,
     component: StartJourneyComponent,
-    canActivate: [InvestmentEngagementJourneyGuard]
+    canActivate: [InvestmentEngagementJourneyGuard, InvestmentAuthGuard]
   },
   {
     path: INVESTMENT_ENGAGEMENT_JOURNEY_ROUTES.RISK_ACKNOWLEDGEMENT,
     component: RiskAcknowledgementComponent,
-    canActivate: [InvestmentEngagementJourneyGuard]
+    canActivate: [InvestmentEngagementJourneyGuard, AuthGuard]
   },
   {
     path: INVESTMENT_ENGAGEMENT_JOURNEY_ROUTES.WISE_INCOME_PAYOUT,
     component: WiseIncomePayoutComponent,
-    canActivate: [InvestmentEngagementJourneyGuard]
+    canActivate: [InvestmentEngagementJourneyGuard, InvestmentAuthGuard]
   },
   {
     path: INVESTMENT_ENGAGEMENT_JOURNEY_ROUTES.ADD_SECONDARY_HOLDER,
@@ -175,7 +176,7 @@ const routes: Routes = [
   {
     path: INVESTMENT_ENGAGEMENT_JOURNEY_ROUTES.SELECT_PORTFOLIO_GOAL_MORE_INFO,
     component: SelectPortfolioGoalMoreinfoComponent,
-    canActivate: [InvestmentEngagementJourneyGuard]
+    canActivate: [InvestmentEngagementJourneyGuard, AuthGuard]
   },
   { path: '**', redirectTo: '/page-not-found' }
 ];

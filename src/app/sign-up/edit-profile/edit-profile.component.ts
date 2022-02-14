@@ -659,6 +659,7 @@ export class EditProfileComponent implements OnInit, OnDestroy {
     ref.componentInstance.closeBtn = false;
   }
   showUploadDoc() {
+    this.investmentCommonService.setCKARedirectFromLocation(SIGN_UP_ROUTE_PATHS.EDIT_PROFILE);
     const url = INVESTMENT_ENGAGEMENT_JOURNEY_ROUTE_PATHS.CKA_UPLOAD_DOCUMENT;
     this.router.navigate([url]);
   }
