@@ -29,6 +29,7 @@ app-select-portfolio-goal-moreinfo {
                 border-radius: 6px;
                 display: flex;
                 justify-content: space-between;
+                margin-top: 10px;
                 &--left {
                     color: $portfolio-card-text-color;
                     font-size: 14px;
@@ -88,7 +89,8 @@ app-select-portfolio-goal-moreinfo {
           font-size: 16px;
           font-family: $muli-regular;
           color: $boulder-grey-color;
-    
+          line-height: 23px;
+          letter-spacing: -0.16px;
           ul {
             padding-left: 0;
           }
