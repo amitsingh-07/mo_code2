@@ -233,7 +233,7 @@
         "TITLE": "Less than 11 years of investment period",
         "MESSAGE": "It is not recommended to invest your CPF OA as you may need a longer time horizon to beat the risk-free interest of 2.5% p.a.<br> earned on your CPF monies.",
         "BTN_LBL1": "Review Investment Period",
-        "BTN_LBL2": "Invest Another Portfolio"
+        "BTN_LBL2": "Invest In Another Portfolio"
       }
     }
   },
@@ -298,7 +298,7 @@
       "modalDesc": "Emergency Fund is money that must be set aside to <b>cover your living expenses for a period of at least 3 months</b>. In the event of an emergency, such as a loss of income, the emergency fund helps cover some of your expenses."
     },
     "QUESTATION": "Do you have at least 3 months’ worth of Emergency Fund?",
-    "QUESTATION_CPF": "Have you set aside at least 3 months of buffer in your CPF OA"
+    "QUESTATION_CPF": "Have you set aside at least 3 months of buffer in your CPF OA?"
   },
   "PORTFOLIO_RECOMMENDATION": {
     "STEP1": "Step 1",
