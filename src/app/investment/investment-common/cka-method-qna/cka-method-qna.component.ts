@@ -134,20 +134,23 @@ export class CkaMethodQnaComponent implements OnInit {
   }
   selectedQuestion2(event, control) {
     this.methodForm.controls[control].setValue(event);
-    if (event.name.toUpperCase() === INVESTMENT_COMMON_CONSTANTS.CKA.OTHERS) {
-      this.methodForm.addControl('others', new FormControl('', Validators.required));
-    } else {
-      this.methodForm.removeControl('others');
-    }
+    this.addOrRemoveOthersTextbox(event);
   }
+  
   selectedQuestion1(event, control) {
     this.methodForm.controls[control].setValue(event);
     if (this.ckaMethodName !== INVESTMENT_COMMON_CONSTANTS.CKA.METHODS[2]) {
       this.methodForm.addControl('question2', new FormControl('', Validators.required));
     } else {
-      if (event.name.toUpperCase() === INVESTMENT_COMMON_CONSTANTS.CKA.OTHERS) {
-        this.methodForm.addControl('others', new FormControl('', [Validators.required, Validators.pattern(RegexConstants.NameWithSymbol)]));
-      }
+      this.addOrRemoveOthersTextbox(event);
+    }
+  }
+
+  addOrRemoveOthersTextbox(value) {
+    if (value.name.toUpperCase() === INVESTMENT_COMMON_CONSTANTS.CKA.OTHERS) {
+      this.methodForm.addControl('others', new FormControl('', [Validators.required, Validators.pattern(RegexConstants.NameWithSymbol)]));
+    } else {
+      this.methodForm.removeControl('others');
     }
   }
 
