@@ -383,7 +383,7 @@
           <div *ngIf="portfolio?.fundingTypeValue === fundingMethods.CPF_OA" class="pending-request">
             <div class="your-portfolio-tab-title"
               innerHTML="{{'YOUR_PORTFOLIO.PENDING_REQUESTS_CPFOA_ACCOUNT' | translate}}"></div>
-            <div class="circle" *ngIf="pendingBuyRequests && pendingBuyRequests.value">
+            <div class="circle cpf" *ngIf="pendingBuyRequests && pendingBuyRequests.value">
               <span>{{pendingBuyRequests.value.length}}</span>
             </div>
           </div>

@@ -270,11 +270,14 @@ app-recommendation {
     }
 
     .check-box-desc {
-      font-family: $muli-regular;
+      font-family: $muli;
       font-size: 16px;
-      line-height: 21px;
-      letter-spacing: -0.15px;
-      color: black;
+      font-weight: 600;
+      font-stretch: normal;
+      font-style: normal;
+      line-height: normal;
+      letter-spacing: -0.3px;
+      color: $silver-grey-color;
     }
 
     .checkbox-with-desc-lable {
@@ -285,13 +288,12 @@ app-recommendation {
     }
 
     .checkbox-with-desc {
-      background: #ffffff;
-      font-family: "Muli Bold", sans-serif;
-      font-size: 18px;
-      margin-bottom: 16px;
+      background: $white-color;
+      margin-bottom: 30px;
       position: relative;
       border: none;
       border-radius: 6px;
+      box-shadow: 0 10px 14px 0 rgba(0, 0, 0, 0.21) ;
     }
 
     .btn__footer--fixed {
