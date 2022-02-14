@@ -1,6 +1,7 @@
 import {
   Component, ElementRef, EventEmitter, Input, OnInit, Output, ViewChild, ViewEncapsulation, ChangeDetectorRef
 } from '@angular/core';
+import { UpperCasePipe, LowerCasePipe, TitleCasePipe } from '@angular/common';
 import {
   FormControl, FormGroupDirective
 } from '@angular/forms';
@@ -22,12 +23,14 @@ export class DropdownWithSearchComponent implements OnInit {
   @Input('placement') placement;
   @Input('placeholderText') placeholderText;
   @Input('form') form;
+  @Input('textCase') textCase;
   @Output() itemSelected = new EventEmitter<boolean>();
   isDropdownOpen = false;
   selectedValue;
   @ViewChild('searchInputElement', { static: true }) searchInputElement: ElementRef;
 
-  constructor(private parent: FormGroupDirective, private cd: ChangeDetectorRef) {
+  constructor(private parent: FormGroupDirective, private cd: ChangeDetectorRef, private upperCasePipe: UpperCasePipe,
+  private lowerCasePipe: LowerCasePipe, private titleCasePipe: TitleCasePipe ) {
   }
 
   ngOnInit() {
@@ -75,4 +78,14 @@ export class DropdownWithSearchComponent implements OnInit {
       });
     }
   }
+
+  getTransformedValue(selectedValue: any) {
+    if(this.textCase && this.textCase === 'uppercase') {      
+      return this.upperCasePipe.transform(selectedValue);
+    } else if(this.textCase && this.textCase === 'lowercase') { 
+      return this.lowerCasePipe.transform(selectedValue);
+    } else {
+      return this.titleCasePipe.transform(selectedValue);
+    }
+  } 
 }
