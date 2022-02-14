@@ -289,13 +289,11 @@ app-recommendation {
 
     .checkbox-with-desc {
       background: #ffffff;
-      font-family: "Muli Bold", sans-serif;
-      font-size: 18px;
       margin-bottom: 30px;
       position: relative;
       border: none;
       border-radius: 6px;
-      box-shadow: 0 10px 14px 0 rgb(0 0 0 / 21%);
+      box-shadow: 0 10px 14px 0 rgba(0, 0, 0, 0.21) ;
     }
 
     .btn__footer--fixed {
