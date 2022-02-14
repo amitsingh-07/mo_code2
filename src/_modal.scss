@@ -1400,3 +1400,16 @@ body.modal-open::-webkit-scrollbar {
     }
   }
 }
+
+.custom-cka-modal{
+  .modal-body-message{
+    color: $boulder-grey-color;
+  }
+}
+
+.custom-advisory-modal{
+  .modal-body-message{
+    color: $boulder-grey-color;
+  }
+}
+ 
