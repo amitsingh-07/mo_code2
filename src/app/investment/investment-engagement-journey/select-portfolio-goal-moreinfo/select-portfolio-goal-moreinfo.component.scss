@@ -7,6 +7,9 @@ app-select-portfolio-goal-moreinfo {
             max-width: 485px;
             @include desktop {
             max-width: 600px;
+            } 
+            @include min568max767{
+              padding-top: 65px;
             }
         }
     }
@@ -26,6 +29,7 @@ app-select-portfolio-goal-moreinfo {
                 border-radius: 6px;
                 display: flex;
                 justify-content: space-between;
+                margin-top: 10px;
                 &--left {
                     color: $portfolio-card-text-color;
                     font-size: 14px;
@@ -84,8 +88,9 @@ app-select-portfolio-goal-moreinfo {
         &__slide-item {
           font-size: 16px;
           font-family: $muli-regular;
-          color: $silver-grey-color;
-    
+          color: $boulder-grey-color;
+          line-height: 23px;
+          letter-spacing: -0.16px;
           ul {
             padding-left: 0;
           }
@@ -106,6 +111,7 @@ app-select-portfolio-goal-moreinfo {
           font-size: 16px;
           font-family: $muli-bold;
           margin-bottom: 15px;
+          color: $silver-grey-color;
         }
       }
     .slick-dots li {

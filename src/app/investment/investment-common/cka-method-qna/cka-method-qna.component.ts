@@ -79,6 +79,7 @@ export class CkaMethodQnaComponent implements OnInit {
     this.methodMetaData = {
       title: this.translate.instant('CKA.QNA.' + methodName + '.TITLE'),
       desc: this.translate.instant('CKA.QNA.' + methodName + '.DESC'),
+      pageDesc: this.translate.instant('CKA.QNA.' + methodName + '.PAGE_DESC'),
       subTitle1: this.translate.instant('CKA.QNA.' + methodName + '.SUB_TITLE_1'),
       subTitle2: this.translate.instant('CKA.QNA.' + methodName + '.SUB_TITLE_2'),
       placeholder: this.translate.instant('CKA.QNA.' + methodName + '.PLACEHOLDER'),
@@ -133,18 +134,23 @@ export class CkaMethodQnaComponent implements OnInit {
   }
   selectedQuestion2(event, control) {
     this.methodForm.controls[control].setValue(event);
-    if (event.name.toUpperCase() === INVESTMENT_COMMON_CONSTANTS.CKA.OTHERS) {
-      this.methodForm.addControl('others', new FormControl('', Validators.required));
-    }
+    this.addOrRemoveOthersTextbox(event);
   }
+  
   selectedQuestion1(event, control) {
     this.methodForm.controls[control].setValue(event);
     if (this.ckaMethodName !== INVESTMENT_COMMON_CONSTANTS.CKA.METHODS[2]) {
       this.methodForm.addControl('question2', new FormControl('', Validators.required));
     } else {
-      if (event.name.toUpperCase() === INVESTMENT_COMMON_CONSTANTS.CKA.OTHERS) {
-        this.methodForm.addControl('others', new FormControl('', [Validators.required, Validators.pattern(RegexConstants.NameWithSymbol)]));
-      }
+      this.addOrRemoveOthersTextbox(event);
+    }
+  }
+
+  addOrRemoveOthersTextbox(value) {
+    if (value.name.toUpperCase() === INVESTMENT_COMMON_CONSTANTS.CKA.OTHERS) {
+      this.methodForm.addControl('others', new FormControl('', [Validators.required, Validators.pattern(RegexConstants.NameWithSymbol)]));
+    } else {
+      this.methodForm.removeControl('others');
     }
   }
 

@@ -225,15 +225,15 @@
       "LIST_LBL_2": "11 to 13",
       "LIST_LBL_3": "13 to 14",
       "LIST_LBL_4": "15 or more",
-      "LIST_LBL_DESC_1": "Not recomended to invest your <br> CPF OA as you may need a <br> longer time horizon to beat the <br> risk-free interest of 2.5%p.a <br> earned on your monies.",
+      "LIST_LBL_DESC_1": "Not recommended to invest your CPF OA as you may need a longer time horizon to beat the risk-free interest of 2.5% p.a. earned on your CPF monies.",
       "LIST_LBL_DESC_2": "Up to 60% Equities (40% Bonds)",
       "LIST_LBL_DESC_3": "Up to 80% Equities (20% Bonds)",
       "LIST_LBL_DESC_4": "Up to 100% Equities",
       "MODAL": {
         "TITLE": "Less than 11 years of investment period",
-        "MESSAGE": "It is not recommended to invest your CPF OA <br> as you may need a longer time horizon to <br> beat the risk-free interest of 2.5% p.a <br> earned on your CPF monies.",
+        "MESSAGE": "It is not recommended to invest your CPF OA as you may need a longer time horizon to beat the risk-free interest of 2.5% p.a.<br> earned on your CPF monies.",
         "BTN_LBL1": "Review Investment Period",
-        "BTN_LBL2": "Invest Another Portfolio"
+        "BTN_LBL2": "Invest In Another Portfolio"
       }
     }
   },
@@ -255,8 +255,8 @@
     "INITIAL_DEPOSIT_LBL": "One-time Amount",
     "MONTHLY_DEPOSIT_LBL": "Monthly Amount",
     "AT_LEAST_ONE": "Select at least one of the following.",
-    "INVESTMENT_LBL": "I want to fund",
-    "INVESTMENT_CPF_LBL": "<p>Please note that the first $20,000 in your CPF OA cannot be invested.</p>As the agent bank that operates your CPF Investment Account levies a fee of $2.50 (excluding gst) for each buy and sell CPF investments. It is recommended that you opt for one-time amount or a higher monthly amount to optimise your investments.",
+    "INVESTMENT_LBL": "My Funding Amount",
+    "INVESTMENT_CPF_LBL": "<p>Please note that the first $20,000 in your CPF OA cannot be invested.</p>As the agent bank that operates your CPF Investment Account levies a fee of $2.50 (excluding gst) for each buy and sell CPF investments, it is recommended that you opt for one-time amount or a higher monthly amount to optimise your investments.",
     "MIN_100": "Min. $100",
     "MIN_50": "Min. $50",
     "MIN": "Min.",
@@ -298,7 +298,7 @@
       "modalDesc": "Emergency Fund is money that must be set aside to <b>cover your living expenses for a period of at least 3 months</b>. In the event of an emergency, such as a loss of income, the emergency fund helps cover some of your expenses."
     },
     "QUESTATION": "Do you have at least 3 months’ worth of Emergency Fund?",
-    "QUESTATION_CPF": "Have you set aside at least 3 months of buffer in your CPF OA"
+    "QUESTATION_CPF": "Have you set aside at least 3 months of buffer in your CPF OA?"
   },
   "PORTFOLIO_RECOMMENDATION": {
     "STEP1": "Step 1",
@@ -334,7 +334,7 @@
       "TITLE": "Review My Inputs",
       "ONE_TIME_INVESTMENT": "One-time Amount",
       "MONTHLY_INVESTMENT": "Monthly Amount",
-      "CPF_DESC": "<p>Please note that the first $20,000 in your CPF OA cannot be invested.</p>As the agent bank that operates your CPF Investment Account levies a fee of $2.50 (excluding gst) for each buy and sell CPF investments. It is recommended that you opt for one-time amount or a higher monthly amount to optimise your investments."
+      "CPF_DESC": "<p>Please note that the first $20,000 in your CPF OA cannot be invested.</p>As the agent bank that operates your CPF Investment Account levies a fee of $2.50 (excluding gst) for each buy and sell CPF investments, it is recommended that you opt for one-time amount or a higher monthly amount to optimise your investments."
     },
     "WISE_SAVER_PORTOFOLIO": {
       "TITLE_DESC": "The underlying cash fund holds assets primarily in <span class=\"bold-text\">Singapore Dollar</span> deposits. ",
@@ -611,7 +611,7 @@
     "SELECT_OPTION_5": "Upload e-Learning Certificate",
     "SELECT_OPTION_5_DESC": "I have undergone and passed the ABS e-Learning module <br>(Module 5).",
     "SELECT_OPTION_6": "None of the Above Applies",
-    "SELECT_OPTION_6_DESC": "You will be guided through the ABS e-Learning Module in order to pass your CKA. (est. time ~20min)"
+    "SELECT_OPTION_6_DESC": "You will be guided through the ABS e-Learning Module in order to pass your CKA. (est. time ~20mins)"
   },
   "CKA_UPLOAD_DOCUMENT":{
     "PAGE_TITLE": "Customer Knowledge Assessment",
@@ -643,7 +643,7 @@
     "QUE_2": "How do I find out more?",
     "STEP_4": "Visit our website for more <a class=\"hyperlink_color\" target=\"_blank\" href=\"https://www.moneyowl.com.sg/faq-investment/#investment|8\">Frequently Asked Questions</a> on investing with MoneyOwl.",
     "STEP_5": "For assistance on investment pre-requisites, please email <a class=\"hyperlink_color\" target='_blank' href='mailto:enquiries@moneyowl.com.sg'>enquiries@moneyowl.com.sg</a>.",
-    "BACK_TO_PROFILE_LBL": "Back to profile",
+    "BACK_TO_PROFILE_LBL": "Back to Profile",
     "TAKE_CERTIFICATION_LBL": "<a target='_blank' href='https://sips.abs.org.sg/Default.aspx'>Take Certification</a>"
   },
   "CKA_RESULT": {

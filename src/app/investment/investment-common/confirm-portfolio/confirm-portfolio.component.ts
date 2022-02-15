@@ -327,6 +327,7 @@ export class ConfirmPortfolioComponent implements OnInit {
         if (this.checkIfJointAccount()) {
           this.router.navigate([INVESTMENT_COMMON_ROUTE_PATHS.CONFIRM_WITHDRAWAL]);
         } else {
+          this.investmentCommonService.clearConfirmedFundingMethod();
           this.router.navigate([INVESTMENT_COMMON_ROUTE_PATHS.FUNDING_ACCOUNT_DETAILS]);
         }
       } else {

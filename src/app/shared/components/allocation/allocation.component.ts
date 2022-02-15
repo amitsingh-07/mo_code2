@@ -75,7 +75,7 @@ export class AllocationComponent implements OnInit, OnChanges {
     const assetKeys = Object.keys(targetObj);
     const groupObjects = [];
     for (const prop of assetKeys) {
-      if (prop.toLowerCase() === INVESTMENT_COMMON_CONSTANTS.ALLOCATION_DETAILS.MATURITY || prop.toLowerCase() === INVESTMENT_COMMON_CONSTANTS.ALLOCATION_DETAILS.CREDIT_RATING) {
+      if (prop.toLowerCase() === INVESTMENT_COMMON_CONSTANTS.ALLOCATION_DETAILS.MATURITY || prop.toLowerCase() === INVESTMENT_COMMON_CONSTANTS.ALLOCATION_DETAILS.CREDIT_RATING || prop.toLowerCase() === INVESTMENT_COMMON_CONSTANTS.ALLOCATION_DETAILS.CREDIT_RATING_ALLOCATION) {
         this.investmentEngagementJourneyService.sortByProperty(targetObj[prop], 'listingOrder', 'asc');
       } else {
         this.investmentEngagementJourneyService.sortByProperty(targetObj[prop], 'percentage', 'desc');

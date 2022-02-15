@@ -7,6 +7,9 @@ app-cka-assessment{
             @include allmobiles{
                 padding-bottom: 30px;
             }
+            @include min568max767{
+                padding-top: 65px;
+            }
         }
     }
     .text-lyt{
@@ -38,6 +41,9 @@ app-cka-assessment{
                 text-align: left;
                 &:last-child{
                     margin-bottom: 0;
+                }
+                @include allmobiles{
+                    width: 100%;
                 }
                 .title{
                     font-family: $muli-semi-bold;

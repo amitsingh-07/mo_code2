@@ -68,6 +68,12 @@ app-select-portfolio {
 
     &__img {
       margin-left: 20px;
+      @include allmobiles{
+        margin-left: 10px;
+      }
+      @include iphone6{
+        margin-left: 0px;
+      }
       img {
         width: 90px;
         height: 95px;
@@ -122,7 +128,7 @@ app-select-portfolio {
       }
 
       &__desc {
-        font-size: 13px;
+        font-size: 14px;
         font-family: $muli-regular;
       }
 
@@ -239,7 +245,7 @@ app-select-portfolio {
           width: 140px;
           border-radius: 14px;
           border: 1px solid $white-color;
-          background-color: $persian-dark-teal-color;
+          background-color: transparent;
           font-family: $muli-bold;
           font-size: 14px;
           line-height: normal;
