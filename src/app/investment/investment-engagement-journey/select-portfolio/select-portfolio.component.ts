@@ -6,6 +6,7 @@ import { FormGroup, Validators, FormControl } from '@angular/forms';
 import { Router } from '@angular/router';
 import { TranslateService } from '@ngx-translate/core';
 import { SlickCarouselComponent } from 'ngx-slick-carousel';
+import { NgbNavChangeEvent, NgbModal } from '@ng-bootstrap/ng-bootstrap';
 
 import { appConstants } from '../../../app.constants';
 import { AppService } from '../../../app.service';
@@ -16,8 +17,11 @@ import { AuthenticationService } from '../../../shared/http/auth/authentication.
 import { NavbarService } from '../../../shared/navbar/navbar.service';
 import { INVESTMENT_ENGAGEMENT_JOURNEY_ROUTE_PATHS } from '../investment-engagement-journey-routes.constants';
 import { InvestmentEngagementJourneyService } from '../investment-engagement-journey.service';
+import { InvestmentCommonService } from './../../investment-common/investment-common.service';
+import { InvestmentAccountService } from '../../investment-account/investment-account-service';
 import { SeoServiceService } from './../../../shared/Services/seo-service.service';
 import { INVESTMENT_ENGAGEMENT_JOURNEY_CONSTANTS } from '../investment-engagement-journey.constants';
+import { ModelWithButtonComponent } from '../../../shared/modal/model-with-button/model-with-button.component';
 
 @Component({
   selector: 'app-select-portfolio',
@@ -55,6 +59,7 @@ export class SelectPortfolioComponent implements OnInit {
   fundingMethods: any;
   loaderTitle: string;
   loaderDesc: string;
+  cpfProgressAvailable: boolean;
 
   constructor(
     public readonly translate: TranslateService,
@@ -66,7 +71,11 @@ export class SelectPortfolioComponent implements OnInit {
     public footerService: FooterService,
     public authService: AuthenticationService,
     private _location: Location,
-    private seoService: SeoServiceService
+    private seoService: SeoServiceService,
+    private loaderService: LoaderService,
+    private investmentCommonService: InvestmentCommonService,
+    private investmentAccountService: InvestmentAccountService,
+    private modal: NgbModal
   ) {
     this.translate.use('en');
     this.translate.get('COMMON').subscribe((result: string) => {
@@ -85,6 +94,7 @@ export class SelectPortfolioComponent implements OnInit {
     this.navbarService.setNavbarMobileVisibility(true);
     this.navbarService.setNavbarMode(6);
     this.footerService.setFooterVisibility(false);
+    this.getCKAData(); 
     this.selectedPortfolioType = this.investmentEngagementJourneyService.getSelectPortfolioType();
     this.selectPortfolioForm = new FormGroup({
       selectPortfolioType: new FormControl(
@@ -135,5 +145,50 @@ export class SelectPortfolioComponent implements OnInit {
   isJointAccount(){
     const userPortfolioType = this.investmentEngagementJourneyService.getUserPortfolioType();
     return userPortfolioType === INVESTMENT_ENGAGEMENT_JOURNEY_CONSTANTS.PORTFOLIO_TYPE.JOINT_ACCOUNT_ID;
+  }
+  showLoader() {
+    this.loaderService.showLoader({
+      title: this.translate.instant('LOADER_MESSAGES.LOADING.TITLE'),
+      desc: this.translate.instant('LOADER_MESSAGES.LOADING.MESSAGE'),
+      autoHide: false
+    });
+  }
+  getCKAData() {
+    this.showLoader();
+    this.investmentCommonService.getCKAAssessmentStatus().subscribe((data) => {
+      this.loaderService.hideLoaderForced();
+      const responseMessage = data.responseMessage;
+      if (responseMessage && responseMessage.responseCode === 6000) {
+          console.log(data.objectList);
+          if(data.objectList) {
+            this.cpfProgressAvailable = data.objectList.cpfProgressAvailable;
+          } else {
+            this.cpfProgressAvailable = false;
+          }
+        }
+    }, () => {
+      this.loaderService.hideLoaderForced();
+      this.investmentAccountService.showGenericErrorModal();
+    });
+  }
+  onNavChange(changeEvent: NgbNavChangeEvent) {
+    console.log(changeEvent.nextId);
+    if (changeEvent.nextId === 2 && this.cpfProgressAvailable) {
+      this.showProgressModal();
+      changeEvent.preventDefault();
+    }
+  }
+  showProgressModal() {
+    const ref = this.modal.open(ModelWithButtonComponent, { centered: true });
+    ref.componentInstance.errorTitle = this.translate.instant(
+      'PORTFOLIO.PROGRESS_POPUP.TITLE'
+    );
+    ref.componentInstance.errorMessage = this.translate.instant(
+      'PORTFOLIO.PROGRESS_POPUP.DESCRIPTION'
+    );
+    ref.componentInstance.primaryActionLabel = this.translate.instant(
+      'PORTFOLIO.PROGRESS_POPUP.BUTTON'
+    );
+    ref.componentInstance.closeBtn = false;
   }
 }

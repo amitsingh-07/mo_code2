@@ -21,7 +21,7 @@ import { SeoServiceService } from './../../../shared/Services/seo-service.servic
 import { INVESTMENT_ENGAGEMENT_JOURNEY_CONSTANTS } from '../investment-engagement-journey.constants';
 import { INVESTMENT_COMMON_CONSTANTS } from '../../investment-common/investment-common.constants';
 import { INVESTMENT_COMMON_ROUTE_PATHS } from '../../investment-common/investment-common-routes.constants';
-import { appConstants } from 'src/app/app.constants';
+import { appConstants } from '../../../app.constants';
 
 @Component({
   selector: 'app-select-portfolio-goal-moreinfo',
