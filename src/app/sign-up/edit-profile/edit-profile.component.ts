@@ -271,7 +271,13 @@ export class EditProfileComponent implements OnInit, OnDestroy {
           }
           this.showBankInfo = data.objectList.cashPortfolioAvailable ? data.objectList.cashPortfolioAvailable : false;
           if (data.objectList.customerCpfOperator) {
-            this.cpfBankDetails = data.objectList.customerCpfOperator;
+            const cpfDetails = {
+              conformedValue: this.manageInvestmentsService.accountFormat(data.objectList.customerCpfOperator.accountNumber, data.objectList.customerCpfOperator.bankOperator.name),
+              accountNumber: data.objectList.customerCpfOperator.accountNumber,
+              bankOperator: data.objectList.customerCpfOperator.bankOperator,
+              customerId: data.objectList.customerCpfOperator.customerId
+            };
+            this.cpfBankDetails = cpfDetails;
           }
           // Hidden the mailing address for future use
           // if ((data.objectList.contactDetails && data.objectList.contactDetails.mailingAddress)) {

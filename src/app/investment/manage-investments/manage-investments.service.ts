@@ -787,4 +787,10 @@ export class ManageInvestmentsService {
     this.manageInvestmentsFormData.isJointAccountUser = isJaUser;
     this.commit();
   }
+
+  // cpf
+  setCPFSuccessFlag(isCPFAccountUpdated) {
+    this.manageInvestmentsFormData.isCPFAccountUpdated = isCPFAccountUpdated;
+    this.commit();
+  }
 }
