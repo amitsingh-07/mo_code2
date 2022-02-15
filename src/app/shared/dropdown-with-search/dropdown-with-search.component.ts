@@ -80,7 +80,9 @@ export class DropdownWithSearchComponent implements OnInit {
   }
 
   getTransformedValue(selectedValue: any) {
-    if(this.textCase && this.textCase === 'uppercase') {      
+    if(this.textCase && this.textCase === 'default') {      
+      return selectedValue;
+    } else if(this.textCase && this.textCase === 'uppercase') {      
       return this.upperCasePipe.transform(selectedValue);
     } else if(this.textCase && this.textCase === 'lowercase') { 
       return this.lowerCasePipe.transform(selectedValue);
