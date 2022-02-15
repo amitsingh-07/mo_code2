@@ -67,12 +67,12 @@
           <!-- CPFIA OPERATOR -->
           <span *ngIf="withdrawType.id === WITHDRAW_CONSTANTS.PORTFOLIO_TO_CPF_TYPE_ID">
             <span class="caption">{{ 'WITHDRAW.MODAL.CONFIRM_WITHDRAWAL.CPFIA_OPERATOR' | translate}}</span>
-            <span class="values">{{cpfAccountInfo?.bankOperator}}</span>
+            <span class="values">{{cpfAccountInfo?.cpfiaOperator}}</span>
           </span>
           <!-- CPFIA ACCOUNT NUMBER -->
           <span *ngIf="withdrawType.id === WITHDRAW_CONSTANTS.PORTFOLIO_TO_CPF_TYPE_ID">
             <span class="caption">{{ 'WITHDRAW.MODAL.CONFIRM_WITHDRAWAL.CPFIA_ACC_NUMBER' | translate}}</span>
-            <span class="values">{{cpfAccountInfo?.accountNumber}}</span>
+            <span class="values">{{cpfAccountInfo?.cpfiaAccountNumber.conformedValue}}</span>
           </span>
           <!-- Re-Balancing -->
           <div

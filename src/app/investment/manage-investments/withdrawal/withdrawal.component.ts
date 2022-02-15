@@ -103,7 +103,6 @@ export class WithdrawalComponent implements OnInit, OnDestroy {
     const pList = this.manageInvestmentsService.getUserPortfolioList();    
     for (const portfolio of pList) {
       if (portfolio.entitlements && (portfolio.entitlements.showWithdrawPvToBa || portfolio.entitlements.showWithdrawPvToCa || portfolio.entitlements.showWithdrawCaToBa || portfolio.entitlements.showWithdrawPvToSRS || portfolio.entitlements.showWithdrawPvToCPF)) {
-        portfolio.portfolioType = 'CPF'
         this.portfolioList.push(portfolio);
       }
     }
@@ -176,7 +175,7 @@ export class WithdrawalComponent implements OnInit, OnDestroy {
   getAndSetCpfIaDetails() {
     this.subscription = this.authService.get2faUpdateEvent.subscribe((token) => {
       if (!token) {
-        this.manageInvestmentsService.getProfileCPFIAccountDetails(false).subscribe((data) => {
+        this.manageInvestmentsService.getProfileCPFIAccountDetails(true).subscribe((data) => {
           if (data) {
             this.cpfAccountInfo = data;
             if (this.cfmWithdrawalModal) {
@@ -203,7 +202,7 @@ export class WithdrawalComponent implements OnInit, OnDestroy {
         return portfolio.customerPortfolioId === customerPortfolioId;
       });
       this.setDropDownValue('withdrawPortfolio', data);
-      if (data.portfolioType !== 'SRS' && data.portfolioType !== 'CPF') {
+      if (data.portfolioType !== MANAGE_INVESTMENTS_CONSTANTS.TOPUP.FUNDING_METHODS.SRS && data.portfolioType !== 'CPF') {
         this.setWithdrawTypeAndAmt();
       }
     }
