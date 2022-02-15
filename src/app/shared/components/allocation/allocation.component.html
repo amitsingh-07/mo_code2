@@ -23,7 +23,7 @@
         <ngb-accordion #acc="ngbAccordion">
           <ngb-panel id="panel-{{i}}" title="Second">
             <ng-template ngbPanelContent>
-              <div class="bond_desc" *ngIf="asset.type.holdingsCount">
+              <div class="bond_desc" *ngIf="asset.holdingsCount">
                 <div class="flex-row flex-col-12">
                   <div class="rating_type border-right-none">{{'PORTFOLIO_RECOMMENDATION.NUMBER_HOLDINGS_LBL' | translate}}</div>
                   <div class="rating">
