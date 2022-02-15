@@ -298,6 +298,7 @@
         "DESC_PORTFOLIO_TO_BANK": "You are withdrawing the following amount from your portfolio to your bank account. <br/><br/> Once the request is submitted, it cannot be cancelled.",
         "DESC_CASH_TO_BANK": "You are withdrawing the following amount from your cash account to your bank account. <br/><br/> Once the request is submitted, it cannot be cancelled.",
         "DESC_PORTFOLIO_TO_SRS": "You are withdrawing the following amount from your portfolio to your SRS account.  <br/><br/>Once the request is submitted, it cannot be cancelled.",
+        "DESC_PORTFOLIO_TO_CPF": "You are withdrawing the following amount from your portfolio to your CPF IA.  <br/><br/>Once the request is submitted, it cannot be cancelled.",
         "PORTFOLIO": "portfolio",
         "GUIDELINE_HEADING": "Important note on balance amount:",
         "GUIDELINE_FOR_PORTFOLIO_MIN": "As a guideline, you should maintain a minimum portfolio value of $50. You accept, should your portfolio balance be below that, that we might not re-balance your portfolio to its strategic asset allocation upon re-balancing events.",
@@ -323,6 +324,8 @@
         "TRANSFER_TO_BANK_AC_NO": "Transfer to Bank Account No. :",
         "SRS_OPERATOR": "SRS Operator:",
         "SRS_ACC_NUMBER": "SRS Account Number:",
+        "CPFIA_OPERATOR": "CPFIA Operator:",
+        "CPFIA_ACC_NUMBER": "CPFIA Number:",
         "RE_BALANCE": {
           "TITLE": "Rebalancing In Progress",
           "DESC": "Please note that this portfolio is being rebalanced. This process will be completed in 6 to 7 working days.",

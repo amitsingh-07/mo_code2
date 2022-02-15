@@ -18,6 +18,7 @@ export class ConfirmWithdrawalModalComponent implements OnInit {
   @Input() bankAccountNo: any;
   @Input() userInfo: any;
   @Input() srsAccountInfo: any;
+  @Input() cpfAccountInfo: any;
   @Output() confirmed: EventEmitter<any> = new EventEmitter();
   @Output() showLearnMore: EventEmitter<any> = new EventEmitter();
   WITHDRAW_CONSTANTS;
