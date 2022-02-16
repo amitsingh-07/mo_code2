@@ -163,7 +163,7 @@ export class InvestmentPeriodComponent implements OnInit, AfterViewInit, IPageCo
   }
 
   showModalPopUp(title, btn1, btn2, msg) {
-    const ref = this.modal.open(ModelWithButtonComponent, { centered: true });
+    const ref = this.modal.open(ModelWithButtonComponent, { centered: true , windowClass: 'limited-width , custom-advisory-modal' });
     ref.componentInstance.errorTitle = title;
     ref.componentInstance.errorMessageHTML = msg;
     ref.componentInstance.investmentPeriodImg = true;

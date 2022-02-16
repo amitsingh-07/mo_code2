@@ -641,7 +641,7 @@ export class EditProfileComponent implements OnInit, OnDestroy {
 
   openCKAModal() {
     this.investmentCommonService.setCKARedirectFromLocation(SIGN_UP_ROUTE_PATHS.EDIT_PROFILE);
-    const ref = this.modal.open(ModelWithButtonComponent, { centered: true });
+    const ref = this.modal.open(ModelWithButtonComponent, { centered: true , windowClass: 'custom-cka-modal' });
     ref.componentInstance.errorTitle = this.translate.instant(
       'OPEN_CKA.TITLE'
     );
@@ -659,6 +659,7 @@ export class EditProfileComponent implements OnInit, OnDestroy {
     ref.componentInstance.closeBtn = false;
   }
   showUploadDoc() {
+    this.investmentCommonService.setCKARedirectFromLocation(SIGN_UP_ROUTE_PATHS.EDIT_PROFILE);
     const url = INVESTMENT_ENGAGEMENT_JOURNEY_ROUTE_PATHS.CKA_UPLOAD_DOCUMENT;
     this.router.navigate([url]);
   }
