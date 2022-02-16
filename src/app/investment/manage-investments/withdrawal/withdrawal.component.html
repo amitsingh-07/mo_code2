@@ -39,7 +39,8 @@
                       </button>
                       <div class="dropdown" ngbDropdownMenu aria-labelledby="withdrawDropDown">
                         <button class="dropdown-item capital-letter"
-                        [class.hide]="portfolio.portfolioType === fundingMethods.SRS && !portfolio.entitlements.showWithdrawPvToSRS"
+                        [class.hide]="(portfolio.portfolioType === fundingMethods.SRS && !portfolio.entitlements.showWithdrawPvToSRS)
+                        || (portfolio.portfolioType === fundingMethods.CPF && !portfolio.entitlements.showWithdrawPvToCPF)"
                           *ngFor="let portfolio of portfolioList; let i = index;"
                           (click)="setDropDownValue('withdrawPortfolio',portfolio)"
                           id="withdraw-portfolio-option-{{i}}">{{portfolio.portfolioName + ' - ' +
@@ -60,7 +61,7 @@
                 <div class="flex-col-8">
                   <div class="dropdown-control"
                     [ngClass]="{'inline-error':getInlineErrorStatus(withdrawForm.controls.withdrawType)}"
-                    *ngIf="entitlements.portfolioType !== 'SRS'">
+                    *ngIf="entitlements.portfolioType !== fundingMethods.SRS && entitlements.portfolioType !== fundingMethods.CPF">
                     <div ngbDropdown>
                       <button class="btn btn-dropdown without-border" id="withdraw-type-drpdown" ngbDropdownToggle>
                         <span *ngIf="!withdrawForm.controls.withdrawType.value">{{ 'WITHDRAW.SELECT_TYPE' |
@@ -74,7 +75,8 @@
                             [class.hide]="(type.value === 'PORTFOLIO_TO_BANK_ACCOUNT' && !entitlements.showWithdrawPvToBa)
                             || (type.value === 'PORTFOLIO_TO_CASH_ACCOUNT' && !entitlements.showWithdrawPvToCa)
                             || (type.value === 'CASH_TO_BANK_ACCOUNT' && !entitlements.showWithdrawCaToBa)
-                            || type.value === 'PORTFOLIO_TO_SRS_ACCOUNT' && !entitlements.showWithdrawPvToSRS"
+                            || (type.value === 'PORTFOLIO_TO_SRS_ACCOUNT' && !entitlements.showWithdrawPvToSRS)
+                            || (type.value === 'PORTFOLIO_TO_CPF_ACCOUNT' && !entitlements.showWithdrawPvToCPF)"
                             (click)="setDropDownValue('withdrawType',type, i)" id="withdraw-type-option-{{i}}">
                             {{type.name}}
                           </button>
@@ -82,7 +84,11 @@
                       </div>
                     </div>
                   </div>
-                  <div class="form-control" *ngIf="entitlements.portfolioType === 'SRS'">
+                  <div class="form-control" *ngIf="entitlements.portfolioType === fundingMethods.SRS">
+                    <input class="input-control" type="text" id="withdraw-type-srs"
+                      value={{withdrawForm.controls.withdrawType.value.name}} disabled>
+                  </div>
+                  <div class="form-control" *ngIf="entitlements.portfolioType === fundingMethods.CPF">
                     <input class="input-control" type="text" id="withdraw-type-srs"
                       value={{withdrawForm.controls.withdrawType.value.name}} disabled>
                   </div>
