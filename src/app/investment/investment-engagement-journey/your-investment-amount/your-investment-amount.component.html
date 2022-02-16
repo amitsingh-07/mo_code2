@@ -32,7 +32,9 @@
                       <label for="1" id="c1">
                         <div class="input-label-black"> {{ 'INVESTMENT_AMOUNT.INITIAL_DEPOSIT_LBL' | translate}}</div>
                         <div class="input-label-normal">
-                          {{ 'INVESTMENT_AMOUNT.MIN' | translate}} ${{ investmentCriteria.oneTimeInvestmentMinimum}}
+                          <span class="decimal-clip-format">
+                          {{ 'INVESTMENT_AMOUNT.MIN' | translate}} {{ investmentCriteria.oneTimeInvestmentMinimum | formatCurrency }}
+                        </span>
                         </div>
                       </label>
                     </div>
@@ -55,7 +57,9 @@
                       <label for="2" id="c2">
                         <div class="input-label-black"> {{ 'INVESTMENT_AMOUNT.MONTHLY_DEPOSIT_LBL' | translate}}</div>
                         <div class="input-label-normal">
-                          {{ 'INVESTMENT_AMOUNT.MIN' | translate}} ${{ investmentCriteria.monthlyInvestmentMinimum}}</div>
+                          <span  class="decimal-clip-format">
+                          {{ 'INVESTMENT_AMOUNT.MIN' | translate}} {{ investmentCriteria.monthlyInvestmentMinimum | formatCurrency }}
+                        </span></div>
                       </label>
                     </div>
                     <div class="flex-col-6">
