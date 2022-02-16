@@ -91,6 +91,10 @@ export class ManageInvestmentsService {
     return this.manageInvestmentsFormData.srsAccountDetails;
   }
 
+  getCpfiaFormData(): ICPFIAccountDetails {
+    return this.manageInvestmentsFormData.cpfiaAccountDetails;
+  }
+  
   getAllDropDownList() {
     return this.investmentApiService.getAllDropdownList();
   }
