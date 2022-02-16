@@ -159,7 +159,6 @@ export class SelectPortfolioComponent implements OnInit {
       this.loaderService.hideLoaderForced();
       const responseMessage = data.responseMessage;
       if (responseMessage && responseMessage.responseCode === 6000) {
-          console.log(data.objectList);
           if(data.objectList) {
             this.cpfProgressAvailable = data.objectList.cpfProgressAvailable;
           } else {
