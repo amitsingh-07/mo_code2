@@ -357,7 +357,7 @@ export class YourPortfolioComponent implements OnInit, OnDestroy {
       }
       case 5: {
         if (this.portfolio.entitlements.showWithdrawPvToBa || this.portfolio.entitlements.showWithdrawPvToCa ||
-          this.portfolio.entitlements.showWithdrawCaToBa || this.portfolio.entitlements.showWithdrawPvToSRS) {
+          this.portfolio.entitlements.showWithdrawCaToBa || this.portfolio.entitlements.showWithdrawPvToSRS || this.portfolio.entitlements.showWithdrawPvToCPF) {
           this.manageInvestmentsService.clearWithdrawalTypeFormData();
           this.router.navigate([MANAGE_INVESTMENTS_ROUTE_PATHS.WITHDRAWAL]);
         }

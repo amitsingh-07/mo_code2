@@ -13,7 +13,7 @@
     <form name="selectPortfolioForm" [formGroup]="selectPortfolioForm"
         id="selectPortfolioForm">
         <nav ngbNav #nav="ngbNav" class="nav-tabs mb20 flex justify-center"
-            [(activeId)]="activeTabId">
+            [(activeId)]="activeTabId" (navChange)="onNavChange($event)">
             <ng-container [ngbNavItem]="1">
                 <a class="portfolio-tab mr20" ngbNavLink>{{'PORTFOLIO.TAB_LBL_1'
                     | translate}}</a>

@@ -17,7 +17,7 @@ import { InvestmentAccountService } from '../../investment-account/investment-ac
 import { LoaderService } from '../../../shared/components/loader/loader.service';
 import { CpfiaTooltipComponent } from './cpfia-tooltip/cpfia-tooltip.component';
 import { InvestmentEngagementJourneyService } from '../../investment-engagement-journey/investment-engagement-journey.service';
-import { Util } from 'src/app/shared/utils/util';
+import { Util } from '../../../shared/utils/util';
 
 @Component({
   selector: 'app-cpf-prerequisites',
