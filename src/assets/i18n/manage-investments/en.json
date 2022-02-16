@@ -10,6 +10,7 @@
     "PROCESS_TXT": "We will process your request once you click 'Submit' below.",
     "SUBMIT": "Submit",
     "CONTINUE": "Continue",
+    "MIN": "Min.",
     "TOPUP_REQUEST_LOADER": {
       "TITLE": "Submitting Request",
       "DESC": "Please wait while we submit the topup request"
