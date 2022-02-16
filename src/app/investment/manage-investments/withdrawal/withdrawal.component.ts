@@ -202,7 +202,7 @@ export class WithdrawalComponent implements OnInit, OnDestroy {
         return portfolio.customerPortfolioId === customerPortfolioId;
       });
       this.setDropDownValue('withdrawPortfolio', data);
-      if (data.portfolioType !== MANAGE_INVESTMENTS_CONSTANTS.TOPUP.FUNDING_METHODS.SRS && data.portfolioType !== 'CPF') {
+      if (data.portfolioType !== MANAGE_INVESTMENTS_CONSTANTS.TOPUP.FUNDING_METHODS.SRS && data.portfolioType !== MANAGE_INVESTMENTS_CONSTANTS.TOPUP.FUNDING_METHODS.CPF) {
         this.setWithdrawTypeAndAmt();
       }
     }
@@ -394,13 +394,18 @@ export class WithdrawalComponent implements OnInit, OnDestroy {
       this.getUserBankList(value.customerPortfolioId,this.entitlements.jointAccount);
       this.cashBalance = parseFloat(this.decimalPipe.transform(value.cashAccountBalance || 0, '1.2-2').replace(/,/g, ''));
       this.withdrawForm.removeControl('withdrawAmount');
-      if (value.portfolioType === 'SRS') {
+      if (value.portfolioType === MANAGE_INVESTMENTS_CONSTANTS.TOPUP.FUNDING_METHODS.SRS) {
         this.withdrawForm.controls.withdrawType.value = MANAGE_INVESTMENTS_CONSTANTS.WITHDRAW.WITHDRAWAL_TYPES[3];
         this.buildFormForPortfolioType();
         this.isFromPortfolio = true;
       }
+      if (value.portfolioType === MANAGE_INVESTMENTS_CONSTANTS.TOPUP.FUNDING_METHODS.CPF) {
+        this.withdrawForm.controls.withdrawType.value = MANAGE_INVESTMENTS_CONSTANTS.WITHDRAW.WITHDRAWAL_TYPES[4];
+        this.buildFormForPortfolioType();
+        this.isFromPortfolio = true;
+      }
     }
-    if (key === 'withdrawType' || value.portfolioType === 'SRS') {
+    if (key === 'withdrawType' || value.portfolioType === MANAGE_INVESTMENTS_CONSTANTS.TOPUP.FUNDING_METHODS.SRS) {
       setTimeout(() => {
         this.checkRedeemAll();
       }, 100);
