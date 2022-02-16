@@ -1,4 +1,4 @@
-import { RegexConstants } from "src/app/shared/utils/api.regex.constants";
+import { RegexConstants } from "./../../shared/utils/api.regex.constants";
 
 export let MANAGE_INVESTMENTS_CONSTANTS = {
   ALLOW_MANAGE_INVESTMENTS_GUARD: [
@@ -63,6 +63,7 @@ export let MANAGE_INVESTMENTS_CONSTANTS = {
     PORTFOLIO_TO_BANK_TYPE_ID: 2,
     CASH_TO_BANK_TYPE_ID: 3,
     PORTFOLIO_TO_SRS_TYPE_ID: 4,
+    PORTFOLIO_TO_CPF_TYPE_ID: 5,
     DEFAULT_WITHDRAW_MODE: 'BANK',
     MIN_WITHDRAW_AMOUNT: 50,
     MIN_BALANCE_AMOUNT: 50

@@ -97,7 +97,13 @@
         "LIST_ITEM_5": "Low costs"
       }
     },
-    "LEARN_MORE": "Learn More"
+    "LEARN_MORE": "Learn More",
+    "PROGRESS_POPUP": {
+      "TITLE": "You have a portfolio pending approval",
+      "DESCRIPTION": "Portfolio Approval is pending. So cannot proceed to add subsequent portfolio.",
+      "BUTTON": "Okay, Got It!"
+
+    }
   },
 
   "WISE_INCOME_PAYOUT": {
