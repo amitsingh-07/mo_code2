@@ -155,7 +155,7 @@ export class CkaUploadDocumentComponent implements OnInit {
   }
 
   private gentleReminderPopup() {
-    const ref = this.modal.open(ModelWithButtonComponent, { centered: true });
+    const ref = this.modal.open(ModelWithButtonComponent, { centered: true , windowClass: 'custom-cka-upload'});
     ref.componentInstance.imgType = 1;
     ref.componentInstance.errorTitle = this.translate.instant('CKA_UPLOAD_DOCUMENT.GENTLE_REMINDER_TITLE');
     ref.componentInstance.errorMessageHTML = this.translate.instant('CKA_UPLOAD_DOCUMENT.GENTLE_REMINDER_DESC');

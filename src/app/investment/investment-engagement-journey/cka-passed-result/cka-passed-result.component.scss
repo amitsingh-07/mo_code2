@@ -17,6 +17,9 @@
 .cka-result__content__title {
     font-family: "Muli Semi Bold", sans-serif;
     font-size: 24px;
+    @include desktop {
+        font-size: 30px;
+    }
     letter-spacing: -0.18px;
     text-align: center;
     margin-top: 25px;
