@@ -1,4 +1,4 @@
-import { RegexConstants } from "src/app/shared/utils/api.regex.constants";
+import { RegexConstants } from "./../../shared/utils/api.regex.constants";
 
 export let MANAGE_INVESTMENTS_CONSTANTS = {
   ALLOW_MANAGE_INVESTMENTS_GUARD: [
