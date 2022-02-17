@@ -171,7 +171,7 @@ const routes: Routes = [
   {
     path: INVESTMENT_ENGAGEMENT_JOURNEY_ROUTES.PORTFOLIO_APP_IN_PROGRESS,
     component: PortfolioApplicationInprogressComponent,
-    canActivate: [InvestmentEngagementJourneyGuard, AuthGuard]
+    canActivate: [AuthGuard]
   },
   {
     path: INVESTMENT_ENGAGEMENT_JOURNEY_ROUTES.SELECT_PORTFOLIO_GOAL_MORE_INFO,
