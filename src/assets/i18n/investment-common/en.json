@@ -304,8 +304,13 @@
     "CPFIA_TITLE": "CPF Investment Account (CPFIA) Details",
     "CPF_OPERATOR": "CPFIA Operator",
     "CPF_ACC_NO": "CPFIA  Number ",
-    "CPF_NOTE": "<p>You <u>MUST</u> ensure sufficient fund in your CPF Ordinary Account. Amount will be deducted immediately and invest within 2-3 working days. </p>",
-    "CPF_CORRECT_ACC_NO_TEXT": "Please ensure you have entered the correct account information. "
+    "CPF_NOTE": "You MUST ensure sufficient fund in your CPF Ordinary Account. Amount will be deducted immediately and invest within 2-3 working days. ",
+    "CPF_CORRECT_ACC_NO_TEXT": "Please ensure you have entered the correct account information. ",
+    "CPF_TOOLTIP": {
+      "TITLE": "<span>CPF Investment Account (CPFIA) Details</span>",
+      "DESC": "<span>To check your CPF Investment Account number, you can login to my CPF Online Services or mobile app, or your agent bank. </br> </br> Visit our website for more <span><a class=\"hyperlink_color\" target='_blank' href='https://www.moneyowl.com.sg/faq-investment/#investment|0'><u>Frequently Asked Questions</u></a></span> on investing with MoneyOwl. </br></br> For assistance on updating your CPF Investment Account (CPFIA) information, please email <span><u class=\"cpf-fund-mail-color\">enquiries@moneyowl.com.sg</u></span>.</span>",
+      "BTN": "Okay, Got It!"
+    }
   },
   "COMMON_LOADER": {
     "TITLE": "Loading",
@@ -467,10 +472,7 @@
       "PARA1": "<p>Invest your CPF Ordinary Account savings for potentially higher returns. </br></br> Before you can invest using your CPF OA, you must have your CPF Investment Account (CPFIA) ready. </p>",
       "QUEST1": "<p><b>How to start investing your CPF OA with MoneyOwl</b></p><p>Simply select CPF OA as your source of funds when you create your investment portfolio. We will then deduct the funds from your CPF OA to fund your investment. Be sure that your CPF OA has sufficient amount for the deduction to go through smoothly!</p> ",
       "QUEST2": "<p><b>How do I set up a CPF Investment Account?</b></p><p>To invest your CPF OA with MoneyOwl, you would first need to open a CPF Investment Account (CPFIA) with any of the 3 local banks (DBS, OCBC and UOB) online or at bank branches. </p><p>If you are investing your CPF OA for the first time, you will be asked to take the CPFIS Self-Awareness Questionnaire (SAQ) found on CPF website. </p>",
-      "QUEST3": "<p><b>How to find out more?</b></p><p>When investing your CPF OA, please be mindful that while it is highly probable that you can get better returns than the 2.5% p.a., it is not guaranteed and the returns are subject to fluctuations. <span><u>To learn more about investing your CPF, read on.</u></span> </p><p>Visit our website for more <span><u>Frequently Asked Questions</u></span> on investing with MoneyOwl.</p><p>For assistance on updating your CPF Investment Account (CPFIA) information, please email <span><u>enquiries@moneyowl.com.sg.</u><span></p>",
-      "QUEST3_ANS_PARA1": "When investing your CPF OA, please be mindful that while it is highly probable that you can get better returns than the 2.5% p.a., it is not guaranteed and the returns are subject to fluctuations. <a target='_blank' href=\"/pricing/\">To learn more about investing your CPF, read on.</a>",
-      "QUEST3_ANS_PARA2": "Visit our website for more <a target='_blank' href=\"https://www.moneyowl.com.sg/faq-investment/#investment|3/\">Frequently Asked Questions</a> on investing with MoneyOwl.",
-      "QUEST3_ANS_PARA3": "For assistance on updating your CPF Investment Account (CPFIA) information, please email enquiries@moneyowl.com.sg.",
+      "QUEST3": "<p><b>How to find out more?</b></p><p>When investing your CPF OA, please be mindful that while it is highly probable that you can get better returns than the 2.5% p.a., it is not guaranteed and the returns are subject to fluctuations. <span><a class=\"hyperlink_color\" target='_blank' href='https://www.moneyowl.com.sg/faq-investment/#investment|0'><u>To learn more about investing your CPF, read on.</u></a></span> </p><p>Visit our website for more <span><a class=\"hyperlink_color\" target='_blank' href='https://www.moneyowl.com.sg/faq-investment/#investment|3/'><u>Frequently Asked Questions</u></a></span> on investing with MoneyOwl.</p><p>For assistance on updating your CPF Investment Account (CPFIA) information, please email <span><u>enquiries@moneyowl.com.sg.</u><span></p>",
       "OKAY_BTN": "Okay, Got It!"
     }
   },
