@@ -304,8 +304,13 @@
     "CPFIA_TITLE": "CPF Investment Account (CPFIA) Details",
     "CPF_OPERATOR": "CPFIA Operator",
     "CPF_ACC_NO": "CPFIA  Number ",
-    "CPF_NOTE": "<p>You <u>MUST</u> ensure sufficient fund in your CPF Ordinary Account. Amount will be deducted immediately and invest within 2-3 working days. </p>",
-    "CPF_CORRECT_ACC_NO_TEXT": "Please ensure you have entered the correct account information. "
+    "CPF_NOTE": "You MUST ensure sufficient fund in your CPF Ordinary Account. Amount will be deducted immediately and invest within 2-3 working days. ",
+    "CPF_CORRECT_ACC_NO_TEXT": "Please ensure you have entered the correct account information. ",
+    "CPF_TOOLTIP": {
+      "TITLE": "<span>CPF Investment Account (CPFIA) Details</span>",
+      "DESC": "<span>To check your CPF Investment Account number, you can login to my CPF Online Services or mobile app, or your agent bank. </br> </br> Visit our website for more <span><a class=\"hyperlink_color\" target='_blank' href='https://www.moneyowl.com.sg/faq-investment/#investment|0'><u>Frequently Asked Questions</u></a></span> on investing with MoneyOwl. </br></br> For assistance on updating your CPF Investment Account (CPFIA) information, please email <span><u class=\"cpf-fund-mail-color\">enquiries@moneyowl.com.sg</u></span>.</span>",
+      "BTN": "Okay, Got It!"
+    }
   },
   "COMMON_LOADER": {
     "TITLE": "Loading",
