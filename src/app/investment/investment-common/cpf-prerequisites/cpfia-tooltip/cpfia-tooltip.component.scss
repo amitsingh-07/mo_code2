@@ -42,4 +42,13 @@ app-cpfia-tooltip {
       box-shadow: 0 4px 6px 0 rgba(0, 0, 0, 0.15);
     }
   }
+
+  .hyperlink_color {
+    font-family: $muli-bold;
+    color: $crusta-orange-color;
+    cursor: pointer;
+    &:hover {
+      text-decoration: none;
+    }
+  }
 }

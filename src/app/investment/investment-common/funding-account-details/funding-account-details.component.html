@@ -126,10 +126,13 @@
                 <div class="widget-title">
                   <span>{{
                     'CONFIRM_ACCOUNT_DETAILS.CPFIA_TITLE' | translate}}</span>
+                  <span>
+                    <img class="help-icon" src="assets/images/dashboard-help.svg" (click)="shpwCPFModal()" />
+                  </span>
                 </div>
                 <div class="widget-body">
                   <div class="flex-row">
-                    <div class="flex-col-3">
+                    <div class="flex-col-2">
                       <label for="name">{{
                         'CONFIRM_ACCOUNT_DETAILS.CPF_OPERATOR' | translate}}</label>
                     </div>
@@ -152,7 +155,7 @@
                     </div>
                   </div>
                   <div class="flex-row">
-                    <div class="flex-col-3">
+                    <div class="flex-col-2">
                       <label for="name" placeholder="account number">{{
                         'CONFIRM_ACCOUNT_DETAILS.CPF_ACC_NO' | translate}}</label>
                     </div>

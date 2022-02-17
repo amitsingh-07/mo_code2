@@ -73,16 +73,19 @@ app-cka-assessment{
                     float: right;
                     margin-top: 6px;
                   }
-                &:hover, &:active{
-                    background-color: $aqua-squeeze-color;
-                    color: $blue-stone-color;
-                    .title{
-                        color: $teal-color;  
+               
+                  &:hover, &:active {
+                    @include desktop {
+                        background-color: $aqua-squeeze-color;
+                        color: $blue-stone-color;
+                        .title{
+                            color: $teal-color;  
+                        }
+                        .arrow-right{
+                            border-color: $blue-stone-color;
+                        }
                     }
-                    .arrow-right{
-                        border-color: $blue-stone-color;
-                    }
-                }
+                 }
             }
         }
     }

@@ -61,7 +61,7 @@
                 <div class="flex-col-8">
                   <div class="dropdown-control"
                     [ngClass]="{'inline-error':getInlineErrorStatus(withdrawForm.controls.withdrawType)}"
-                    *ngIf="entitlements.portfolioType !== 'SRS'">
+                    *ngIf="entitlements.portfolioType !== fundingMethods.SRS && entitlements.portfolioType !== fundingMethods.CPF">
                     <div ngbDropdown>
                       <button class="btn btn-dropdown without-border" id="withdraw-type-drpdown" ngbDropdownToggle>
                         <span *ngIf="!withdrawForm.controls.withdrawType.value">{{ 'WITHDRAW.SELECT_TYPE' |
@@ -84,7 +84,11 @@
                       </div>
                     </div>
                   </div>
-                  <div class="form-control" *ngIf="entitlements.portfolioType === 'SRS'">
+                  <div class="form-control" *ngIf="entitlements.portfolioType === fundingMethods.SRS">
+                    <input class="input-control" type="text" id="withdraw-type-srs"
+                      value={{withdrawForm.controls.withdrawType.value.name}} disabled>
+                  </div>
+                  <div class="form-control" *ngIf="entitlements.portfolioType === fundingMethods.CPF">
                     <input class="input-control" type="text" id="withdraw-type-srs"
                       value={{withdrawForm.controls.withdrawType.value.name}} disabled>
                   </div>

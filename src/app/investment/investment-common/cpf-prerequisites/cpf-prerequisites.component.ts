@@ -313,4 +313,10 @@ export class CpfPrerequisitesComponent implements OnInit {
       this.showOperatorBank = false;
     }
   }
+
+  uploadCertificate() {
+    this.investmentCommonService.setCKARedirectFromLocation(INVESTMENT_COMMON_ROUTE_PATHS.CPF_PREREQUISITES);
+    const url = INVESTMENT_ENGAGEMENT_JOURNEY_ROUTE_PATHS.CKA_UPLOAD_DOCUMENT;
+    this.router.navigate([url]);
+  }
 }

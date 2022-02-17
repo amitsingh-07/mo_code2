@@ -35,6 +35,9 @@ app-your-investment-amount {
             font-style: italic;
             letter-spacing: -0.1px;
             color: $text-color-secondary;
+            .decimal-clip-format{
+              clip-path: inset(0 2.3ch 0 0);
+            }
           }
         }
       }
