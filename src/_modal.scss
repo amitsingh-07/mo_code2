@@ -1418,4 +1418,11 @@ body.modal-open::-webkit-scrollbar {
     color: $boulder-grey-color;
   }
 }
+
+.cpf-fund-mail-color {
+  font-family: $muli-bold;
+  color: $crusta-orange-color;
+  text-decoration: underline;
+  cursor: pointer;
+}
  
