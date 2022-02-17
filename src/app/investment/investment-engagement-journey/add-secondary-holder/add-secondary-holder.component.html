@@ -41,8 +41,10 @@
                           <div class="form-control"
                             [ngClass]="{'inline-error': secondaryHolderMajorForm.get('nricNumber').enabled && !secondaryHolderMajorForm.get('nricNumber').valid && !secondaryHolderMajorForm.get('nricNumber').pristine}">
                             <div name="nricOrFin">
-                              <input id="last-four-characters-of-nric" class="input-control" type="text" maxLength="4"
-                                name="nricOrFin" formControlName="nricNumber" placeholder="{{'SECONDARY_HOLDER.MAJOR.PLACEHOLDER_NRIC_LBL'
+                              <input id="last-four-characters-of-nric" autocomplete="off" class="input-control"
+                                type="text" maxLength="4" name="nricOrFin"
+                                oninput="this.value = this.value.toUpperCase()" formControlName="nricNumber"
+                                placeholder="{{'SECONDARY_HOLDER.MAJOR.PLACEHOLDER_NRIC_LBL'
                                 | translate}}">
                             </div>
                           </div>
@@ -243,7 +245,8 @@
                           </div>
                           <div class="flex-col-7"
                             [ngClass]="{'inline-error': secondaryHolderMinorForm.get('nricNumber').enabled && !secondaryHolderMinorForm.get('nricNumber').valid && !secondaryHolderMinorForm.get('nricNumber').pristine}">
-                            <input type="text" formControlName="nricNumber" placeholder="{{
+                            <input type="text" oninput="this.value = this.value.toUpperCase()" autocomplete="off"
+                              formControlName="nricNumber" placeholder="{{
                               'SECONDARY_HOLDER.MINOR.PERSONAL_INFO.NRIC_FORMAT'
                               | translate}}" id="invPersInfoInpt4" class="form-control">
                           </div>
