@@ -171,7 +171,6 @@ export class SelectPortfolioComponent implements OnInit {
     });
   }
   onNavChange(changeEvent: NgbNavChangeEvent) {
-    console.log(changeEvent.nextId);
     if (changeEvent.nextId === 2 && this.cpfProgressAvailable) {
       this.showProgressModal();
       changeEvent.preventDefault();

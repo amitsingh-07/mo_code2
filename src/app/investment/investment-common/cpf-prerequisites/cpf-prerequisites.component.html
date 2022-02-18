@@ -45,7 +45,7 @@
             <img src="./assets/images/tooltip-icon-white.svg">
           </div>
         </div>
-        <form [formGroup]="preRequisitesForm">
+        <form [formGroup]="preRequisitesForm" *ngIf="preRequisitesForm">
           <div class="operator-block">
             <div class="width100">
               <div class="flex-row space-between mb15">
