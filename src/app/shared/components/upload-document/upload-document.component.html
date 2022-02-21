@@ -8,10 +8,10 @@
                 <img src="assets/images/close-btn-dark.svg" alt="x" />
             </div>
             <img #documentThumb class="thumbnail image-fluid" [class.mb20]="!uploadForm.controls.document.value || fileType == 'pdf'"
-                src="assets/images/{{documentInfo.defaultThumb}}" />
+               src="assets/images/{{defaultThumb}}" />
         </div>
         <div class="upload-content">
-            <div class="title">{{ documentName }}</div>
+            <div class="title" *ngIf="documentName">{{ documentName }}</div>
             <div class="sub-text" *ngIf="!uploadForm.controls.document.value">{{
                 'UPLOAD_DOCUMENTS.TAP_TO_UPLOAD' | translate}}</div>
             <div class="sub-text" *ngIf="uploadForm.controls.document.value" [innerHtml]="fileName"></div>
