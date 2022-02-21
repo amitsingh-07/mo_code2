@@ -57,6 +57,7 @@ app-investment-period {
       color: $black-color;
       letter-spacing: -0.16px;
       line-height: normal;
+      padding-top: 3px;
     }
 
     .desc {
@@ -83,12 +84,13 @@ app-investment-period {
 
       li {
         font-size: 13px;
-        line-height: 3.08;
+        line-height: normal;
         letter-spacing: -0.13px;
         color: $investment-time-horizon-desc-clr;
         display: flex;
         justify-content: space-between;
-        align-items: center;
+        align-items: flex-start;
+        padding-bottom: 20px;
         &.title {
           color: $investment-time-horizon-clr;
           border: 1px solid $investment-time-horizon-desc-title-brdr-clr;

@@ -5,14 +5,15 @@ import { TranslateService } from '@ngx-translate/core';
 
 import { UploadDocumentService } from '../../../shared/Services/upload-document.service';
 
+import { INVESTMENT_ACCOUNT_CONSTANTS } from '../../../investment/investment-account/investment-account.constant';
+import { EmitInfo } from '../../interfaces/upload-document.interface';
+
+
 export interface DocumentInfo {
   documentType: String;
   defaultThumb: String;
   formData: FormData;
   streamResponse?: any;
-}
-export interface EmitInfo {
-  clearBtn: boolean;
 }
 
 @Component({
@@ -28,7 +29,7 @@ export class UploadDocComponent implements OnInit {
   fileType: String;
   fileName: string;
   uploadForm: FormGroup;
-  emitObject: EmitInfo = { clearBtn: false };
+  emitObject: EmitInfo = { clearBtn: false, fileSelected: false };
 
   @Input('documentInfo') documentInfo: DocumentInfo;
   @Output('eventTrigger') eventTrigger: EventEmitter<Object> = new EventEmitter();
@@ -42,13 +43,16 @@ export class UploadDocComponent implements OnInit {
 
   ngOnInit(): void {
     this.uploadForm = this.controlContainer.control as FormGroup;
-    this.documentName = this.uploadDocService.getDocumentName(this.documentInfo.documentType);
-
     this.uploadDocService.streamResponseObserv.subscribe((response) => {
       if (response) {
         this.getBlob(response);
       }
     });
+  }
+
+  ngOnChanges() {
+    this.documentName = this.documentInfo && this.documentInfo.documentType ? this.uploadDocService.getDocumentName(this.documentInfo.documentType) : '';
+    this.defaultThumb = this.documentInfo && this.documentInfo.defaultThumb ? this.documentInfo.defaultThumb : INVESTMENT_ACCOUNT_CONSTANTS.upload_documents.default_thumb;
   }
 
   getBlob(streamResponse) {
@@ -76,15 +80,16 @@ export class UploadDocComponent implements OnInit {
     this.fileType = this.getFileType(fileElem.target.files[0]);
     this.uploadDocService.fileSelect(this.documentInfo.formData, control, controlname, fileElem.target.files[0], false, fileElem, thumbElem);
     this.setFileName(fileElem.target);
+
+    this.eventTrigger.emit(this.uploadDocService.setEmitObject("FILE_SELECTED"));
   }
 
   clearFileSelection(control, controlName, event, thumbElem?, fileElem?) {
-    const defaultThumb = this.documentInfo.defaultThumb;
+    this.uploadDocService.clearFileSelection(control, event, this.defaultThumb, thumbElem, fileElem);
+
     const payloadKey = this.uploadDocService.getPayloadKey(controlName);
     this.documentInfo.formData.delete(payloadKey);
-    this.uploadDocService.clearFileSelection(control, event, defaultThumb, thumbElem, fileElem);
 
-    this.emitObject.clearBtn = true;
-    this.eventTrigger.emit(this.emitObject);
+    this.eventTrigger.emit(this.uploadDocService.setEmitObject("CLEAR"));
   }
 }
