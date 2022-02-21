@@ -5,6 +5,7 @@ import { TranslateService } from '@ngx-translate/core';
 import { ErrorModalComponent } from '../modal/error-modal/error-modal.component';
 import { INVESTMENT_ACCOUNT_CONSTANTS } from '../../investment/investment-account/investment-account.constant';
 import { Subject } from 'rxjs';
+import { EmitInfo } from '../interfaces/upload-document.interface';
 
 @Injectable({
   providedIn: 'root'
@@ -13,7 +14,9 @@ import { Subject } from 'rxjs';
 export class UploadDocumentService {
   private streamResponse = new Subject();
   streamResponseObserv = this.streamResponse.asObservable();
-
+  
+  emitObject: EmitInfo;
+  
   constructor(
     public readonly translate: TranslateService,
     private modal: NgbModal,
@@ -192,6 +195,25 @@ export class UploadDocumentService {
     fileElem.value = '';
     if (thumbElem) {
       thumbElem.src = 'assets/images/' + defaultThumb;
+    }
+  }
+
+  setEmitObject(emitObj) {
+    this.emitObject = { clearBtn: false, fileSelected: false };
+    switch(emitObj) {
+      case "CLEAR": {
+        this.emitObject.clearBtn = true;
+        return this.emitObject;
+      } 
+
+      case "FILE_SELECTED": {
+        this.emitObject.fileSelected = true;
+        return this.emitObject;
+      }
+
+      default: {        
+        return this.emitObject;
+      }
     }
   }
 }

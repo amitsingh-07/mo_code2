@@ -80,14 +80,14 @@
         "LIST_ITEM_5": "No lock-in period",
         "LIST_ITEM_6": "Exclusive to MoneyOwl"
       }
-    },
+    },  
     "CPFOA": {
       "TITLE": "Grow your CPF",
       "DESC": "Invest in our globally diversified portfolios that tracks the MSCI World to grow your CPF OA savings faster.",
       "MORE_INFO": "More info",
       "FOOTER_BTN_TXT": "Continue",
       "SLIDES": {
-        "P1": "Invest in a portfolio of global indexed equities, Asian bonds, Singapore/US Government bonds and Singapore REITs designed to provide a stream of passive income for the long term.",
+        "P1": "Our CPF investment portfolios give you the best probability of a successful investment experience by using time-tested strategies of broad diversification and index tracking to help you achieve your retirement goals.",
         "P2": "Choose the right asset allocation based on your financial situation so that you can stay invested for the long haul with as little guesswork and and as little stress as possible.",
         "HEADING": "What's great?",
         "LIST_ITEM_1": "Grow your CPF OA savings faster at potential returns of more than 2.5% p.a.",
@@ -340,7 +340,8 @@
       "TITLE": "Review My Inputs",
       "ONE_TIME_INVESTMENT": "One-time Amount",
       "MONTHLY_INVESTMENT": "Monthly Amount",
-      "CPF_DESC": "<p>Please note that the first $20,000 in your CPF OA cannot be invested.</p>As the agent bank that operates your CPF Investment Account levies a fee of $2.50 (excluding gst) for each buy and sell CPF investments, it is recommended that you opt for one-time amount or a higher monthly amount to optimise your investments."
+      "CPF_DESC": "<p>Please note that the first $20,000 in your CPF OA cannot be invested.</p>As the agent bank that operates your CPF Investment Account levies a fee of $2.50 (excluding gst) for each buy and sell CPF investments, it is recommended that you opt for one-time amount or a higher monthly amount to optimise your investments.",
+      "MIN": "Min."
     },
     "WISE_SAVER_PORTOFOLIO": {
       "TITLE_DESC": "The underlying cash fund holds assets primarily in <span class=\"bold-text\">Singapore Dollar</span> deposits. ",

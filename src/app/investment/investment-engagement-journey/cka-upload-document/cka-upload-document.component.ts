@@ -15,7 +15,6 @@ import { UploadDocumentService } from '../../../shared/Services/upload-document.
 
 import { ModelWithButtonComponent } from '../../../shared/modal/model-with-button/model-with-button.component';
 
-import { SIGN_UP_ROUTE_PATHS } from '../../../sign-up/sign-up.routes.constants';
 import { INVESTMENT_ACCOUNT_CONSTANTS } from '../../../investment/investment-account/investment-account.constant';
 import { INVESTMENT_ENGAGEMENT_JOURNEY_ROUTE_PATHS } from '../investment-engagement-journey-routes.constants';
 import { INVESTMENT_COMMON_CONSTANTS } from '../../investment-common/investment-common.constants';
@@ -30,9 +29,8 @@ export class CkaUploadDocumentComponent implements OnInit {
   ckaDocumentInfo: any;
   streamResponse: any;
   pageTitle: string;
-  showTnc = false;
-  saveAndContinue = false;
   certificateName: String;
+  uploadDoc = false;
 
   ckaUploadForm: FormGroup;
   formData: FormData = new FormData();
@@ -62,48 +60,48 @@ export class CkaUploadDocumentComponent implements OnInit {
     this.navbarService.setNavbarMode(6);
     this.footerService.setFooterVisibility(false);
 
-    this.buildDocumentInfo();
-    this.buildForm();
-    this.getCKADocumentFromS3();
+    this.translate.get('UPLOAD_DOCUMENTS').subscribe((result: string) => {
+      this.certificateName = result['CKA_CERTIFICATE'];
+      this.defaultThumb = INVESTMENT_ACCOUNT_CONSTANTS.upload_documents.default_cka_thumb;
+      this.buildForm();
+      this.buildDocumentInfo();
+    });
   }
 
   private buildDocumentInfo() {
-    this.defaultThumb = INVESTMENT_ACCOUNT_CONSTANTS.upload_documents.default_cka_thumb;
-
     this.ckaDocumentInfo = {
       documentType: this.certificateName,
       defaultThumb: this.defaultThumb,
       formData: this.formData
     };
+
+    this.getCKADocumentFromS3();
   }
 
   private buildForm() {
     this.ckaUploadForm = this.formBuilder.group({
       ckaDoc: this.formBuilder.group({
         document: ['', Validators.required]
-      })
+      }),
+      tncCheckboxFlag: ['', Validators.requiredTrue]
     });
   }
 
   private getCKADocumentFromS3() {
     const ckaStatus = this.investmentCommonService.getCKAStatus();
     if (ckaStatus && ckaStatus != INVESTMENT_COMMON_CONSTANTS.CKA.CKA_REJECTED_STATUS) {
+      this.showLoader();
       this.investmentCommonService.getCKADocument(this.certificateName).subscribe((response: any) => {
         if (response && response.body && response.body.type && response.body.type.split('/')[1].toLowerCase() != 'json') {
           this.uploadDocumentService.setStreamResponse(response);
+          this.ckaUploadForm.get('tncCheckboxFlag').setValue(true);
+          this.loaderService.hideLoader();
         }
+      }, () => {
+        this.loaderService.hideLoader();
+        this.investmentAccountService.showGenericErrorModal();
       });
     }
-  }
-
-  private addTncControllToForm() {
-    this.showTnc = true;
-    this.ckaUploadForm.addControl('tncCheckboxFlag', this.formBuilder.control('', Validators.requiredTrue));
-  }
-
-  private removeTncControllToForm() {
-    this.showTnc = false;
-    this.ckaUploadForm.removeControl('tncCheckboxFlag');
   }
 
   setPageTitle(title: string) {
@@ -115,43 +113,57 @@ export class CkaUploadDocumentComponent implements OnInit {
   }
 
   goToNext() {
-    if (this.saveAndContinue) {
-      const redirectURL = this.investmentCommonService.getCKARedirectFromLocation();
-      this.investmentCommonService.setCKARedirectFromLocation(null);
-      this.router.navigate([redirectURL]);
-    }
-
-    if (this.ckaUploadForm.valid && !this.saveAndContinue) {
-      this.uploadDocument();
-    }
+    const redirectURL = this.investmentCommonService.getCKARedirectFromLocation();
+    this.investmentCommonService.setCKARedirectFromLocation(null);
+    this.router.navigate([redirectURL]);
   }
 
   eventTriggered(event) {
-    if (event && event.clearBtn && this.ckaUploadForm.controls.tncCheckboxFlag) {
-      this.removeTncControllToForm();
-      this.saveAndContinue = false;
+    console.log(event);
+    if (event && event.clearBtn) {        
+      this.ckaUploadForm.get('tncCheckboxFlag').setValue(false);
+    }
+    
+    if (event && event.fileSelected) {        
+      this.uploadDoc = true;
     }
   }
 
   uploadDocument() {
+    if (this.ckaUploadForm.valid && this.uploadDoc) {
+      this.showInstantLoader();
+      if (this.formData) {
+        this.investmentEngagementJourneyService.uploadDocument(this.formData).subscribe((response) => {
+          this.loaderService.hideLoader();
+          if (response && response.objectList &&
+            response.objectList.length &&
+            response.objectList[response.objectList.length - 1].responseInfo) {
+            this.gentleReminderPopup();
+          }
+        }, () => {
+          this.loaderService.hideLoader();
+          this.investmentAccountService.showGenericErrorModal();
+        });
+      }
+    } else {
+      this.goToNext();
+    }
+  }
+
+  private showLoader() {
+    this.translate.get('UPLOAD_DOCUMENTS').subscribe((result: string) => {
+      this.loaderService.showLoader({
+        title: result['MODAL.UPLOADING_LOADER.TITLE'],
+        desc: result['MODAL.UPLOADING_LOADER.MESSAGE']
+      });
+    });
+  }
+
+  private showInstantLoader() {
     this.loaderService.showLoader({
       title: this.translate.instant('UPLOAD_DOCUMENTS.MODAL.UPLOADING_LOADER.TITLE'),
       desc: this.translate.instant('UPLOAD_DOCUMENTS.MODAL.UPLOADING_LOADER.MESSAGE')
     });
-
-    if (this.formData) {
-      this.investmentEngagementJourneyService.uploadDocument(this.formData).subscribe((response) => {
-        this.loaderService.hideLoader();
-        if (response && response.objectList &&
-          response.objectList.length &&
-          response.objectList[response.objectList.length - 1].responseInfo) {
-          this.gentleReminderPopup();
-        }
-      }, (err) => {
-        this.loaderService.hideLoader();
-        this.investmentAccountService.showGenericErrorModal();
-      });
-    }
   }
 
   private gentleReminderPopup() {
@@ -162,8 +174,7 @@ export class CkaUploadDocumentComponent implements OnInit {
     ref.componentInstance.primaryActionLabel = this.translate.instant('UPLOAD_DOCUMENTS.OKAY_GOT_IT_BTN');
     ref.componentInstance.closeBtn = false;
     ref.componentInstance.primaryAction.subscribe(() => {
-      this.addTncControllToForm();
-      this.saveAndContinue = true;
+      this.goToNext();
     });
   }
 }

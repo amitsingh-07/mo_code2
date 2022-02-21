@@ -544,4 +544,18 @@ export class FundingAccountDetailsComponent implements OnInit {
     };  
     return reqParams;
   }
+
+  shpwCPFModal() {
+    const ref = this.modal.open(ModelWithButtonComponent, { centered: true , windowClass: 'custom-cka-modal' });
+    ref.componentInstance.errorTitle = this.translate.instant(
+      'CONFIRM_ACCOUNT_DETAILS.CPF_TOOLTIP.TITLE'
+    );
+    ref.componentInstance.errorMessage = this.translate.instant(
+      'CONFIRM_ACCOUNT_DETAILS.CPF_TOOLTIP.DESC'
+    );
+    ref.componentInstance.primaryActionLabel = this.translate.instant(
+      'CONFIRM_ACCOUNT_DETAILS.CPF_TOOLTIP.BTN'
+    );
+    ref.componentInstance.closeBtn = false;
+  }
 }
