@@ -49,7 +49,7 @@ export class InvestmentCommonService {
     return this.investmentApiService.savePortfolioName(data);
   }
 
-  updatePortfolioStatus(data: {customerPortfolioId: number}) {
+  updatePortfolioStatus(data: { customerPortfolioId: number }) {
     return this.investmentApiService.updatePortfolioStatus(data);
   }
 
@@ -416,6 +416,9 @@ export class InvestmentCommonService {
     } else if (selectedPortfolioValue.toUpperCase() ===
       INVESTMENT_ENGAGEMENT_JOURNEY_CONSTANTS.SELECT_POROFOLIO_TYPE.INVESTMENT.toUpperCase()) {
       return INVESTMENT_ENGAGEMENT_JOURNEY_CONSTANTS.SELECT_POROFOLIO_TYPE.INVEST_PORTFOLIO
+    } else if (selectedPortfolioValue.toUpperCase() ===
+      INVESTMENT_ENGAGEMENT_JOURNEY_CONSTANTS.SELECT_POROFOLIO_TYPE.CPF_PORTFOLIO.toUpperCase()) {
+      return INVESTMENT_ENGAGEMENT_JOURNEY_CONSTANTS.SELECT_POROFOLIO_TYPE.CPF_PORTFOLIO
     } else {
       return INVESTMENT_ENGAGEMENT_JOURNEY_CONSTANTS.SELECT_POROFOLIO_TYPE.WISEINCOME_PORTFOLIO
     }
@@ -542,7 +545,7 @@ export class InvestmentCommonService {
   getCKAAssessmentStatus() {
     return this.investmentApiService.getCKAAssessmentStatus();
   }
-  
+
   getCKABankDetails(twoFaReq) {
     return this.investmentApiService.getCKABankAccount(twoFaReq);
   }
