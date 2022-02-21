@@ -1,4 +1,4 @@
-<div class="container-fluid max-width--1024 investment">
+<div class="container-fluid max-width--1024 investment" *ngIf="ckaUploadForm">
   <div class="row">
     <div class="col-lg-7 col-md-6 hidden-sm">
       <h2>{{ "CKA_UPLOAD_DOCUMENT.PAGE_TITLE" | translate }}</h2>
@@ -39,9 +39,10 @@
 
             <!-- upload doc -->
             <form name="ckaUploadForm" [formGroup]="ckaUploadForm" id="ckaUploadForm">
-              <app-upload-doc [documentInfo]="ckaDocumentInfo" (eventTrigger)="eventTriggered($event)" [formGroup]="ckaUploadForm.get('ckaDoc')"></app-upload-doc>
+              <app-upload-doc [documentInfo]="ckaDocumentInfo" (eventTrigger)="eventTriggered($event)"
+                [formGroup]="ckaUploadForm.get('ckaDoc')"></app-upload-doc>
 
-              <div class="checkbox-button one-label tnc-checkbox" *ngIf="showTnc">
+              <div class="checkbox-button one-label tnc-checkbox">
                 <input id="tncCheckboxFlag" name="tncCheckboxFlag" formControlName="tncCheckboxFlag" type="checkbox"
                   class="field checkbox" #tncChkBox>
                 <label for="tncCheckboxFlag">
@@ -50,7 +51,7 @@
               </div>
             </form>
           </div>
-          <button type="button" [disabled]="ckaUploadForm.invalid" (click)="goToNext()"
+          <button type="button" [disabled]="ckaUploadForm.invalid" (click)="uploadDocument()"
             class="btn btn-primary btn__footer--fixed width100">{{'CKA_UPLOAD_DOCUMENT.SAVE_CONTINUE' |
             translate}}</button>
         </div>
