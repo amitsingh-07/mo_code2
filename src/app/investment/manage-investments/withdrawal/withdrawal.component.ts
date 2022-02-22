@@ -58,6 +58,7 @@ export class WithdrawalComponent implements OnInit, OnDestroy {
   fundingMethods: any;
   customerPortfolioId: any;
   isJAAccount: boolean;
+  portfolioType: any;
 
   private destroySubscription$ = new Subject();
 
@@ -106,9 +107,10 @@ export class WithdrawalComponent implements OnInit, OnDestroy {
         this.portfolioList.push(portfolio);
       }
     }
+    this.portfolioType = this.toGetPortfolioType(this.customerPortfolioId);
     this.translateParams = {
-      MIN_WITHDRAW_AMOUNT: MANAGE_INVESTMENTS_CONSTANTS.WITHDRAW.MIN_WITHDRAW_AMOUNT,
-      MIN_BALANCE_AMOUNT: MANAGE_INVESTMENTS_CONSTANTS.WITHDRAW.MIN_BALANCE_AMOUNT
+      MIN_WITHDRAW_AMOUNT: this.portfolioType && this.portfolioType === MANAGE_INVESTMENTS_CONSTANTS.TOPUP.FUNDING_METHODS.CPF ? MANAGE_INVESTMENTS_CONSTANTS.WITHDRAW.CPF_MIN_WITHDRAW_AMOUNT : MANAGE_INVESTMENTS_CONSTANTS.WITHDRAW.MIN_WITHDRAW_AMOUNT,
+      MIN_BALANCE_AMOUNT: this.portfolioType && this.portfolioType === MANAGE_INVESTMENTS_CONSTANTS.TOPUP.FUNDING_METHODS.CPF ? MANAGE_INVESTMENTS_CONSTANTS.WITHDRAW.CPF_MIN_BALANCE_AMOUNT : MANAGE_INVESTMENTS_CONSTANTS.WITHDRAW.MIN_BALANCE_AMOUNT
     };
     this.buildForm();
     this.setSelectedPortfolio();
@@ -202,6 +204,7 @@ export class WithdrawalComponent implements OnInit, OnDestroy {
         return portfolio.customerPortfolioId === customerPortfolioId;
       });
       this.setDropDownValue('withdrawPortfolio', data);
+      this.portfolioType = data.portfolioType
       if (data.portfolioType !== MANAGE_INVESTMENTS_CONSTANTS.TOPUP.FUNDING_METHODS.SRS && data.portfolioType !== MANAGE_INVESTMENTS_CONSTANTS.TOPUP.FUNDING_METHODS.CPF) {
         this.setWithdrawTypeAndAmt();
       }
@@ -264,9 +267,10 @@ export class WithdrawalComponent implements OnInit, OnDestroy {
         const roundOffValue = value.currentValue
           ? parseFloat(this.decimalPipe.transform(value.currentValue, '1.2-2').replace(/,/g, ''))
           : 0;
-        this.isRedeemAll = (roundOffValue <
-          (MANAGE_INVESTMENTS_CONSTANTS.WITHDRAW.MIN_WITHDRAW_AMOUNT + MANAGE_INVESTMENTS_CONSTANTS.WITHDRAW.MIN_BALANCE_AMOUNT)
-          && roundOffValue > 0);
+        const expectedTotalMinBalance = this.portfolioType && this.portfolioType === MANAGE_INVESTMENTS_CONSTANTS.TOPUP.FUNDING_METHODS.CPF ?
+          MANAGE_INVESTMENTS_CONSTANTS.WITHDRAW.CPF_MIN_WITHDRAW_AMOUNT + MANAGE_INVESTMENTS_CONSTANTS.WITHDRAW.CPF_MIN_BALANCE_AMOUNT :
+          MANAGE_INVESTMENTS_CONSTANTS.WITHDRAW.MIN_WITHDRAW_AMOUNT + MANAGE_INVESTMENTS_CONSTANTS.WITHDRAW.MIN_BALANCE_AMOUNT;
+        this.isRedeemAll = (roundOffValue < expectedTotalMinBalance && roundOffValue > 0);
         this.withdrawForm.addControl(
           'withdrawAmount',
           new FormControl({
@@ -302,9 +306,10 @@ export class WithdrawalComponent implements OnInit, OnDestroy {
         const roundOffValue = value.currentValue
           ? parseFloat(this.decimalPipe.transform(value.currentValue, '1.2-2').replace(/,/g, ''))
           : 0;
-        this.isRedeemAll = (roundOffValue <
-          (MANAGE_INVESTMENTS_CONSTANTS.WITHDRAW.MIN_WITHDRAW_AMOUNT + MANAGE_INVESTMENTS_CONSTANTS.WITHDRAW.MIN_BALANCE_AMOUNT)
-          && roundOffValue > 0);
+        const expectedTotalMinBalance = this.portfolioType && this.portfolioType === MANAGE_INVESTMENTS_CONSTANTS.TOPUP.FUNDING_METHODS.CPF ?
+          MANAGE_INVESTMENTS_CONSTANTS.WITHDRAW.CPF_MIN_WITHDRAW_AMOUNT + MANAGE_INVESTMENTS_CONSTANTS.WITHDRAW.CPF_MIN_BALANCE_AMOUNT :
+          MANAGE_INVESTMENTS_CONSTANTS.WITHDRAW.MIN_WITHDRAW_AMOUNT + MANAGE_INVESTMENTS_CONSTANTS.WITHDRAW.MIN_BALANCE_AMOUNT;
+        this.isRedeemAll = (roundOffValue < expectedTotalMinBalance && roundOffValue > 0);
         this.withdrawForm.addControl(
           'withdrawAmount',
           new FormControl({
@@ -335,21 +340,22 @@ export class WithdrawalComponent implements OnInit, OnDestroy {
     const roundOffValue = this.withdrawForm.get('withdrawPortfolio').value.portfolioValue
       ? parseFloat(this.decimalPipe.transform(this.withdrawForm.get('withdrawPortfolio').value.portfolioValue, '1.2-2').replace(/,/g, ''))
       : 0;
-    this.isRedeemAll = (roundOffValue <
-      (MANAGE_INVESTMENTS_CONSTANTS.WITHDRAW.MIN_WITHDRAW_AMOUNT + MANAGE_INVESTMENTS_CONSTANTS.WITHDRAW.MIN_BALANCE_AMOUNT)
-      && roundOffValue > 0); this.withdrawForm.addControl(
-        'withdrawAmount',
-        new FormControl({
-          value: this.isRedeemAll ? roundOffValue : '',
-          disabled: this.isRedeemAll
-        }, [
-          Validators.required,
-          this.withdrawAmountValidator(
-            this.withdrawForm.get('withdrawPortfolio').value.portfolioValue,
-            'PORTFOLIO'
-          )
-        ])
-      );
+    const expectedTotalMinBalance = this.portfolioType && this.portfolioType === MANAGE_INVESTMENTS_CONSTANTS.TOPUP.FUNDING_METHODS.CPF ?
+      MANAGE_INVESTMENTS_CONSTANTS.WITHDRAW.CPF_MIN_WITHDRAW_AMOUNT + MANAGE_INVESTMENTS_CONSTANTS.WITHDRAW.CPF_MIN_BALANCE_AMOUNT :
+      MANAGE_INVESTMENTS_CONSTANTS.WITHDRAW.MIN_WITHDRAW_AMOUNT + MANAGE_INVESTMENTS_CONSTANTS.WITHDRAW.MIN_BALANCE_AMOUNT;
+    this.isRedeemAll = (roundOffValue < expectedTotalMinBalance && roundOffValue > 0); this.withdrawForm.addControl(
+      'withdrawAmount',
+      new FormControl({
+        value: this.isRedeemAll ? roundOffValue : '',
+        disabled: this.isRedeemAll
+      }, [
+        Validators.required,
+        this.withdrawAmountValidator(
+          this.withdrawForm.get('withdrawPortfolio').value.portfolioValue,
+          'PORTFOLIO'
+        )
+      ])
+    );
 
     this.withdrawForm.get('withdrawAmount').valueChanges.subscribe((amtValue) => {
       amtValue = amtValue.replace(/[,]+/g, '').trim();
@@ -361,7 +367,9 @@ export class WithdrawalComponent implements OnInit, OnDestroy {
   }
 
   buildFormForCashToBank() {
-    this.isRedeemAll = (this.cashBalance < MANAGE_INVESTMENTS_CONSTANTS.WITHDRAW.MIN_WITHDRAW_AMOUNT && this.cashBalance > 0);
+    const expectedTotalMinBalance = this.portfolioType && this.portfolioType === MANAGE_INVESTMENTS_CONSTANTS.TOPUP.FUNDING_METHODS.CPF ?
+      MANAGE_INVESTMENTS_CONSTANTS.WITHDRAW.CPF_MIN_BALANCE_AMOUNT : MANAGE_INVESTMENTS_CONSTANTS.WITHDRAW.MIN_BALANCE_AMOUNT;
+    this.isRedeemAll = (this.cashBalance < expectedTotalMinBalance && this.cashBalance > 0);
     this.withdrawForm.addControl(
       'withdrawAmount',
       new FormControl({
@@ -393,6 +401,11 @@ export class WithdrawalComponent implements OnInit, OnDestroy {
       this.entitlements = value['entitlements'];
       this.entitlements.portfolioType = value.portfolioType;
       this.withdrawForm.controls.withdrawType.value = null;
+      this.portfolioType = this.toGetPortfolioType(value.customerPortfolioId);
+      this.translateParams = {
+        MIN_WITHDRAW_AMOUNT: this.portfolioType && this.portfolioType === MANAGE_INVESTMENTS_CONSTANTS.TOPUP.FUNDING_METHODS.CPF ? MANAGE_INVESTMENTS_CONSTANTS.WITHDRAW.CPF_MIN_WITHDRAW_AMOUNT : MANAGE_INVESTMENTS_CONSTANTS.WITHDRAW.MIN_WITHDRAW_AMOUNT,
+        MIN_BALANCE_AMOUNT: this.portfolioType && this.portfolioType === MANAGE_INVESTMENTS_CONSTANTS.TOPUP.FUNDING_METHODS.CPF ? MANAGE_INVESTMENTS_CONSTANTS.WITHDRAW.CPF_MIN_BALANCE_AMOUNT : MANAGE_INVESTMENTS_CONSTANTS.WITHDRAW.MIN_BALANCE_AMOUNT
+      };
       this.manageInvestmentsService.setSelectedCustomerPortfolioId(value.customerPortfolioId);
       this.manageInvestmentsService.setSelectedCustomerPortfolio(value);
       this.getUserBankList(value.customerPortfolioId, this.entitlements.jointAccount);
@@ -561,6 +574,8 @@ export class WithdrawalComponent implements OnInit, OnDestroy {
 
   withdrawAmountValidator(balance, source): ValidatorFn {
     balance = balance ? parseFloat(this.decimalPipe.transform(balance, "1.2-2").replace(/,/g, "")) : 0;
+    const expectedTotalMinBalance = this.portfolioType && this.portfolioType === MANAGE_INVESTMENTS_CONSTANTS.TOPUP.FUNDING_METHODS.CPF ?
+      MANAGE_INVESTMENTS_CONSTANTS.WITHDRAW.CPF_MIN_BALANCE_AMOUNT : MANAGE_INVESTMENTS_CONSTANTS.WITHDRAW.MIN_BALANCE_AMOUNT;
     return (control: AbstractControl) => {
       if (control && !isNaN(control.value)) {
         let userInput = control.value ? parseFloat(this.decimalPipe.transform(control.value.replace(/,/g, ""), "1.2-2").replace(/,/g, "")) : 0;
@@ -573,15 +588,15 @@ export class WithdrawalComponent implements OnInit, OnDestroy {
           } else {
             return { MoreThanBalanceCash: true };
           }
-        } else if ((source === 'PORTFOLIO') && (balance - userInput >= MANAGE_INVESTMENTS_CONSTANTS.WITHDRAW.MIN_BALANCE_AMOUNT)) { // Minimum Withdrawal Check
-          if (userInput < MANAGE_INVESTMENTS_CONSTANTS.WITHDRAW.MIN_WITHDRAW_AMOUNT) {
+        } else if ((source === 'PORTFOLIO') && (balance - userInput >= expectedTotalMinBalance)) { // Minimum Withdrawal Check
+          if (userInput < expectedTotalMinBalance) {
             return { MinWithdrawal: true };
           }
         } else if ((source === 'CASH_ACCOUNT')) { // Minimum Withdrawal Check
-          if (userInput < MANAGE_INVESTMENTS_CONSTANTS.WITHDRAW.MIN_WITHDRAW_AMOUNT) {
+          if (userInput < expectedTotalMinBalance) {
             return { MinWithdrawal: true };
           }
-        } else if ((source === 'PORTFOLIO') && (balance - userInput < MANAGE_INVESTMENTS_CONSTANTS.WITHDRAW.MIN_BALANCE_AMOUNT) && (userInput != balance)) { // Minimum Balance Check
+        } else if ((source === 'PORTFOLIO') && (balance - userInput < expectedTotalMinBalance) && (userInput != balance)) { // Minimum Balance Check
           return { MinBalance: true };
         } else { // Successful Validation
           return null;
@@ -607,8 +622,11 @@ export class WithdrawalComponent implements OnInit, OnDestroy {
     if (this.withdrawForm.controls.withdrawPortfolio.value) {
       const cashBalance = (this.isFromPortfolio) ? this.withdrawForm.controls.withdrawPortfolio.value.portfolioValue ? this.withdrawForm.controls.withdrawPortfolio.value.portfolioValue : 0 :
         this.cashBalance;
+      const expectedTotalMinBalance = this.portfolioType && this.portfolioType === MANAGE_INVESTMENTS_CONSTANTS.TOPUP.FUNDING_METHODS.CPF ?
+        MANAGE_INVESTMENTS_CONSTANTS.WITHDRAW.CPF_MIN_WITHDRAW_AMOUNT + MANAGE_INVESTMENTS_CONSTANTS.WITHDRAW.CPF_MIN_BALANCE_AMOUNT :
+        MANAGE_INVESTMENTS_CONSTANTS.WITHDRAW.MIN_WITHDRAW_AMOUNT + MANAGE_INVESTMENTS_CONSTANTS.WITHDRAW.MIN_BALANCE_AMOUNT;
       // Minimum cash balance amount 50
-      if (cashBalance <= (MANAGE_INVESTMENTS_CONSTANTS.WITHDRAW.MIN_WITHDRAW_AMOUNT + MANAGE_INVESTMENTS_CONSTANTS.WITHDRAW.MIN_BALANCE_AMOUNT) && cashBalance > 0) {
+      if (cashBalance <= expectedTotalMinBalance && cashBalance > 0) {
         this.withdrawForm.controls.withdrawRedeem.setValue(true);
         this.withdrawForm.controls.withdrawAmount.setValue(cashBalance.toString());
         this.withdrawForm.get('withdrawAmount').disable();
@@ -631,6 +649,16 @@ export class WithdrawalComponent implements OnInit, OnDestroy {
   enableRedeem() {
     this.withdrawForm.controls.withdrawRedeem.setValue(true);
     this.isRedeemAllChecked = true;
+  }
+
+  toGetPortfolioType(portfolioId) {
+    if (this.formValues) {
+      // Set the customerPortfolioId depend on which is the portfolio
+      const data = this.portfolioList.find((portfolio) => {
+        return portfolio.customerPortfolioId === portfolioId;
+      });
+      return data.portfolioType;
+    }
   }
 }
 
