@@ -607,7 +607,7 @@
               <!-- buy request -->
             </div>
             <!-- cash a/c -->
-            <div *ngIf="portfolio?.fundingTypeValue !== 'SRS'" class="cash-account">
+            <div *ngIf="portfolio?.fundingTypeValue !== 'SRS' && portfolio?.fundingTypeValue !== fundingMethods.CPF_OA" class="cash-account">
               <div class="cash-account-lbl">{{'YOUR_PORTFOLIO.CASH_ACCOUNT' | translate}}</div>
               <div class="form-group-with-bg">
                 <div class="form-group-with-bg--header">
