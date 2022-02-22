@@ -119,7 +119,6 @@ export class CkaUploadDocumentComponent implements OnInit {
   }
 
   eventTriggered(event) {
-    console.log(event);
     if (event && event.clearBtn) {        
       this.ckaUploadForm.get('tncCheckboxFlag').setValue(false);
     }
