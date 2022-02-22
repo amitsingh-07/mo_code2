@@ -76,6 +76,7 @@ export class EditProfileComponent implements OnInit, OnDestroy {
   is2faAuthorized: boolean;
   disableBankSrsEdit = false;
   linkCatagories;
+  CKA_STATUS_CONSTANTS;
   // singpass
   modelTitle1: string;
   modelMessge1: string;
@@ -167,6 +168,8 @@ export class EditProfileComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit() {
+    // CKA STATUS CONSTANTS
+    this.CKA_STATUS_CONSTANTS = INVESTMENT_COMMON_CONSTANTS.CKA;
     const initialMessage = this.investmentAccountService.getInitialMessageToShowDashboard();
     if (initialMessage && initialMessage.dashboardInitMessageShow) {
       this.router.navigate([SIGN_UP_ROUTE_PATHS.DASHBOARD], { replaceUrl: true });
