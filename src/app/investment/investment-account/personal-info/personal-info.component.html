@@ -73,8 +73,8 @@
                     </div>
                     <div class="flex-col-7"
                       [ngClass]="{'inline-error': invPersonalInfoForm.get('nricNumber').enabled && !invPersonalInfoForm.get('nricNumber').valid && !invPersonalInfoForm.get('nricNumber').pristine}">
-                      <input type="text" placeholder="e.g S****244F" id="invPersInfoInpt4" class="form-control"
-                        #nricNumber formControlName="nricNumber" maxLength="30">
+                      <input type="text" placeholder="e.g S****244F" id="invPersInfoInpt4" class="form-control" autocomplete="off"
+                        #nricNumber oninput="this.value = this.value.toUpperCase()" formControlName="nricNumber" maxLength="30">
                     </div>
                   </div>
                   <div class="flex-row">
