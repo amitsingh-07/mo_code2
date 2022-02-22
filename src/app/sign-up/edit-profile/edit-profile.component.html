@@ -629,7 +629,7 @@
       </div>
 
       <!-- cpf details -->
-      <div class="cpf_details" >
+      <div class="cpf_details" *ngIf="cpfBankDetails && entireUserData && entireUserData.cpfPortfolioAvailable">
         <div class="edit-profile-section-bg">
           <div class="flex-row cursor_pointer" (click)=showHide(showHideCpf)>
             <div class="flex-col-11">

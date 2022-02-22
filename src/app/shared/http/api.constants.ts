@@ -63,7 +63,8 @@ export let apiConstants = {
         validateReferralCode: ACCOUNT_API_BASE_URL + '/referralcode/validateReferralCode?handleError=true',
         getSingpassAccount: ACCOUNT_API_BASE_URL + '/activate/singpass',
         getReferralCode: ACCOUNT_API_BASE_URL + '/referralcode/welcomeRewards',
-        getRefereeList: ACCOUNT_API_BASE_URL + '/referralcode/getRefereeList',       
+        getRefereeList: ACCOUNT_API_BASE_URL + '/referralcode/getRefereeList',
+        cpfBankDetails: ACCOUNT_API_BASE_URL + '/customer/getCPFOperatorDetails?twoFaRequired=$TWOFA_FLAG$',       
         customer: {
             validateUIN: ACCOUNT_API_BASE_URL + '/customer/validateUin',
         },

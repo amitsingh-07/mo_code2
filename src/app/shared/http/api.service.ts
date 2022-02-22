@@ -770,4 +770,11 @@ export class ApiService {
         catchError((error: HttpErrorResponse) => this.handleError(error))
       );
   }
+
+  getCPFBankDetails(twoFAFlag) {
+    return this.http.get(apiConstants.endpoint.cpfBankDetails.replace('$TWOFA_FLAG$', twoFAFlag))
+      .pipe(
+        catchError((error: HttpErrorResponse) => this.handleError(error))
+      );
+  }
 }

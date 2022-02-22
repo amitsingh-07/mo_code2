@@ -797,4 +797,8 @@ export class ManageInvestmentsService {
     this.manageInvestmentsFormData.isCPFAccountUpdated = isCPFAccountUpdated;
     this.commit();
   }
+
+  getCPFSuccessFlag() {
+    return this.manageInvestmentsFormData.isCPFAccountUpdated;
+  }
 }

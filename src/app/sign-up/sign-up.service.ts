@@ -18,6 +18,8 @@ import { CreateAccountFormError } from './create-account/create-account-form-err
 import { SignUpFormData } from './sign-up-form-data';
 import { SIGN_UP_CONFIG } from './sign-up.constant';
 import { InvestmentAccountService } from '../investment/investment-account/investment-account-service';
+import { ManageInvestmentsService } from '../investment/manage-investments/manage-investments.service';
+import { map } from 'rxjs/operators';
 
 const SIGNUP_SESSION_STORAGE_KEY = 'app_signup_session_storage_key';
 const CUSTOMER_REF_SESSION_STORAGE_KEY = 'app_customer_ref_session_storage_key';
@@ -55,7 +57,8 @@ export class SignUpService {
     private datePipe: DatePipe,
     public modal: NgbModal,
     private translate: TranslateService,
-    private investmentAccountService: InvestmentAccountService
+    private investmentAccountService: InvestmentAccountService,
+    private manageInvestmentsService: ManageInvestmentsService
   ) {
     this.getAccountInfo();
     this.configService.getConfig().subscribe((config: IConfig) => {
@@ -800,5 +803,26 @@ export class SignUpService {
       cpfOperatorBank: this.signUpFormData.cpfOperatorBank,
       customerId: this.signUpFormData.customerId
     };
+  }
+
+  getCPFBankDetails(twoFAFlag) {
+    // API Call here
+    // return this.apiService.getCPFBankDetails(twoFAFlag);
+    return this.apiService.getCPFBankDetails(twoFAFlag).pipe(map((data: any) => {
+      if (data && data.objectList && data.objectList.accountNumber &&
+        data.objectList.bankOperator && data.objectList.bankOperator.name) {
+        const cpfAccountDetails = {
+          cpfiaAccountNumber: this.manageInvestmentsService.accountFormat(data.objectList.accountNumber, data.objectList.bankOperator.name),
+          cpfiaOperator: data.objectList.bankOperator.name
+        };
+        this.manageInvestmentsService.setCpfiaAccountDetails(cpfAccountDetails);
+        return cpfAccountDetails;
+      } else {
+        return null;
+      }
+    },
+      (err) => {
+        this.investmentAccountService.showGenericErrorModal();
+      }));
   }
 }

@@ -15,6 +15,7 @@ import { RegexConstants } from '../../shared/utils/api.regex.constants';
 import { SIGN_UP_CONFIG } from '../sign-up.constant';
 import { SIGN_UP_ROUTE_PATHS } from '../sign-up.routes.constants';
 import { SignUpService } from '../sign-up.service';
+import { LoaderService } from '../../shared/components/loader/loader.service';
 
 import { InvestmentCommonService } from '../../investment/investment-common/investment-common.service';
 import { AuthenticationService } from '../../shared/http/auth/authentication.service';
@@ -49,7 +50,8 @@ export class AddUpdateCpfiaComponent implements OnInit {
     public manageInvestmentsService: ManageInvestmentsService,
     public readonly translate: TranslateService,
     public investmentEngagementJourneyService: InvestmentEngagementJourneyService,
-    private investmentCommonService: InvestmentCommonService) {
+    private investmentCommonService: InvestmentCommonService,
+    private loaderService: LoaderService) {
       this.translate.use('en');
       this.translate.get('COMMON').subscribe(() => {
         this.pageTitle = this.translate.instant('ADD_UPDATE_CPFIA.TITLE');
@@ -98,6 +100,18 @@ export class AddUpdateCpfiaComponent implements OnInit {
           this.addUpdateCpfFrom.patchValue({
             srsOperator: { name: data.srsOperator },
             srsAccount: data.srsAccountNumber.conformedValue
+          });
+        }
+      });
+
+      this.signUpService.getCPFBankDetails(false)
+      .pipe(takeUntil(this.ngUnsubscribe))
+      .subscribe((data: any) => {
+        if (data) {
+          this.cpfDetail = data;
+          this.addUpdateCpfFrom.patchValue({
+            cpfOperator: { name: data.cpfiaOperator },
+            cpfAccount: data.cpfiaAccountNumber.conformedValue
           });
         }
       });
@@ -246,13 +260,16 @@ export class AddUpdateCpfiaComponent implements OnInit {
         accountNumber: formValue.cpfAccount ? formValue.cpfAccount.replace(/[-]/g, '') : null,
         bankOperatorId: opertorId ? opertorId : null
       }
+      this.showLoader();
       this.investmentCommonService.saveCKABankAccount(json).subscribe(() => {
+        this.loaderService.hideLoaderForced();
         this.isEdit = true;
         this.manageInvestmentsService.setCpfiaAccountDetails(null);
         this.manageInvestmentsService.setCPFSuccessFlag(true);
         this.router.navigate([SIGN_UP_ROUTE_PATHS.EDIT_PROFILE]);
       }, () => {
         this.isEdit = true;
+        this.loaderService.hideLoaderForced();
         this.investmentAccountService.showGenericErrorModal();
       });
     }
@@ -263,6 +280,13 @@ export class AddUpdateCpfiaComponent implements OnInit {
       if (event && event !== '') {
         this.router.navigate([SIGN_UP_ROUTE_PATHS.EDIT_PROFILE])
       }
+    });
+  }
+  showLoader() {
+    this.loaderService.showLoader({
+      title: this.translate.instant('LOADER_MESSAGES.LOADING.TITLE'),
+      desc: this.translate.instant('LOADER_MESSAGES.LOADING.MESSAGE'),
+      autoHide: false
     });
   }
 }
