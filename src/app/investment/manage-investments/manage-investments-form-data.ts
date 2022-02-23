@@ -34,6 +34,8 @@ export class ManageInvestmentsFormData {
   cpfiaAccountDetails: ICPFIAccountDetails;
   isSrsAccountUpdated: boolean; //issrsaccountupdated
 
+  isCPFAccountUpdated: boolean; // cpf acc updated flag
+
   investmentNote: any;
 
   //TRANSFER SCREEN
