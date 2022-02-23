@@ -9,10 +9,13 @@
         <span *ngIf="false">*</span></div>
     </div>
   </div>
-  <div class="fee_des flex-col-12" *ngIf="fundExpensiveTranslater && !wiseIncomeEnabled"
+  <div class="fee_des flex-col-12" *ngIf="fundExpensiveTranslater && !wiseIncomeEnabled && !cpfEnabled"
     innerHTML="{{'PORTFOLIO_RECOMMENDATION.EXPENSIVE_RATIO' | translate : fundExpensiveTranslater}}">
   </div>
   <div class="fee_des flex-col-12" *ngIf="fundExpensiveTranslater && wiseIncomeEnabled"
     innerHTML="{{'PORTFOLIO_RECOMMENDATION.EXPENSIVE_RATIO_WISE_INCOME' | translate : fundExpensiveTranslater}}">
+  </div>
+  <div class="fee_des flex-col-12" *ngIf="fundExpensiveTranslater && cpfEnabled"
+    innerHTML="{{'PORTFOLIO_RECOMMENDATION.EXPENSIVE_RATIO_CPF' | translate : fundExpensiveTranslater}}">
   </div>
 </div>
