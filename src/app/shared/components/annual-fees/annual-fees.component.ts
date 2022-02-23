@@ -41,7 +41,7 @@ export class AnnualFeesComponent implements OnInit, OnChanges {
       } else if (fee.feeName === this.translate.instant('PORTFOLIO_RECOMMENDATION.FUND_EXPENSIVE_RATIO')) {
         this.fundExpensiveTranslater = {
           expensiveRatio: fee.percentage,
-          year: new Date().getFullYear()
+          year: INVESTMENT_COMMON_CONSTANTS.CPF_FEE_OFFER_YEAR
         };
         return this.fundExpensiveTranslater;
       }
