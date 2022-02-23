@@ -804,25 +804,4 @@ export class SignUpService {
       customerId: this.signUpFormData.customerId
     };
   }
-
-  getCPFBankDetails(twoFAFlag) {
-    // API Call here
-    // return this.apiService.getCPFBankDetails(twoFAFlag);
-    return this.apiService.getCPFBankDetails(twoFAFlag).pipe(map((data: any) => {
-      if (data && data.objectList && data.objectList.accountNumber &&
-        data.objectList.bankOperator && data.objectList.bankOperator.name) {
-        const cpfAccountDetails = {
-          cpfiaAccountNumber: this.manageInvestmentsService.accountFormat(data.objectList.accountNumber, data.objectList.bankOperator.name),
-          cpfiaOperator: data.objectList.bankOperator.name
-        };
-        this.manageInvestmentsService.setCpfiaAccountDetails(cpfAccountDetails);
-        return cpfAccountDetails;
-      } else {
-        return null;
-      }
-    },
-      (err) => {
-        this.investmentAccountService.showGenericErrorModal();
-      }));
-  }
 }

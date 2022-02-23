@@ -85,6 +85,7 @@ export class AddUpdateCpfiaComponent implements OnInit {
           }
         });
     });
+    
     this.authService.get2faAuthEvent
       .pipe(takeUntil(this.ngUnsubscribe))
       .subscribe((token) => {
@@ -92,19 +93,8 @@ export class AddUpdateCpfiaComponent implements OnInit {
           this.router.navigate([SIGN_UP_ROUTE_PATHS.EDIT_PROFILE]);
         }
       });
-      this.manageInvestmentsService.getProfileSrsAccountDetails()
-      .pipe(takeUntil(this.ngUnsubscribe))
-      .subscribe((data: any) => {
-        if (data) {
-          this.cpfDetail = data;
-          this.addUpdateCpfFrom.patchValue({
-            srsOperator: { name: data.srsOperator },
-            srsAccount: data.srsAccountNumber.conformedValue
-          });
-        }
-      });
 
-      this.signUpService.getCPFBankDetails(false)
+      this.manageInvestmentsService.getProfileCPFIAccountDetails(false)
       .pipe(takeUntil(this.ngUnsubscribe))
       .subscribe((data: any) => {
         if (data) {
