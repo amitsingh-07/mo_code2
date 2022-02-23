@@ -63,6 +63,7 @@ export let INVESTMENT_ENGAGEMENT_JOURNEY_CONSTANTS = {
     "balanced": 'assets/images/balanced.svg',
     "growth": 'assets/images/growth.svg',
     "norisk": 'assets/images/nosutable.svg',
-    "equity": 'assets/images/equity.svg'
+    "equity": 'assets/images/equity.svg',
+    "no recommended portfolio": 'assets/images/nosutable.svg'
   }
 };
