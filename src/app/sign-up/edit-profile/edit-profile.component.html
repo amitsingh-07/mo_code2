@@ -639,7 +639,6 @@
               <div class="dropdown-img">
                 <span id="showHideCpf" class="arrow"
                   [class.active]="showHideCpf.style.display === 'block' || showHideCpf.style.display === ''"></span>
-                <!-- <img id="edit_profile_dropdown_img" class="dropdown-img" src="assets/images/dropdown-icon.svg" /> -->
               </div>
             </div>
           </div>
@@ -728,7 +727,7 @@
             </div>
           </div>
           <div class="flex-col-1 align-items-center"
-            *ngIf="ckaInfo == null || ckaInfo?.cKAStatusMessage === CKA_STATUS_CONSTANTS.CKA_BE_CERTIFICATE_UPLOADED"">
+            *ngIf="ckaInfo == null || ckaInfo?.cKAStatusMessage === CKA_STATUS_CONSTANTS.CKA_BE_CERTIFICATE_UPLOADED">
             <div class="dropdown-img">
               <span class="arrow-right mt0"></span>
             </div>
