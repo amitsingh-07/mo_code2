@@ -53,7 +53,8 @@ export let SIGN_UP_CONFIG = {
     POSB: 'POSB'
   },
   LOGIN: {
-    FINLIT_LOGIN: true
+    FINLIT_LOGIN: true,
+    FACEBOOK_LOGIN: true
   },
   SIGN_UP: {
     EMAIL: "email"

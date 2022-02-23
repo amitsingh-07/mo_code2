@@ -92,6 +92,12 @@ const routes: Routes = [
     canActivate: [LoggedUserGuard]
   },
   {
+    path: SIGN_UP_ROUTES.CORPORATE_LOGIN,
+    component: LoginComponent,
+    canActivate: [LoggedUserGuard],
+    data: [{ facebookEnabled: SIGN_UP_CONFIG.LOGIN.FACEBOOK_LOGIN }]
+  },
+  {
     path: SIGN_UP_ROUTES.FORGOT_PASSWORD,
     component: ForgotPasswordComponent
   },

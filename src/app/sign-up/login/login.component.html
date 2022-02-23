@@ -171,6 +171,18 @@
               </div>
             </div>
           </div>
+          <div class="flex-row mb20" *ngIf='facebookEnabled'>
+            <div class="flex-col-12 stretch">
+              <div class="form-group-floating-label"
+              [ngClass]="{'inline-error':getInlineErrorStatus(loginForm.controls.organisationCode)}"
+                >
+                <input type="text" appInputFocus id="login_organisationid_txt" class="form-control"
+                  formControlName="organisationCode" required maxLength="10">
+                <label class="form-control-placeholder" for="login_organisationid_txt"
+                  id="login_organisationid_lbl">Organisation ID</label>
+              </div>
+            </div>
+          </div>          
           <div class="flex-row mb10" *ngIf="showCaptcha">
             <span class="mb10">{{ 'COMMON.CAPTCHA_TITLE' | translate}}</span>
             <div class="flex-col-6 stretch">

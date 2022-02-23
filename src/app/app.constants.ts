@@ -30,7 +30,23 @@ export let appConstants = {
         NORMAL: "normal",
         FINLIT: "finlit",
         MANUAL: "MANUAL",
-        SINGPASS: "SINGPASS"
+        SINGPASS: "SINGPASS",
+        PUBLIC: 'PUBLIC',
+        CORPORATE: 'CORPORATE',
+        FACEBOOK: "FACEBOOK",
+        TWITTER:'TWITTER'
+    },
+    ORGANISATION_ROLES: {
+        ROLE_CORP_FB_USER: {
+            EMAIL_UPDATE : false,
+            REFERREL_PROGRAM : false,
+            CREATE_JOINT_ACCOUNT : false
+        },
+        ROLE_CORP_TWITTER_USER: {
+            EMAIL_UPDATE : false,
+            REFERREL_PROGRAM : false,
+            CREATE_JOINT_ACCOUNT : false
+        }
     },
     INSURANCE_JOURNEY_TYPE: {
         DIRECT: 'insurance-direct',
