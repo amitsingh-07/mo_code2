@@ -22,6 +22,7 @@ import {
 import { InvestmentEngagementJourneyService } from '../investment-engagement-journey.service';
 import { LoaderService } from '../../../shared/components/loader/loader.service';
 import { INVESTMENT_COMMON_ROUTE_PATHS } from '../../investment-common/investment-common-routes.constants';
+import { CurrencyPipe } from '@angular/common';
 
 @Component({
   selector: 'app-your-investment-amount',
@@ -56,7 +57,8 @@ export class YourInvestmentAmountComponent implements OnInit {
     private investmentAccountService: InvestmentAccountService,
     private cd: ChangeDetectorRef,
     private investmentCommonService: InvestmentCommonService,
-    private loaderService: LoaderService
+    private loaderService: LoaderService,
+    private currencyPipe: CurrencyPipe
   ) {
     this.translate.use('en');
     const self = this;
@@ -185,8 +187,8 @@ export class YourInvestmentAmountComponent implements OnInit {
       const ref = this.modal.open(ModelWithButtonComponent, { centered: true });
       ref.componentInstance.errorTitle = error.errorTitle;
       ref.componentInstance.errorMessageHTML = error.errorMessage
-        .replace('$ONE_TIME_AMOUNT$', this.investmentCriteria.oneTimeInvestmentMinimum)
-        .replace('$MONTHLY_AMOUNT$', this.investmentCriteria.monthlyInvestmentMinimum);
+        .replace('$ONE_TIME_AMOUNT$', this.currencyPipe.transform(this.investmentCriteria.oneTimeInvestmentMinimum, 'USD', 'symbol-narrow', '1.0-0'))
+        .replace('$MONTHLY_AMOUNT$', this.currencyPipe.transform(this.investmentCriteria.monthlyInvestmentMinimum, 'USD', 'symbol-narrow', '1.0-0'));
       // tslint:disable-next-line:triple-equals
     } else {
       this.investmentAccountService.getSpecificDropList('portfolioType').subscribe((data) => {
