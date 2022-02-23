@@ -187,6 +187,7 @@ export class EditProfileComponent implements OnInit, OnDestroy {
     this.authService.get2faUpdateEvent.subscribe(() => {
       this.getEditProfileData();
       this.getSrsDetails();
+      this.setCPFIABankDetails();
     });
     this.isMailingAddressSame = true;
 
@@ -275,15 +276,6 @@ export class EditProfileComponent implements OnInit, OnDestroy {
             this.customerJointAccBankDetails = data.objectList.customerJointAccountBankDetails;
           }
           this.showBankInfo = data.objectList.cashPortfolioAvailable ? data.objectList.cashPortfolioAvailable : false;
-          if (data.objectList.customerCpfOperator) {
-            const cpfDetails = {
-              conformedValue: this.manageInvestmentsService.accountFormat(data.objectList.customerCpfOperator.accountNumber, data.objectList.customerCpfOperator.bankOperator.name),
-              accountNumber: data.objectList.customerCpfOperator.accountNumber,
-              bankOperator: data.objectList.customerCpfOperator.bankOperator,
-              customerId: data.objectList.customerCpfOperator.customerId
-            };
-            this.cpfBankDetails = cpfDetails;
-          }
           // Hidden the mailing address for future use
           // if ((data.objectList.contactDetails && data.objectList.contactDetails.mailingAddress)) {
           //   this.mailingAddress = data.objectList.contactDetails.mailingAddress;
@@ -694,5 +686,19 @@ export class EditProfileComponent implements OnInit, OnDestroy {
     this.signUpService.setEditProfileCpfDetails(cpfAccountNumber, cpfBankOperator, customerId);
     this.authService.set2faVerifyAllowed(true);
     this.router.navigate([SIGN_UP_ROUTE_PATHS.UPDATE_CPFIA], { queryParams: { cpfBank: cpfBankFlag }, fragment: 'bank' });
+  }
+
+  setCPFIABankDetails(){
+    this.manageInvestmentsService.getProfileCPFIAccountDetails(true)
+    .pipe(takeUntil(this.ngUnsubscribe))
+    .subscribe((data: any) => {
+      if (data) {
+        this.cpfBankDetails = data;
+      }
+    },
+    () => {
+      this.investmentAccountService.showGenericErrorModal();
+    }
+    );
   }
 }

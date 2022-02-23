@@ -651,7 +651,7 @@
                 </div>
                 <div class="flex-col-6">
                   <div class="icon-block">
-                    <span (click)="updateCpfDetails(cpfBankDetails?.accountNumber, cpfBankDetails?.bankOperator, cpfBankDetails?.customerId, false)">
+                    <span (click)="updateCpfDetails(cpfBankDetails?.cpfiaAccountNumber?.conformedValue, cpfBankDetails?.cpfiaOperator, cpfBankDetails?.customerId, false)">
                       <span *ngIf="is2faAuthorized"><img src="assets/images/button-edit.svg"></span>
                       <span *ngIf="!is2faAuthorized"><img src="assets/images/accounts/edit-locked.svg"></span>
                     </span>
@@ -664,7 +664,7 @@
                     {{'UPDATE_CPFIA.CPFIA_OPERATOR' | translate}}</div>
                 </div>
                 <div class="flex-col-6">
-                  <div id="cpf-operator-value" class="bank-account-num">{{cpfBankDetails?.bankOperator.name}}
+                  <div id="cpf-operator-value" class="bank-account-num">{{cpfBankDetails?.cpfiaOperator}}
                   </div>
                 </div>
               </div>
@@ -675,7 +675,7 @@
                 </div>
                 <div class="flex-col-6">
                   <div id="cpf-act-num-value" class="bank-account-num">
-                    {{cpfBankDetails?.conformedValue?.conformedValue}}</div>
+                    {{cpfBankDetails?.cpfiaAccountNumber?.conformedValue}}</div>
                 </div>
               </div>
             </div>
