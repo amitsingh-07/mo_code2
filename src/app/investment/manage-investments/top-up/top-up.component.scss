@@ -203,9 +203,6 @@ app-top-up {
         @include min300max350 {
           padding: 0 13px;
         }
-        .decimal-clip-format{
-          clip-path: inset(0 2.3ch 0 0);
-        }
       }
 
       .input-label-top20 {
