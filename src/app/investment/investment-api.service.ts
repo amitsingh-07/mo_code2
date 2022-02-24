@@ -251,8 +251,8 @@ export class InvestmentApiService {
   }
 
   getUserBankList(customerPortfolioId, isJointAccount) {
-    let url =investmentApiConstants.endpoint.investment.getUserBankList.replace('$CUSTOMER_PORTFOLIO_ID$', customerPortfolioId);
-    url= url.replace('$IS_JA_ACCOUNT$', isJointAccount);
+    let url = investmentApiConstants.endpoint.investment.getUserBankList.replace('$CUSTOMER_PORTFOLIO_ID$', customerPortfolioId);
+    url = url.replace('$IS_JA_ACCOUNT$', isJointAccount);
     return this.http.get(url)
       .pipe(
         catchError((error: HttpErrorResponse) => this.handleError(error))
@@ -260,8 +260,8 @@ export class InvestmentApiService {
   }
 
   getJABankDetails(customerPortfolioId, isJointAccount, isEngagementJourney) {
-    let url =investmentApiConstants.endpoint.investment.getJABankDetails.replace('$CUSTOMER_PORTFOLIO_ID$', customerPortfolioId);
-    url= url.replace('$IS_JA_ACCOUNT$', isJointAccount).replace('$IS_ENGAGEMENT_JOURNEY$', isEngagementJourney);
+    let url = investmentApiConstants.endpoint.investment.getJABankDetails.replace('$CUSTOMER_PORTFOLIO_ID$', customerPortfolioId);
+    url = url.replace('$IS_JA_ACCOUNT$', isJointAccount).replace('$IS_ENGAGEMENT_JOURNEY$', isEngagementJourney);
     return this.http.get(url)
       .pipe(
         catchError((error: HttpErrorResponse) => this.handleError(error))
@@ -447,7 +447,7 @@ export class InvestmentApiService {
   }
 
   getProfileCpfIAccountDetails(twoFaRequired) {
-    return this.http.getWithParams(investmentApiConstants.endpoint.investmentAccount.getProfileCpfIaDetails, {twoFaRequired});
+    return this.http.getWithParams(investmentApiConstants.endpoint.investmentAccount.getProfileCpfIaDetails, { twoFaRequired, handleError: true });
   }
   saveSrsAccountDetails(data, customerPortfolioId) {
     return this.http.post(
@@ -573,17 +573,17 @@ export class InvestmentApiService {
    * @param data of type {customerPortfolioId: number}
    * this api method checks the cka status in backend for the customer and updates the Portfolio status for the provided Portfolio id in customer_portfolio table.
    */
-  updatePortfolioStatus = (data: {customerPortfolioId: number}) => {
+  updatePortfolioStatus = (data: { customerPortfolioId: number }) => {
     return this.http.put(investmentApiConstants.endpoint.portfolio.updatePortfolioStatus, data)
-    .pipe(
-      catchError((error: HttpErrorResponse) => this.handleError(error))
-    );
+      .pipe(
+        catchError((error: HttpErrorResponse) => this.handleError(error))
+      );
   }
   getCKAAssessmentStatus() {
     return this.http.get(investmentApiConstants.endpoint.investment.getCKAAssessmentStatus)
-    .pipe(
-      catchError((error: HttpErrorResponse) => this.handleError(error))
-    );
+      .pipe(
+        catchError((error: HttpErrorResponse) => this.handleError(error))
+      );
   }
 
   getCKABankAccount(twoFaReq) {
