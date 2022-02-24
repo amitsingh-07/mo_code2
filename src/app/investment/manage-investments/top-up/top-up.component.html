@@ -83,8 +83,7 @@
                       <div id="topup_investmenttype_name" class="input-label-white mb10">{{topupTypes.ONE_TIME.NAME}}
                       </div>
                       <div id="topup_investmenttype_value" class="input-label-normal" *ngIf="investmentCriteria">
-                        <span class="decimal-clip-format">
-                        {{'TOPUP.MIN'| translate}} {{investmentCriteria.oneTimeInvestmentMinimum | formatCurrency }}</span>
+                        {{'TOPUP.MIN'| translate}} {{investmentCriteria.oneTimeInvestmentMinimum | currency:'CAD':'symbol-narrow':'1.0-0' }}
                       </div>
                     </label>
                   </div>
@@ -97,8 +96,7 @@
                       <div id="topup_investmenttype_name" class="input-label-white mb10">{{topupTypes.MONTHLY.NAME}}
                       </div>
                       <div id="topup_investmenttype_value" class="input-label-normal" *ngIf="investmentCriteria"> 
-                        <span class="decimal-clip-format">
-                        {{'TOPUP.MIN'| translate}} {{investmentCriteria.monthlyInvestmentMinimum | formatCurrency }}</span>
+                        {{'TOPUP.MIN'| translate}} {{investmentCriteria.monthlyInvestmentMinimum | currency:'CAD':'symbol-narrow':'1.0-0' }}
                       </div>
                     </label>
                   </div>
