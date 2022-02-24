@@ -7,6 +7,7 @@ import { AddUpdateBankComponent } from './add-update-bank/add-update-bank.compon
 import { AuthGuardService as AuthGuard } from './auth-guard.service';
 import { FinlitLoggedUserService as FinlitLoggedUserGuard } from './auth-guard.service';
 import { LoggedUserService as LoggedUserGuard } from './auth-guard.service';
+import { FacebookLoggedUserService as FacebookLoggedUserGuard } from './auth-guard.service';
 import { CreateAccountComponent } from './create-account/create-account.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { EditPasswordComponent } from './edit-password/edit-password.component';
@@ -77,6 +78,12 @@ const routes: Routes = [
     component: AccountCreatedComponent,
     canActivate: [FinlitLoggedUserGuard],
     data: [{ finlitEnabled: SIGN_UP_CONFIG.LOGIN.FINLIT_LOGIN }]
+  },
+  {
+    path: SIGN_UP_ROUTES.ACCOUNT_CREATED_CORPORATE,
+    component: AccountCreatedComponent,
+    canActivate: [FacebookLoggedUserGuard],
+    data: [{ facebookEnabled: SIGN_UP_CONFIG.LOGIN.FACEBOOK_LOGIN }]
   },
   {
     path: SIGN_UP_ROUTES.ACCOUNT_CREATED,
@@ -186,6 +193,12 @@ const routes: Routes = [
     data: [{ finlitEnabled: SIGN_UP_CONFIG.LOGIN.FINLIT_LOGIN }]
   },
   {
+    path: SIGN_UP_ROUTES.CORPORATE_CREATE_ACCOUNT,
+    component: CreateAccountComponent,
+    canActivate: [FacebookLoggedUserGuard],
+    data: [{ facebookEnabled: SIGN_UP_CONFIG.LOGIN.FACEBOOK_LOGIN }]
+  },
+  {
     path: SIGN_UP_ROUTES.VERIFY_EMAIL,
     component: VerifyEmailComponent
   },
@@ -203,6 +216,12 @@ const routes: Routes = [
     component: CreateAccountMyinfoComponent,
     canActivate: [FinlitLoggedUserGuard],
     data: [{ finlitEnabled: SIGN_UP_CONFIG.LOGIN.FINLIT_LOGIN }]
+  }, 
+  {
+    path: SIGN_UP_ROUTES.CORPORATE_CREATE_ACCOUNT_MY_INFO,
+    component: CreateAccountMyinfoComponent,
+    canActivate: [FacebookLoggedUserGuard],
+    data: [{ facebookEnabled: SIGN_UP_CONFIG.LOGIN.FACEBOOK_LOGIN }]
   }, 
   {
     path: SIGN_UP_ROUTES.FINLIT_CREATE_ACCOUNT + '/:referralCode',

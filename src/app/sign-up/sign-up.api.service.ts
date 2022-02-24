@@ -86,7 +86,8 @@ export class SignUpApiService {
         enquiryId,
         referralCode: getAccountInfo.referralCode,
         userType: getAccountInfo.userType,
-        accountCreationType: getAccountInfo.accountCreationType
+        accountCreationType: getAccountInfo.accountCreationType,
+        organisationCode: getAccountInfo.organisationCode
       };
     } else {
       return {
@@ -107,7 +108,8 @@ export class SignUpApiService {
         enquiryId,
         referralCode: getAccountInfo.referralCode,
         userType: getAccountInfo.userType,
-        accountCreationType: getAccountInfo.accountCreationType
+        accountCreationType: getAccountInfo.accountCreationType,
+        organisationCode: getAccountInfo.organisationCode
       };
     }
   }

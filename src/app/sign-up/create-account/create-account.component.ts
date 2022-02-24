@@ -73,6 +73,7 @@ export class CreateAccountComponent implements OnInit, AfterViewInit {
   formValue: any;
   maxDate: any;
   minDate: any;
+  facebookEnabled = false;
 
   constructor(
     private formBuilder: FormBuilder,
@@ -113,6 +114,7 @@ export class CreateAccountComponent implements OnInit, AfterViewInit {
 
     if (this.route.snapshot.data[0]) {
       this.finlitEnabled = this.route.snapshot.data[0]['finlitEnabled'];
+      this.facebookEnabled = this.route.snapshot.data[0]['facebookEnabled'];
       this.appService.clearJourneys();
       this.appService.clearPromoCode();
     }
@@ -198,6 +200,7 @@ export class CreateAccountComponent implements OnInit, AfterViewInit {
         marketingAcceptance: [false],
         captcha: ['', [Validators.required]],
         referralCode: [''],
+        organisationCode: [null, this.facebookEnabled ? Validators.required : []],
         gender: [{
           value: myInfoGender,
           disabled: this.signUpService.isDisabled('gender')
@@ -222,6 +225,7 @@ export class CreateAccountComponent implements OnInit, AfterViewInit {
       marketingAcceptance: [false],
       captcha: ['', [Validators.required]],
       referralCode: [''],
+      organisationCode: [null, this.facebookEnabled ? Validators.required : []],
       gender: [{
         value: myInfoGender,
         disabled: this.signUpService.isDisabled('gender')
@@ -231,6 +235,10 @@ export class CreateAccountComponent implements OnInit, AfterViewInit {
         disabled: this.signUpService.isDisabled('dob')
       }, [Validators.required]]
     }, { validator: this.validateMatchPasswordEmail() })
+
+    if(this.facebookEnabled) {
+      this.createAccountForm.get('organisationCode').patchValue(appConstants.USERTYPE.FACEBOOK);
+    }
     this.buildFormSingPass();
     return true;
   }
@@ -268,6 +276,7 @@ export class CreateAccountComponent implements OnInit, AfterViewInit {
       form.value.userType = this.finlitEnabled ? appConstants.USERTYPE.FINLIT : appConstants.USERTYPE.NORMAL;
       form.value.accountCreationType = (this.formValue && this.formValue.isMyInfoEnabled) ? appConstants.USERTYPE.SINGPASS : appConstants.USERTYPE.MANUAL;
       form.value.isMyInfoEnabled = (this.formValue && this.formValue.isMyInfoEnabled);
+      form.value.organisationCode = this.facebookEnabled && this.createAccountForm.get('organisationCode').value || null;
       if (this.formValue && this.formValue.isMyInfoEnabled) {
         form.value.dob = (this.formValue && this.formValue.isMyInfoEnabled && this.formValue.dob) ? this.formValue.dob : '';
         form.value.gender = (this.formValue && this.formValue.isMyInfoEnabled && this.formValue.gender) ? this.formValue.gender : '';

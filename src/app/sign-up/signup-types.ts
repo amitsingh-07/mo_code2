@@ -7,6 +7,7 @@ export interface ISignUp {
     referralCode: string;
     userType: string;
     accountCreationType:string;
+    organisationCode?: string;
 }
 
 export interface IEnquiryUpdate {
