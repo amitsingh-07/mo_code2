@@ -33,16 +33,10 @@ export let appConstants = {
         SINGPASS: "SINGPASS",
         PUBLIC: 'PUBLIC',
         CORPORATE: 'CORPORATE',
-        FACEBOOK: "FACEBOOK",
-        TWITTER:'TWITTER'
+        FACEBOOK: "FACEBOOK"
     },
     ORGANISATION_ROLES: {
         ROLE_CORP_FB_USER: {
-            EMAIL_UPDATE : false,
-            REFERREL_PROGRAM : false,
-            CREATE_JOINT_ACCOUNT : false
-        },
-        ROLE_CORP_TWITTER_USER: {
             EMAIL_UPDATE : false,
             REFERREL_PROGRAM : false,
             CREATE_JOINT_ACCOUNT : false

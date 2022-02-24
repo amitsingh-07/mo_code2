@@ -271,7 +271,7 @@ export class LoginComponent implements OnInit, AfterViewInit, OnDestroy {
       });
     }
     this.signUpService.setEmail(form.value.loginUsername);
-    const userType = this.finlitEnabled ? appConstants.USERTYPE.FINLIT : this.facebookEnabled ? appConstants.USERTYPE.FACEBOOK : appConstants.USERTYPE.NORMAL;
+    const userType = (this.finlitEnabled ? appConstants.USERTYPE.FINLIT : (this.facebookEnabled ? appConstants.USERTYPE.FACEBOOK : appConstants.USERTYPE.NORMAL));
     this.signUpService.setUserType(userType);
     const accessCode = (this.finlitEnabled) ? this.loginForm.value.accessCode : '';
     const organisationCode = this.facebookEnabled && this.loginForm.get('organisationCode').value || null;

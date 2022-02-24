@@ -94,7 +94,7 @@ const routes: Routes = [
   {
     path: SIGN_UP_ROUTES.CORPORATE_LOGIN,
     component: LoginComponent,
-    canActivate: [LoggedUserGuard],
+    canActivate: [FacebookLoggedUserGuard],
     data: [{ facebookEnabled: SIGN_UP_CONFIG.LOGIN.FACEBOOK_LOGIN }]
   },
   {
