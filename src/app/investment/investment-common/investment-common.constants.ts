@@ -90,6 +90,7 @@ export let INVESTMENT_COMMON_CONSTANTS = {
     DELETE: 'DELETE'
   },
   CPF_PENDING_STATUS: 'CKA_PENDING',
+  CPF_FEE_OFFER_YEAR: '2022',
   PORTFOLIO: [
     {
       KEY: "WiseIncome R - 4.5 percent (Payout) - Cash",

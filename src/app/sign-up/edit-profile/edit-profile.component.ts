@@ -35,6 +35,7 @@ import { CustomerJointAccountInfo } from '../signup-types';
 import { ErrorModalComponent } from '../../shared/modal/error-modal/error-modal.component';
 import { INVESTMENT_ENGAGEMENT_JOURNEY_ROUTE_PATHS } from '../../investment/investment-engagement-journey/investment-engagement-journey-routes.constants';
 import { INVESTMENT_COMMON_CONSTANTS } from '../../investment/investment-common/investment-common.constants';
+import { CpfiaSuccessModalComponent } from '../add-update-cpfia/cpfia-success-modal/cpfia-success-modal.component';
 @Component({
   selector: 'app-edit-profile',
   templateUrl: './edit-profile.component.html',
@@ -50,6 +51,7 @@ export class EditProfileComponent implements OnInit, OnDestroy {
   residentialAddress: any;
   empolymentDetails: any;
   bankDetails: any;
+  cpfBankDetails: any;
   customerJointAccBankDetails: CustomerJointAccountInfo[] = [];
   mailingAddress: any;
   contactDetails: any;
@@ -74,6 +76,7 @@ export class EditProfileComponent implements OnInit, OnDestroy {
   is2faAuthorized: boolean;
   disableBankSrsEdit = false;
   linkCatagories;
+  CKA_STATUS_CONSTANTS;
   // singpass
   modelTitle1: string;
   modelMessge1: string;
@@ -118,6 +121,7 @@ export class EditProfileComponent implements OnInit, OnDestroy {
       this.pageTitle = this.translate.instant('EDIT_PROFILE.MY_PROFILE');
       this.setPageTitle(this.pageTitle);
       this.showSRSSuccessModel();
+      this.showCPFSuccessModel();
       // singpass
       this.modelTitle1 = this.translate.instant(
         'LINK_ACCOUNT_MYINFO.MYINFO_CONFIRM.TITLE'
@@ -164,6 +168,8 @@ export class EditProfileComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit() {
+    // CKA STATUS CONSTANTS
+    this.CKA_STATUS_CONSTANTS = INVESTMENT_COMMON_CONSTANTS.CKA;
     const initialMessage = this.investmentAccountService.getInitialMessageToShowDashboard();
     if (initialMessage && initialMessage.dashboardInitMessageShow) {
       this.router.navigate([SIGN_UP_ROUTE_PATHS.DASHBOARD], { replaceUrl: true });
@@ -181,6 +187,7 @@ export class EditProfileComponent implements OnInit, OnDestroy {
     this.authService.get2faUpdateEvent.subscribe(() => {
       this.getEditProfileData();
       this.getSrsDetails();
+      this.setCPFIABankDetails();
     });
     this.isMailingAddressSame = true;
 
@@ -269,7 +276,6 @@ export class EditProfileComponent implements OnInit, OnDestroy {
             this.customerJointAccBankDetails = data.objectList.customerJointAccountBankDetails;
           }
           this.showBankInfo = data.objectList.cashPortfolioAvailable ? data.objectList.cashPortfolioAvailable : false;
-
           // Hidden the mailing address for future use
           // if ((data.objectList.contactDetails && data.objectList.contactDetails.mailingAddress)) {
           //   this.mailingAddress = data.objectList.contactDetails.mailingAddress;
@@ -476,6 +482,15 @@ export class EditProfileComponent implements OnInit, OnDestroy {
     }
   }
 
+  showCPFSuccessModel() {
+    if (this.manageInvestmentsService.getCPFSuccessFlag()) {
+      const ref = this.modal.open(CpfiaSuccessModalComponent, { centered: true });
+      ref.componentInstance.topUp.subscribe(() => {
+        this.getInvestmentOverview();
+      });
+      this.manageInvestmentsService.setCPFSuccessFlag(false);
+    }
+  }
   setTwoLetterProfileName(firstName, LastName) {
     const first = firstName.charAt(0);
     const second = LastName.charAt(0);
@@ -658,9 +673,32 @@ export class EditProfileComponent implements OnInit, OnDestroy {
     });
     ref.componentInstance.closeBtn = false;
   }
+
   showUploadDoc() {
     this.investmentCommonService.setCKARedirectFromLocation(SIGN_UP_ROUTE_PATHS.EDIT_PROFILE);
     const url = INVESTMENT_ENGAGEMENT_JOURNEY_ROUTE_PATHS.CKA_UPLOAD_DOCUMENT;
     this.router.navigate([url]);
+  }
+  
+  // cpf 
+  updateCpfDetails(cpfAccountNumber, cpfBankOperator, customerId, cpfBankFlag) {
+    this.signUpService.setOldContactDetails(this.personalData.countryCode, this.personalData.mobileNumber, this.personalData.email);
+    this.signUpService.setEditProfileCpfDetails(cpfAccountNumber, cpfBankOperator, customerId);
+    this.authService.set2faVerifyAllowed(true);
+    this.router.navigate([SIGN_UP_ROUTE_PATHS.UPDATE_CPFIA], { queryParams: { cpfBank: cpfBankFlag }, fragment: 'bank' });
+  }
+
+  setCPFIABankDetails(){
+    this.manageInvestmentsService.getProfileCPFIAccountDetails(true)
+    .pipe(takeUntil(this.ngUnsubscribe))
+    .subscribe((data: any) => {
+      if (data) {
+        this.cpfBankDetails = data;
+      }
+    },
+    () => {
+      this.investmentAccountService.showGenericErrorModal();
+    }
+    );
   }
 }
