@@ -685,7 +685,7 @@
       <!-- cpf details end-->
     </div>
     <!--CKA Card-->
-    <div class="cka-card">
+    <div class="cka-card" *ngIf="entireUserData">
       <div class="edit-profile-section-bg" *ngIf="ckaInfo?.cKAStatusMessage !== CKA_STATUS_CONSTANTS.CKA_BE_CERTIFICATE_UPLOADED">
         <div class="flex-row cursor_pointer" [ngClass]="{'disabled': ckaInfo?.cKAStatusMessage === CKA_STATUS_CONSTANTS.CKA_PASSED_STATUS }"
           (click)="openCKAModal()">
