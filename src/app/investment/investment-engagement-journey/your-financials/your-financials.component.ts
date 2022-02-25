@@ -44,7 +44,6 @@ export class YourFinancialsComponent implements IPageComponent, OnInit {
   selectedPortfolioType;
   loaderDescTwo: string;
   userPortfolioType: any;
-  isCpfEnabled: boolean;
 
   constructor(
     private router: Router,
@@ -95,7 +94,6 @@ export class YourFinancialsComponent implements IPageComponent, OnInit {
 
     }
     this.buildFrom();
-    this.isCpfEnabled = this.investmentEngagementJourneyService.isCpfSelected();
   }
 
   buildFrom() {

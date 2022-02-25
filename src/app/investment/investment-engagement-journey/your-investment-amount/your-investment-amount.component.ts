@@ -45,6 +45,7 @@ export class YourInvestmentAmountComponent implements OnInit {
   loaderTitle: string; 
   loaderDescTwo: string;
   portfolioType
+  isCpfEnabled: boolean;
 
   constructor(
     private router: Router,
@@ -68,6 +69,7 @@ export class YourInvestmentAmountComponent implements OnInit {
       this.setPageTitle(self.pageTitle);
       this.loaderTitle = this.translate.instant('MY_FINANCIALS.RESPONSE_LOADER.TITLE');
       this.loaderDescTwo = this.translate.instant('MY_FINANCIALS.RESPONSE_LOADER.DESC_TWO');
+      this.modalData = this.translate.instant('MY_FINANCIALS.modalData');
     });
   }
 
@@ -103,6 +105,7 @@ export class YourInvestmentAmountComponent implements OnInit {
     }
     this.getInvestmentCriteria(this.selectedPortfolioType);
     this.buildInvestAmountForm();
+    this.isCpfEnabled = this.investmentEngagementJourneyService.isCpfSelected();
   }
 
   getInvestmentCriteria(selectedPortfolioValue) {
@@ -213,7 +216,11 @@ export class YourInvestmentAmountComponent implements OnInit {
               this.loaderService.hideLoader();
               this.investmentAccountService.showGenericErrorModal();
             });
-        } else {
+        }
+        else if(this.isCpfEnabled){
+          this.showEmergencyFundModal(form);
+        }
+        else {
           this.investmentEngagementJourneyService.setYourInvestmentAmount(form.value);
           this.router.navigate([INVESTMENT_ENGAGEMENT_JOURNEY_ROUTE_PATHS.MY_FINANCIAL]);
         }
@@ -252,5 +259,16 @@ export class YourInvestmentAmountComponent implements OnInit {
   showCPFText() {
     const portfolioSelected = this.investmentEngagementJourneyService.getSelectPortfolioType();
     return portfolioSelected === INVESTMENT_ENGAGEMENT_JOURNEY_CONSTANTS.SELECT_POROFOLIO_TYPE.CPF_PORTFOLIO;
+  }
+
+  showEmergencyFundModal(form) {
+    const ref = this.modal.open(ModelWithButtonComponent, { centered: true });
+    ref.componentInstance.errorTitle = this.modalData.modalTitle_CPF;
+    ref.componentInstance.errorMessage = this.modalData.modalMessage_CPF;
+    ref.componentInstance.primaryActionLabel = this.translator.CONTINUE;
+    ref.componentInstance.primaryAction.subscribe((emittedValue) => {
+      this.investmentEngagementJourneyService.setYourInvestmentAmount(form.value);
+      this.router.navigate([INVESTMENT_ENGAGEMENT_JOURNEY_ROUTE_PATHS.GET_STARTED_STEP2]);
+    });
   }
 }
