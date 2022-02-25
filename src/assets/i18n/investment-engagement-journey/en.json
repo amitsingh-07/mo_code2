@@ -269,6 +269,7 @@
     "MONTH": "/mth"
   },
   "MY_FINANCIALS": {
+    "CONTINUE": "Continue",
     "REVIEW_INPUT": "Review My Inputs",
     "PROCEED_NEXT": "Proceed To Next Step",
     "RETURN_HOME": "Return To Homepage",
@@ -297,7 +298,9 @@
     },
     "modalData": {
       "modalTitle": "Insufficient Emergency Fund",
-      "modalMessage": "Before you invest, we recommend that you have an emergency fund to cover <b> at least 3 months’ of living expenses</b>."
+      "modalMessage": "Before you invest, we recommend that you have an emergency fund to cover <b> at least 3 months’ of living expenses</b>.",
+      "modalTitle_CPF": "Before you proceed...",
+      "modalMessage_CPF": "Your CPF OA savings can be used for many things such as paying for your home loan, you or your children’s education in approved local tertiary courses, and approved insurance products. When you invest your CPF savings, you may not be able to immediately withdraw from your investments to make these payments thus it is always prudent to leave a buffer in your OA and not invest monies that you plan to use in the short term."
     },
     "helpData": {
       "modalTitle": "Emergency Fund",
