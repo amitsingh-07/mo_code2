@@ -67,8 +67,8 @@ export class YourInvestmentAmountComponent implements OnInit {
       this.setPageTitle(self.pageTitle);
       this.loaderTitle = this.translate.instant('MY_FINANCIALS.RESPONSE_LOADER.TITLE');
       this.loaderDescTwo = this.translate.instant('MY_FINANCIALS.RESPONSE_LOADER.DESC_TWO');
+      this.modalData = this.translate.instant('MY_FINANCIALS.modalData');
     });
-    self.modalData = this.translate.instant('MY_FINANCIALS.modalData');
   }
 
   setPageTitle(title: string) {
@@ -216,8 +216,7 @@ export class YourInvestmentAmountComponent implements OnInit {
             });
         }
         else if(this.isCpfEnabled){
-          this.showEmergencyFundModal(form)
-          // this.investmentAccountService.showGenericErrorModal();
+          this.showEmergencyFundModal(form);
         }
         else {
           this.investmentEngagementJourneyService.setYourInvestmentAmount(form.value);
