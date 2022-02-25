@@ -263,6 +263,7 @@ export class YourInvestmentAmountComponent implements OnInit {
 
   showEmergencyFundModal(form) {
     const ref = this.modal.open(ModelWithButtonComponent, { centered: true });
+    ref.componentInstance.closeBtn = false;
     ref.componentInstance.errorTitle = this.modalData.modalTitle_CPF;
     ref.componentInstance.errorMessage = this.modalData.modalMessage_CPF;
     ref.componentInstance.primaryActionLabel = this.translator.CONTINUE;
