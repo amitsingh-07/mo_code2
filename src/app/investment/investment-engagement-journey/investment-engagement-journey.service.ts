@@ -290,7 +290,7 @@ export class InvestmentEngagementJourneyService {
     const selectedPortfolioType = this.getSelectPortfolioType();
     const formData = this.getPortfolioFormData();
     const enquiryIdValue = Number(this.authService.getEnquiryId());
-    if (selectedPortfolioType === INVESTMENT_ENGAGEMENT_JOURNEY_CONSTANTS.SELECT_POROFOLIO_TYPE.INVEST_PORTFOLIO) {
+    if (selectedPortfolioType === INVESTMENT_ENGAGEMENT_JOURNEY_CONSTANTS.SELECT_POROFOLIO_TYPE.INVEST_PORTFOLIO || selectedPortfolioType === INVESTMENT_ENGAGEMENT_JOURNEY_CONSTANTS.SELECT_POROFOLIO_TYPE.CPF_PORTFOLIO) {
       return {
         investmentPeriod: formData.investmentPeriod,
         monthlyIncome: formData.monthlyIncome,
