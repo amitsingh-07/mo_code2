@@ -99,8 +99,8 @@
     },
     "LEARN_MORE": "Learn More",
     "PROGRESS_POPUP": {
-      "TITLE": "You have a portfolio pending approval",
-      "DESCRIPTION": "Portfolio Approval is pending. So cannot proceed to add subsequent portfolio.",
+      "TITLE": "Portfolio Approval in Progress",
+      "DESCRIPTION": "As you have a portfolio pending approval, you'll only be able to add portfolios after your initial portfolio has been approved.",
       "BUTTON": "Okay, Got It!"
 
     }
