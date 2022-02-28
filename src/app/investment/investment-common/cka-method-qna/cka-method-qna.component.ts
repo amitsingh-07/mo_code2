@@ -115,16 +115,16 @@ export class CkaMethodQnaComponent implements OnInit {
       if (result.objectList) {
         this.institutionList = result.objectList?.jointAccountMinorForeignerRelationship;
         if (method === INVESTMENT_COMMON_CONSTANTS.CKA.METHODS[0]) {
-          this.dropdownList1 = result.objectList.ckaEducationQualification;
-          this.dropdownList2 = result.objectList.ckaEducationInstitute;
+          this.dropdownList1 = Util.getUniqueList(result.objectList.ckaEducationQualification, 'name');
+          this.dropdownList2 = Util.getUniqueList(result.objectList.ckaEducationInstitute, 'name');
         } else if (method === INVESTMENT_COMMON_CONSTANTS.CKA.METHODS[1]) {
-          this.dropdownList1 = result.objectList.ckaFinancialQualification;
-          this.dropdownList2 = result.objectList.ckaFinancialEducation
+          this.dropdownList1 = Util.getUniqueList(result.objectList.ckaFinancialQualification, 'name');
+          this.dropdownList2 = Util.getUniqueList(result.objectList.ckaFinancialEducation, 'name');
         } else if (method === INVESTMENT_COMMON_CONSTANTS.CKA.METHODS[3]) {
-          this.dropdownList1 = result.objectList.ckaWorkExperience;
-          this.dropdownList2 = result.objectList.ckaWork
+          this.dropdownList1 = Util.getUniqueList(result.objectList.ckaWorkExperience, 'name');
+          this.dropdownList2 = Util.getUniqueList(result.objectList.ckaWork, 'name');
         } else if (method === INVESTMENT_COMMON_CONSTANTS.CKA.METHODS[2]) {
-          this.dropdownList1 = result.objectList.ckaInvestmentUnlisted;
+          this.dropdownList1 = Util.getUniqueList(result.objectList.ckaInvestmentUnlisted, 'name');
         }
       }
     }, () => {
