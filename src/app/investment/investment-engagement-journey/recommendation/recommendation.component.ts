@@ -77,13 +77,6 @@ export class RecommendationComponent implements OnInit, AfterViewInit {
     }
     this.showButton();
     this.buttonLabel();
-    this.checkAndSetCPFISrecommendation();
-  }
-
-  checkAndSetCPFISrecommendation: () => void = () => {
-    if (this.selectedRiskProfile && this.selectedRiskProfile.showRecommendationCheckbox) {
-      this.selectedRiskProfile.htmlDescription.desc = null;
-    }
   }
 
   checkBoxClicked: () => void = () => {

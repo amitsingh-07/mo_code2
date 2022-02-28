@@ -99,8 +99,8 @@
     },
     "LEARN_MORE": "Learn More",
     "PROGRESS_POPUP": {
-      "TITLE": "You have a portfolio pending approval",
-      "DESCRIPTION": "Portfolio Approval is pending. So cannot proceed to add subsequent portfolio.",
+      "TITLE": "Portfolio Approval in Progress",
+      "DESCRIPTION": "As you have a portfolio pending approval, you'll only be able to add portfolios after your initial portfolio has been approved.",
       "BUTTON": "Okay, Got It!"
 
     }
@@ -262,13 +262,14 @@
     "MONTHLY_DEPOSIT_LBL": "Monthly Amount",
     "AT_LEAST_ONE": "Select at least one of the following.",
     "INVESTMENT_LBL": "My Funding Amount",
-    "INVESTMENT_CPF_LBL": "<p>Please note that the first $20,000 in your CPF OA cannot be invested.</p>As the agent bank that operates your CPF Investment Account levies a fee of $2.50 (excluding gst) for each buy and sell CPF investments, it is recommended that you opt for one-time amount or a higher monthly amount to optimise your investments.",
+    "INVESTMENT_CPF_LBL": "<p>Please note that the first $20,000 in your CPF OA cannot be invested.</p>As the agent bank that operates your CPF Investment Account levies a fee of $2.50 (excluding gst) for each buy and sell, it is recommended that you opt for one-time amount or a higher monthly amount to optimise your investments.",
     "MIN_100": "Min. $100",
     "MIN_50": "Min. $50",
     "MIN": "Min.",
     "MONTH": "/mth"
   },
   "MY_FINANCIALS": {
+    "CONTINUE": "Continue",
     "REVIEW_INPUT": "Review My Inputs",
     "PROCEED_NEXT": "Proceed To Next Step",
     "RETURN_HOME": "Return To Homepage",
@@ -297,7 +298,9 @@
     },
     "modalData": {
       "modalTitle": "Insufficient Emergency Fund",
-      "modalMessage": "Before you invest, we recommend that you have an emergency fund to cover <b> at least 3 months’ of living expenses</b>."
+      "modalMessage": "Before you invest, we recommend that you have an emergency fund to cover <b> at least 3 months’ of living expenses</b>.",
+      "modalTitle_CPF": "Before you proceed...",
+      "modalMessage_CPF": "Your CPF OA savings can be used for many things such as paying for your home loan, you or your children’s education in approved local tertiary courses, and approved insurance products. When you invest your CPF savings, you may not be able to immediately withdraw from your investments to make these payments thus it is always prudent to leave a buffer in your OA and not invest monies that you plan to use in the short term."
     },
     "helpData": {
       "modalTitle": "Emergency Fund",
@@ -340,7 +343,7 @@
       "TITLE": "Review My Inputs",
       "ONE_TIME_INVESTMENT": "One-time Amount",
       "MONTHLY_INVESTMENT": "Monthly Amount",
-      "CPF_DESC": "<p>Please note that the first $20,000 in your CPF OA cannot be invested.</p>As the agent bank that operates your CPF Investment Account levies a fee of $2.50 (excluding gst) for each buy and sell CPF investments, it is recommended that you opt for one-time amount or a higher monthly amount to optimise your investments.",
+      "CPF_DESC": "<p>Please note that the first $20,000 in your CPF OA cannot be invested.</p>As the agent bank that operates your CPF Investment Account levies a fee of $2.50 (excluding gst) for each buy and sell, it is recommended that you opt for one-time amount or a higher monthly amount to optimise your investments.",
       "MIN": "Min."
     },
     "WISE_SAVER_PORTOFOLIO": {

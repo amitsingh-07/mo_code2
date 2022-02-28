@@ -595,12 +595,32 @@
       "SEC_LABEL": "I will do it later"
     }
   },
+  "ADD_UPDATE_CPFIA": {
+    "TITLE": "Update CPF Investment Account",
+    "APPLY_CHANGES": "Apply Changes",
+    "ACCOUNT_HOLDER_NAME": "Account Holder's Name",
+    "LEGAL_NOTIFICATION": "Due to regulations, you can only use an account under your legal name.",
+    "CPFIA_OPERATOR": "CPFIA Operator",
+    "CPFIA_ACCOUNT_NUMBER": "CPFIA Number",
+    "SELECT_CPFIA_OPERATOR": "Select CPFIA Operator",
+    "MODAL": {
+      "TITLE": "CPF Investment Account Details Updated",
+      "DESC": "We will use this CPF Investment Account for your subsequent buy request(s).",
+      "PRIMARY_LABEL": "Top Up",
+      "SEC_LABEL": "I will do it later"
+    }
+  },
   "UPDATE_SRS": {
     "TITLE": "SRS Account",
     "SRS_OPERATOR": "SRS Operator",
     "SRS_ACCOUNT_NUMBER": "SRS Account Number",
     "NOTE": "No account added",
     "ADD_ACCOUNT": "Add Account"
+  },
+  "UPDATE_CPFIA": {
+    "TITLE": "CPF Investment Account",
+    "CPFIA_OPERATOR": "CPFIA Operator",
+    "CPFIA_ACCOUNT_NUMBER": "CPFIA Number"
   },
   "CKA": {
     "HEADING": "Customer Knowledge Assessment",

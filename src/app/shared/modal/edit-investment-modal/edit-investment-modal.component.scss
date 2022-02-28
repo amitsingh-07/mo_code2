@@ -48,9 +48,6 @@ app-edit-investment-modal{
     font-style: italic;
     letter-spacing: -0.1px;
     color: $form-block-sub-title-color;
-    .decimal-clip-format{
-      clip-path: inset(0 2.3ch 0 0);
-    }
   } 
   .cpf-desc{
     font-family: $muli-regular;
