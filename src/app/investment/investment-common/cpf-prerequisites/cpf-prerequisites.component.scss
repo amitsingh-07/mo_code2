@@ -95,6 +95,10 @@ app-cpf-prerequisites {
 
       .cka-status-lbl {
         padding: 10px 0;
+        .status-lbl {
+          font-size: 18px;
+          font-family: $muli-bold;
+        }
       }
 
       .btn-passed {
