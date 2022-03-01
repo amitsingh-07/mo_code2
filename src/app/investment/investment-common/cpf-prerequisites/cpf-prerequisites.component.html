@@ -20,17 +20,17 @@
                 <span class="status-icon">
                   <img src="./assets/images/check-icon-white.svg">
                 </span>
-                <span>{{'CPF_PREREQUISITES.CKA_PASSED' | translate}}</span>
+                <span class="status-lbl">{{'CPF_PREREQUISITES.CKA_PASSED' | translate}}</span>
               </div>
               <div class="cka-status-lbl" (click)="uploadCertificate()"
                 *ngIf="ckaInfo && ckaInfo.cKAStatusMessage === 'CKA_CERTIFICATE_UPLOAD'">
                 <span class="status-icon"><img src="./assets/images/check-icon-white.svg"></span>
-                <span>{{'CPF_PREREQUISITES.CERT_UPLOADED' | translate}}</span>
+                <span class="status-lbl">{{'CPF_PREREQUISITES.CERT_UPLOADED' | translate}}</span>
               </div>
               <div *ngIf="ckaInfo && ckaInfo.cKAStatusMessage === 'CKA_REJECTED'">
                 <ng-container *ngTemplateOutlet="startCKA">
                   <div class="flex-col" (click)="startAssessment()">
-                    <div class="cka-status-lbl">{{'CPF_PREREQUISITES.START_NOW_BTN' | translate}}</div>
+                    <div class="status-lbl">{{'CPF_PREREQUISITES.START_NOW_BTN' | translate}}</div>
                     <div class="sub-txt">{{'CPF_PREREQUISITES.ESTIMATED_TIME_TEXT' | translate}}</div>
                   </div>
                 </ng-container>
@@ -38,7 +38,7 @@
             </div>
             <ng-template #startCKA>
               <div class="flex-col" (click)="startAssessment()">
-                <div class="cka-status-lbl">{{'CPF_PREREQUISITES.START_NOW_BTN' | translate}}</div>
+                <div class="status-lbl">{{'CPF_PREREQUISITES.START_NOW_BTN' | translate}}</div>
                 <div class="sub-txt">{{'CPF_PREREQUISITES.ESTIMATED_TIME_TEXT' | translate}}</div>
               </div>
             </ng-template>
