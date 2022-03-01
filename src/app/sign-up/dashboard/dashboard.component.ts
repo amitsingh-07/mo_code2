@@ -259,6 +259,10 @@ export class DashboardComponent implements OnInit {
     this.investmentAccountService.getInvestmentsSummary().subscribe((data) => {
       if (data && data.responseMessage && data.responseMessage.responseCode === 6000) {
         this.investmentsSummary = data.objectList;
+        const accStatusInfoFromSession = this.investmentCommonService.getInvestmentCommonFormData().accountCreationActions;
+        if (this.investmentsSummary && this.investmentsSummary.investmentAccountStatus && accStatusInfoFromSession) {      
+          this.investmentCommonService.setAccountCreationActionsToSession(this.investmentsSummary.investmentAccountStatus);
+        } 
         this.setInvestmentsSummary(this.investmentsSummary);
         this.getInvestmentStatus();
       } else {
