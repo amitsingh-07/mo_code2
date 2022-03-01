@@ -24,6 +24,7 @@ import { InvestmentCommonService } from '../investment-common.service';
 import { INVESTMENT_ENGAGEMENT_JOURNEY_CONSTANTS } from '../../investment-engagement-journey/investment-engagement-journey.constants';
 import { ManageInvestmentsService } from '../../manage-investments/manage-investments.service';
 import { Util } from '../../../shared/utils/util';
+import { MANAGE_INVESTMENTS_CONSTANTS } from '../../manage-investments/manage-investments.constants';
 
 @Component({
   selector: 'app-funding-account-details',
@@ -47,7 +48,6 @@ export class FundingAccountDetailsComponent implements OnInit {
   fundingSubText;
   selectedFundingMethod;
   isSrsAccountAvailable = false;
-  isCPFAccountAvailable = false;
   srsAccountDetails;
   cpfAccountDetails: any;
   portfolio: any;
@@ -57,6 +57,7 @@ export class FundingAccountDetailsComponent implements OnInit {
   navigationType: any;
   selectedPortfolio: any;
   fundList:any;
+  userPortfolioList: any;
 
   constructor(
     public readonly translate: TranslateService,
@@ -93,6 +94,8 @@ export class FundingAccountDetailsComponent implements OnInit {
   }
 
   ngOnInit() {
+    let withdrawData = this.manageInvestmentsService.getTopUpFormData();
+    this.userPortfolioList = withdrawData ? withdrawData.userPortfolios : [];
     this.navbarService.setNavbarMobileVisibility(true);
     this.navbarService.setNavbarMode(6);
     this.footerService.setFooterVisibility(false);
@@ -515,7 +518,7 @@ export class FundingAccountDetailsComponent implements OnInit {
   callbackToGetCPFAccountDetails() {
     const fundingMethodId = this.fundingAccountDetailsForm.get('confirmedFundingMethodId').value;
     if (this.isCPFAccount(fundingMethodId, this.fundingMethods)) {
-      this.investmentCommonService.getCKABankDetails(false).subscribe((resp: any) => {
+      this.investmentCommonService.getCKABankDetails(this.checkIfCPFDisabled()).subscribe((resp: any) => {
         if (resp && resp.responseMessage && resp.responseMessage.responseCode >= 6000) {
           if (resp.objectList) {
             this.cpfAccountDetails = resp.objectList;
@@ -557,5 +560,10 @@ export class FundingAccountDetailsComponent implements OnInit {
       'CONFIRM_ACCOUNT_DETAILS.CPF_TOOLTIP.BTN'
     );
     ref.componentInstance.closeBtn = false;
+  }
+
+  checkIfCPFDisabled() {
+    const cpfPortfolio = this.userPortfolioList && this.userPortfolioList.length > 0 ? this.userPortfolioList.find(element => element.portfolioType === MANAGE_INVESTMENTS_CONSTANTS.TOPUP.FUNDING_METHODS.CPF) : null;
+    return !Util.isEmptyOrNull(cpfPortfolio);
   }
 }

@@ -119,14 +119,14 @@
               <!-- SRS bLOCK -->
             </div>
             <!-- CPFIA BLOCK -->
-            <div class="srs-block" *ngIf="fundingAccountDetailsForm.controls.cpfIADetails">
+            <div class="srs-block cpf-block" *ngIf="fundingAccountDetailsForm.controls.cpfIADetails">
               <div *ngIf="checkIfCPFPortfolio()" class="widget" formGroupName="cpfIADetails">
                 <div class="mb15">{{
                   'CONFIRM_ACCOUNT_DETAILS.ACCOUNT_DETAILS' | translate}}</div>
                 <div class="widget-title">
                   <span>{{
                     'CONFIRM_ACCOUNT_DETAILS.CPFIA_TITLE' | translate}}</span>
-                  <span>
+                  <span class="tooltip-icon">
                     <img class="help-icon" src="assets/images/dashboard-help.svg" (click)="shpwCPFModal()" />
                   </span>
                 </div>
@@ -139,7 +139,7 @@
                     <div class="flex-col-8">
                       <div class="dropdown-control">
                         <div ngbDropdown>
-                          <button [disabled]=isCPFAccountAvailable class="btn btn-dropdown" id="cpf_source-drpdown"
+                          <button [disabled]="checkIfCPFDisabled()" class="btn btn-dropdown" id="cpf_source-drpdown"
                             ngbDropdownToggle>
                             {{fundingAccountDetailsForm.controls.cpfIADetails.controls.cpfOperatorBank.value ?
                               fundingAccountDetailsForm.controls.cpfIADetails.controls.cpfOperatorBank.value.name :
@@ -161,7 +161,7 @@
                     </div>
                     <div class="flex-col-8"
                       [ngClass]="{'inline-error':getInlineErrorStatus(fundingAccountDetailsForm.controls.cpfIADetails.controls.cpfAccountNumber)}">
-                      <input type="text" [attr.disabled]="isCPFAccountAvailable == true ? true : null"
+                      <input type="text" [attr.disabled]="checkIfCPFDisabled() == true ? true : null"
                         [textMask]="cpfMaskConfig()" placeholder="Enter Account No." class="form-control"
                         formControlName="cpfAccountNumber">
                     </div>
