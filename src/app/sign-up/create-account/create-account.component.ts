@@ -354,6 +354,8 @@ export class CreateAccountComponent implements OnInit, AfterViewInit {
               this.signUpService.removeFromMobileNumber();
               if (this.finlitEnabled) {
                 this.router.navigate([SIGN_UP_ROUTE_PATHS.FINLIT_VERIFY_MOBILE]);
+              } else if (this.facebookEnabled) {
+                this.router.navigate([SIGN_UP_ROUTE_PATHS.CORPORATE_VERIFY_MOBILE]);
               } else {
                 this.router.navigate([SIGN_UP_ROUTE_PATHS.VERIFY_MOBILE]);
               }
@@ -392,13 +394,13 @@ export class CreateAccountComponent implements OnInit, AfterViewInit {
       this.showErrorModal(this.translate.instant('SIGNUP_ERRORS.TITLE'),
         this.translate.instant('SIGNUP_ERRORS.ACCOUNT_EXIST_MESSAGE'),
         this.translate.instant('COMMON.LOG_IN'),
-        SIGN_UP_ROUTE_PATHS.LOGIN, false);
+        (this.facebookEnabled && SIGN_UP_ROUTE_PATHS.CORPORATE_LOGIN) || SIGN_UP_ROUTE_PATHS.LOGIN, false);
     } else if (!data.objectList[0].emailVerified) {
       this.signUpService.setUserMobileNo(this.createAccountForm.controls['mobileNumber'].value);
       this.showErrorModal(this.translate.instant('SIGNUP_ERRORS.TITLE'),
         this.translate.instant('SIGNUP_ERRORS.VERIFY_EMAIL_MESSAGE'),
         this.translate.instant('COMMON.LOG_IN'),
-        SIGN_UP_ROUTE_PATHS.LOGIN, true);
+        (this.facebookEnabled && SIGN_UP_ROUTE_PATHS.CORPORATE_LOGIN) || SIGN_UP_ROUTE_PATHS.LOGIN, true);
     }
   }
 

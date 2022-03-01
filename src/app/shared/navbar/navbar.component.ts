@@ -493,14 +493,14 @@ export class NavbarComponent implements OnInit, AfterViewInit {
   logout() {
     if (this.authService.isSignedUser()) {
       this.authService.logout().subscribe((data) => {
-        this.clearLoginDetails();
+        this.clearLoginDetails(true, this.signUpService.getUserType());
       });
     } else {
       this.clearLoginDetails();
     }
   }
 
-  clearLoginDetails(isRedirect: boolean = true) {
+  clearLoginDetails(isRedirect: boolean = true, userType = appConstants.USERTYPE.NORMAL) {
     this.signUpService.setUserProfileInfo(null);
     this.isLoggedIn = false;
     this.showMenuItemInvestUser = false;
@@ -514,7 +514,9 @@ export class NavbarComponent implements OnInit, AfterViewInit {
     this.appService.startAppSession();
     this.selectedPlansService.clearData();
     if (isRedirect) {
-      if (this.showHome) {
+      if (userType ===  appConstants.USERTYPE.FACEBOOK) {
+        this.router.navigate([SIGN_UP_ROUTE_PATHS.CORPORATE_LOGIN]);
+      } else if (this.showHome) {
         this.router.navigate([appConstants.homePageUrl]);
       } else {
         this.router.navigate([SIGN_UP_ROUTE_PATHS.LOGIN]);

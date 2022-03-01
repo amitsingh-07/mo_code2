@@ -63,7 +63,8 @@ export interface IResendEmail {
     mobileNumber: string;
     emailAddress: string;
     callbackUrl: string;
-    hostedServerName: string;
+    hostedServerName: string;    
+    organisationCode?: string;
 }
 
 export interface IUpdateMobileNumber {

@@ -309,12 +309,13 @@ export class SignUpApiService {
     return this.apiService.emailValidityCheck(payload);
   }
 
-  resendEmailVerification(value: any, isEmail: boolean) {
+  resendEmailVerification(value: any, isEmail: boolean, organisationCode = null) {
     const payload = {
       mobileNumber: isEmail ? '' : value,
       emailAddress: isEmail ? value : '',
       callbackUrl: environment.apiBaseUrl + this.emailVerifyUrl,
-      hostedServerName: window.location.hostname
+      hostedServerName: window.location.hostname,
+      organisationCode: organisationCode
     } as IResendEmail;
     return this.apiService.resendEmailVerification(payload);
   }

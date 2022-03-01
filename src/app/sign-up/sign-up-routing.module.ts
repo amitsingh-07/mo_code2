@@ -23,7 +23,7 @@ import { ForgotPasswordComponent } from './forgot-password/forgot-password.compo
 import { LoginComponent } from './login/login.component';
 import { PreLoginComponent } from './pre-login/pre-login.component';
 import { ResetPasswordComponent } from './reset-password/reset-password.component';
-import { SignUpAccessGuard } from './sign-up-access-guard';
+import { SignUpAccessGuard, SignUpCorporateAccessGuard } from './sign-up-access-guard';
 import { SIGN_UP_ROUTES } from './sign-up.routes.constants';
 import { SIGN_UP_CONFIG } from './sign-up.constant';
 import { SuccessMessageComponent } from './success-message/success-message.component';
@@ -66,6 +66,12 @@ const routes: Routes = [
     component: VerifyMobileComponent,
     canActivate: [SignUpAccessGuard, FinlitLoggedUserGuard],
     data: [{ finlitEnabled: SIGN_UP_CONFIG.LOGIN.FINLIT_LOGIN }]
+  },
+  {
+    path: SIGN_UP_ROUTES.CORPORATE_VERIFY_MOBILE,
+    component: VerifyMobileComponent,
+    canActivate: [SignUpCorporateAccessGuard, FacebookLoggedUserGuard],
+    data: [{ facebookEnabled: SIGN_UP_CONFIG.LOGIN.FACEBOOK_LOGIN }]
   },
   {
     path: SIGN_UP_ROUTES.TWOFA_MOBILE,

@@ -522,8 +522,9 @@ export class LoginComponent implements OnInit, AfterViewInit, OnDestroy {
 
 
   resendEmailVerification() {
+    const organisationCode = this.facebookEnabled && this.loginForm.get('organisationCode').value || null;
     const isEmail = this.authService.isUserNameEmail(this.loginForm.value.loginUsername);
-    return this.signUpApiService.resendEmailVerification(this.loginForm.value.loginUsername, isEmail);
+    return this.signUpApiService.resendEmailVerification(this.loginForm.value.loginUsername, isEmail, organisationCode);
   }
   openErrorModal(error) {
     const ref = this.modal.open(ErrorModalComponent, { centered: true });
