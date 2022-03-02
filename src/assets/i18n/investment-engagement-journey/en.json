@@ -335,6 +335,7 @@
     "PROCEED": "Proceed",
     "EXPENSIVE_RATIO": " Fees include fund level fee of {{expensiveRatio}} p.a. which is incorporated into the NAV.<span> <a target='_blank' href=\"/pricing/\">View our fees table.</a></span>",
     "EXPENSIVE_RATIO_WISE_INCOME": " This excludes fund level fees (such as annual management fees of {{expensiveRatio}} p.a.) which are factored into the price of the fund.<span> <a target='_blank' href=\"/pricing/\">View our fees table.</a></span>",
+    "EXPENSIVE_RATIO_CPF": " Enjoy 0% advisory fees until end of {{year}}. Fees do not include fund level fees of {{expensiveRatio}} p.a. which is incorporated in the NAV. <span> <a target='_blank' href=\"/pricing/\">View our fees table.</a></span>",
     "FUND_EXPENSIVE_RATIO": "Fund Expense Ratio",
     "TOTAL_FEE": "Total Fee",
     "LGI_SUB_LBL":"LGI Infinity Global Stock Index Fund",
@@ -636,8 +637,8 @@
     "TAP_TO_UPLOAD":"Tap To Upload",
     "I_AGREE": "I declare that I have passed the ABS e-learning course within the first 3 attempts and not been disallowed to transact in SIP by another FI for more than 3 times.",
     "SAVE_CONTINUE": "Save & Continue",
-    "GENTLE_REMINDER_TITLE": "Gentle Reminder",
-    "GENTLE_REMINDER_DESC": "Please ensure that you have uploaded the correct file as it may causes delays in creating your portfolio. Congratulations on completing your e-Learning!"
+    "GENTLE_REMINDER_TITLE": "Uploaded Successfully!",
+    "GENTLE_REMINDER_DESC": "Your document upload is successful. You can modify your document in \"My Profile\" if required."
   },
   "NONE_OF_THE_ABOVE":{
     "PAGE_TITLE": "Customer Knowledge Assessment",
@@ -658,7 +659,7 @@
   },
   "CKA_RESULT": {
     "TITLE": "You have passed CKA!",
-    "DESC": " Congratulations on completing your e-Learning! Please continue to the next step of investing CPF portfolio.",
+    "DESC": "Congratulation on completing your CKA assessment! Your CKA status will be valid for the next 1 year.",
     "BTN_CONTINUE": "Continue"
   },
   "PORTFOLIO_INPROGRESS": {
