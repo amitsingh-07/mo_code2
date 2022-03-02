@@ -34,6 +34,7 @@ export class AuthenticationService {
   get2faUpdateEvent = this.get2faUpdate.asObservable();
   private timer2fa: any;
   private is2faVerifyAllowed: boolean = false;
+  isUserTypeCorporate = false;
 
   constructor(
     private httpClient: HttpClient, public jwtHelper: JwtHelperService,

@@ -145,7 +145,7 @@ export class NavbarComponent implements OnInit, AfterViewInit {
     private navbarService: NavbarService,
     private config: NgbDropdownConfig, private renderer: Renderer2,
     private cdr: ChangeDetectorRef, private router: Router, private configService: ConfigService,
-    private signUpService: SignUpService, private authService: AuthenticationService,
+    public signUpService: SignUpService, private authService: AuthenticationService,
     private sessionsService: SessionsService,
     private modal: NgbModal,
     private appService: AppService,
@@ -184,6 +184,7 @@ export class NavbarComponent implements OnInit, AfterViewInit {
         this.userInfo = data;
         if (this.authService.isSignedUser()) {
           this.isLoggedIn = true;
+          this.authService.isUserTypeCorporate = this.authService.isSignedUserWithRole(SIGN_UP_CONFIG.ROLE_CORP_FB_USER);
         }
       }
     });
@@ -285,7 +286,7 @@ export class NavbarComponent implements OnInit, AfterViewInit {
     this.navbarService.currentActiveObserv.pipe(takeUntil(this.ngUnsubscribe))
       .subscribe((currentActive) => {
         this.currentActive = currentActive;
-      });
+      });    
   }
 
   ngAfterViewInit() {
@@ -514,7 +515,7 @@ export class NavbarComponent implements OnInit, AfterViewInit {
     this.appService.startAppSession();
     this.selectedPlansService.clearData();
     if (isRedirect) {
-      if (userType ===  appConstants.USERTYPE.FACEBOOK) {
+      if (userType ===  appConstants.USERTYPE.CORPORATE) {
         this.router.navigate([SIGN_UP_ROUTE_PATHS.CORPORATE_LOGIN]);
       } else if (this.showHome) {
         this.router.navigate([appConstants.homePageUrl]);
