@@ -22,7 +22,7 @@ export class AccountCreatedComponent implements OnInit, OnDestroy {
   emailSent = false;
   finlitEnabled = false;
   routeSubscription: Subscription;
-  facebookEnabled = false;
+  organisationEnabled = false;
 
   constructor(
     private translate: TranslateService,
@@ -60,7 +60,7 @@ export class AccountCreatedComponent implements OnInit, OnDestroy {
     }
     if (this.route.snapshot.data[0]) {
       this.finlitEnabled = this.route.snapshot.data[0]['finlitEnabled'];
-      this.facebookEnabled = this.route.snapshot.data[0]['facebookEnabled'];
+      this.organisationEnabled = this.route.snapshot.data[0]['organisationEnabled'];
       this.appService.clearJourneys();
       this.appService.clearPromoCode();
     }
@@ -73,7 +73,7 @@ export class AccountCreatedComponent implements OnInit, OnDestroy {
   redirectToLogin() {
     if (this.finlitEnabled) {
       this.router.navigate([SIGN_UP_ROUTE_PATHS.FINLIT_LOGIN]);
-    } else if (this.facebookEnabled) {
+    } else if (this.organisationEnabled) {
       this.router.navigate([SIGN_UP_ROUTE_PATHS.CORPORATE_LOGIN]);
     } else {
       this.router.navigate([SIGN_UP_ROUTE_PATHS.LOGIN]);

@@ -71,7 +71,7 @@ const routes: Routes = [
     path: SIGN_UP_ROUTES.CORPORATE_VERIFY_MOBILE,
     component: VerifyMobileComponent,
     canActivate: [SignUpCorporateAccessGuard, FacebookLoggedUserGuard],
-    data: [{ facebookEnabled: SIGN_UP_CONFIG.LOGIN.FACEBOOK_LOGIN }]
+    data: [{ organisationEnabled: SIGN_UP_CONFIG.LOGIN.CORPORATE_LOGIN }]
   },
   {
     path: SIGN_UP_ROUTES.TWOFA_MOBILE,
@@ -89,7 +89,7 @@ const routes: Routes = [
     path: SIGN_UP_ROUTES.ACCOUNT_CREATED_CORPORATE,
     component: AccountCreatedComponent,
     canActivate: [FacebookLoggedUserGuard],
-    data: [{ facebookEnabled: SIGN_UP_CONFIG.LOGIN.FACEBOOK_LOGIN }]
+    data: [{ organisationEnabled: SIGN_UP_CONFIG.LOGIN.CORPORATE_LOGIN }]
   },
   {
     path: SIGN_UP_ROUTES.ACCOUNT_CREATED,
@@ -108,7 +108,7 @@ const routes: Routes = [
     path: SIGN_UP_ROUTES.CORPORATE_LOGIN,
     component: LoginComponent,
     canActivate: [FacebookLoggedUserGuard],
-    data: [{ facebookEnabled: SIGN_UP_CONFIG.LOGIN.FACEBOOK_LOGIN }]
+    data: [{ organisationEnabled: SIGN_UP_CONFIG.LOGIN.CORPORATE_LOGIN }]
   },
   {
     path: SIGN_UP_ROUTES.FORGOT_PASSWORD,
@@ -202,7 +202,7 @@ const routes: Routes = [
     path: SIGN_UP_ROUTES.CORPORATE_CREATE_ACCOUNT,
     component: CreateAccountComponent,
     canActivate: [FacebookLoggedUserGuard],
-    data: [{ facebookEnabled: SIGN_UP_CONFIG.LOGIN.FACEBOOK_LOGIN }]
+    data: [{ organisationEnabled: SIGN_UP_CONFIG.LOGIN.CORPORATE_LOGIN }]
   },
   {
     path: SIGN_UP_ROUTES.VERIFY_EMAIL,
@@ -227,7 +227,7 @@ const routes: Routes = [
     path: SIGN_UP_ROUTES.CORPORATE_CREATE_ACCOUNT_MY_INFO,
     component: CreateAccountMyinfoComponent,
     canActivate: [FacebookLoggedUserGuard],
-    data: [{ facebookEnabled: SIGN_UP_CONFIG.LOGIN.FACEBOOK_LOGIN }]
+    data: [{ organisationEnabled: SIGN_UP_CONFIG.LOGIN.CORPORATE_LOGIN }]
   }, 
   {
     path: SIGN_UP_ROUTES.FINLIT_CREATE_ACCOUNT + '/:referralCode',

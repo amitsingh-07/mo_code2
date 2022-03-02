@@ -74,7 +74,7 @@ export class FacebookLoggedUserService implements CanActivate {
   ) {
   }
   canActivate(): boolean {
-    if(!SIGN_UP_CONFIG.LOGIN.FACEBOOK_LOGIN) {
+    if(!SIGN_UP_CONFIG.LOGIN.CORPORATE_LOGIN) {
       this.route.navigate([SIGN_UP_ROUTE_PATHS.CORPORATE_LOGIN]);
       return false;
     } else if (this.authService.isSignedUser()) {

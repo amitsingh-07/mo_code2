@@ -54,7 +54,7 @@ export let SIGN_UP_CONFIG = {
   },
   LOGIN: {
     FINLIT_LOGIN: true,
-    FACEBOOK_LOGIN: true
+    CORPORATE_LOGIN: true
   },
   SIGN_UP: {
     EMAIL: "email"

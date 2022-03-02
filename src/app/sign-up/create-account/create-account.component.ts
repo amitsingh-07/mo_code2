@@ -73,7 +73,7 @@ export class CreateAccountComponent implements OnInit, AfterViewInit {
   formValue: any;
   maxDate: any;
   minDate: any;
-  facebookEnabled = false;
+  organisationEnabled = false;
 
   constructor(
     private formBuilder: FormBuilder,
@@ -114,7 +114,7 @@ export class CreateAccountComponent implements OnInit, AfterViewInit {
 
     if (this.route.snapshot.data[0]) {
       this.finlitEnabled = this.route.snapshot.data[0]['finlitEnabled'];
-      this.facebookEnabled = this.route.snapshot.data[0]['facebookEnabled'];
+      this.organisationEnabled = this.route.snapshot.data[0]['organisationEnabled'];
       this.appService.clearJourneys();
       this.appService.clearPromoCode();
     }
@@ -200,7 +200,7 @@ export class CreateAccountComponent implements OnInit, AfterViewInit {
         marketingAcceptance: [false],
         captcha: ['', [Validators.required]],
         referralCode: [''],
-        organisationCode: [null, this.facebookEnabled ? Validators.required : []],
+        organisationCode: [null, this.organisationEnabled ? Validators.required : []],
         gender: [{
           value: myInfoGender,
           disabled: this.signUpService.isDisabled('gender')
@@ -225,7 +225,7 @@ export class CreateAccountComponent implements OnInit, AfterViewInit {
       marketingAcceptance: [false],
       captcha: ['', [Validators.required]],
       referralCode: [''],
-      organisationCode: [null, this.facebookEnabled ? Validators.required : []],
+      organisationCode: [null, this.organisationEnabled ? Validators.required : []],
       gender: [{
         value: myInfoGender,
         disabled: this.signUpService.isDisabled('gender')
@@ -236,7 +236,7 @@ export class CreateAccountComponent implements OnInit, AfterViewInit {
       }, [Validators.required]]
     }, { validator: this.validateMatchPasswordEmail() })
 
-    if(this.facebookEnabled) {
+    if(this.organisationEnabled) {
       this.createAccountForm.get('organisationCode').patchValue(appConstants.USERTYPE.FACEBOOK);
     }
     this.buildFormSingPass();
@@ -273,10 +273,10 @@ export class CreateAccountComponent implements OnInit, AfterViewInit {
     this.submitted = true;
     this.validateReferralCode();
     if (form.valid) {
-      form.value.userType = this.finlitEnabled ? appConstants.USERTYPE.FINLIT : appConstants.USERTYPE.NORMAL;
+      form.value.userType = (this.finlitEnabled ? appConstants.USERTYPE.FINLIT : (this.organisationEnabled ? appConstants.USERTYPE.CORPORATE : appConstants.USERTYPE.NORMAL));
       form.value.accountCreationType = (this.formValue && this.formValue.isMyInfoEnabled) ? appConstants.USERTYPE.SINGPASS : appConstants.USERTYPE.MANUAL;
       form.value.isMyInfoEnabled = (this.formValue && this.formValue.isMyInfoEnabled);
-      form.value.organisationCode = this.facebookEnabled && this.createAccountForm.get('organisationCode').value || null;
+      form.value.organisationCode = this.organisationEnabled && this.createAccountForm.get('organisationCode').value || null;
       if (this.formValue && this.formValue.isMyInfoEnabled) {
         form.value.dob = (this.formValue && this.formValue.isMyInfoEnabled && this.formValue.dob) ? this.formValue.dob : '';
         form.value.gender = (this.formValue && this.formValue.isMyInfoEnabled && this.formValue.gender) ? this.formValue.gender : '';
@@ -354,7 +354,7 @@ export class CreateAccountComponent implements OnInit, AfterViewInit {
               this.signUpService.removeFromMobileNumber();
               if (this.finlitEnabled) {
                 this.router.navigate([SIGN_UP_ROUTE_PATHS.FINLIT_VERIFY_MOBILE]);
-              } else if (this.facebookEnabled) {
+              } else if (this.organisationEnabled) {
                 this.router.navigate([SIGN_UP_ROUTE_PATHS.CORPORATE_VERIFY_MOBILE]);
               } else {
                 this.router.navigate([SIGN_UP_ROUTE_PATHS.VERIFY_MOBILE]);
@@ -394,13 +394,13 @@ export class CreateAccountComponent implements OnInit, AfterViewInit {
       this.showErrorModal(this.translate.instant('SIGNUP_ERRORS.TITLE'),
         this.translate.instant('SIGNUP_ERRORS.ACCOUNT_EXIST_MESSAGE'),
         this.translate.instant('COMMON.LOG_IN'),
-        (this.facebookEnabled && SIGN_UP_ROUTE_PATHS.CORPORATE_LOGIN) || SIGN_UP_ROUTE_PATHS.LOGIN, false);
+        (this.organisationEnabled && SIGN_UP_ROUTE_PATHS.CORPORATE_LOGIN) || SIGN_UP_ROUTE_PATHS.LOGIN, false);
     } else if (!data.objectList[0].emailVerified) {
       this.signUpService.setUserMobileNo(this.createAccountForm.controls['mobileNumber'].value);
       this.showErrorModal(this.translate.instant('SIGNUP_ERRORS.TITLE'),
         this.translate.instant('SIGNUP_ERRORS.VERIFY_EMAIL_MESSAGE'),
         this.translate.instant('COMMON.LOG_IN'),
-        (this.facebookEnabled && SIGN_UP_ROUTE_PATHS.CORPORATE_LOGIN) || SIGN_UP_ROUTE_PATHS.LOGIN, true);
+        (this.organisationEnabled && SIGN_UP_ROUTE_PATHS.CORPORATE_LOGIN) || SIGN_UP_ROUTE_PATHS.LOGIN, true);
     }
   }
 

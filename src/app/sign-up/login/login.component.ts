@@ -64,7 +64,7 @@ export class LoginComponent implements OnInit, AfterViewInit, OnDestroy {
   progressModal = false;
   investmentEnquiryId;
   finlitEnabled = false;
-  facebookEnabled = false;
+  organisationEnabled = false;
   capsOn: boolean;
   capslockFocus: boolean;
   showPasswordLogin = true;
@@ -117,7 +117,7 @@ export class LoginComponent implements OnInit, AfterViewInit, OnDestroy {
     });
     if (route.snapshot.data[0]) {
       this.finlitEnabled = route.snapshot.data[0]['finlitEnabled'];
-      this.facebookEnabled = route.snapshot.data[0]['facebookEnabled'];
+      this.organisationEnabled = route.snapshot.data[0]['organisationEnabled'];
       this.singpassEnabled = route.snapshot.data[0]['singpassEnabled'];
       this.appService.clearJourneys();
       this.appService.clearPromoCode();
@@ -230,7 +230,7 @@ export class LoginComponent implements OnInit, AfterViewInit, OnDestroy {
         this.loginForm = this.formBuilder.group({
           loginUsername: [this.formValues.loginUsername, [Validators.required, Validators.pattern(this.distribution.login.phoneRegex)]],
           loginPassword: [this.formValues.loginPassword, [Validators.required]],
-          organisationCode: [null, this.facebookEnabled ? [Validators.required] : []],
+          organisationCode: [null, this.organisationEnabled ? [Validators.required] : []],
           captchaValue: ['']
         });
         return false;
@@ -239,14 +239,14 @@ export class LoginComponent implements OnInit, AfterViewInit, OnDestroy {
     this.loginForm = this.formBuilder.group({
       loginUsername: [this.formValues.loginUsername, [Validators.required, Validators.pattern(RegexConstants.EmailOrMobile)]],
       loginPassword: [this.formValues.loginPassword, [Validators.required]],
-      organisationCode: [null, this.facebookEnabled ? [Validators.required] : []],
+      organisationCode: [null, this.organisationEnabled ? [Validators.required] : []],
       captchaValue: ['']
     });
     if (this.finlitEnabled) {
       this.loginForm.addControl('accessCode', new FormControl(this.formValues.accessCode, [Validators.required]));
     }
 
-    if(this.facebookEnabled && this.route.snapshot.queryParams.orgID) {
+    if(this.organisationEnabled && this.route.snapshot.queryParams.orgID) {
       this.loginForm.get('organisationCode').patchValue(appConstants.USERTYPE.FACEBOOK);
     }
     return true;
@@ -271,10 +271,10 @@ export class LoginComponent implements OnInit, AfterViewInit, OnDestroy {
       });
     }
     this.signUpService.setEmail(form.value.loginUsername);
-    const userType = (this.finlitEnabled ? appConstants.USERTYPE.FINLIT : (this.facebookEnabled ? appConstants.USERTYPE.FACEBOOK : appConstants.USERTYPE.NORMAL));
+    const userType = (this.finlitEnabled ? appConstants.USERTYPE.FINLIT : (this.organisationEnabled ? appConstants.USERTYPE.CORPORATE : appConstants.USERTYPE.NORMAL));
     this.signUpService.setUserType(userType);
     const accessCode = (this.finlitEnabled) ? this.loginForm.value.accessCode : '';
-    const organisationCode = this.facebookEnabled && this.loginForm.get('organisationCode').value || null;
+    const organisationCode = this.organisationEnabled && this.loginForm.get('organisationCode').value || null;
     if (!form.valid || ValidatePassword(form.controls['loginPassword'])) {
       const ref = this.modal.open(ErrorModalComponent, { centered: true });
       let error;
@@ -522,7 +522,7 @@ export class LoginComponent implements OnInit, AfterViewInit, OnDestroy {
 
 
   resendEmailVerification() {
-    const organisationCode = this.facebookEnabled && this.loginForm.get('organisationCode').value || null;
+    const organisationCode = this.organisationEnabled && this.loginForm.get('organisationCode').value || null;
     const isEmail = this.authService.isUserNameEmail(this.loginForm.value.loginUsername);
     return this.signUpApiService.resendEmailVerification(this.loginForm.value.loginUsername, isEmail, organisationCode);
   }
