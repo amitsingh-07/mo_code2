@@ -658,7 +658,7 @@
   },
   "CKA_RESULT": {
     "TITLE": "You have passed CKA!",
-    "DESC": " Congratulations on completing your e-Learning! Please continue to the next step of investing CPF portfolio.",
+    "DESC": "Congratulation on completing your CKA assessment! Your CKA status will be valid for the next 1 year.",
     "BTN_CONTINUE": "Continue"
   },
   "PORTFOLIO_INPROGRESS": {
