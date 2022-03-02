@@ -203,6 +203,7 @@ export class AddPortfolioNameComponent implements OnInit, OnDestroy {
     this.investmentCommonService.updatePortfolioStatus(param).subscribe((response) => {
       this.loaderService.hideLoaderForced();
       if (response.responseMessage.responseCode === 6000) {
+        this.clearData();
         this.redirectToPortfolioInProgress();
         this.showErrorMessage = false;
       } else if (response.responseMessage.responseCode === 5120) {
