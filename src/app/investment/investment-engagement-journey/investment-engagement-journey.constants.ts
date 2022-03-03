@@ -25,7 +25,8 @@ export let INVESTMENT_ENGAGEMENT_JOURNEY_CONSTANTS = {
     INVESTMENT: 'prospectus_investment.pdf',
     WISESAVER: 'prospectus_wise_saver.pdf',
     WISEINCOME: 'prospectus_wise_income.pdf',
-    CPF: 'prospectus_cpf.pdf'
+    CPF_LGI: 'prospectus_cpf_lgi.pdf',
+    CPF_UOB: 'prospectus_cpf_uob.pdf'
   },
   PAYOUT_FUNDLIST: {
     GROW: 'Grow & invest payout_Cash',

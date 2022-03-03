@@ -501,6 +501,18 @@ app-dashboard {
               }
               .widget-portfolio-type-content{
                 padding:0px 18px 10px 18px;
+                .col-md-6{
+                    &:nth-child(2){
+                        @media (min-width: 768px){
+                            padding: 0px 18px 0px 0px;
+                        } 
+                    }
+                    &:nth-child(4){
+                        @media (min-width: 768px){
+                            padding: 0px 18px 0px 0px;
+                        } 
+                    }
+                }
               }
               .portfolio-type-cash-balance {
                 height: 16px;
@@ -538,11 +550,6 @@ app-dashboard {
               .dashboard-wise-portfolio{   
                 background-color: $dashboard-portfolio-card-wisesaver;
               }              
-              @media (min-width: 768px){
-                .widget-portfolio-type-right{
-                    padding: 0px 18px 0px 0px;
-                }
-              }
             .alert-img-container {
                 display: flex;
                 justify-content: flex-end;
