@@ -145,7 +145,7 @@ export class NavbarComponent implements OnInit, AfterViewInit {
     private navbarService: NavbarService,
     private config: NgbDropdownConfig, private renderer: Renderer2,
     private cdr: ChangeDetectorRef, private router: Router, private configService: ConfigService,
-    public signUpService: SignUpService, private authService: AuthenticationService,
+    private signUpService: SignUpService, public authService: AuthenticationService,
     private sessionsService: SessionsService,
     private modal: NgbModal,
     private appService: AppService,
