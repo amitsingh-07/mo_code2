@@ -659,7 +659,7 @@
   },
   "CKA_RESULT": {
     "TITLE": "You have passed CKA!",
-    "DESC": "Congratulation on completing your CKA assessment! Your CKA status will be valid for the next 1 year.",
+    "DESC": "Congratulations on completing your CKA assessment! Your CKA status will be valid for the next 1 year.",
     "BTN_CONTINUE": "Continue"
   },
   "PORTFOLIO_INPROGRESS": {
