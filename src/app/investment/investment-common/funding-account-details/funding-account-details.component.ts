@@ -25,7 +25,7 @@ import { INVESTMENT_ENGAGEMENT_JOURNEY_CONSTANTS } from '../../investment-engage
 import { ManageInvestmentsService } from '../../manage-investments/manage-investments.service';
 import { Util } from '../../../shared/utils/util';
 import { MANAGE_INVESTMENTS_CONSTANTS } from '../../manage-investments/manage-investments.constants';
-import { LoaderService } from 'src/app/shared/components/loader/loader.service';
+import { LoaderService } from '../../../shared/components/loader/loader.service';
 
 @Component({
   selector: 'app-funding-account-details',
@@ -49,7 +49,6 @@ export class FundingAccountDetailsComponent implements OnInit {
   fundingSubText;
   selectedFundingMethod;
   isSrsAccountAvailable = false;
-  isCPFAccountAvailable = false;
   srsAccountDetails;
   cpfAccountDetails: any;
   portfolio: any;
@@ -524,7 +523,6 @@ export class FundingAccountDetailsComponent implements OnInit {
       this.investmentCommonService.getCKABankDetails(this.checkIfCPFDisabled()).subscribe((resp: any) => {
         if (resp && resp.responseMessage && resp.responseMessage.responseCode >= 6000) {
           if (resp.objectList) {
-            this.isCPFAccountAvailable = true;
             this.cpfAccountDetails = resp.objectList;
             this.setCPFAccountDetails(this.cpfAccountDetails);
           }
