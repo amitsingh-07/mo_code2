@@ -25,6 +25,7 @@ import { INVESTMENT_ENGAGEMENT_JOURNEY_CONSTANTS } from '../../investment-engage
 import { ManageInvestmentsService } from '../../manage-investments/manage-investments.service';
 import { Util } from '../../../shared/utils/util';
 import { MANAGE_INVESTMENTS_CONSTANTS } from '../../manage-investments/manage-investments.constants';
+import { LoaderService } from 'src/app/shared/components/loader/loader.service';
 
 @Component({
   selector: 'app-funding-account-details',
@@ -48,6 +49,7 @@ export class FundingAccountDetailsComponent implements OnInit {
   fundingSubText;
   selectedFundingMethod;
   isSrsAccountAvailable = false;
+  isCPFAccountAvailable = false;
   srsAccountDetails;
   cpfAccountDetails: any;
   portfolio: any;
@@ -56,7 +58,7 @@ export class FundingAccountDetailsComponent implements OnInit {
   isJAEnabled: boolean;
   navigationType: any;
   selectedPortfolio: any;
-  fundList:any;
+  fundList: any;
   userPortfolioList: any;
 
   constructor(
@@ -69,7 +71,8 @@ export class FundingAccountDetailsComponent implements OnInit {
     public investmentEngagementJourneyService: InvestmentEngagementJourneyService,
     private investmentCommonService: InvestmentCommonService,
     public investmentAccountService: InvestmentAccountService,
-    public manageInvestmentsService: ManageInvestmentsService
+    public manageInvestmentsService: ManageInvestmentsService,
+    public loaderService: LoaderService
   ) {
     this.navigationType = this.investmentCommonService.setNavigationType(this.router.url, INVESTMENT_COMMON_ROUTES.EDIT_FUNDING_ACCOUNT_DETAILS,
       INVESTMENT_ENGAGEMENT_JOURNEY_CONSTANTS.NAVIGATION_TYPE.EDIT);
@@ -113,7 +116,7 @@ export class FundingAccountDetailsComponent implements OnInit {
       this.callbackForOptionListCollection(response);
     });
   }
-  
+
   callbackForOptionListCollection(data) {
     if (data.responseMessage.responseCode >= 6000 && data.objectList) {
       this.fundingMethods = data.objectList.portfolioFundingMethod;
@@ -383,11 +386,11 @@ export class FundingAccountDetailsComponent implements OnInit {
       const fundingMethod = this.getFundingMethodNameById(form.getRawValue().confirmedFundingMethodId, this.fundingMethods);
       this.investmentCommonService.setFundingAccountDetails(form.getRawValue(), fundingMethod);
       const fundingMethodId = this.fundingAccountDetailsForm.get('confirmedFundingMethodId').value;
-      if(this.isCPFAccount(fundingMethodId, this.fundingMethods)) {
+      if (this.isCPFAccount(fundingMethodId, this.fundingMethods)) {
         this.saveCPFAccountDetails(form);
       } else {
         this.saveSRSAccountDetails(form);
-      } 
+      }
     }
   }
 
@@ -399,7 +402,7 @@ export class FundingAccountDetailsComponent implements OnInit {
   buildCPFIAForm() {
     this.fundingAccountDetailsForm.addControl(
       'cpfIADetails', this.formBuilder.group({
-        cpfOperatorBank: ['' , Validators.required],
+        cpfOperatorBank: ['', Validators.required],
         cpfAccountNumber: ['', Validators.required],
       })
     );
@@ -461,7 +464,7 @@ export class FundingAccountDetailsComponent implements OnInit {
       this.fundingAccountDetailsForm.removeControl('cpfIADetails');
     }
     this.addorRemoveCPFAccNoValidator('cpfIADetails');
-  }  
+  }
 
   isCPFAccount(fundingMethodId, fundingMethods) {
     const fundingMethodName = this.getFundingMethodNameById(fundingMethodId, fundingMethods);
@@ -521,35 +524,47 @@ export class FundingAccountDetailsComponent implements OnInit {
       this.investmentCommonService.getCKABankDetails(this.checkIfCPFDisabled()).subscribe((resp: any) => {
         if (resp && resp.responseMessage && resp.responseMessage.responseCode >= 6000) {
           if (resp.objectList) {
+            this.isCPFAccountAvailable = true;
             this.cpfAccountDetails = resp.objectList;
             this.setCPFAccountDetails(this.cpfAccountDetails);
           }
         }
       });
     }
-  } 
-   
+  }
+
   saveCPFAccountDetails(form) {
-    const params = this.constructCpfAccountParams(form.value.cpfIADetails);
+    const params = this.constructCpfAccountParams(form.value);
+    this.showLoader();
     this.investmentCommonService.saveCKABankAccount(params).subscribe((data) => {
+      this.loaderService.hideLoaderForced();
       if (data && data.objectList) {
-        this.router.navigate([INVESTMENT_COMMON_ROUTE_PATHS.ADD_PORTFOLIO_NAME]);      
+        this.router.navigate([INVESTMENT_COMMON_ROUTE_PATHS.ADD_PORTFOLIO_NAME]);
       }
     }, () => {
+      this.loaderService.hideLoaderForced();
       this.investmentAccountService.showGenericErrorModal();
     });
   }
 
   constructCpfAccountParams(data) {
-    let reqParams = {
-      accountNumber: data.cpfAccountNumber ? data.cpfAccountNumber.replace(/[-]/g, '') : null,
-      bankOperatorId: data.cpfOperatorBank ? data.cpfOperatorBank.id : null
-    };  
+    let reqParams = {};
+    if (this.isCPFAccount(data.confirmedFundingMethodId, this.fundingMethods) && !this.checkIfCPFDisabled()) {
+      reqParams = {
+        accountNumber: data.cpfIADetails.cpfAccountNumber ? data.cpfIADetails.cpfAccountNumber.replace(/[-]/g, '') : null,
+        bankOperatorId: data.cpfIADetails.cpfOperatorBank ? data.cpfIADetails.cpfOperatorBank.id : null
+      };
+    } else {
+      reqParams = {
+        accountNumber: null,
+        bankOperatorId: data.cpfIADetails.cpfOperatorBank ? data.cpfIADetails.cpfOperatorBank.id : null
+      };
+    }
     return reqParams;
   }
 
   shpwCPFModal() {
-    const ref = this.modal.open(ModelWithButtonComponent, { centered: true , windowClass: 'custom-cka-modal' });
+    const ref = this.modal.open(ModelWithButtonComponent, { centered: true, windowClass: 'custom-cka-modal' });
     ref.componentInstance.errorTitle = this.translate.instant(
       'CONFIRM_ACCOUNT_DETAILS.CPF_TOOLTIP.TITLE'
     );
@@ -565,5 +580,13 @@ export class FundingAccountDetailsComponent implements OnInit {
   checkIfCPFDisabled() {
     const cpfPortfolio = this.userPortfolioList && this.userPortfolioList.length > 0 ? this.userPortfolioList.find(element => element.portfolioType === MANAGE_INVESTMENTS_CONSTANTS.TOPUP.FUNDING_METHODS.CPF) : null;
     return !Util.isEmptyOrNull(cpfPortfolio);
+  }
+
+  showLoader() {
+    this.loaderService.showLoader({
+      title: this.translate.instant('LOADER_MESSAGES.LOADING.TITLE'),
+      desc: this.translate.instant('LOADER_MESSAGES.LOADING.MESSAGE'),
+      autoHide: false
+    });
   }
 }
