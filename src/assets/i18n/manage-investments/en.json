@@ -240,7 +240,7 @@
     "TRY_ANOTHER_RECOMMENDATION": "Try Another Recommendation",
     "PENDING_REQUESTS_CASH_ACCOUNT": "Pending Requests / <span>Cash Account</span>",
     "PENDING_REQUESTS_SRS_ACCOUNT": "Pending Requests / <span>SRS Account</span>",
-    "PENDING_REQUESTS_CPFOA_ACCOUNT": "Pending Requests / <span>CPF-OA Account</span>",
+    "PENDING_REQUESTS_CPFOA_ACCOUNT": "Pending Requests / <span>CPF-OA</span>",
     "SRS_ACCOUNT": "SRS Account",
     "CPFOA_ACCOUNT": "CPF Investment Account",
     "BANK_OPERATOR": "Bank Operator",
