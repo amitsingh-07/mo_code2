@@ -6,6 +6,7 @@ import { FooterService } from '../../../shared/footer/footer.service';
 import { HeaderService } from '../../../shared/header/header.service';
 import { NavbarService } from '../../../shared/navbar/navbar.service';
 import { SIGN_UP_ROUTE_PATHS } from '../../../sign-up/sign-up.routes.constants';
+import { InvestmentAccountService } from '../../investment-account/investment-account-service';
 
 @Component({
   selector: 'app-portfolio-application-inprogress',
@@ -21,7 +22,8 @@ export class PortfolioApplicationInprogressComponent implements OnInit {
     private _location: Location,
     public navbarService: NavbarService,
     public headerService: HeaderService,
-    public footerService: FooterService
+    public footerService: FooterService, 
+    private investmentAccountService: InvestmentAccountService
   ) {
     this.translate.use('en');
   }
@@ -30,6 +32,8 @@ export class PortfolioApplicationInprogressComponent implements OnInit {
     this.navbarService.setNavbarMode(6);
     this.navbarService.setNavbarMobileVisibility(false);
     this.footerService.setFooterVisibility(false);
+    this.investmentAccountService.restrictBackNavigation();
+    this.investmentAccountService.deactivateReassess();
   }
   goBack() {
     this._location.back();
