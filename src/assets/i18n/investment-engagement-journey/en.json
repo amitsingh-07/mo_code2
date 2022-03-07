@@ -237,7 +237,7 @@
       "LIST_LBL_DESC_4": "Up to 100% Equities",
       "MODAL": {
         "TITLE": "Less than 11 years of investment period",
-        "MESSAGE": "It is not recommended to invest your CPF OA as you may need a longer time horizon to beat the risk-free interest of 2.5% p.a.<br> earned on your CPF monies.",
+        "MESSAGE": "It is not recommended to invest your CPF-OA as you may need a longer time horizon to beat the risk-free interest of 2.5% p.a.<br> earned on your CPF monies.",
         "BTN_LBL1": "Review Investment Period",
         "BTN_LBL2": "Invest In Another Portfolio"
       }
@@ -630,12 +630,12 @@
     "SELECT_OPTION": "Upload e-Learning Certificate",
     "SELECT_OPTION_DESC": "I have undergone and passed the ABS Unit Trusts and Investment-Linked Insurance Policy e-Learning module (Module 5).",
     "RESELECT_LBL": "Reselect CKA Method",
-    "QUE_1": "Please ensure each document upload:",
+    "QUE_1": "Guidance for documents upload:",
     "STEP_1": "File less than <span class=\"text-semi-bold\">10MB</span></br>Allowed file types: <span class=\"text-semi-bold\">pdf, jpg, jpeg, png, gif, bmp</span>",
     "NOTE_DESC": "Please ensure that your certificate is valid for at least 6 months.",
     "CERTIFICATE_LBL": "UT & ILP Certificate",
     "TAP_TO_UPLOAD":"Tap To Upload",
-    "I_AGREE": "I declare that I have passed the ABS e-learning course within the first 3 attempts and not been disallowed to transact in SIP by another FI for more than 3 times.",
+    "I_AGREE": "I declare that I have passed the ABS e-learning course within the first 3 attempts and have not been disallowed to transact in SIP by another FI for more than 3 times.",
     "SAVE_CONTINUE": "Save & Continue",
     "GENTLE_REMINDER_TITLE": "Uploaded Successfully!",
     "GENTLE_REMINDER_DESC": "Your document upload is successful. You can modify your document in \"My Profile\" if required."
