@@ -514,6 +514,10 @@ export class FundingAccountDetailsComponent implements OnInit {
         this.fundingAccountDetailsForm.controls.cpfIADetails.get('cpfOperatorBank').setValue(operatorBank);
         this.fundingAccountDetailsForm.controls.cpfIADetails.get('cpfAccountNumber').setValue(data.accountNumber);
       }
+
+      if (data.bankOperator) {
+        this.addorRemoveCPFAccNoValidator('cpfIADetails');
+      }
     }
   }
 
