@@ -308,6 +308,8 @@ export class PortfolioListComponent implements OnInit, OnChanges {
       return 'ws-border';
     } else if (portfolio['portfolioCategory'].toUpperCase() === INVESTMENT_COMMON_CONSTANTS.PORTFOLIO_CATEGORY.WISEINCOME.toUpperCase()) {
       return 'wi-border';
+    } else if (portfolio['portfolioCategory'].toUpperCase() === INVESTMENT_COMMON_CONSTANTS.PORTFOLIO_CATEGORY.CPF.toUpperCase()) {
+      return 'cpf-border';
     } else {
       return '';
     }
