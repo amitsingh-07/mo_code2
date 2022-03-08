@@ -164,8 +164,7 @@ export class DashboardComponent implements OnInit {
       } else {
         this.signUpService.setUserProfileInfo(userInfo.objectList);
         this.userProfileInfo = this.signUpService.getUserProfileInfo();
-        this.checkSRSPopStatus(userInfo.objectList.id);
-        this.checkCPFPopStatus(userInfo.objectList.id);
+        this.checkFirstTimeLoginStatus(userInfo.objectList.id);
       }
     },
       (err) => {
@@ -489,36 +488,21 @@ export class DashboardComponent implements OnInit {
     ref.componentInstance.endBtnTxt = this.translate.instant('DASHBOARD.SRS_JOINT_ACCOUNT.END_BTN');
   }
 
-  // Check if user is first time seeing SRS popup
-  checkSRSPopStatus(customerId) {
-    if (customerId) {
-      this.signUpApiService.getPopupStatus(customerId, 'WI_POP').subscribe((status) => {
-        // Check if track_status is available or false
-        if (!status.objectList || !status.objectList['trackStatus']) {
-          setTimeout(() => {
-            this.openSRSJointAccPopup();
-          });
-          this.signUpApiService.setPopupStatus(customerId, 'WI_POP').subscribe((result) => {
-          }, (error) => console.log('ERROR: ', error));
-        }
-      }, (error) => console.log('ERROR: ', error));
-    }
-  }
-  // Show CPF Popup
-  openCPFPopup() {
+  // Show new updates Modal if first time login
+  openNewUpdatesModal() {
     const ref = this.modal.open(CarouselModalComponent, { centered: true, windowClass: 'srs-dashboard-modal' });
     ref.componentInstance.slides = this.translate.instant('DASHBOARD.SRS_JOINT_ACCOUNT.SRS_JOINT_ACCOUNT_SLIDES');
     ref.componentInstance.startBtnTxt = this.translate.instant('DASHBOARD.SRS_JOINT_ACCOUNT.START_BTN');
     ref.componentInstance.endBtnTxt = this.translate.instant('DASHBOARD.SRS_JOINT_ACCOUNT.END_BTN');
   }
-  // Check if user is first time seeing CPF popup
-  checkCPFPopStatus(customerId) {
+  // Check if first time login and show new updates modal
+  checkFirstTimeLoginStatus(customerId) {
     if (customerId) {
       this.signUpApiService.getPopupStatus(customerId, 'CPF_POP').subscribe((status) => {
         // Check if track_status is available or false
         if (!status.objectList || !status.objectList['trackStatus']) {
           setTimeout(() => {
-            this.openCPFPopup();
+            this.openNewUpdatesModal();
           });
           this.signUpApiService.setPopupStatus(customerId, 'CPF_POP').subscribe((result) => {
           }, (error) => console.log('ERROR: ', error));
