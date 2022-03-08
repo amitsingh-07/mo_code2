@@ -8,6 +8,7 @@ import { ErrorModalComponent } from './../../../shared/modal/error-modal/error-m
 import { NgbDateCustomParserFormatter } from './../../../shared/utils/ngb-date-custom-parser-formatter';
 import { DirectService } from './../../direct.service';
 import { Subscription } from 'rxjs';
+import { SRS_APPROVED_PLANS_CONST } from '../../direct.constants';
 
 @Component({
   selector: 'app-srs-approved-plans-form',
@@ -25,8 +26,8 @@ export class SrsApprovedPlansFormComponent implements OnInit, OnDestroy {
   payoutStartAge = '';
   singlePremium = '';
   age;
-  payoutStartAgeList = [62, 64, 65, 69, 70];
-  singlePremiumAmountList = ['10000', '15000', '20000', '30000', '40000', '50000', '60000', '70000', '80000'];
+  payoutStartAgeList = SRS_APPROVED_PLANS_CONST.PAYOUT_AGE_LIST;
+  singlePremiumAmountList = SRS_APPROVED_PLANS_CONST.PREMIUM_AMOUNT_LIST;
   payoutTypeList;
   payoutType;
   doberror = false;
