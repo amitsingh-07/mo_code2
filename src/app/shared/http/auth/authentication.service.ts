@@ -34,6 +34,7 @@ export class AuthenticationService {
   get2faUpdateEvent = this.get2faUpdate.asObservable();
   private timer2fa: any;
   private is2faVerifyAllowed: boolean = false;
+  isUserTypeCorporate = false;
 
   constructor(
     private httpClient: HttpClient, public jwtHelper: JwtHelperService,
@@ -49,11 +50,12 @@ export class AuthenticationService {
   }
 
   // tslint:disable-next-line: max-line-length
-  login(userEmail: string, userPassword: string, captchaValue?: string, sessionId?: string, enqId?: number, journeyType?: string, finlitEnabled?: boolean, accessCode?: string, loginType?: string) {
+  login(userEmail: string, userPassword: string, captchaValue?: string, sessionId?: string, enqId?: number, journeyType?: string, finlitEnabled?: boolean, accessCode?: string, loginType?: string, organisationCode?: string) {
     const authenticateBody = {
       email: (userEmail && this.isUserNameEmail(userEmail)) ? userEmail : '',
       mobile: (userEmail && !this.isUserNameEmail(userEmail)) ? userEmail : '',
       password: userPassword ? userPassword : '',
+      organisationCode: organisationCode
       //secretKey: this.getAppSecretKey()
     };
     if (sessionId) { authenticateBody['sessionId'] = sessionId; }

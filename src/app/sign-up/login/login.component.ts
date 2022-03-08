@@ -64,6 +64,7 @@ export class LoginComponent implements OnInit, AfterViewInit, OnDestroy {
   progressModal = false;
   investmentEnquiryId;
   finlitEnabled = false;
+  organisationEnabled = false;
   capsOn: boolean;
   capslockFocus: boolean;
   showPasswordLogin = true;
@@ -116,6 +117,7 @@ export class LoginComponent implements OnInit, AfterViewInit, OnDestroy {
     });
     if (route.snapshot.data[0]) {
       this.finlitEnabled = route.snapshot.data[0]['finlitEnabled'];
+      this.organisationEnabled = route.snapshot.data[0]['organisationEnabled'];
       this.singpassEnabled = route.snapshot.data[0]['singpassEnabled'];
       this.appService.clearJourneys();
       this.appService.clearPromoCode();
@@ -228,6 +230,7 @@ export class LoginComponent implements OnInit, AfterViewInit, OnDestroy {
         this.loginForm = this.formBuilder.group({
           loginUsername: [this.formValues.loginUsername, [Validators.required, Validators.pattern(this.distribution.login.phoneRegex)]],
           loginPassword: [this.formValues.loginPassword, [Validators.required]],
+          organisationCode: [null, this.organisationEnabled ? [Validators.required] : []],
           captchaValue: ['']
         });
         return false;
@@ -236,11 +239,15 @@ export class LoginComponent implements OnInit, AfterViewInit, OnDestroy {
     this.loginForm = this.formBuilder.group({
       loginUsername: [this.formValues.loginUsername, [Validators.required, Validators.pattern(RegexConstants.EmailOrMobile)]],
       loginPassword: [this.formValues.loginPassword, [Validators.required]],
+      organisationCode: [null, this.organisationEnabled ? [Validators.required] : []],
       captchaValue: ['']
     });
     if (this.finlitEnabled) {
       this.loginForm.addControl('accessCode', new FormControl(this.formValues.accessCode, [Validators.required]));
+    }
 
+    if(this.organisationEnabled && this.route.snapshot.queryParams.orgID) {
+      this.loginForm.get('organisationCode').patchValue(appConstants.USERTYPE.FACEBOOK);
     }
     return true;
   }
@@ -264,9 +271,10 @@ export class LoginComponent implements OnInit, AfterViewInit, OnDestroy {
       });
     }
     this.signUpService.setEmail(form.value.loginUsername);
-    const userType = this.finlitEnabled ? appConstants.USERTYPE.FINLIT : appConstants.USERTYPE.NORMAL;
+    const userType = (this.finlitEnabled ? appConstants.USERTYPE.FINLIT : (this.organisationEnabled ? appConstants.USERTYPE.CORPORATE : appConstants.USERTYPE.NORMAL));
     this.signUpService.setUserType(userType);
     const accessCode = (this.finlitEnabled) ? this.loginForm.value.accessCode : '';
+    const organisationCode = this.organisationEnabled && this.loginForm.get('organisationCode').value || null;
     if (!form.valid || ValidatePassword(form.controls['loginPassword'])) {
       const ref = this.modal.open(ErrorModalComponent, { centered: true });
       let error;
@@ -290,7 +298,7 @@ export class LoginComponent implements OnInit, AfterViewInit, OnDestroy {
       this.progressModal = true;
       const loginType = (SIGN_UP_CONFIG.AUTH_2FA_ENABLED) ? SIGN_UP_CONFIG.LOGIN_TYPE_2FA : '';
       this.signUpApiService.verifyLogin(this.loginForm.value.loginUsername, this.loginForm.value.loginPassword,
-        this.loginForm.value.captchaValue, this.finlitEnabled, accessCode, loginType).subscribe((data) => {
+        this.loginForm.value.captchaValue, this.finlitEnabled, accessCode, loginType, organisationCode).subscribe((data) => {
           if(SIGN_UP_CONFIG.AUTH_2FA_ENABLED) {
             if (data.responseMessage && data.responseMessage.responseCode >= 6000) {
               try {
@@ -514,8 +522,9 @@ export class LoginComponent implements OnInit, AfterViewInit, OnDestroy {
 
 
   resendEmailVerification() {
+    const organisationCode = this.organisationEnabled && this.loginForm.get('organisationCode').value || null;
     const isEmail = this.authService.isUserNameEmail(this.loginForm.value.loginUsername);
-    return this.signUpApiService.resendEmailVerification(this.loginForm.value.loginUsername, isEmail);
+    return this.signUpApiService.resendEmailVerification(this.loginForm.value.loginUsername, isEmail, organisationCode);
   }
   openErrorModal(error) {
     const ref = this.modal.open(ErrorModalComponent, { centered: true });

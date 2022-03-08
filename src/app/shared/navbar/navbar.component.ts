@@ -145,7 +145,7 @@ export class NavbarComponent implements OnInit, AfterViewInit {
     private navbarService: NavbarService,
     private config: NgbDropdownConfig, private renderer: Renderer2,
     private cdr: ChangeDetectorRef, private router: Router, private configService: ConfigService,
-    private signUpService: SignUpService, private authService: AuthenticationService,
+    private signUpService: SignUpService, public authService: AuthenticationService,
     private sessionsService: SessionsService,
     private modal: NgbModal,
     private appService: AppService,
@@ -184,6 +184,7 @@ export class NavbarComponent implements OnInit, AfterViewInit {
         this.userInfo = data;
         if (this.authService.isSignedUser()) {
           this.isLoggedIn = true;
+          this.authService.isUserTypeCorporate = this.authService.isSignedUserWithRole(SIGN_UP_CONFIG.ROLE_CORP_FB_USER);
         }
       }
     });
@@ -285,7 +286,7 @@ export class NavbarComponent implements OnInit, AfterViewInit {
     this.navbarService.currentActiveObserv.pipe(takeUntil(this.ngUnsubscribe))
       .subscribe((currentActive) => {
         this.currentActive = currentActive;
-      });
+      });    
   }
 
   ngAfterViewInit() {
@@ -493,14 +494,14 @@ export class NavbarComponent implements OnInit, AfterViewInit {
   logout() {
     if (this.authService.isSignedUser()) {
       this.authService.logout().subscribe((data) => {
-        this.clearLoginDetails();
+        this.clearLoginDetails(true, this.signUpService.getUserType());
       });
     } else {
       this.clearLoginDetails();
     }
   }
 
-  clearLoginDetails(isRedirect: boolean = true) {
+  clearLoginDetails(isRedirect: boolean = true, userType = appConstants.USERTYPE.NORMAL) {
     this.signUpService.setUserProfileInfo(null);
     this.isLoggedIn = false;
     this.showMenuItemInvestUser = false;
@@ -514,7 +515,9 @@ export class NavbarComponent implements OnInit, AfterViewInit {
     this.appService.startAppSession();
     this.selectedPlansService.clearData();
     if (isRedirect) {
-      if (this.showHome) {
+      if (userType ===  appConstants.USERTYPE.CORPORATE) {
+        this.router.navigate([SIGN_UP_ROUTE_PATHS.CORPORATE_LOGIN]);
+      } else if (this.showHome) {
         this.router.navigate([appConstants.homePageUrl]);
       } else {
         this.router.navigate([SIGN_UP_ROUTE_PATHS.LOGIN]);

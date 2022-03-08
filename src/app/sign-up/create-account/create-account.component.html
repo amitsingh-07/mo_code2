@@ -292,7 +292,7 @@
               </div>
             </div>
           </div>
-          <div class="flex-row mb20">
+          <div class="flex-row mb15">
             <div class="flex-col-12 stretch">
               <div
                 [ngClass]="{'inline-error': (submitted && account.confirmPassword.errors?.required) || (!confirmPwdFocus && !account.password.errors && account.confirmPassword.errors?.notEquivalent)}"
@@ -333,7 +333,24 @@
               </div>
             </div>
           </div>
-          <div class="flex-row mb30">
+          <div class="flex-row mb20" *ngIf="organisationEnabled">
+            <div class="flex-col-12 stretch">
+              <div class="form-group-floating-label"
+                [ngClass]="{'inline-error': submitted && account.organisationCode.errors}">
+                <input type="text" id="crtAccInpt2" class="form-control" #organisationCode formControlName="organisationCode"
+                  required>
+                <label class="form-control-placeholder" for="organisationCode">
+                  {{ 'CREATE_ACCOUNT.FORM.ORGANIZATION_NAME.LABEL' | translate}}</label>                
+              </div>
+            </div>
+            <div class="alert-msg flex-col-12" *ngIf="submitted && account.organisationCode.errors">
+              <div *ngIf="account.organisationCode.errors?.required">
+                <span class="alert-icon"><img src="assets/images/alert.svg" /></span>
+                <span class="err-msg">{{ 'CREATE_ACCOUNT.FORM.ORGANIZATION_NAME.ERROR.REQUIRED' | translate}}</span>
+              </div>
+            </div>
+          </div>
+          <div class="flex-row mb30" *ngIf="!organisationEnabled">
             <div class="flex-col-12 stretch">
               <span class="ref-code-title">{{'CREATE_ACCOUNT.FORM.REFERRAL_CODE.TITLE' | translate}}</span>
               <div class="ref-code-input form-group-floating-label" [ngClass]="{'inline-error': (submitted && account.referralCode.errors?.invalidRefCode) || (account.referralCode.errors?.invalidRefCode) || (account.referralCode.errors?.applyRefCode)}">

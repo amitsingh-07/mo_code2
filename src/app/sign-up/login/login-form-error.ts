@@ -27,6 +27,12 @@ export class LoginFormError {
                         errorMessage: 'Please enter your Access Code'
                 }
         },
+        organisationCode: {
+                required: {
+                        errorTitle: 'Organization Name required',
+                        errorMessage: 'Please enter your Organization Name'
+                }
+        },
         captchaValue: {
                 required : {
                         errorTitle: 'Invalid captcha',

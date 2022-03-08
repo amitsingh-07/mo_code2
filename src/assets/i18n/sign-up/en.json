@@ -112,6 +112,13 @@
           "MATCH": "Password does not match confirmation"
         }
       },
+      "ORGANIZATION_NAME": {
+        "LABEL": "Organization Name",
+        "ERROR": {
+          "REQUIRED": "Enter Organization Name",
+          "INVALID": "Please enter valid Organization Name"
+        }
+      },
       "REFERRAL_CODE": {
         "TITLE": "Have a Referral Code?",
         "LABEL": "Referral Code (optional)",
@@ -219,6 +226,7 @@
       "USERNAME": "Mobile No. / Email Address",
       "PASSWORD": "Password",
       "ACCESS_CODE": "Access Code",
+      "ORGANIZATION_NAME": "Organization Name",
       "MARKETING_ACCEPTANCE": "I consent receive marketing materials from MoneyOwl and partners of MoneyOwl."
     },
     "FORGOT_PASSWORD": "Forgot your password?",
