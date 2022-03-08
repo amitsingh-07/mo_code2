@@ -19,3 +19,18 @@ export class SignUpAccessGuard implements CanActivate {
     return true;
   }
 }
+
+@Injectable()
+export class SignUpCorporateAccessGuard implements CanActivate {
+  constructor(private signUpService: SignUpService,
+              private myRoute: Router
+            ) {
+  }
+  canActivate(route: ActivatedRouteSnapshot): Observable<boolean>|Promise<boolean>|boolean {
+   if (!this.signUpService.getCustomerRef()) {
+        this.myRoute.navigate([SIGN_UP_ROUTE_PATHS.CORPORATE_CREATE_ACCOUNT_MY_INFO]);
+        return false;
+    }
+    return true;
+  }
+}

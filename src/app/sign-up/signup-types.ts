@@ -7,6 +7,7 @@ export interface ISignUp {
     referralCode: string;
     userType: string;
     accountCreationType:string;
+    organisationCode?: string;
 }
 
 export interface IEnquiryUpdate {
@@ -62,7 +63,8 @@ export interface IResendEmail {
     mobileNumber: string;
     emailAddress: string;
     callbackUrl: string;
-    hostedServerName: string;
+    hostedServerName: string;    
+    organisationCode?: string;
 }
 
 export interface IUpdateMobileNumber {

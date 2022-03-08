@@ -53,7 +53,8 @@ export let SIGN_UP_CONFIG = {
     POSB: 'POSB'
   },
   LOGIN: {
-    FINLIT_LOGIN: true
+    FINLIT_LOGIN: true,
+    CORPORATE_LOGIN: true
   },
   SIGN_UP: {
     EMAIL: "email"
@@ -93,6 +94,7 @@ export let SIGN_UP_CONFIG = {
   },
   AUTH_2FA_ENABLED: true,
   ROLE_2FA: 'ROLE_2FA',
+  ROLE_CORP_FB_USER: 'ROLE_CORP_FB_USER',
   LOGIN_TYPE_2FA: 'MANUAL',
   ACCOUNT_CREATION: {
     DOB: {

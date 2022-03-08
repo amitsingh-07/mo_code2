@@ -62,3 +62,26 @@ export class FinlitLoggedUserService implements CanActivate {
     return true;
   }
 }
+
+@Injectable({
+  providedIn: 'root'
+})
+
+// tslint:disable-next-line:max-classes-per-file
+export class FacebookLoggedUserService implements CanActivate {
+  constructor(private route: Router,
+              private authService: AuthenticationService
+  ) {
+  }
+  canActivate(): boolean {
+    if(!SIGN_UP_CONFIG.LOGIN.CORPORATE_LOGIN) {
+      this.route.navigate([SIGN_UP_ROUTE_PATHS.CORPORATE_LOGIN]);
+      return false;
+    } else if (this.authService.isSignedUser()) {
+      this.route.navigate([SIGN_UP_ROUTE_PATHS.DASHBOARD]);
+      return false;
+    }
+    this.authService.isUserTypeCorporate = true;
+    return true;
+  }
+}
