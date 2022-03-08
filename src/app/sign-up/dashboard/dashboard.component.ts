@@ -68,6 +68,7 @@ export class DashboardComponent implements OnInit {
   totalValue: any;
   totalReturns: any;
   availableBalance: any;
+  userInformation : any = {};
 
   // Will Writing
   showWillWritingSection = false;
@@ -162,9 +163,9 @@ export class DashboardComponent implements OnInit {
           this.investmentAccountService.showGenericErrorModal();
         }
       } else {
+        this.userInformation = userInfo;
         this.signUpService.setUserProfileInfo(userInfo.objectList);
         this.userProfileInfo = this.signUpService.getUserProfileInfo();
-        this.checkSRSPopStatus(userInfo.objectList.id);
         this.checkCPFPopStatus(userInfo.objectList.id);
       }
     },
@@ -523,7 +524,10 @@ export class DashboardComponent implements OnInit {
           this.signUpApiService.setPopupStatus(customerId, 'CPF_POP').subscribe((result) => {
           }, (error) => console.log('ERROR: ', error));
         }
-      }, (error) => console.log('ERROR: ', error));
+      }, (error) => {
+        console.log('ERROR: ', error);
+        this.checkSRSPopStatus(this.userInformation.objectList.id);
+      });
     }
   }
   gotoTopUp() {
