@@ -23,9 +23,9 @@
           <li class="navbar__logo--primary hidden-sm-md" (click)="goToExternal('/')"></li>
           <li class="navbar__logo--secondary hidden-lg" (click)="goToExternal('/')"></li> 
         </ng-container>
-        <ng-cotnainer *ngIf="authService.isUserTypeCorporate">
+        <ng-container *ngIf="authService.isUserTypeCorporate">
           <li class="navbar__corp--logo--primary" (click)="goToExternal('/')"></li>
-        </ng-cotnainer>
+        </ng-container>
         <li *ngIf="showLabel" class="navbar__separator hidden-sm-md">
         </li>
         <li *ngIf="showLabel" class="navbar-item navbar__logo__subtitle hidden-sm-md">
