@@ -99,6 +99,13 @@ app-investment-overview {
         label {
             display: flex;
             margin-bottom: 0px;
+            &:first-child{
+                & > div{
+                    @include allmobiles{
+                        margin-left: 15px;
+                    }
+                }
+            }
         }
         label > div {
             padding: 0 10px;
