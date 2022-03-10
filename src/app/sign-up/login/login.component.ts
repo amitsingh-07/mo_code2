@@ -486,7 +486,7 @@ export class LoginComponent implements OnInit, AfterViewInit, OnDestroy {
       this.showErrorModal(this.translate.instant('SIGNUP_ERRORS.TITLE'),
         this.translate.instant('SIGNUP_ERRORS.VERIFY_EMAIL_OTP'),
         this.translate.instant('COMMON.VERIFY_NOW'),
-        SIGN_UP_ROUTE_PATHS.VERIFY_MOBILE, false);
+        (this.organisationEnabled && SIGN_UP_ROUTE_PATHS.CORPORATE_VERIFY_MOBILE) || SIGN_UP_ROUTE_PATHS.VERIFY_MOBILE, false);
     }
   }
 
