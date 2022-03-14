@@ -89,6 +89,7 @@ export let apiConstants = {
         },
         willWriting: {
             verifyPromoCode: ACCOUNT_API_BASE_URL + '/promocode/validatePromoCode',
+            getCustOrgPromoCode: ACCOUNT_API_BASE_URL + '/promocode/getCustOrgPromoCode',
             createWill: WILL_WRITING_API_BASE_URL + '/createWillProfile?handleError=true',
             getWill: WILL_WRITING_API_BASE_URL + '/getWillProfile',
             updateWill: WILL_WRITING_API_BASE_URL + '/updateWillProfile?handleError=true',

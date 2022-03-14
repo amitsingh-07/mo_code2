@@ -140,6 +140,7 @@ export class NavbarComponent implements OnInit, AfterViewInit {
   @ViewChild('navbarDropshadow') NavBarDropShadow: ElementRef;
 
   private ngUnsubscribe = new Subject();
+  accessReferrelProgramOnRoles:boolean = true;
 
   constructor(
     private navbarService: NavbarService,
@@ -184,7 +185,8 @@ export class NavbarComponent implements OnInit, AfterViewInit {
         this.userInfo = data;
         if (this.authService.isSignedUser()) {
           this.isLoggedIn = true;
-          this.authService.isUserTypeCorporate = this.authService.isSignedUserWithRole(SIGN_UP_CONFIG.ROLE_CORP_FB_USER);
+          this.authService.isUserTypeCorporate = this.authService.isSignedUserWithRole(SIGN_UP_CONFIG.ROLE_CORP_FB_USER);    
+          this.accessReferrelProgramOnRoles = this.authService.accessCorporateUserFeature('REFERREL_PROGRAM');
         }
       }
     });

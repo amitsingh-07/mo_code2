@@ -19,7 +19,7 @@
                 <div class="input-label-normal">{{'SELECT_PORTFOLIO_TYPE.PERSONAL_ACCOUNT.DESC' | translate}}</div>
               </label>
             </div>
-            <div class="special-radio-button hidden">
+            <div class="special-radio-button hidden" *ngIf="accessJointAccountOnRoles">
               <input type="radio" value=2 class="field radio" name="portfolioType" id="portfolio_type_2"
                 formControlName="portfolioType" />
               <label for="portfolio_type_2">

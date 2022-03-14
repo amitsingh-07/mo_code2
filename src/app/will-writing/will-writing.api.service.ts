@@ -58,6 +58,13 @@ export class WillWritingApiService {
         return this.apiService.verifyPromoCode(promoCode);
     }
 
+    getCustOrgPromoCode() {
+        const promoCode = {
+            promoCodeCat: 'WILLS'
+        };
+        return this.apiService.getCustOrgPromoCode(promoCode);
+    }
+
     checkProfileMembers(uin, list) {
         return list.filter((data) =>
             (data.uin).toLowerCase() === uin.toLowerCase()
