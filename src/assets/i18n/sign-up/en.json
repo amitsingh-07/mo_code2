@@ -91,7 +91,7 @@
         "ERROR": {
           "REQUIRED": "Enter an email address",
           "INVALID": "Enter a valid email address",
-          "InvalidDomain": "Enter a valid email domain"
+          "INVALID_DOMAIN": "Enter a valid email domain"
         }
       },
       "CONFIRM_EMAIL": {
