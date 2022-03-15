@@ -91,7 +91,7 @@
         <li *ngIf="isLoggedIn && showMenuItemInvestUser" class="nav-item hidden-lg" (click)="checkCurrentRouteAndNavigate('/promo-code')">
           <a class="navbar--text" href="javascript: void(0);">Add Investment Promo Code</a>
         </li>
-        <li *ngIf="isLoggedIn" class="nav-item hidden-lg"
+        <li *ngIf="isLoggedIn && accessReferrelProgramOnRoles" class="nav-item hidden-lg"
           (click)="checkCurrentRouteAndNavigate('/accounts/refer-a-friend')">
           <a class="navbar--text" href="javascript: void(0);">Refer a Friend<img class="ml10" src="assets/images/nav/new-icon.svg" /></a>
         </li>
@@ -253,7 +253,7 @@
             <button class="dropdown-item" *ngIf="showMenuItemInvestUser" (click)="checkCurrentRouteAndNavigate('/promo-code')">
               <a class="navbar--text" href="javascript: void(0);">Add Investment Promo Code</a>
             </button>
-            <button class="dropdown-item" (click)="checkCurrentRouteAndNavigate('/accounts/refer-a-friend')">
+            <button class="dropdown-item" *ngIf="accessReferrelProgramOnRoles" (click)="checkCurrentRouteAndNavigate('/accounts/refer-a-friend')">
               <a class="navbar--text" href="javascript: void(0);">Refer a Friend<img class="ml10" src="assets/images/nav/new-icon.svg" /></a>
             </button>
             <button class="dropdown-item logout-menu-item" (click)="logout()">

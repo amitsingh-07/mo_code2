@@ -542,6 +542,14 @@ export class ApiService {
       );
   }
 
+  // Get FB PromoCode
+  getCustOrgPromoCode(promoCode) {
+    return this.http.post(apiConstants.endpoint.willWriting.getCustOrgPromoCode, promoCode)
+      .pipe(
+        catchError((error: HttpErrorResponse) => this.handleError(error))
+      );
+  }
+
   createWill(payload) {
     return this.http.post(apiConstants.endpoint.willWriting.createWill, payload)
       .pipe(
