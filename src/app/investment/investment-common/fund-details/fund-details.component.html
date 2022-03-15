@@ -44,7 +44,7 @@
 <!-- cpf -->
     <div class="fund-details-content" *ngIf="cpfEnabled">
       <div class="cpf-oa">
-        <nav ngbNav #nav="ngbNav" class="nav-tabs mb30 flex justify-center" [(activeId)]="activeTabId">
+        <nav ngbNav #nav="ngbNav" class="nav-tabs mb30 flex" [(activeId)]="activeTabId" [ngClass]="{ 'justify-content-start' :!(fundDetails[1] && fundDetails[0])}">
             <ng-container [ngbNavItem]="1">
                 <a class="fund-tab mr10" ngbNavLink>{{'FUND_DETAILS.CPF.LGI_TAB_LBL' | translate}}</a>
                 <ng-template ngbNavContent>
@@ -65,7 +65,7 @@
                     </div>
                 </ng-template>
             </ng-container>
-            <ng-container [ngbNavItem]="2">
+            <ng-container [ngbNavItem]="2" *ngIf="fundDetails[1]">
                 <a class="fund-tab" ngbNavLink>{{'FUND_DETAILS.CPF.UOB_TAB_LBL' | translate}}</a>
                 <ng-template ngbNavContent>
                     <div class="panel-tab-content">
