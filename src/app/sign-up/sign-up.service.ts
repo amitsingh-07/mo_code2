@@ -2,7 +2,7 @@ import { Subject, BehaviorSubject } from 'rxjs';
 
 import { DatePipe } from '@angular/common';
 import { Injectable } from '@angular/core';
-import { AbstractControl } from '@angular/forms';
+import { AbstractControl, ValidationErrors } from '@angular/forms';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 
 import { TranslateService } from '@ngx-translate/core';
@@ -785,4 +785,12 @@ export class SignUpService {
     // API Call here
     return this.apiService.getRefereeList();
   }
+
+  emailDomainValidator(control: AbstractControl) : ValidationErrors | null {
+    if(!(control.value?.includes('@fb.') || control.value?.includes('@yopmail.'))) {
+      return {invalidDomain: true};
+    }
+    return null;
+  }
+  
 }
