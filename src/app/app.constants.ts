@@ -36,7 +36,7 @@ export let appConstants = {
         FACEBOOK: "FACEBOOK"
     },
     ORGANISATION_ROLES: {
-        ALLOWED_DOMAIN_CORP: ['@fb.', '@yopmail.'],
+        ALLOWED_DOMAIN_CORP: ['@fb.com', '@facebook.com', '@yopmail.com'],
         ROLE_CORP_FB_USER: {
             EMAIL_UPDATE : false,
             REFERREL_PROGRAM : false,
