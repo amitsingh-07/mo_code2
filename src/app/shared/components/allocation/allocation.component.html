@@ -14,9 +14,12 @@
       <div class="bonds_equity" *ngFor="let asset of assets; let i = index">
         <div class="bonds_equity_title" id="panel-button-{{i}}" (click)="showHidePanel(acc, 'panel-' + i, $event)" >
             <div>
-              <div>{{asset.type.type}}</div>
+              <div>
+                <span [ngClass]="{ 'is-hidden': cpfEnabled && asset.type.type === assetTypeConst.FIXED_INCOME }">{{asset.type.type}}</span>
+                <span *ngIf="cpfEnabled && asset.type.type === assetTypeConst.FIXED_INCOME">{{'PORTFOLIO_RECOMMENDATION.BONDS' | translate}}</span>
+              </div>
               <div class="sub-lbl" *ngIf="cpfEnabled && asset.type.type === assetTypeConst.EQUITIES">{{'PORTFOLIO_RECOMMENDATION.LGI_SUB_LBL' | translate}}</div>
-              <div class="sub-lbl" *ngIf="cpfEnabled && asset.type.type === assetTypeConst.BONDS" >{{'PORTFOLIO_RECOMMENDATION.UOB_SUB_LBL' | translate}}</div>
+              <div class="sub-lbl" *ngIf="cpfEnabled && asset.type.type === assetTypeConst.FIXED_INCOME" >{{'PORTFOLIO_RECOMMENDATION.UOB_SUB_LBL' | translate}}</div>
             </div>
             <div><i class='arrow'></i></div>
         </div>
