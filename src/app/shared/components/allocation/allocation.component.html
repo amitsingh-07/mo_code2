@@ -16,7 +16,7 @@
             <div>
               <div>
                 <span [ngClass]="{ 'is-hidden': cpfEnabled && asset.type.type === assetTypeConst.FIXED_INCOME }">{{asset.type.type}}</span>
-                <span *ngIf="cpfEnabled && asset.type.type === assetTypeConst.FIXED_INCOME">{{'PORTFOLIO_RECOMMENDATION.BONDS' | translate}}</span>
+                <span *ngIf="cpfEnabled && asset.type.type === assetTypeConst.FIXED_INCOME">{{assetTypeConst.BONDS}}</span>
               </div>
               <div class="sub-lbl" *ngIf="cpfEnabled && asset.type.type === assetTypeConst.EQUITIES">{{'PORTFOLIO_RECOMMENDATION.LGI_SUB_LBL' | translate}}</div>
               <div class="sub-lbl" *ngIf="cpfEnabled && asset.type.type === assetTypeConst.FIXED_INCOME" >{{'PORTFOLIO_RECOMMENDATION.UOB_SUB_LBL' | translate}}</div>
