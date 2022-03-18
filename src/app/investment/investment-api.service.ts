@@ -205,7 +205,7 @@ export class InvestmentApiService {
   }
 
   getCKADocument(documentType) {
-    return this.http.getBlob(investmentApiConstants.endpoint.investment.getCKADocument.replace('$DOCUMENT_TYPE$', documentType))
+    return this.http.getBlobStream(investmentApiConstants.endpoint.investment.getCKADocument.replace('$DOCUMENT_TYPE$', documentType))
       .pipe(
         catchError((error: HttpErrorResponse) => this.handleError(error))
       );
