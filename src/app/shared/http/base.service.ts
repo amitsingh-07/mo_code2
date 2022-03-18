@@ -61,7 +61,20 @@ export class BaseService {
       );
   }
 
+  // statements
   getBlob(url) {
+    this.helperService.showLoader();
+    return this.httpClient
+      .get(`${this.apiBaseUrl}/${url}`, { responseType: 'blob'}).pipe(
+      finalize(() => {
+        this.helperService.hideLoader();
+      }))
+      .pipe(
+        catchError(this.errorHandler.handleError)
+      );
+  }
+
+  getBlobStream(url) {
     this.helperService.showLoader();
     return this.httpClient
       .get(`${this.apiBaseUrl}/${url}`, { responseType: 'blob', observe: 'response' }).pipe(
