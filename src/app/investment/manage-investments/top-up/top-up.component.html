@@ -8,7 +8,7 @@
           <img src="assets/images/topupwithdraw/topup.svg" />
         </div>
         <div class="faq_link">
-          <a target="_blank" routerLink="/faq"
+          <a target="_blank" routerLink="{{authService.isUserTypeCorporate ? '/assets/docs/faq/Dimensional_fund_holidays_2020.pdf' : '/faq'}}"
             fragment="investment">{{ 'ASSET_ALLOCATION.FAQ_DESC_TEXT' | translate}}</a>
         </div>
       </div>

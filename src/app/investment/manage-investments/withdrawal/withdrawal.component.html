@@ -9,8 +9,7 @@
             <img src="assets/images/investment-account/withdraw.svg" />
           </div>
           <div class="faq_link">
-            <a target="_blank" routerLink="/faq" fragment="investment">{{ 'ASSET_ALLOCATION.FAQ_DESC_TEXT' |
-              translate}}</a>
+            <a target="_blank" routerLink="{{authService.isUserTypeCorporate ? '/assets/docs/faq/Dimensional_fund_holidays_2020.pdf' : '/faq'}}" fragment="investment">{{ 'ASSET_ALLOCATION.FAQ_DESC_TEXT' | translate}}</a>
           </div>
         </div>
         <div class="max-width col-lg-6 col-md-6">
