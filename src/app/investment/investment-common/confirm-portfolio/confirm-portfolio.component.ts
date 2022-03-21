@@ -34,6 +34,7 @@ import {
   MANAGE_INVESTMENTS_ROUTE_PATHS
 } from '../../../investment/manage-investments/manage-investments-routes.constants';
 import { LoaderService } from '../../../shared/components/loader/loader.service';
+import { appConstants } from 'src/app/app.constants';
 @Component({
   selector: 'app-confirm-portfolio',
   templateUrl: './confirm-portfolio.component.html',
@@ -65,6 +66,7 @@ export class ConfirmPortfolioComponent implements OnInit {
   primaryHolderName;
   jaAcceptanceTitle: any;
   bankDetails: any;
+  corpInvFaq = appConstants.CORPORATE_INVESTMENT_FAQ;
 
   @Output() emitToastMessage = new EventEmitter<boolean>();
   constructor(

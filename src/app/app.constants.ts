@@ -40,8 +40,9 @@ export let appConstants = {
             EMAIL_UPDATE : false,
             REFERREL_PROGRAM : false,
             CREATE_JOINT_ACCOUNT : false
-        }
+    }
     },
+    CORPORATE_INVESTMENT_FAQ : '/assets/docs/faq/Dimensional_fund_holidays_2020.pdf',
     INSURANCE_JOURNEY_TYPE: {
         DIRECT: 'insurance-direct',
         GUIDED: 'insurance-guided'

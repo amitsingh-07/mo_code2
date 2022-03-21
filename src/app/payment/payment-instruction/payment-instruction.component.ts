@@ -9,6 +9,8 @@ import { FooterService } from '../../shared/footer/footer.service';
 import { ComprehensiveApiService } from './../../comprehensive/comprehensive-api.service';
 import { SignUpService } from '../../sign-up/sign-up.service';
 import { COMPREHENSIVE_CONST } from './../../comprehensive/comprehensive-config.constants';
+import { AuthenticationService } from 'src/app/shared/http/auth/authentication.service';
+import { appConstants } from 'src/app/app.constants';
 @Component({
   selector: 'app-payment-instruction',
   templateUrl: './payment-instruction.component.html',
@@ -23,6 +25,7 @@ export class PaymentInstructionComponent implements OnInit, OnDestroy {
   emailID: any;
   getComprehensiveSummaryDashboard: any;
   isCorporate: boolean;
+  corpInvFaq = appConstants.CORPORATE_INVESTMENT_FAQ;
   constructor(
     public readonly translate: TranslateService,
     private router: Router,
@@ -30,7 +33,8 @@ export class PaymentInstructionComponent implements OnInit, OnDestroy {
     private comprehensiveApiService: ComprehensiveApiService,
     private signUpService: SignUpService,
     public navbarService: NavbarService,
-    public footerService: FooterService
+    public footerService: FooterService,
+    public authService: AuthenticationService
   ) {
 
     this.translate.use('en');

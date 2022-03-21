@@ -183,8 +183,8 @@
                     </div>
                 </li>
             </ul>
-            <div class="faq-link"><a target="_blank" routerLink="/faq-comprehensive-payment">{{'COMPREHENSIVE.DASHBOARD.TRANSFER_INSTRUCTION.FAQ'
-                    | translate}}</a>
+            <div class="faq-link">
+                <a target="_blank" routerLink="{{authService.isUserTypeCorporate ? corpInvFaq : '/faq-comprehensive-payment'}}">{{'COMPREHENSIVE.DASHBOARD.TRANSFER_INSTRUCTION.FAQ'| translate}}</a>
             </div>
         </div>
         <div class="footer-btn">

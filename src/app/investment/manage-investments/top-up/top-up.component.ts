@@ -26,6 +26,7 @@ import { MANAGE_INVESTMENTS_CONSTANTS } from '../manage-investments.constants';
 import { ManageInvestmentsService } from '../manage-investments.service';
 import { environment } from './../../../../environments/environment';
 import { PromoCodeService } from './../../../promo-code/promo-code.service';
+import { appConstants } from 'src/app/app.constants';
 
 @Component({
   selector: 'app-top-up',
@@ -55,6 +56,7 @@ export class TopUpComponent implements OnInit, OnDestroy {
   investmentCriteria: IInvestmentCriteria;
   reviewBuyRequestModal: NgbModalRef;
   private subscription: Subscription;
+  corpInvFaq = appConstants.CORPORATE_INVESTMENT_FAQ;
 
   constructor(
     public readonly translate: TranslateService,
