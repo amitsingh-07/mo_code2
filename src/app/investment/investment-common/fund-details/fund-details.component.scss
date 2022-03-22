@@ -226,6 +226,7 @@ app-fund-details {
     .nav-tabs{
       border: none;
       padding: 0 20px;
+      justify-content: center;
       @include max360{
         padding: 0 10px;
       }
