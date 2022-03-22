@@ -788,7 +788,8 @@ export class SignUpService {
   }
 
   emailDomainValidator(control: AbstractControl) : ValidationErrors | null {
-    if(appConstants.ORGANISATION_ROLES.ALLOWED_DOMAIN_CORP.filter(ele => control.value?.includes(ele)).length === 0) {
+    const isEnteredEmailId = isNaN(parseInt(control.value));
+    if(isEnteredEmailId && appConstants.ORGANISATION_ROLES.ALLOWED_DOMAIN_CORP.filter(ele => control.value?.includes(ele)).length === 0) {
       return {invalidDomain: true};
     }
     return null;
