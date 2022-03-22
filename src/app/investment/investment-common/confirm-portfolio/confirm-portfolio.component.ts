@@ -34,7 +34,7 @@ import {
   MANAGE_INVESTMENTS_ROUTE_PATHS
 } from '../../../investment/manage-investments/manage-investments-routes.constants';
 import { LoaderService } from '../../../shared/components/loader/loader.service';
-import { appConstants } from 'src/app/app.constants';
+import { appConstants } from '../../../app.constants';
 @Component({
   selector: 'app-confirm-portfolio',
   templateUrl: './confirm-portfolio.component.html',

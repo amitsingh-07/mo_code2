@@ -26,7 +26,7 @@ import { MANAGE_INVESTMENTS_CONSTANTS } from '../manage-investments.constants';
 import { ManageInvestmentsService } from '../manage-investments.service';
 import { environment } from './../../../../environments/environment';
 import { PromoCodeService } from './../../../promo-code/promo-code.service';
-import { appConstants } from 'src/app/app.constants';
+import { appConstants } from '../../../app.constants';
 
 @Component({
   selector: 'app-top-up',

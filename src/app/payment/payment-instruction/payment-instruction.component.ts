@@ -9,8 +9,8 @@ import { FooterService } from '../../shared/footer/footer.service';
 import { ComprehensiveApiService } from './../../comprehensive/comprehensive-api.service';
 import { SignUpService } from '../../sign-up/sign-up.service';
 import { COMPREHENSIVE_CONST } from './../../comprehensive/comprehensive-config.constants';
-import { AuthenticationService } from 'src/app/shared/http/auth/authentication.service';
-import { appConstants } from 'src/app/app.constants';
+import { AuthenticationService } from './../../shared/http/auth/authentication.service';
+import { appConstants } from '../../app.constants';
 @Component({
   selector: 'app-payment-instruction',
   templateUrl: './payment-instruction.component.html',

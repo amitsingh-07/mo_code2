@@ -26,7 +26,7 @@ import {
   ForwardPricingModalComponent
 } from './forward-pricing-modal/forward-pricing-modal.component';
 import { INVESTMENT_COMMON_CONSTANTS } from '../../investment-common/investment-common.constants';
-import { appConstants } from 'src/app/app.constants';
+import { appConstants } from '../../../app.constants';
 
 @Component({
   selector: 'app-withdrawal',
