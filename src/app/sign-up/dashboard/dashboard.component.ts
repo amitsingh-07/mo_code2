@@ -552,7 +552,6 @@ export class DashboardComponent implements OnInit {
     }, 3000);
   }
 
-  
   // show Start investing button if no portfolio but user has iFast account
   showPortfolioCards() {
     return Util.isEmptyOrNull(this.investmentsSummary.portfolioSummary.investmentPortfolio)
