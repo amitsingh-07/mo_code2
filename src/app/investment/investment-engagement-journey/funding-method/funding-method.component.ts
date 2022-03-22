@@ -18,6 +18,7 @@ import {
 import { InvestmentEngagementJourneyService } from '../investment-engagement-journey.service';
 import { SrsTooltipComponent } from '../srs-tooltip/srs-tooltip.component';
 import { INVESTMENT_ENGAGEMENT_JOURNEY_CONSTANTS } from '../investment-engagement-journey.constants';
+import { INVESTMENT_COMMON_CONSTANTS } from '../../investment-common/investment-common.constants';
 
 @Component({
   selector: 'app-funding-method',
@@ -36,6 +37,7 @@ export class FundingMethodComponent implements OnInit {
   loaderTitle: string;
   loaderDesc: string;
   selectedPortfolioType;
+  checkFund;
 
   constructor(
     public readonly translate: TranslateService,
@@ -72,6 +74,7 @@ export class FundingMethodComponent implements OnInit {
       initialFundingMethodId: new FormControl(
         this.formValues.initialFundingMethodId, Validators.required)
     });
+    this.checkFund = INVESTMENT_COMMON_CONSTANTS.FUNDING_METHODS;
   }
   getOptionListCollection() {
     this.loaderService.showLoader({
