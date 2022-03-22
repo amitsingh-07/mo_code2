@@ -64,11 +64,7 @@
               <div class="reward-points" [ngClass]="{'grey': !cardCategory.investment[0].isEnabled}" *ngIf="getReferralInfo && getReferralInfo.isWelcomeRewardsValid && getReferralInfo.refereeExists"><span *ngIf="!cardCategory.investment[0].isEnabled"><img src="assets/images/refer-friend/gift-icon-grey.svg"></span><span *ngIf="cardCategory.investment[0].isEnabled"><img src="assets/images/refer-friend/gift-icon.svg"></span>${{cardCategory.investment[0].creditValue}}</div>
               <ng-container *ngIf="isInvestmentEnabled; else loader">
                 <!-- Purchased Investment and WiseSaver Card -->
-                <ng-container *ngIf="showPortfolioPurchased && 
-                  (investmentsSummary.portfolioSummary.investmentPortfolio
-                  || investmentsSummary.portfolioSummary.cpfPortfolio
-                  || investmentsSummary.portfolioSummary.wiseIncomePortfolio
-                  || investmentsSummary.portfolioSummary.wiseSaverPortfolio)">
+                <ng-container *ngIf="showPortfolioPurchased">
                   <div class="widget-title widget-portfolio-title">
                     <span class="flex">{{'DASHBOARD.INVESTMENT.TITLE_INVESTMENT' | translate}}
                     </span>
@@ -156,7 +152,7 @@
                   </div>
                 </ng-container>
                 <!-- Not Purchased Investment Card -->
-                <ng-container *ngIf="!showPortfolioPurchased || showPortfolioCards()">
+                <ng-container *ngIf="!showPortfolioPurchased">
                   <div class="widget-title widget-portfolio-title">
                     <span class="flex">{{'DASHBOARD.INVESTMENT.TITLE_INVESTMENT' | translate}}
                     </span>
@@ -164,7 +160,7 @@
                   <div class="widget-body">
                     <div class="scenarios flex-col-12">
                       <!--  Start Investing -->
-                      <div class="no_account col-12" *ngIf="showStartInvesting || showPortfolioCards()">
+                      <div class="no_account col-12" *ngIf="showStartInvesting">
                         <div class="warning-txt">
                           <div class="flex-col-8">
                             {{'DASHBOARD.INVESTMENT.CREATE_YOUR_PORTFOLIO_DESC' | translate}}
