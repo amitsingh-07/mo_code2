@@ -546,6 +546,14 @@ export class DashboardComponent implements OnInit {
       this.comprehensiveService.setToastMessage(false);
     }, 3000);
   }
+
+ // show Start investing button if no portfolio but user has iFast account
+  showPortfolioCards() {
+    return !this.investmentsSummary.portfolioSummary.investmentPortfolio
+    && !this.investmentsSummary.portfolioSummary.cpfPortfolio
+    && !this.investmentsSummary.portfolioSummary.wiseIncomePortfolio
+    && !this.investmentsSummary.portfolioSummary.wiseSaverPortfolio
+  }
 }
 
 

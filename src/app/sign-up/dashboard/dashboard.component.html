@@ -64,7 +64,11 @@
               <div class="reward-points" [ngClass]="{'grey': !cardCategory.investment[0].isEnabled}" *ngIf="getReferralInfo && getReferralInfo.isWelcomeRewardsValid && getReferralInfo.refereeExists"><span *ngIf="!cardCategory.investment[0].isEnabled"><img src="assets/images/refer-friend/gift-icon-grey.svg"></span><span *ngIf="cardCategory.investment[0].isEnabled"><img src="assets/images/refer-friend/gift-icon.svg"></span>${{cardCategory.investment[0].creditValue}}</div>
               <ng-container *ngIf="isInvestmentEnabled; else loader">
                 <!-- Purchased Investment and WiseSaver Card -->
-                <ng-container *ngIf="showPortfolioPurchased">
+                <ng-container *ngIf="showPortfolioPurchased && 
+                  (investmentsSummary.portfolioSummary.investmentPortfolio
+                  || investmentsSummary.portfolioSummary.cpfPortfolio
+                  || investmentsSummary.portfolioSummary.wiseIncomePortfolio
+                  || investmentsSummary.portfolioSummary.wiseSaverPortfolio)">
                   <div class="widget-title widget-portfolio-title">
                     <span class="flex">{{'DASHBOARD.INVESTMENT.TITLE_INVESTMENT' | translate}}
                     </span>
@@ -101,7 +105,7 @@
 
                   <div class="row widget-portfolio-type-content">
                     <div class="col-md-6">
-                      <div class='portfolio-type-box' (click)="goToInvOverview(portfolioCategory.INVESTMENT)">
+                      <div class='portfolio-type-box' (click)="goToInvOverview(portfolioCategory.INVESTMENT)" *ngIf="investmentsSummary.portfolioSummary.investmentPortfolio.available">
                         <span class='dashboard-invest-portfolio'></span>
                         <p class='portfolio-type-box-title'>{{'DASHBOARD.INVESTMENT.DIMENSIONAL_PORTFOLIOS' | translate}}
                         </p>
@@ -114,7 +118,7 @@
                       </div>
                     </div>
                     <div class="col-md-6">
-                      <div class='portfolio-type-box' (click)="goToInvOverview(portfolioCategory.CPF)">
+                      <div class='portfolio-type-box' (click)="goToInvOverview(portfolioCategory.CPF)" *ngIf="investmentsSummary.portfolioSummary.cpfPortfolio.available">
                         <span class='dashboard-cpf-portfolio'></span>
                         <p class='portfolio-type-box-title'>{{'DASHBOARD.INVESTMENT.CPF_PORTFOLIOS' | translate}}
                         </p>
@@ -124,7 +128,7 @@
                       </div>
                     </div>
                     <div class="col-md-6">
-                      <div class='portfolio-type-box' (click)="goToInvOverview(portfolioCategory.WISEINCOME)">
+                      <div class='portfolio-type-box' (click)="goToInvOverview(portfolioCategory.WISEINCOME)" *ngIf="investmentsSummary.portfolioSummary.wiseIncomePortfolio.available">
                         <span class='dashboard-wise-income-portfolio'></span>
                         <p class='portfolio-type-box-title'>{{'DASHBOARD.INVESTMENT.WISE_INCOME_PORTFOLIOS' | translate}}
                         </p>
@@ -137,7 +141,7 @@
                       </div>
                     </div>
                     <div class="col-md-6">
-                      <div class='portfolio-type-box' (click)="goToInvOverview(portfolioCategory.WISESAVER)">
+                      <div class='portfolio-type-box' (click)="goToInvOverview(portfolioCategory.WISESAVER)" *ngIf="investmentsSummary.portfolioSummary.wiseSaverPortfolio.available">
                         <span class='dashboard-wise-portfolio'></span>
                         <p class='portfolio-type-box-title'>{{'DASHBOARD.INVESTMENT.WISE_SAVER_PORTFOLIOS' | translate}}
                         </p>
@@ -152,7 +156,7 @@
                   </div>
                 </ng-container>
                 <!-- Not Purchased Investment Card -->
-                <ng-container *ngIf="!showPortfolioPurchased">
+                <ng-container *ngIf="!showPortfolioPurchased || showPortfolioCards()">
                   <div class="widget-title widget-portfolio-title">
                     <span class="flex">{{'DASHBOARD.INVESTMENT.TITLE_INVESTMENT' | translate}}
                     </span>
@@ -160,7 +164,7 @@
                   <div class="widget-body">
                     <div class="scenarios flex-col-12">
                       <!--  Start Investing -->
-                      <div class="no_account col-12" *ngIf="showStartInvesting">
+                      <div class="no_account col-12" *ngIf="showStartInvesting || showPortfolioCards()">
                         <div class="warning-txt">
                           <div class="flex-col-8">
                             {{'DASHBOARD.INVESTMENT.CREATE_YOUR_PORTFOLIO_DESC' | translate}}
