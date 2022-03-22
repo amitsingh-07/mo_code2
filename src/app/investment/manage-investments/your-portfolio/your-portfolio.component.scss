@@ -120,9 +120,11 @@ app-your-portfolio {
                 }
               }
               .dropdown-menu{
+                z-index: 1040;
                 &.show {
-                  left: auto !important;
-                  right: 0 !important;
+                  // left: auto !important;
+                  // right: 0 !important;
+                  width: 220px;
                   overflow: auto;
                   height: auto;
                   max-height: 315px;
