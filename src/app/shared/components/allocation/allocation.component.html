@@ -2,7 +2,7 @@
   <div class="bonds_equity_block" *ngIf="!wiseIncomeEnabled">
     <div class="bond_progress_container">
       <div class="flex-row equity_bar" *ngFor="let asset of assets; let i = index"
-        [ngClass]="{'wise-saver-bar': !allocationDetails}">
+        [ngClass]="{'wise-saver-bar': !allocationDetails && !cpfEnabled}">
         <div class="flex-row flex-col-6 bar-container">
           <span [ngStyle]="{'background-color': colors[i], 'width': asset.allocationPercentage + '%'  }"
             class="bar"></span>
@@ -10,14 +10,22 @@
         <div class="flex-col">{{asset.allocationPercentage}}% {{asset.type.type}}</div>
       </div>
     </div>
-    <div *ngIf="investmentEnabled">
+    <div *ngIf="investmentEnabled || cpfEnabled">
       <div class="bonds_equity" *ngFor="let asset of assets; let i = index">
-        <div class="bonds_equity_title" id="panel-button-{{i}}" (click)="showHidePanel(acc, 'panel-' + i, $event)">
-          {{asset.type.type}}<i class='arrow'></i></div>
+        <div class="bonds_equity_title" id="panel-button-{{i}}" (click)="showHidePanel(acc, 'panel-' + i, $event)" >
+            <div>
+              <div>
+                {{(cpfEnabled && asset.type.type === assetTypeConst.FIXED_INCOME) ? assetTypeConst.BONDS : asset.type.type}}
+              </div>
+              <div class="sub-lbl" *ngIf="cpfEnabled && asset.type.type === assetTypeConst.EQUITIES">{{'PORTFOLIO_RECOMMENDATION.LGI_SUB_LBL' | translate}}</div>
+              <div class="sub-lbl" *ngIf="cpfEnabled && asset.type.type === assetTypeConst.FIXED_INCOME" >{{'PORTFOLIO_RECOMMENDATION.UOB_SUB_LBL' | translate}}</div>
+            </div>
+            <div><i class='arrow'></i></div>
+        </div>
         <ngb-accordion #acc="ngbAccordion">
           <ngb-panel id="panel-{{i}}" title="Second">
             <ng-template ngbPanelContent>
-              <div class="bond_desc" *ngIf="asset.type.holdingsCount">
+              <div class="bond_desc" *ngIf="asset.holdingsCount">
                 <div class="flex-row flex-col-12">
                   <div class="rating_type border-right-none">{{'PORTFOLIO_RECOMMENDATION.NUMBER_HOLDINGS_LBL' | translate}}</div>
                   <div class="rating">

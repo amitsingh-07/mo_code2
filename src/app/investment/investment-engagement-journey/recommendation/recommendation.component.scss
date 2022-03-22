@@ -265,6 +265,37 @@ app-recommendation {
       margin-bottom: 30px;
     }
 
+    input[type=checkbox] + label {
+      background-position: 0 0;
+    }
+
+    .check-box-desc {
+      font-family: $muli-semi-bold;
+      font-size: 16px;
+      font-weight: 600;
+      font-stretch: normal;
+      font-style: normal;
+      line-height: normal;
+      letter-spacing: -0.3px;
+      color: $silver-grey-color;
+    }
+
+    .checkbox-with-desc-lable {
+      padding-bottom: 20px;
+      padding-right: 20px;
+      padding-left: 20px;
+      padding-top: 20px;
+    }
+
+    .checkbox-with-desc {
+      background: $white-color;
+      margin-bottom: 30px;
+      position: relative;
+      border: none;
+      border-radius: 6px;
+      box-shadow: 0 10px 14px 0 rgba(0, 0, 0, 0.21) ;
+    }
+
     .btn__footer--fixed {
       font-family: $muli-bold !important;
       font-size: 22px;

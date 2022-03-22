@@ -113,7 +113,17 @@
                         </p>
                       </div>
                     </div>
-                    <div class="col-md-6 widget-portfolio-type-right">
+                    <div class="col-md-6">
+                      <div class='portfolio-type-box' (click)="goToInvOverview(portfolioCategory.CPF)">
+                        <span class='dashboard-cpf-portfolio'></span>
+                        <p class='portfolio-type-box-title'>{{'DASHBOARD.INVESTMENT.CPF_PORTFOLIOS' | translate}}
+                        </p>
+                        <p class='portfolio-type-box-value'>
+                          {{(investmentsSummary && investmentsSummary.portfolioSummary.cpfPortfolio && investmentsSummary.portfolioSummary.cpfPortfolio.totalPortfolioValue ? investmentsSummary.portfolioSummary.cpfPortfolio.totalPortfolioValue : 0) | formatCurrency}}
+                        </p>
+                      </div>
+                    </div>
+                    <div class="col-md-6">
                       <div class='portfolio-type-box' (click)="goToInvOverview(portfolioCategory.WISEINCOME)">
                         <span class='dashboard-wise-income-portfolio'></span>
                         <p class='portfolio-type-box-title'>{{'DASHBOARD.INVESTMENT.WISE_INCOME_PORTFOLIOS' | translate}}

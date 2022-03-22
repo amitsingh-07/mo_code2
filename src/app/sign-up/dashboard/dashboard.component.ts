@@ -164,7 +164,7 @@ export class DashboardComponent implements OnInit {
       } else {
         this.signUpService.setUserProfileInfo(userInfo.objectList);
         this.userProfileInfo = this.signUpService.getUserProfileInfo();
-        this.checkSRSPopStatus(userInfo.objectList.id);
+        this.checkFirstTimeLoginStatus(userInfo.objectList.id);
       }
     },
       (err) => {
@@ -258,6 +258,10 @@ export class DashboardComponent implements OnInit {
     this.investmentAccountService.getInvestmentsSummary().subscribe((data) => {
       if (data && data.responseMessage && data.responseMessage.responseCode === 6000) {
         this.investmentsSummary = data.objectList;
+        const accStatusInfoFromSession = this.investmentCommonService.getInvestmentCommonFormData().accountCreationActions;
+        if (this.investmentsSummary && this.investmentsSummary.investmentAccountStatus && accStatusInfoFromSession) {      
+          this.investmentCommonService.setAccountCreationActionsToSession(this.investmentsSummary.investmentAccountStatus);
+        } 
         this.setInvestmentsSummary(this.investmentsSummary);
         this.getInvestmentStatus();
       } else {
@@ -353,7 +357,8 @@ export class DashboardComponent implements OnInit {
       }
       case SIGN_UP_CONFIG.INVESTMENT.CDD_CHECK_PENDING:
       case SIGN_UP_CONFIG.INVESTMENT.EDD_CHECK_CLEARED:
-      case SIGN_UP_CONFIG.INVESTMENT.EDD_CHECK_PENDING: {
+      case SIGN_UP_CONFIG.INVESTMENT.EDD_CHECK_PENDING: 
+      case SIGN_UP_CONFIG.INVESTMENT.CKA_PENDING: {
         this.showCddCheckOngoing = true;
         this.enableInvestment();
         break;
@@ -483,16 +488,23 @@ export class DashboardComponent implements OnInit {
     ref.componentInstance.endBtnTxt = this.translate.instant('DASHBOARD.SRS_JOINT_ACCOUNT.END_BTN');
   }
 
-  // Check if user is first time seeing SRS popup
-  checkSRSPopStatus(customerId) {
+  // Show new updates Modal if first time login
+  openNewUpdatesModal() {
+    const ref = this.modal.open(CarouselModalComponent, { centered: true, windowClass: 'srs-dashboard-modal' });
+    ref.componentInstance.slides = this.translate.instant('DASHBOARD.SRS_JOINT_ACCOUNT.SRS_JOINT_ACCOUNT_SLIDES');
+    ref.componentInstance.startBtnTxt = this.translate.instant('DASHBOARD.SRS_JOINT_ACCOUNT.START_BTN');
+    ref.componentInstance.endBtnTxt = this.translate.instant('DASHBOARD.SRS_JOINT_ACCOUNT.END_BTN');
+  }
+  // Check if first time login and show new updates modal
+  checkFirstTimeLoginStatus(customerId) {
     if (customerId) {
-      this.signUpApiService.getPopupStatus(customerId, 'WI_POP').subscribe((status) => {
+      this.signUpApiService.getPopupStatus(customerId, 'CPF_POP').subscribe((status) => {
         // Check if track_status is available or false
         if (!status.objectList || !status.objectList['trackStatus']) {
           setTimeout(() => {
-            this.openSRSJointAccPopup();
+            this.openNewUpdatesModal();
           });
-          this.signUpApiService.setPopupStatus(customerId, 'WI_POP').subscribe((result) => {
+          this.signUpApiService.setPopupStatus(customerId, 'CPF_POP').subscribe((result) => {
           }, (error) => console.log('ERROR: ', error));
         }
       }, (error) => console.log('ERROR: ', error));

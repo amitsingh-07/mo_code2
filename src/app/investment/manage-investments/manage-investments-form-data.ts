@@ -31,7 +31,10 @@ export class ManageInvestmentsFormData {
   selectedCustomerPortfolioId: any;
   selectedCustomerPortfolio: any;
   srsAccountDetails: ISrsAccountDetails;
+  cpfiaAccountDetails: ICPFIAccountDetails;
   isSrsAccountUpdated: boolean; //issrsaccountupdated
+
+  isCPFAccountUpdated: boolean; // cpf acc updated flag
 
   investmentNote: any;
 
@@ -56,4 +59,9 @@ export interface IToastMessage {
 export interface ISrsAccountDetails {
   srsAccountNumber: string;
   srsOperator: any;
+}
+
+export interface ICPFIAccountDetails {
+  cpfiaAccountNumber: any;
+  cpfiaOperator: string;
 }

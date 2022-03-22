@@ -48,4 +48,7 @@ export class SignUpFormData {
   referralCode: string;
   userType: string;
   accountCreationType:string;
+  // cpf detail
+  cpfAccountNumber: number;
+  cpfOperatorBank: any;
 }

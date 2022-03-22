@@ -1,4 +1,5 @@
 @import '../../../../variables';
+@import '../../../../mixins';
 
 app-edit-investment-modal{
 .edit-investment-modal {
@@ -48,6 +49,15 @@ app-edit-investment-modal{
     letter-spacing: -0.1px;
     color: $form-block-sub-title-color;
   } 
-
+  .cpf-desc{
+    font-family: $muli-regular;
+    font-size: 16px;
+    line-height: normal;
+    letter-spacing: -0.19px;
+    color: $boulder-grey-color;
+    @include allmobiles{
+      line-height: 22px;
+    }
+  }
 }
 }

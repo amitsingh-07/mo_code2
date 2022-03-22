@@ -61,7 +61,8 @@ export class InvestmentEngagementJourneyService {
       riskProfileName: this.investmentEngagementJourneyFormData.riskProfileName,
       htmlDescription: this.investmentEngagementJourneyFormData.htmlDescription,
       alternateRiskProfileId: this.investmentEngagementJourneyFormData.alternateRiskProfileId,
-      alternateRiskProfileType: this.investmentEngagementJourneyFormData.alternateRiskProfileType
+      alternateRiskProfileType: this.investmentEngagementJourneyFormData.alternateRiskProfileType,
+      showRecommendationCheckbox: this.investmentEngagementJourneyFormData.showRecommendationCheckbox
     };
   }
 
@@ -71,6 +72,7 @@ export class InvestmentEngagementJourneyService {
     this.investmentEngagementJourneyFormData.htmlDescription = data.htmlDescObject;
     this.investmentEngagementJourneyFormData.alternateRiskProfileId = data.alternateRiskProfileId;
     this.investmentEngagementJourneyFormData.alternateRiskProfileType = data.alternateRiskProfileType;
+    this.investmentEngagementJourneyFormData.showRecommendationCheckbox = data && data.showRecommendationCheckbox ? data.showRecommendationCheckbox : false;
 
     this.commit();
   }
@@ -288,7 +290,7 @@ export class InvestmentEngagementJourneyService {
     const selectedPortfolioType = this.getSelectPortfolioType();
     const formData = this.getPortfolioFormData();
     const enquiryIdValue = Number(this.authService.getEnquiryId());
-    if (selectedPortfolioType === INVESTMENT_ENGAGEMENT_JOURNEY_CONSTANTS.SELECT_POROFOLIO_TYPE.INVEST_PORTFOLIO) {
+    if (selectedPortfolioType === INVESTMENT_ENGAGEMENT_JOURNEY_CONSTANTS.SELECT_POROFOLIO_TYPE.INVEST_PORTFOLIO || selectedPortfolioType === INVESTMENT_ENGAGEMENT_JOURNEY_CONSTANTS.SELECT_POROFOLIO_TYPE.CPF_PORTFOLIO) {
       return {
         investmentPeriod: formData.investmentPeriod,
         monthlyIncome: formData.monthlyIncome,
@@ -754,4 +756,19 @@ export class InvestmentEngagementJourneyService {
     }
     return errors;
   }
+
+  isCpfSelected() {
+    return this.getPortfolioFormData().selectPortfolioType == INVESTMENT_ENGAGEMENT_JOURNEY_CONSTANTS.SELECT_POROFOLIO_TYPE.CPF_PORTFOLIO;
+  }
+  //Get Risk Profile icon
+  getRiskProfileIcon(riskProfileType: string, isBalancedCpf: boolean) {
+    if(isBalancedCpf) {
+      return INVESTMENT_ENGAGEMENT_JOURNEY_CONSTANTS.riskProfileIcon['balanced-cpfis-icon'];
+    } else if(!Util.isEmptyOrNull(riskProfileType)) {
+      return INVESTMENT_ENGAGEMENT_JOURNEY_CONSTANTS.riskProfileIcon[riskProfileType.toLowerCase()];
+    } else {
+      return '';
+    }
+  }
 }
+ 

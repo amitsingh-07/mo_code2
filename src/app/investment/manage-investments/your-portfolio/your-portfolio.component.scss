@@ -259,6 +259,12 @@ app-your-portfolio {
               top: 14px;
               right: -5px;
             }
+            &.cpf{
+              right: -12px;
+              @include allmobiles{
+                right: -5px;
+              }
+            }
           }
         }
       }

@@ -16,6 +16,8 @@ export class InvestmentCommonFormData {
     initialWiseIncomePayoutTypeId: number;
     wiseIncomeActiveTabId: number;
     portfolioDetails :any;
+    ckaStatus: any;
+    ckaRedirectFromLocation: any;
 }
 
 export interface IAccountCreationActions {

@@ -3,6 +3,6 @@ export class RiskProfile {
   riskProfileName: string;
   htmlDescription: any;
   alternateRiskProfileId: number;
-alternateRiskProfileType: string;
-
+  alternateRiskProfileType: string;
+  showRecommendationCheckbox: boolean;
 }

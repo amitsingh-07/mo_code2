@@ -8,6 +8,8 @@
       <p></p>
       <span *ngIf="withdrawType.id === WITHDRAW_CONSTANTS.PORTFOLIO_TO_SRS_TYPE_ID"
         innerHTML="{{'WITHDRAW.MODAL.CONFIRM_WITHDRAWAL.DESC_PORTFOLIO_TO_SRS' | translate}}"></span>
+      <span *ngIf="withdrawType.id === WITHDRAW_CONSTANTS.PORTFOLIO_TO_CPF_TYPE_ID"
+        innerHTML="{{'WITHDRAW.MODAL.CONFIRM_WITHDRAWAL.DESC_PORTFOLIO_TO_CPF' | translate}}"></span>
       <span *ngIf="withdrawType.id === WITHDRAW_CONSTANTS.PORTFOLIO_TO_CASH_TYPE_ID"
         innerHTML="{{'WITHDRAW.MODAL.CONFIRM_WITHDRAWAL.DESC_PORTFOLIO_TO_CASH' | translate}}"></span>
       <span *ngIf="withdrawType.id === WITHDRAW_CONSTANTS.PORTFOLIO_TO_BANK_TYPE_ID"
@@ -61,6 +63,16 @@
           <span *ngIf="withdrawType.id === WITHDRAW_CONSTANTS.PORTFOLIO_TO_SRS_TYPE_ID">
             <span class="caption">{{ 'WITHDRAW.MODAL.CONFIRM_WITHDRAWAL.SRS_ACC_NUMBER' | translate}}</span>
             <span class="values">{{srsAccountInfo?.srsAccountNumber?.conformedValue}}</span>
+          </span>
+          <!-- CPFIA OPERATOR -->
+          <span *ngIf="withdrawType.id === WITHDRAW_CONSTANTS.PORTFOLIO_TO_CPF_TYPE_ID">
+            <span class="caption">{{ 'WITHDRAW.MODAL.CONFIRM_WITHDRAWAL.CPFIA_OPERATOR' | translate}}</span>
+            <span class="values">{{cpfAccountInfo?.cpfiaOperator}}</span>
+          </span>
+          <!-- CPFIA ACCOUNT NUMBER -->
+          <span *ngIf="withdrawType.id === WITHDRAW_CONSTANTS.PORTFOLIO_TO_CPF_TYPE_ID">
+            <span class="caption">{{ 'WITHDRAW.MODAL.CONFIRM_WITHDRAWAL.CPFIA_ACC_NUMBER' | translate}}</span>
+            <span class="values">{{cpfAccountInfo?.cpfiaAccountNumber.conformedValue}}</span>
           </span>
           <!-- Re-Balancing -->
           <div
