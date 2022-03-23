@@ -135,6 +135,7 @@ export class NavbarComponent implements OnInit, AfterViewInit {
   wiseIncomeDropDownItem: any;
   tab;
   currentActive;
+  corpFaq = appConstants.CORPORATE_FAQ; 
 
   @ViewChild('navbar') NavBar: ElementRef;
   @ViewChild('navbarDropshadow') NavBarDropShadow: ElementRef;

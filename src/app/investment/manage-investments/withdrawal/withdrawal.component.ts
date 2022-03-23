@@ -26,6 +26,7 @@ import {
   ForwardPricingModalComponent
 } from './forward-pricing-modal/forward-pricing-modal.component';
 import { INVESTMENT_COMMON_CONSTANTS } from '../../investment-common/investment-common.constants';
+import { appConstants } from '../../../app.constants';
 
 @Component({
   selector: 'app-withdrawal',
@@ -57,6 +58,7 @@ export class WithdrawalComponent implements OnInit, OnDestroy {
   fundingMethods: any;
   customerPortfolioId: any;
   isJAAccount: boolean;
+  corpFaq = appConstants.CORPORATE_FAQ;
 
   private destroySubscription$ = new Subject();
 

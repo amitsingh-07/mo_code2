@@ -96,7 +96,7 @@
           <a class="navbar--text" href="javascript: void(0);">Refer a Friend<img class="ml10" src="assets/images/nav/new-icon.svg" /></a>
         </li>
         <li *ngIf="isLoggedIn && authService.isUserTypeCorporate" class="nav-item hidden-lg">
-          <a href="assets/docs/faq/corporate_faq.pdf" class="navbar--text" target="_blank">FAQ</a>
+          <a routerLink="{{corpFaq}}" class="navbar--text" target="_blank">FAQ</a>
         </li>
         <li *ngIf="isLoggedIn && showMenu" class="nav-item home-btn" >
           <a class="nav-link" (click)="goToDashboard()">Dashboard</a>
@@ -260,7 +260,7 @@
               <a class="navbar--text" href="javascript: void(0);">Refer a Friend<img class="ml10" src="assets/images/nav/new-icon.svg" /></a>
             </button>
             <button class="dropdown-item" *ngIf="isLoggedIn && authService.isUserTypeCorporate">
-              <a href="assets/docs/faq/corporate_faq.pdf" class="navbar--text" target="_blank">FAQ</a>
+              <a routerLink="{{corpFaq}}" class="navbar--text" target="_blank">FAQ</a>
             </button>
             <button class="dropdown-item logout-menu-item" (click)="logout()">
               <a class="navbar--text" href="javascript: void(0);">Logout<i class="logout-black ml10"></i></a>
