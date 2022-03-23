@@ -41,8 +41,9 @@ export let appConstants = {
             EMAIL_UPDATE : false,
             REFERREL_PROGRAM : false,
             CREATE_JOINT_ACCOUNT : false
-        }
+    }
     },
+    CORPORATE_FAQ : '/assets/docs/faq/corporate_faq.pdf',
     INSURANCE_JOURNEY_TYPE: {
         DIRECT: 'insurance-direct',
         GUIDED: 'insurance-guided'
