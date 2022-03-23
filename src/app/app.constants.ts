@@ -43,7 +43,7 @@ export let appConstants = {
             CREATE_JOINT_ACCOUNT : false
     }
     },
-    CORPORATE_FAQ : '/assets/docs/faq/CORPORATE_FAQ.pdf',
+    CORPORATE_FAQ : '/assets/docs/faq/corporate_faq.pdf',
     INSURANCE_JOURNEY_TYPE: {
         DIRECT: 'insurance-direct',
         GUIDED: 'insurance-guided'
