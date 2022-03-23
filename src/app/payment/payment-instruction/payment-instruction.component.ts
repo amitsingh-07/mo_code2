@@ -25,7 +25,7 @@ export class PaymentInstructionComponent implements OnInit, OnDestroy {
   emailID: any;
   getComprehensiveSummaryDashboard: any;
   isCorporate: boolean;
-  corpInvFaq = appConstants.CORPORATE_INVESTMENT_FAQ;
+  corpFaq = appConstants.CORPORATE_FAQ;
   constructor(
     public readonly translate: TranslateService,
     private router: Router,

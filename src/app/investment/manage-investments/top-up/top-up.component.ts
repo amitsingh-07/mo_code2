@@ -56,7 +56,7 @@ export class TopUpComponent implements OnInit, OnDestroy {
   investmentCriteria: IInvestmentCriteria;
   reviewBuyRequestModal: NgbModalRef;
   private subscription: Subscription;
-  corpInvFaq = appConstants.CORPORATE_INVESTMENT_FAQ;
+  corpFaq = appConstants.CORPORATE_FAQ;
 
   constructor(
     public readonly translate: TranslateService,
