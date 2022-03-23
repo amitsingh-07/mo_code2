@@ -19,6 +19,7 @@ import { ComprehensiveService } from './../comprehensive.service';
 import { PAYMENT_ROUTE_PATHS } from '../../payment/payment-routes.constants';
 import { ModelWithButtonComponent } from '../../shared/modal/model-with-button/model-with-button.component';
 import { ErrorModalComponent } from '../../shared/modal/error-modal/error-modal.component';
+import { AuthenticationService } from '../../shared/http/auth/authentication.service';
 
 
 @Component({
@@ -73,7 +74,8 @@ export class ComprehensiveDashboardComponent implements OnInit {
     private downloadfile: FileUtil,
     private loaderService: LoaderService, private appService: AppService,
     private signUpService: SignUpService,
-    private modal: NgbModal) {
+    private modal: NgbModal,
+    private authService: AuthenticationService) {
     this.appService.clearPromoCode();
     this.configService.getConfig().subscribe((config) => {
       this.translate.setDefaultLang(config.language);
@@ -100,7 +102,9 @@ export class ComprehensiveDashboardComponent implements OnInit {
     this.getCurrentVersionType = COMPREHENSIVE_CONST.VERSION_TYPE.FULL;
     this.isCorporate = this.comprehensiveService.isCorporateRole();
     this.setComprehensivePlan();
-    this.getReferralCodeData();
+    if (!this.authService.isUserTypeCorporate) {
+      this.getReferralCodeData();
+    }
     this.reportStatusTypes = COMPREHENSIVE_CONST.REPORT_STATUS;
   }
 
