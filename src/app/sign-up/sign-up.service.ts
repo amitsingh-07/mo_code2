@@ -2,7 +2,7 @@ import { Subject, BehaviorSubject } from 'rxjs';
 
 import { DatePipe } from '@angular/common';
 import { Injectable } from '@angular/core';
-import { AbstractControl } from '@angular/forms';
+import { AbstractControl, ValidationErrors } from '@angular/forms';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 
 import { TranslateService } from '@ngx-translate/core';
@@ -18,6 +18,7 @@ import { CreateAccountFormError } from './create-account/create-account-form-err
 import { SignUpFormData } from './sign-up-form-data';
 import { SIGN_UP_CONFIG } from './sign-up.constant';
 import { InvestmentAccountService } from '../investment/investment-account/investment-account-service';
+import { appConstants } from '../app.constants';
 
 const SIGNUP_SESSION_STORAGE_KEY = 'app_signup_session_storage_key';
 const CUSTOMER_REF_SESSION_STORAGE_KEY = 'app_customer_ref_session_storage_key';
@@ -785,4 +786,13 @@ export class SignUpService {
     // API Call here
     return this.apiService.getRefereeList();
   }
+
+  emailDomainValidator(control: AbstractControl) : ValidationErrors | null {
+    const isEnteredEmailId = isNaN(parseInt(control.value));
+    if(isEnteredEmailId && appConstants.ORGANISATION_ROLES.ALLOWED_DOMAIN_CORP.filter(ele => control.value?.includes(ele)).length === 0) {
+      return {invalidDomain: true};
+    }
+    return null;
+  }
+  
 }

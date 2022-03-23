@@ -36,13 +36,14 @@ export let appConstants = {
         FACEBOOK: "FACEBOOK"
     },
     ORGANISATION_ROLES: {
+        ALLOWED_DOMAIN_CORP: ['@fb.com', '@facebook.com', '@yopmail.com'],
         ROLE_CORP_FB_USER: {
             EMAIL_UPDATE : false,
             REFERREL_PROGRAM : false,
             CREATE_JOINT_ACCOUNT : false
     }
     },
-    CORPORATE_INVESTMENT_FAQ : '/assets/docs/faq/Dimensional_fund_holidays_2020.pdf',
+    CORPORATE_FAQ : '/assets/docs/faq/corporate_faq.pdf',
     INSURANCE_JOURNEY_TYPE: {
         DIRECT: 'insurance-direct',
         GUIDED: 'insurance-guided'

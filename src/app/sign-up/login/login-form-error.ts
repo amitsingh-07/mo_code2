@@ -9,6 +9,10 @@ export class LoginFormError {
                 pattern : {
                         errorTitle: 'Invalid Mobile No. or Email Address',
                         errorMessage: 'Please enter your valid username'
+                },
+                invalidDomain : {
+                        errorTitle: 'Invalid Email Domain',
+                        errorMessage: 'Enter a valid email domain'
                 }
         },
         loginPassword: {

@@ -58,7 +58,7 @@ export class WithdrawalComponent implements OnInit, OnDestroy {
   fundingMethods: any;
   customerPortfolioId: any;
   isJAAccount: boolean;
-  corpInvFaq = appConstants.CORPORATE_INVESTMENT_FAQ;
+  corpFaq = appConstants.CORPORATE_FAQ;
 
   private destroySubscription$ = new Subject();
 

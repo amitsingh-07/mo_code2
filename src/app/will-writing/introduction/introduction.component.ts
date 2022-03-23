@@ -116,11 +116,20 @@ export class IntroductionComponent implements OnInit {
       this.subscribeMessage = '';
       this.subscribeSuccess = false;
     });
+    if(this.authService.isSignedUser() && this.authService.isUserTypeCorporate) {
+      this.getCustOrgPromoCode();
+    }
   }
 
   @HostListener('input', ['$event'])
   onChange() {
     this.promoCodeRef.nativeElement.value = this.promoCodeRef.nativeElement.value.toUpperCase();
+  }
+
+  getCustOrgPromoCode(){
+    this.willWritingApiService.getCustOrgPromoCode().subscribe((data) => {
+      this.promoCodeForm.get('promoCode').patchValue(data.objectList[0].promoCode);
+    })
   }
 
   verifyPromoCode(promoCode) {

@@ -153,7 +153,7 @@ export class CreateAccountComponent implements OnInit, AfterViewInit {
       this.createAccountForm.controls['referralCode'].setValue(this.route.snapshot.paramMap.get('referralCode'));
       this.showClearBtn = true;
     }
-    this.createAnimation();
+    this.createAnimation();      
   }
 
   ngAfterViewInit() {
@@ -213,11 +213,14 @@ export class CreateAccountComponent implements OnInit, AfterViewInit {
       this.buildFormSingPass();
       return false;
     }
+    let emailValidators = this.organisationEnabled ? 
+    [Validators.required, Validators.email, Validators.pattern(RegexConstants.Email), this.signUpService.emailDomainValidator] : 
+    [Validators.required, Validators.email, Validators.pattern(RegexConstants.Email)];
 
     this.createAccountForm = this.formBuilder.group({
       countryCode: ['', [Validators.required]],
       mobileNumber: [myInfoMobile, [Validators.required]],
-      email: [myInfoEmail, [Validators.required, Validators.email, Validators.pattern(RegexConstants.Email)]],
+      email: [myInfoEmail, emailValidators],
       confirmEmail: [''],
       password: ['', [Validators.required, ValidatePassword]],
       confirmPassword: [''],

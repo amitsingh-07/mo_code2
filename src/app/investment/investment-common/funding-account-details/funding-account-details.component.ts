@@ -53,6 +53,7 @@ export class FundingAccountDetailsComponent implements OnInit {
   userPortfolioType: any;
   isJAEnabled: boolean;
   navigationType: any;
+  fundList: any;
   constructor(
     public readonly translate: TranslateService,
     private router: Router,
@@ -77,6 +78,7 @@ export class FundingAccountDetailsComponent implements OnInit {
         this.setPageTitle(this.pageTitle);
       }
     });
+    this.fundList = INVESTMENT_COMMON_CONSTANTS.FUNDING_METHODS;
     this.userPortfolioType = investmentEngagementJourneyService.getUserPortfolioType();
     this.isJAEnabled = (this.userPortfolioType === INVESTMENT_ENGAGEMENT_JOURNEY_CONSTANTS.PORTFOLIO_TYPE.JOINT_ACCOUNT_ID);
   }
