@@ -213,6 +213,22 @@ export class AuthenticationService {
     return !isTokenExpired && isLoggedInToken;
   }
 
+  public accessCorporateUserFeature(access_feature): boolean {
+    const token = this.getToken();
+    if (!token) {
+      return false;
+    }
+    const decodedInfo = this.jwtHelper.decodeToken(token);
+    const isLoggedInToken = decodedInfo.roles.split(',');
+    for(let org_role in appConstants.ORGANISATION_ROLES) {
+      if(isLoggedInToken.includes(org_role)) {
+        return appConstants.ORGANISATION_ROLES[org_role][access_feature];
+      }
+    }
+    const isTokenExpired = this.jwtHelper.isTokenExpired(token);
+    return !isTokenExpired && isLoggedInToken;
+  }
+
   //2FA Implementation
   public send2faRequest(handleError?: any) {
     if (!handleError) {

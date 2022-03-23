@@ -214,6 +214,10 @@
                 <span class="alert-icon"><img src="assets/images/alert.svg" /></span>
                 <span class="err-msg">{{ 'CREATE_ACCOUNT.FORM.EMAIL.ERROR.INVALID' | translate}}</span>
               </div>
+              <div *ngIf="account.email.errors?.invalidDomain">
+                <span class="alert-icon"><img src="assets/images/alert.svg" /></span>
+                <span class="err-msg">{{ 'CREATE_ACCOUNT.FORM.EMAIL.ERROR.INVALID_DOMAIN' | translate}}</span>
+              </div>
             </div>
           </div>
           <div class="flex-row mb15">

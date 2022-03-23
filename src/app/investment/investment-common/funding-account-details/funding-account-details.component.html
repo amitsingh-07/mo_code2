@@ -37,9 +37,12 @@
                         {{getFundingMethodNameById(this.fundingAccountDetailsForm.controls.confirmedFundingMethodId.value, fundingMethods) }}
                       </button>
                       <div class="dropdown" ngbDropdownMenu aria-labelledby="courseDropdown">
-                        <button class="dropdown-item" *ngFor="let fundingMethod of fundingMethods; let i = index;"
+                        <ng-container *ngFor="let fundingMethod of fundingMethods; let i = index;">
+                        <button class="dropdown-item" 
+                        *ngIf="fundingMethod.name && (fundingMethod.name.toUpperCase() != fundList.CPF_OA.toUpperCase())"
                           (click)="selectFundingMethod('confirmedFundingMethodId', fundingMethod.id)"
                           id="additional_declaration_sourse-drpdown-option-{{i}}">{{fundingMethod.name}}</button>
+                        </ng-container>
                       </div>
                     </div>
                   </div>

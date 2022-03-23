@@ -11,6 +11,7 @@ import { ToolTipModalComponent } from '../shared/modal/tooltip-modal/tooltip-mod
 import { NavbarService } from '../shared/navbar/navbar.service';
 import { AboutAge } from '../shared/utils/about-age.util';
 import { Util } from '../shared/utils/util';
+import { SIGN_UP_CONFIG } from '../sign-up/sign-up.constant';
 import { appConstants } from './../app.constants';
 import { ApiService } from './../shared/http/api.service';
 import { AuthenticationService } from './../shared/http/auth/authentication.service';
@@ -78,7 +79,7 @@ export class ComprehensiveService {
   }
   //Get User Role for CFP True = Corporate False = Public
   isCorporateRole() {
-    return this.authService.isSignedUserWithRole(COMPREHENSIVE_CONST.ROLES.ROLE_COMPRE_LITE);
+    return this.authService.isSignedUserWithRole(COMPREHENSIVE_CONST.ROLES.ROLE_COMPRE_LITE) || this.authService.isSignedUserWithRole(SIGN_UP_CONFIG.ROLE_CORP_FB_USER);
   }
   commit() {
     if (window.sessionStorage) {
