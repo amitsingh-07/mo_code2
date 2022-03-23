@@ -100,7 +100,7 @@
                   </div>
 
                   <div class="row widget-portfolio-type-content">
-                    <div class="col-md-6">
+                    <div class="col-md-6" *ngIf="investmentsSummary.portfolioSummary.investmentPortfolio.available">
                       <div class='portfolio-type-box' (click)="goToInvOverview(portfolioCategory.INVESTMENT)">
                         <span class='dashboard-invest-portfolio'></span>
                         <p class='portfolio-type-box-title'>{{'DASHBOARD.INVESTMENT.DIMENSIONAL_PORTFOLIOS' | translate}}
@@ -113,7 +113,7 @@
                         </p>
                       </div>
                     </div>
-                    <div class="col-md-6">
+                    <div class="col-md-6" *ngIf="investmentsSummary.portfolioSummary.cpfPortfolio.available">
                       <div class='portfolio-type-box' (click)="goToInvOverview(portfolioCategory.CPF)">
                         <span class='dashboard-cpf-portfolio'></span>
                         <p class='portfolio-type-box-title'>{{'DASHBOARD.INVESTMENT.CPF_PORTFOLIOS' | translate}}
@@ -123,7 +123,7 @@
                         </p>
                       </div>
                     </div>
-                    <div class="col-md-6">
+                    <div class="col-md-6" *ngIf="investmentsSummary.portfolioSummary.wiseIncomePortfolio.available">
                       <div class='portfolio-type-box' (click)="goToInvOverview(portfolioCategory.WISEINCOME)">
                         <span class='dashboard-wise-income-portfolio'></span>
                         <p class='portfolio-type-box-title'>{{'DASHBOARD.INVESTMENT.WISE_INCOME_PORTFOLIOS' | translate}}
@@ -136,7 +136,7 @@
                         </p>
                       </div>
                     </div>
-                    <div class="col-md-6">
+                    <div class="col-md-6" *ngIf="investmentsSummary.portfolioSummary.wiseSaverPortfolio.available">
                       <div class='portfolio-type-box' (click)="goToInvOverview(portfolioCategory.WISESAVER)">
                         <span class='dashboard-wise-portfolio'></span>
                         <p class='portfolio-type-box-title'>{{'DASHBOARD.INVESTMENT.WISE_SAVER_PORTFOLIOS' | translate}}
