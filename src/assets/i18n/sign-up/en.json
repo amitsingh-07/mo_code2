@@ -449,8 +449,8 @@
           "TITLE": "New Updates",
           "TITLE_IMG": "srs-joint-account/speaker.svg",
           "IMAGE": "srs-joint-account/owl-cpf.svg",
-          "IMG_TITLE": "You can now invest your CPF savings with MoneyOwl <span class=\"red\">at a promotional advisory rate of 0% p.a till 31 Dec 2022.</span>",
-          "TEXT": "Invest your CPF savings in our curated portfolios to grow your retirement nest egg.",
+          "IMG_TITLE": "CPF Investing now available!",
+          "TEXT": "You can now invest your CPF savings in our curated portfolios at a promotional advisory rate of 0% p.a.till 31 Dec 2022!",
           "APP_URL": "/investment/engagement/select-portfolio-goal-moreinfo",
           "QUERY_PARAMS": "cpf-portfolio",
           "URL_TEXT": "Start now"
