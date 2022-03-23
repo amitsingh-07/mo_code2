@@ -128,7 +128,9 @@ export class DashboardComponent implements OnInit {
       this.isComprehensiveEnabled = config.comprehensiveEnabled;
     });
     this.portfolioCategory = INVESTMENT_COMMON_CONSTANTS.PORTFOLIO_CATEGORY;
-    this.getReferralCodeData();
+    if (!this.authService.isUserTypeCorporate) {
+      this.getReferralCodeData();
+    }
   }
 
   ngOnInit() {
