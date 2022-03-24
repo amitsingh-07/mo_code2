@@ -19,6 +19,7 @@ export class SuccessMessageComponent implements OnInit {
   message;
   redirectTo;
   queryParams;
+  organisationEnabled = false;
 
   constructor(
     // tslint:disable-next-line
@@ -31,6 +32,9 @@ export class SuccessMessageComponent implements OnInit {
     this.translate.use('en');
     this.translate.get('COMMON').subscribe((result: string) => {
     });
+    if (this.route.snapshot.data[0]) {
+      this.organisationEnabled = this.route.snapshot.data[0]['organisationEnabled'];
+    }
   }
 
   ngOnInit() {
@@ -39,6 +43,7 @@ export class SuccessMessageComponent implements OnInit {
     this.queryParams = this.route.snapshot.queryParams;
   }
   redirectToLogin() {
-    this.router.navigate([SIGN_UP_ROUTE_PATHS.LOGIN]);
+    const redirectTo = this.organisationEnabled ? SIGN_UP_ROUTE_PATHS.CORPORATE_LOGIN : SIGN_UP_ROUTE_PATHS.LOGIN;
+    this.router.navigate([redirectTo]);
   }
 }

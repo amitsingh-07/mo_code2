@@ -45,6 +45,7 @@ export class SignUpService {
   private signUpFormData: SignUpFormData = new SignUpFormData();
   private createAccountFormError: any = new CreateAccountFormError();
   private resetPasswordUrl: string;
+  private resetPasswordCorpUrl: string;
   private mobileOptimized = new BehaviorSubject(false);
   mobileOptimizedObservable$ = this.mobileOptimized.asObservable();
   myInfoAttributes = SIGN_UP_CONFIG.MY_INFO_ATTRIBUTES;
@@ -61,6 +62,7 @@ export class SignUpService {
     this.getAccountInfo();
     this.configService.getConfig().subscribe((config: IConfig) => {
       this.resetPasswordUrl = config.resetPasswordUrl;
+      this.resetPasswordCorpUrl = config.resetPasswordCorpUrl;
     });
   }
 
@@ -221,9 +223,9 @@ export class SignUpService {
    * set user account details.
    * @param data - user account details.
    */
-  setForgotPasswordInfo(email, captcha) {
+  setForgotPasswordInfo(email, captcha, profileType) {
     // API Call here
-    const data = this.constructForgotPasswordInfo(email, captcha);
+    const data = this.constructForgotPasswordInfo(email, captcha, profileType);
     return this.apiService.requestForgotPasswordLink(data);
   }
 
@@ -231,12 +233,14 @@ export class SignUpService {
    * construct the json for forgot password.
    * @param data - email and redirect uri.
    */
-  constructForgotPasswordInfo(data, captchaValue) {
+  constructForgotPasswordInfo(data, captchaValue, profileType) {
+    let resetUrl = (profileType == appConstants.USERTYPE.CORPORATE) ? this.resetPasswordCorpUrl : this.resetPasswordUrl;
     return {
       email: data,
       captcha: captchaValue,
       sessionId: this.authService.getSessionId(),
-      redirectUrl: window.location.origin + this.resetPasswordUrl + '?key='
+      profileType: profileType,
+      redirectUrl: window.location.origin + resetUrl + '?key='
     };
   }
   setRestEmailInfo(email, captcha, oldEmail) {
