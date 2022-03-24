@@ -17,7 +17,7 @@ import { NavbarService } from '../../shared/navbar/navbar.service';
 import { SignUpApiService } from '../sign-up.api.service';
 import { SIGN_UP_ROUTE_PATHS } from '../sign-up.routes.constants';
 import { SignUpService } from '../sign-up.service';
-import { appConstants } from 'src/app/app.constants';
+import { appConstants } from './../../app.constants';
 
 @Component({
   selector: 'app-forgot-password',
