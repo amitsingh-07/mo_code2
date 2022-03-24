@@ -34,6 +34,7 @@ export class ResetPasswordComponent implements OnInit {
   isPasswordValid = true;
 
   submitted: boolean = false;
+  organisationEnabled = false;
 
   constructor(
     // tslint:disable-next-line
@@ -50,6 +51,9 @@ export class ResetPasswordComponent implements OnInit {
     private translate: TranslateService, private errorHandler: CustomErrorHandlerService) {
     this.translate.use('en');
     this.translate.get('COMMON').subscribe((result: string) => {
+      if (this.route.snapshot.data[0]) {
+        this.organisationEnabled = this.route.snapshot.data[0]['organisationEnabled'];
+      }
     });
   }
 
@@ -108,7 +112,8 @@ export class ResetPasswordComponent implements OnInit {
         // tslint:disable-next-line:triple-equals
         if (data.responseMessage.responseCode == 6000) {
           // tslint:disable-next-line:max-line-length
-          this.router.navigate([SIGN_UP_ROUTE_PATHS.SUCCESS_MESSAGE], { queryParams: { buttonTitle: 'Login Now', redir: SIGN_UP_ROUTE_PATHS.LOGIN, Message: 'Password Successfully Reset!' }, fragment: 'loading' });
+          const redirectTo = this.organisationEnabled ? SIGN_UP_ROUTE_PATHS.CORP_SUCCESS_MESSAGE : SIGN_UP_ROUTE_PATHS.SUCCESS_MESSAGE;
+          this.router.navigate([redirectTo], { queryParams: { buttonTitle: 'Login Now', redir: SIGN_UP_ROUTE_PATHS.LOGIN, Message: 'Password Successfully Reset!' }, fragment: 'loading' });
         }
       }).add(() => {
         this.submitted = false;

@@ -16,6 +16,7 @@ import { FooterService } from './../../shared/footer/footer.service';
 })
 export class ForgotPasswordResultComponent implements OnInit {
   verifyEmail = false;
+  organisationEnabled = false;
   constructor(
     public readonly translate: TranslateService,
     private router: Router,
@@ -27,6 +28,9 @@ export class ForgotPasswordResultComponent implements OnInit {
     this.translate.use('en');
     this.translate.get('COMMON').subscribe((result: string) => {
     });
+    if (this.route.snapshot.data[0]) {
+      this.organisationEnabled = this.route.snapshot.data[0]['organisationEnabled'];
+    }
   }
 
   ngOnInit() {
@@ -43,6 +47,8 @@ export class ForgotPasswordResultComponent implements OnInit {
   redirectToLogin() {
     if (this.signUpService.getUserType() === appConstants.USERTYPE.FINLIT) {
       this.router.navigate([SIGN_UP_ROUTE_PATHS.FINLIT_LOGIN]);
+    } else if(this.organisationEnabled) {
+      this.router.navigate([SIGN_UP_ROUTE_PATHS.CORPORATE_LOGIN]);
     } else {
       this.router.navigate([SIGN_UP_ROUTE_PATHS.LOGIN]);
     }
