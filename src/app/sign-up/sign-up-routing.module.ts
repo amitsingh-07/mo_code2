@@ -115,8 +115,18 @@ const routes: Routes = [
     component: ForgotPasswordComponent
   },
   {
+    path: SIGN_UP_ROUTES.FORGOT_PASSWORD_CORPORATE,
+    component: ForgotPasswordComponent,
+    data: [{ organisationEnabled: SIGN_UP_CONFIG.LOGIN.CORPORATE_LOGIN }]
+  },
+  {
     path: SIGN_UP_ROUTES.FORGOT_PASSWORD_RESULT,
     component: ForgotPasswordResultComponent
+  },
+  {
+    path: SIGN_UP_ROUTES.CORP_FORGOT_PASSWORD_RESULT,
+    component: ForgotPasswordResultComponent,
+    data: [{ organisationEnabled: SIGN_UP_CONFIG.LOGIN.CORPORATE_LOGIN }]
   },
   {
     path: SIGN_UP_ROUTES.VERIFY_EMAIL_RESULT,
@@ -126,6 +136,16 @@ const routes: Routes = [
   {
     path: SIGN_UP_ROUTES.RESET_PASSWORD,
     component: ResetPasswordComponent
+  },
+  {
+    path: SIGN_UP_ROUTES.CORPORATE_RESET_PASSWORD,
+    component: ResetPasswordComponent,
+    data: [{ organisationEnabled: SIGN_UP_CONFIG.LOGIN.CORPORATE_LOGIN }]
+  },
+  {
+    path: SIGN_UP_ROUTES.CORP_SUCCESS_MESSAGE,
+    component: SuccessMessageComponent,
+    data: [{ organisationEnabled: SIGN_UP_CONFIG.LOGIN.CORPORATE_LOGIN }]
   },
   {
     path: SIGN_UP_ROUTES.SUCCESS_MESSAGE,
