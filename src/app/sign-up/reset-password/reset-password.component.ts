@@ -52,10 +52,10 @@ export class ResetPasswordComponent implements OnInit {
     private translate: TranslateService, private errorHandler: CustomErrorHandlerService) {
     this.translate.use('en');
     this.translate.get('COMMON').subscribe((result: string) => {
-      if (this.route.snapshot.data[0]) {
-        this.organisationEnabled = this.route.snapshot.data[0]['organisationEnabled'];
-      }
     });
+    if (this.route.snapshot.data[0]) {
+      this.organisationEnabled = this.route.snapshot.data[0]['organisationEnabled'];
+    }
   }
 
   get reset() { return this.resetPasswordForm.controls; }
