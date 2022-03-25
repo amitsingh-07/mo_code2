@@ -287,11 +287,12 @@ export class SignUpService {
    * construct the json for reset password.
    * @param data - email and redirect uri.
    */
-  constructResetPasswordInfo(pass, key) {
+  constructResetPasswordInfo(pass, key, profileType) {
     return {
       password: pass,
       resetKey: key,
-      sessionId: this.authService.getSessionId()
+      sessionId: this.authService.getSessionId(),
+      profileType: profileType
     };
   }
 
