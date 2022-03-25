@@ -1,5 +1,6 @@
 @import "../../../../_variables.scss";
 @import "../../../../_mixins.scss";
+app-cka-passed-result{
 .cka-result {
     background-color: $dark-teal-color;
     min-height: calc(100vh - 45px);
@@ -15,7 +16,7 @@
     }
 }
 .cka-result__content__title {
-    font-family: "Muli Semi Bold", sans-serif;
+    font-family: $muli-semi-bold;
     font-size: 24px;
     @include desktop {
         font-size: 30px;
@@ -29,7 +30,7 @@
     line-height: 1.22;
     letter-spacing: -0.12px;
     text-align: center;
-    font-family: "Muli Regular", sans-serif;
+    font-family: $muli-regular;
     padding: 0 5px;
 }
 .banner-image {
@@ -66,4 +67,5 @@
             right: 125px
         }
     }
+}
 }
