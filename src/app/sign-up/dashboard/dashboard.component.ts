@@ -69,6 +69,7 @@ export class DashboardComponent implements OnInit {
   totalValue: any;
   totalReturns: any;
   availableBalance: any;
+  portfolioExists = false;
 
   // Will Writing
   showWillWritingSection = false;
@@ -275,7 +276,12 @@ export class DashboardComponent implements OnInit {
   }
 
   goToEngagement() {
-    this.router.navigate([INVESTMENT_ENGAGEMENT_JOURNEY_ROUTE_PATHS.ROOT]);
+    if(this.portfolioExists){
+      this.router.navigate([INVESTMENT_ENGAGEMENT_JOURNEY_ROUTE_PATHS.SELECT_PORTFOLIO_TYPE]);
+    }
+    else{
+      this.router.navigate([INVESTMENT_ENGAGEMENT_JOURNEY_ROUTE_PATHS.ROOT]);
+    }
   }
 
   goToEditProfile() {
@@ -382,6 +388,7 @@ export class DashboardComponent implements OnInit {
         if (this.showPortfolioCards()) {
           this.showPortfolioPurchased = false;
           this.showStartInvesting = true;
+          this.portfolioExists = true;
         }
         this.enableInvestment();
         if (this.investmentsSummary.portfolioSummary && this.investmentsSummary.portfolioSummary.numberOfPortfolios > 0) {
