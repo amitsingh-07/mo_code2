@@ -338,8 +338,8 @@ export class SignUpApiService {
     return this.apiService.editMobileNumber(payload);
   }
 
-  resetPassword(password, key) {
-    const data = this.signUpService.constructResetPasswordInfo(this.cryptoService.encrypt(password), key);
+  resetPassword(password, key, profileType) {
+    const data = this.signUpService.constructResetPasswordInfo(this.cryptoService.encrypt(password), key, profileType);
     return this.apiService.requestResetPassword(data);
   }
 
