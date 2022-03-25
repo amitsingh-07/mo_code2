@@ -21,7 +21,6 @@ export class SelectPortfolioTypeComponent implements OnInit {
   pageTitle: string;
   selectedPortfolio: any;
   portfolioTypeForm: FormGroup;
-  accessJointAccountOnRoles: boolean = true;
   constructor(
     private router: Router,
     public readonly translate: TranslateService,
@@ -44,7 +43,6 @@ export class SelectPortfolioTypeComponent implements OnInit {
     this.navbarService.setNavbarMobileVisibility(true);
     this.navbarService.setNavbarMode(6);
     this.footerService.setFooterVisibility(false);
-    this.accessJointAccountOnRoles = this.authService.accessCorporateUserFeature('CREATE_JOINT_ACCOUNT');
   }
   setPageTitle(title: string) {
     this.navbarService.setPageTitle(title);
