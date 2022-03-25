@@ -45,6 +45,7 @@ import { SignUpService } from '../sign-up.service';
 import { environment } from './../../../environments/environment';
 import { INVESTMENT_COMMON_CONSTANTS } from '../../investment/investment-common/investment-common.constants';
 import { ComprehensiveService } from '../../comprehensive/comprehensive.service';
+import { Util } from '../../shared/utils/util';
 
 @Component({
   selector: 'app-dashboard',
@@ -68,6 +69,7 @@ export class DashboardComponent implements OnInit {
   totalValue: any;
   totalReturns: any;
   availableBalance: any;
+  portfolioExists = false;
 
   // Will Writing
   showWillWritingSection = false;
@@ -274,7 +276,12 @@ export class DashboardComponent implements OnInit {
   }
 
   goToEngagement() {
-    this.router.navigate([INVESTMENT_ENGAGEMENT_JOURNEY_ROUTE_PATHS.ROOT]);
+    if(this.portfolioExists){
+      this.router.navigate([INVESTMENT_ENGAGEMENT_JOURNEY_ROUTE_PATHS.SELECT_PORTFOLIO_TYPE]);
+    }
+    else{
+      this.router.navigate([INVESTMENT_ENGAGEMENT_JOURNEY_ROUTE_PATHS.ROOT]);
+    }
   }
 
   goToEditProfile() {
@@ -378,6 +385,11 @@ export class DashboardComponent implements OnInit {
       case SIGN_UP_CONFIG.INVESTMENT.ACCOUNT_FUNDED:
       case SIGN_UP_CONFIG.INVESTMENT.PORTFOLIO_PURCHASED: {
         this.showPortfolioPurchased = true;
+        if (this.showPortfolioCards()) {
+          this.showPortfolioPurchased = false;
+          this.showStartInvesting = true;
+          this.portfolioExists = true;
+        }
         this.enableInvestment();
         if (this.investmentsSummary.portfolioSummary && this.investmentsSummary.portfolioSummary.numberOfPortfolios > 0) {
           this.navbarService.setMenuItemInvestUser(true);
@@ -545,6 +557,14 @@ export class DashboardComponent implements OnInit {
       this.showFixedToastMessage = false;
       this.comprehensiveService.setToastMessage(false);
     }, 3000);
+  }
+
+  // show Start investing button if no portfolio but user has iFast account
+  showPortfolioCards() {
+    return Util.isEmptyOrNull(this.investmentsSummary.portfolioSummary.investmentPortfolio)
+    && Util.isEmptyOrNull(this.investmentsSummary.portfolioSummary.cpfPortfolio)
+    && Util.isEmptyOrNull(this.investmentsSummary.portfolioSummary.wiseIncomePortfolio)
+    && Util.isEmptyOrNull(this.investmentsSummary.portfolioSummary.wiseSaverPortfolio)
   }
 }
 
