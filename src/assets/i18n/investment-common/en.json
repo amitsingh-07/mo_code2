@@ -46,7 +46,7 @@
       "TITLE": "Review My Inputs",
       "ONE_TIME_INVESTMENT": "One-time Amount",
       "MONTHLY_INVESTMENT": "Monthly Amount",
-      "CPF_DESC": "<p>Please note that the first $20,000 in your CPF OA cannot be invested.</p>As the agent bank that operates your CPF Investment Account levies a fee of $2.50 (excluding gst) for each buy and sell, it is recommended that you opt for one-time amount or a higher monthly amount to optimise your investments.",
+      "CPF_DESC": "The first $20,000 of your CPF OA cannot be invested. You should set aside a buffer of $30 of your CPF investible amount for agent bank fees. ($2 to $2.50 excl gst for each buy or sell). It is recommended to opt for one-time or higher monthly amount to optimize your investments.",
       "MIN": "Min."
     },
     "MODAL": {
