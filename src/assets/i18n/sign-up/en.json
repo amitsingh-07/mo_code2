@@ -236,7 +236,8 @@
     "SINGPASS_LOGIN_FAIL_MODAL": {
       "TITLE": "Singpass login unsuccessful",
       "MESSAGE": "If you <span class='bold-txt'>have</span> a MoneyOwl account, please do a Password Login and activate Singpass Login in your Profile page.<br><br>If you <span class='bold-txt'>do not have</span> a MoneyOwl account, click here to create an account."
-    }
+    },
+    "WELCOME_FB_TITLE": "Welcome to FB MoneyOwl!" 
   },
   "FORGOTPASSWORD": {
     "SUBMIT": "Submit",

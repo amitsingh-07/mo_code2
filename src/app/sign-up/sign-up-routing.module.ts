@@ -40,6 +40,7 @@ import { ReferAFriendComponent } from './refer-a-friend/refer-a-friend.component
 import { ReferalRedirectingPartComponent } from './referal-redirecting-part/referal-redirecting-part.component';
 import { ManageProfileComponent } from './manage-profile/manage-profile.component';
 import { AddUpdateCpfiaComponent } from './add-update-cpfia/add-update-cpfia.component';
+import { CorpLoginComponent } from './corp-login/corp-login.component';
 
 const routes: Routes = [
   {
@@ -192,13 +193,13 @@ const routes: Routes = [
     path: SIGN_UP_ROUTES.CREATE_ACCOUNT + '/:referralCode',
     component: CreateAccountComponent,
     canActivate: [LoggedUserGuard]
-  },   
+  },
   {
     path: SIGN_UP_ROUTES.FINLIT_CREATE_ACCOUNT_MY_INFO,
     component: CreateAccountMyinfoComponent,
     canActivate: [FinlitLoggedUserGuard],
     data: [{ finlitEnabled: SIGN_UP_CONFIG.LOGIN.FINLIT_LOGIN }]
-  }, 
+  },
   {
     path: SIGN_UP_ROUTES.FINLIT_CREATE_ACCOUNT + '/:referralCode',
     component: CreateAccountComponent,
@@ -211,7 +212,7 @@ const routes: Routes = [
     canActivate: [AuthGuard]
   },
   {
-    path: SIGN_UP_ROUTES.REFER_REDIRECT +'/:term',
+    path: SIGN_UP_ROUTES.REFER_REDIRECT + '/:term',
     component: ReferalRedirectingPartComponent,
     canActivate: [AuthGuard]
   },
@@ -219,6 +220,11 @@ const routes: Routes = [
     path: SIGN_UP_ROUTES.MANAGE_PROFILE,
     component: ManageProfileComponent,
     canActivate: [AuthGuard]
+  },
+  {
+    path: SIGN_UP_ROUTES.CORP_LOGIN,
+    component: CorpLoginComponent,
+    canActivate: [LoggedUserGuard]
   },
   {
     path: SIGN_UP_ROUTES.UPDATE_CPFIA,
