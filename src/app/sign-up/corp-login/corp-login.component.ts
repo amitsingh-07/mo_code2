@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { TranslateService } from '@ngx-translate/core';
 import { FooterService } from '../../shared/footer/footer.service';
 import { NavbarService } from '../../shared/navbar/navbar.service';
@@ -6,7 +6,8 @@ import { NavbarService } from '../../shared/navbar/navbar.service';
 @Component({
   selector: 'app-corp-login',
   templateUrl: './corp-login.component.html',
-  styleUrls: ['./corp-login.component.scss']
+  styleUrls: ['./corp-login.component.scss'],
+  encapsulation: ViewEncapsulation.None
 })
 export class CorpLoginComponent implements OnInit {
 
