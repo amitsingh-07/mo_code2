@@ -19,6 +19,7 @@
                       <div class="form-group-with-bg--header-label" id="My_financialInvestment_Lbl">
                         {{ 'INVESTMENT_AMOUNT.INVESTMENT_LBL' | translate}}
                       </div>
+                      <div *ngIf="showCPFText()" class="cpf-note" [innerHtml]=" 'INVESTMENT_AMOUNT.INVESTMENT_CPF_LBL' | translate "></div>
                     </div>
                   </div>
                 </div>
@@ -31,7 +32,7 @@
                       <label for="1" id="c1">
                         <div class="input-label-black"> {{ 'INVESTMENT_AMOUNT.INITIAL_DEPOSIT_LBL' | translate}}</div>
                         <div class="input-label-normal">
-                          {{ 'INVESTMENT_AMOUNT.MIN' | translate}} ${{ investmentCriteria.oneTimeInvestmentMinimum}}
+                          {{ 'INVESTMENT_AMOUNT.MIN' | translate}} {{ investmentCriteria.oneTimeInvestmentMinimum | currency:'CAD':'symbol-narrow':'1.0-0' }}
                         </div>
                       </label>
                     </div>
@@ -54,7 +55,8 @@
                       <label for="2" id="c2">
                         <div class="input-label-black"> {{ 'INVESTMENT_AMOUNT.MONTHLY_DEPOSIT_LBL' | translate}}</div>
                         <div class="input-label-normal">
-                          {{ 'INVESTMENT_AMOUNT.MIN' | translate}} ${{ investmentCriteria.monthlyInvestmentMinimum}}</div>
+                          {{ 'INVESTMENT_AMOUNT.MIN' | translate}} {{ investmentCriteria.monthlyInvestmentMinimum | currency:'CAD':'symbol-narrow':'1.0-0' }}
+                        </div>
                       </label>
                     </div>
                     <div class="flex-col-6">

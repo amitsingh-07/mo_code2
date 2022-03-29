@@ -52,6 +52,8 @@ import { CreateAccountMyinfoComponent } from './create-account-myinfo/create-acc
 import { ReferAFriendComponent } from './refer-a-friend/refer-a-friend.component';
 import { ReferalRedirectingPartComponent } from './referal-redirecting-part/referal-redirecting-part.component';
 import { ManageProfileComponent } from './manage-profile/manage-profile.component';
+import { AddUpdateCpfiaComponent } from './add-update-cpfia/add-update-cpfia.component';
+import { CpfiaSuccessModalComponent } from './add-update-cpfia/cpfia-success-modal/cpfia-success-modal.component';
 
 export function createTranslateLoader(http: HttpClient) {
   return new MultiTranslateHttpLoader(
@@ -109,7 +111,9 @@ export function createTranslateLoader(http: HttpClient) {
     CreateAccountMyinfoComponent,
     ReferAFriendComponent,
     ReferalRedirectingPartComponent,
-    ManageProfileComponent
+    ManageProfileComponent,
+    AddUpdateCpfiaComponent,
+    CpfiaSuccessModalComponent
   ],
   providers: [SignUpAccessGuard, SignUpCorporateAccessGuard, AuthGuardService, TwoFactorAuthGuardService],
   entryComponents: [EditMobileNumberComponent, SrsSuccessModalComponent]

@@ -37,12 +37,14 @@
                         {{getFundingMethodNameById(this.fundingAccountDetailsForm.controls.confirmedFundingMethodId.value, fundingMethods) }}
                       </button>
                       <div class="dropdown" ngbDropdownMenu aria-labelledby="courseDropdown">
-                        <ng-container *ngFor="let fundingMethod of fundingMethods; let i = index;">
-                        <button class="dropdown-item" 
-                        *ngIf="fundingMethod.name && (fundingMethod.name.toUpperCase() != fundList.CPF_OA.toUpperCase())"
-                          (click)="selectFundingMethod('confirmedFundingMethodId', fundingMethod.id)"
-                          id="additional_declaration_sourse-drpdown-option-{{i}}">{{fundingMethod.name}}</button>
-                        </ng-container>
+                        <div *ngFor="let fundingMethod of fundingMethods; let i = index;">
+                          <button class="dropdown-item"
+                            *ngIf="fundingMethod.name && (fundingMethod.name.toUpperCase() != fundList.CPF_OA.toUpperCase())"
+                            (click)="selectFundingMethod('confirmedFundingMethodId', fundingMethod.id)"
+                            id="additional_declaration_sourse-drpdown-option-{{i}}">
+                            {{fundingMethod.name}}
+                          </button>
+                        </div>
                       </div>
                     </div>
                   </div>
@@ -116,6 +118,69 @@
               </div>
               <!-- SRS bLOCK -->
             </div>
+            <!-- CPFIA BLOCK -->
+            <div class="srs-block cpf-block" *ngIf="fundingAccountDetailsForm.controls.cpfIADetails">
+              <div *ngIf="checkIfCPFPortfolio()" class="widget" formGroupName="cpfIADetails">
+                <div class="mb15">{{
+                  'CONFIRM_ACCOUNT_DETAILS.ACCOUNT_DETAILS' | translate}}</div>
+                <div class="widget-title">
+                  <span>{{
+                    'CONFIRM_ACCOUNT_DETAILS.CPFIA_TITLE' | translate}}</span>
+                  <span class="tooltip-icon">
+                    <img class="help-icon" src="assets/images/dashboard-help.svg" (click)="shpwCPFModal()" />
+                  </span>
+                </div>
+                <div class="widget-body">
+                  <div class="flex-row">
+                    <div class="flex-col-2">
+                      <label for="name">{{
+                        'CONFIRM_ACCOUNT_DETAILS.CPF_OPERATOR' | translate}}</label>
+                    </div>
+                    <div class="flex-col-8">
+                      <div class="dropdown-control">
+                        <div ngbDropdown>
+                          <button [disabled]="checkIfCPFDisabled()" class="btn btn-dropdown" id="cpf_source-drpdown"
+                            ngbDropdownToggle>
+                            {{fundingAccountDetailsForm.controls.cpfIADetails.controls.cpfOperatorBank.value ?
+                              fundingAccountDetailsForm.controls.cpfIADetails.controls.cpfOperatorBank.value.name :
+                              'Select CPF Operator'}}
+                          </button>
+                          <div class="dropdown" ngbDropdownMenu aria-labelledby="courseDropdown">
+                            <button class="dropdown-item" *ngFor="let cpfOperator of cpfAgentBankList; let i = index;"
+                              (click)="selectCPFOperator('cpfOperatorBank', cpfOperator,'cpfIADetails')"
+                              id="cpf_source-drpdown-option-{{i}}">{{cpfOperator.name}}</button>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="flex-row">
+                    <div class="flex-col-2">
+                      <label for="name" placeholder="account number">{{
+                        'CONFIRM_ACCOUNT_DETAILS.CPF_ACC_NO' | translate}}</label>
+                    </div>
+                    <div class="flex-col-8"
+                      [ngClass]="{'inline-error':getInlineErrorStatus(fundingAccountDetailsForm.controls.cpfIADetails.controls.cpfAccountNumber)}">
+                      <input type="text" [attr.disabled]="checkIfCPFDisabled() == true ? true : null"
+                        [textMask]="cpfMaskConfig()" placeholder="Enter Account No." class="form-control"
+                        formControlName="cpfAccountNumber">
+                    </div>
+                  </div>
+                  <div class="characters"
+                    *ngIf="fundingAccountDetailsForm.get('cpfIADetails').get('cpfOperatorBank').value">
+                    {{getCPFAccNoLength() ? getCPFAccNoLength() :0}} /
+                    {{getCPFAccNoMaxLength('cpfIADetails', 'cpfOperatorBank')}}
+                  </div>
+                  <div class="txt-italic">{{
+                    'CONFIRM_ACCOUNT_DETAILS.CPF_CORRECT_ACC_NO_TEXT' | translate}}</div>
+                </div>
+                <div class="note-info mt20 pb30"><span class="note-icon"><img
+                      src="assets/images/investment-account/note-icon-white.svg" /></span>
+                  <span [innerHTML]="'CONFIRM_ACCOUNT_DETAILS.CPF_NOTE' | translate"></span>
+                </div>
+              </div>
+            </div>
+            <!-- CPFIA BLOCK -->
             <ng-container
               *ngIf="isCashAccount(fundingAccountDetailsForm.controls.confirmedFundingMethodId.value, fundingMethods)">
               <div class="note-info pb30">

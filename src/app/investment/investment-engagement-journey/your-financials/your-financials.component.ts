@@ -134,30 +134,7 @@ export class YourFinancialsComponent implements IPageComponent, OnInit {
         form.get(key).markAsDirty();
       });
     }
-    const error = this.investmentEngagementJourneyService.financialValidation(form, this.financialFormValue);
-    if (error) {
-      // tslint:disable-next-line:no-commented-code
-      const ref = this.modal.open(ModelWithButtonComponent, { centered: true });
-      ref.componentInstance.errorTitle = error.errorTitle;
-      ref.componentInstance.errorMessageHTML = error.errorMessage;
-      // tslint:disable-next-line:triple-equals
-      if (error.isButtons) {
-        ref.componentInstance.primaryActionLabel = this.translator.REVIEW_INPUT;
-        ref.componentInstance.secondaryActionLabel = this.translator.PROCEED_NEXT;
-        ref.componentInstance.secondaryActionDim = true;
-        ref.componentInstance.primaryAction.subscribe((emittedValue) => {
-          // tslint:disable-next-line:triple-equals
-          this.goBack(form);
-        });
-        ref.componentInstance.secondaryAction.subscribe((emittedValue) => {
-          // tslint:disable-next-line:triple-equals
-          this.saveAndProceed(form);
-        });
-      } else {
-        ref.componentInstance.ButtonTitle = this.translator.TRY_AGAIN;
-        return false;
-      }
-    } else {
+    else {
       this.saveAndProceed(form);
     }
   }
@@ -165,7 +142,7 @@ export class YourFinancialsComponent implements IPageComponent, OnInit {
   saveAndProceed(form: any) {
     const invCommonFormValues = this.investmentCommonService.getInvestmentCommonFormData();
     this.selectedPortfolioType = this.investmentEngagementJourneyService.getSelectPortfolioType();
-    const selectedPortfolioType = (this.selectedPortfolioType === INVESTMENT_ENGAGEMENT_JOURNEY_CONSTANTS.SELECT_POROFOLIO_TYPE.WISEINCOME_PORTFOLIO) ? INVESTMENT_ENGAGEMENT_JOURNEY_CONSTANTS.SELECT_POROFOLIO_TYPE.WISEINCOME : INVESTMENT_ENGAGEMENT_JOURNEY_CONSTANTS.SELECT_POROFOLIO_TYPE.INVESTMENT;
+    const selectedPortfolioType = (this.selectedPortfolioType === INVESTMENT_ENGAGEMENT_JOURNEY_CONSTANTS.SELECT_POROFOLIO_TYPE.CPF_PORTFOLIO) ? INVESTMENT_ENGAGEMENT_JOURNEY_CONSTANTS.SELECT_POROFOLIO_TYPE.CPF_PORTFOLIO : ((this.selectedPortfolioType === INVESTMENT_ENGAGEMENT_JOURNEY_CONSTANTS.SELECT_POROFOLIO_TYPE.WISEINCOME_PORTFOLIO) ? INVESTMENT_ENGAGEMENT_JOURNEY_CONSTANTS.SELECT_POROFOLIO_TYPE.WISEINCOME : INVESTMENT_ENGAGEMENT_JOURNEY_CONSTANTS.SELECT_POROFOLIO_TYPE.INVESTMENT);
     let portfolioTypeArray = this.investmentCommonService.getPortfolioType();
     let portfolioType = this.investmentEngagementJourneyService.filterDataByInput(portfolioTypeArray.portfolioType, 'name', selectedPortfolioType);
     form.value.portfolioTypeId = portfolioType.id;
@@ -218,11 +195,11 @@ export class YourFinancialsComponent implements IPageComponent, OnInit {
       this.investmentEngagementJourneyService.getJAPortfolioAllocationDetails(params).subscribe((data) => {
         let secondaryHolderMajorData = this.investmentEngagementJourneyService.getMajorSecondaryHolderData();
         let secondaryHolderMinorData = this.investmentEngagementJourneyService.getMinorSecondaryHolderData();
-        if(secondaryHolderMajorData) {
+        if (secondaryHolderMajorData) {
           secondaryHolderMajorData.customerPortfolioId = data.objectList.customerPortfolioId;
           this.investmentEngagementJourneyService.setMajorSecondaryHolderData(secondaryHolderMajorData);
         }
-        if(secondaryHolderMinorData) {
+        if (secondaryHolderMinorData) {
           secondaryHolderMinorData.customerPortfolioId = data.objectList.customerPortfolioId;
           this.investmentEngagementJourneyService.setMinorSecondaryHolderData(secondaryHolderMinorData);
         }

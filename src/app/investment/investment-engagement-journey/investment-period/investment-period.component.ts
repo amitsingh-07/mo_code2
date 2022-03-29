@@ -35,7 +35,7 @@ export class InvestmentPeriodComponent implements OnInit, AfterViewInit, IPageCo
   sliderMinValue = 0;
   sliderMaxValue = INVESTMENT_ENGAGEMENT_JOURNEY_CONSTANTS.personal_info.max_investment_years;
   isSufficientInvYears = false;
-
+  isCpfEnabled: boolean;
 
   constructor(
     // tslint:disable-next-line
@@ -93,7 +93,9 @@ export class InvestmentPeriodComponent implements OnInit, AfterViewInit, IPageCo
       this.piInvestmentSlider.writeValue(value);
       this.onSliderChange(value);
     });
+    this.isCpfEnabled = this.investmentEngagementJourneyService.isCpfSelected();
   }
+
 
   setPageTitle(title: string) {
     const stepLabel = this.translate.instant('PERSONAL_INFO.STEP_1_LABEL');
@@ -133,8 +135,10 @@ export class InvestmentPeriodComponent implements OnInit, AfterViewInit, IPageCo
     this.personalInfoForm.controls.investmentPeriod.setValue(slideValue);
     this.onSliderChange(slideValue);
   }
-  
   save(form: any) {
+    const investmentPeriodValue = {
+      period: form.value.investmentPeriod == 1 ? form.value.investmentPeriod  + ' ' + 'year' : form.value.investmentPeriod  + ' ' +'years'
+    };
     if (!form.valid) {
       Object.keys(form.controls).forEach((key) => {
         form.get(key).markAsDirty();
@@ -147,31 +151,36 @@ export class InvestmentPeriodComponent implements OnInit, AfterViewInit, IPageCo
         'errorMessage'
       ];
       return false;
-    } else if (form.value.investmentPeriod < 4) {
-      this.showModalPopUp(form.value.investmentPeriod);
-    } else {
+    } else if (form.value.investmentPeriod < 4 && this.investmentEngagementJourneyService.getPortfolioFormData().selectPortfolioType === INVESTMENT_ENGAGEMENT_JOURNEY_CONSTANTS.SELECT_POROFOLIO_TYPE.INVEST_PORTFOLIO) {
+      this.showModalPopUp(this.translate.instant('PERSONAL_INFO.MODAL.TITLE'), this.translate.instant('PERSONAL_INFO.MODAL.BTN_LBL1'), this.translate.instant('PERSONAL_INFO.MODAL.BTN_LBL2'), this.translate.instant('PERSONAL_INFO.MODAL.MESSAGE', investmentPeriodValue));
+    } else if (form.value.investmentPeriod < 11 && this.investmentEngagementJourneyService.getPortfolioFormData().selectPortfolioType === INVESTMENT_ENGAGEMENT_JOURNEY_CONSTANTS.SELECT_POROFOLIO_TYPE.CPF_PORTFOLIO){
+      this.showModalPopUp(this.translate.instant('PERSONAL_INFO.CPF.MODAL.TITLE'), this.translate.instant('PERSONAL_INFO.CPF.MODAL.BTN_LBL1'), this.translate.instant('PERSONAL_INFO.CPF.MODAL.BTN_LBL2'), this.translate.instant('PERSONAL_INFO.CPF.MODAL.MESSAGE', investmentPeriodValue))
+    }
+      else {
       this.investmentEngagementJourneyService.setPersonalInfo(form.value);
       return true;
     }
   }
 
-  showModalPopUp(value) {
-    const investmentPeriodValue = {
-      period: value == 1 ?  value  + ' ' + 'year' : value  + ' ' +'years'
-    };
-    const ref = this.modal.open(ModelWithButtonComponent, { centered: true });
-    ref.componentInstance.errorTitle = this.translate.instant('PERSONAL_INFO.MODAL.TITLE');
-    ref.componentInstance.errorMessageHTML = this.translate.instant('PERSONAL_INFO.MODAL.MESSAGE', investmentPeriodValue);
+  showModalPopUp(title, btn1, btn2, msg) {
+    const ref = this.modal.open(ModelWithButtonComponent, { centered: true , windowClass: 'limited-width , custom-advisory-modal' });
+    ref.componentInstance.errorTitle = title;
+    ref.componentInstance.errorMessageHTML = msg;
     ref.componentInstance.investmentPeriodImg = true;
-    ref.componentInstance.primaryActionLabel = this.translate.instant('PERSONAL_INFO.MODAL.BTN_LBL1');
-    ref.componentInstance.secondaryActionLabel = this.translate.instant('PERSONAL_INFO.MODAL.BTN_LBL2');
+    ref.componentInstance.primaryActionLabel = btn1;
+    ref.componentInstance.secondaryActionLabel = btn2;
     ref.componentInstance.secondaryActionDim = true;
     ref.componentInstance.primaryAction.subscribe((emittedValue) => {
       ref.dismiss();
     });
     ref.componentInstance.secondaryAction.subscribe((emittedValue) => {
-    this.investmentEngagementJourneyService.setSelectPortfolioType({selectPortfolioType:INVESTMENT_ENGAGEMENT_JOURNEY_CONSTANTS.SELECT_POROFOLIO_TYPE.WISESAVER_PORTFOLIO});
-    this.router.navigate([INVESTMENT_ENGAGEMENT_JOURNEY_ROUTE_PATHS.SELECT_PORTFOLIO]);
+      if (this.investmentEngagementJourneyService.getPortfolioFormData().selectPortfolioType == INVESTMENT_ENGAGEMENT_JOURNEY_CONSTANTS.SELECT_POROFOLIO_TYPE.INVEST_PORTFOLIO){
+        this.investmentEngagementJourneyService.setSelectPortfolioType({ selectPortfolioType: INVESTMENT_ENGAGEMENT_JOURNEY_CONSTANTS.SELECT_POROFOLIO_TYPE.WISESAVER_PORTFOLIO });
+        this.router.navigate([INVESTMENT_ENGAGEMENT_JOURNEY_ROUTE_PATHS.SELECT_PORTFOLIO_GOAL_MORE_INFO]);
+      }
+      else {
+        this.router.navigate([INVESTMENT_ENGAGEMENT_JOURNEY_ROUTE_PATHS.SELECT_PORTFOLIO]);
+      }
     });
   }
 
@@ -180,4 +189,5 @@ export class InvestmentPeriodComponent implements OnInit, AfterViewInit, IPageCo
       this.router.navigate([INVESTMENT_ENGAGEMENT_JOURNEY_ROUTE_PATHS.INVESTMENT_AMOUNT]);
     }
   }
+
 }

@@ -19,6 +19,8 @@ import { SignUpFormData } from './sign-up-form-data';
 import { SIGN_UP_CONFIG } from './sign-up.constant';
 import { InvestmentAccountService } from '../investment/investment-account/investment-account-service';
 import { appConstants } from '../app.constants';
+import { ManageInvestmentsService } from '../investment/manage-investments/manage-investments.service';
+import { map } from 'rxjs/operators';
 
 const SIGNUP_SESSION_STORAGE_KEY = 'app_signup_session_storage_key';
 const CUSTOMER_REF_SESSION_STORAGE_KEY = 'app_customer_ref_session_storage_key';
@@ -57,7 +59,8 @@ export class SignUpService {
     private datePipe: DatePipe,
     public modal: NgbModal,
     private translate: TranslateService,
-    private investmentAccountService: InvestmentAccountService
+    private investmentAccountService: InvestmentAccountService,
+    private manageInvestmentsService: ManageInvestmentsService
   ) {
     this.getAccountInfo();
     this.configService.getConfig().subscribe((config: IConfig) => {
@@ -800,4 +803,19 @@ export class SignUpService {
     return null;
   }
   
+  // cpf
+   setEditProfileCpfDetails(accountNumber, cpfBankOperator, customerId) {
+    this.signUpFormData.cpfAccountNumber = accountNumber;
+    this.signUpFormData.cpfOperatorBank = cpfBankOperator;
+    this.signUpFormData.customerId = customerId;
+    this.commit();
+  }
+
+  getCpfDetails() {
+    return {
+      cpfAccountNumber: this.signUpFormData.cpfAccountNumber,
+      cpfOperatorBank: this.signUpFormData.cpfOperatorBank,
+      customerId: this.signUpFormData.customerId
+    };
+  }
 }

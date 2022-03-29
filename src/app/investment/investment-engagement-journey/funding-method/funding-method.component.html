@@ -22,18 +22,18 @@
                       class="input-label-black">{{fundingMethodOption.name}}</span>
                   </div>
                 </label>
-                <i *ngIf="i===1" class="tooltip-icon" id="myFinancialHelpIcon" (click)="showHelpModal()"></i>
+                <i *ngIf="fundingMethodOption.name.toUpperCase() == checkFund.SRS.toUpperCase()" class="tooltip-icon" id="myFinancialHelpIcon" (click)="showHelpModal()"></i>
               </div>
             </div>
             <div class="col-12">
               <div
-                *ngIf="getFundingMethodNameById(fundingMethodForm.controls.initialFundingMethodId.value, fundingMethods) == 'Cash'">
+                *ngIf="getFundingMethodNameById(fundingMethodForm.controls.initialFundingMethodId.value, fundingMethods) == checkFund.CASH.toUpperCase()">
                 <div class="note-info"><span class="note-icon"><img
                       src="assets/images/investment-account/note-icon-white.svg" /></span><span
                     [innerHTML]="'FUNDING_METHOD.CASH_DESC' | translate"></span></div>
               </div>
               <div
-                *ngIf="getFundingMethodNameById(fundingMethodForm.controls.initialFundingMethodId.value, fundingMethods) == 'SRS'">
+                *ngIf="getFundingMethodNameById(fundingMethodForm.controls.initialFundingMethodId.value, fundingMethods) == checkFund.SRS.toUpperCase()">
                 <div class="note-info"><span class="note-icon"><img
                       src="assets/images/investment-account/note-icon-white.svg" /></span><span
                     [innerHTML]="'FUNDING_METHOD.SRS_DESC' | translate"></span></div>

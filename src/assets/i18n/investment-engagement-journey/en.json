@@ -20,8 +20,17 @@
     }
   },
   "PORTFOLIO": {
-    "TITLE": "Select Portfolio",
-    "SUB_HEADING": "What is your investment goal?",
+    "TITLE": "Select Portfolio Goal",
+    "TITLE_NEW": "Your Portfolio Goal",
+    "SUB_HEADING": "I am using <span class='txt-bold'>Cash / SRS</span> to fund the portfolio",
+    "CPF_SUB_HEADING": "I am using <span class='txt-bold'>CPF OA</span> to fund the portfolio",
+    "JA_SUB_HEADING": "I am using <span class='txt-bold'>Cash</span> to fund the portfolio",
+    "TAB_LBL_1":"Cash / SRS",
+    "TAB_LBL_2":"CPF OA",
+    "DIMENSIONAL_PORTFOLIO": "Dimensional",
+    "WISEINCOME_PORTFOLIO": "WiseIncome",
+    "WISESAVER_PORTFOLIO": "WiseSaver",
+    "SELECT_LBL": "Select",
     "INVESTMENT": {
       "TITLE": "Grow your wealth",
       "DESC": "Invest in our globally diversified portfolios to grow your wealth faster",
@@ -71,8 +80,32 @@
         "LIST_ITEM_5": "No lock-in period",
         "LIST_ITEM_6": "Exclusive to MoneyOwl"
       }
+    },  
+    "CPFOA": {
+      "TITLE": "Grow your CPF",
+      "DESC": "Invest in our globally diversified portfolios that tracks the MSCI World to grow your CPF OA savings faster.",
+      "MORE_INFO": "More info",
+      "FOOTER_BTN_TXT": "Continue",
+      "SLIDES": {
+        "P1": "Our CPF investment portfolios give you the best probability of a successful investment experience by using time-tested strategies of broad diversification and index tracking to help you achieve your retirement goals.",
+        "P2": "Choose the right asset allocation based on your financial situation so that you can stay invested for the long haul with as little guesswork and as little stress as possible.",
+        "HEADING": "What's great?",
+        "LIST_ITEM_1": "Grow your CPF OA savings faster at potential returns of more than 2.5% p.a.",
+        "LIST_ITEM_2": "Suitable for longer term investing",
+        "LIST_ITEM_3": "Globally diversified portfolios",
+        "LIST_ITEM_4": "Tracks the MSCI World Index",
+        "LIST_ITEM_5": "Low costs"
+      }
+    },
+    "LEARN_MORE": "Learn More",
+    "PROGRESS_POPUP": {
+      "TITLE": "Portfolio Approval in Progress",
+      "DESCRIPTION": "As you have a portfolio pending approval, you'll only be able to add portfolios after your initial portfolio has been approved.",
+      "BUTTON": "Okay, Got It!"
+
     }
   },
+
   "WISE_INCOME_PAYOUT": {
     "TITLE": "WiseIncome Portfolio",
     "CAPTION": "Select a Payout Option",
@@ -158,7 +191,7 @@
     "DESCRIPTION": "In the next step, we will assess your ability to take risk. Your inputs will determine the recommendations suggested.",
     "PROCEED": "Proceed"
   },
-  "PERSONAL_INFO": {
+  "PERSONAL_INFO": { 
     "TITLE": "Your Investment Period",
     "STEP_1_LABEL": "Step 1",
     "YEARS": " Years",
@@ -192,8 +225,25 @@
       "MESSAGE": "It is not recommended to invest with only {{period}} of investment time horizon.<br> <br>You may want to consider our <span class=\"bold-text\">WiseSaver Portfolio</span> instead.",
       "BTN_LBL1": "Review Investment Period",
       "BTN_LBL2": "Go to WiseSaver Portfolio"
+    },
+    "CPF":{
+      "LIST_LBL_1": "Less than 11",
+      "LIST_LBL_2": "11 to 13",
+      "LIST_LBL_3": "13 to 14",
+      "LIST_LBL_4": "15 or more",
+      "LIST_LBL_DESC_1": "Not recommended to invest your CPF OA as you may need a longer time horizon to beat the risk-free interest of 2.5% p.a. earned on your CPF monies.",
+      "LIST_LBL_DESC_2": "Up to 60% Equities (40% Bonds)",
+      "LIST_LBL_DESC_3": "Up to 80% Equities (20% Bonds)",
+      "LIST_LBL_DESC_4": "Up to 100% Equities",
+      "MODAL": {
+        "TITLE": "Less than 11 years of investment period",
+        "MESSAGE": "It is not recommended to invest your CPF-OA as you may need a longer time horizon to beat the risk-free interest of 2.5% p.a.<br> earned on your CPF monies.",
+        "BTN_LBL1": "Review Investment Period",
+        "BTN_LBL2": "Invest In Another Portfolio"
+      }
     }
   },
+ 
   "GETSTARTED_STEP2": {
     "TITLE": "Step 2",
     "CAPTION": "Your Risk Willingness",
@@ -211,13 +261,15 @@
     "INITIAL_DEPOSIT_LBL": "One-time Amount",
     "MONTHLY_DEPOSIT_LBL": "Monthly Amount",
     "AT_LEAST_ONE": "Select at least one of the following.",
-    "INVESTMENT_LBL": "I want to fund",
+    "INVESTMENT_LBL": "My Funding Amount",
+    "INVESTMENT_CPF_LBL": "The first $20,000 of your CPF OA cannot be invested. You should set aside a buffer of $30 of your CPF investible amount for agent bank fees. ($2 to $2.50 excl gst for each buy or sell). It is recommended to opt for one-time or higher monthly amount to optimize your investments.",
     "MIN_100": "Min. $100",
     "MIN_50": "Min. $50",
     "MIN": "Min.",
     "MONTH": "/mth"
   },
   "MY_FINANCIALS": {
+    "CONTINUE": "Continue",
     "REVIEW_INPUT": "Review My Inputs",
     "PROCEED_NEXT": "Proceed To Next Step",
     "RETURN_HOME": "Return To Homepage",
@@ -235,7 +287,8 @@
     "BUTTON_LBL": "Continue",
     "INFO": "Oops! Is this correct?",
     "TRY_AGAIN": "Try Again",
-    "MY_FINANCIALS_LBL": "My Finances",
+    "MY_FINANCIALS_LBL": "My Finances (Optional)",
+    "MY_FINANCIALS_LBL_1" : "My Emergency Fund",
     "MY_FINANCIALS_LBL_DESC": "In accordance with MAS Guidelines, help us understand your financial situation better to ensure that the recommended investment is suitable for you.",
     "MY_FINANCIAL_LBL": "How much do you own and owe?",
     "RESPONSE_LOADER": {
@@ -245,13 +298,16 @@
     },
     "modalData": {
       "modalTitle": "Insufficient Emergency Fund",
-      "modalMessage": "Before you invest, we recommend that you have an emergency fund to cover <b> at least 3 months’ of living expenses</b>."
+      "modalMessage": "Before you invest, we recommend that you have an emergency fund to cover <b> at least 3 months’ of living expenses</b>.",
+      "modalTitle_CPF": "Before you proceed...",
+      "modalMessage_CPF": "Your CPF OA savings can be used for many things such as paying for your home loan, you or your children’s education in approved local tertiary courses, and approved insurance products. When you invest your CPF savings, you may not be able to immediately withdraw from your investments to make these payments thus it is always prudent to leave a buffer in your OA and not invest monies that you plan to use in the short term."
     },
     "helpData": {
       "modalTitle": "Emergency Fund",
       "modalDesc": "Emergency Fund is money that must be set aside to <b>cover your living expenses for a period of at least 3 months</b>. In the event of an emergency, such as a loss of income, the emergency fund helps cover some of your expenses."
     },
-    "QUESTATION": "Do you have at least 3 months’ worth of Emergency Fund?"
+    "QUESTATION": "Do you have at least 3 months’ worth of Emergency Fund?",
+    "QUESTATION_CPF": "Have you set aside at least 3 months of buffer in your CPF OA?"
   },
   "PORTFOLIO_RECOMMENDATION": {
     "STEP1": "Step 1",
@@ -279,12 +335,17 @@
     "PROCEED": "Proceed",
     "EXPENSIVE_RATIO": " Fees include fund level fee of {{expensiveRatio}} p.a. which is incorporated into the NAV.<span> <a target='_blank' href=\"/pricing/\">View our fees table.</a></span>",
     "EXPENSIVE_RATIO_WISE_INCOME": " This excludes fund level fees (such as annual management fees of {{expensiveRatio}} p.a.) which are factored into the price of the fund.<span> <a target='_blank' href=\"/pricing/\">View our fees table.</a></span>",
+    "EXPENSIVE_RATIO_CPF": " Enjoy 0% advisory fees until end of {{year}}. Fees do not include fund level fees of {{expensiveRatio}} p.a. which is incorporated in the NAV. <span> <a target='_blank' href=\"/pricing/\">View our fees table.</a></span>",
     "FUND_EXPENSIVE_RATIO": "Fund Expense Ratio",
     "TOTAL_FEE": "Total Fee",
+    "LGI_SUB_LBL":"LGI Infinity Global Stock Index Fund",
+    "UOB_SUB_LBL":"UOB United SGD Fund",
     "EDIT_INVESTMENT": {
       "TITLE": "Review My Inputs",
       "ONE_TIME_INVESTMENT": "One-time Amount",
-      "MONTHLY_INVESTMENT": "Monthly Amount"
+      "MONTHLY_INVESTMENT": "Monthly Amount",
+      "CPF_DESC": "The first $20,000 of your CPF OA cannot be invested. You should set aside a buffer of $30 of your CPF investible amount for agent bank fees. ($2 to $2.50 excl gst for each buy or sell). It is recommended to opt for one-time or higher monthly amount to optimize your investments.",
+      "MIN": "Min."
     },
     "WISE_SAVER_PORTOFOLIO": {
       "TITLE_DESC": "The underlying cash fund holds assets primarily in <span class=\"bold-text\">Singapore Dollar</span> deposits. ",
@@ -508,6 +569,7 @@
     "FRONT_NRIC": "Front NRIC",
     "BACK_NRIC": "Back NRIC",
     "BIRTH_CERTIFICATE" : "Birth Certificate",
+    "CKA_CERTIFICATE": "CKA_CERTIFICATE",
     "TAP_TO_UPLOAD": "Tap to Upload",
     "PROOF_OF_RESIDENT_SUBTEXT": "<p>This document must be from a billing organisation and clearly display your name, current residential address and be dated no more than 90 days prior to today's date.</p><p>You may use utility bills, phone bills, credit card bills etc.</p>",
     "CHOOSE_FILE": "Choose File",
@@ -545,5 +607,63 @@
       "TITLE": "Loading.",
       "MESSAGE": "Please wait."
     }
+  },
+  "CKA_ASSESSMENT": {
+    "PAGE_TITLE": "Customer Knowledge Assessment",
+    "PAGE_DESC": "Please select a method of assessment applicable to you:",
+    "SELECT_OPTION_1": "Education Qualification",
+    "SELECT_OPTION_1_DESC": "I have a finance-related diploma or higher qualification.",
+    "SELECT_OPTION_2": "Professional Qualification",
+    "SELECT_OPTION_2_DESC": "I have a finance-related professional qualification.",
+    "SELECT_OPTION_3": "Investment Experience",
+    "SELECT_OPTION_3_DESC": "I have traded 6 or more transactions in Collective Investment Schemes (CIS) or Investment-linked Policies (ILPs) in the past 3 years.",
+    "SELECT_OPTION_4": "Work Experience",
+    "SELECT_OPTION_4_DESC": "I have a minimum of 3 continuous years of relevant working experience in finance over the past 10 years.",
+    "SELECT_OPTION_5": "Upload e-Learning Certificate",
+    "SELECT_OPTION_5_DESC": "I have undergone and passed the ABS e-Learning module <br>(Module 5).",
+    "SELECT_OPTION_6": "None of the Above Applies",
+    "SELECT_OPTION_6_DESC": "You will be guided through the ABS e-Learning Module in order to pass your CKA. (est. time ~20mins)"
+  },
+  "CKA_UPLOAD_DOCUMENT":{
+    "PAGE_TITLE": "Customer Knowledge Assessment",
+    "PAGE_DESC": "Please upload your ABS e-Learning Certificate.",
+    "SELECT_OPTION": "Upload e-Learning Certificate",
+    "SELECT_OPTION_DESC": "I have undergone and passed the ABS Unit Trusts and Investment-Linked Insurance Policy e-Learning module (Module 5).",
+    "RESELECT_LBL": "Reselect CKA Method",
+    "QUE_1": "Guidance for documents upload:",
+    "STEP_1": "File less than <span class=\"text-semi-bold\">10MB</span></br>Allowed file types: <span class=\"text-semi-bold\">pdf, jpg, jpeg, png, gif, bmp</span>",
+    "NOTE_DESC": "Please ensure that your certificate is valid for at least 6 months.",
+    "CERTIFICATE_LBL": "UT & ILP Certificate",
+    "TAP_TO_UPLOAD":"Tap To Upload",
+    "I_AGREE": "I declare that I have passed the ABS e-learning course within the first 3 attempts and have not been disallowed to transact in SIP by another FI for more than 3 times.",
+    "SAVE_CONTINUE": "Save & Continue",
+    "GENTLE_REMINDER_TITLE": "Uploaded Successfully!",
+    "GENTLE_REMINDER_DESC": "Your document upload is successful. You can modify your document in \"My Profile\" if required."
+  },
+  "NONE_OF_THE_ABOVE":{
+    "PAGE_TITLE": "Customer Knowledge Assessment",
+    "PAGE_DESC": "Please follow the guide to complete the ABS e-Learning module and upload your certificate thereafter.",
+    "SELECT_OPTION": "None of the Above Applies",
+    "SELECT_OPTION_DESC": "You will be guided to complete the ABS Unit Trusts and Investment-Linked Insurance Policy e-Learning module in order to pass your CKA.",
+    "QUE_1": "How do I get the certificate?",
+    "STEP_1": "<span class=\"text-bold\">Step 1: </span><a class=\"hyperlink_color\" target='_blank' href='https://sips.abs.org.sg/Default.aspx'>Open an account</a> with the e-learning portal by the Association Bank of Singapore (ABS).",
+    "STEP_2": "<span class=\"text-bold\">Step 2: </span><a class=\"hyperlink_color\" target='_blank' href='https://sips.abs.org.sg/Default.aspx'>Complete only Module 5</a> - <span class=\"text-italic\">Unit Trusts and Investment-linked Insurance Policies.</span> Estimated 15 minutes time to complete.",
+    "STEP_3_LBL_1": "<span class=\"text-bold\">Step 3: </span>A certification of completion will be provided once you pass the </br>assessment. ",
+    "STEP_3_LBL_2": "Upload your certificate ",
+    "STEP_3_LBL_3": "by creating a new CPF investment portfolio.",
+    "QUE_2": "How do I find out more?",
+    "STEP_4": "Visit our website for more <a class=\"hyperlink_color\" target=\"_blank\" href=\"https://www.moneyowl.com.sg/faq-investment/#investment|8\">Frequently Asked Questions</a> on investing with MoneyOwl.",
+    "STEP_5": "For assistance on investment pre-requisites, please email <a class=\"hyperlink_color\" target='_blank' href='mailto:enquiries@moneyowl.com.sg'>enquiries@moneyowl.com.sg</a>.",
+    "BACK_TO_PROFILE_LBL": "Back to Profile",
+    "TAKE_CERTIFICATION_LBL": "<a target='_blank' href='https://sips.abs.org.sg/Default.aspx'>Take Certification</a>"
+  },
+  "CKA_RESULT": {
+    "TITLE": "You have passed CKA!",
+    "DESC": "Congratulations on completing your CKA assessment! Your CKA status will be valid for the next 1 year.",
+    "BTN_CONTINUE": "Continue"
+  },
+  "PORTFOLIO_INPROGRESS": {
+    "TITLE": "Portfolio Application in Progress",
+    "DESC": "We will get back to you on your application in 1 - 2 working days. Your portfolio will be updated on your dashboard once your application is approved."
   }
 }
