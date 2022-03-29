@@ -49,6 +49,7 @@ export class SignUpService {
   private mobileOptimized = new BehaviorSubject(false);
   mobileOptimizedObservable$ = this.mobileOptimized.asObservable();
   myInfoAttributes = SIGN_UP_CONFIG.MY_INFO_ATTRIBUTES;
+  organisationName: string = '';
   constructor(
     private apiService: ApiService,
     public authService: AuthenticationService,
