@@ -359,4 +359,12 @@ export class SignUpApiService {
     };
     return this.apiService.setPopupStatus(payload);
   }
+
+  /**
+ * Getting organisation(name) by passing organisation code(UUID)
+ * @param orgID - query parameter.
+ */
+   getOrganisationCode(orgID) {
+    return this.apiService.getOrganisationCode(orgID);
+  }
 }

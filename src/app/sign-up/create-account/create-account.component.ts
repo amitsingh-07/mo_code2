@@ -239,8 +239,12 @@ export class CreateAccountComponent implements OnInit, AfterViewInit {
       }, [Validators.required]]
     }, { validator: this.validateMatchPasswordEmail() })
 
-    if(this.organisationEnabled) {
-      this.createAccountForm.get('organisationCode').patchValue(appConstants.USERTYPE.FACEBOOK);
+    if(this.organisationEnabled && this.route.snapshot.queryParams.orgID) {
+      this.signUpApiService.getOrganisationCode(this.route.snapshot.queryParams.orgID).subscribe(res => {
+        this.createAccountForm.get('organisationCode').patchValue(res.objectList[0]);
+      });
+    } else if (this.signUpService.organisationName) {
+      this.createAccountForm.get('organisationCode').patchValue(this.signUpService.organisationName);
     }
     this.buildFormSingPass();
     return true;
