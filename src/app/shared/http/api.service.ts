@@ -778,4 +778,11 @@ export class ApiService {
         catchError((error: HttpErrorResponse) => this.handleError(error))
       );
   }
+
+  getOrganisationCode(organisationUUID) {
+    return this.http.get(`${apiConstants.endpoint.organisation.getOrganisationCodeByUUID}?uuid=${organisationUUID}`)
+      .pipe(
+        catchError((error: HttpErrorResponse) => this.handleError(error))
+      );
+  }
 }

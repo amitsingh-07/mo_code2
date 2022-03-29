@@ -135,6 +135,9 @@ export let apiConstants = {
             saveCustomerPromoCode: ACCOUNT_API_BASE_URL + '/promocode/saveCustomerPromoCode',
             checkNtucMember : ACCOUNT_API_BASE_URL + '/ntuc/membership/verification',
             validatePromo : ACCOUNT_API_BASE_URL + '/promocode/validateComprehensivePromoCode'
+        },
+        organisation: {
+            getOrganisationCodeByUUID: ACCOUNT_API_BASE_URL+ '/getOrganisationCodeByUUID'
         }
     }
 };
