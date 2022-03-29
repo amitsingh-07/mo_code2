@@ -240,8 +240,8 @@ export class LoginComponent implements OnInit, AfterViewInit, OnDestroy {
         [Validators.required, Validators.pattern(RegexConstants.EmailOrMobile), this.signUpService.emailDomainValidator] : 
         [Validators.required, Validators.pattern(RegexConstants.EmailOrMobile)];
     this.loginForm = this.formBuilder.group({
-      loginUsername: [this.formValues.loginUsername, emailValidators],
-      loginPassword: [this.formValues.loginPassword, [Validators.required]],
+      loginUsername: ['demofb2@yopmail.com', emailValidators],
+      loginPassword: ['Test@123', [Validators.required]],
       organisationCode: [null, this.organisationEnabled ? [Validators.required] : []],
       captchaValue: ['']
     });
@@ -252,7 +252,7 @@ export class LoginComponent implements OnInit, AfterViewInit, OnDestroy {
     if(this.organisationEnabled && this.route.snapshot.queryParams.orgID) {
       this.getOrganisationCode(this.route.snapshot.queryParams.orgID).subscribe(res => {
         this.loginForm.get('organisationCode').patchValue(res.objectList[0]);
-      })
+      });
     }
     return true;
   }
