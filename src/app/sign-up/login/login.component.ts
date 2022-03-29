@@ -240,8 +240,8 @@ export class LoginComponent implements OnInit, AfterViewInit, OnDestroy {
         [Validators.required, Validators.pattern(RegexConstants.EmailOrMobile), this.signUpService.emailDomainValidator] : 
         [Validators.required, Validators.pattern(RegexConstants.EmailOrMobile)];
     this.loginForm = this.formBuilder.group({
-      loginUsername: ['demofb2@yopmail.com', emailValidators],
-      loginPassword: ['Test@123', [Validators.required]],
+      loginUsername: [this.formValues.loginUsername, emailValidators],
+      loginPassword: [this.formValues.loginPassword, [Validators.required]],
       organisationCode: [null, this.organisationEnabled ? [Validators.required] : []],
       captchaValue: ['']
     });
