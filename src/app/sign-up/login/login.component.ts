@@ -250,21 +250,18 @@ export class LoginComponent implements OnInit, AfterViewInit, OnDestroy {
     }
 
     if(this.organisationEnabled && this.route.snapshot.queryParams.orgID) {
-      this.getOrganisationCode(this.route.snapshot.queryParams.orgID).subscribe(res => {
+      this.signUpApiService.getOrganisationCode(this.route.snapshot.queryParams.orgID).subscribe(res => {
         this.loginForm.get('organisationCode').patchValue(res.objectList[0]);
       });
     }
+    this.loginForm.get('organisationCode').valueChanges.subscribe(val => {
+      if (val) {
+        this.signUpService.organisationName = val;
+      }
+    })
     return true;
   }
-  
-  /**
- * Getting organisation(name) by passing organisation code(UUID)
- * @param orgID - query parameter.
- */
-  getOrganisationCode(orgID) {
-    return this.apiService.getOrganisationCode(orgID);
-  }
-
+ 
   /**
    * Show or hide inline error.
    * @param form - form control.
