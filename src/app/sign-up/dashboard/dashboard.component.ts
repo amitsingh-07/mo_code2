@@ -45,6 +45,7 @@ import { SignUpService } from '../sign-up.service';
 import { environment } from './../../../environments/environment';
 import { INVESTMENT_COMMON_CONSTANTS } from '../../investment/investment-common/investment-common.constants';
 import { ComprehensiveService } from '../../comprehensive/comprehensive.service';
+import { Util } from '../../shared/utils/util';
 
 @Component({
   selector: 'app-dashboard',
@@ -68,6 +69,7 @@ export class DashboardComponent implements OnInit {
   totalValue: any;
   totalReturns: any;
   availableBalance: any;
+  portfolioExists = false;
 
   // Will Writing
   showWillWritingSection = false;
@@ -166,7 +168,7 @@ export class DashboardComponent implements OnInit {
       } else {
         this.signUpService.setUserProfileInfo(userInfo.objectList);
         this.userProfileInfo = this.signUpService.getUserProfileInfo();
-        this.checkSRSPopStatus(userInfo.objectList.id);
+        this.checkFirstTimeLoginStatus(userInfo.objectList.id);
       }
     },
       (err) => {
@@ -260,6 +262,10 @@ export class DashboardComponent implements OnInit {
     this.investmentAccountService.getInvestmentsSummary().subscribe((data) => {
       if (data && data.responseMessage && data.responseMessage.responseCode === 6000) {
         this.investmentsSummary = data.objectList;
+        const accStatusInfoFromSession = this.investmentCommonService.getInvestmentCommonFormData().accountCreationActions;
+        if (this.investmentsSummary && this.investmentsSummary.investmentAccountStatus && accStatusInfoFromSession) {      
+          this.investmentCommonService.setAccountCreationActionsToSession(this.investmentsSummary.investmentAccountStatus);
+        } 
         this.setInvestmentsSummary(this.investmentsSummary);
         this.getInvestmentStatus();
       } else {
@@ -272,7 +278,12 @@ export class DashboardComponent implements OnInit {
   }
 
   goToEngagement() {
-    this.router.navigate([INVESTMENT_ENGAGEMENT_JOURNEY_ROUTE_PATHS.ROOT]);
+    if(this.portfolioExists){
+      this.router.navigate([INVESTMENT_ENGAGEMENT_JOURNEY_ROUTE_PATHS.SELECT_PORTFOLIO_TYPE]);
+    }
+    else{
+      this.router.navigate([INVESTMENT_ENGAGEMENT_JOURNEY_ROUTE_PATHS.ROOT]);
+    }
   }
 
   goToEditProfile() {
@@ -355,7 +366,8 @@ export class DashboardComponent implements OnInit {
       }
       case SIGN_UP_CONFIG.INVESTMENT.CDD_CHECK_PENDING:
       case SIGN_UP_CONFIG.INVESTMENT.EDD_CHECK_CLEARED:
-      case SIGN_UP_CONFIG.INVESTMENT.EDD_CHECK_PENDING: {
+      case SIGN_UP_CONFIG.INVESTMENT.EDD_CHECK_PENDING: 
+      case SIGN_UP_CONFIG.INVESTMENT.CKA_PENDING: {
         this.showCddCheckOngoing = true;
         this.enableInvestment();
         break;
@@ -375,6 +387,11 @@ export class DashboardComponent implements OnInit {
       case SIGN_UP_CONFIG.INVESTMENT.ACCOUNT_FUNDED:
       case SIGN_UP_CONFIG.INVESTMENT.PORTFOLIO_PURCHASED: {
         this.showPortfolioPurchased = true;
+        if (this.showPortfolioCards()) {
+          this.showPortfolioPurchased = false;
+          this.showStartInvesting = true;
+          this.portfolioExists = true;
+        }
         this.enableInvestment();
         if (this.investmentsSummary.portfolioSummary && this.investmentsSummary.portfolioSummary.numberOfPortfolios > 0) {
           this.navbarService.setMenuItemInvestUser(true);
@@ -489,16 +506,23 @@ export class DashboardComponent implements OnInit {
     ref.componentInstance.endBtnTxt = this.translate.instant('DASHBOARD.SRS_JOINT_ACCOUNT.END_BTN');
   }
 
-  // Check if user is first time seeing SRS popup
-  checkSRSPopStatus(customerId) {
+  // Show new updates Modal if first time login
+  openNewUpdatesModal() {
+    const ref = this.modal.open(CarouselModalComponent, { centered: true, windowClass: 'srs-dashboard-modal' });
+    ref.componentInstance.slides = this.translate.instant('DASHBOARD.SRS_JOINT_ACCOUNT.SRS_JOINT_ACCOUNT_SLIDES');
+    ref.componentInstance.startBtnTxt = this.translate.instant('DASHBOARD.SRS_JOINT_ACCOUNT.START_BTN');
+    ref.componentInstance.endBtnTxt = this.translate.instant('DASHBOARD.SRS_JOINT_ACCOUNT.END_BTN');
+  }
+  // Check if first time login and show new updates modal
+  checkFirstTimeLoginStatus(customerId) {
     if (customerId) {
-      this.signUpApiService.getPopupStatus(customerId, 'WI_POP').subscribe((status) => {
+      this.signUpApiService.getPopupStatus(customerId, 'CPF_POP').subscribe((status) => {
         // Check if track_status is available or false
         if (!status.objectList || !status.objectList['trackStatus']) {
           setTimeout(() => {
-            this.openSRSJointAccPopup();
+            this.openNewUpdatesModal();
           });
-          this.signUpApiService.setPopupStatus(customerId, 'WI_POP').subscribe((result) => {
+          this.signUpApiService.setPopupStatus(customerId, 'CPF_POP').subscribe((result) => {
           }, (error) => console.log('ERROR: ', error));
         }
       }, (error) => console.log('ERROR: ', error));
@@ -539,6 +563,14 @@ export class DashboardComponent implements OnInit {
       this.showFixedToastMessage = false;
       this.comprehensiveService.setToastMessage(false);
     }, 3000);
+  }
+
+  // show Start investing button if no portfolio but user has iFast account
+  showPortfolioCards() {
+    return Util.isEmptyOrNull(this.investmentsSummary.portfolioSummary.investmentPortfolio)
+    && Util.isEmptyOrNull(this.investmentsSummary.portfolioSummary.cpfPortfolio)
+    && Util.isEmptyOrNull(this.investmentsSummary.portfolioSummary.wiseIncomePortfolio)
+    && Util.isEmptyOrNull(this.investmentsSummary.portfolioSummary.wiseSaverPortfolio)
   }
 }
 

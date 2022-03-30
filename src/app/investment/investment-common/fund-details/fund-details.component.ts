@@ -31,6 +31,8 @@ export class FundDetailsComponent implements OnInit {
   investmentEnabled: boolean;
   wiseSaverEnabled : boolean;
   wiseIncomeEnabled: boolean;
+  cpfEnabled: boolean;
+  activeTabId = 1;
   
   @Input('portfolioType') portfolioType;
 
@@ -53,16 +55,25 @@ export class FundDetailsComponent implements OnInit {
       this.investmentEnabled = true;
       this.wiseSaverEnabled = false;
       this.wiseIncomeEnabled = false;
+      this.cpfEnabled = false;
     }
     if( (this.portfolioType.toLowerCase() === INVESTMENT_ENGAGEMENT_JOURNEY_CONSTANTS.SELECT_POROFOLIO_TYPE.WISEINCOME.toLowerCase() || this.portfolioType.toLowerCase() === INVESTMENT_ENGAGEMENT_JOURNEY_CONSTANTS.SELECT_POROFOLIO_TYPE.WISEINCOME_PORTFOLIO.toLowerCase() )){
       this.investmentEnabled = false;
       this.wiseSaverEnabled = false;
       this.wiseIncomeEnabled = true;
+      this.cpfEnabled = false;
     }
     if((this.portfolioType.toLowerCase() === INVESTMENT_ENGAGEMENT_JOURNEY_CONSTANTS.SELECT_POROFOLIO_TYPE.WISESAVER.toLowerCase() || this.portfolioType.toLowerCase() === INVESTMENT_ENGAGEMENT_JOURNEY_CONSTANTS.SELECT_POROFOLIO_TYPE.WISESAVER_PORTFOLIO.toLowerCase() )){
       this.investmentEnabled = false;
       this.wiseSaverEnabled = true;
       this.wiseIncomeEnabled = false;
+      this.cpfEnabled = false;
+    }
+    if((this.portfolioType.toLowerCase() === INVESTMENT_ENGAGEMENT_JOURNEY_CONSTANTS.SELECT_POROFOLIO_TYPE.CPF_PORTFOLIO.toLowerCase())){
+      this.investmentEnabled = false;
+      this.wiseSaverEnabled = false;
+      this.wiseIncomeEnabled = false;
+      this.cpfEnabled = true;
     }
   }
 
@@ -105,6 +116,13 @@ export class FundDetailsComponent implements OnInit {
       prospectusFileName = INVESTMENT_ENGAGEMENT_JOURNEY_CONSTANTS.PROSPECTUS_FILE.WISESAVER;
     } else if(this.portfolioType.toLowerCase() === INVESTMENT_ENGAGEMENT_JOURNEY_CONSTANTS.SELECT_POROFOLIO_TYPE.WISEINCOME.toLowerCase() || this.portfolioType.toLowerCase() === INVESTMENT_ENGAGEMENT_JOURNEY_CONSTANTS.SELECT_POROFOLIO_TYPE.WISEINCOME_PORTFOLIO.toLowerCase()){
       prospectusFileName = INVESTMENT_ENGAGEMENT_JOURNEY_CONSTANTS.PROSPECTUS_FILE.WISEINCOME;
+    } else if(this.portfolioType.toLowerCase() === INVESTMENT_ENGAGEMENT_JOURNEY_CONSTANTS.SELECT_POROFOLIO_TYPE.CPF_PORTFOLIO.toLowerCase()){
+      if (this.activeTabId === 1){
+        prospectusFileName = INVESTMENT_ENGAGEMENT_JOURNEY_CONSTANTS.PROSPECTUS_FILE.CPF_LGI;
+      }
+      else {
+        prospectusFileName = INVESTMENT_ENGAGEMENT_JOURNEY_CONSTANTS.PROSPECTUS_FILE.CPF_UOB;
+      }
     }
     const pdfUrl = document.getElementsByTagName('base')[0].href + 'assets/docs/portfolio/fund/' + prospectusFileName;
     if (iOS) {

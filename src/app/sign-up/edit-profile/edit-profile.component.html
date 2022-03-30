@@ -627,6 +627,113 @@
           </div>
         </div>
       </div>
+
+      <!-- cpf details -->
+      <div class="cpf_details" *ngIf="cpfBankDetails && entireUserData && entireUserData.cpfPortfolioAvailable">
+        <div class="edit-profile-section-bg">
+          <div class="flex-row cursor_pointer" (click)=showHide(showHideCpf)>
+            <div class="flex-col-11">
+              <div id="cpf-header-lbl" class="form-group-heading">{{'UPDATE_CPFIA.TITLE' | translate}}</div>
+            </div>
+            <div class="flex-col-1">
+              <div class="dropdown-img">
+                <span id="showHideCpf" class="arrow"
+                  [class.active]="showHideCpf.style.display === 'block' || showHideCpf.style.display === ''"></span>
+              </div>
+            </div>
+          </div>
+          <div class="dots" #showHideCpf>
+            <div class="pb20">
+              <div class="flex-row">
+                <div class="flex-col-6">
+                  <div class="bank-account txt-bold">
+                  </div>
+                </div>
+                <div class="flex-col-6">
+                  <div class="icon-block">
+                    <span (click)="updateCpfDetails(cpfBankDetails?.cpfiaAccountNumber?.conformedValue, cpfBankDetails?.cpfiaOperator, cpfBankDetails?.customerId, false)">
+                      <span *ngIf="is2faAuthorized"><img src="assets/images/button-edit.svg"></span>
+                      <span *ngIf="!is2faAuthorized"><img src="assets/images/accounts/edit-locked.svg"></span>
+                    </span>
+                  </div>
+                </div>
+              </div>
+              <div class="flex-row">
+                <div class="flex-col-6">
+                  <div id="cpf-operator-lbl" class="bank-account">
+                    {{'UPDATE_CPFIA.CPFIA_OPERATOR' | translate}}</div>
+                </div>
+                <div class="flex-col-6">
+                  <div id="cpf-operator-value" class="bank-account-num">{{cpfBankDetails?.cpfiaOperator}}
+                  </div>
+                </div>
+              </div>
+              <div class="flex-row">
+                <div class="flex-col-6">
+                  <div id="cpf-act-num-lbl" class="bank-account">
+                    {{'UPDATE_CPFIA.CPFIA_ACCOUNT_NUMBER' | translate}}</div>
+                </div>
+                <div class="flex-col-6">
+                  <div id="cpf-act-num-value" class="bank-account-num">
+                    {{cpfBankDetails?.cpfiaAccountNumber?.conformedValue}}</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- cpf details end-->
+    </div>
+    <!--CKA Card-->
+    <div class="cka-card" *ngIf="entireUserData">
+      <div class="edit-profile-section-bg" *ngIf="ckaInfo?.cKAStatusMessage !== CKA_STATUS_CONSTANTS.CKA_BE_CERTIFICATE_UPLOADED">
+        <div class="flex-row cursor_pointer" [ngClass]="{'disabled': ckaInfo?.cKAStatusMessage === CKA_STATUS_CONSTANTS.CKA_PASSED_STATUS }"
+          (click)="openCKAModal()">
+          <div class="flex-col-11 align-items-center">
+            <div class="flex">
+              <div class="mr10 flex align-items-center"><img src="assets/images/cka/icon-profile-cka.svg"></div>
+              <div>
+                <div class="form-group-heading">{{'CKA.HEADING' | translate}}</div>
+                <div class="form-group-sub-heading">
+                  <span *ngIf="ckaInfo == null || ckaInfo?.cKAStatusMessage === CKA_STATUS_CONSTANTS.CKA_REJECTED_STATUS">{{'CKA.NOT_STARTED' | translate}}</span>
+                  <span
+                    *ngIf="ckaInfo?.cKAStatusMessage === CKA_STATUS_CONSTANTS.CKA_PASSED_STATUS">{{'CKA.CKA_PASSED' | translate}}{{ckaInfo?.cKAExpiryDate}}{{'CKA.CKA_BRACKET' | translate}}</span>
+                  <span
+                    *ngIf="ckaInfo?.cKAStatusMessage === CKA_STATUS_CONSTANTS.CKA_BE_CERTIFICATE_UPLOADED">{{'CKA.CKA_UPLOAD' | translate}}</span>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="flex-col-1 align-items-center"
+            *ngIf="ckaInfo == null || ckaInfo?.cKAStatusMessage === CKA_STATUS_CONSTANTS.CKA_BE_CERTIFICATE_UPLOADED">
+            <div class="dropdown-img">
+              <span class="arrow-right mt0"></span>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="edit-profile-section-bg"  *ngIf="ckaInfo?.cKAStatusMessage === CKA_STATUS_CONSTANTS.CKA_BE_CERTIFICATE_UPLOADED" (click)="showUploadDoc()">
+        <div class="flex-row cursor_pointer">
+          <div class="flex-col-11 align-items-center">
+            <div class="flex">
+              <div class="mr10 flex align-items-center"><img src="assets/images/cka/icon-profile-cka.svg"></div>
+              <div>
+                <div class="form-group-heading">{{'CKA.HEADING' | translate}}</div>
+                <div class="form-group-sub-heading">
+                  <span
+                    *ngIf="ckaInfo?.cKAStatusMessage === CKA_STATUS_CONSTANTS.CKA_BE_CERTIFICATE_UPLOADED">{{'CKA.CKA_UPLOAD' | translate}}</span>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="flex-col-1 align-items-center"
+            *ngIf="ckaInfo == null || ckaInfo?.cKAStatusMessage === CKA_STATUS_CONSTANTS.CKA_BE_CERTIFICATE_UPLOADED">
+            <div class="dropdown-img">
+              <span class="arrow-right mt0"></span>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
   </div>
 </div>

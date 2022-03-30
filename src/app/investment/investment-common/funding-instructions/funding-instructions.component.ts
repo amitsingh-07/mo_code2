@@ -26,7 +26,7 @@ import { environment } from './../../../../environments/environment';
 import { PromoCodeService } from '../../../promo-code/promo-code.service';
 import { InvestmentAccountService } from '../../investment-account/investment-account-service';
 import { INVESTMENT_COMMON_CONSTANTS } from '../investment-common.constants';
-
+import { InvestmentEngagementJourneyService } from './../../investment-engagement-journey/investment-engagement-journey.service';
 @Component({
   selector: 'app-funding-instructions',
   templateUrl: './funding-instructions.component.html',
@@ -68,7 +68,8 @@ export class FundingInstructionsComponent implements OnInit {
     public investmentCommonService: InvestmentCommonService,
     private loaderService: LoaderService,
     private formatCurrencyPipe: FormatCurrencyPipe,
-    private promoCodeService: PromoCodeService
+    private promoCodeService: PromoCodeService,
+    private investmentEngagementJourneyService: InvestmentEngagementJourneyService
   ) {
     this.translate.use('en');
     this.fundDetails = this.manageInvestmentsService.getFundingDetails();
@@ -96,12 +97,15 @@ export class FundingInstructionsComponent implements OnInit {
     this.footerService.setFooterVisibility(false);
     this.getBankDetailsList();
     this.getTransferDetails();
+    this.portfolioCatagories = INVESTMENT_COMMON_CONSTANTS.PORTFOLIO_CATEGORY;
     if (this.fundDetails.portfolio.riskProfile) {
-      this.riskProfileImg =
-        ProfileIcons[this.fundDetails.portfolio.riskProfile.id - 1]['icon'];
+      if(this.fundDetails.portfolio.portfolioCategory === this.portfolioCatagories.WISESAVER) {
+        this.riskProfileImg = ProfileIcons[6]['icon'];
+      } else { ProfileIcons[this.fundDetails.portfolio.riskProfile.id - 1]['icon'];
+        this.riskProfileImg = this.investmentEngagementJourneyService.getRiskProfileIcon(this.fundDetails.portfolio.riskProfile.type, false);
+      }        
     }
     this.PortfolioName = this.investmentCommonService.getConfirmPortfolioName();
-    this.portfolioCatagories = INVESTMENT_COMMON_CONSTANTS.PORTFOLIO_CATEGORY;
   }
 
   setPageTitle(title: string) {

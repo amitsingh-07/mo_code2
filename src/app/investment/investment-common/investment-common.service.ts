@@ -49,6 +49,10 @@ export class InvestmentCommonService {
     return this.investmentApiService.savePortfolioName(data);
   }
 
+  updatePortfolioStatus(data: { customerPortfolioId: number }) {
+    return this.investmentApiService.updatePortfolioStatus(data);
+  }
+
   confirmPortfolio(customerPortfolioId) {
     return this.investmentApiService.confirmPortfolio(customerPortfolioId);
   }
@@ -196,6 +200,15 @@ export class InvestmentCommonService {
   clearConfirmPortfolioName() {
     this.investmentCommonFormData.portfolioName = null;
     this.commit();
+  }
+
+  setCKARedirectFromLocation(redirectLocation) {
+    this.investmentCommonFormData.ckaRedirectFromLocation = redirectLocation;
+    this.commit();
+  }
+
+  getCKARedirectFromLocation() {
+    return this.investmentCommonFormData.ckaRedirectFromLocation;
   }
 
   isUsersFirstPortfolio(data: IAccountCreationActions) {
@@ -403,6 +416,9 @@ export class InvestmentCommonService {
     } else if (selectedPortfolioValue.toUpperCase() ===
       INVESTMENT_ENGAGEMENT_JOURNEY_CONSTANTS.SELECT_POROFOLIO_TYPE.INVESTMENT.toUpperCase()) {
       return INVESTMENT_ENGAGEMENT_JOURNEY_CONSTANTS.SELECT_POROFOLIO_TYPE.INVEST_PORTFOLIO
+    } else if (selectedPortfolioValue.toUpperCase() ===
+      INVESTMENT_ENGAGEMENT_JOURNEY_CONSTANTS.SELECT_POROFOLIO_TYPE.CPF_PORTFOLIO.toUpperCase()) {
+      return INVESTMENT_ENGAGEMENT_JOURNEY_CONSTANTS.SELECT_POROFOLIO_TYPE.CPF_PORTFOLIO
     } else {
       return INVESTMENT_ENGAGEMENT_JOURNEY_CONSTANTS.SELECT_POROFOLIO_TYPE.WISEINCOME_PORTFOLIO
     }
@@ -424,5 +440,117 @@ export class InvestmentCommonService {
       return navigationType;
     }
     return null;
+  }
+
+  private formCKAMethod1SaveRequest(json) {
+    if (json && json.others) {
+      return {
+        hasEduQualification: true,
+        eduQualOptionId: json.question1.id,
+        eduQualInstitutionOptionId: json.question2.id,
+        eduQualInstitutionOthers: json.others
+      }
+    } else {
+      return {
+        hasEduQualification: true,
+        eduQualOptionId: json.question1.id,
+        eduQualInstitutionOptionId: json.question2.id,
+        eduQualInstitutionOthers: ''
+      }
+    }
+  }
+
+  private formCKAMethod2SaveRequest(json) {
+    if (json && json.others) {
+      return {
+        hasFinQualification: true,
+        finQualOptionId: json.question1.id,
+        finQualInstitutionOptionId: json.question2.id,
+        finQualInstitutionOthers: json.others
+      }
+    } else {
+      return {
+        hasFinQualification: true,
+        finQualOptionId: json.question1.id,
+        finQualInstitutionOptionId: json.question2.id,
+        finQualInstitutionOthers: ''
+      }
+    }
+  }
+
+  private formCKAMethod3SaveRequest(json) {
+    if (json && json.others) {
+      return {
+        hasInvestQualification: true,
+        investExpUnListedSIP: json.question1.id,
+        investExpUnListedSIPOthers: json.others
+      }
+    } else {
+      return {
+        hasInvestQualification: true,
+        investExpUnListedSIP: json.question1.id,
+        investExpUnListedSIPOthers: ''
+      }
+    }
+  }
+
+  private formCKAMethod4SaveRequest(json) {
+    if (json && json.others) {
+      return {
+        hasWorkExperience: true,
+        workExpOptionId: json.question1.id,
+        workExpCompanyOptionId: json.question2.id,
+        workExpCompanyOthers: json.others
+      }
+    } else {
+      return {
+        hasWorkExperience: true,
+        workExpOptionId: json.question1.id,
+        workExpCompanyOptionId: json.question2.id,
+        workExpCompanyOthers: ''
+      }
+    }
+  }
+
+  formCKASaveReq(json) {
+    if (json.method === INVESTMENT_COMMON_CONSTANTS.CKA.METHODS[0]) {
+      return this.formCKAMethod1SaveRequest(json);
+    } else if (json.method === INVESTMENT_COMMON_CONSTANTS.CKA.METHODS[1]) {
+      return this.formCKAMethod2SaveRequest(json);
+    } else if (json.method === INVESTMENT_COMMON_CONSTANTS.CKA.METHODS[3]) {
+      return this.formCKAMethod4SaveRequest(json);
+    } else if (json.method === INVESTMENT_COMMON_CONSTANTS.CKA.METHODS[2]) {
+      return this.formCKAMethod3SaveRequest(json);
+    }
+  }
+
+  saveCKAMethodQNA(json: any) {
+    const req = this.formCKASaveReq(json);
+    return this.investmentApiService.saveCKAMethodQNA(req);
+  }
+
+  getCKADocument(documentType) {
+    return this.investmentApiService.getCKADocument(documentType);
+  }
+
+  setCKAStatus(ckaStatus) {
+    this.investmentCommonFormData.ckaStatus = ckaStatus;
+    this.commit();
+  }
+
+  getCKAStatus() {
+    return this.investmentCommonFormData.ckaStatus;
+  }
+
+  getCKAAssessmentStatus() {
+    return this.investmentApiService.getCKAAssessmentStatus();
+  }
+
+  getCKABankDetails(twoFaReq) {
+    return this.investmentApiService.getCKABankAccount(twoFaReq);
+  }
+
+  saveCKABankAccount(data) {
+    return this.investmentApiService.saveCKABankAccount(data);
   }
 }

@@ -189,6 +189,9 @@ app-fund-details {
     padding: 29px 29px 33px;
     border-bottom: 1px solid $fund-details-dimentional-brdr;
     display: none;
+    &.funding-cpf{
+      display: block;
+    }
   }
 
   .funding-content.first {
@@ -214,5 +217,64 @@ app-fund-details {
   .fund-details-primary-btn {
     font-family: $muli-bold !important;
     font-size: 16px !important;
+  }
+  .funding-cpf {
+    padding: 30px 30px 20px!important;
+  } 
+  .cpf-oa{
+    padding-top: 10px;
+    .nav-tabs{
+      border: none;
+      padding: 0 20px;
+      @include max360{
+        padding: 0 10px;
+      }
+        .fund-tab{
+          &.nav-link{
+            width: 162px;
+            border-top-left-radius: 6px;
+            border-top-right-radius: 6px;
+            background-color: $mercury-smoke-color;
+            font-family: $muli-semi-bold;
+            font-size: 16px;
+            line-height: normal;
+            letter-spacing: -0.34px;
+            text-align: center;
+            color: $silver-grey-color;
+            padding: 15px 40px 13px;
+            &.active{
+              color: $black-color;
+              background-color: $white-color;
+              box-shadow: 0 -3px 5px 0 rgba(0, 0, 0, 0.15);
+            }
+            @include allmobiles{
+              width: calc(50% - 5px);
+            }
+          }
+        }
+    }
+      
+    .panel-tab-content{
+      .img-container{
+        padding: 0 30px;
+        font-family: $muli-bold;
+        font-size: 24px;
+        letter-spacing: -0.3px;
+        line-height: normal;
+        color: $black-color;
+        display: flex;
+        align-items: center;
+        .lgi-lbl{
+          width: 225px;
+        }
+        .uob-lbl{
+          width: 123px;
+        }
+      }
+      .btn-white{
+        padding: 15px 29px 18px;
+        margin-bottom: 10px;
+      }
+    }
   }
 }

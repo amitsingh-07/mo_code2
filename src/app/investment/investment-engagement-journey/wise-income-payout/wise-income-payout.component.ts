@@ -103,7 +103,7 @@ export class WiseIncomePayoutComponent implements OnInit {
     this.queryParams = this.route.snapshot.queryParams;
     if (this.queryParams && this.queryParams.key && this.queryParams.key === 'wise-income') {
       this.appService.setJourneyType(appConstants.JOURNEY_TYPE_INVESTMENT);
-      this.investmentEngagementJourneyService.setSelectPortfolioType({ selectPortfolioType: 'wiseIncomePortfolio' });
+      this.investmentEngagementJourneyService.setSelectPortfolioType({ selectPortfolioType:  INVESTMENT_ENGAGEMENT_JOURNEY_CONSTANTS.SELECT_POROFOLIO_TYPE.WISEINCOME_PORTFOLIO });
     }
     this.investmentAccountService.getSpecificDropList('portfolioType').subscribe((data) => {
       this.investmentCommonService.setPortfolioType(data.objectList.portfolioType);

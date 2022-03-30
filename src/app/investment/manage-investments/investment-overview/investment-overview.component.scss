@@ -85,6 +85,9 @@ app-investment-overview {
         overflow-x: auto;
         -ms-overflow-style: none; /* IE and Edge */
         scrollbar-width: none; /* Firefox */
+        @include allmobiles{
+            margin: 0 -15px;
+        }
         .all-category {
             font-family: $muli-regular;
             margin-right: 8px;
@@ -96,6 +99,13 @@ app-investment-overview {
         label {
             display: flex;
             margin-bottom: 0px;
+            &:first-child{
+                & > div{
+                    @include allmobiles{
+                        margin-left: 15px;
+                    }
+                }
+            }
         }
         label > div {
             padding: 0 10px;
@@ -392,6 +402,10 @@ app-investment-overview {
                         background-color: $withdrawn-bg-color;
                         color: $black-color;
                     }
+                    .cpf-progress-list {                        
+                        background-color: $awaiting-bg-color;
+                        color: $darker-teal-color;
+                    }
                     .delete-btn  {
                         border-radius: 6px;
                         background-color: $teal-color;
@@ -449,10 +463,13 @@ app-investment-overview {
                                 }
                             }
                             .ws-border {
-                                border: solid 3px #49a5c9 !important;
+                                border: solid 3px $shakespeare-teal-color !important;
                             }
                             .wi-border {
                                 border: solid 3px $chetwode-blue-color !important;
+                            }
+                            .cpf-border {
+                                border: solid 3px $eucalyptus-color !important;
                             }
                             .portfolio-details {
                                 display: flex;

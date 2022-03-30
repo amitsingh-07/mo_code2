@@ -10,6 +10,7 @@
     "PROCESS_TXT": "We will process your request once you click 'Submit' below.",
     "SUBMIT": "Submit",
     "CONTINUE": "Continue",
+    "MIN": "Min.",
     "TOPUP_REQUEST_LOADER": {
       "TITLE": "Submitting Request",
       "DESC": "Please wait while we submit the topup request"
@@ -19,6 +20,7 @@
       "DESC": "You have an <strong>existing monthly buy request of {{existingOrderAmount}}</strong>. Click 'Yes' to overwrite this with your new monthly buy request of {{newOrderAmount}}.",
       "ONE_TIME_DESC": "Please note that you have an <strong>existing one-time buy request of {{existingOrderAmount}}</strong>. Click 'Yes' to overwrite this with your new one-time buy request of {{newOrderAmount}}.",
       "SRS_ONE_TIME": "Please note that you have an <strong>existing one-time buy request of {{existingOrderAmount}}</strong> in processing status and can initiate new buy order only upon completion of this order.",
+      "CPF_ONE_TIME": "Please note that you have an <strong>existing one-time buy request of {{existingOrderAmount}}</strong> in processing status and can initiate new buy order only upon completion of this order.",
       "YES": "Yes",
       "NO": "No"
     }
@@ -49,6 +51,7 @@
     "DIMENSIONAL": "Dimensional",
     "WISEINCOME": "WiseIncome",
     "WISESAVER": "WiseSaver",
+    "CPF": "CPF",
     "TOTAL_PORTFOLIO_VALUE": "Total Portfolio Value",
     "PORTFOLIO_VALUE": "Portfolio Value",
     "TOTAL_RETURNS": "Total Returns ",
@@ -97,6 +100,7 @@
     "SRS_MSG": "SRS account portfolio currently handled offline.",
     "SRS_HYPERLINK": "Click here",
     "SRS": "SRS",
+    "CPF_OA": "CPF-OA",
     "SRS_JOINT_ACCOUNT_REMINDER": "You can open Joint Investment Account online now. Add Portfolio to get started!",
     "MP_WALKTHROUGH": {
       "NEW_INVESTMENT_UPDATE": "We’ve new investment updates.",
@@ -150,7 +154,8 @@
     "DAYS": "days",
     "MINUTES": "minutes",
     "HOURS": "hours",
-    "DAY": "day"
+    "DAY": "day",
+    "CPF_APPLICATION_IN_PROGRESS": "Portfolio Approval in Progress"
   },
   "YOUR_PORTFOLIO": {
     "TITLE": "Your Portfolio",
@@ -235,9 +240,15 @@
     "TRY_ANOTHER_RECOMMENDATION": "Try Another Recommendation",
     "PENDING_REQUESTS_CASH_ACCOUNT": "Pending Requests / <span>Cash Account</span>",
     "PENDING_REQUESTS_SRS_ACCOUNT": "Pending Requests / <span>SRS Account</span>",
+    "PENDING_REQUESTS_CPFOA_ACCOUNT": "Pending Requests / <span>CPF-OA</span>",
     "SRS_ACCOUNT": "SRS Account",
+    "CPFOA_ACCOUNT": "CPF Investment Account",
     "BANK_OPERATOR": "Bank Operator",
     "ACCOUNT_NUMBER": "Account Number",
+    "CPFIA_BANK_OPERATOR": {
+      "BANK_OPERATOR": "CPFIA Operator",
+      "ACCOUNT_NUMBER": "CPFIA Number"
+    },
     "WITHDRAWALS_IN_PROGRESS": "You have withdrawals in process.",
     "WITHDRAWALS_IN_QUEUE": "You have withdrawals in queue.",
     "ONE_TIME": "One-time",
@@ -255,6 +266,7 @@
     "PORTFOLIO_TO_BANK_ACCOUNT": "Portfolio to Bank Account",
     "PORTFOLIO_TO_CASH_ACCOUNT": "Portfolio to Cash Account",
     "PORTFOLIO_TO_SRS_ACCOUNT": "Portfolio to SRS Account",
+    "PORTFOLIO_TO_CPF_ACCOUNT": "Portfolio to CPFIA",
     "CASH_ACCOUNT_TO_BANK_ACCOUNT": "Cash Account to Bank Account",
     "JOINT_ACCOUNT": {
       "PRIMARY_HOLDER": "Primary holder",
@@ -287,6 +299,7 @@
         "DESC_PORTFOLIO_TO_BANK": "You are withdrawing the following amount from your portfolio to your bank account. <br/><br/> Once the request is submitted, it cannot be cancelled.",
         "DESC_CASH_TO_BANK": "You are withdrawing the following amount from your cash account to your bank account. <br/><br/> Once the request is submitted, it cannot be cancelled.",
         "DESC_PORTFOLIO_TO_SRS": "You are withdrawing the following amount from your portfolio to your SRS account.  <br/><br/>Once the request is submitted, it cannot be cancelled.",
+        "DESC_PORTFOLIO_TO_CPF": "You are withdrawing the following amount from your portfolio to your CPFIA.  <br/><br/>Once the request is submitted, it cannot be cancelled.",
         "PORTFOLIO": "portfolio",
         "GUIDELINE_HEADING": "Important note on balance amount:",
         "GUIDELINE_FOR_PORTFOLIO_MIN": "As a guideline, you should maintain a minimum portfolio value of $50. You accept, should your portfolio balance be below that, that we might not re-balance your portfolio to its strategic asset allocation upon re-balancing events.",
@@ -312,6 +325,8 @@
         "TRANSFER_TO_BANK_AC_NO": "Transfer to Bank Account No. :",
         "SRS_OPERATOR": "SRS Operator:",
         "SRS_ACC_NUMBER": "SRS Account Number:",
+        "CPFIA_OPERATOR": "CPFIA Operator:",
+        "CPFIA_ACC_NUMBER": "CPFIA Number:",
         "RE_BALANCE": {
           "TITLE": "Rebalancing In Progress",
           "DESC": "Please note that this portfolio is being rebalanced. This process will be completed in 6 to 7 working days.",
@@ -405,8 +420,11 @@
     "NUMBER_HOLDINGS_LBL": "Number of Holdings",
     "EXPENSIVE_RATIO": " Fees include fund level fee of {{expensiveRatio}} p.a. which is incorporated into the NAV.<span> <a target='_blank' href=\"/pricing/\">View our fees table.</a></span>",
     "EXPENSIVE_RATIO_WISE_INCOME": " This excludes fund level fees (such as annual management fees of {{expensiveRatio}} p.a.) which are factored into the price of the fund.<span> <a target='_blank' href=\"/pricing/\">View our fees table.</a></span>",
+    "EXPENSIVE_RATIO_CPF": " Enjoy 0% advisory fees until end of {{year}}. Fees do not include fund level fees of {{expensiveRatio}} p.a. which is incorporated in the NAV. <span> <a target='_blank' href=\"/pricing/\">View our fees table.</a></span>",
     "FUND_EXPENSIVE_RATIO": "Fund Expense Ratio",
     "TOTAL_FEE": "Total Fee",
+    "LGI_SUB_LBL":"LGI Infinity Global Stock Index Fund",
+    "UOB_SUB_LBL":"UOB United SGD Fund",
     "WISE_INCOME_PORTFOLIO": {
       "DESC_LBL": "The fund invest in the following asset classes in this proportions.",
       "ASSET_HOLDINGS_LBL": "Asset Class & Holdings",
@@ -456,6 +474,21 @@
     "ONETIME_SRS_NOTE": [
       "This request will be processed immediately once request is submitted.",
       "If there are insufficient funds in your SRS account, this request will fail, and you may incur transactional costs.",
+      "Once this request is being processed, it cannot be changed or deleted."
+    ],
+    "INFO_CPF_ONETIME": "Please ensure you have sufficient fund in your CPFIA. Amount will be deducted immediately.",
+    "INFO_CPF_MONTHLY": "Please ensure you have sufficient fund by the 10th of every month in your CPFIA.",
+    "CPF_LBL": "Transfer from CPFIA",
+    "CPF_OPERATOR": "CPFIA Operator:",
+    "CPF_ACCOUNT_NUMBER": "CPFIA Number:",
+    "MONTHLY_CPF_NOTE": [
+      "Please ensure sufficient funds in your CPFIA by the 10th of every month as the monthly buy request will be processed on the 15th or next working day if the 15th is a weekend or public holiday.",
+      "If there are insufficient funds in your CPFIA, this request will fail, and you may incur transactional costs.",
+      "You may submit a new monthly buy request before the 15th to overwrite this."
+    ],
+    "ONETIME_CPF_NOTE": [
+      "This request will be processed immediately once request is submitted.",
+      "If there are insufficient funds in your CPFIA, this request will fail, and you may incur transactional costs.",
       "Once this request is being processed, it cannot be changed or deleted."
     ],
     "MONTHLY_CASH_NOTE": [
@@ -542,10 +575,9 @@
     "APPLIED": " Applied)",
     "VALID_TILL": "Valid till",
     "DIMENSIONAL_PORTFOLIO":"Dimensional Portfolios",
-    "FAQ_DESC": "*This is your prevailing advisory rate. Please refer to  <a class='faq-link'  target='_blank' href='/pricing/'>Pricing </a> and <a class='faq-link' target='_blank' href='/faq-investment/#investment|5'>FAQ</a> on how this is calculated. Promotional rates (if any) are factored into the calculation of your prevailing advisory rate.",
+    "FAQ_DESC": "Please refer to  <a class='faq-link'  target='_blank' href='/pricing/'>Pricing </a> and <a class='faq-link' target='_blank' href='/faq-investment/#investment|5'>FAQ</a> on how this is calculated. Promotional rates (if any) are factored into the calculation of your prevailing advisory rate.",
     "LOADING_TITLE": "Loading",
-    "LOADING_DESC": "Please wait while we load the data",
-    "PROMO_RATE": "(Promo Rate)"
+    "LOADING_DESC": "Please wait while we load the data"
   },
   "DIVIDEND": {
     "TITLE": "Dividend History",

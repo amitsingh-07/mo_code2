@@ -49,4 +49,7 @@ export class SignUpFormData {
   userType: string;
   accountCreationType:string;
   organisationCode?: string;
+  // cpf detail
+  cpfAccountNumber: number;
+  cpfOperatorBank: any;
 }

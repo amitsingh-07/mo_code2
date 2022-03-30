@@ -1,7 +1,7 @@
 import { SlickCarouselModule } from 'ngx-slick-carousel';
 import { MultiTranslateHttpLoader } from 'ngx-translate-multi-http-loader';
 
-import { CommonModule } from '@angular/common';
+import { CommonModule, UpperCasePipe, LowerCasePipe, TitleCasePipe } from '@angular/common';
 import { HttpClient } from '@angular/common/http';
 import { ModuleWithProviders } from '@angular/compiler/src/core';
 import { NgModule } from '@angular/core';
@@ -89,6 +89,8 @@ import { WiseIncomePayoutTypeComponent } from './components/wise-income-payout-t
 import { WiseIncomeFundComponent } from './components/wise-income-fund/wise-income-fund.component';
 import { ReferralRewardDetailsComponent } from './components/referral-reward-details/referral-reward-details.component';
 import { BankDetailsComponent } from './components/bank-details/bank-details.component';
+import { UploadDocComponent } from './components/upload-document/upload-document.component';
+
 export function createTranslateLoader(http: HttpClient) {
   return new MultiTranslateHttpLoader(
     http,
@@ -155,7 +157,8 @@ export function createTranslateLoader(http: HttpClient) {
     WiseIncomePayoutTypeComponent,
     WiseIncomeFundComponent,
     ReferralRewardDetailsComponent,
-    BankDetailsComponent],
+    BankDetailsComponent,    
+    UploadDocComponent],
   declarations: [
     CurrencyInputDirective,
     PlanWidgetComponent,
@@ -214,7 +217,8 @@ export function createTranslateLoader(http: HttpClient) {
     WiseIncomePayoutTypeComponent,
     WiseIncomeFundComponent,
     ReferralRewardDetailsComponent,
-    BankDetailsComponent
+    BankDetailsComponent,    
+    UploadDocComponent
   ],
   entryComponents: [
     EditInvestmentModalComponent,
@@ -225,7 +229,7 @@ export function createTranslateLoader(http: HttpClient) {
     CarouselModalComponent,
     ReviewBuyRequestModalComponent
   ],
-  providers: [ProgressTrackerService, RoundPipe]
+  providers: [ProgressTrackerService, RoundPipe, UpperCasePipe, LowerCasePipe, TitleCasePipe]
 })
 export class SharedModule {
   static forRoot(): ModuleWithProviders {
