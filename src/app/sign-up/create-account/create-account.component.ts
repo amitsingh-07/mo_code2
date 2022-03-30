@@ -160,17 +160,29 @@ export class CreateAccountComponent implements OnInit, AfterViewInit {
     if (!this.authService.isAuthenticated()) {
       this.loaderService.showLoader({ title: 'Loading' });
       this.authService.authenticate().subscribe((token) => {
+        if (this.organisationEnabled && this.route.snapshot.queryParams.orgID) {
+          this.getOrganisationCode();
+        }
         this.refreshCaptcha();
         this.loaderService.hideLoader();
       });
     } else {
       this.refreshCaptcha();
       this.loaderService.hideLoader();
+      if (this.organisationEnabled && this.route.snapshot.queryParams.orgID) {
+        this.getOrganisationCode();      
+      }
     }
     this.createAccountForm.statusChanges.subscribe((data) => {
       if (this.createAccountForm.touched || this.createAccountForm.dirty) {
         this.createAccBtnDisabled = false;
       }
+    });
+  }
+
+  getOrganisationCode() {
+    this.signUpApiService.getOrganisationCode(this.route.snapshot.queryParams.orgID).subscribe(res => {
+      this.createAccountForm.get('organisationCode').patchValue(res.objectList[0]);
     });
   }
 
@@ -239,11 +251,7 @@ export class CreateAccountComponent implements OnInit, AfterViewInit {
       }, [Validators.required]]
     }, { validator: this.validateMatchPasswordEmail() })
 
-    if(this.organisationEnabled && this.route.snapshot.queryParams.orgID) {
-      this.signUpApiService.getOrganisationCode(this.route.snapshot.queryParams.orgID).subscribe(res => {
-        this.createAccountForm.get('organisationCode').patchValue(res.objectList[0]);
-      });
-    } else if (this.signUpService.organisationName) {
+    if (this.signUpService.organisationName) {
       this.createAccountForm.get('organisationCode').patchValue(this.signUpService.organisationName);
     }
     this.buildFormSingPass();
