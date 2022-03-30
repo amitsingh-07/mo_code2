@@ -160,9 +160,14 @@ export class LoginComponent implements OnInit, AfterViewInit, OnDestroy {
         });
       } else {
         this.authService.authenticate().subscribe((token) => {
+          if (this.organisationEnabled && this.route.snapshot.queryParams.orgID) {
+            this.getOrganisationCode();
+          }
           this.loaderService.hideLoader();
         });
       }
+    } else if (this.organisationEnabled && this.route.snapshot.queryParams.orgID) {
+        this.getOrganisationCode();      
     }
   }
 
@@ -248,18 +253,19 @@ export class LoginComponent implements OnInit, AfterViewInit, OnDestroy {
     if (this.finlitEnabled) {
       this.loginForm.addControl('accessCode', new FormControl(this.formValues.accessCode, [Validators.required]));
     }
-
-    if(this.organisationEnabled && this.route.snapshot.queryParams.orgID) {
-      this.signUpApiService.getOrganisationCode(this.route.snapshot.queryParams.orgID).subscribe(res => {
-        this.loginForm.get('organisationCode').patchValue(res.objectList[0]);
-      });
-    }
+    
     this.loginForm.get('organisationCode').valueChanges.subscribe(val => {
       if (val) {
         this.signUpService.organisationName = val;
       }
     })
     return true;
+  }
+
+  getOrganisationCode() {
+    this.signUpApiService.getOrganisationCode(this.route.snapshot.queryParams.orgID).subscribe(res => {
+      this.loginForm.get('organisationCode').patchValue(res.objectList[0]);
+    });
   }
  
   /**
