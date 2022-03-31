@@ -7,8 +7,8 @@ import {
     InvestmentAccountService
 } from '../../../investment/investment-account/investment-account-service';
 import {
-    ProfileIcons
-} from '../../../investment/investment-engagement-journey/recommendation/profileIcons';
+  InvestmentEngagementJourneyService
+} from '../../../investment/investment-engagement-journey/investment-engagement-journey.service';
 import {
     MANAGE_INVESTMENTS_CONSTANTS
 } from '../../../investment/manage-investments/manage-investments.constants';
@@ -34,12 +34,15 @@ export class ReviewBuyRequestModalComponent implements OnInit {
   oneTimeMonthlyInfo: string;
   @Output() submitRequest: EventEmitter<any> = new EventEmitter();
   @Input() srsDetails;
+  @Input() cpfDetails;
   portfolioCatagories: any;
+  @Output() closeAction = new EventEmitter<any>();
 
   constructor(public activeModal: NgbActiveModal,
               public readonly translate: TranslateService,
               public manageInvestmentsService: ManageInvestmentsService,
-              public investmentAccountService: InvestmentAccountService) {
+              public investmentAccountService: InvestmentAccountService,
+              public investmentEngagementJourneyService: InvestmentEngagementJourneyService) {
   }
 
   ngOnInit() {
@@ -52,7 +55,7 @@ export class ReviewBuyRequestModalComponent implements OnInit {
     this.portfolioType = this.fundDetails['portfolio']['riskProfileType'];
     if (this.fundDetails['portfolio']['riskProfileId']) {
       this.riskProfileImg =
-        ProfileIcons[this.fundDetails.portfolio.riskProfileId - 1]['icon'];
+       this.investmentEngagementJourneyService.getRiskProfileIcon(this.portfolioType, false);
     }
     this.portfolioCatagories = INVESTMENT_COMMON_CONSTANTS.PORTFOLIO_CATEGORY;
   }
@@ -67,6 +70,9 @@ export class ReviewBuyRequestModalComponent implements OnInit {
       } else {
         this.noteArray = this.translate.instant('REVIEW_BUY_REQUEST.SUFFICIENT_ONETIME_CASH_NOTE');
       }
+    }  else if (this.fundDetails.portfolio.fundingTypeValue.toUpperCase() === MANAGE_INVESTMENTS_CONSTANTS.TOPUP.FUNDING_METHODS.CPF) {
+      this.noteArray = this.translate.instant('REVIEW_BUY_REQUEST.ONETIME_CPF_NOTE');
+      this.oneTimeMonthlyInfo = this.translate.instant('REVIEW_BUY_REQUEST.INFO_CPF_ONETIME');
     } else {
       this.noteArray = this.translate.instant('REVIEW_BUY_REQUEST.ONETIME_SRS_NOTE');
       this.oneTimeMonthlyInfo = this.translate.instant('REVIEW_BUY_REQUEST.INFO_SRS_ONETIME');
@@ -78,6 +84,9 @@ export class ReviewBuyRequestModalComponent implements OnInit {
     this.oneTimeMonthlyLbl = this.translate.instant('REVIEW_BUY_REQUEST.MONTHLY_LBL');
     if (this.fundDetails.portfolio.fundingTypeValue.toUpperCase() === MANAGE_INVESTMENTS_CONSTANTS.TOPUP.FUNDING_METHODS.CASH) {
       this.noteArray = this.translate.instant('REVIEW_BUY_REQUEST.MONTHLY_CASH_NOTE');
+    } else  if (this.fundDetails.portfolio.fundingTypeValue.toUpperCase() === MANAGE_INVESTMENTS_CONSTANTS.TOPUP.FUNDING_METHODS.CPF) {
+      this.noteArray = this.translate.instant('REVIEW_BUY_REQUEST.MONTHLY_CPF_NOTE');
+      this.oneTimeMonthlyInfo = this.translate.instant('REVIEW_BUY_REQUEST.INFO_CPF_MONTHLY');
     } else {
       this.noteArray = this.translate.instant('REVIEW_BUY_REQUEST.MONTHLY_SRS_NOTE');
       this.oneTimeMonthlyInfo = this.translate.instant('REVIEW_BUY_REQUEST.INFO_SRS_MONTHLY');
@@ -87,5 +96,10 @@ export class ReviewBuyRequestModalComponent implements OnInit {
   onSubmit() {
     this.submitRequest.emit();
     this.activeModal.close();
+  }
+
+  closeIconAction() {
+    this.closeAction.emit();
+    this.activeModal.dismiss('Cross click');    
   }
 }

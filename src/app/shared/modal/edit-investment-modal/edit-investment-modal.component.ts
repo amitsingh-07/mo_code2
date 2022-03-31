@@ -1,20 +1,16 @@
 import {
-  Component, EventEmitter, HostListener, Input, OnInit, Output, ViewEncapsulation
+  Component, EventEmitter, Input, OnInit, Output, ViewEncapsulation
 } from '@angular/core';
-import { AbstractControl, FormControl, FormGroup, ValidatorFn, Validators } from '@angular/forms';
+import { AbstractControl, FormControl, FormGroup } from '@angular/forms';
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
-
-import { ConfigService } from '../../../config/config.service';
 import {
   IInvestmentCriteria
 } from '../../../investment/investment-common/investment-common-form-data';
 import {
-  InvestmentCommonService
-} from '../../../investment/investment-common/investment-common.service';
-import {
   INVESTMENT_ENGAGEMENT_JOURNEY_CONSTANTS
 } from '../../../investment/investment-engagement-journey/investment-engagement-journey.constants';
-import { Formatter } from '../../../shared/utils/formatter.util';
+import { InvestmentEngagementJourneyService } from '../../../investment/investment-engagement-journey/investment-engagement-journey.service';
+
 
 @Component({
   selector: 'app-edit-investment-modal',
@@ -31,7 +27,7 @@ export class EditInvestmentModalComponent implements OnInit {
 
   constructor(
     public activeModal: NgbActiveModal,
-    private investmentCommonService: InvestmentCommonService) {
+    private investmentEngagementJourneyService: InvestmentEngagementJourneyService) {
   }
 
   ngOnInit() {
@@ -81,5 +77,9 @@ export class EditInvestmentModalComponent implements OnInit {
       return { atleastOne: true };
     }
   }
-
+  
+  showCPFText() {
+    const portfolioSelected = this.investmentEngagementJourneyService.getSelectPortfolioType();
+    return portfolioSelected === INVESTMENT_ENGAGEMENT_JOURNEY_CONSTANTS.SELECT_POROFOLIO_TYPE.CPF_PORTFOLIO;
+  }
 }

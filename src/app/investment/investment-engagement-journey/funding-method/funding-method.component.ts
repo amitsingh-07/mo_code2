@@ -12,13 +12,13 @@ import { NavbarService } from '../../../shared/navbar/navbar.service';
 import { SignUpService } from '../../../sign-up/sign-up.service';
 import { InvestmentAccountService } from '../../investment-account/investment-account-service';
 import { InvestmentCommonService } from '../../investment-common/investment-common.service';
+import { INVESTMENT_COMMON_CONSTANTS } from '../../investment-common/investment-common.constants';
 import {
   INVESTMENT_ENGAGEMENT_JOURNEY_ROUTE_PATHS
 } from '../investment-engagement-journey-routes.constants';
 import { InvestmentEngagementJourneyService } from '../investment-engagement-journey.service';
 import { SrsTooltipComponent } from '../srs-tooltip/srs-tooltip.component';
 import { INVESTMENT_ENGAGEMENT_JOURNEY_CONSTANTS } from '../investment-engagement-journey.constants';
-import { INVESTMENT_COMMON_CONSTANTS } from '../../investment-common/investment-common.constants';
 
 @Component({
   selector: 'app-funding-method',
@@ -38,7 +38,7 @@ export class FundingMethodComponent implements OnInit {
   loaderDesc: string;
   selectedPortfolioType;
   checkFund;
-
+  
   constructor(
     public readonly translate: TranslateService,
     public authService: AuthenticationService,
@@ -100,7 +100,7 @@ export class FundingMethodComponent implements OnInit {
       const fundingMethod = fundingOptions.filter(
         (prop) => prop.id === fundingMethodId
       );
-      return fundingMethod[0].name;
+      return fundingMethod[0].name.toUpperCase();
     } else {
       return '';
     }

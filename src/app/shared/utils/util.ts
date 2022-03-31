@@ -113,4 +113,16 @@ export class Util {
             fragments: routeFragment
         };
     }
+    // myObjArray - List of object in array, objKey - key of the value( for getting unique first record )
+    public static getUniqueList(myObjArray: any, objKey: string) {
+        const result = [];
+        const map = new Map();
+        for (const item of myObjArray) {
+            if(!map.has(item[objKey])){
+                map.set(item[objKey], true);    // set any value to Map
+                result.push(item);
+            }
+        }
+        return result;
+      }
 }

@@ -2,7 +2,7 @@ import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { Router } from '@angular/router';
 import { forkJoin as observableForkJoin } from 'rxjs';
 import { TranslateService } from '@ngx-translate/core';
-import { NgbModal, NgbDropdownConfig } from '@ng-bootstrap/ng-bootstrap';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 
 import { environment } from './../../../environments/environment';
 import { SIGN_UP_CONFIG } from '../sign-up.constant';
@@ -42,7 +42,6 @@ export class ReferAFriendComponent implements OnInit {
     public modal: NgbModal,
     private translate: TranslateService,
     private signUpService: SignUpService,
-    config: NgbDropdownConfig,
     private loaderService: LoaderService
   ) {
     this.translate.use('en');
@@ -50,8 +49,6 @@ export class ReferAFriendComponent implements OnInit {
     });
     this.pageTitle = this.translate.instant('REFER_FRIEND.PAGE_TITLE_LBL');
     this.setPageTitle(this.pageTitle);
-    config.placement = 'top-center';
-    config.autoClose = true;
   }
 
   ngOnInit(): void {
@@ -80,7 +77,6 @@ export class ReferAFriendComponent implements OnInit {
     this.navbarService.setNavbarMobileVisibility(true);
     this.navbarService.setNavbarMode(6);
   }
-
 
   setPageTitle(title: string) {
     this.navbarService.setPageTitle(title);

@@ -16,6 +16,10 @@ import {
 import { INVESTMENT_ACCOUNT_ROUTE_PATHS } from '../investment-account-routes.constants';
 import { InvestmentAccountService } from '../investment-account-service';
 import { INVESTMENT_ACCOUNT_CONSTANTS } from '../investment-account.constant';
+import { INVESTMENT_COMMON_CONSTANTS } from '../../investment-common/investment-common.constants';
+import { INVESTMENT_ENGAGEMENT_JOURNEY_ROUTE_PATHS } from '../../investment-engagement-journey/investment-engagement-journey-routes.constants';
+import { LoaderService } from '../../../shared/components/loader/loader.service';
+import { InvestmentCommonService } from '../../investment-common/investment-common.service';
 
 @Component({
   selector: 'app-additional-declaration2',
@@ -38,7 +42,9 @@ export class AdditionalDeclaration2Component implements OnInit {
     private investmentAccountService: InvestmentAccountService,
     private modal: NgbModal,
     public authService: AuthenticationService,
-    public readonly translate: TranslateService
+    public readonly translate: TranslateService,
+    private loaderService: LoaderService,
+    private investmentCommonService: InvestmentCommonService
   ) {
     this.translate.use('en');
     this.translate.get('COMMON').subscribe((result: string) => {
@@ -219,7 +225,21 @@ export class AdditionalDeclaration2Component implements OnInit {
         this.investmentAccountService.setAccountCreationStatus(
           INVESTMENT_ACCOUNT_CONSTANTS.status.ddc_submitted
         );
-        this.router.navigate([INVESTMENT_ACCOUNT_ROUTE_PATHS.STATUS]);
+        const isCpfEnabled = this.investmentCommonService.getInvestmentCommonFormData().portfolioDetails.fundingTypeValue === INVESTMENT_COMMON_CONSTANTS.FUNDING_METHODS.CPF_OA;
+        if(isCpfEnabled) {
+          this.investmentCommonService.getCKAAssessmentStatus().subscribe((res) => {
+            if((res.responseMessage.responseCode === 6000)) {
+              const cpfStatus = (res.objectList && res.objectList.cKAStatusMessage) ? res.objectList.cKAStatusMessage : '';
+              if (cpfStatus  === INVESTMENT_COMMON_CONSTANTS.CKA.CKA_BE_CERTIFICATE_UPLOADED) {
+                this.updatePortfolioAccountStatus();
+              } else {
+                this.router.navigate([INVESTMENT_ACCOUNT_ROUTE_PATHS.STATUS]);
+              }
+            }
+          });
+        } else {
+          this.router.navigate([INVESTMENT_ACCOUNT_ROUTE_PATHS.STATUS]);
+        }
       },
       (err) => {
         this.investmentAccountService.showGenericErrorModal();
@@ -243,6 +263,50 @@ export class AdditionalDeclaration2Component implements OnInit {
       return { minValueCheck: true };
     }
     return null;
+  }
+
+  updatePortfolioAccountStatus() {
+    this.loaderService.showLoader({
+      title: this.translate.instant(
+        'PORTFOLIO_RECOMMENDATION.UPDATING_PORTFOLIO_STATUS_LOADER.TITLE'
+      ),
+      desc: this.translate.instant(
+        'PORTFOLIO_RECOMMENDATION.UPDATING_PORTFOLIO_STATUS_LOADER.DESCRIPTION'
+      ),
+      autoHide: false
+    });
+    const param = this.constructUpdatePortfolioAccountStatusParams();
+        
+    this.investmentCommonService.updatePortfolioStatus(param).subscribe((response) => {
+      this.loaderService.hideLoaderForced();
+      if (response.responseMessage.responseCode === 6000) {
+        this.clearData();
+        this.redirectToPortfolioInProgress();
+      } else {
+        this.investmentAccountService.showGenericErrorModal();
+      }
+    },
+      (err) => {
+        this.loaderService.hideLoaderForced();
+        this.investmentAccountService.showGenericErrorModal();
+      });
+  }
+
+  constructUpdatePortfolioAccountStatusParams() {
+    return {
+      customerPortfolioId: +this.formValues.recommendedCustomerPortfolioId,
+    };
+  }  
+
+  redirectToPortfolioInProgress() {
+    this.router.navigate([INVESTMENT_ENGAGEMENT_JOURNEY_ROUTE_PATHS.PORTFOLIO_APP_INPROGRESS_SCREEN]);
+  }
+
+  clearData() {
+    this.investmentAccountService.clearInvestmentAccountFormData();
+    this.investmentCommonService.clearJourneyData();
+    this.investmentCommonService.clearFundingDetails();
+    this.investmentCommonService.clearAccountCreationActions();
   }
 
 }
