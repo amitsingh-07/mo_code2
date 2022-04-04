@@ -59,9 +59,7 @@ export class EmailVerificationComponent implements OnInit {
    * @param code - email confirmation code
    */
   verifyEmail(verifyCode) {
-    debugger;
     this.signUpApiService.verifyEmail(verifyCode).subscribe((data) => {
-      // {email: 'test501@yopmail.com', userType: 'CORPORATE'}
       if( data.objectList[0] &&  data.objectList[0].userType){
         this.userType = data.objectList[0].userType;
       }
