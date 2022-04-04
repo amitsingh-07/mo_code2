@@ -59,7 +59,9 @@ export class EmailVerificationComponent implements OnInit {
    * @param code - email confirmation code
    */
   verifyEmail(verifyCode) {
+    debugger;
     this.signUpApiService.verifyEmail(verifyCode).subscribe((data) => {
+      // {email: 'test501@yopmail.com', userType: 'CORPORATE'}
       if( data.objectList[0] &&  data.objectList[0].userType){
         this.userType = data.objectList[0].userType;
       }
@@ -85,6 +87,8 @@ export class EmailVerificationComponent implements OnInit {
   redirectToLogin() {
     if (this.userType.toLowerCase() === appConstants.USERTYPE.FINLIT.toLowerCase()) {
       this.router.navigate([SIGN_UP_ROUTE_PATHS.FINLIT_LOGIN]);
+    } else if (this.userType.toLowerCase() === appConstants.USERTYPE.CORPORATE.toLowerCase()) { 
+      this.router.navigate([SIGN_UP_ROUTE_PATHS.CORPORATE_LOGIN]);
     } else {
       this.router.navigate([SIGN_UP_ROUTE_PATHS.LOGIN]);
     }
