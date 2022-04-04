@@ -79,7 +79,7 @@ export class ComprehensiveService {
   }
   //Get User Role for CFP True = Corporate False = Public
   isCorporateRole() {
-    return this.authService.isSignedUserWithRole(COMPREHENSIVE_CONST.ROLES.ROLE_COMPRE_LITE) || this.authService.isSignedUserWithRole(SIGN_UP_CONFIG.ROLE_CORP_FB_USER);
+    return this.authService.isSignedUserWithRole(COMPREHENSIVE_CONST.ROLES.ROLE_COMPRE_LITE);
   }
   commit() {
     if (window.sessionStorage) {
