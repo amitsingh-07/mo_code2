@@ -159,7 +159,6 @@ export class FundingAccountDetailsComponent implements OnInit {
     } else if (this.isCashAccount(fundingMethodId, this.fundingMethods) || this.isCPFAccount(fundingMethodId, this.fundingMethods)) {
       this.fundingAccountDetailsForm.removeControl('srsFundingDetails');
     }
-    this.addorRemoveAccNoValidator();
   }
 
   isCashAccount(fundingMethodId, fundingMethods) {
@@ -374,6 +373,7 @@ export class FundingAccountDetailsComponent implements OnInit {
       if (operatorBank && this.fundingAccountDetailsForm.get('srsFundingDetails')) {
         this.fundingAccountDetailsForm.controls.srsFundingDetails.get('srsOperatorBank').setValue(operatorBank);
         this.fundingAccountDetailsForm.controls.srsFundingDetails.get('srsAccountNumber').setValue(data.srsAccountNumber.conformedValue);
+        this.removeAccNoValidator();
       }
     }
   }
@@ -452,6 +452,15 @@ export class FundingAccountDetailsComponent implements OnInit {
       } else {
         accNoControl.setValidators([Validators.required]);
       }
+      this.fundingAccountDetailsForm.updateValueAndValidity();
+    }
+  }
+
+  removeAccNoValidator() {
+    if (this.fundingAccountDetailsForm.get('srsFundingDetails')) {
+      const accNoControl = this.fundingAccountDetailsForm.get('srsFundingDetails').get('srsAccountNumber');
+      accNoControl.clearValidators();
+      accNoControl.setValidators([Validators.required]);
       this.fundingAccountDetailsForm.updateValueAndValidity();
     }
   }
