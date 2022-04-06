@@ -97,7 +97,6 @@ export class FacebookLoggedUserService implements CanActivate {
       this.route.navigate([SIGN_UP_ROUTE_PATHS.DASHBOARD]);
       return false;
     }
-    this.authService.isUserTypeCorporate = true;
     return true;
   }
 }
