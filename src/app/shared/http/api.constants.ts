@@ -17,6 +17,7 @@ export let apiConstants = {
         getCaptcha: 'svc/account/account-microservice/getCaptcha',
         authenticate: 'svc/account/account-microservice/authenticate',
         authenticateWorkshop: 'svc/account/account-microservice/authenticateWorkshop',
+        authenticateCorporate: 'svc/account/account-microservice/authenticateCorporate',
         login: 'login',
         logout: ACCOUNT_API_BASE_URL + '/logout?source=$LOGOUT_BUTTON$',
         send2faOTP: ACCOUNT_API_BASE_URL + '/send2FAOTP',
@@ -64,6 +65,7 @@ export let apiConstants = {
         getSingpassAccount: ACCOUNT_API_BASE_URL + '/activate/singpass',
         getReferralCode: ACCOUNT_API_BASE_URL + '/referralcode/welcomeRewards',
         getRefereeList: ACCOUNT_API_BASE_URL + '/referralcode/getRefereeList',   
+        getCustOrgPromoCode: ACCOUNT_API_BASE_URL + '/promocode/getCustOrgPromoCode',
         customer: {
             validateUIN: ACCOUNT_API_BASE_URL + '/customer/validateUin',
         },
@@ -89,7 +91,6 @@ export let apiConstants = {
         },
         willWriting: {
             verifyPromoCode: ACCOUNT_API_BASE_URL + '/promocode/validatePromoCode',
-            getCustOrgPromoCode: ACCOUNT_API_BASE_URL + '/promocode/getCustOrgPromoCode',
             createWill: WILL_WRITING_API_BASE_URL + '/createWillProfile?handleError=true',
             getWill: WILL_WRITING_API_BASE_URL + '/getWillProfile',
             updateWill: WILL_WRITING_API_BASE_URL + '/updateWillProfile?handleError=true',
