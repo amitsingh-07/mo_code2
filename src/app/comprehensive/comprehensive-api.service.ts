@@ -8,6 +8,7 @@ import { ApiService } from '../shared/http/api.service';
 import { AuthenticationService } from '../shared/http/auth/authentication.service';
 import { BaseService } from '../shared/http/base.service';
 import { HelperService } from '../shared/http/helper.service';
+import { COMPREHENSIVE_CONST } from './comprehensive-config.constants';
 @Injectable({
     providedIn: 'root'
 })
@@ -185,4 +186,17 @@ export class ComprehensiveApiService {
             .post(apiConstants.endpoint.comprehensive.generateComprehensiveCashflow, payload)
             .pipe(catchError((error: HttpErrorResponse) => this.helperService.handleError(error)));
     }
+
+    /**
+   * 
+   * @returns Get preload promo code for corporate user(Facebook)
+   */
+    getPreloadPromocode() {        
+        const promoCode = {
+            promoCodeCat: COMPREHENSIVE_CONST.PROMO_CODE.TYPE, 
+            promoCodeSubCat: COMPREHENSIVE_CONST.ROLES.COMPREHENSIVE_ADVISOR 
+        };
+        return this.apiService.getCustOrgPromoCode(promoCode);
+    }
+
 }

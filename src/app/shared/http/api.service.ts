@@ -544,7 +544,7 @@ export class ApiService {
 
   // Get FB PromoCode
   getCustOrgPromoCode(promoCode) {
-    return this.http.post(apiConstants.endpoint.willWriting.getCustOrgPromoCode, promoCode)
+    return this.http.post(apiConstants.endpoint.getCustOrgPromoCode, promoCode)
       .pipe(
         catchError((error: HttpErrorResponse) => this.handleError(error))
       );
