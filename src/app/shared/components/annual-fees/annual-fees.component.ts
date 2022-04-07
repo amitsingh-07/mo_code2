@@ -14,6 +14,7 @@ export class AnnualFeesComponent implements OnInit, OnChanges {
   @Input('portfolioType') portfolioType;
   isInvestmentEnabled = false;
   wiseIncomeEnabled = false;
+  cpfEnabled = false;
   portfolioTypeFlag: boolean;
   feeDetailsValues;
   fundExpensiveTranslater;
@@ -28,6 +29,7 @@ export class AnnualFeesComponent implements OnInit, OnChanges {
   ngOnInit() {
     this.portfolioTypeFlag = (this.portfolioType.toUpperCase() === INVESTMENT_COMMON_CONSTANTS.WISESAVER_ASSET_ALLOCATION.TYPE);
     this.wiseIncomeEnabled =  (this.portfolioType.toLowerCase() === INVESTMENT_COMMON_CONSTANTS.PORTFOLIO_CATEGORY.WISEINCOME.toLowerCase());
+    this.cpfEnabled =  (this.portfolioType.toLowerCase() === INVESTMENT_COMMON_CONSTANTS.PORTFOLIO_CATEGORY.CPF.toLowerCase());
   }
   ngOnChanges() {
     this.feeDetailsValues = [];
@@ -38,10 +40,12 @@ export class AnnualFeesComponent implements OnInit, OnChanges {
         return this.feeDetailsValues;
       } else if (fee.feeName === this.translate.instant('PORTFOLIO_RECOMMENDATION.FUND_EXPENSIVE_RATIO')) {
         this.fundExpensiveTranslater = {
-          expensiveRatio: fee.percentage
+          expensiveRatio: fee.percentage,
+          year: INVESTMENT_COMMON_CONSTANTS.CPF_FEE_OFFER_YEAR
         };
         return this.fundExpensiveTranslater;
       }
     });
   }
 }
+

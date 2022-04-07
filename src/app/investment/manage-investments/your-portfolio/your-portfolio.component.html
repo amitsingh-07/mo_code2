@@ -42,12 +42,29 @@
                   <div class="user_portfolio_ref_code">{{'YOUR_INVESTMENT.REF_CODE' | translate}}
                     {{portfolio.referenceCode}}</div>
                   <div class="user_portfolio_lbl">{{portfolio.portfolioName}}</div>
-                  <div class="joint-account" *ngIf="portfolio.entitlements.jointAccount"><span *ngIf="portfolio.isPrimaryHolder"> {{'YOUR_PORTFOLIO.JOINT_ACCOUNT.PRIMARY_HOLDER' | translate}}</span><span *ngIf="!portfolio.isPrimaryHolder">{{'YOUR_PORTFOLIO.JOINT_ACCOUNT.SECONDARY_HOLDER' | translate}}</span> | <img src="assets/images/investment-account/joint-account.svg" class="ja-icon" />{{'YOUR_PORTFOLIO.JOINT_ACCOUNT.JOINT' | translate}} <br class="hidden-lg"> <div [ngClass]="{'text-overflow' : (((portfolio.isPrimaryHolder && portfolio.secondaryHolderName && portfolio.secondaryHolderName.length > 10) || (!portfolio.isPrimaryHolder && portfolio.primaryHolderName && portfolio.primaryHolderName.length > 10)) && !isExpand)}" (click)="fullName()" class="hidden-lg">{{'YOUR_PORTFOLIO.JOINT_ACCOUNT.ACCOUNT_WITH' | translate}} <span *ngIf="portfolio.isPrimaryHolder">{{portfolio.secondaryHolderName | titlecase}}</span><span *ngIf="!portfolio.isPrimaryHolder">{{portfolio.primaryHolderName | titlecase}}</span></div><div class="ja-web hidden-sm">{{'YOUR_PORTFOLIO.JOINT_ACCOUNT.ACCOUNT_WITH' | translate}} <span *ngIf="portfolio.isPrimaryHolder">{{portfolio.secondaryHolderName | titlecase}}</span><span *ngIf="!portfolio.isPrimaryHolder">{{portfolio.primaryHolderName | titlecase}}</span></div></div>
+                  <div class="joint-account" *ngIf="portfolio.entitlements.jointAccount"><span
+                      *ngIf="portfolio.isPrimaryHolder">
+                      {{'YOUR_PORTFOLIO.JOINT_ACCOUNT.PRIMARY_HOLDER' | translate}}</span><span
+                      *ngIf="!portfolio.isPrimaryHolder">{{'YOUR_PORTFOLIO.JOINT_ACCOUNT.SECONDARY_HOLDER' | translate}}</span>
+                    | <img src="assets/images/investment-account/joint-account.svg"
+                      class="ja-icon" />{{'YOUR_PORTFOLIO.JOINT_ACCOUNT.JOINT' | translate}} <br class="hidden-lg">
+                    <div
+                      [ngClass]="{'text-overflow' : (((portfolio.isPrimaryHolder && portfolio.secondaryHolderName && portfolio.secondaryHolderName.length > 10) || (!portfolio.isPrimaryHolder && portfolio.primaryHolderName && portfolio.primaryHolderName.length > 10)) && !isExpand)}"
+                      (click)="fullName()" class="hidden-lg">{{'YOUR_PORTFOLIO.JOINT_ACCOUNT.ACCOUNT_WITH' | translate}}
+                      <span *ngIf="portfolio.isPrimaryHolder">{{portfolio.secondaryHolderName | titlecase}}</span><span
+                        *ngIf="!portfolio.isPrimaryHolder">{{portfolio.primaryHolderName | titlecase}}</span></div>
+                    <div class="ja-web hidden-sm">{{'YOUR_PORTFOLIO.JOINT_ACCOUNT.ACCOUNT_WITH' | translate}} <span
+                        *ngIf="portfolio.isPrimaryHolder">{{portfolio.secondaryHolderName | titlecase}}</span><span
+                        *ngIf="!portfolio.isPrimaryHolder">{{portfolio.primaryHolderName | titlecase}}</span></div>
+                  </div>
                   <div class="flex-row space-between">
                     <div class="portfolio-type align-center">
                       <div class="flex align-center">
-                        <span *ngIf="portfolio?.fundingTypeValue === 'SRS'" class="portfolio-fund-type mr5">{{'YOUR_INVESTMENT.SRS' |
-                          translate}}</span>
+                        <span
+                          *ngIf="portfolio?.fundingTypeValue == fundingMethods.SRS || portfolio?.fundingTypeValue == fundingMethods.CPF_OA"
+                          [ngClass]="portfolio?.fundingTypeValue == fundingMethods.SRS ? 'portfolio-fund-type mr5' : 'portfolio-fund-type-cpf-oa mr5'">
+                          {{getPortFolioBadgeData(portfolio)}}
+                        </span>
                         <ng-container *ngIf="portfolio?.riskProfile; else nonInvestPortfolio">
                           {{'YOUR_PORTFOLIO.RISK_PROFILE_NAME' | translate: {riskProfileName: portfolio.riskProfile.type}
                           }}</ng-container>
@@ -63,14 +80,14 @@
                     </div>
                     <div class="more-menu">
                       <div class="dropdown-control">
-                        <div ngbDropdown>
+                        <div ngbDropdown placement="bottom-right">
                           <button class="btn btn-dropdown without-border" id="your_portfolio-drpdown" ngbDropdownToggle>
                             {{'YOUR_PORTFOLIO.MORE' | translate}}</button>
                           <div class="dropdown" ngbDropdownMenu aria-labelledby="courseDropdown">
                             <button class="dropdown-item"
                               [hidden]="option.value === 'CHANGE_PAYOUT_OPTION' && !isWiseIncomePortfolio"
                               [class.disabled]="(option.value === 'TOPUP' && !portfolio.entitlements.showTopup) ||(option.value === 'TRANSFER' && !portfolio.entitlements.showTransfer)|| (option.value === 'DELETE_PORTFOLIO' && !portfolio.entitlements.showDelete) ||
-                              (option.value === 'WITHDRAWAL' && (!portfolio.entitlements.showWithdrawPvToBa && !portfolio.entitlements.showWithdrawPvToCa && !portfolio.entitlements.showWithdrawCaToBa && !portfolio.entitlements.showWithdrawPvToSRS))"
+                              (option.value === 'WITHDRAWAL' && (!portfolio.entitlements.showWithdrawPvToBa && !portfolio.entitlements.showWithdrawPvToCa && !portfolio.entitlements.showWithdrawCaToBa && !portfolio.entitlements.showWithdrawPvToSRS && !portfolio.entitlements.showWithdrawPvToCPF))"
                               *ngFor="let option of moreList; let i = index;" (click)="selectMoreOption(option)"
                               id="additional_declaration_sourse-drpdown-option-{{i}}">
                               {{option.name}}
@@ -151,7 +168,8 @@
                       </div>
                       <div id="portdolio_value_lab" class="total_values_label">
                         {{'YOUR_PORTFOLIO.TOTAL_VALUE' | translate}}
-                        <span *ngIf="portfolio?.portfolioStartDate">{{'YOUR_PORTFOLIO.PORTFOLIO_START_DATE' | translate: { startDate: portfolio?.portfolioStartDate | date : "dd MMM yyyy"} }}</span>
+                        <span
+                          *ngIf="portfolio?.portfolioStartDate">{{'YOUR_PORTFOLIO.PORTFOLIO_START_DATE' | translate: { startDate: portfolio?.portfolioStartDate | date : "dd MMM yyyy"} }}</span>
                       </div>
                     </div>
                     <!--Form Content-->
@@ -181,16 +199,16 @@
                           </div>
                           <div id="your_portfolio_totalreturn_lb" class="portfolio_info_label right-col next-row"
                             for="total return">
-                            <div [ngStyle]="{cursor: isWiseIncomePortfolio ? 'none': 'pointer'}" class="return_label" [class.margin-right]="!showTimeWeightedReturns"
-                              (click)="toggleReturns()">
+                            <div [ngStyle]="{cursor: isWiseIncomePortfolio ? 'none': 'pointer'}" class="return_label"
+                              [class.margin-right]="!showTimeWeightedReturns" (click)="toggleReturns()">
                               <ng-container *ngIf="showTimeWeightedReturns; else simpleReturns">
                                 {{'YOUR_PORTFOLIO.TIME_WEIGHTED_RETURN' | translate}}
                               </ng-container>
                               <ng-template #simpleReturns>
                                 {{'YOUR_PORTFOLIO.SIMPLE_RETURN' | translate}}
                               </ng-template>
-                              <img *ngIf="!isWiseIncomePortfolio" src="assets/images/icon-chevron-up.svg" alt="" class="arrow-img"
-                                [class.upward]="!showTimeWeightedReturns" />
+                              <img *ngIf="!isWiseIncomePortfolio" src="assets/images/icon-chevron-up.svg" alt=""
+                                class="arrow-img" [class.upward]="!showTimeWeightedReturns" />
                             </div>
                             <div *ngIf="showTimeWeightedReturns; else simpleReturnsPercent"
                               id="your_portfolio_totalreturn_value" class="total_return_value"
@@ -220,14 +238,20 @@
                           </div>
                         </ng-template>
                       </div>
-                      <div *ngIf="portfolio.payoutType === wiseIncomePayoutType.FOUR_FIVE_PAYOUT || portfolio.payoutType === wiseIncomePayoutType.EIGHT_PAYOUT || portfolio.payoutType === wiseIncomePayoutType.REINVEST" class="mt20 dividend-display">
+                      <div
+                        *ngIf="portfolio.payoutType === wiseIncomePayoutType.FOUR_FIVE_PAYOUT || portfolio.payoutType === wiseIncomePayoutType.EIGHT_PAYOUT || portfolio.payoutType === wiseIncomePayoutType.REINVEST"
+                        class="mt20 dividend-display">
                         <div class="portfolio_info_label ">
                           {{'YOUR_PORTFOLIO.TOTAL_DIVIDENDS' | translate}}
                           <div class="currency_value">{{portfolio.totalDividends}}</div>
                         </div>
-                        <div class="portfolio_info_label right-col flex-div hand-cursor" (click)="goDividendPayout($event)" >
+                        <div class="portfolio_info_label right-col flex-div hand-cursor"
+                          (click)="goDividendPayout($event)">
                           <div>
-                            <span *ngIf='portfolio.payoutType !== wiseIncomePayoutType.REINVEST'>{{'YOUR_PORTFOLIO.NEXT_PAYOUT' | translate}}</span> <span *ngIf='portfolio.payoutType === wiseIncomePayoutType.REINVEST'>{{'YOUR_PORTFOLIO.REINVEST' | translate}}</span>
+                            <span
+                              *ngIf='portfolio.payoutType !== wiseIncomePayoutType.REINVEST'>{{'YOUR_PORTFOLIO.NEXT_PAYOUT' | translate}}</span>
+                            <span
+                              *ngIf='portfolio.payoutType === wiseIncomePayoutType.REINVEST'>{{'YOUR_PORTFOLIO.REINVEST' | translate}}</span>
                             <div class="currency_value">{{nextPayoutLabel}}</div>
                           </div>
                           <img src="assets/images/investment-account/forward_portfolio.svg" alt="">
@@ -261,7 +285,8 @@
                       <div id="your_portfolio_total_lb" class="total_values">$0</div>
                       <div id="your_portfolio_total_value" class="total_values_label">
                         {{'YOUR_PORTFOLIO.TOTAL_VALUE' | translate}}
-                        <span *ngIf="portfolio?.portfolioStartDate">{{'YOUR_PORTFOLIO.PORTFOLIO_START_DATE' | translate: { startDate: portfolio?.portfolioStartDate | date : "dd MMM yyyy"} }}</span>
+                        <span
+                          *ngIf="portfolio?.portfolioStartDate">{{'YOUR_PORTFOLIO.PORTFOLIO_START_DATE' | translate: { startDate: portfolio?.portfolioStartDate | date : "dd MMM yyyy"} }}</span>
                       </div>
                     </div>
                     <div class="form-group-with-bg--content" *ngIf="portfolio.showTotalReturn">
@@ -290,16 +315,16 @@
                           </div>
                           <div id="your_portfolio_totalreturn_lb" class="portfolio_info_label right-col next-row"
                             for="total return">
-                            <div [ngStyle]="{cursor: isWiseIncomePortfolio ? 'auto': 'pointer'}"  class="return_label" [class.margin-right]="!showTimeWeightedReturns"
-                              (click)="toggleReturns()">
+                            <div [ngStyle]="{cursor: isWiseIncomePortfolio ? 'auto': 'pointer'}" class="return_label"
+                              [class.margin-right]="!showTimeWeightedReturns" (click)="toggleReturns()">
                               <ng-container *ngIf="showTimeWeightedReturns; else simpleReturns">
                                 {{'YOUR_PORTFOLIO.TIME_WEIGHTED_RETURN' | translate}}
                               </ng-container>
                               <ng-template #simpleReturns>
                                 {{'YOUR_PORTFOLIO.SIMPLE_RETURN' | translate}}
                               </ng-template>
-                              <img *ngIf="!isWiseIncomePortfolio" src="assets/images/icon-chevron-up.svg" alt="" class="arrow-img"
-                                [class.upward]="!showTimeWeightedReturns" />
+                              <img *ngIf="!isWiseIncomePortfolio" src="assets/images/icon-chevron-up.svg" alt=""
+                                class="arrow-img" [class.upward]="!showTimeWeightedReturns" />
                             </div>
                             <div *ngIf="showTimeWeightedReturns; else simpleReturnsPercent"
                               id="your_portfolio_totalreturn_value" class="total_return_value"
@@ -327,14 +352,20 @@
                           </div>
                         </ng-template>
                       </div>
-                      <div *ngIf="portfolio.payoutType === wiseIncomePayoutType.FOUR_FIVE_PAYOUT || portfolio.payoutType === wiseIncomePayoutType.EIGHT_PAYOUT || portfolio.payoutType === wiseIncomePayoutType.REINVEST" class="mt20 dividend-display">
+                      <div
+                        *ngIf="portfolio.payoutType === wiseIncomePayoutType.FOUR_FIVE_PAYOUT || portfolio.payoutType === wiseIncomePayoutType.EIGHT_PAYOUT || portfolio.payoutType === wiseIncomePayoutType.REINVEST"
+                        class="mt20 dividend-display">
                         <div class="portfolio_info_label ">
                           {{'YOUR_PORTFOLIO.TOTAL_DIVIDENDS' | translate}}
                           <div class="currency_value">{{portfolio.totalDividends}}</div>
                         </div>
-                        <div class="portfolio_info_label right-col flex-div hand-cursor" (click)="goDividendPayout($event)">
+                        <div class="portfolio_info_label right-col flex-div hand-cursor"
+                          (click)="goDividendPayout($event)">
                           <div>
-                            <span *ngIf='portfolio.payoutType !== wiseIncomePayoutType.REINVEST'>{{'YOUR_PORTFOLIO.NEXT_PAYOUT' | translate}}</span> <span *ngIf='portfolio.payoutType === wiseIncomePayoutType.REINVEST'>{{'YOUR_PORTFOLIO.REINVEST' | translate}}</span>
+                            <span
+                              *ngIf='portfolio.payoutType !== wiseIncomePayoutType.REINVEST'>{{'YOUR_PORTFOLIO.NEXT_PAYOUT' | translate}}</span>
+                            <span
+                              *ngIf='portfolio.payoutType === wiseIncomePayoutType.REINVEST'>{{'YOUR_PORTFOLIO.REINVEST' | translate}}</span>
                             <div class="currency_value">{{nextPayoutLabel}}</div>
                           </div>
                           <img src="assets/images/investment-account/forward_portfolio.svg" alt="">
@@ -365,17 +396,26 @@
       </ngb-tab>
       <ngb-tab id="tab-2">
         <ng-template ngbTabTitle>
-          <div *ngIf="portfolio?.fundingTypeValue !== 'SRS'" class="pending-request">
+          <div
+            *ngIf="portfolio?.fundingTypeValue !== fundingMethods.SRS && portfolio?.fundingTypeValue !== fundingMethods.CPF_OA"
+            class="pending-request">
             <div class="your-portfolio-tab-title"
               innerHTML="{{'YOUR_PORTFOLIO.PENDING_REQUESTS_CASH_ACCOUNT' | translate}}"></div>
             <div class="circle" *ngIf="pendingBuyRequests && pendingBuyRequests.value">
               <span>{{pendingBuyRequests.value.length}}</span>
             </div>
           </div>
-          <div *ngIf="portfolio?.fundingTypeValue === 'SRS'" class="pending-request">
+          <div *ngIf="portfolio?.fundingTypeValue === fundingMethods.SRS" class="pending-request">
             <div class="your-portfolio-tab-title"
               innerHTML="{{'YOUR_PORTFOLIO.PENDING_REQUESTS_SRS_ACCOUNT' | translate}}"></div>
             <div class="circle" *ngIf="pendingBuyRequests && pendingBuyRequests.value">
+              <span>{{pendingBuyRequests.value.length}}</span>
+            </div>
+          </div>
+          <div *ngIf="portfolio?.fundingTypeValue === fundingMethods.CPF_OA" class="pending-request">
+            <div class="your-portfolio-tab-title"
+              innerHTML="{{'YOUR_PORTFOLIO.PENDING_REQUESTS_CPFOA_ACCOUNT' | translate}}"></div>
+            <div class="circle cpf" *ngIf="pendingBuyRequests && pendingBuyRequests.value">
               <span>{{pendingBuyRequests.value.length}}</span>
             </div>
           </div>
@@ -393,11 +433,9 @@
                             <span class="widthdrawal-icon">
                               <img src="assets/images/investment-account/portfolio-withdrawal.svg" />
                             </span>
-                            <span
-                              *ngIf="portfolio?.portfolioStatus !== 'REBALANCING'">{{'YOUR_PORTFOLIO.WITHDRAWALS_IN_PROGRESS'
+                            <span *ngIf="portfolio?.portfolioStatus !== 'REBALANCING'">{{'YOUR_PORTFOLIO.WITHDRAWALS_IN_PROGRESS'
                               | translate}}</span>
-                            <span
-                              *ngIf="portfolio?.portfolioStatus === 'REBALANCING'">{{'YOUR_PORTFOLIO.WITHDRAWALS_IN_QUEUE'
+                            <span *ngIf="portfolio?.portfolioStatus === 'REBALANCING'">{{'YOUR_PORTFOLIO.WITHDRAWALS_IN_QUEUE'
                               | translate}}</span>
                           </div>
                           <div><span class="downward-icon"><img src="assets/images/dropdown-icon.svg" /></span>
@@ -418,17 +456,17 @@
                           </div>
                         </div>
                         <div *ngIf="portfolio?.portfolioStatus === 'REBALANCING' && portfolioWithdrawRequests.length"
-                        class="rebalancing-info">
-                        <div class="mr15 info-icon"><img src="assets/images/investment-account/rebalance-info.svg" />
-                        </div>
-                        <div>
-                          <div>{{'YOUR_PORTFOLIO.MODAL.RE_BALANCE.TITLE' | translate}}</div>
-                          <div class="txt-grey mt5">
-                            <span>{{'YOUR_PORTFOLIO.MODAL.RE_BALANCE.DESC' | translate}}</span>
-                            {{'YOUR_PORTFOLIO.MODAL.RE_BALANCE.DESC_ONE' | translate}}
+                          class="rebalancing-info">
+                          <div class="mr15 info-icon"><img src="assets/images/investment-account/rebalance-info.svg" />
                           </div>
-                          <div class="txt-orange mt5"><a target="_blank"
-                              href="/faq-investment/#investment|1">{{'YOUR_PORTFOLIO.MODAL.RE_BALANCE.FAQ_LINK' | translate}}</a>
+                          <div>
+                            <div>{{'YOUR_PORTFOLIO.MODAL.RE_BALANCE.TITLE' | translate}}</div>
+                            <div class="txt-grey mt5">
+                              <span>{{'YOUR_PORTFOLIO.MODAL.RE_BALANCE.DESC' | translate}}</span>
+                              {{'YOUR_PORTFOLIO.MODAL.RE_BALANCE.DESC_ONE' | translate}}
+                            </div>
+                            <div class="txt-orange mt5"><a target="_blank"
+                                href="/faq-investment/#investment|1">{{'YOUR_PORTFOLIO.MODAL.RE_BALANCE.FAQ_LINK' | translate}}</a>
                             </div>
                           </div>
                         </div>
@@ -442,8 +480,7 @@
             <div class="buy-request">
               <div *ngIf="pendingBuyRequests && pendingBuyRequests.value && pendingBuyRequests.value.length"
                 class="pending-buy-rqst-lbl">
-                <span
-                  *ngIf="pendingBuyRequests.value.length > 1; else single_pending_template">{{'YOUR_PORTFOLIO.PENDING_REQUEST_INFO'
+                <span *ngIf="pendingBuyRequests.value.length > 1; else single_pending_template">{{'YOUR_PORTFOLIO.PENDING_REQUEST_INFO'
                   | translate: { count: pendingBuyRequests.value.length} }}</span>
                 <ng-template #single_pending_template>
                   <span>{{'YOUR_PORTFOLIO.PENDING_REQUEST_INFO_SINGLE' | translate: { count:
@@ -471,8 +508,7 @@
                       <div class="processing-time"> {{'YOUR_PORTFOLIO.FUND_BY' | translate}}
                         {{awaitingRequest.expiryDate | date: "dd MMM y"}}</div>
                       <div class="flex-col-12 flex-row">
-                        <div class="flex align-center"><span
-                            class="fund-state"></span><span>{{awaitingRequest.createdDate | date : "dd MMM,
+                        <div class="flex align-center"><span class="fund-state"></span><span>{{awaitingRequest.createdDate | date : "dd MMM,
                             hh:mma"}}</span>
                         </div>
                         <div class="fund-amt">
@@ -530,7 +566,8 @@
               </div>
               <div class="form-group-with-bg">
                 <div class="form-group-with-bg--header">
-                  <div class="invest-type" [ngClass]="{'no-border': pendingMonthlyBuyRequests && pendingMonthlyBuyRequests.processingRequests.length}">
+                  <div class="invest-type"
+                    [ngClass]="{'no-border': pendingMonthlyBuyRequests && pendingMonthlyBuyRequests.processingRequests.length}">
                     <span class="invest-type-icon">
                       <img src="assets/images/investment-account/monthly-icon.svg" />
                     </span>
@@ -544,7 +581,8 @@
                     *ngIf="pendingMonthlyBuyRequests && pendingMonthlyBuyRequests.awaitingFundRequests.length">
                     <div class="flex-col"
                       *ngFor="let awaitingRequest of pendingMonthlyBuyRequests.awaitingFundRequests; let i = index;">
-                      <div class="processing-time">{{'YOUR_PORTFOLIO.MONTHLY_FUND_TIME' | translate : { month:awaitingRequest.fundBy} }}</div>
+                      <div class="processing-time">
+                        {{'YOUR_PORTFOLIO.MONTHLY_FUND_TIME' | translate : { month:awaitingRequest.fundBy} }}</div>
                       <div class="flex-col-12 flex-row justify-right">
                         <div class="fund-amt">
                           <span>{{awaitingRequest.amount | formatCurrency}}</span><span class="forward-icon"
@@ -599,7 +637,7 @@
               <!-- buy request -->
             </div>
             <!-- cash a/c -->
-            <div *ngIf="portfolio?.fundingTypeValue !== 'SRS'" class="cash-account">
+            <div *ngIf="portfolio?.fundingTypeValue !== 'SRS' && portfolio?.fundingTypeValue !== fundingMethods.CPF_OA" class="cash-account">
               <div class="cash-account-lbl">{{'YOUR_PORTFOLIO.CASH_ACCOUNT' | translate}}</div>
               <div class="form-group-with-bg">
                 <div class="form-group-with-bg--header">
@@ -647,6 +685,25 @@
                 </div>
               </div>
             </div>
+
+            <!-- cpf-oa a/c -->
+            <div *ngIf="portfolio?.fundingTypeValue === fundingMethods.CPF_OA" class="srs-account">
+              <div class="srs-account-lbl">{{'YOUR_PORTFOLIO.CPFOA_ACCOUNT' | translate}}</div>
+              <div class="form-group-with-bg">
+                <!--Form Content-->
+                <div class="form-group-with-bg--content">
+                  <div class="srs-account-content">
+                    <div class="srs-detail-lbl">{{'YOUR_PORTFOLIO.CPFIA_BANK_OPERATOR.BANK_OPERATOR' | translate}}
+                      <div>{{cpfiaAccDetail?.cpfiaOperator}}</div>
+                    </div>
+                    <div class="srs-detail-lbl mt15">{{'YOUR_PORTFOLIO.CPFIA_BANK_OPERATOR.ACCOUNT_NUMBER' | translate}}
+                      <div>{{cpfiaAccDetail?.cpfiaAccountNumber?.conformedValue}}</div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
           </div>
         </ng-template>
       </ngb-tab>

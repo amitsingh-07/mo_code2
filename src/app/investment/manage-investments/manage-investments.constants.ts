@@ -1,3 +1,5 @@
+import { RegexConstants } from "./../../shared/utils/api.regex.constants";
+
 export let MANAGE_INVESTMENTS_CONSTANTS = {
   ALLOW_MANAGE_INVESTMENTS_GUARD: [
     'PORTFOLIO_PURCHASED',
@@ -18,9 +20,24 @@ export let MANAGE_INVESTMENTS_CONSTANTS = {
       OCBC: 'OCBC',
       UOB: 'UOB'
     },
+    CPF_OPERATOR: {
+      DBS: {
+        name: 'DBS',
+        regExp: RegexConstants.cpfOperatorMask.DBS
+      },
+      OCBC: {
+        name: 'OCBC',
+        regExp: RegexConstants.cpfOperatorMask.OCBC
+      },
+      UOB: {
+        name: 'UOB',
+        regExp: RegexConstants.cpfOperatorMask.UOB
+      }
+    },
     FUNDING_METHODS: {
       CASH: 'CASH',
-      SRS: 'SRS'
+      SRS: 'SRS',
+      CPF: 'CPF OA'
     },
     TOPUP_TYPES: {
       ONE_TIME: {
@@ -39,15 +56,19 @@ export let MANAGE_INVESTMENTS_CONSTANTS = {
       { id: 1, name: 'Portfolio to Cash Account', value: 'PORTFOLIO_TO_CASH_ACCOUNT' },
       { id: 2, name: 'Portfolio to Bank Account', value: 'PORTFOLIO_TO_BANK_ACCOUNT' },
       { id: 3, name: 'Cash Account to Bank Account', value: 'CASH_TO_BANK_ACCOUNT' },
-      { id: 4, name: 'Portfolio to SRS Account', value: 'PORTFOLIO_TO_SRS_ACCOUNT' }
+      { id: 4, name: 'Portfolio to SRS Account', value: 'PORTFOLIO_TO_SRS_ACCOUNT' },
+      { id: 5, name: 'Portfolio to CPFIA', value: 'PORTFOLIO_TO_CPF_ACCOUNT' }
     ],
     PORTFOLIO_TO_CASH_TYPE_ID: 1,
     PORTFOLIO_TO_BANK_TYPE_ID: 2,
     CASH_TO_BANK_TYPE_ID: 3,
     PORTFOLIO_TO_SRS_TYPE_ID: 4,
+    PORTFOLIO_TO_CPF_TYPE_ID: 5,
     DEFAULT_WITHDRAW_MODE: 'BANK',
     MIN_WITHDRAW_AMOUNT: 50,
-    MIN_BALANCE_AMOUNT: 50
+    CPF_MIN_WITHDRAW_AMOUNT: 200,
+    MIN_BALANCE_AMOUNT: 50,
+    CPF_MIN_BALANCE_AMOUNT: 200
   },
   FUNDING_INSTRUCTIONS: {
     ONETIME: 'ONETIME',
@@ -86,7 +107,8 @@ export let MANAGE_INVESTMENTS_CONSTANTS = {
     PORTFOLIO_TO_CASH_ACCOUNT: 'PORTFOLIO_TO_CASH_ACCOUNT',
     PORTFOLIO_TO_BANK_ACCOUNT: 'PORTFOLIO_TO_BANK_ACCOUNT',
     CASH_TO_BANK_ACCOUNT: 'CASH_TO_BANK_ACCOUNT',
-    PORTFOLIO_TO_SRS_ACCOUNT: 'PORTFOLIO_TO_SRS_ACCOUNT'
+    PORTFOLIO_TO_SRS_ACCOUNT: 'PORTFOLIO_TO_SRS_ACCOUNT',
+    PORTFOLIO_TO_CPF_ACCOUNT: "PORTFOLIO_TO_CPF_ACCOUNT"   // key to be mapped from BackEnd constant value from TransactionDetailDto paymentMode
   },
   WISEINCOME_PAYOUT_TYPE: {
     FOUR_FIVE_PAYOUT: '4.5% p.a. income payout',
@@ -112,5 +134,6 @@ export let MANAGE_INVESTMENTS_CONSTANTS = {
 export let PORTFOLIO_WITHDRAWAL_KEYS = [
   MANAGE_INVESTMENTS_CONSTANTS.WITHDRAW_PAYMENT_MODE_KEYS.PORTFOLIO_TO_CASH_ACCOUNT,
   MANAGE_INVESTMENTS_CONSTANTS.WITHDRAW_PAYMENT_MODE_KEYS.PORTFOLIO_TO_BANK_ACCOUNT,
-  MANAGE_INVESTMENTS_CONSTANTS.WITHDRAW_PAYMENT_MODE_KEYS.PORTFOLIO_TO_SRS_ACCOUNT
+  MANAGE_INVESTMENTS_CONSTANTS.WITHDRAW_PAYMENT_MODE_KEYS.PORTFOLIO_TO_SRS_ACCOUNT,
+  MANAGE_INVESTMENTS_CONSTANTS.WITHDRAW_PAYMENT_MODE_KEYS.PORTFOLIO_TO_CPF_ACCOUNT
 ];

@@ -45,7 +45,7 @@ app-edit-profile {
       margin-bottom: 10px;
     }
     .password-button {
-      background-color: $teal-color;
+      background-color: $robins-egg-blue-color;
       padding: 5px 15px;
       border-radius: 35px;
       color: $white-color;
@@ -81,6 +81,10 @@ app-edit-profile {
       }
       &.cursor_pointer {
         cursor: pointer;
+        &.disabled {
+          cursor: not-allowed;
+          pointer-events: none;
+        }
       }
     }
     .dots {
@@ -219,6 +223,12 @@ app-edit-profile {
     letter-spacing: -0.3px;
     color: $form-block-title-color;
   }
+  .form-group-sub-heading {
+    font-family: $muli-italic;
+    font-size: 13px;
+    letter-spacing: -0.24px;
+    color: $profile-page-card-sub-heading;
+  }
   .dropdown-img {
     width: 16px;
     height: 10px;
@@ -320,7 +330,8 @@ app-edit-profile {
     }
   }
   .bank_details,
-  .srs_details {
+  .srs_details,
+  .cpf_details {
     .dots {
       .flex-row {
         padding: 16px 0px 0;

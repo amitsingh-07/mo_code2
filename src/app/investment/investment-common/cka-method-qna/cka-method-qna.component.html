@@ -1,0 +1,69 @@
+<div class="container-fluid max-width--1024 investment">
+  <div class="row">
+    <div class="col-lg-7 col-md-6 hidden-sm-md">
+      <h2>{{'CKA.QNA.PAGE_TITLE' | translate}}</h2>
+      <div class="text-lyt">{{methodMetaData?.pageDesc}}</div>
+      <div class="banner-image">
+        <img src="assets/images/investment-account/cka-banner.svg" />
+      </div>
+    </div>
+    <div class="col-lg-5 col-md-6">
+      <div class="form-group-single-column flex-col">
+        <div class="tiles">
+          <div class="flex-row tile">
+            <div class="flex-col-11">
+              <div class="title">{{methodMetaData?.title}}</div>
+              <div>{{methodMetaData?.desc}}</div>
+            </div>
+            <div class="flex-col-1">
+              <div class="icon-block">
+                <img src="assets/images/circle-tick-dark.svg">
+              </div>
+            </div>
+          </div>
+          <div class="tile-content">
+            <form [formGroup]="methodForm">
+              <div *ngIf="methodForm.get('question1')">
+                <div class="qna-institution-title-text pb20">{{methodMetaData?.subTitle1}}</div>
+                <div class="method-qna-dropdown">
+                  <div class="dropdown-control"
+                    [ngClass]="{'inline-error': methodForm.get('question1').enabled && !methodForm.get('question1').valid && !methodForm.get('question1').pristine}">
+                    <app-dropdown-with-search controlName="question1" [optionList]="dropdownList1" displayKey="name"
+                      textCase="default" placement="bottom-right"
+                      placeholderText="{{ methodMetaData?.dropdown1placeholder}}"
+                      (itemSelected)="selectedQuestion1($event, 'question1')">
+                    </app-dropdown-with-search>
+                  </div>
+                </div>
+              </div>
+              <div *ngIf="methodForm.get('question2')">
+                <div class="qna-institution-title-text pb20">{{methodMetaData?.subTitle2}}</div>
+                <div class="method-qna-dropdown">
+                  <div class="dropdown-control"
+                    [ngClass]="{'inline-error': methodForm.get('question2').enabled && !methodForm.get('question2').valid && !methodForm.get('question2').pristine}">
+                    <app-dropdown-with-search controlName="question2" [optionList]="dropdownList2" displayKey="name"
+                      textCase="default" placement="bottom-right"
+                      placeholderText="{{ methodMetaData?.dropdown2placeholder}}"
+                      (itemSelected)="selectedQuestion2($event, 'question2')">
+                    </app-dropdown-with-search>
+                  </div>
+                </div>
+              </div>
+              <div class="pb20" *ngIf="methodForm.get('others')">
+                <div class="form-control"
+                  [ngClass]="{'inline-error': methodForm.get('others').enabled && !methodForm.get('others').valid && !methodForm.get('others').pristine}">
+                  <div name="nricOrFin">
+                    <input id="last-four-characters-of-nric" class="input-control" type="text" name="nricOrFin"
+                      formControlName="others" placeholder="{{methodMetaData?.placeholder}}">
+                  </div>
+                </div>
+              </div>
+            </form>
+          </div>
+          <button type="button" [disabled]="!methodForm.valid" (click)="submitQNAForm()"
+            class="btn btn-primary btn__footer--fixed width100">{{'CKA.QNA.SUBMIT' | translate}}</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

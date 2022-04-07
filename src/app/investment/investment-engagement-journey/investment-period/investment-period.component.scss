@@ -16,6 +16,9 @@ app-investment-period {
 
     padding-right: 20px !important;
     padding-left: 23px !important;
+    @include iphone6{
+      padding-left: 20px !important;
+    }
 
   }
 
@@ -53,6 +56,8 @@ app-investment-period {
       font-family: $muli-regular;
       color: $black-color;
       letter-spacing: -0.16px;
+      line-height: normal;
+      padding-top: 2px;
     }
 
     .desc {
@@ -79,12 +84,13 @@ app-investment-period {
 
       li {
         font-size: 13px;
-        line-height: 3.08;
+        line-height: normal;
         letter-spacing: -0.13px;
         color: $investment-time-horizon-desc-clr;
         display: flex;
         justify-content: space-between;
-        align-items: center;
+        align-items: flex-start;
+        padding-bottom: 20px;
         &.title {
           color: $investment-time-horizon-clr;
           border: 1px solid $investment-time-horizon-desc-title-brdr-clr;

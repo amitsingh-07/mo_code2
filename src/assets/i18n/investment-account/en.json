@@ -15,11 +15,11 @@
     "PROCEED": "Proceed with",
     "PROCEED_WITHOUT": "Proceed without Singpass",
     "APPLY_USING_MYINFO": "Apply Using Myinfo",
-    "AUTOFILL_QUICKLY": "<b class=\"text-bold\">Applicable to Singapore Citizens and Singapore Permanent Citizens (PRs) only.</b><br> Autofill your information quickly. <br>Supporting documents are not required.",
+    "AUTOFILL_QUICKLY": "<b class=\"text-bold\">Applicable to Singapore Citizens and Singapore Permanent Residents (PRs) only.</b><br> Autofill your information quickly. <br>Supporting documents are not required.",
     "APPLY_WITHOUT_MYINFO": "Apply Without Myinfo",
     "FILL_MANUALLY": "<b class=\"text-bold\">Applicable to foreigners and all.</b> Fill in your information manually. Supporting documents are required. Takes at least 1 working day to get your account approved. ",
     "MANUALLY": "Fill Form Manually",
-    "ESTIMATE_TIME": "Estimate about 10 mins",
+    "ESTIMATE_TIME": "Estimate about 5 mins",
     "INVESTMENT_OPENING": "Investment Account Opening",
     "START_INVESTING": "Next, set up your investment account to start investing!"
   },
@@ -386,5 +386,11 @@
     "TITLE": "We do not accept applications if you reside or have tax residencies in the following countries.",
     "DESC": "Afghanistan, Albania, Algeria, Angola, Anguilla, Antigua and Barbuda, Argentina, Armenia, Azerbaijan, Bahamas, Bangladesh, Belarus, Belize, Benin, Bolivia, Bosnia-Herzegovina, Botswana, Brazil, Burkina Faso, Burundi, Cameroon, Cambodia, Cape Verde, Central African Republic, Chad, Columbia, Comoros, Congo (Brazzaville), Congo (The Democratic Republic), Cook Islands, Costa Rica, Cote D’Ivoire, Cuba, Curacao, Cyprus, Djibouti, Dominican Republic, Ecuador, Egypt, El Salvador, Equatorial Guinea, Eritrea, Ethiopia, Gabon, Gambia, Ghana, Guatemala, Guinea, Guinea-Bissau, Guyana, Haiti, Honduras, Iceland, India, Iran (Islamic Republic of), Iraq, Jamaica, Kazakhstan, Kenya, Kosovo, Kyrgyzstan, Lao People’s Democratic Republic, Laos, Latvia, Lebanon, Liberia, Lesotho, Libya, Liechtenstein, Macau, Madagascar, Malawi, Maldives, Mali, Marshall Islands, Mauritania, Mexico, Moldova, Mongolia, Monaco, Morocco, Mozambique, Myanmar, Namibia, Nauru, Nepal, Nicaragua, Niger, Nigeria, Niue, North Korea, Pakistan, Palau, Panama, Papua New Guinea, Paraguay, Peru, Philippines, Russian Federation, Saudi Arabia, Senegal, Serbia, Seychelles, Sierra Leone, Somalia, South Sudan, Sri Lanka, St Kitts & Nevis, Sudan, Swaziland, Syria, Tajikistan, Tanzania, The Southern Philippines, The Sulu/Sulawesi, Seas Littoral, The Trans-Sahara, Timor-Leste, Togo, Trinidad and Tobago, Tunisia, Turkey, Turkmenistan, Uganda, Ukraine, United Arab Emirates, Uzbekistan, Vanuatu, Venezuela, Vietnam, West Bank (Palestinian Territory, Occupied), Yemen, Zambia, Zimbabwe.",
     "GOT_IT": "Got It"
+  },
+  "PORTFOLIO_RECOMMENDATION": {
+    "UPDATING_PORTFOLIO_STATUS_LOADER": {
+      "TITLE": "Updating portfolio status.",
+      "DESCRIPTION": "Please wait while we set things up for you."
+    }
   }
 }

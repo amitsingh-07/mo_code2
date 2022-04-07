@@ -31,8 +31,11 @@
     "WISESAVER_VALUE_DATE": "5-day Moving Average as at",
     "EXPENSIVE_RATIO": " Fees include fund level fee of {{expensiveRatio}} p.a. which is incorporated into the NAV.<span> <a target='_blank' href=\"/pricing/\">View our fees table.</a></span>",
     "EXPENSIVE_RATIO_WISE_INCOME": " This excludes fund level fees (such as annual management fees of {{expensiveRatio}} p.a.) which are factored into the price of the fund.<span> <a target='_blank' href=\"/pricing/\">View our fees table.</a></span>",
+    "EXPENSIVE_RATIO_CPF": " Enjoy 0% advisory fees until end of {{year}}. Fees do not include fund level fees of {{expensiveRatio}} p.a. which is incorporated in the NAV. <span> <a target='_blank' href=\"/pricing/\">View our fees table.</a></span>",
     "FUND_EXPENSIVE_RATIO": "Fund Expense Ratio",
     "TOTAL_FEE": "Total Fee",
+    "LGI_SUB_LBL":"LGI Infinity Global Stock Index Fund",
+    "UOB_SUB_LBL":"UOB United SGD Fund",
     "JA_ACCEPTANCE_TITLE": "Joint Account Portfolio",
     "JOINT_ACCOUNT_LBL": "Joint Account Portfolio",
     "JA_SUB_LBL": "JA Investment Plan for My Family and Future",
@@ -42,7 +45,9 @@
     "EDIT_INVESTMENT": {
       "TITLE": "Review My Inputs",
       "ONE_TIME_INVESTMENT": "One-time Amount",
-      "MONTHLY_INVESTMENT": "Monthly Amount"
+      "MONTHLY_INVESTMENT": "Monthly Amount",
+      "CPF_DESC": "The first $20,000 of your CPF OA cannot be invested. You should set aside a buffer of $30 of your CPF investible amount for agent bank fees. ($2 to $2.50 excl gst for each buy or sell). It is recommended to opt for one-time or higher monthly amount to optimize your investments.",
+      "MIN": "Min."
     },
     "MODAL": {
       "PROJECTED_RETURNS": {
@@ -112,6 +117,14 @@
     },
     "CREATING_ADDITIONAL_ACCOUNT_LOADER": {
       "TITLE": "Creating portfolio.",
+      "DESCRIPTION": "Please wait while we set things up for you."
+    },
+    "UPDATING_PORTFOLIO_STATUS_LOADER": {
+      "TITLE": "Updating portfolio status.",
+      "DESCRIPTION": "Please wait while we set things up for you."
+    },
+    "CHECKING_CUSTOMER_CKA_LOADER": {
+      "TITLE": "Checking customer CKA status.",
       "DESCRIPTION": "Please wait while we set things up for you."
     },
     "WISE_INCOME_PORTFOLIO": {
@@ -288,6 +301,16 @@
     "SHOW_MODAL": {
       "TITLE": "Reassess Risk Profile?",
       "DESC": "You have just changed how you want to fund this {{userGivenPortfolioName}} to using {{userFundingMethod}}. Do you want to reassess your risk profile?"
+    },
+    "CPFIA_TITLE": "CPF Investment Account (CPFIA) Details",
+    "CPF_OPERATOR": "CPFIA Operator",
+    "CPF_ACC_NO": "CPFIA  Number ",
+    "CPF_NOTE": "You MUST ensure sufficient fund in your CPF Ordinary Account. Amount will be deducted immediately and invest within 2-3 working days. ",
+    "CPF_CORRECT_ACC_NO_TEXT": "Please ensure you have entered the correct account information. ",
+    "CPF_TOOLTIP": {
+      "TITLE": "<span>CPF Investment Account (CPFIA) Details</span>",
+      "DESC": "<span>To check your CPF Investment Account number, you can login to my CPF Online Services or mobile app, or your agent bank. </br> </br> Visit our website for more <span><a class=\"hyperlink_color\" target='_blank' href='https://www.moneyowl.com.sg/faq-investment/#investment|0'><u>Frequently Asked Questions</u></a></span> on investing with MoneyOwl. </br></br> For assistance on updating your CPF Investment Account (CPFIA) information, please email <span><a class=\"hyperlink_color\" target='_blank' href=\"mailto:enquiries@moneyowl.com.sg\"><u class=\"cpf-fund-mail-color\">enquiries@moneyowl.com.sg</u></a></span>.</span>",
+      "BTN": "Okay, Got It!"
     }
   },
   "COMMON_LOADER": {
@@ -384,5 +407,79 @@
       "TITLE": "Loading.",
       "MESSAGE": "Please wait."
     }
+  },
+  "CKA": {
+    "QNA": {
+      "PAGE_TITLE": "Customer Knowledge Assessment",
+      "SUBMIT": "Submit",
+      "EDUCATIONAL": {
+        "TITLE": "Education Qualification",
+        "PAGE_DESC": "What finance-related education qualification(s) have you obtained?",
+        "DESC": "I have a finance-related diploma or higher qualification.",
+        "SUB_TITLE_1": "Finance-related education qualification(s) obtained:",
+        "SUB_TITLE_2": "Education Institution(s) in which the above qualification(s) were obtained:",
+        "PLACEHOLDER": "Specify Education Institution",
+        "DROPDOWN1_PLACEHOLDER": "Education Qualification",
+        "DROPDOWN2_PLACEHOLDER": "Education Institution"
+      },
+      "PROFESSIONAL": {
+        "TITLE": "Professional Qualification",
+        "PAGE_DESC": "What finance-related professional qualification(s) have you obtained?",
+        "DESC": "I have a finance-related professional qualification.",
+        "SUB_TITLE_1": "Finance-related professional qualification(s) obtained:",
+        "SUB_TITLE_2": "Education Institution(s) in which the above qualification(s) were obtained:",
+        "PLACEHOLDER": "Specify Education Institution",
+        "DROPDOWN1_PLACEHOLDER": "Professional Qualification",
+        "DROPDOWN2_PLACEHOLDER": "Education Institution"
+      },
+      "WORK_EXPERIENCE": {
+        "TITLE": "Work Experience",
+        "PAGE_DESC": "Do you have relevant working experience in the following areas?",
+        "DESC": "I have a minimum of 3 continuous years of relevant working experience in finance over the past 10 years.",
+        "SUB_TITLE_1": "I have relevant experience in the following area:",
+        "SUB_TITLE_2": "Name of Employer:",
+        "PLACEHOLDER": "Specify Name of Employer",
+        "DROPDOWN1_PLACEHOLDER": "Work Experience",
+        "DROPDOWN2_PLACEHOLDER": "Name of Employer"
+      },
+      "INVESTMENT_EXPERIENCE": {
+        "TITLE": "Investment Experience",
+        "PAGE_DESC": "Through which Financial Institution(s) were these transactions carried out?",
+        "DESC": "I have traded 6 or more transactions in Collective Investment Schemes (CIS) or Investment-linked Policies (ILPs) in the past 3 years.",
+        "SUB_TITLE_1": "Name of the Financial Institution(s) where these transactions were carried out:",
+        "PLACEHOLDER": "Specify Financial Institution",
+        "DROPDOWN1_PLACEHOLDER": "Name of Financial Institution"
+      }
+    }
+  },
+  "CPF_PREREQUISITES": {
+    "TITLE": "Investment Pre-requisites",
+    "DESC": "Before you invest using your CPF-OA monies, it is important to assess that you have the knowledge in investing in Unlisted Specified Investment Products (SIPs). You should have also set up your CPF Investment Account.",
+    "STEP_TEXT": "Please complete the 2 steps below:",
+    "STEP1_TEXT": "Step 1: Complete Customer Knowledge Assessment (CKA)",
+    "STEP2_TEXT": "Step 2: Fill in CPF Investment Account details",
+    "START_NOW_BTN": "Start Now",
+    "CKA_PASSED": "CKA Passed",
+    "CERT_UPLOADED": "CKA Certificate Uploaded",
+    "ESTIMATED_TIME_TEXT": "Estimated 2 mins",
+    "CPFIA_OPERATOR_TITLE": "CPFIA Operator",
+    "CPFIA_OPERATOR_PLACEHOLDER": "Select CPFIA Operator",
+    "CPFIA_NUMBER_TITLE": "CPFIA Number ",
+    "CPFIA_NUMBER_PLACEHOLDER": "Enter Account No.",
+    "INFO_TEXT": "Please ensure you have entered the correct account information. ",
+    "CONTINUE": "Continue",
+    "TOOLTIP": {
+      "TITLE": "CPF Ordinary Account (CPF OA)",
+      "PARA1": "<p>Invest your CPF Ordinary Account savings for potentially higher returns. </br></br> Before you can invest using your CPF OA, you must have your CPF Investment Account (CPFIA) ready. </p>",
+      "QUEST1": "<p><b>How to start investing your CPF OA with MoneyOwl</b></p><p>Simply select CPF OA as your source of funds when you create your investment portfolio. We will then deduct the funds from your CPF OA to fund your investment. Be sure that your CPF OA has sufficient amount for the deduction to go through smoothly!</p> ",
+      "QUEST2": "<p><b>How do I set up a CPF Investment Account?</b></p><p>To invest your CPF OA with MoneyOwl, you would first need to open a CPF Investment Account (CPFIA) with any of the 3 local banks (DBS, OCBC and UOB) online or at bank branches. </p><p>If you are investing your CPF OA for the first time, you will be asked to take the CPFIS Self-Awareness Questionnaire (SAQ) found on CPF website. </p>",
+      "QUEST3": "<p><b>How to find out more?</b></p><p>When investing your CPF OA, please be mindful that while it is highly probable that you can get better returns than the 2.5% p.a., it is not guaranteed and the returns are subject to fluctuations. <span><a class=\"hyperlink_color\" target='_blank' href='https://www.moneyowl.com.sg/faq-investment/#investment|0'><u>To learn more about investing your CPF, read on.</u></a></span> </p><p>Visit our website for more <span><a class=\"hyperlink_color\" target='_blank' href='https://www.moneyowl.com.sg/faq-investment/#investment|3/'><u>Frequently Asked Questions</u></a></span> on investing with MoneyOwl.</p><p>For assistance on updating your CPF Investment Account (CPFIA) information, please email <a class=\"hyperlink_color\" target='_blank' href=\"mailto:enquiries@moneyowl.com.sg\"><u>enquiries@moneyowl.com.sg</u></a>.</p>",
+      "OKAY_BTN": "Okay, Got It!"
+    }
+  },
+  "OPEN_CKA": {
+    "TITLE": "Before you proceed…",
+    "DESC": "<p>We will assess if you have the knowledge or investment experience in understanding the risks and features of unlisted Specified Investment Products (‘SIPs’).</p>If you have undergone and passed the ABS e-Learning (Module 5), you may upload the certificate. Otherwise, you will be asked to go through the e-learning.",
+    "BTN-TEXT": "Continue"
   }
 }

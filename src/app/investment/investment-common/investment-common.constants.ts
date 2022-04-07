@@ -19,7 +19,9 @@ export let INVESTMENT_COMMON_CONSTANTS = {
   ],
   FUNDING_METHODS: {
     CASH: 'CASH',
-    SRS: 'SRS'
+    SRS: 'SRS',
+    CPF_OA: 'CPF OA',
+    CPFOA: 'CPFOA'
   },
   SRS_OPERATOR: {
     DBS: 'DBS',
@@ -30,7 +32,8 @@ export let INVESTMENT_COMMON_CONSTANTS = {
     ALL: 'All',
     INVESTMENT: 'Investment',
     WISEINCOME: 'WiseIncome',
-    WISESAVER: 'WiseSaver'
+    WISESAVER: 'WiseSaver',
+    CPF: 'CPF'
   },
   PORTFOLIO_CATEGORY_TYPE: {
     INVESTMENT: 'INVESTMENT',
@@ -56,7 +59,8 @@ export let INVESTMENT_COMMON_CONSTANTS = {
   },
   ALLOCATION_DETAILS: {
     MATURITY: 'maturity',
-    CREDIT_RATING: 'credit rating'
+    CREDIT_RATING: 'credit rating',
+    CREDIT_RATING_ALLOCATION: 'credit rating allocation'
   },
   WISE_INCOME_PAYOUT: {
     GROW: '0%',
@@ -85,6 +89,8 @@ export let INVESTMENT_COMMON_CONSTANTS = {
     SUBMISSION: 'SUBMISSION',
     DELETE: 'DELETE'
   },
+  CPF_PENDING_STATUS: 'CKA_PENDING',
+  CPF_FEE_OFFER_YEAR: '2022',
   PORTFOLIO: [
     {
       KEY: "WiseIncome R - 4.5 percent (Payout) - Cash",
@@ -105,5 +111,47 @@ export let INVESTMENT_COMMON_CONSTANTS = {
   ],
   PROMO_CODE: {
     NOT_APPLIED: "Not Applied"
+  },
+  CKA: {
+    OTHERS: 'OTHERS',
+    CKA_PASSED_STATUS: 'CKA_PASSED',
+    CKA_FAILED_STATUS: 'CKA_FAILED',
+    CKA_REJECTED_STATUS: 'CKA_REJECTED',
+    CKA_CERTIFICATE_UPLOADED: 'UPLOADED',
+    CKA_BE_CERTIFICATE_UPLOADED: 'CKA_CERTIFICATE_UPLOAD',
+    METHODS: [
+      "educational",
+      "professional",
+      "work-experience",
+      "investment-experience"
+    ],
+    DROPDOWN_GROUPS: {
+      EDUCATIONAL: {
+        QUALIFICATION: "ckaEducationQualification",
+        INSTITUE: "ckaEducationInstitute"
+      },
+      PROFESSIONAL: {
+        QUALIFICATION: "ckaFinancialQualification",
+        INSTITUTE: "ckaFinancialEducation"
+      },
+      INV_EPERIENCE: {
+        LISTED: "ckaInvestmentListed",
+        UNLISTED: "ckaInvestmentUnlisted"
+      },
+      WORK_EXPERIENCE: {
+        WORK_EXPERIENCE: "ckaWorkExperience",
+        EMPLOYER: "ckaWork"
+      }
+    }
+  },
+  CPF_BANK_KEYS: { /* ACCOUNT NUMBER LENGTH FOR LIST OF BANK CODES */
+    DBS: 'DBS',
+    OCBC: 'OCBC',
+    UOB: 'UOB',
+  },
+  ASSET_TYPE:{
+    EQUITIES: 'Equities',
+    FIXED_INCOME: 'Fixed Income',
+    BONDS: 'Bonds'
   }
 };

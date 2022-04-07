@@ -121,8 +121,7 @@ app-your-portfolio {
               }
               .dropdown-menu{
                 &.show {
-                  left: auto !important;
-                  right: 0 !important;
+                  width: 220px;
                   overflow: auto;
                   height: auto;
                   max-height: 315px;
@@ -258,6 +257,12 @@ app-your-portfolio {
             @include allmobiles{
               top: 14px;
               right: -5px;
+            }
+            &.cpf{
+              right: -12px;
+              @include allmobiles{
+                right: -5px;
+              }
             }
           }
         }
