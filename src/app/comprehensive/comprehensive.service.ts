@@ -81,6 +81,15 @@ export class ComprehensiveService {
   isCorporateRole() {
     return this.authService.isSignedUserWithRole(COMPREHENSIVE_CONST.ROLES.ROLE_COMPRE_LITE);
   }
+
+  /**
+   * 
+   * @returns Check corporate user(Organisation)
+   */
+   getPrefillPromoCodeAccess() {
+    return this.authService.isSignedUserWithRole(SIGN_UP_CONFIG.ROLE_CORP_FB_USER);
+  }
+
   commit() {
     if (window.sessionStorage) {
       const comprehensiveVersionType = appConstants.SESSION_KEY.COMPREHENSIVE;
