@@ -1,5 +1,5 @@
 import { Location } from '@angular/common';
-import { Component, OnDestroy, OnInit, ViewChild } from '@angular/core';
+import { Component, OnDestroy, OnInit, ViewChild, ViewEncapsulation } from '@angular/core';
 import { FormArray, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { TranslateService } from '@ngx-translate/core';
@@ -19,7 +19,8 @@ import { WillWritingService } from '../will-writing.service';
 @Component({
   selector: 'app-my-executor-trustee',
   templateUrl: './my-executor-trustee.component.html',
-  styleUrls: ['./my-executor-trustee.component.scss']
+  styleUrls: ['./my-executor-trustee.component.scss'],
+  encapsulation: ViewEncapsulation.None
 })
 export class MyExecutorTrusteeComponent implements OnInit, OnDestroy {
   @ViewChild(PageTitleComponent) pageTitleComponent: PageTitleComponent;

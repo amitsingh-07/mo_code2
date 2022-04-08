@@ -1,6 +1,6 @@
 @import '../../../variables';
 @import '../../../mixins';
-
+app-my-estate-distribution{
 .container-fluid {
     padding: 50px 60px 65px;
     @include allmobiles{
@@ -219,36 +219,38 @@ input[type='checkbox']+label {
     }
 }
 
-.mobile-header {
-         background-color: #00a7a7;
-         position: relative;
-         h6 {
-            @include allmobiles {
-                justify-content: center;
-                width: 300px;
-                text-align: center;
-                margin-bottom: 23px;
-                font-size: 16px;
-            } 
-        }
-        .step2 {
-            font-family: $muli-light;
-            font-size: 18px;
-            font-weight: 300;
-            letter-spacing: -0.2px;
-            color: #ffffff;
-          }
-    @include allmobiles {
-        display: flex;
-        flex-direction: column-reverse;
-        align-items: center;
-        margin-top: -10px;
-        padding-bottom: 80px;
-        color: #333846 !important;
-        background-color: #fff;
-    }  
+.header-container{
+    padding: 0px !important;
+    .mobile-header {
+            background-color: #00a7a7;
+            position: relative;
+            h6 {
+                @include allmobiles {
+                    justify-content: center;
+                    width: 300px;
+                    text-align: center;
+                    margin-bottom: 23px;
+                    font-size: 16px;
+                } 
+            }
+            .step2 {
+                font-family: $muli-light;
+                font-size: 18px;
+                font-weight: 300;
+                letter-spacing: -0.2px;
+                color: #ffffff;
+            }
+        @include allmobiles {
+            display: flex;
+            flex-direction: column-reverse;
+            align-items: center;
+            margin-top: -10px;
+            padding-bottom: 80px;
+            color: #333846 !important;
+            background-color: #fff;
+        }  
+    }
 }
-
 .add-beneficiaries-container {
     background-color: #fff;
     color:#2d8289;
@@ -271,10 +273,6 @@ input[type='checkbox']+label {
         color: #fff !important;
         font-family: $muli-regular !important;
     }
-}
-
-.header-container{
-    padding: 0px !important;
 }
 
 .content-title {
@@ -446,4 +444,5 @@ input[type='checkbox']+label {
 }
 .input-label-black {
     word-break: break-word;
+}
 }

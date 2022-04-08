@@ -1,7 +1,7 @@
 import { Subscription } from 'rxjs';
 
 import { Location } from '@angular/common';
-import { Component, OnDestroy, OnInit, ViewChild } from '@angular/core';
+import { Component, OnDestroy, OnInit, ViewChild, ViewEncapsulation  } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
@@ -22,7 +22,8 @@ import { WillWritingService } from '../will-writing.service';
 @Component({
   selector: 'app-about-me',
   templateUrl: './about-me.component.html',
-  styleUrls: ['./about-me.component.scss']
+  styleUrls: ['./about-me.component.scss'],
+  encapsulation: ViewEncapsulation.None
 })
 export class AboutMeComponent implements OnInit, OnDestroy {
   @ViewChild(PageTitleComponent) pageTitleComponent: PageTitleComponent;

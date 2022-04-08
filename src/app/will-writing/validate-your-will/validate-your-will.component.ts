@@ -1,4 +1,4 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit, ViewEncapsulation } from '@angular/core';
 import { Router } from '@angular/router';
 import { TranslateService } from '@ngx-translate/core';
 
@@ -11,7 +11,8 @@ import { WillWritingApiService } from '../will-writing.api.service';
 @Component({
   selector: 'app-validate-your-will',
   templateUrl: './validate-your-will.component.html',
-  styleUrls: ['./validate-your-will.component.scss']
+  styleUrls: ['./validate-your-will.component.scss'],
+  encapsulation: ViewEncapsulation.None
 })
 export class ValidateYourWillComponent implements OnInit, OnDestroy {
   pageTitle: string;

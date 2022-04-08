@@ -1,6 +1,6 @@
 @import '../../../variables';
 @import '../../../mixins';
-
+app-introduction{
 .container-fluid {
   background-color: $white-color;
   padding: 87px 105px 65px;
@@ -219,4 +219,5 @@ li::before {
   padding: 0 ;
   vertical-align: middle;
   margin-right: 15px;
+}
 }
