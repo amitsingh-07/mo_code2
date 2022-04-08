@@ -1,5 +1,5 @@
 import { Location } from '@angular/common';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { Router } from '@angular/router';
 import { TranslateService } from '@ngx-translate/core';
 import { FooterService } from '../../shared/footer/footer.service';
@@ -9,7 +9,8 @@ import { WILL_WRITING_ROUTE_PATHS } from '../will-writing-routes.constants';
 @Component({
   selector: 'app-appoint-your-executor-trustee',
   templateUrl: './appoint-your-executor-trustee.component.html',
-  styleUrls: ['./appoint-your-executor-trustee.component.scss']
+  styleUrls: ['./appoint-your-executor-trustee.component.scss'],
+  encapsulation: ViewEncapsulation.None
 })
 export class AppointYourExecutorTrusteeComponent implements OnInit {
 
