@@ -19,11 +19,11 @@
           <!-- <span class="navbar__back-btn--mobile hidden-lg" (click)="goBack()"></span>-->
         </li>
         <!-- Logo -->
-        <ng-container *ngIf="!authService.isUserTypeCorporate">
+        <ng-container *ngIf="!authService.isUserTypeCorporate && !authService.isPreLoginCorporateUser">
           <li class="navbar__logo--primary hidden-sm-md" (click)="goToExternal('/')"></li>
           <li class="navbar__logo--secondary hidden-lg" (click)="goToExternal('/')"></li> 
         </ng-container>
-        <ng-container *ngIf="authService.isUserTypeCorporate">
+        <ng-container *ngIf="authService.isUserTypeCorporate || authService.isPreLoginCorporateUser">
           <li class="navbar__corp--logo--primary" (click)="goToExternal('/')"></li>
         </ng-container>
         <li *ngIf="showLabel" class="navbar__separator hidden-sm-md">
