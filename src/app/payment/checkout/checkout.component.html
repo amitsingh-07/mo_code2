@@ -67,11 +67,11 @@
       <div class="default-txt" *ngIf="!cfpPromoCode" (click)="goToPromoCode($event);">{{'CHECKOUT.ENTER_PROMO_LBL' |
         translate}}</div>
       <div class="flex-row space-between" *ngIf="cfpPromoCode && appliedPromoCode">
-        <div class="valid-promo">
+        <div class="valid-promo" [ngClass]="authService.isUserTypeCorporate ? 'valid-promo-corporate' : 'valid-promo-normal'">
           <span class="valid-logo"><img src="assets/images/check-icon-green.svg" alt="" /></span>
           <span class="pl10 promo-display">{{ appliedPromoCode }}</span>
         </div>
-        <div class="remove-btn" (click)="removeAppliedPromoCode();">{{'CHECKOUT.REMOVE_BTN_LBL' | translate}}</div>
+        <div class="remove-btn" *ngIf="!authService.isUserTypeCorporate" (click)="removeAppliedPromoCode();">{{'CHECKOUT.REMOVE_BTN_LBL' | translate}}</div>
       </div>
     </div>
     <div class="terms">{{'CHECKOUT.AGREE' | translate}}<span (click)="openTNC($event)">{{'CHECKOUT.TERMS' |

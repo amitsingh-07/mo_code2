@@ -486,7 +486,8 @@ export class VerifyMobileComponent implements OnInit, OnDestroy {
     if (window.sessionStorage && sessionStorage.getItem('email')) {
       userEmail = sessionStorage.getItem('email');
     }
-    this.authService.doValidate2faLogin(otp, userEmail, journeyType, enqId).subscribe((data: any) => {
+    const isCorporateUserType = this.signUpService.getUserType() === appConstants.USERTYPE.CORPORATE;
+    this.authService.doValidate2faLogin(otp, userEmail, journeyType, enqId, null, isCorporateUserType).subscribe((data: any) => {
       if (data.responseMessage.responseCode >= 6000) {
         this.mobileNumberVerified = true;
         this.mobileNumberVerifiedMessage = this.loading['verified2fa'];

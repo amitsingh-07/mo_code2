@@ -84,10 +84,11 @@ export class AuthenticationService {
   }
 
   private doAuthenticate(authenticateBody: any, handleError?: string, finlitEnabled?: boolean) {
+    const organisationEnabled = authenticateBody.organisationCode || null;
     if (!handleError) {
       handleError = '';
     }
-    const authenticateUrl = (finlitEnabled) ? apiConstants.endpoint.authenticateWorkshop : apiConstants.endpoint.authenticate;
+    const authenticateUrl = (finlitEnabled ? apiConstants.endpoint.authenticateWorkshop : (organisationEnabled ? apiConstants.endpoint.authenticateCorporate : apiConstants.endpoint.authenticate));
     return this.httpClient.post<IServerResponse>(`${this.apiBaseUrl}/${authenticateUrl}${handleError}`, authenticateBody)
       .pipe(map((response) => {
         // login successful if there's a jwt token in the response
@@ -397,7 +398,7 @@ export class AuthenticationService {
         return response;
       }));
   }
-  public doValidate2faLogin(otp: string, userEmail: any, journeyType: any, enquiryId: any, handleError?: string) {
+  public doValidate2faLogin(otp: string, userEmail: any, journeyType: any, enquiryId: any, handleError?: string, isCorporateUserType = false) {
     if (!handleError) {
       handleError = '?handleError=true';
     }
@@ -410,6 +411,9 @@ export class AuthenticationService {
     };
     if(this.getAccessCode()) {
       validate2faBody['accessCode'] = this.getAccessCode();
+    }
+    if (isCorporateUserType) {
+      validate2faBody['profileType'] = appConstants.USERTYPE.CORPORATE;
     }
     const authenticateUrl = apiConstants.endpoint.authenticate2faOTPLogin;
     return this.httpClient.post<IServerResponse>(`${this.apiBaseUrl}/${authenticateUrl}${handleError}`, validate2faBody)
