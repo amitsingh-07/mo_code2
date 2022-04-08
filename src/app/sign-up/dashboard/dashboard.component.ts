@@ -46,6 +46,7 @@ import { environment } from './../../../environments/environment';
 import { INVESTMENT_COMMON_CONSTANTS } from '../../investment/investment-common/investment-common.constants';
 import { ComprehensiveService } from '../../comprehensive/comprehensive.service';
 import { Util } from '../../shared/utils/util';
+import { appConstants } from 'src/app/app.constants';
 
 @Component({
   selector: 'app-dashboard',
@@ -514,10 +515,14 @@ export class DashboardComponent implements OnInit {
         // Check if track_status is available or false
         if (!status.objectList || !status.objectList['trackStatus']) {
           setTimeout(() => {
+            // displays new updates modal only during first time login
             this.openNewUpdatesModal();
           });
           this.signUpApiService.setPopupStatus(customerId, 'CPF_POP').subscribe((result) => {
           }, (error) => console.log('ERROR: ', error));
+        } else if (appConstants.SHOW_NEWUPDATES_MODAL) {
+          // displays new updates modal whenever user lands on dashboard page, even on subsequent logins
+          this.openNewUpdatesModal();
         }
       }, (error) => console.log('ERROR: ', error));
     }

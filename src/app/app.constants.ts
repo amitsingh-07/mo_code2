@@ -40,5 +40,6 @@ export let appConstants = {
    LOGOUT_BUTTON :'LOGOUT_BUTTON',
    FINLIT_ACCESS_CODE: 'finlit-access-code',
    SINGAPORE_COUNTRY_CODE: '+65',
-   OTP_WAITING_SECONDS: 30
+   OTP_WAITING_SECONDS: 30,
+   SHOW_NEWUPDATES_MODAL : true // flag set to true to display new updates modal irrespective of first time login
 };
