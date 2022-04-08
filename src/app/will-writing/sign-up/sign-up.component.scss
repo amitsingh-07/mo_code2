@@ -1,7 +1,7 @@
 @import "../../../_variables.scss";
 @import "../../../_mixins.scss";
 
-
+app-sign-up{
 .yes-login-but{
     border-radius: 6px;
     background-color: #ffffff;
@@ -82,4 +82,5 @@
 }
 .button {
     margin: 0 auto;
+}
 }

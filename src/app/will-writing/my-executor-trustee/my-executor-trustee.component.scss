@@ -1,6 +1,6 @@
 @import '../../../variables';
 @import '../../../mixins';
-
+app-my-executor-trustee{
 .container-fluid {
     padding: 50px 60px 65px;
     font-family: $muli-semi-bold;
@@ -140,18 +140,6 @@
     }
 }
 
-.help-icon {
-    background-image: url("../../../assets/images/will-writing/help-icon.svg");
-    width: 20px;
-    height: 20px;
-    cursor: pointer;
-    background-repeat: no-repeat;
-    position: absolute;
-    right: -7px;
-    bottom: 15px;
-    background-color: #fff;
-    border-radius: 50%;
-}
 .edit-icon {
     cursor: pointer;
 }
@@ -304,4 +292,5 @@
 
 .input-label-black {
     word-break: break-word;
+}
 }
