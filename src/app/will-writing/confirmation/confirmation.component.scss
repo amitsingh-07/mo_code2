@@ -1,6 +1,7 @@
 @import '../../../variables';
 @import '../../../mixins';
 
+app-confirmation{
 .container-fluid {
     background-color: #fff;
     padding: 50px 60px 50px 60px;
@@ -371,4 +372,5 @@
 i {
     font-style: italic !important;
     font-family: $muli !important;
+}
 }

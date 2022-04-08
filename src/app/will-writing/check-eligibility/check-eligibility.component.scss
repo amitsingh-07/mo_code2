@@ -4,21 +4,6 @@ app-check-eligibility {
 .label{
     color:#2d8289;
 }
-.with-help-icon{
-    display:flex;
-    align-items: flex-end;
-    position: relative;
-    .help-icon {
-        background-image: url("../../../assets/images/help-icon.png");
-        width: 40px;
-        height: 20px;
-        cursor: pointer;
-        background-repeat: no-repeat;
-        position: absolute;
-        right: 0;
-        bottom: 13px;
-    }
-}
 .warning-message-container {
     margin-top: 24px;
     @include allmobiles {
@@ -157,6 +142,14 @@ app-check-eligibility {
         .help-icon {
             bottom: 30px;
             right: 22px;
+            background-image: url("../../../assets/images/help-icon.png");
+            width: 40px;
+            height: 20px;
+            cursor: pointer;
+            background-repeat: no-repeat;
+            position: absolute;
+            right: 0;
+            bottom: 13px;
         }
     }
 }
@@ -255,9 +248,12 @@ app-check-eligibility {
         margin-bottom: 18px;
     }
     .help-icon{
+        background-image: url("../../../assets/images/help-icon.png");
         right: unset;
         margin-left: 10px;
         top: 30px;
+        bottom: 0;
+        position: absolute;
     }
 }
 
@@ -312,5 +308,12 @@ app-check-eligibility {
         max-width: 77px !important;
         min-width: 77px !important;
     }
+}
+.help-icon {
+    background-image: url("../../../assets/images/help-icon.png");
+    width: 40px;
+    background-repeat: no-repeat;
+    right: 0;
+    bottom: 40px;
 }
 }

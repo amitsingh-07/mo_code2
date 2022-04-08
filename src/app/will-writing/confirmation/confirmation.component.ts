@@ -1,4 +1,4 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit, ViewEncapsulation } from '@angular/core';
 import { Router } from '@angular/router';
 import { TranslateService } from '@ngx-translate/core';
 
@@ -16,7 +16,8 @@ import {AuthenticationService} from '../../shared/http/auth/authentication.servi
 @Component({
   selector: 'app-confirmation',
   templateUrl: './confirmation.component.html',
-  styleUrls: ['./confirmation.component.scss']
+  styleUrls: ['./confirmation.component.scss'],
+  encapsulation: ViewEncapsulation.None
 })
 export class ConfirmationComponent implements OnInit, OnDestroy {
   pageTitle: string;

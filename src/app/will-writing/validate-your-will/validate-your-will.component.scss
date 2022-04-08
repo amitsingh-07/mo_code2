@@ -1,5 +1,6 @@
 @import '../../../variables';
 @import '../../../mixins';
+app-validate-your-will{
 .intro-block {
     .container-fluid {
         padding-top: 30px !important;
@@ -228,4 +229,5 @@
             }
         }
     }
+}
 }

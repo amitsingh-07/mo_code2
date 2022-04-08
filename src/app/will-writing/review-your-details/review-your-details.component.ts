@@ -1,5 +1,5 @@
 import { Location } from '@angular/common';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewEncapsulation} from '@angular/core';
 import { Router } from '@angular/router';
 import { TranslateService } from '@ngx-translate/core';
 import { FooterService } from '../../shared/footer/footer.service';
@@ -9,7 +9,8 @@ import { WILL_WRITING_ROUTE_PATHS } from '../will-writing-routes.constants';
 @Component({
   selector: 'app-review-your-details',
   templateUrl: './review-your-details.component.html',
-  styleUrls: ['./review-your-details.component.scss']
+  styleUrls: ['./review-your-details.component.scss'],
+  encapsulation: ViewEncapsulation.None
 })
 export class ReviewYourDetailsComponent implements OnInit {
 
