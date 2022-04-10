@@ -122,6 +122,7 @@ export class LoginComponent implements OnInit, AfterViewInit, OnDestroy {
       this.appService.clearJourneys();
       this.appService.clearPromoCode();
     }
+    this.appService.setCorporateDetails({organisationEnabled: this.organisationEnabled, uuid: this.route.snapshot.queryParams.orgID || null});
     this.signUpService.removeUserType();
     if(this.authService.isSignedUserWithRole(SIGN_UP_CONFIG.ROLE_2FA)) {
       this.authService.clearTokenID();
