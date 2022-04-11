@@ -46,7 +46,7 @@ import { environment } from './../../../environments/environment';
 import { INVESTMENT_COMMON_CONSTANTS } from '../../investment/investment-common/investment-common.constants';
 import { ComprehensiveService } from '../../comprehensive/comprehensive.service';
 import { Util } from '../../shared/utils/util';
-import { appConstants } from 'src/app/app.constants';
+import { appConstants } from '../../app.constants';
 
 @Component({
   selector: 'app-dashboard',
