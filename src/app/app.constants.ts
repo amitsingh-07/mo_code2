@@ -41,5 +41,6 @@ export let appConstants = {
    FINLIT_ACCESS_CODE: 'finlit-access-code',
    SINGAPORE_COUNTRY_CODE: '+65',
    OTP_WAITING_SECONDS: 30,
-   SHOW_NEWUPDATES_MODAL : true // flag set to true to display new updates modal irrespective of first time login
+   SHOW_NEWUPDATES_MODAL_START_DATE : '2022-04-12T00:00:00.000+08:00',
+   SHOW_NEWUPDATES_MODAL_END_DATE : '2022-04-19T11:59:59.000+08:00'
 };

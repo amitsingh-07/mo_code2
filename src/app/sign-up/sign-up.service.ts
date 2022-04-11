@@ -34,6 +34,7 @@ const CAPTACHA_COUNT = 'captcha_count';
 const EMAIL = 'email';
 const FINLITENABLED = 'finlitenabled';
 const USER_MOBILE_COUNTRY_CODE = 'user_mobile_country_code';
+const NEW_UPDATES_MODAL_SHOWN = 'new_updates_modal_shown';
 
 @Injectable({
   providedIn: 'root'
@@ -336,6 +337,15 @@ export class SignUpService {
       email: this.signUpFormData.email,
       userType: this.signUpFormData.userType
     };
+  }
+
+  getModalShownStatus() {
+    return sessionStorage.getItem(NEW_UPDATES_MODAL_SHOWN);
+  }
+  setModalShownStatus(status) {
+    if (window.sessionStorage) {
+      sessionStorage.setItem(NEW_UPDATES_MODAL_SHOWN, status);
+    }
   }
 
   setEditContact(editContact, mobileUpdate, emailUpdate) {

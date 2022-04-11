@@ -94,6 +94,8 @@ export class DashboardComponent implements OnInit {
   getReferralInfo: any;
   cardCategory: { investment: any; insurance: any; comprehensiveInfo: any; };
   showFixedToastMessage: boolean;
+  showModalStartDate = appConstants.SHOW_NEWUPDATES_MODAL_START_DATE;
+  showModalEndDate = appConstants.SHOW_NEWUPDATES_MODAL_END_DATE;
 
   constructor(
     private router: Router,
@@ -508,6 +510,17 @@ export class DashboardComponent implements OnInit {
     ref.componentInstance.startBtnTxt = this.translate.instant('DASHBOARD.SRS_JOINT_ACCOUNT.START_BTN');
     ref.componentInstance.endBtnTxt = this.translate.instant('DASHBOARD.SRS_JOINT_ACCOUNT.END_BTN');
   }
+
+  showModalCheck(start, end) {
+    const startDateTime = new Date(start);
+    const endDateTime = new Date(end);
+
+    if (Date.now() >= startDateTime.valueOf() && Date.now() <= endDateTime.valueOf()) {
+      return true;
+    } else {
+      return false;
+    }
+  }
   // Check if first time login and show new updates modal
   checkFirstTimeLoginStatus(customerId) {
     if (customerId) {
@@ -517,12 +530,14 @@ export class DashboardComponent implements OnInit {
           setTimeout(() => {
             // displays new updates modal only during first time login
             this.openNewUpdatesModal();
+            this.signUpService.setModalShownStatus(true);
           });
           this.signUpApiService.setPopupStatus(customerId, 'CPF_POP').subscribe((result) => {
           }, (error) => console.log('ERROR: ', error));
-        } else if (appConstants.SHOW_NEWUPDATES_MODAL) {
+        } else if (this.showModalCheck(this.showModalStartDate,this.showModalEndDate) && !this.signUpService.getModalShownStatus()) {
           // displays new updates modal whenever user lands on dashboard page, even on subsequent logins
           this.openNewUpdatesModal();
+          this.signUpService.setModalShownStatus(true);
         }
       }, (error) => console.log('ERROR: ', error));
     }
