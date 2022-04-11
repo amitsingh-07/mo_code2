@@ -49,7 +49,8 @@ export class TwoFactorAuthGuardService implements CanActivate {
 export class TwoFactorScreenGuardService implements CanActivate {
   error2fa: any;
   constructor(private route: Router, private authService: AuthenticationService,
-  private signUpService: SignUpService
+  private signUpService: SignUpService,
+  private appService: AppService
   ) {}
 
   canActivate(): boolean {
@@ -57,6 +58,9 @@ export class TwoFactorScreenGuardService implements CanActivate {
       if (!this.authService.get2faVerifyAllowed()) {
         if (this.signUpService.getUserType() === appConstants.USERTYPE.FINLIT) {
           this.route.navigate([SIGN_UP_ROUTE_PATHS.FINLIT_LOGIN]);
+          return false;
+        } else if (this.signUpService.getUserType() === appConstants.USERTYPE.CORPORATE) {
+          this.route.navigate([SIGN_UP_ROUTE_PATHS.CORPORATE_LOGIN], { queryParams: {orgID: this.appService.getCorporateDetails().uuid}});
           return false;
         } else {
           this.route.navigate([SIGN_UP_ROUTE_PATHS.LOGIN]);

@@ -519,7 +519,7 @@ export class NavbarComponent implements OnInit, AfterViewInit {
     this.selectedPlansService.clearData();
     if (isRedirect) {
       if (userType ===  appConstants.USERTYPE.CORPORATE) {
-        this.router.navigate([SIGN_UP_ROUTE_PATHS.CORPORATE_LOGIN]);
+        this.router.navigate([SIGN_UP_ROUTE_PATHS.CORPORATE_LOGIN], { queryParams: {orgID: this.appService.getCorporateDetails().uuid}});
       } else if (this.showHome) {
         this.router.navigate([appConstants.homePageUrl]);
       } else {
