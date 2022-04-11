@@ -306,7 +306,7 @@
     "CPFIA_TITLE": "CPF Investment Account (CPFIA) Details",
     "CPF_OPERATOR": "CPFIA Operator",
     "CPF_ACC_NO": "CPFIA  Number ",
-    "CPF_NOTE": "You MUST ensure sufficient fund in your CPF Ordinary Account. Amount will be deducted immediately and invest within 2-3 working days. ",
+    "CPF_NOTE": "You MUST ensure sufficient fund in your CPF Ordinary Account. Amount will be deducted immediately and invested within 2-3 working days. ",
     "CPF_CORRECT_ACC_NO_TEXT": "Please ensure you have entered the correct account information. ",
     "CPF_TOOLTIP": {
       "TITLE": "<span>CPF Investment Account (CPFIA) Details</span>",
