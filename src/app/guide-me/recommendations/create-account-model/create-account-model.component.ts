@@ -11,6 +11,7 @@ import { RegexConstants } from '../../../shared/utils/api.regex.constants';
 import { AuthenticationService } from '../../../shared/http/auth/authentication.service';
 import { GuideMeApiService } from '../../guide-me.api.service';
 import { SelectedPlansService } from '../../../shared/Services/selected-plans.service';
+import { AppService } from '../../../app.service';
 
 @Component({
   selector: 'app-create-account-model',
@@ -37,7 +38,8 @@ export class CreateAccountModelComponent implements OnInit, AfterViewInit {
     private changeDetectorRef: ChangeDetectorRef,
     public authService: AuthenticationService,
     public guideMeApiService: GuideMeApiService,
-    public selectedPlansService: SelectedPlansService) {
+    public selectedPlansService: SelectedPlansService,
+    private appService: AppService) {
     this.router.events.subscribe((event) => {
       if (event instanceof NavigationEnd) {
         this.activeModal.dismiss();
@@ -67,10 +69,18 @@ export class CreateAccountModelComponent implements OnInit, AfterViewInit {
     this.activeModal.close();
     if (page === 'signup') {
       this.signUpService.clearData();
-      this.router.navigate([SIGN_UP_ROUTE_PATHS.CREATE_ACCOUNT_MY_INFO]);
+      if (this.appService.getCorporateDetails().organisationEnabled) {
+        this.router.navigate([SIGN_UP_ROUTE_PATHS.CORPORATE_CREATE_ACCOUNT_MY_INFO]);
+      } else {
+        this.router.navigate([SIGN_UP_ROUTE_PATHS.CREATE_ACCOUNT_MY_INFO]);
+      }
     }
     if (page === 'login') {
-      this.router.navigate([SIGN_UP_ROUTE_PATHS.LOGIN]);
+      if (this.appService.getCorporateDetails().organisationEnabled) {
+        this.router.navigate([SIGN_UP_ROUTE_PATHS.CORPORATE_LOGIN], { queryParams: {orgID: this.appService.getCorporateDetails().uuid}});
+      } else {
+        this.router.navigate([SIGN_UP_ROUTE_PATHS.LOGIN]);
+      }
     }
   }
 

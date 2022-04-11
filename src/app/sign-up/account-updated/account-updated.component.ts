@@ -6,6 +6,7 @@ import { SIGN_UP_ROUTE_PATHS } from './../sign-up.routes.constants';
 import { NavbarService } from './../../shared/navbar/navbar.service';
 import { Router } from '@angular/router';
 import { AuthenticationService } from 'src/app/shared/http/auth/authentication.service';
+import { AppService } from './../../app.service';
 
 @Component({
   selector: 'app-account-updated',
@@ -22,7 +23,8 @@ export class AccountUpdatedComponent implements OnInit {
     private router: Router,
     private signUpService: SignUpService,
     private navbarService: NavbarService,
-    private authService: AuthenticationService
+    private authService: AuthenticationService,
+    private appService: AppService
   ) {
     this.translate.use('en');
   }
@@ -40,7 +42,7 @@ export class AccountUpdatedComponent implements OnInit {
 
   redirectToLogin() {
     if (this.authService.isUserTypeCorporate) {
-      this.router.navigate([SIGN_UP_ROUTE_PATHS.CORPORATE_LOGIN]);
+      this.router.navigate([SIGN_UP_ROUTE_PATHS.CORPORATE_LOGIN], { queryParams: {orgID: this.appService.getCorporateDetails().uuid}});
     } else {
       this.router.navigate([SIGN_UP_ROUTE_PATHS.LOGIN]);
     }

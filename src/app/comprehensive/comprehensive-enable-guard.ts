@@ -30,8 +30,12 @@ export class ComprehensiveEnableGuard implements CanActivate {
           this.signUpService.clearRedirectUrl();
           return true;
         } else if (!this.authService.isSignedUser()) {
-          this.signUpService.setRedirectUrl(state.url);
-          this.router.navigate([SIGN_UP_ROUTE_PATHS.LOGIN]);
+          this.signUpService.setRedirectUrl(state.url); 
+          if (this.appService.getCorporateDetails().organisationEnabled) {
+            this.router.navigate([SIGN_UP_ROUTE_PATHS.CORPORATE_LOGIN], { queryParams: {orgID: this.appService.getCorporateDetails().uuid}});
+          } else {
+            this.router.navigate([SIGN_UP_ROUTE_PATHS.LOGIN]);
+          }
           return false;
         }
         return true;
