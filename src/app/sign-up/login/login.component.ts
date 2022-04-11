@@ -162,6 +162,7 @@ export class LoginComponent implements OnInit, AfterViewInit, OnDestroy {
         });
       }
     }
+    this.signUpService.setModalShownStatus('');
   }
 
   ngAfterViewInit() {
