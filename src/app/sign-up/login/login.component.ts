@@ -170,6 +170,7 @@ export class LoginComponent implements OnInit, AfterViewInit, OnDestroy {
     } else if (this.organisationEnabled && this.route.snapshot.queryParams.orgID) {
         this.getOrganisationCode();      
     }
+    this.signUpService.setModalShownStatus('');
   }
 
   ngAfterViewInit() {
