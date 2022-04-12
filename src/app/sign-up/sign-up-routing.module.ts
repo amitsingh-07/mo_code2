@@ -237,13 +237,13 @@ const routes: Routes = [
     path: SIGN_UP_ROUTES.CREATE_ACCOUNT + '/:referralCode',
     component: CreateAccountComponent,
     canActivate: [LoggedUserGuard]
-  },   
+  },
   {
     path: SIGN_UP_ROUTES.FINLIT_CREATE_ACCOUNT_MY_INFO,
     component: CreateAccountMyinfoComponent,
     canActivate: [FinlitLoggedUserGuard],
     data: [{ finlitEnabled: SIGN_UP_CONFIG.LOGIN.FINLIT_LOGIN }]
-  }, 
+  },
   {
     path: SIGN_UP_ROUTES.CORPORATE_CREATE_ACCOUNT_MY_INFO,
     component: CreateAccountMyinfoComponent,
@@ -262,7 +262,7 @@ const routes: Routes = [
     canActivate: [AuthGuard]
   },
   {
-    path: SIGN_UP_ROUTES.REFER_REDIRECT +'/:term',
+    path: SIGN_UP_ROUTES.REFER_REDIRECT + '/:term',
     component: ReferalRedirectingPartComponent,
     canActivate: [AuthGuard]
   },
