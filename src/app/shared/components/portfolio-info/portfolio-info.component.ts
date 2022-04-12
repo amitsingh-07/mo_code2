@@ -19,6 +19,7 @@ export class PortfolioInfoComponent implements OnInit, OnChanges {
   portfolioProjectionSubText;
   wisaSaverValueText;
   isWiseSaverPortfolio: boolean;
+  isCpfPortfolio: boolean;
 
 
   constructor(private formatCurrencyPipe: FormatCurrencyPipe) { }
@@ -26,6 +27,7 @@ export class PortfolioInfoComponent implements OnInit, OnChanges {
   ngOnInit() {
     this.updateProjectionSubText();
     this.isWiseSaverPortfolio = (this.portfolio.portfolioType.toUpperCase() === INVESTMENT_COMMON_CONSTANTS.PORTFOLIO_CATEGORY_TYPE.WISESAVER);
+    this.isCpfPortfolio = (this.portfolio.portfolioType.toUpperCase() === INVESTMENT_COMMON_CONSTANTS.PORTFOLIO_CATEGORY_TYPE.CPF);
     this.updateWiseSaverValue();
   }
 

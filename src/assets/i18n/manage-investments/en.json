@@ -423,8 +423,8 @@
     "EXPENSIVE_RATIO_CPF": " Enjoy 0% advisory fees until end of {{year}}. Fees do not include fund level fees of {{expensiveRatio}} p.a. which is incorporated in the NAV. <span> <a target='_blank' href=\"/pricing/\">View our fees table.</a></span>",
     "FUND_EXPENSIVE_RATIO": "Fund Expense Ratio",
     "TOTAL_FEE": "Total Fee",
-    "LGI_SUB_LBL":"LGI Infinity Global Stock Index Fund",
-    "UOB_SUB_LBL":"UOB United SGD Fund",
+    "LGI_SUB_LBL":"Infinity Global Stock Index Fund",
+    "UOB_SUB_LBL":"United SGD Fund",
     "WISE_INCOME_PORTFOLIO": {
       "DESC_LBL": "The fund invest in the following asset classes in this proportions.",
       "ASSET_HOLDINGS_LBL": "Asset Class & Holdings",
