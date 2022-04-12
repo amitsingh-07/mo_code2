@@ -118,6 +118,7 @@ const routes: Routes = [
   {
     path: SIGN_UP_ROUTES.FORGOT_PASSWORD_CORPORATE,
     component: ForgotPasswordComponent,
+    canActivate: [FacebookLoggedUserGuard],
     data: [{ organisationEnabled: SIGN_UP_CONFIG.LOGIN.CORPORATE_LOGIN }]
   },
   {
