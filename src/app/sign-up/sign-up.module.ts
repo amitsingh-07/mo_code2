@@ -54,7 +54,6 @@ import { ReferalRedirectingPartComponent } from './referal-redirecting-part/refe
 import { ManageProfileComponent } from './manage-profile/manage-profile.component';
 import { AddUpdateCpfiaComponent } from './add-update-cpfia/add-update-cpfia.component';
 import { CpfiaSuccessModalComponent } from './add-update-cpfia/cpfia-success-modal/cpfia-success-modal.component';
-import { CorpLoginComponent } from './corp-login/corp-login.component';
 
 export function createTranslateLoader(http: HttpClient) {
   return new MultiTranslateHttpLoader(
@@ -114,8 +113,7 @@ export function createTranslateLoader(http: HttpClient) {
     ReferalRedirectingPartComponent,
     ManageProfileComponent,
     AddUpdateCpfiaComponent,
-    CpfiaSuccessModalComponent,
-    CorpLoginComponent
+    CpfiaSuccessModalComponent
   ],
   providers: [SignUpAccessGuard, SignUpCorporateAccessGuard, AuthGuardService, TwoFactorAuthGuardService],
   entryComponents: [EditMobileNumberComponent, SrsSuccessModalComponent]
