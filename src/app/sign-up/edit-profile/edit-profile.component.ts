@@ -623,7 +623,7 @@ export class EditProfileComponent implements OnInit, OnDestroy {
   }
 
   showJointAccountDetailsCard: () => boolean = (): boolean => {
-    return this.customerJointAccBankDetails && this.customerJointAccBankDetails.length > 0;
+    return this.customerJointAccBankDetails && this.customerJointAccBankDetails.length > 0 && this.authService.accessCorporateUserFeature('CREATE_JOINT_ACCOUNT');
   }
 
   editJABankDetails(portfolioBankDetails) {

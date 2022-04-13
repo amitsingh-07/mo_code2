@@ -30,8 +30,20 @@ export let appConstants = {
         NORMAL: "normal",
         FINLIT: "finlit",
         MANUAL: "MANUAL",
-        SINGPASS: "SINGPASS"
+        SINGPASS: "SINGPASS",
+        PUBLIC: 'PUBLIC',
+        CORPORATE: 'CORPORATE',
+        FACEBOOK: "FACEBOOK"
     },
+    ORGANISATION_ROLES: {
+        ALLOWED_DOMAIN_CORP: ['@fb.com', '@facebook.com', '@yopmail.com'],
+        ROLE_CORP_FB_USER: {
+            EMAIL_UPDATE : false,
+            REFERREL_PROGRAM : false,
+            CREATE_JOINT_ACCOUNT : false
+    }
+    },
+    CORPORATE_FAQ : '/assets/docs/faq/corporate_faq.pdf',
     INSURANCE_JOURNEY_TYPE: {
         DIRECT: 'insurance-direct',
         GUIDED: 'insurance-guided'
@@ -40,5 +52,7 @@ export let appConstants = {
    LOGOUT_BUTTON :'LOGOUT_BUTTON',
    FINLIT_ACCESS_CODE: 'finlit-access-code',
    SINGAPORE_COUNTRY_CODE: '+65',
-   OTP_WAITING_SECONDS: 30
+   OTP_WAITING_SECONDS: 30,
+   SHOW_NEWUPDATES_MODAL_START_DATE : '2022-04-11T00:00:00.000+08:00',
+   SHOW_NEWUPDATES_MODAL_END_DATE : '2022-04-19T11:59:59.000+08:00'
 };

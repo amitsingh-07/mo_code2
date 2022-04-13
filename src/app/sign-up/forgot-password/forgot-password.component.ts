@@ -17,6 +17,7 @@ import { NavbarService } from '../../shared/navbar/navbar.service';
 import { SignUpApiService } from '../sign-up.api.service';
 import { SIGN_UP_ROUTE_PATHS } from '../sign-up.routes.constants';
 import { SignUpService } from '../sign-up.service';
+import { appConstants } from './../../app.constants';
 
 @Component({
   selector: 'app-forgot-password',
@@ -37,6 +38,7 @@ export class ForgotPasswordComponent implements OnInit, AfterViewInit {
   buttonTitle;
   captchaSrc = '';
   emailResend: string;
+  organisationEnabled = false;
 
   constructor(
     // tslint:disable-next-line
@@ -71,6 +73,9 @@ export class ForgotPasswordComponent implements OnInit, AfterViewInit {
     this.configService.getConfig().subscribe((config: IConfig) => {
       this.distribution = config.distribution;
     });
+    if (this.route.snapshot.data[0]) {
+      this.organisationEnabled = this.route.snapshot.data[0]['organisationEnabled'];
+    }
   }
 
   ngOnInit() {
@@ -97,7 +102,8 @@ export class ForgotPasswordComponent implements OnInit, AfterViewInit {
     }
     this.forgotPasswordForm = this.formBuilder.group({
       email: [this.formValues.email, [Validators.required, Validators.email, Validators.pattern(RegexConstants.Email)]],
-      captcha: ['', [Validators.required]]
+      captcha: ['', [Validators.required]],
+      profileType: [this.organisationEnabled ? appConstants.USERTYPE.CORPORATE : appConstants.USERTYPE.PUBLIC]
     });
     return true;
   }
@@ -113,7 +119,7 @@ export class ForgotPasswordComponent implements OnInit, AfterViewInit {
       ref.componentInstance.errorMessage = error.errorMessage;
       return false;
     } else {
-      this.signUpService.setForgotPasswordInfo(form.value.email, form.value.captcha).subscribe((data) => {
+      this.signUpService.setForgotPasswordInfo(form.value.email, form.value.captcha, form.value.profileType).subscribe((data) => {
         // tslint:disable-next-line:triple-equals
         if (data.responseMessage.responseCode == 6004) {
           const ref = this.modal.open(ModelWithButtonComponent, { centered: true });
@@ -125,7 +131,11 @@ export class ForgotPasswordComponent implements OnInit, AfterViewInit {
           if (this.authService.isSignedUser()) {
             this.navbarService.logoutUser();
           }
-          this.router.navigate([SIGN_UP_ROUTE_PATHS.FORGOT_PASSWORD_RESULT]);
+          if(this.organisationEnabled) {            
+            this.router.navigate([SIGN_UP_ROUTE_PATHS.CORP_FORGOT_PASSWORD_RESULT]);
+          } else {
+            this.router.navigate([SIGN_UP_ROUTE_PATHS.FORGOT_PASSWORD_RESULT]);
+          }
         } else if (data.responseMessage.responseCode === 5012) {
           this.signUpApiService.resendEmailVerification(form.value.email, true).subscribe((data) => {
             if (data.responseMessage.responseCode === 6007) {

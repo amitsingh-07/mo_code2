@@ -2,7 +2,7 @@ import { Subject, BehaviorSubject } from 'rxjs';
 
 import { DatePipe } from '@angular/common';
 import { Injectable } from '@angular/core';
-import { AbstractControl } from '@angular/forms';
+import { AbstractControl, ValidationErrors } from '@angular/forms';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 
 import { TranslateService } from '@ngx-translate/core';
@@ -18,6 +18,7 @@ import { CreateAccountFormError } from './create-account/create-account-form-err
 import { SignUpFormData } from './sign-up-form-data';
 import { SIGN_UP_CONFIG } from './sign-up.constant';
 import { InvestmentAccountService } from '../investment/investment-account/investment-account-service';
+import { appConstants } from '../app.constants';
 import { ManageInvestmentsService } from '../investment/manage-investments/manage-investments.service';
 import { map } from 'rxjs/operators';
 
@@ -34,6 +35,7 @@ const CAPTACHA_COUNT = 'captcha_count';
 const EMAIL = 'email';
 const FINLITENABLED = 'finlitenabled';
 const USER_MOBILE_COUNTRY_CODE = 'user_mobile_country_code';
+const NEW_UPDATES_MODAL_SHOWN = 'new_updates_modal_shown';
 
 @Injectable({
   providedIn: 'root'
@@ -46,9 +48,11 @@ export class SignUpService {
   private signUpFormData: SignUpFormData = new SignUpFormData();
   private createAccountFormError: any = new CreateAccountFormError();
   private resetPasswordUrl: string;
+  private resetPasswordCorpUrl: string;
   private mobileOptimized = new BehaviorSubject(false);
   mobileOptimizedObservable$ = this.mobileOptimized.asObservable();
   myInfoAttributes = SIGN_UP_CONFIG.MY_INFO_ATTRIBUTES;
+  organisationName: string = '';
   constructor(
     private apiService: ApiService,
     public authService: AuthenticationService,
@@ -63,6 +67,7 @@ export class SignUpService {
     this.getAccountInfo();
     this.configService.getConfig().subscribe((config: IConfig) => {
       this.resetPasswordUrl = config.resetPasswordUrl;
+      this.resetPasswordCorpUrl = config.resetPasswordCorpUrl;
     });
   }
 
@@ -223,9 +228,9 @@ export class SignUpService {
    * set user account details.
    * @param data - user account details.
    */
-  setForgotPasswordInfo(email, captcha) {
+  setForgotPasswordInfo(email, captcha, profileType) {
     // API Call here
-    const data = this.constructForgotPasswordInfo(email, captcha);
+    const data = this.constructForgotPasswordInfo(email, captcha, profileType);
     return this.apiService.requestForgotPasswordLink(data);
   }
 
@@ -233,12 +238,14 @@ export class SignUpService {
    * construct the json for forgot password.
    * @param data - email and redirect uri.
    */
-  constructForgotPasswordInfo(data, captchaValue) {
+  constructForgotPasswordInfo(data, captchaValue, profileType) {
+    let resetUrl = (profileType == appConstants.USERTYPE.CORPORATE) ? this.resetPasswordCorpUrl : this.resetPasswordUrl;
     return {
       email: data,
       captcha: captchaValue,
       sessionId: this.authService.getSessionId(),
-      redirectUrl: window.location.origin + this.resetPasswordUrl + '?key='
+      profileType: profileType,
+      redirectUrl: window.location.origin + resetUrl + '?key='
     };
   }
   setRestEmailInfo(email, captcha, oldEmail) {
@@ -285,11 +292,12 @@ export class SignUpService {
    * construct the json for reset password.
    * @param data - email and redirect uri.
    */
-  constructResetPasswordInfo(pass, key) {
+  constructResetPasswordInfo(pass, key, profileType) {
     return {
       password: pass,
       resetKey: key,
-      sessionId: this.authService.getSessionId()
+      sessionId: this.authService.getSessionId(),
+      profileType: profileType
     };
   }
 
@@ -336,6 +344,15 @@ export class SignUpService {
       email: this.signUpFormData.email,
       userType: this.signUpFormData.userType
     };
+  }
+
+  getModalShownStatus() {
+    return sessionStorage.getItem(NEW_UPDATES_MODAL_SHOWN);
+  }
+  setModalShownStatus(status) {
+    if (window.sessionStorage) {
+      sessionStorage.setItem(NEW_UPDATES_MODAL_SHOWN, status);
+    }
   }
 
   setEditContact(editContact, mobileUpdate, emailUpdate) {
@@ -789,6 +806,14 @@ export class SignUpService {
     return this.apiService.getRefereeList();
   }
 
+  emailDomainValidator(control: AbstractControl) : ValidationErrors | null {
+    const isEnteredEmailId = isNaN(parseInt(control.value));
+    if(isEnteredEmailId && appConstants.ORGANISATION_ROLES.ALLOWED_DOMAIN_CORP.filter(ele => control.value?.includes(ele)).length === 0) {
+      return {invalidDomain: true};
+    }
+    return null;
+  }
+  
   // cpf
    setEditProfileCpfDetails(accountNumber, cpfBankOperator, customerId) {
     this.signUpFormData.cpfAccountNumber = accountNumber;

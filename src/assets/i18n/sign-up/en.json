@@ -90,7 +90,8 @@
         "LABEL": "Email Address",
         "ERROR": {
           "REQUIRED": "Enter an email address",
-          "INVALID": "Enter a valid email address"
+          "INVALID": "Enter a valid email address",
+          "INVALID_DOMAIN": "Enter a valid email domain"
         }
       },
       "CONFIRM_EMAIL": {
@@ -110,6 +111,13 @@
         "ERROR": {
           "REQUIRED": "Enter a confirm password",
           "MATCH": "Password does not match confirmation"
+        }
+      },
+      "ORGANIZATION_NAME": {
+        "LABEL": "Organization Name",
+        "ERROR": {
+          "REQUIRED": "Enter Organization Name",
+          "INVALID": "Please enter valid Organization Name"
         }
       },
       "REFERRAL_CODE": {
@@ -219,6 +227,7 @@
       "USERNAME": "Mobile No. / Email Address",
       "PASSWORD": "Password",
       "ACCESS_CODE": "Access Code",
+      "ORGANIZATION_NAME": "Organization Name",
       "MARKETING_ACCEPTANCE": "I consent receive marketing materials from MoneyOwl and partners of MoneyOwl."
     },
     "FORGOT_PASSWORD": "Forgot your password?",
@@ -236,8 +245,7 @@
     "SINGPASS_LOGIN_FAIL_MODAL": {
       "TITLE": "Singpass login unsuccessful",
       "MESSAGE": "If you <span class='bold-txt'>have</span> a MoneyOwl account, please do a Password Login and activate Singpass Login in your Profile page.<br><br>If you <span class='bold-txt'>do not have</span> a MoneyOwl account, click here to create an account."
-    },
-    "WELCOME_FB_TITLE": "Welcome to FB MoneyOwl!" 
+    }
   },
   "FORGOTPASSWORD": {
     "SUBMIT": "Submit",
@@ -444,7 +452,7 @@
       "DIRECT_JOURNEY": "I know my needs, find my plan."
     },
     "SRS_JOINT_ACCOUNT": {
-      "FIND_OUT_MORE": "Click here for news and updates!",
+      "FIND_OUT_MORE": "Click here for CPF Investing and other new features!",
       "SRS_JOINT_ACCOUNT_SLIDES": [
         {
           "TITLE": "New Updates",
@@ -475,6 +483,35 @@
           "APP_URL": "/accounts/refer-a-friend",
           "URL_TEXT": "Refer a friend"
         },  
+        {
+          "TITLE": "New Updates",
+          "TITLE_IMG": "srs-joint-account/speaker.svg",
+          "IMAGE": "srs-joint-account/wise-income.svg",
+          "IMG_TITLE": "Want passive income?<br>Start with WiseIncome!",
+          "TEXT": "Kick off your passive income journey with WiseIncome with no lock-in period! You also get the flexibility to choose your payout option.",
+          "APP_URL": "/investment/engagement/wise-income-payout",
+          "QUERY_PARAMS": "wise-income",
+          "URL_TEXT": "Start now"
+        },        
+        {
+          "TITLE": "New Updates",
+          "TITLE_IMG": "srs-joint-account/speaker.svg",
+          "IMAGE": "srs-joint-account/srs.svg",
+          "IMG_TITLE": "You can now open your SRS Investment Account online!",
+          "TEXT": "Invest your Supplementary Retirement Scheme (SRS) savings to get potentially higher returns while enjoying tax savings."
+        }
+      ],
+      "SRS_JOINT_ACCOUNT_SLIDES_CORP": [
+        {
+          "TITLE": "New Updates",
+          "TITLE_IMG": "srs-joint-account/speaker.svg",
+          "IMAGE": "srs-joint-account/owl-cpf.svg",
+          "IMG_TITLE": "CPF Investing now available!",
+          "TEXT": "You can now invest your CPF savings in our curated portfolios at a promotional advisory rate of 0% p.a.till 31 Dec 2022!",
+          "APP_URL": "/investment/engagement/select-portfolio-goal-moreinfo",
+          "QUERY_PARAMS": "cpf-portfolio",
+          "URL_TEXT": "Start now"
+        },
         {
           "TITLE": "New Updates",
           "TITLE_IMG": "srs-joint-account/speaker.svg",

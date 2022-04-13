@@ -14,6 +14,7 @@
   "maintenanceEnabled": false,
   "marqueeEnabled": false,
   "resetPasswordUrl": "/app/accounts/reset-password",
+  "resetPasswordCorpUrl": "/app/accounts/corp/reset-password",
   "verifyEmailUrl": "/app/accounts/email-verification",
   "showAnnualizedReturns": false,
   "paymentEnabled": true,

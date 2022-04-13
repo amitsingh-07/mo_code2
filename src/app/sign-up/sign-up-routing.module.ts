@@ -7,6 +7,7 @@ import { AddUpdateBankComponent } from './add-update-bank/add-update-bank.compon
 import { AuthGuardService as AuthGuard } from './auth-guard.service';
 import { FinlitLoggedUserService as FinlitLoggedUserGuard } from './auth-guard.service';
 import { LoggedUserService as LoggedUserGuard } from './auth-guard.service';
+import { FacebookLoggedUserService as FacebookLoggedUserGuard } from './auth-guard.service';
 import { CreateAccountComponent } from './create-account/create-account.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { EditPasswordComponent } from './edit-password/edit-password.component';
@@ -22,7 +23,7 @@ import { ForgotPasswordComponent } from './forgot-password/forgot-password.compo
 import { LoginComponent } from './login/login.component';
 import { PreLoginComponent } from './pre-login/pre-login.component';
 import { ResetPasswordComponent } from './reset-password/reset-password.component';
-import { SignUpAccessGuard } from './sign-up-access-guard';
+import { SignUpAccessGuard, SignUpCorporateAccessGuard } from './sign-up-access-guard';
 import { SIGN_UP_ROUTES } from './sign-up.routes.constants';
 import { SIGN_UP_CONFIG } from './sign-up.constant';
 import { SuccessMessageComponent } from './success-message/success-message.component';
@@ -40,7 +41,6 @@ import { ReferAFriendComponent } from './refer-a-friend/refer-a-friend.component
 import { ReferalRedirectingPartComponent } from './referal-redirecting-part/referal-redirecting-part.component';
 import { ManageProfileComponent } from './manage-profile/manage-profile.component';
 import { AddUpdateCpfiaComponent } from './add-update-cpfia/add-update-cpfia.component';
-import { CorpLoginComponent } from './corp-login/corp-login.component';
 
 const routes: Routes = [
   {
@@ -69,6 +69,12 @@ const routes: Routes = [
     data: [{ finlitEnabled: SIGN_UP_CONFIG.LOGIN.FINLIT_LOGIN }]
   },
   {
+    path: SIGN_UP_ROUTES.CORPORATE_VERIFY_MOBILE,
+    component: VerifyMobileComponent,
+    canActivate: [SignUpCorporateAccessGuard, FacebookLoggedUserGuard],
+    data: [{ organisationEnabled: SIGN_UP_CONFIG.LOGIN.CORPORATE_LOGIN }]
+  },
+  {
     path: SIGN_UP_ROUTES.TWOFA_MOBILE,
     component: VerifyMobileComponent,
     canActivate: [TwoFactorScreenGuardService],
@@ -79,6 +85,12 @@ const routes: Routes = [
     component: AccountCreatedComponent,
     canActivate: [FinlitLoggedUserGuard],
     data: [{ finlitEnabled: SIGN_UP_CONFIG.LOGIN.FINLIT_LOGIN }]
+  },
+  {
+    path: SIGN_UP_ROUTES.ACCOUNT_CREATED_CORPORATE,
+    component: AccountCreatedComponent,
+    canActivate: [FacebookLoggedUserGuard],
+    data: [{ organisationEnabled: SIGN_UP_CONFIG.LOGIN.CORPORATE_LOGIN }]
   },
   {
     path: SIGN_UP_ROUTES.ACCOUNT_CREATED,
@@ -94,12 +106,29 @@ const routes: Routes = [
     canActivate: [LoggedUserGuard]
   },
   {
+    path: SIGN_UP_ROUTES.CORPORATE_LOGIN,
+    component: LoginComponent,
+    canActivate: [FacebookLoggedUserGuard],
+    data: [{ organisationEnabled: SIGN_UP_CONFIG.LOGIN.CORPORATE_LOGIN }]
+  },
+  {
     path: SIGN_UP_ROUTES.FORGOT_PASSWORD,
     component: ForgotPasswordComponent
   },
   {
+    path: SIGN_UP_ROUTES.FORGOT_PASSWORD_CORPORATE,
+    component: ForgotPasswordComponent,
+    canActivate: [FacebookLoggedUserGuard],
+    data: [{ organisationEnabled: SIGN_UP_CONFIG.LOGIN.CORPORATE_LOGIN }]
+  },
+  {
     path: SIGN_UP_ROUTES.FORGOT_PASSWORD_RESULT,
     component: ForgotPasswordResultComponent
+  },
+  {
+    path: SIGN_UP_ROUTES.CORP_FORGOT_PASSWORD_RESULT,
+    component: ForgotPasswordResultComponent,
+    data: [{ organisationEnabled: SIGN_UP_CONFIG.LOGIN.CORPORATE_LOGIN }]
   },
   {
     path: SIGN_UP_ROUTES.VERIFY_EMAIL_RESULT,
@@ -109,6 +138,16 @@ const routes: Routes = [
   {
     path: SIGN_UP_ROUTES.RESET_PASSWORD,
     component: ResetPasswordComponent
+  },
+  {
+    path: SIGN_UP_ROUTES.CORPORATE_RESET_PASSWORD,
+    component: ResetPasswordComponent,
+    data: [{ organisationEnabled: SIGN_UP_CONFIG.LOGIN.CORPORATE_LOGIN }]
+  },
+  {
+    path: SIGN_UP_ROUTES.CORP_SUCCESS_MESSAGE,
+    component: SuccessMessageComponent,
+    data: [{ organisationEnabled: SIGN_UP_CONFIG.LOGIN.CORPORATE_LOGIN }]
   },
   {
     path: SIGN_UP_ROUTES.SUCCESS_MESSAGE,
@@ -182,6 +221,12 @@ const routes: Routes = [
     data: [{ finlitEnabled: SIGN_UP_CONFIG.LOGIN.FINLIT_LOGIN }]
   },
   {
+    path: SIGN_UP_ROUTES.CORPORATE_CREATE_ACCOUNT,
+    component: CreateAccountComponent,
+    canActivate: [FacebookLoggedUserGuard],
+    data: [{ organisationEnabled: SIGN_UP_CONFIG.LOGIN.CORPORATE_LOGIN }]
+  },
+  {
     path: SIGN_UP_ROUTES.VERIFY_EMAIL,
     component: VerifyEmailComponent
   },
@@ -200,6 +245,12 @@ const routes: Routes = [
     canActivate: [FinlitLoggedUserGuard],
     data: [{ finlitEnabled: SIGN_UP_CONFIG.LOGIN.FINLIT_LOGIN }]
   },
+  {
+    path: SIGN_UP_ROUTES.CORPORATE_CREATE_ACCOUNT_MY_INFO,
+    component: CreateAccountMyinfoComponent,
+    canActivate: [FacebookLoggedUserGuard],
+    data: [{ organisationEnabled: SIGN_UP_CONFIG.LOGIN.CORPORATE_LOGIN }]
+  }, 
   {
     path: SIGN_UP_ROUTES.FINLIT_CREATE_ACCOUNT + '/:referralCode',
     component: CreateAccountComponent,
@@ -220,11 +271,6 @@ const routes: Routes = [
     path: SIGN_UP_ROUTES.MANAGE_PROFILE,
     component: ManageProfileComponent,
     canActivate: [AuthGuard]
-  },
-  {
-    path: SIGN_UP_ROUTES.CORP_LOGIN,
-    component: CorpLoginComponent,
-    canActivate: [LoggedUserGuard]
   },
   {
     path: SIGN_UP_ROUTES.UPDATE_CPFIA,

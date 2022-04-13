@@ -46,6 +46,7 @@ import { environment } from './../../../environments/environment';
 import { INVESTMENT_COMMON_CONSTANTS } from '../../investment/investment-common/investment-common.constants';
 import { ComprehensiveService } from '../../comprehensive/comprehensive.service';
 import { Util } from '../../shared/utils/util';
+import { appConstants } from '../../app.constants';
 
 @Component({
   selector: 'app-dashboard',
@@ -93,6 +94,8 @@ export class DashboardComponent implements OnInit {
   getReferralInfo: any;
   cardCategory: { investment: any; insurance: any; comprehensiveInfo: any; };
   showFixedToastMessage: boolean;
+  showModalStartDate = appConstants.SHOW_NEWUPDATES_MODAL_START_DATE;
+  showModalEndDate = appConstants.SHOW_NEWUPDATES_MODAL_END_DATE;
 
   constructor(
     private router: Router,
@@ -130,7 +133,9 @@ export class DashboardComponent implements OnInit {
       this.isComprehensiveEnabled = config.comprehensiveEnabled;
     });
     this.portfolioCategory = INVESTMENT_COMMON_CONSTANTS.PORTFOLIO_CATEGORY;
-    this.getReferralCodeData();
+    if (!this.authService.isUserTypeCorporate) {
+      this.getReferralCodeData();
+    }
   }
 
   ngOnInit() {
@@ -491,21 +496,28 @@ export class DashboardComponent implements OnInit {
     ref.componentInstance.errorTitle = title;
     ref.componentInstance.errorMessage = desc;
   }
-
-  // Show SRS Joint Account Popup
-  openSRSJointAccPopup() {
+  
+  // Show new updates Modal if first time login
+  openNewUpdatesModal() {
     const ref = this.modal.open(CarouselModalComponent, { centered: true, windowClass: 'srs-dashboard-modal' });
-    ref.componentInstance.slides = this.translate.instant('DASHBOARD.SRS_JOINT_ACCOUNT.SRS_JOINT_ACCOUNT_SLIDES');
+    if(this.authService.isUserTypeCorporate) {
+      ref.componentInstance.slides = this.translate.instant('DASHBOARD.SRS_JOINT_ACCOUNT.SRS_JOINT_ACCOUNT_SLIDES_CORP');
+    } else {
+      ref.componentInstance.slides = this.translate.instant('DASHBOARD.SRS_JOINT_ACCOUNT.SRS_JOINT_ACCOUNT_SLIDES');
+    }
     ref.componentInstance.startBtnTxt = this.translate.instant('DASHBOARD.SRS_JOINT_ACCOUNT.START_BTN');
     ref.componentInstance.endBtnTxt = this.translate.instant('DASHBOARD.SRS_JOINT_ACCOUNT.END_BTN');
   }
 
-  // Show new updates Modal if first time login
-  openNewUpdatesModal() {
-    const ref = this.modal.open(CarouselModalComponent, { centered: true, windowClass: 'srs-dashboard-modal' });
-    ref.componentInstance.slides = this.translate.instant('DASHBOARD.SRS_JOINT_ACCOUNT.SRS_JOINT_ACCOUNT_SLIDES');
-    ref.componentInstance.startBtnTxt = this.translate.instant('DASHBOARD.SRS_JOINT_ACCOUNT.START_BTN');
-    ref.componentInstance.endBtnTxt = this.translate.instant('DASHBOARD.SRS_JOINT_ACCOUNT.END_BTN');
+  showModalCheck(start, end) {
+    const startDateTime = new Date(start);
+    const endDateTime = new Date(end);
+
+    if (Date.now() >= startDateTime.valueOf() && Date.now() <= endDateTime.valueOf()) {
+      return true;
+    } else {
+      return false;
+    }
   }
   // Check if first time login and show new updates modal
   checkFirstTimeLoginStatus(customerId) {
@@ -514,10 +526,16 @@ export class DashboardComponent implements OnInit {
         // Check if track_status is available or false
         if (!status.objectList || !status.objectList['trackStatus']) {
           setTimeout(() => {
+            // displays new updates modal only during first time login
             this.openNewUpdatesModal();
+            this.signUpService.setModalShownStatus(true);
           });
           this.signUpApiService.setPopupStatus(customerId, 'CPF_POP').subscribe((result) => {
           }, (error) => console.log('ERROR: ', error));
+        } else if (this.showModalCheck(this.showModalStartDate,this.showModalEndDate) && !this.signUpService.getModalShownStatus()) {
+          // displays new updates modal whenever user lands on dashboard page, even on subsequent logins
+          this.openNewUpdatesModal();
+          this.signUpService.setModalShownStatus(true);
         }
       }, (error) => console.log('ERROR: ', error));
     }
