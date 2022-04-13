@@ -1,6 +1,6 @@
 @import '../../../variables';
 @import '../../../mixins';
-
+app-my-family{
 .container-fluid {
     padding: 50px 60px 65px;
     font-family: $muli-semi-bold;
@@ -144,6 +144,7 @@
         position: absolute;
         bottom: 5px;
         margin-right: -3px;
+        right: 0;
     }
 }
 
@@ -171,7 +172,7 @@
         padding-left:0;
     }  
   }
-
+}
  
 
 

@@ -1,5 +1,6 @@
 @import '../../../variables';
 @import '../../../mixins';
+app-distribute-your-estate{
 .intro-block {
     .container-fluid {
         padding-top: 30px !important;
@@ -116,4 +117,5 @@
     @include allmobiles{
         margin-top: 15px;
     }
+}
 }

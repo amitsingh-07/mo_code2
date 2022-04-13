@@ -22,6 +22,7 @@ export interface IConfig {
   retirementPlanningEnabled: boolean;
   srsEnabled: boolean;
   resetPasswordUrl: string;
+  resetPasswordCorpUrl?: string;
   verifyEmailUrl: string;
   hospitalPlanData: HospitalPlan[];
   productCategory: IProductCategory[];

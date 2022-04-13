@@ -1,5 +1,5 @@
 import { Location } from '@angular/common';
-import { Component, OnDestroy, OnInit, ViewChild } from '@angular/core';
+import { Component, OnDestroy, OnInit, ViewChild, ViewEncapsulation } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
@@ -15,7 +15,8 @@ import { WillWritingService } from './../will-writing.service';
 @Component({
   selector: 'app-my-estate-distribution',
   templateUrl: './my-estate-distribution.component.html',
-  styleUrls: ['./my-estate-distribution.component.scss']
+  styleUrls: ['./my-estate-distribution.component.scss'],
+  encapsulation: ViewEncapsulation.None
 })
 export class MyEstateDistributionComponent implements OnInit, OnDestroy {
   @ViewChild(PageTitleComponent) pageTitleComponent: PageTitleComponent;

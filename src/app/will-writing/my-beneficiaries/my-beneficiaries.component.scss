@@ -1,6 +1,7 @@
 @import '../../../variables';
 @import '../../../mixins';
 
+app-my-beneficiaries{
 .container-fluid {
     padding: 50px 60px 65px;
     @include allmobiles{
@@ -74,46 +75,6 @@
         }
     }
 }
-.mobile-header{
-    display: flex;
-    flex-direction: column;
-    .step2 {
-        font-family: $muli-light;
-        font-size: 18px;
-        font-weight: 300;
-        letter-spacing: -0.2px;
-        color: #ffffff;
-      }
-    .sub-title{
-            font-family: $muli-regular;
-            font-size: 18px;
-            line-height: 1.22;
-            letter-spacing: -0.2px;
-            color: #ffffff;
-        @include allmobiles {
-            width: 321px;
-            color: #333846;
-            text-align: center;
-            font-size: 16px;
-        }
-    }
-    h2{
-        
-        font-family: $muli-semi-bold;
-        font-size: 36px;
-        letter-spacing: -0.4px;
-        color: #ffffff;
-        @include allmobiles {
-            font-size: 20px;
-            letter-spacing: -0.4px;
-            text-align: center;
-            color: #066360;
-        }
-    }
-    @include allmobiles {
-        flex-direction: column-reverse;
-    }
-}
 
 input[type='checkbox']+label {
     margin: 0;
@@ -155,19 +116,6 @@ input[type='checkbox']+label {
         align-items: center;
         margin-bottom: 12px;
     }
-}
-
-.mobile-header {
-         background-color: #00a7a7;
-         position: relative;
-    @include allmobiles {
-        display: flex;
-        flex-direction: column-reverse;
-        align-items: center;
-        margin-top: -10px;
-        color: #333846 !important;
-        background-color: #fff;
-    }  
 }
 
 .add-beneficiaries-container {
@@ -220,6 +168,60 @@ input[type='checkbox']+label {
 
 .header-container{
     padding: 0px !important;
+    .mobile-header {
+        background-color: #00a7a7;
+        position: relative;
+        @include allmobiles {
+            display: flex;
+            flex-direction: column-reverse;
+            align-items: center;
+            margin-top: -10px;
+            color: #333846 !important;
+            background-color: #fff;
+            padding: 15px 0 13px;
+            border-bottom: 1px solid rgba(141,154,168,0.2);
+        }  
+    }
+.mobile-header{
+    display: flex;
+    flex-direction: column;
+    .step2 {
+        font-family: $muli-light;
+        font-size: 18px;
+        font-weight: 300;
+        letter-spacing: -0.2px;
+        color: #ffffff;
+      }
+    .sub-title{
+            font-family: $muli-regular;
+            font-size: 18px;
+            line-height: 1.22;
+            letter-spacing: -0.2px;
+            color: #ffffff;
+        @include allmobiles {
+            width: 321px;
+            color: #333846;
+            text-align: center;
+            font-size: 16px;
+        }
+    }
+    h2{
+        
+        font-family: $muli-semi-bold;
+        font-size: 36px;
+        letter-spacing: -0.4px;
+        color: #ffffff;
+        @include allmobiles {
+            font-size: 20px;
+            letter-spacing: -0.4px;
+            text-align: center;
+            color: #066360;
+        }
+    }
+    @include allmobiles {
+        flex-direction: column-reverse;
+    }
+}
 }
 
 .content-title {
@@ -296,5 +298,4 @@ input[type='checkbox']+label {
 .input-label-black {
     word-break: break-word;
 }
-
-
+}
