@@ -100,9 +100,6 @@ export class FacebookLoggedUserService implements CanActivate {
     if(!SIGN_UP_CONFIG.LOGIN.CORPORATE_LOGIN) {
       this.route.navigate([SIGN_UP_ROUTE_PATHS.CORPORATE_LOGIN], { queryParams: {orgID: this.appService.getCorporateDetails().uuid}});
       return false;
-    } else if (this.authService.isSignedUser()) {
-      this.route.navigate([SIGN_UP_ROUTE_PATHS.DASHBOARD]);
-      return false;
     }
     this.authService.isUserTypeCorporate = true;
     return true;
