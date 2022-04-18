@@ -26,6 +26,7 @@ export class EditPasswordComponent implements OnInit {
   resetPasswordForm: FormGroup;
   formValues: any;
   pageTitle: string;
+  organisationEnabled = false;
   constructor(
     // tslint:disable-next-line
     private formBuilder: FormBuilder,
@@ -44,6 +45,7 @@ export class EditPasswordComponent implements OnInit {
       this.pageTitle = 'Change Password';
       this.setPageTitle(this.pageTitle);
     });
+    this.organisationEnabled = authService.isUserTypeCorporate;
   }
   setPageTitle(title: string) {
     this.navbarService.setPageTitle(title);
