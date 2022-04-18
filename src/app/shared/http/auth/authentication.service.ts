@@ -414,6 +414,8 @@ export class AuthenticationService {
     }
     if (isCorporateUserType) {
       validate2faBody['profileType'] = appConstants.USERTYPE.CORPORATE;
+    } else {
+      validate2faBody['profileType'] = appConstants.USERTYPE.PUBLIC;
     }
     const authenticateUrl = apiConstants.endpoint.authenticate2faOTPLogin;
     return this.httpClient.post<IServerResponse>(`${this.apiBaseUrl}/${authenticateUrl}${handleError}`, validate2faBody)
