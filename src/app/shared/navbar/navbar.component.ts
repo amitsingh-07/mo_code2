@@ -203,7 +203,11 @@ export class NavbarComponent implements OnInit, AfterViewInit {
     // Log Out
     this.navbarService.logoutObservable$.subscribe((data) => {
       if (data === 'LOGGED_OUT') {
-        this.clearLoginDetails();
+        if(this.appService.getCorporateDetails().organisationEnabled) {
+          this.clearLoginDetails(true, appConstants.USERTYPE.CORPORATE);
+        } else {
+          this.clearLoginDetails();
+        }
       } else if (data === 'CLEAR_SESSION_DATA') {
         this.clearLoginDetails(false);
       }
