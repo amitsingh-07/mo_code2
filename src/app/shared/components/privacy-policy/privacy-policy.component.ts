@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router} from '@angular/router';
+import { AuthenticationService } from '../../http/auth/authentication.service';
 
 import { environment } from './../../../../environments/environment';
 import { FooterService } from './../../footer/footer.service';
@@ -15,7 +16,8 @@ export class PrivacyPolicyComponent implements OnInit {
   constructor(
     public router: Router,
     public navbarService: NavbarService,
-    public footerService: FooterService) { }
+    public footerService: FooterService,
+    public authService: AuthenticationService) { }
 
   ngOnInit() {
     this.navbarService.setNavbarMode(1);
