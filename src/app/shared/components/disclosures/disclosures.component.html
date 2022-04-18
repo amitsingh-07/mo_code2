@@ -76,6 +76,13 @@
                   <li>Tokio Marine Life Insurance Singapore Ltd</li>        
                   </ul>
               </li>
+              <li *ngIf="authService.isUserTypeCorporate">
+                Referral Activity for non-financial advisory service<br/>
+                <ul>
+                  <li>We may refer you to SimplyWills Pte Ltd for simple or complex Will Writing, Safekeeping and Probate & Letters of Administration Services</li>
+                  <li>We may also receive from SimplyWills a referral fee of 20% of the fee collected for Will Writing, Safekeeping services and 10% of the fee collected for Probate & Letters of Administration Services.</li>      
+                </ul>
+              </li>
               <p class="section--title">Insurance-Related Disclosures</p>
               <li>
                   Where we offer a rebate of basic commission (also known as “agent’s commission”) for any product:
