@@ -101,6 +101,11 @@ const routes: Routes = [
     component: EmailVerificationComponent
   },
   {
+    path: SIGN_UP_ROUTES.CORP_EMAIL_VERIFIED,
+    component: EmailVerificationComponent,
+    canActivate: [FacebookLoggedUserGuard],
+  },
+  {
     path: SIGN_UP_ROUTES.LOGIN,
     component: LoginComponent,
     canActivate: [LoggedUserGuard]
