@@ -20,6 +20,7 @@ import { SIGN_UP_CONFIG } from './sign-up.constant';
 })
 export class SignUpApiService {
   private emailVerifyUrl: String;
+  private corpEmailVerifyUrl: String;
 
   constructor(
     private configService: ConfigService, private hubspotService: HubspotService,
@@ -30,6 +31,7 @@ export class SignUpApiService {
   ) {
     this.configService.getConfig().subscribe((config: IConfig) => {
       this.emailVerifyUrl = config.verifyEmailUrl;
+      this.corpEmailVerifyUrl = config.corpEmailVerifyUrl;
     });
   }
 
@@ -310,10 +312,13 @@ export class SignUpApiService {
   }
 
   resendEmailVerification(value: any, isEmail: boolean, organisationCode = null) {
+    ////
+    // callbackUrl: "https://bfa-fb-newdev.ntucbfa.cloud/app/accounts/email-verification"
+
     const payload = {
       mobileNumber: isEmail ? '' : value,
       emailAddress: isEmail ? value : '',
-      callbackUrl: environment.apiBaseUrl + this.emailVerifyUrl,
+      callbackUrl: `${environment.apiBaseUrl}${organisationCode == appConstants.USERTYPE.FACEBOOK ? this.corpEmailVerifyUrl : this.emailVerifyUrl}`, 
       hostedServerName: window.location.hostname,
       organisationCode: organisationCode
     } as IResendEmail;
