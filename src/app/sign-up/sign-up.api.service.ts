@@ -312,9 +312,6 @@ export class SignUpApiService {
   }
 
   resendEmailVerification(value: any, isEmail: boolean, organisationCode = null) {
-    ////
-    // callbackUrl: "https://bfa-fb-newdev.ntucbfa.cloud/app/accounts/email-verification"
-
     const payload = {
       mobileNumber: isEmail ? '' : value,
       emailAddress: isEmail ? value : '',
