@@ -33,8 +33,8 @@ export class LoginFormError {
         },
         organisationCode: {
                 required: {
-                        errorTitle: 'Organization Name required',
-                        errorMessage: 'Please enter your Organization Name'
+                        errorTitle: 'Organisation Name required',
+                        errorMessage: 'Please enter your Organisation Name'
                 }
         },
         captchaValue: {
