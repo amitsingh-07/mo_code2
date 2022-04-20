@@ -42,7 +42,7 @@ import { StateStoreService } from './../../shared/Services/state-store.service';
 import { LoginFormError } from './login-form-error';
 import { HubspotService } from './../../shared/analytics/hubspot.service';
 import { SIGN_UP_CONFIG } from './../sign-up.constant';
-import { TermsModalComponent } from 'src/app/shared/modal/terms-modal/terms-modal.component';
+import { TermsModalComponent } from './../../shared/modal/terms-modal/terms-modal.component';
 
 @Component({
   selector: 'app-login',
