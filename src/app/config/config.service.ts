@@ -24,6 +24,7 @@ export interface IConfig {
   resetPasswordUrl: string;
   resetPasswordCorpUrl?: string;
   verifyEmailUrl: string;
+  corpEmailVerifyUrl: string;
   hospitalPlanData: HospitalPlan[];
   productCategory: IProductCategory[];
   distribution: any;
