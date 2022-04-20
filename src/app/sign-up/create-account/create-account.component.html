@@ -342,15 +342,15 @@
               <div class="form-group-floating-label"
                 [ngClass]="{'inline-error': submitted && account.organisationCode.errors}">
                 <input type="text" id="crtAccInpt2" class="form-control" #organisationCode formControlName="organisationCode"
-                  required>
+                oninput="this.value = this.value.toUpperCase()" required>
                 <label class="form-control-placeholder" for="organisationCode">
-                  {{ 'CREATE_ACCOUNT.FORM.ORGANIZATION_NAME.LABEL' | translate}}</label>                
+                  {{ 'CREATE_ACCOUNT.FORM.ORGANISATION_NAME.LABEL' | translate}}</label>                
               </div>
             </div>
             <div class="alert-msg flex-col-12" *ngIf="submitted && account.organisationCode.errors">
               <div *ngIf="account.organisationCode.errors?.required">
                 <span class="alert-icon"><img src="assets/images/alert.svg" /></span>
-                <span class="err-msg">{{ 'CREATE_ACCOUNT.FORM.ORGANIZATION_NAME.ERROR.REQUIRED' | translate}}</span>
+                <span class="err-msg">{{ 'CREATE_ACCOUNT.FORM.ORGANISATION_NAME.ERROR.REQUIRED' | translate}}</span>
               </div>
             </div>
           </div>
