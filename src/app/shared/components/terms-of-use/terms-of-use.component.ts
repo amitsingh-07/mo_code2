@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { AuthenticationService } from '../../http/auth/authentication.service';
 
 import { environment } from './../../../../environments/environment';
 import { FooterService } from './../../footer/footer.service';
@@ -12,7 +11,7 @@ import { NavbarService } from './../../navbar/navbar.service';
 })
 export class TermsOfUseComponent implements OnInit {
 
-  constructor(public navbarService: NavbarService, public footerService: FooterService,public authService: AuthenticationService) { }
+  constructor(public navbarService: NavbarService, public footerService: FooterService) { }
 
   ngOnInit() {
     this.navbarService.setNavbarMode(1);
