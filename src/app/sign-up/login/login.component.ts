@@ -42,6 +42,7 @@ import { StateStoreService } from './../../shared/Services/state-store.service';
 import { LoginFormError } from './login-form-error';
 import { HubspotService } from './../../shared/analytics/hubspot.service';
 import { SIGN_UP_CONFIG } from './../sign-up.constant';
+import { TermsModalComponent } from './../../shared/modal/terms-modal/terms-modal.component';
 
 @Component({
   selector: 'app-login',
@@ -171,6 +172,9 @@ export class LoginComponent implements OnInit, AfterViewInit, OnDestroy {
         this.getOrganisationCode();      
     }
     this.signUpService.setModalShownStatus('');
+    if (this.organisationEnabled) {
+        this.openTermsOfConditions();
+    }
   }
 
   ngAfterViewInit() {
@@ -263,6 +267,15 @@ export class LoginComponent implements OnInit, AfterViewInit, OnDestroy {
     })
     return true;
   }
+
+  openTermsOfConditions() {
+    if (localStorage.getItem('onInit') !== 'true') {
+      const ref = this.modal.open(TermsModalComponent, { centered: true, windowClass: 'sign-up-terms-modal-dialog', backdrop: 'static'});
+        ref.result.then((data) => {
+          localStorage.setItem('onInit', 'true');
+        });
+      }
+    }
 
   getOrganisationCode() {
     this.signUpApiService.getOrganisationCode(this.route.snapshot.queryParams.orgID).subscribe(res => {
