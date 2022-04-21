@@ -121,7 +121,7 @@ export class LoginComponent implements OnInit, AfterViewInit, OnDestroy {
       this.singpassEnabled = route.snapshot.data[0]['singpassEnabled'];
       this.appService.clearJourneys();
       this.appService.clearPromoCode();
-    }
+    }   
     this.appService.setCorporateDetails({organisationEnabled: this.organisationEnabled, uuid: this.route.snapshot.queryParams.orgID || null});
     this.signUpService.removeUserType();
     if(this.authService.isSignedUserWithRole(SIGN_UP_CONFIG.ROLE_2FA)) {
@@ -243,9 +243,7 @@ export class LoginComponent implements OnInit, AfterViewInit, OnDestroy {
         return false;
       }
     }
-    let emailValidators = this.organisationEnabled ? 
-        [Validators.required, Validators.pattern(RegexConstants.EmailOrMobile), this.signUpService.emailDomainValidator] : 
-        [Validators.required, Validators.pattern(RegexConstants.EmailOrMobile)];
+    let emailValidators = [Validators.required, Validators.pattern(RegexConstants.EmailOrMobile), this.signUpService.emailDomainValidator(this.organisationEnabled)];
     this.loginForm = this.formBuilder.group({
       loginUsername: [this.formValues.loginUsername, emailValidators],
       loginPassword: [this.formValues.loginPassword, [Validators.required]],

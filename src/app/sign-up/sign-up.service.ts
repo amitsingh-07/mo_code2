@@ -2,7 +2,7 @@ import { Subject, BehaviorSubject } from 'rxjs';
 
 import { DatePipe } from '@angular/common';
 import { Injectable } from '@angular/core';
-import { AbstractControl, ValidationErrors } from '@angular/forms';
+import { AbstractControl, ValidationErrors, ValidatorFn } from '@angular/forms';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 
 import { TranslateService } from '@ngx-translate/core';
@@ -806,12 +806,16 @@ export class SignUpService {
     return this.apiService.getRefereeList();
   }
 
-  emailDomainValidator(control: AbstractControl) : ValidationErrors | null {
-    const isEnteredEmailId = isNaN(parseInt(control.value));
-    if(isEnteredEmailId && appConstants.ORGANISATION_ROLES.ALLOWED_DOMAIN_CORP.filter(ele => control.value?.includes(ele)).length === 0) {
-      return {invalidDomain: true};
+  emailDomainValidator(organisationEnabled = false): ValidatorFn {
+    return (control: AbstractControl): ValidationErrors | null => {
+      const isEnteredEmailId = isNaN(parseInt(control.value));
+        if (organisationEnabled && isEnteredEmailId && appConstants.ORGANISATION_ROLES.ALLOWED_DOMAIN_CORP.filter(ele => control.value?.includes(ele)).length === 0) {
+          return { invalidDomain: true };
+        } else if (!organisationEnabled && isEnteredEmailId && appConstants.RESTRICTED_DOMAIN_PUBLIC.filter(ele => control.value?.includes(ele)).length > 0) {
+          return { invalidDomain: true };
+        }
+      return null;
     }
-    return null;
   }
   
   // cpf
