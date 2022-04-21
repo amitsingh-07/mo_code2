@@ -43,6 +43,7 @@ export let appConstants = {
             CREATE_JOINT_ACCOUNT : false
     }
     },
+    RESTRICTED_DOMAIN_PUBLIC: ['@fb.com', '@facebook.com'], 
     CORPORATE_FAQ : '/assets/docs/faq/corporate_faq.pdf',
     INSURANCE_JOURNEY_TYPE: {
         DIRECT: 'insurance-direct',

@@ -226,9 +226,7 @@ export class CreateAccountComponent implements OnInit, AfterViewInit {
       this.buildFormSingPass();
       return false;
     }
-    let emailValidators = this.organisationEnabled ? 
-    [Validators.required, Validators.email, Validators.pattern(RegexConstants.Email), this.signUpService.emailDomainValidator] : 
-    [Validators.required, Validators.email, Validators.pattern(RegexConstants.Email)];
+    let emailValidators = [Validators.required, Validators.email, Validators.pattern(RegexConstants.Email), this.signUpService.emailDomainValidator(this.organisationEnabled)];
 
     this.createAccountForm = this.formBuilder.group({
       countryCode: ['', [Validators.required]],
