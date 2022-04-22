@@ -176,7 +176,7 @@
               <div class="form-group-floating-label"
               [ngClass]="{'inline-error':getInlineErrorStatus(loginForm.controls.organisationCode)}"
                 >
-                <input type="text" appInputFocus id="login_organisationid_txt" class="form-control"
+                <input type="text" appInputFocus id="login_organisationid_txt" class="form-control" (keyup)="onKeyupEvent($event)" (paste)="onPaste($event, true)"
                   formControlName="organisationCode" oninput="this.value = this.value.toUpperCase()" required maxLength="10">
                 <label class="form-control-placeholder" for="login_organisationid_txt"
                 id="login_organisationid_lbl">{{ 'LOGIN.FORM.ORGANISATION_NAME' | translate}}</label>

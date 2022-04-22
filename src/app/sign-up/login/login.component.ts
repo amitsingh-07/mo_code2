@@ -303,7 +303,7 @@ export class LoginComponent implements OnInit, AfterViewInit, OnDestroy {
     const userType = (this.finlitEnabled ? appConstants.USERTYPE.FINLIT : (this.organisationEnabled ? appConstants.USERTYPE.CORPORATE : appConstants.USERTYPE.NORMAL));
     this.signUpService.setUserType(userType);
     const accessCode = (this.finlitEnabled) ? this.loginForm.value.accessCode : '';
-    const organisationCode = this.organisationEnabled && this.loginForm.get('organisationCode').value.trim() || null;
+    const organisationCode = this.organisationEnabled && this.loginForm.get('organisationCode').value || null;
     if (!form.valid || ValidatePassword(form.controls['loginPassword'])) {
       const ref = this.modal.open(ErrorModalComponent, { centered: true });
       let error;
@@ -645,15 +645,25 @@ export class LoginComponent implements OnInit, AfterViewInit, OnDestroy {
   onBlur() {
     this.capslockFocus = false;
   }
-  onPaste(event: ClipboardEvent) {
-    const pastedEmailText = event.clipboardData.getData('text').replace(/\s/g, '');
-    this.loginForm.controls.loginUsername.setValue(pastedEmailText);
-    event.preventDefault();
+  onPaste(event: ClipboardEvent, organisationCode = false) {
+    if (!organisationCode) {
+      const pastedEmailText = event.clipboardData.getData('text').replace(/\s/g, '');
+      this.loginForm.controls.loginUsername.setValue(pastedEmailText);
+      event.preventDefault();
+    } else {
+      const pastedOrganisationText = event.clipboardData.getData('text').replace(/\s/g, '');
+      this.loginForm.controls.organisationCode.setValue(pastedOrganisationText);
+      event.preventDefault();
+    }
   }
   onKeyupEvent(event) {
-    if (event.target.value) {
+    if (event.target.value && event.target.id == 'login_username_txt') {
       const emailValue = event.target.value.replace(/\s/g, '');
       this.loginForm.controls.loginUsername.setValue(emailValue);
+    }
+    else if(event.target.value && event.target.id == 'login_organisationid_txt'){
+      const orgValue = event.target.value.replace(/\s/g, '');
+      this.loginForm.controls.organisationCode.setValue(orgValue);
     }
   }
 
