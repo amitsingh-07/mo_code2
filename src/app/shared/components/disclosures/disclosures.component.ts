@@ -1,28 +1,12 @@
-import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
-
-import { environment } from './../../../../environments/environment';
-import { FooterService } from './../../footer/footer.service';
-import { NavbarService } from './../../navbar/navbar.service';
+import { Component } from '@angular/core';
 
 @Component({
   selector: 'app-disclosures',
   templateUrl: './disclosures.component.html',
   styleUrls: ['./disclosures.component.scss']
 })
-export class DisclosuresComponent implements OnInit {
+export class DisclosuresComponent {
 
-  constructor(public router: Router,
-              public navbarService: NavbarService,
-              public footerService: FooterService) { }
-
-  ngOnInit() {
-    this.navbarService.setNavbarVisibility(true);
-    if (environment.hideHomepage) {
-      this.footerService.setFooterVisibility(false);
-    } else {
-      this.footerService.setFooterVisibility(true);
-    }
-  }
+  constructor() { }
 
 }
