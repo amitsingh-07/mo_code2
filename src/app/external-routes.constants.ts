@@ -62,7 +62,7 @@ export const EXT_ROUTES = {
     },
     {
         IN_APP_ROUTE: '/faq#srs-joint-account',
-        EXTERNAL_URL: '/faq-investment/#investment|3'
+        EXTERNAL_URL: '/faq-investment/joint-account'
     },
     {
         IN_APP_ROUTE: '/faq?category=insurance',
@@ -134,11 +134,11 @@ export const EXT_ROUTES = {
     },
     {
         IN_APP_ROUTE: '/faq-investment-wiseincome',
-        EXTERNAL_URL: '/faq-investment/#investment|8'
+        EXTERNAL_URL: '/faq-investment/wiseincome-portfolio'
     },
     {
         IN_APP_ROUTE: '/faq-fee-details',
-        EXTERNAL_URL: '/faq-investment/#investment|5'
+        EXTERNAL_URL: '/faq-investment/fees'
     }
     ]
 };
