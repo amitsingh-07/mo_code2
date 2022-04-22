@@ -14,13 +14,6 @@ export class TermsOfUseComponent implements OnInit {
   constructor(public navbarService: NavbarService, public footerService: FooterService) { }
 
   ngOnInit() {
-    this.navbarService.setNavbarMode(1);
-    this.navbarService.setNavbarVisibility(true);
-    if (environment.hideHomepage) {
-      this.footerService.setFooterVisibility(false);
-    } else {
-      this.footerService.setFooterVisibility(true);
-    }
   }
 
 }

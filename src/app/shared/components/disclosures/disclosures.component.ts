@@ -17,7 +17,6 @@ export class DisclosuresComponent implements OnInit {
               public footerService: FooterService) { }
 
   ngOnInit() {
-    this.navbarService.setNavbarMode(1);
     this.navbarService.setNavbarVisibility(true);
     if (environment.hideHomepage) {
       this.footerService.setFooterVisibility(false);
