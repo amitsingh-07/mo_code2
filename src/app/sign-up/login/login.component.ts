@@ -42,6 +42,7 @@ import { StateStoreService } from './../../shared/Services/state-store.service';
 import { LoginFormError } from './login-form-error';
 import { HubspotService } from './../../shared/analytics/hubspot.service';
 import { SIGN_UP_CONFIG } from './../sign-up.constant';
+import { TermsModalComponent } from './../../shared/modal/terms-modal/terms-modal.component';
 
 @Component({
   selector: 'app-login',
@@ -121,7 +122,7 @@ export class LoginComponent implements OnInit, AfterViewInit, OnDestroy {
       this.singpassEnabled = route.snapshot.data[0]['singpassEnabled'];
       this.appService.clearJourneys();
       this.appService.clearPromoCode();
-    }
+    }   
     this.appService.setCorporateDetails({organisationEnabled: this.organisationEnabled, uuid: this.route.snapshot.queryParams.orgID || null});
     this.signUpService.removeUserType();
     if(this.authService.isSignedUserWithRole(SIGN_UP_CONFIG.ROLE_2FA)) {
@@ -171,6 +172,9 @@ export class LoginComponent implements OnInit, AfterViewInit, OnDestroy {
         this.getOrganisationCode();      
     }
     this.signUpService.setModalShownStatus('');
+    if (this.organisationEnabled) {
+        this.openTermsOfConditions();
+    }
   }
 
   ngAfterViewInit() {
@@ -243,9 +247,7 @@ export class LoginComponent implements OnInit, AfterViewInit, OnDestroy {
         return false;
       }
     }
-    let emailValidators = this.organisationEnabled ? 
-        [Validators.required, Validators.pattern(RegexConstants.EmailOrMobile), this.signUpService.emailDomainValidator] : 
-        [Validators.required, Validators.pattern(RegexConstants.EmailOrMobile)];
+    let emailValidators = [Validators.required, Validators.pattern(RegexConstants.EmailOrMobile), this.signUpService.emailDomainValidator(this.organisationEnabled)];
     this.loginForm = this.formBuilder.group({
       loginUsername: [this.formValues.loginUsername, emailValidators],
       loginPassword: [this.formValues.loginPassword, [Validators.required]],
@@ -263,6 +265,15 @@ export class LoginComponent implements OnInit, AfterViewInit, OnDestroy {
     })
     return true;
   }
+
+  openTermsOfConditions() {
+    if (localStorage.getItem('onInit') !== 'true') {
+      const ref = this.modal.open(TermsModalComponent, { centered: true, windowClass: 'sign-up-terms-modal-dialog', backdrop: 'static'});
+        ref.result.then((data) => {
+          localStorage.setItem('onInit', 'true');
+        });
+      }
+    }
 
   getOrganisationCode() {
     this.signUpApiService.getOrganisationCode(this.route.snapshot.queryParams.orgID).subscribe(res => {
