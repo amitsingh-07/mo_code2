@@ -590,8 +590,8 @@ export class CreateAccountComponent implements OnInit, AfterViewInit {
   }
   onKeyupEvent(event, key) {
     if (event.target.value) {
-      const enterEmail = event.target.value.replace(/\s/g, '');
-      this.createAccountForm.controls[key].setValue(enterEmail);
+        const enterEmail = event.target.value.replace(/\s/g, '');
+        this.createAccountForm.controls[key].setValue(enterEmail);
       if (key === 'referralCode' && !this.showSpinner) {
         this.showClearBtn = true;
       } else {
