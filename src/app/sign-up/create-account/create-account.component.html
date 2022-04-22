@@ -341,7 +341,7 @@
             <div class="flex-col-12 stretch">
               <div class="form-group-floating-label"
                 [ngClass]="{'inline-error': submitted && account.organisationCode.errors}">
-                <input type="text" id="crtAccInpt2" class="form-control" #organisationCode formControlName="organisationCode"
+                <input type="text" id="crtAccInpt2" class="form-control" #organisationCode formControlName="organisationCode" (keyup)="onKeyupEvent($event, 'organisationCode')" (paste)="onPaste($event, 'organisationCode')"
                 oninput="this.value = this.value.toUpperCase()" required>
                 <label class="form-control-placeholder" for="organisationCode">
                   {{ 'CREATE_ACCOUNT.FORM.ORGANISATION_NAME.LABEL' | translate}}</label>                
