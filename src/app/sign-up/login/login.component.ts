@@ -645,25 +645,15 @@ export class LoginComponent implements OnInit, AfterViewInit, OnDestroy {
   onBlur() {
     this.capslockFocus = false;
   }
-  onPaste(event: ClipboardEvent, organisationCode = false) {
-    if (!organisationCode) {
+  onPaste(event: ClipboardEvent, key) {
       const pastedEmailText = event.clipboardData.getData('text').replace(/\s/g, '');
-      this.loginForm.controls.loginUsername.setValue(pastedEmailText);
-      event.preventDefault();
-    } else {
-      const pastedOrganisationText = event.clipboardData.getData('text').replace(/\s/g, '');
-      this.loginForm.controls.organisationCode.setValue(pastedOrganisationText);
-      event.preventDefault();
-    }
+      this.loginForm.controls[key].setValue(pastedEmailText);
+      event.preventDefault();    
   }
-  onKeyupEvent(event) {
-    if (event.target.value && event.target.id == 'login_username_txt') {
+  onKeyupEvent(event, key) {
+    if (event.target.value) {
       const emailValue = event.target.value.replace(/\s/g, '');
-      this.loginForm.controls.loginUsername.setValue(emailValue);
-    }
-    else if(event.target.value && event.target.id == 'login_organisationid_txt'){
-      const orgValue = event.target.value.replace(/\s/g, '');
-      this.loginForm.controls.organisationCode.setValue(orgValue);
+      this.loginForm.controls[key].setValue(emailValue);
     }
   }
 
