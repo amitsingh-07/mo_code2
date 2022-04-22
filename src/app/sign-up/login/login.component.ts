@@ -303,7 +303,7 @@ export class LoginComponent implements OnInit, AfterViewInit, OnDestroy {
     const userType = (this.finlitEnabled ? appConstants.USERTYPE.FINLIT : (this.organisationEnabled ? appConstants.USERTYPE.CORPORATE : appConstants.USERTYPE.NORMAL));
     this.signUpService.setUserType(userType);
     const accessCode = (this.finlitEnabled) ? this.loginForm.value.accessCode : '';
-    const organisationCode = this.organisationEnabled && this.loginForm.get('organisationCode').value || null;
+    const organisationCode = this.organisationEnabled && this.loginForm.get('organisationCode').value.trim() || null;
     if (!form.valid || ValidatePassword(form.controls['loginPassword'])) {
       const ref = this.modal.open(ErrorModalComponent, { centered: true });
       let error;

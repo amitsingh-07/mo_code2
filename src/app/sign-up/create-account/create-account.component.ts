@@ -290,7 +290,7 @@ export class CreateAccountComponent implements OnInit, AfterViewInit {
       form.value.userType = (this.finlitEnabled ? appConstants.USERTYPE.FINLIT : (this.organisationEnabled ? appConstants.USERTYPE.CORPORATE : appConstants.USERTYPE.NORMAL));
       form.value.accountCreationType = (this.formValue && this.formValue.isMyInfoEnabled) ? appConstants.USERTYPE.SINGPASS : appConstants.USERTYPE.MANUAL;
       form.value.isMyInfoEnabled = (this.formValue && this.formValue.isMyInfoEnabled);
-      form.value.organisationCode = this.organisationEnabled && this.createAccountForm.get('organisationCode').value || null;
+      form.value.organisationCode = this.organisationEnabled && this.createAccountForm.get('organisationCode').value.trim() || null;
       if (this.formValue && this.formValue.isMyInfoEnabled) {
         form.value.dob = (this.formValue && this.formValue.isMyInfoEnabled && this.formValue.dob) ? this.formValue.dob : '';
         form.value.gender = (this.formValue && this.formValue.isMyInfoEnabled && this.formValue.gender) ? this.formValue.gender : '';
