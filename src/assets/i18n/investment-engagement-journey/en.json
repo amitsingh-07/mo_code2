@@ -559,7 +559,7 @@
     "PAGE_TITLE": "Add Secondary Holder",
     "EDIT_PAGE_TITLE": "Edit Secondary Holder",
     "TITLE": "Upload Document",
-    "INFO": "The doctrine of survivorship shall apply to accounts opened in joint names of more than one person. For more information refer to <a target='_blank' href='https://www.moneyowl.com.sg/faq-investment/#investment|3'>FAQ</a>",
+    "INFO": "The doctrine of survivorship shall apply to accounts opened in joint names of more than one person. For more information refer to <a target='_blank' href='https://www.moneyowl.com.sg/faq-investment/joint-account'>FAQ</a>",
     "PAGE_SUB_CAPTION": "Help us verify your identity and prevent fraud.",
     "IDENTITY_VERIFICATION": "For identity verifications, upload the required documents.",
     "PROOF_OF_IDENTITY": "Proof Of Identity",
@@ -653,7 +653,7 @@
     "STEP_3_LBL_2": "Upload your certificate ",
     "STEP_3_LBL_3": "by creating a new CPF investment portfolio.",
     "QUE_2": "How do I find out more?",
-    "STEP_4": "Visit our website for more <a class=\"hyperlink_color\" target=\"_blank\" href=\"https://www.moneyowl.com.sg/faq-investment/#investment|8\">Frequently Asked Questions</a> on investing with MoneyOwl.",
+    "STEP_4": "Visit our website for more <a class=\"hyperlink_color\" target=\"_blank\" href=\"https://www.moneyowl.com.sg/faq-investment/cpf-portfolio\">Frequently Asked Questions</a> on investing with MoneyOwl.",
     "STEP_5": "For assistance on investment pre-requisites, please email <a class=\"hyperlink_color\" target='_blank' href='mailto:enquiries@moneyowl.com.sg'>enquiries@moneyowl.com.sg</a>.",
     "BACK_TO_PROFILE_LBL": "Back to Profile",
     "TAKE_CERTIFICATION_LBL": "<a target='_blank' href='https://sips.abs.org.sg/Default.aspx'>Take Certification</a>"

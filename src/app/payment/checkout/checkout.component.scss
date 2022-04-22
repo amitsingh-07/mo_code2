@@ -414,12 +414,14 @@ app-checkout {
           white-space: nowrap;
           overflow: hidden;
         }
-      }
-      .valid-promo-normal {
-        width: calc(100% - 90px);
-      }
-      .valid-promo-corporate {
-        width: 100%;
+        
+        &.valid-promo-normal {
+          width: calc(100% - 90px);
+        }
+        &.valid-promo-corporate {
+          width: 100%;
+          min-height: 40px;
+        }
       }
       .remove-btn {
         font-family: $muli-semi-bold;
