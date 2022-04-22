@@ -11,8 +11,8 @@ export class LoginFormError {
                         errorMessage: 'Please enter your valid username'
                 },
                 invalidDomain : {
-                        errorTitle: 'Invalid Email Domain',
-                        errorMessage: 'Enter a valid email domain'
+                        errorTitle: 'Invalid Email domain',
+                        errorMessage: 'Please enter correct e-mail ID'
                 }
         },
         loginPassword: {
