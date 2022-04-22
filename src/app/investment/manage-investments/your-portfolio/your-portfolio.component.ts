@@ -364,7 +364,7 @@ export class YourPortfolioComponent implements OnInit, OnDestroy {
         break;
       }
       case 6: {
-        window.open('https://www.moneyowl.com.sg/faq-investment/#investment|8', '_blank');
+        window.open('https://www.moneyowl.com.sg/faq-investment/wiseincome-portfolio', '_blank');
         break;
       }
       case 7: {
