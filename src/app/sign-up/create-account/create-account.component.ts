@@ -584,7 +584,7 @@ export class CreateAccountComponent implements OnInit, AfterViewInit {
     this.capslockFocus = false;
   }
   onPaste(event: ClipboardEvent, key) {
-    const pastedEmailText = event.clipboardData.getData('text').replace(/\s/g, '');
+    const pastedEmailText = event.clipboardData.getData('text').replace(/\s/g, '').toUpperCase();
     this.createAccountForm.controls[key].setValue(pastedEmailText);
     event.preventDefault();
   }

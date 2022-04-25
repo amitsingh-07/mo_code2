@@ -646,7 +646,7 @@ export class LoginComponent implements OnInit, AfterViewInit, OnDestroy {
     this.capslockFocus = false;
   }
   onPaste(event: ClipboardEvent, key) {
-      const pastedEmailText = event.clipboardData.getData('text').replace(/\s/g, '');
+      const pastedEmailText = event.clipboardData.getData('text').replace(/\s/g, '').toUpperCase();
       this.loginForm.controls[key].setValue(pastedEmailText);
       event.preventDefault();    
   }
