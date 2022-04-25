@@ -584,14 +584,15 @@ export class CreateAccountComponent implements OnInit, AfterViewInit {
     this.capslockFocus = false;
   }
   onPaste(event: ClipboardEvent, key) {
-    const pastedEmailText = event.clipboardData.getData('text').replace(/\s/g, '');
-    this.createAccountForm.controls[key].setValue(pastedEmailText);
+    const pastedEmailText = event.clipboardData.getData('text').replace(/\s/g, '').toUpperCase();
+    const pastedText = (key == 'organisationCode'? event.clipboardData.getData('text').replace(/\s/g, '').toUpperCase() : event.clipboardData.getData('text').replace(/\s/g, ''));
+    this.createAccountForm.controls[key].setValue(pastedText);
     event.preventDefault();
   }
   onKeyupEvent(event, key) {
     if (event.target.value) {
-      const enterEmail = event.target.value.replace(/\s/g, '');
-      this.createAccountForm.controls[key].setValue(enterEmail);
+        const enterEmail = event.target.value.replace(/\s/g, '');
+        this.createAccountForm.controls[key].setValue(enterEmail);
       if (key === 'referralCode' && !this.showSpinner) {
         this.showClearBtn = true;
       } else {
