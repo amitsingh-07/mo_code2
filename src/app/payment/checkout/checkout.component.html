@@ -43,7 +43,7 @@
         *ngIf='cfpPromoCode && promoCodeDescription && reductionAmount'>
         <div>
           <div>{{'CHECKOUT.PROMO_LBL' | translate}} ({{ promoCodeDescription }})</div>
-          <div class="txt-regular">{{ cfpPromoCode }} applied!</div>
+          <div class="txt-regular">{{ authService.isUserTypeCorporate ? ('CHECKOUT.CORP_PROMOCODE_LBL' | translate) : cfpPromoCode +  ' applied!' }} </div>
         </div>
         <div class="value">{{ reductionAmount |
           currency:'USD':'symbol-narrow':'1.2'}}</div>
