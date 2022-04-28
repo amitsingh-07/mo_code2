@@ -20,6 +20,7 @@
     "BANNER_TXT": "Comprehensive Financial Planning Report",
     "TOTAL_LBL": "Total",
     "PROMO_LBL": "Promo ",
+    "CORP_PROMOCODE_LBL": "FREE for FB!",
     "PAYABLE_LBL": "Payable Amount",
     "GST_LBL": "Inclusive of {{gstPercent}}% GST",
     "SGD": "SGD",
