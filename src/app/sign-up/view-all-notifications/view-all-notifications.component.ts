@@ -102,6 +102,7 @@ export class ViewAllNotificationsComponent implements OnInit, AfterViewInit {
   clearAllNotifications() {
     this.updateNotifications(null, SIGN_UP_CONFIG.NOTIFICATION.DELETE_PAYLOAD_KEY);
     this.allMessages.splice(0);
+    this.navbarService.unsubscribeClearNotification();
   }
 
   constructDeleteNotificationRequest(messages) {
