@@ -12,7 +12,7 @@ export class LoginFormError {
                 },
                 invalidDomain : {
                         errorTitle: 'Invalid Email domain',
-                        errorMessage: 'Please enter valid e-mail domain'
+                        errorMessage: 'Please enter valid email domain'
                 }
         },
         loginPassword: {
