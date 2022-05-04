@@ -537,7 +537,11 @@ export class NavbarComponent implements OnInit, AfterViewInit {
     if (!this.authService.isSignedUser()) {
       this.clearLoginDetails();
       this.errorHandler.handleAuthError();
-      this.router.navigate([SIGN_UP_ROUTE_PATHS.LOGIN]);
+      if (this.appService.getCorporateDetails().organisationEnabled) {
+        this.router.navigate([SIGN_UP_ROUTE_PATHS.CORPORATE_LOGIN], { queryParams: {orgID: this.appService.getCorporateDetails().uuid}});
+      } else {
+        this.router.navigate([SIGN_UP_ROUTE_PATHS.LOGIN]);
+      }
     } else {
       // If user is on dashboard page already, close the menu
       this.checkCurrentRouteAndNavigate(DASHBOARD_PATH);
