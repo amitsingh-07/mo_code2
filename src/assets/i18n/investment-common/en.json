@@ -311,6 +311,7 @@
     "CPF_TOOLTIP": {
       "TITLE": "<span>CPF Investment Account (CPFIA) Details</span>",
       "DESC": "<span>To check your CPF Investment Account number, you can login to my CPF Online Services or mobile app, or your agent bank. </br> </br> Visit our website for more <span><a class=\"hyperlink_color\" target='_blank' href='https://www.moneyowl.com.sg/faq-investment/cpf-portfolio'><u>Frequently Asked Questions</u></a></span> on investing with MoneyOwl. </br></br> For assistance on updating your CPF Investment Account (CPFIA) information, please email <span><a class=\"hyperlink_color\" target='_blank' href=\"mailto:enquiries@moneyowl.com.sg\"><u class=\"cpf-fund-mail-color\">enquiries@moneyowl.com.sg</u></a></span>.</span>",
+      "CORP_DESC": "<span>To check your CPF Investment Account number, you can login to my CPF Online Services or mobile app, or your agent bank. </br> </br> Visit our website for more <span><a class=\"hyperlink_color\" target='_blank' href='assets/docs/faq/corporate_faq.pdf'><u>Frequently Asked Questions</u></a></span> on investing with MoneyOwl. </br></br> For assistance on updating your CPF Investment Account (CPFIA) information, please email <span><a class=\"hyperlink_color\" target='_blank' href=\"mailto:enquiries@moneyowl.com.sg\"><u class=\"cpf-fund-mail-color\">enquiries@moneyowl.com.sg</u></a></span>.</span>",
       "BTN": "Okay, Got It!"
     }
   },
