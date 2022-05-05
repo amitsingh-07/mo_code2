@@ -19,7 +19,7 @@ import { ReviewYourDetailsComponent } from './review-your-details/review-your-de
 import { SignUpComponent } from './sign-up/sign-up.component';
 import { TellUsAboutYourselfComponent } from './tell-us-about-yourself/tell-us-about-yourself.component';
 import { ValidateYourWillComponent } from './validate-your-will/validate-your-will.component';
-import { WillWritingAccessGuard } from './will-writing-access-guard';
+import { WillWritingAccessGuard, WillWritingIntroductionGuard } from './will-writing-access-guard';
 import { WILL_WRITING_ROUTES } from './will-writing-routes.constants';
 
 const routes: Routes = [
@@ -30,7 +30,8 @@ const routes: Routes = [
   },
   {
     path: WILL_WRITING_ROUTES.INTRODUCTION,
-    component: IntroductionComponent
+    component: IntroductionComponent,
+    canActivate: [WillWritingIntroductionGuard]
   },
   {
     path: WILL_WRITING_ROUTES.CHECK_ELIGIBILITY,
