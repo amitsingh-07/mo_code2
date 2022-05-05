@@ -11,14 +11,14 @@ import { AppService } from '../app.service';
 })
 export class AuthGuardService implements CanActivate {
   constructor(private route: Router,
-              private authService: AuthenticationService,
-              private appService: AppService
+    private authService: AuthenticationService,
+    private appService: AppService
   ) {
   }
   canActivate(): boolean {
     if (!this.authService.isSignedUser()) {
       if (this.appService.getCorporateDetails().organisationEnabled) {
-        this.route.navigate([SIGN_UP_ROUTE_PATHS.CORPORATE_LOGIN], { queryParams: {orgID: this.appService.getCorporateDetails().uuid}});
+        this.route.navigate([SIGN_UP_ROUTE_PATHS.CORPORATE_LOGIN], { queryParams: { orgID: this.appService.getCorporateDetails().uuid } });
       } else {
         this.route.navigate([SIGN_UP_ROUTE_PATHS.LOGIN]);
       }
@@ -32,12 +32,17 @@ export class AuthGuardService implements CanActivate {
 })
 export class InvestmentAuthGuardService implements CanActivate {
   constructor(private route: Router,
-              private authService: AuthenticationService
+    private authService: AuthenticationService,
+    private appService: AppService
   ) {
   }
   canActivate(): boolean {
     if (!this.authService.isSignedUser()) {
-      this.route.navigate([SIGN_UP_ROUTE_PATHS.CREATE_ACCOUNT_MY_INFO]);
+      if (this.appService.getCorporateDetails().organisationEnabled) {
+        this.route.navigate([SIGN_UP_ROUTE_PATHS.CORPORATE_LOGIN], { queryParams: { orgID: this.appService.getCorporateDetails().uuid } });
+      } else {
+        this.route.navigate([SIGN_UP_ROUTE_PATHS.CREATE_ACCOUNT_MY_INFO]);
+      }
       return false;
     }
     return true;
@@ -51,7 +56,7 @@ export class InvestmentAuthGuardService implements CanActivate {
 // tslint:disable-next-line:max-classes-per-file
 export class LoggedUserService implements CanActivate {
   constructor(private route: Router,
-              private authService: AuthenticationService
+    private authService: AuthenticationService
   ) {
   }
   canActivate(): boolean {
@@ -70,11 +75,11 @@ export class LoggedUserService implements CanActivate {
 // tslint:disable-next-line:max-classes-per-file
 export class FinlitLoggedUserService implements CanActivate {
   constructor(private route: Router,
-              private authService: AuthenticationService
+    private authService: AuthenticationService
   ) {
   }
   canActivate(): boolean {
-    if(!SIGN_UP_CONFIG.LOGIN.FINLIT_LOGIN) {
+    if (!SIGN_UP_CONFIG.LOGIN.FINLIT_LOGIN) {
       this.route.navigate([SIGN_UP_ROUTE_PATHS.LOGIN]);
       return false;
     } else if (this.authService.isSignedUser()) {
@@ -92,13 +97,13 @@ export class FinlitLoggedUserService implements CanActivate {
 // tslint:disable-next-line:max-classes-per-file
 export class FacebookLoggedUserService implements CanActivate {
   constructor(private route: Router,
-              private authService: AuthenticationService,
-              private appService: AppService
+    private authService: AuthenticationService,
+    private appService: AppService
   ) {
   }
   canActivate(): boolean {
-    if(!SIGN_UP_CONFIG.LOGIN.CORPORATE_LOGIN) {
-      this.route.navigate([SIGN_UP_ROUTE_PATHS.CORPORATE_LOGIN], { queryParams: {orgID: this.appService.getCorporateDetails().uuid}});
+    if (!SIGN_UP_CONFIG.LOGIN.CORPORATE_LOGIN) {
+      this.route.navigate([SIGN_UP_ROUTE_PATHS.CORPORATE_LOGIN], { queryParams: { orgID: this.appService.getCorporateDetails().uuid } });
       return false;
     }
     this.authService.isUserTypeCorporate = true;
