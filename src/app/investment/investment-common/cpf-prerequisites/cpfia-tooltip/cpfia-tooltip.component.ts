@@ -1,7 +1,7 @@
 import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 import { TranslateService } from '@ngx-translate/core';
-import { AuthenticationService } from 'src/app/shared/http/auth/authentication.service';
+import { AuthenticationService } from '../../../../shared/http/auth/authentication.service';
 
 @Component({
   selector: 'app-cpfia-tooltip',
