@@ -9,7 +9,7 @@ import { SIGN_UP_ROUTE_PATHS } from '../../sign-up/sign-up.routes.constants';
 import { LoaderService } from '../../shared/components/loader/loader.service';
 import { InvestmentAccountService } from '../../investment/investment-account/investment-account-service';
 import { environment } from './../../../environments/environment';
-import { AuthenticationService } from 'src/app/shared/http/auth/authentication.service';
+import { AuthenticationService } from '../../shared/http/auth/authentication.service';
 @Component({
   selector: 'app-manage-profile',
   templateUrl: './manage-profile.component.html',

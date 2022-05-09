@@ -5,7 +5,7 @@ import { SignUpService } from '../sign-up.service';
 import { SIGN_UP_ROUTE_PATHS } from './../sign-up.routes.constants';
 import { NavbarService } from './../../shared/navbar/navbar.service';
 import { Router } from '@angular/router';
-import { AuthenticationService } from 'src/app/shared/http/auth/authentication.service';
+import { AuthenticationService } from './../../shared/http/auth/authentication.service';
 import { AppService } from './../../app.service';
 
 @Component({

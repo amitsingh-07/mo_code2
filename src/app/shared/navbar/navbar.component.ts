@@ -503,6 +503,8 @@ export class NavbarComponent implements OnInit, AfterViewInit {
       this.authService.logout().subscribe((data) => {
         this.clearLoginDetails(true, this.signUpService.getUserType());
       });
+    } else if(this.appService.getCorporateDetails().organisationEnabled) {
+      this.clearLoginDetails(true, appConstants.USERTYPE.CORPORATE);
     } else {
       this.clearLoginDetails();
     }
