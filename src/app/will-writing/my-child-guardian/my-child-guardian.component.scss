@@ -1,6 +1,6 @@
 @import '../../../variables';
 @import '../../../mixins';
-
+app-my-child-guardian{
 .container-fluid {
     padding: 50px 60px 65px;
     font-family: $muli-semi-bold;
@@ -18,18 +18,6 @@
     }
 }
 
-.help-icon {
-    background-image: url("../../../assets/images/will-writing/help-icon.svg");
-    width: 20px;
-    height: 20px;
-    cursor: pointer;
-    background-repeat: no-repeat;
-    position: absolute;
-    right: -6px;
-    bottom: 15px;
-    background-color: #fff;
-    border-radius: 50%;
-}
 .autofill-link {
     @include allmobiles {
         display: flex;
@@ -47,6 +35,18 @@
             margin-top: 0;
             font-size: 16px;
         }
+    }
+    .help-icon {
+        background-image: url("../../../assets/images/will-writing/help-icon.svg");
+        width: 20px;
+        height: 20px;
+        cursor: pointer;
+        background-repeat: no-repeat;
+        position: absolute;
+        right: -6px;
+        bottom: 15px;
+        background-color: #fff;
+        border-radius: 50%;
     }
 }
 
@@ -207,6 +207,7 @@
         bottom: 2px;
         border-radius: 0;
         margin-right: 4px !important;
+        right: 0;
     }
 }
 
@@ -266,4 +267,5 @@
 
 .input-label-black {
     word-break: break-word;
+}
 }

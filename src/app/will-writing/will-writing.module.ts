@@ -27,7 +27,7 @@ import { ReviewYourDetailsComponent } from './review-your-details/review-your-de
 import { SignUpComponent } from './sign-up/sign-up.component';
 import { TellUsAboutYourselfComponent } from './tell-us-about-yourself/tell-us-about-yourself.component';
 import { ValidateYourWillComponent } from './validate-your-will/validate-your-will.component';
-import { WillWritingAccessGuard } from './will-writing-access-guard';
+import { WillWritingAccessGuard, WillWritingIntroductionGuard } from './will-writing-access-guard';
 import { WillWritingRoutingModule } from './will-writing-routing.module';
 
 export function createTranslateLoader(http: HttpClient) {
@@ -74,6 +74,6 @@ export function createTranslateLoader(http: HttpClient) {
     ValidateYourWillComponent,
     SignUpComponent
   ],
-  providers: [WillWritingAccessGuard]
+  providers: [WillWritingAccessGuard, WillWritingIntroductionGuard]
 })
 export class WillWritingModule { }

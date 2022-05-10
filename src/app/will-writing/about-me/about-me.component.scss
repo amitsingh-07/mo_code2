@@ -1,6 +1,6 @@
 @import '../../../variables';
 @import '../../../mixins';
-
+app-about-me{
 .container-fluid {
     padding: 50px 60px 65px;
     font-family: $muli-semi-bold;
@@ -194,3 +194,4 @@
         border-radius: 4px;
     }
   }
+}

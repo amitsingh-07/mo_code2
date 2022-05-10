@@ -1,5 +1,3 @@
-
-import {map} from 'rxjs/operators';
 import { Injectable } from '@angular/core';
 import { ActivatedRouteSnapshot, CanActivateChild, Router, RouterStateSnapshot } from '@angular/router';
 import { Observable } from 'rxjs';
@@ -8,8 +6,7 @@ import { AuthenticationService } from '../shared/http/auth/authentication.servic
 import { SignUpService } from '../sign-up/sign-up.service';
 import { SIGN_UP_ROUTE_PATHS } from './../sign-up/sign-up.routes.constants';
 import { PAYMENT_ROUTES } from './payment-routes.constants';
-import { PaymentService } from './payment.service';
-import { ComprehensiveService } from '../comprehensive/comprehensive.service';
+import { AppService } from '../app.service';
 
 @Injectable()
 export class PaymentChildEnableGuard implements CanActivateChild {
@@ -19,8 +16,7 @@ export class PaymentChildEnableGuard implements CanActivateChild {
     private configService: ConfigService, private router: Router,
     private authService: AuthenticationService,
     private signUpService: SignUpService,
-    private paymentService: PaymentService,
-    private comprehensiveService: ComprehensiveService) {
+    private appService: AppService) {
     this.configService.getConfig().subscribe((config: IConfig) => {
       this.isPaymentEnabled = config.paymentEnabled;
     });
@@ -41,7 +37,11 @@ export class PaymentChildEnableGuard implements CanActivateChild {
     } else {
       // User is not logged in, redirect to login page
       //this.signUpService.setRedirectUrl(state.url);
-      this.router.navigate([SIGN_UP_ROUTE_PATHS.LOGIN]);
+      if (this.appService.getCorporateDetails().organisationEnabled) {
+        this.router.navigate([SIGN_UP_ROUTE_PATHS.CORPORATE_LOGIN], { queryParams: {orgID: this.appService.getCorporateDetails().uuid}});
+      } else {
+        this.router.navigate([SIGN_UP_ROUTE_PATHS.LOGIN]);
+      }
       return false;
     }
   }

@@ -1,5 +1,7 @@
 @import '../../../variables';
 @import '../../../mixins';
+
+app-appoint-your-executor-trustee{
 .intro-block {
     .container-fluid {
         padding-top: 30px !important;
@@ -122,4 +124,5 @@
     @include allmobiles{
         margin-top: 15px;
     }
+}
 }

@@ -542,6 +542,14 @@ export class ApiService {
       );
   }
 
+  // Get FB PromoCode
+  getCustOrgPromoCode(promoCode) {
+    return this.http.post(apiConstants.endpoint.getCustOrgPromoCode, promoCode)
+      .pipe(
+        catchError((error: HttpErrorResponse) => this.handleError(error))
+      );
+  }
+
   createWill(payload) {
     return this.http.post(apiConstants.endpoint.willWriting.createWill, payload)
       .pipe(
@@ -766,6 +774,13 @@ export class ApiService {
 
   validateCpfPromoCode(payload) {
     return this.http.post(apiConstants.endpoint.promoCode.validatePromo + this.handleErrorFlag, payload)
+      .pipe(
+        catchError((error: HttpErrorResponse) => this.handleError(error))
+      );
+  }
+
+  getOrganisationCode(organisationUUID) {
+    return this.http.get(`${apiConstants.endpoint.organisation.getOrganisationCodeByUUID}?uuid=${organisationUUID}`)
       .pipe(
         catchError((error: HttpErrorResponse) => this.handleError(error))
       );

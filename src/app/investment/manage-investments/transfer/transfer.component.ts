@@ -5,6 +5,7 @@ import { NavigationStart, Router } from '@angular/router';
 import { NgbModal, NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
 import { TranslateService } from '@ngx-translate/core';
 import { Subscription } from 'rxjs';
+import { AuthenticationService } from '../../../shared/http/auth/authentication.service';
 import { LoaderService } from '../../../shared/components/loader/loader.service';
 import { FooterService } from '../../../shared/footer/footer.service';
 import { HeaderService } from '../../../shared/header/header.service';
@@ -16,6 +17,7 @@ import { MANAGE_INVESTMENTS_ROUTE_PATHS } from '../manage-investments-routes.con
 import { ManageInvestmentsService } from '../manage-investments.service';
 import { environment } from './../../../../environments/environment';
 import { TransferModalComponent } from './transfer-modal/transfer-modal.component';
+import { appConstants } from '../../../app.constants';
 @Component({
   selector: 'app-transfer',
   templateUrl: './transfer.component.html',
@@ -37,7 +39,7 @@ export class TransferComponent implements OnInit, OnDestroy {
   noteArray: any;
   cashPortfolioList: any;
   private subscription: Subscription;
-
+  corpFaq = appConstants.CORPORATE_FAQ;
   constructor(
     public readonly translate: TranslateService,
     private formBuilder: FormBuilder,
@@ -50,7 +52,8 @@ export class TransferComponent implements OnInit, OnDestroy {
     private loaderService: LoaderService,
     private investmentAccountService: InvestmentAccountService,
     private signUpService: SignUpService,
-    private decimalPipe: DecimalPipe
+    private decimalPipe: DecimalPipe,
+    public authService : AuthenticationService
   ) {
     this.translate.use('en');
     this.translate.get('COMMON').subscribe((result: string) => {

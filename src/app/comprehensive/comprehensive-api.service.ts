@@ -185,4 +185,13 @@ export class ComprehensiveApiService {
             .post(apiConstants.endpoint.comprehensive.generateComprehensiveCashflow, payload)
             .pipe(catchError((error: HttpErrorResponse) => this.helperService.handleError(error)));
     }
+
+    /**
+   * 
+   * @returns Get preload promo code for corporate user(Facebook)
+   */
+    getPreloadPromocode(payload) { 
+        return this.apiService.getCustOrgPromoCode(payload);
+    }
+
 }

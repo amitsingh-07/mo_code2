@@ -80,6 +80,9 @@ export class ProfileComponent implements IPageComponent, OnInit {
       });
     }
     this.footerService.setFooterVisibility(false);
+    if (!this.authService.isSignedUser()) {
+      this.appService.setCorporateDetails({organisationEnabled: false, uuid: null});
+    }
   }
 
   getProfileList() {

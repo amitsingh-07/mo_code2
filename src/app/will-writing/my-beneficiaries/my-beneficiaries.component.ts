@@ -1,5 +1,5 @@
 import { Location } from '@angular/common';
-import { Component, OnDestroy, OnInit, ViewChild } from '@angular/core';
+import { Component, OnDestroy, OnInit, ViewChild, ViewEncapsulation } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
@@ -19,7 +19,8 @@ import { WillWritingService } from './../will-writing.service';
 @Component({
   selector: 'app-my-beneficiaries',
   templateUrl: './my-beneficiaries.component.html',
-  styleUrls: ['./my-beneficiaries.component.scss']
+  styleUrls: ['./my-beneficiaries.component.scss'],
+  encapsulation: ViewEncapsulation.None
 })
 export class MyBeneficiariesComponent implements OnInit, OnDestroy {
   @ViewChild(PageTitleComponent) pageTitleComponent: PageTitleComponent;

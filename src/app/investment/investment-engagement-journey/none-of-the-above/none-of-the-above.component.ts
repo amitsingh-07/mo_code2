@@ -9,6 +9,7 @@ import { InvestmentCommonService } from '../../investment-common/investment-comm
 import { FooterService } from '../../../shared/footer/footer.service';
 import { HeaderService } from '../../../shared/header/header.service';
 import { NavbarService } from '../../../shared/navbar/navbar.service';
+import { AuthenticationService } from '../../../shared/http/auth/authentication.service';
 
 @Component({
   selector: 'app-none-of-the-above',
@@ -25,7 +26,8 @@ export class NoneOfTheAboveComponent implements OnInit {
     private router: Router,
     public headerService: HeaderService,
     public navbarService: NavbarService,
-    public footerService: FooterService
+    public footerService: FooterService,
+    public authService: AuthenticationService
   ) {
     this.translate.use('en');
     this.translate.get('COMMON').subscribe((result: string) => {

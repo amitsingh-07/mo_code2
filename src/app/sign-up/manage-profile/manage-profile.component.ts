@@ -9,6 +9,7 @@ import { SIGN_UP_ROUTE_PATHS } from '../../sign-up/sign-up.routes.constants';
 import { LoaderService } from '../../shared/components/loader/loader.service';
 import { InvestmentAccountService } from '../../investment/investment-account/investment-account-service';
 import { environment } from './../../../environments/environment';
+import { AuthenticationService } from '../../shared/http/auth/authentication.service';
 @Component({
   selector: 'app-manage-profile',
   templateUrl: './manage-profile.component.html',
@@ -20,6 +21,7 @@ export class ManageProfileComponent implements OnInit {
   entireUserData: any;
   personalData: any;
   empolymentDetails: any;
+  accessEmailOnRoles: boolean = true;
   constructor(
     public headerService: HeaderService,
     public navbarService: NavbarService,
@@ -28,7 +30,8 @@ export class ManageProfileComponent implements OnInit {
     private signUpService: SignUpService,
     private router: Router,
     private loaderService: LoaderService,
-    private investmentAccountService: InvestmentAccountService
+    private investmentAccountService: InvestmentAccountService,
+    private authService: AuthenticationService
   ) {
     this.translate.use('en');
     this.translate.get('COMMON').subscribe(() => {
@@ -45,7 +48,8 @@ export class ManageProfileComponent implements OnInit {
     }
     this.footerService.setFooterVisibility(false);
     this.setPageTitle(this.pageTitle);
-    this.getEditProfileData();
+    this.getEditProfileData();    
+    this.accessEmailOnRoles = this.authService.accessCorporateUserFeature('EMAIL_UPDATE');
   }
 
   setPageTitle(title: string) {

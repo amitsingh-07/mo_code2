@@ -42,6 +42,7 @@ import { StateStoreService } from './../../shared/Services/state-store.service';
 import { LoginFormError } from './login-form-error';
 import { HubspotService } from './../../shared/analytics/hubspot.service';
 import { SIGN_UP_CONFIG } from './../sign-up.constant';
+import { TermsModalComponent } from './../../shared/modal/terms-modal/terms-modal.component';
 
 @Component({
   selector: 'app-login',
@@ -64,6 +65,7 @@ export class LoginComponent implements OnInit, AfterViewInit, OnDestroy {
   progressModal = false;
   investmentEnquiryId;
   finlitEnabled = false;
+  organisationEnabled = false;
   capsOn: boolean;
   capslockFocus: boolean;
   showPasswordLogin = true;
@@ -116,10 +118,12 @@ export class LoginComponent implements OnInit, AfterViewInit, OnDestroy {
     });
     if (route.snapshot.data[0]) {
       this.finlitEnabled = route.snapshot.data[0]['finlitEnabled'];
+      this.organisationEnabled = route.snapshot.data[0]['organisationEnabled'];
       this.singpassEnabled = route.snapshot.data[0]['singpassEnabled'];
       this.appService.clearJourneys();
       this.appService.clearPromoCode();
-    }
+    }   
+    this.appService.setCorporateDetails({organisationEnabled: this.organisationEnabled, uuid: this.route.snapshot.queryParams.orgID || null});
     this.signUpService.removeUserType();
     if(this.authService.isSignedUserWithRole(SIGN_UP_CONFIG.ROLE_2FA)) {
       this.authService.clearTokenID();
@@ -158,11 +162,19 @@ export class LoginComponent implements OnInit, AfterViewInit, OnDestroy {
         });
       } else {
         this.authService.authenticate().subscribe((token) => {
+          if (this.organisationEnabled && this.route.snapshot.queryParams.orgID) {
+            this.getOrganisationCode();
+          }
           this.loaderService.hideLoader();
         });
       }
+    } else if (this.organisationEnabled && this.route.snapshot.queryParams.orgID) {
+        this.getOrganisationCode();      
     }
     this.signUpService.setModalShownStatus('');
+    if (this.organisationEnabled) {
+        this.openTermsOfConditions();
+    }
   }
 
   ngAfterViewInit() {
@@ -229,23 +241,46 @@ export class LoginComponent implements OnInit, AfterViewInit, OnDestroy {
         this.loginForm = this.formBuilder.group({
           loginUsername: [this.formValues.loginUsername, [Validators.required, Validators.pattern(this.distribution.login.phoneRegex)]],
           loginPassword: [this.formValues.loginPassword, [Validators.required]],
+          organisationCode: [null, this.organisationEnabled ? [Validators.required] : []],
           captchaValue: ['']
         });
         return false;
       }
     }
+    let emailValidators = [Validators.required, Validators.pattern(RegexConstants.EmailOrMobile), this.signUpService.emailDomainValidator(this.organisationEnabled)];
     this.loginForm = this.formBuilder.group({
-      loginUsername: [this.formValues.loginUsername, [Validators.required, Validators.pattern(RegexConstants.EmailOrMobile)]],
+      loginUsername: [this.formValues.loginUsername, emailValidators],
       loginPassword: [this.formValues.loginPassword, [Validators.required]],
+      organisationCode: [null, this.organisationEnabled ? [Validators.required] : []],
       captchaValue: ['']
     });
     if (this.finlitEnabled) {
       this.loginForm.addControl('accessCode', new FormControl(this.formValues.accessCode, [Validators.required]));
-
     }
+    
+    this.loginForm.get('organisationCode').valueChanges.subscribe(val => {
+      if (val) {
+        this.signUpService.organisationName = val;
+      }
+    })
     return true;
   }
 
+  openTermsOfConditions() {
+    if (localStorage.getItem('onInit') !== 'true') {
+      const ref = this.modal.open(TermsModalComponent, { centered: true, windowClass: 'sign-up-terms-modal-dialog', backdrop: 'static'});
+        ref.result.then((data) => {
+          localStorage.setItem('onInit', 'true');
+        });
+      }
+    }
+
+  getOrganisationCode() {
+    this.signUpApiService.getOrganisationCode(this.route.snapshot.queryParams.orgID).subscribe(res => {
+      this.loginForm.get('organisationCode').patchValue(res.objectList[0]);
+    });
+  }
+ 
   /**
    * Show or hide inline error.
    * @param form - form control.
@@ -265,9 +300,10 @@ export class LoginComponent implements OnInit, AfterViewInit, OnDestroy {
       });
     }
     this.signUpService.setEmail(form.value.loginUsername);
-    const userType = this.finlitEnabled ? appConstants.USERTYPE.FINLIT : appConstants.USERTYPE.NORMAL;
+    const userType = (this.finlitEnabled ? appConstants.USERTYPE.FINLIT : (this.organisationEnabled ? appConstants.USERTYPE.CORPORATE : appConstants.USERTYPE.NORMAL));
     this.signUpService.setUserType(userType);
     const accessCode = (this.finlitEnabled) ? this.loginForm.value.accessCode : '';
+    const organisationCode = this.organisationEnabled && this.loginForm.get('organisationCode').value || null;
     if (!form.valid || ValidatePassword(form.controls['loginPassword'])) {
       const ref = this.modal.open(ErrorModalComponent, { centered: true });
       let error;
@@ -291,7 +327,7 @@ export class LoginComponent implements OnInit, AfterViewInit, OnDestroy {
       this.progressModal = true;
       const loginType = (SIGN_UP_CONFIG.AUTH_2FA_ENABLED) ? SIGN_UP_CONFIG.LOGIN_TYPE_2FA : '';
       this.signUpApiService.verifyLogin(this.loginForm.value.loginUsername, this.loginForm.value.loginPassword,
-        this.loginForm.value.captchaValue, this.finlitEnabled, accessCode, loginType).subscribe((data) => {
+        this.loginForm.value.captchaValue, this.finlitEnabled, accessCode, loginType, organisationCode).subscribe((data) => {
           if(SIGN_UP_CONFIG.AUTH_2FA_ENABLED) {
             if (data.responseMessage && data.responseMessage.responseCode >= 6000) {
               try {
@@ -479,7 +515,7 @@ export class LoginComponent implements OnInit, AfterViewInit, OnDestroy {
       this.showErrorModal(this.translate.instant('SIGNUP_ERRORS.TITLE'),
         this.translate.instant('SIGNUP_ERRORS.VERIFY_EMAIL_OTP'),
         this.translate.instant('COMMON.VERIFY_NOW'),
-        SIGN_UP_ROUTE_PATHS.VERIFY_MOBILE, false);
+        (this.organisationEnabled && SIGN_UP_ROUTE_PATHS.CORPORATE_VERIFY_MOBILE) || SIGN_UP_ROUTE_PATHS.VERIFY_MOBILE, false);
     }
   }
 
@@ -515,8 +551,9 @@ export class LoginComponent implements OnInit, AfterViewInit, OnDestroy {
 
 
   resendEmailVerification() {
+    const organisationCode = this.organisationEnabled && this.loginForm.get('organisationCode').value || null;
     const isEmail = this.authService.isUserNameEmail(this.loginForm.value.loginUsername);
-    return this.signUpApiService.resendEmailVerification(this.loginForm.value.loginUsername, isEmail);
+    return this.signUpApiService.resendEmailVerification(this.loginForm.value.loginUsername, isEmail, organisationCode);
   }
   openErrorModal(error) {
     const ref = this.modal.open(ErrorModalComponent, { centered: true });
@@ -608,15 +645,16 @@ export class LoginComponent implements OnInit, AfterViewInit, OnDestroy {
   onBlur() {
     this.capslockFocus = false;
   }
-  onPaste(event: ClipboardEvent) {
-    const pastedEmailText = event.clipboardData.getData('text').replace(/\s/g, '');
-    this.loginForm.controls.loginUsername.setValue(pastedEmailText);
-    event.preventDefault();
+  onPaste(event: ClipboardEvent, key) {
+      const pastedEmailText = event.clipboardData.getData('text').replace(/\s/g, '').toUpperCase();
+      const pastedText = (key == 'organisationCode'? event.clipboardData.getData('text').replace(/\s/g, '').toUpperCase() : event.clipboardData.getData('text').replace(/\s/g, ''));
+      this.loginForm.controls[key].setValue(pastedText);
+      event.preventDefault();    
   }
-  onKeyupEvent(event) {
+  onKeyupEvent(event, key) {
     if (event.target.value) {
       const emailValue = event.target.value.replace(/\s/g, '');
-      this.loginForm.controls.loginUsername.setValue(emailValue);
+      this.loginForm.controls[key].setValue(emailValue);
     }
   }
 

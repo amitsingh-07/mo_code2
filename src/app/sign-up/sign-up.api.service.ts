@@ -20,6 +20,7 @@ import { SIGN_UP_CONFIG } from './sign-up.constant';
 })
 export class SignUpApiService {
   private emailVerifyUrl: String;
+  private corpEmailVerifyUrl: String;
 
   constructor(
     private configService: ConfigService, private hubspotService: HubspotService,
@@ -30,6 +31,7 @@ export class SignUpApiService {
   ) {
     this.configService.getConfig().subscribe((config: IConfig) => {
       this.emailVerifyUrl = config.verifyEmailUrl;
+      this.corpEmailVerifyUrl = config.corpEmailVerifyUrl;
     });
   }
 
@@ -86,7 +88,8 @@ export class SignUpApiService {
         enquiryId,
         referralCode: getAccountInfo.referralCode,
         userType: getAccountInfo.userType,
-        accountCreationType: getAccountInfo.accountCreationType
+        accountCreationType: getAccountInfo.accountCreationType,
+        organisationCode: getAccountInfo.organisationCode
       };
     } else {
       return {
@@ -107,7 +110,8 @@ export class SignUpApiService {
         enquiryId,
         referralCode: getAccountInfo.referralCode,
         userType: getAccountInfo.userType,
-        accountCreationType: getAccountInfo.accountCreationType
+        accountCreationType: getAccountInfo.accountCreationType,
+        organisationCode: getAccountInfo.organisationCode
       };
     }
   }
@@ -266,7 +270,7 @@ export class SignUpApiService {
    * @param username - email / mobile no.
    * @param password - password.
    */
-  verifyLogin(userEmail, userPassword, captcha, finlitEnabled, accessCode, loginType) {
+  verifyLogin(userEmail, userPassword, captcha, finlitEnabled, accessCode, loginType, organisationCode) {
     let enqId = -1;
     let journeyType = this.appService.getJourneyType();
     const sessionId = this.authService.getSessionId();
@@ -292,7 +296,7 @@ export class SignUpApiService {
 
     journeyType = journeyType.toLowerCase();
 
-    return this.authService.login(userEmail, this.cryptoService.encrypt(userPassword), captcha, sessionId, enqId, journeyType, finlitEnabled, accessCode, loginType);
+    return this.authService.login(userEmail, this.cryptoService.encrypt(userPassword), captcha, sessionId, enqId, journeyType, finlitEnabled, accessCode, loginType, organisationCode);
   }
 
   logout() {
@@ -307,12 +311,13 @@ export class SignUpApiService {
     return this.apiService.emailValidityCheck(payload);
   }
 
-  resendEmailVerification(value: any, isEmail: boolean) {
+  resendEmailVerification(value: any, isEmail: boolean, organisationCode = null) {
     const payload = {
       mobileNumber: isEmail ? '' : value,
       emailAddress: isEmail ? value : '',
-      callbackUrl: environment.apiBaseUrl + this.emailVerifyUrl,
-      hostedServerName: window.location.hostname
+      callbackUrl: `${environment.apiBaseUrl}${organisationCode == appConstants.USERTYPE.FACEBOOK ? this.corpEmailVerifyUrl : this.emailVerifyUrl}`, 
+      hostedServerName: window.location.hostname,
+      organisationCode: organisationCode
     } as IResendEmail;
     return this.apiService.resendEmailVerification(payload);
   }
@@ -335,8 +340,8 @@ export class SignUpApiService {
     return this.apiService.editMobileNumber(payload);
   }
 
-  resetPassword(password, key) {
-    const data = this.signUpService.constructResetPasswordInfo(this.cryptoService.encrypt(password), key);
+  resetPassword(password, key, profileType) {
+    const data = this.signUpService.constructResetPasswordInfo(this.cryptoService.encrypt(password), key, profileType);
     return this.apiService.requestResetPassword(data);
   }
 
@@ -355,5 +360,13 @@ export class SignUpApiService {
       track_code: popupType
     };
     return this.apiService.setPopupStatus(payload);
+  }
+
+  /**
+ * Getting organisation(name) by passing organisation code(UUID)
+ * @param orgID - query parameter.
+ */
+   getOrganisationCode(orgID) {
+    return this.apiService.getOrganisationCode(orgID);
   }
 }

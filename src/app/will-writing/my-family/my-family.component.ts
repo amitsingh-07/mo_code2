@@ -1,7 +1,7 @@
 import { Subscription } from 'rxjs';
 
 import { Location } from '@angular/common';
-import { Component, OnDestroy, OnInit, ViewChild } from '@angular/core';
+import { Component, OnDestroy, OnInit, ViewChild, ViewEncapsulation } from '@angular/core';
 import { FormArray, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { NgbDateParserFormatter, NgbDatepickerConfig, NgbModal } from '@ng-bootstrap/ng-bootstrap';
@@ -22,7 +22,8 @@ import { WillWritingService } from '../will-writing.service';
   selector: 'app-my-family',
   templateUrl: './my-family.component.html',
   providers: [{ provide: NgbDateParserFormatter, useClass: NgbDateCustomParserFormatter }],
-  styleUrls: ['./my-family.component.scss']
+  styleUrls: ['./my-family.component.scss'],
+  encapsulation: ViewEncapsulation.None
 })
 export class MyFamilyComponent implements OnInit, OnDestroy {
   @ViewChild(PageTitleComponent) pageTitleComponent: PageTitleComponent;

@@ -26,6 +26,7 @@ import { ManageInvestmentsService } from '../../manage-investments/manage-invest
 import { Util } from '../../../shared/utils/util';
 import { MANAGE_INVESTMENTS_CONSTANTS } from '../../manage-investments/manage-investments.constants';
 import { LoaderService } from '../../../shared/components/loader/loader.service';
+import { AuthenticationService } from '../../../shared/http/auth/authentication.service';
 
 @Component({
   selector: 'app-funding-account-details',
@@ -59,7 +60,7 @@ export class FundingAccountDetailsComponent implements OnInit {
   selectedPortfolio: any;
   fundList: any;
   userPortfolioList: any;
-
+  organisationEnabled = false;
   constructor(
     public readonly translate: TranslateService,
     private router: Router,
@@ -71,7 +72,8 @@ export class FundingAccountDetailsComponent implements OnInit {
     private investmentCommonService: InvestmentCommonService,
     public investmentAccountService: InvestmentAccountService,
     public manageInvestmentsService: ManageInvestmentsService,
-    public loaderService: LoaderService
+    public loaderService: LoaderService,
+    public authService : AuthenticationService
   ) {
     this.navigationType = this.investmentCommonService.setNavigationType(this.router.url, INVESTMENT_COMMON_ROUTES.EDIT_FUNDING_ACCOUNT_DETAILS,
       INVESTMENT_ENGAGEMENT_JOURNEY_CONSTANTS.NAVIGATION_TYPE.EDIT);
@@ -89,6 +91,7 @@ export class FundingAccountDetailsComponent implements OnInit {
     this.userPortfolioType = investmentEngagementJourneyService.getUserPortfolioType();
     this.isJAEnabled = (this.userPortfolioType === INVESTMENT_ENGAGEMENT_JOURNEY_CONSTANTS.PORTFOLIO_TYPE.JOINT_ACCOUNT_ID);
     this.selectedPortfolio = investmentEngagementJourneyService.getSelectPortfolioType();
+    this.organisationEnabled = authService.isUserTypeCorporate;
   }
 
   setPageTitle(title: string) {
@@ -159,7 +162,6 @@ export class FundingAccountDetailsComponent implements OnInit {
     } else if (this.isCashAccount(fundingMethodId, this.fundingMethods) || this.isCPFAccount(fundingMethodId, this.fundingMethods)) {
       this.fundingAccountDetailsForm.removeControl('srsFundingDetails');
     }
-    this.addorRemoveAccNoValidator();
   }
 
   isCashAccount(fundingMethodId, fundingMethods) {
@@ -374,6 +376,7 @@ export class FundingAccountDetailsComponent implements OnInit {
       if (operatorBank && this.fundingAccountDetailsForm.get('srsFundingDetails')) {
         this.fundingAccountDetailsForm.controls.srsFundingDetails.get('srsOperatorBank').setValue(operatorBank);
         this.fundingAccountDetailsForm.controls.srsFundingDetails.get('srsAccountNumber').setValue(data.srsAccountNumber.conformedValue);
+        this.removeAccNoValidator();
       }
     }
   }
@@ -452,6 +455,15 @@ export class FundingAccountDetailsComponent implements OnInit {
       } else {
         accNoControl.setValidators([Validators.required]);
       }
+      this.fundingAccountDetailsForm.updateValueAndValidity();
+    }
+  }
+
+  removeAccNoValidator() {
+    if (this.fundingAccountDetailsForm.get('srsFundingDetails')) {
+      const accNoControl = this.fundingAccountDetailsForm.get('srsFundingDetails').get('srsAccountNumber');
+      accNoControl.clearValidators();
+      accNoControl.setValidators([Validators.required]);
       this.fundingAccountDetailsForm.updateValueAndValidity();
     }
   }
@@ -570,9 +582,8 @@ export class FundingAccountDetailsComponent implements OnInit {
     ref.componentInstance.errorTitle = this.translate.instant(
       'CONFIRM_ACCOUNT_DETAILS.CPF_TOOLTIP.TITLE'
     );
-    ref.componentInstance.errorMessage = this.translate.instant(
-      'CONFIRM_ACCOUNT_DETAILS.CPF_TOOLTIP.DESC'
-    );
+    ref.componentInstance.errorMessage = this.organisationEnabled ? this.translate.instant('CONFIRM_ACCOUNT_DETAILS.CPF_TOOLTIP.CORP_DESC') : 
+    this.translate.instant('CONFIRM_ACCOUNT_DETAILS.CPF_TOOLTIP.DESC');
     ref.componentInstance.primaryActionLabel = this.translate.instant(
       'CONFIRM_ACCOUNT_DETAILS.CPF_TOOLTIP.BTN'
     );

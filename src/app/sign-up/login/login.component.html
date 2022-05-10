@@ -45,7 +45,7 @@
               <div class="form-group-floating-label"
                 [ngClass]="{'inline-error':getInlineErrorStatus(loginForm.controls.loginUsername)}">
                 <input type="text" appInputFocus id="login_username_txt" class="form-control" #loginUsername
-                  formControlName="loginUsername" (paste)="onPaste($event)" (keyup)="onKeyupEvent($event)" required>
+                  formControlName="loginUsername" (paste)="onPaste($event, 'loginUsername')" (keyup)="onKeyupEvent($event, 'loginUsername')" required>
                 <label class="form-control-placeholder" for="login_username_txt" id="login_username_lbl">{{
                   'LOGIN.FORM.USERNAME' | translate}}</label>
               </div>
@@ -133,7 +133,7 @@
               <div class="form-group-floating-label"
                 [ngClass]="{'inline-error':getInlineErrorStatus(loginForm.controls.loginUsername)}">
                 <input type="text" appInputFocus id="login_username_txt" class="form-control" #loginUsername
-                formControlName="loginUsername" (paste)="onPaste($event)" (keyup)="onKeyupEvent($event)" required>
+                formControlName="loginUsername" (paste)="onPaste($event, 'loginUsername')" (keyup)="onKeyupEvent($event, 'loginUsername')" required>
                 <label class="form-control-placeholder" for="login_username_txt"
                   id="login_username_lbl">{{ 'LOGIN.FORM.USERNAME' | translate}}</label>
               </div>
@@ -171,6 +171,18 @@
               </div>
             </div>
           </div>
+          <div class="flex-row mb20" *ngIf='organisationEnabled'>
+            <div class="flex-col-12 stretch">
+              <div class="form-group-floating-label"
+              [ngClass]="{'inline-error':getInlineErrorStatus(loginForm.controls.organisationCode)}"
+                >
+                <input type="text" appInputFocus id="login_organisationid_txt" class="form-control" (keyup)="onKeyupEvent($event, 'organisationCode')" (paste)="onPaste($event, 'organisationCode')"
+                  formControlName="organisationCode" oninput="this.value = this.value.toUpperCase()" required maxLength="10">
+                <label class="form-control-placeholder" for="login_organisationid_txt"
+                id="login_organisationid_lbl">{{ 'LOGIN.FORM.ORGANISATION_NAME' | translate}}</label>
+              </div>
+            </div>
+          </div>          
           <div class="flex-row mb10" *ngIf="showCaptcha">
             <span class="mb10">{{ 'COMMON.CAPTCHA_TITLE' | translate}}</span>
             <div class="flex-col-6 stretch">
@@ -193,9 +205,9 @@
           <!-- FORGOT -->
           <div class="forgot-link" *ngIf="!hideForgotPassword">
             <a id="login_forgotpwd_link"
-              [routerLink]="'/accounts/forgot-password'">{{ 'LOGIN.FORGOT_PASSWORD' | translate}}</a>
+              [routerLink]="organisationEnabled ? '/accounts/corp/forgot-password' : '/accounts/forgot-password'">{{ 'LOGIN.FORGOT_PASSWORD' | translate}}</a>
           </div>
-          <div class="start-link"><a id="login_signup_link" [routerLink]="finlitEnabled ? '/accounts/finlit/sign-up':'/accounts/sign-up'  ">{{ 'LOGIN.DON_T_HAVE_AN_ACCOUNT' | translate}}</a></div>
+          <div class="start-link"><a id="login_signup_link" [routerLink]="finlitEnabled ? '/accounts/finlit/sign-up' : organisationEnabled ? '/accounts/corp/sign-up' : '/accounts/sign-up'  ">{{ 'LOGIN.DON_T_HAVE_AN_ACCOUNT' | translate}}</a></div>
           <button id="login_submit_btn" (click)="doLogin(loginForm)" type="button"
             class="btn btn__footer--fixed btn-primary width100 ">{{
             'COMMON.LOGIN' | translate }}</button>

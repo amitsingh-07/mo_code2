@@ -299,17 +299,29 @@ export class CheckoutComponent implements OnInit, OnDestroy {
         } else if (!this.comprehensiveService.checkResultData()) {
           this.router.navigate([COMPREHENSIVE_ROUTE_PATHS.VALIDATE_RESULT]);
         } else if ((this.isCorporate && advisorPaymentStatus === null && reportStatus === COMPREHENSIVE_CONST.REPORT_STATUS.READY) || (!this.isCorporate && reportStatus === COMPREHENSIVE_CONST.REPORT_STATUS.NEW)) {
-          this.promoSubscription = this.navbarService.getCpfPromoCodeObservable.subscribe((promoCode) => {
-            if (promoCode) {
-              this.getCheckoutDetails(promoCode, false);
-            } else if (this.authService.isSignedUser()) {
-              if (promoCode === null) {
-                this.getCheckoutDetails(null, false);
-              } else {
-                this.getCheckoutDetails(promoCode, true);
-              }
-            }
-          });
+                    if (this.comprehensiveService.getPrefillPromoCodeAccess()) {                             
+                        const payload = {
+                          promoCodeCat: COMPREHENSIVE_CONST.PROMO_CODE.TYPE, 
+                          promoCodeSubCat: COMPREHENSIVE_CONST.ROLES.COMPREHENSIVE_ADVISOR 
+                      };
+                      this.comprehensiveApiService.getPreloadPromocode(payload).subscribe((data) => {
+                        if (data) {
+                          this.getCheckoutDetails(data.objectList[0].promoCode, false);
+                        }
+                      });
+                    } else {               
+                      this.promoSubscription = this.navbarService.getCpfPromoCodeObservable.subscribe((promoCode) => {
+                        if (promoCode) {
+                          this.getCheckoutDetails(promoCode, false);
+                        } else if (this.authService.isSignedUser()) {
+                          if (promoCode === null) {
+                            this.getCheckoutDetails(null, false);
+                          } else {
+                            this.getCheckoutDetails(promoCode, true);
+                          }
+                        }
+                      }); 
+                    }
         } else {
           this.backToDashboard();
         }
