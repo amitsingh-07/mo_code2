@@ -226,6 +226,10 @@ export class NavbarService {
     this.clearNotificationEvent.next(true);
   }
 
+  unsubscribeClearNotification() {
+    this.clearNotificationEvent.next(false);
+  }
+  
   subscribeBackPress() {
     this.isBackPressSubscribed.next(true);
     return this.currentBackListener;

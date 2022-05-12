@@ -7,7 +7,7 @@ import { DIRECT_ROUTES } from './direct-routes.constants';
 import { DirectComponent } from './direct.component';
 
 const routes: Routes = [
-  { path: '', component: DirectComponent },
+  { path: '', component: DirectComponent, canActivate: [DirectAccessGuard] },
   {
     path: DIRECT_ROUTES.COMPARE_PLANS,
     component: ComparePlansComponent,
