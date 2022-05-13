@@ -73,5 +73,3 @@ export class DirectModule {
   constructor(public navbarService: NavbarService, public headerService: HeaderService) {
   }
 }
-
-// ProductDetailComponent
