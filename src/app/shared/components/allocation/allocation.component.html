@@ -39,7 +39,7 @@
                   <div class="flex-col-7 rating">
                     <div class="flex-row" *ngFor="let detail of allocation.value;">
                       <span class="flex-col-8">{{detail.sectorRegion}}</span>
-                      <span class="rating_value flex-col-4"><span *ngIf="detail.sectorRegion == 'Other'">&lt;</span>{{detail.percentage | number : '1.1-1'}}%</span>
+                      <span class="rating_value flex-col-4"><span *ngIf="detail.sectorRegion == 'Other'">&lt;</span>{{detail.percentage < 0.5? 0.1 : detail.percentage | number : '1.1-1'}}%</span>
                     </div>
                   </div>
                 </div>
