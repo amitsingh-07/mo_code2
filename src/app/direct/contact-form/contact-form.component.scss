@@ -1,0 +1,99 @@
+@import '../../../variables';
+@import '../../../mixins';
+
+app-contact-form{
+    .modal-body{
+        @include allmobiles{
+            border-radius: 8px !important;
+            padding-left: 20px !important;
+        }
+        .modal-body-title{
+            margin-right: 0px;
+            margin-bottom: 15px;
+            font-family: $muli-regular;
+            font-size: 16px;
+            line-height: 20px;
+            letter-spacing: -0.16px;
+            color: #5E5E5E;
+
+            .banner-bg{
+                width: 269px;
+                height: 193px;
+                text-align: center;
+                margin: 20px auto;
+            }
+            .text-bold{
+                font-family: $muli-bold;
+                font-size: 18px;
+                color: #007D7D;
+                line-height: 21px;
+                margin-bottom: 4px;
+            }
+        }
+    }
+    .form-group-floating-label{
+        border: 1px solid #94CCCC;
+    }
+    .footer-btn {
+        font-family: $muli-bold;
+        background-color: $teal-color;
+        box-shadow: 0 4px 6px 0 rgba(0, 0, 0, 0.15);
+        margin-top: 20px;
+    }
+    .recommnendation-info{
+        .title{
+            font-family: $muli-bold;
+            font-size: 14px;
+            line-height: 21px;
+            text-align: center;
+            letter-spacing: -0.16px;
+            color: #58C4C5;
+        }
+        .card{
+            border: none;
+            .card-header{
+                padding: 0;
+                background: #ffffff;
+                border: none;
+                .btn-link {
+                    padding: 0px;
+                    width: 100%;
+                    // font-size: 16px;
+                    // font-family: $muli-bold;
+                    // line-height: normal;
+                    // letter-spacing: -0.3px;
+                    // color: $black-color;
+                    .arrow {
+                        border: solid $teal-color;
+                        border-width: 0 2px 2px 0;
+                        display: inline-block;
+                        padding: 4px;
+                        float: right;
+                        transform: rotate(-135deg);
+                        -webkit-transform: rotate(-135deg);
+                    }
+                    &.collapsed {
+                        .arrow {
+                            transform: rotate(45deg);
+                            -webkit-transform: rotate(45deg);
+                        }
+                    }
+                    &:hover,
+                    &:focus {
+                        text-decoration: none;
+                    }
+                }
+            }
+            .card-body{
+                padding: 0;
+                .form-control{
+                    &.gender{
+                      padding: 0.9rem !important;
+                      color: $teal-color;
+                      flex-direction: row;
+                    }
+                }
+            }
+        }
+    }
+}

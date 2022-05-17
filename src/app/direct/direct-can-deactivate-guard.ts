@@ -26,7 +26,10 @@ export class DirectCanDeactivateGuard implements CanDeactivate<DirectCanDeactiva
   }
 
   contactFormModalResponse() {
-    const modalRef = this.modalService.open(ContactFormComponent);
+    const modalRef = this.modalService.open(ContactFormComponent, {
+      centered: true,
+      windowClass: 'custom-full-height contact-form-modal',
+    });
     return modalRef.result;
   }
 
