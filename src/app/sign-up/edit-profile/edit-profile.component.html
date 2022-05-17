@@ -595,11 +595,7 @@
                 </div>
                 <div class="flex-col-6">
                   <div class="icon-block">
-                    <span
-                      (click)="updateSrsDetails(srsDetails?.srsAccountNumber?.conformedValue, {name: srsDetails?.srsOperator}, srsDetails?.customerId, false)">
-                      <span *ngIf="is2faAuthorized"><img src="assets/images/button-edit.svg"></span>
-                      <span *ngIf="!is2faAuthorized"><img src="assets/images/accounts/edit-locked.svg"></span>
-                    </span>
+                    <span (click)="openSRSLockModal()"><img src="assets/images/accounts/lock-outline.svg"></span>
                   </div>
                 </div>
               </div>
@@ -651,10 +647,7 @@
                 </div>
                 <div class="flex-col-6">
                   <div class="icon-block">
-                    <span (click)="updateCpfDetails(cpfBankDetails?.cpfiaAccountNumber?.conformedValue, cpfBankDetails?.cpfiaOperator, cpfBankDetails?.customerId, false)">
-                      <span *ngIf="is2faAuthorized"><img src="assets/images/button-edit.svg"></span>
-                      <span *ngIf="!is2faAuthorized"><img src="assets/images/accounts/edit-locked.svg"></span>
-                    </span>
+                    <span (click)="openCPFLockModal()"><img src="assets/images/accounts/lock-outline.svg"></span>
                   </div>
                 </div>
               </div>
