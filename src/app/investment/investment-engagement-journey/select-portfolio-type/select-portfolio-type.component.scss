@@ -65,7 +65,7 @@ app-select-portfolio-type {
     input[type="radio"] + label,
     input[type="checkbox"] + label {
       width: calc(100% - 5px);
-      height: 200px;
+      height: 230px;
       text-align: center;
       padding: 28px 19px 20px;
       background: $btn-primary-backgrnd-color;
@@ -75,6 +75,9 @@ app-select-portfolio-type {
       border: none;
       border-radius: 6px;
       max-width: 163px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
 
       @include min300max350 {
         padding: 20px 11px;
@@ -117,11 +120,12 @@ app-select-portfolio-type {
         font-family: $muli-regular;
         display: block;
         width: 100%;
+        height:36px;
         left: 0px;
         padding: 0;
         letter-spacing: -0.3px;
-        line-height: normal;
-        font-size: 16px;
+        line-height: 18px;
+        font-size: 14px;
         @include allmobiles {
           position: initial;
         }
@@ -129,6 +133,13 @@ app-select-portfolio-type {
         @include min300max350 {
           padding: 0;
         }
+      }
+      .input-label-sub-text {
+        font-family: $muli-regular;
+        font-size: 16px;
+        line-height: 20px;
+        height:40px;
+        letter-spacing: -0.3px;
       }
     }
 
