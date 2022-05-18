@@ -10,7 +10,7 @@ import { DirectComponent } from './direct.component';
 const routes: Routes = [
   {
     path: '',
-    canDeactivate: [DirectCanDeactivateGuard],
+    // canDeactivate: [DirectCanDeactivateGuard],
     children: [
       { path: '', component: DirectComponent, canActivate: [DirectAccessGuard] },
       {

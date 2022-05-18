@@ -15,6 +15,7 @@
     </button>
     <div class="modal-body-message " id="errorModelMessage">
       <div class="flex-col-12">
+        <form [formGroup]="formObject">
         <div class="flex-row mb10">
           <div class="flex-col-12 stretch">
             <div class="form-group-floating-label">
@@ -162,7 +163,7 @@
                         <div class="dropdown-control">
                           <div ngbDropdown>
                             <button class="btn btn-dropdown" id="salutation-drpdown" ngbDropdownToggle>
-                              <span *ngIf="!invPersonalInfoForm.controls.salutation.value">
+                              <span *ngIf="!formObject.controls.interedtedInsurance.value">
                                 Type of insurance interested in 
                               </span>
                               <!-- <span *ngIf="invPersonalInfoForm.controls.salutation.value">
@@ -228,6 +229,7 @@
               </ngb-panel>
           </ngb-accordion>
         </div>
+        </form>
       </div>
       <button type="button" class="btn btn-primary width100 footer-btn" (click)="close(true)">Contact Me</button>
     </div>

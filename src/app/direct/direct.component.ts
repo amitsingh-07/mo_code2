@@ -15,7 +15,8 @@ import {
 import { ActivatedRoute, NavigationEnd, NavigationStart, Router } from '@angular/router';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { TranslateService } from '@ngx-translate/core';
-import { Subscription, SubscriptionLike } from 'rxjs';
+import { fromEvent, interval, Observable, Subject, Subscription, SubscriptionLike } from 'rxjs';
+import { switchMap, takeUntil } from 'rxjs/operators';
 import { AuthenticationService } from '../shared/http/auth/authentication.service';
 
 import { appConstants } from './../app.constants';
@@ -26,6 +27,7 @@ import { NavbarService } from './../shared/navbar/navbar.service';
 import { SelectedPlansService } from './../shared/Services/selected-plans.service';
 import { SeoServiceService } from './../shared/Services/seo-service.service';
 import { StateStoreService } from './../shared/Services/state-store.service';
+import { ContactFormComponent } from './contact-form/contact-form.component';
 import { DirectResultsComponent } from './direct-results/direct-results.component';
 import { DirectService } from './direct.service';
 import { DirectState } from './direct.state';
@@ -49,6 +51,8 @@ export class DirectComponent implements OnInit, AfterViewInit, IPageComponent, O
   state: DirectState = new DirectState();
   componentName: string;
   components = [];
+  mouseMove$: Observable<MouseEvent> = fromEvent<MouseEvent>(document, 'mousemove');
+  destroyContactFormTimer$: Subject<boolean> = new Subject();
 
   constructor(
     private router: Router, public navbarService: NavbarService,
@@ -130,6 +134,35 @@ export class DirectComponent implements OnInit, AfterViewInit, IPageComponent, O
     if (!this.authService.isSignedUser()) {
       this.appService.setCorporateDetails({organisationEnabled: false, uuid: null});
     }
+    this.contactFormTimerFn()
+  }
+
+  contactFormTimerFn() {
+    this.mouseMove$.pipe(
+      switchMap( option => interval(1000)),
+      takeUntil(this.destroyContactFormTimer$),
+    ).subscribe( idleSeconds => {
+      console.log('mouse move response ',idleSeconds)
+      if (idleSeconds === 20) {   // for development displaying contact form when user idling for 20 seconds
+        this.destroyContactFormTimer$.next(true);
+        this.openContactFormModal();
+        
+      }
+    })
+  }
+
+  async openContactFormModal(): Promise < any > {
+    const userAction = await this.contactFormModalResponse();
+    console.log('userAction ', userAction)
+    return userAction;
+  }
+
+  contactFormModalResponse() {
+    const modalRef = this.modal.open(ContactFormComponent, {
+      centered: true,
+      windowClass: 'custom-full-height contact-form-modal',
+    });
+    return modalRef.result;
   }
 
   ngAfterViewInit() {
@@ -156,6 +189,8 @@ export class DirectComponent implements OnInit, AfterViewInit, IPageComponent, O
     } catch (e) {
 
     }
+    this.destroyContactFormTimer$.next(true);
+    this.destroyContactFormTimer$.complete();
 
   }
 
