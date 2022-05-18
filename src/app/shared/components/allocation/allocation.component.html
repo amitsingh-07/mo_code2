@@ -14,11 +14,9 @@
       <div class="bonds_equity" *ngFor="let asset of assets; let i = index">
         <div class="bonds_equity_title" id="panel-button-{{i}}" (click)="showHidePanel(acc, 'panel-' + i, $event)" >
             <div>
-              <div>
-                {{(cpfEnabled && asset.type.type === assetTypeConst.FIXED_INCOME) ? assetTypeConst.BONDS : asset.type.type}}
-              </div>
+              <div>{{asset.type.type}}</div>
               <div class="sub-lbl" *ngIf="cpfEnabled && asset.type.type === assetTypeConst.EQUITIES">{{'PORTFOLIO_RECOMMENDATION.LGI_SUB_LBL' | translate}}</div>
-              <div class="sub-lbl" *ngIf="cpfEnabled && asset.type.type === assetTypeConst.FIXED_INCOME" >{{'PORTFOLIO_RECOMMENDATION.UOB_SUB_LBL' | translate}}</div>
+              <div class="sub-lbl" *ngIf="cpfEnabled && asset.type.type === assetTypeConst.BONDS" >{{'PORTFOLIO_RECOMMENDATION.UOB_SUB_LBL' | translate}}</div>
             </div>
             <div><i class='arrow'></i></div>
         </div>
@@ -39,7 +37,7 @@
                   <div class="flex-col-7 rating">
                     <div class="flex-row" *ngFor="let detail of allocation.value;">
                       <span class="flex-col-8">{{detail.sectorRegion}}</span>
-                      <span class="rating_value flex-col-4"><span *ngIf="detail.sectorRegion == 'Other'">&lt;</span>{{detail.percentage < 0.5? 0.1 : detail.percentage | number : '1.1-1'}}%</span>
+                      <span class="rating_value flex-col-4">{{detail.percentage | number : '1.1-1'}}%</span>
                     </div>
                   </div>
                 </div>
