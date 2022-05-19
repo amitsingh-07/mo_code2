@@ -56,18 +56,18 @@
         </div>
         <div class="flex-row mb10">
           <div class="flex-col-12 stretch">
-            <div class="form-group-floating-label" [ngClass]="{'inline-error': isSubmitted && formObject.mobileNumber.errors}">
+            <div class="form-group-floating-label" [ngClass]="{'inline-error': isSubmitted && formObject.controls.mobileNumber.errors}">
               <input type="number" maxlength="15" id="crtAccInpt1" #mobileNumber  formControlName="mobileNumber" class="form-control" required>
               <label class="form-control-placeholder"
                 for="mobileNumber">MOBILE NUMBER</label>
             </div>
           </div>
-          <div class="alert-msg" *ngIf="isSubmitted && formObject.mobileNumber.errors">
-            <div *ngIf="formObject.mobileNumber.errors?.required">
+          <div class="alert-msg" *ngIf="isSubmitted && formObject.controls.mobileNumber.errors">
+            <div *ngIf="formObject.controls.mobileNumber.errors?.required">
               <span class="alert-icon"><img src="assets/images/alert.svg" /></span>
               <span class="err-msg">{{ 'CREATE_ACCOUNT.FORM.MOBILE_NUMBER.ERROR.REQUIRED' | translate}}</span>
             </div>
-            <div *ngIf="formObject.mobileNumber.errors?.mobileRange">
+            <div *ngIf="formObject.controls.mobileNumber.errors?.mobileRange">
               <span class="alert-icon"><img src="assets/images/alert.svg" /></span>
               <span class="err-msg">{{ 'CREATE_ACCOUNT.FORM.MOBILE_NUMBER.ERROR.INVALID' | translate}}</span>
             </div>
@@ -89,7 +89,7 @@
                           <div class="form-group-floating-label pt0">
                             <div class="datepicker-control">
                               <div class="input-group date-picker mb0" #dob
-                              [ngClass]="{'inline-error': isSubmitted && formObject.dob.errors}">
+                              [ngClass]="{'inline-error': isSubmitted && formObject.controls.dob.errors}">
                                 <input  class="form-control"
                                     name="dp" ngbDatepicker [minDate]="minDate" [maxDate]="maxDate" formControlName="dob"
                                   #dobInput="ngbDatepicker" id="invPersInfoInpt7" required>
@@ -97,10 +97,10 @@
                                 <div class="input-group-append">
                                   <button  class="btn btn-primary" type="button"  id="createDobBtn1">
                                     <img class="date-picker-image--valid" id="createDobImg1"
-                                    *ngIf="!isSubmitted || !formObject.dob.errors"
+                                    *ngIf="!isSubmitted || !formObject.controls.dob.errors"
                                       src="assets/images/calendar-normal.svg" />
                                     <img class="date-picker-image--invalid" id="createDobImg1"
-                                      *ngIf="isSubmitted && formObject.dob.errors"
+                                      *ngIf="isSubmitted && formObject.controls.dob.errors"
                                       src="assets/images/calendar-error.svg" />
                                   </button>
                                 </div>
@@ -108,19 +108,19 @@
                             </div>
                           </div>
                         </div>
-                        <div class="alert-msg" *ngIf="isSubmitted && formObject.dob.errors">
-                          <div *ngIf="formObject.dob.errors?.required">
+                        <div class="alert-msg" *ngIf="isSubmitted && formObject.controls.dob.errors">
+                          <div *ngIf="formObject.controls.dob.errors?.required">
                             <span class="alert-icon"><img src="assets/images/alert.svg" /></span>
                             <span class="err-msg">{{ 'CREATE_ACCOUNT.FORM.DOB.ERROR.REQUIRED' | translate}}</span>
                           </div>
-                          <div *ngIf="!formObject.dob.errors?.required && formObject.dob.errors?.ngbDate">
+                          <div *ngIf="!formObject.controls.dob.errors?.required && formObject.controls.dob.errors?.ngbDate">
                             <span class="alert-icon"><img src="assets/images/alert.svg" /></span>
                             <span class="err-msg">{{ 'CREATE_ACCOUNT.FORM.DOB.ERROR.INVALID' | translate}}</span>
                           </div>
                         </div>
                       </div>
                       <div class="flex-col-12 mb10">
-                        <div [ngClass]="{'inline-error': isSubmitted && formObject.gender.errors}">
+                        <div [ngClass]="{'inline-error': isSubmitted && formObject.controls.gender.errors}">
                           <div class="flex-row form-control gender" #gender>
                             <div class="mr20">
                               <label for="gender" id="invPersInfoLbl8" class="mb0">Gender</label>
@@ -141,8 +141,8 @@
                             </div>
                           </div>
                         </div>
-                        <div class="alert-msg" *ngIf="isSubmitted && formObject.gender.errors">
-                          <div *ngIf="formObject.gender.errors?.required">
+                        <div class="alert-msg" *ngIf="isSubmitted && formObject.controls.gender.errors">
+                          <div *ngIf="formObject.controls.gender.errors?.required">
                             <span class="alert-icon"><img src="assets/images/alert.svg" /></span>
                             <span class="err-msg">{{ 'CREATE_ACCOUNT.FORM.GENDER.ERROR.REQUIRED' | translate}}</span>
                           </div>
@@ -168,7 +168,7 @@
                         </div>
                       </div>
                       <div class="flex-col-12 mb10">
-                        <div [ngClass]="{'inline-error': isSubmitted && formObject.smoker.errors}">
+                        <div [ngClass]="{'inline-error': isSubmitted && formObject.controls.smoker.errors}">
                           <div class="flex-row form-control gender" #smoker>
                             <div class="mr20">
                               <label for="smoker" id="invPersInfoLbl8" class="mb0">Smoker</label>
@@ -189,8 +189,8 @@
                             </div>
                           </div>
                         </div>
-                        <div class="alert-msg" *ngIf="isSubmitted && formObject.smoker.errors">
-                          <div *ngIf="formObject.smoker.errors?.required">
+                        <div class="alert-msg" *ngIf="isSubmitted && formObject.controls.smoker.errors">
+                          <div *ngIf="formObject.controls.smoker.errors?.required">
                             <span class="alert-icon"><img src="assets/images/alert.svg" /></span>
                             <span class="err-msg">{{ 'CREATE_ACCOUNT.FORM.GENDER.ERROR.REQUIRED' | translate}}</span>
                           </div>
