@@ -126,6 +126,12 @@ app-select-portfolio-type {
         letter-spacing: -0.3px;
         line-height: 18px;
         font-size: 14px;
+        @include desktop{
+          padding: 0 2px;
+        }
+        @include minPhabletmaxTablet{
+          padding: 0 2px;
+        }
         @include allmobiles {
           position: initial;
         }

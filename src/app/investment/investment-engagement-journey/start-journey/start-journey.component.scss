@@ -48,17 +48,22 @@ app-start-journey {
             width: 245px;
         }
     }
-    .btn-bottom {
-        @include allmobiles {
-            position : static;
-            border-radius: 6px !important;
-            margin-top: 4px !important;
+    .btn-primary{
+        font-family: $muli-bold !important;
+        letter-spacing: -0.25px;
+        font-size: 22px;
+        padding: 13px;
+        margin-top: 4px !important;
+        width: 100%;
+        @include desktop {
+            width: 245px;
+        }
+        @include tablet {
+            width: 245px;
         }
     }
     .journey-content-text {
         background-color: $aqua-squeeze-color;
-        position: static;
-        height: 128px;
         padding: 20px;
         border-radius: 6px;
         margin-top: 20px;
@@ -71,15 +76,8 @@ app-start-journey {
         }
 
         .ja-desc-text {
-            height: 20px;
             font-family: $muli-bold;
             margin-bottom: 8px;
-        }
-
-        .ja-desc-sub-text {
-            width: 100%;
-            height: 60px;
-            margin: auto;
         }
     }
 }
