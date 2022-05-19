@@ -18,74 +18,60 @@
         <form [formGroup]="formObject">
         <div class="flex-row mb10">
           <div class="flex-col-12 stretch">
-            <div class="form-group-floating-label">
-              <input type="text" id="fullName" class="form-control" formControlName="fullName">
+            <div class="form-group-floating-label" [ngClass]="{'inline-error': isSubmitted && formObject.controls.fullName.errors}">
+              <input type="text" id="fullName" class="form-control"  #fullName formControlName="fullName" required >
               <label class="form-control-placeholder"
                 for="fullName">FULLNAME</label>
             </div>
           </div>
-          <!-- <div class="alert-msg" *ngIf="submitted && account.fullName.errors">
-            <div *ngIf="account.fullName.errors?.required">
+          <div class="alert-msg" *ngIf="isSubmitted && formObject.controls.fullName.errors">
+            <div *ngIf="formObject.controls.fullName.errors?.required">
               <span class="alert-icon"><img src="assets/images/alert.svg" /></span>
-              <span class="err-msg">{{ 'CREATE_ACCOUNT.FORM.FULLNAME.ERROR.REQUIRED' | translate}}</span>
+              <span class="err-msg">Error</span>
             </div>
-          </div> -->
+          </div>
         </div>
         <div class="flex-row mb10">
           <div class="flex-col-12 stretch">
-            <div class="form-group-floating-label">
-              <input type="text" id="crtAccInpt4" class="form-control" formControlName="email" >
+            <div class="form-group-floating-label" [ngClass]="{'inline-error': isSubmitted && formObject.controls.email.errors}">
+              <input type="text" id="crtAccInpt4" class="form-control"  #email formControlName="email" required>
               <label class="form-control-placeholder"
                 for="email">EMAIL</label>
             </div>
           </div>
-          <!-- <div class="alert-msg" *ngIf="submitted && account.email.errors">
-            <div *ngIf="account.email.errors?.required">
+          <div class="alert-msg" *ngIf="isSubmitted && formObject.email.errors">
+            <div *ngIf="formObject.errors?.required">
               <span class="alert-icon"><img src="assets/images/alert.svg" /></span>
               <span class="err-msg">{{ 'CREATE_ACCOUNT.FORM.EMAIL.ERROR.REQUIRED' | translate}}</span>
             </div>
-            <div *ngIf="account.email.errors?.email || account.email.errors?.pattern">
+            <div *ngIf="formObject.errors?.email || formObject.errors?.pattern">
               <span class="alert-icon"><img src="assets/images/alert.svg" /></span>
               <span class="err-msg">{{ 'CREATE_ACCOUNT.FORM.EMAIL.ERROR.INVALID' | translate}}</span>
             </div>
-            <div *ngIf="account.email.errors?.invalidDomain">
+            <div *ngIf="formObject.errors?.invalidDomain">
               <span class="alert-icon"><img src="assets/images/alert.svg" /></span>
               <span class="err-msg">{{ 'CREATE_ACCOUNT.FORM.EMAIL.ERROR.INVALID_DOMAIN' | translate}}</span>
             </div>
-          </div> -->
+          </div>
         </div>
         <div class="flex-row mb10">
-          <!-- <div class="flex-col-4 stretch mr15">
-            <div class="dropdown-control form-control-left" style="pointer-events:none;">
-              <div ngbDropdown id="countryCode">
-                <button class="btn btn-dropdown without-border" id="dropdownBasic1" ngbDropdownToggle
-                  aria-expanded="false">
-                  <span>{{defaultCountryCode}}</span>
-                </button>
-                <div ngbDropdownMenu class="dropdown" aria-labelledby="dropdownBasic1" style="height: auto;">
-                  <button class="dropdown-item" *ngFor="let option of countryCodeOptions"
-                    (click)="setCountryCode(option.code)">{{option.code}}</button>
-                </div>
-              </div>
-            </div>
-          </div> -->
           <div class="flex-col-12 stretch">
-            <div class="form-group-floating-label">
-              <input type="number" maxlength="15" id="crtAccInpt1"  formControlName="mobileNumber">
+            <div class="form-group-floating-label" [ngClass]="{'inline-error': isSubmitted && formObject.mobileNumber.errors}">
+              <input type="number" maxlength="15" id="crtAccInpt1" #mobileNumber  formControlName="mobileNumber" class="form-control" required>
               <label class="form-control-placeholder"
-                for="mobileNumber">MOBILE_NUMBER</label>
+                for="mobileNumber">MOBILE NUMBER</label>
             </div>
           </div>
-          <!-- <div class="alert-msg" *ngIf="submitted && account.mobileNumber.errors">
-            <div *ngIf="account.mobileNumber.errors?.required">
+          <div class="alert-msg" *ngIf="isSubmitted && formObject.mobileNumber.errors">
+            <div *ngIf="formObject.mobileNumber.errors?.required">
               <span class="alert-icon"><img src="assets/images/alert.svg" /></span>
               <span class="err-msg">{{ 'CREATE_ACCOUNT.FORM.MOBILE_NUMBER.ERROR.REQUIRED' | translate}}</span>
             </div>
-            <div *ngIf="account.mobileNumber.errors?.mobileRange">
+            <div *ngIf="formObject.mobileNumber.errors?.mobileRange">
               <span class="alert-icon"><img src="assets/images/alert.svg" /></span>
               <span class="err-msg">{{ 'CREATE_ACCOUNT.FORM.MOBILE_NUMBER.ERROR.INVALID' | translate}}</span>
             </div>
-          </div> -->
+          </div>
         </div>
         <div class="recommnendation-info">
           <div class="title">I Want Better Recommendations</div>
@@ -102,37 +88,40 @@
                         <div #usrFrmDp class="flex-col-12 dob">
                           <div class="form-group-floating-label pt0">
                             <div class="datepicker-control">
-                              <div class="input-group date-picker mb0" >
+                              <div class="input-group date-picker mb0" #dob
+                              [ngClass]="{'inline-error': isSubmitted && formObject.dob.errors}">
                                 <input  class="form-control"
-                                    name="dp" ngbDatepicker  formControlName="dob"
-                                  #dobInput="ngbDatepicker" id="invPersInfoInpt7">
-                                  <label class="form-control-placeholder">DOB</label>
-                                <!-- <div class="input-group-append">
+                                    name="dp" ngbDatepicker [minDate]="minDate" [maxDate]="maxDate" formControlName="dob"
+                                  #dobInput="ngbDatepicker" id="invPersInfoInpt7" required>
+                                  <label class="form-control-placeholder">{{ 'CREATE_ACCOUNT.FORM.DOB.PLACEHOLDER_LBL' | translate}}</label>
+                                <div class="input-group-append">
                                   <button  class="btn btn-primary" type="button"  id="createDobBtn1">
                                     <img class="date-picker-image--valid" id="createDobImg1"
+                                    *ngIf="!isSubmitted || !formObject.dob.errors"
                                       src="assets/images/calendar-normal.svg" />
                                     <img class="date-picker-image--invalid" id="createDobImg1"
+                                      *ngIf="isSubmitted && formObject.dob.errors"
                                       src="assets/images/calendar-error.svg" />
                                   </button>
-                                </div> -->
+                                </div>
                               </div>
                             </div>
                           </div>
                         </div>
-                        <!-- <div class="alert-msg" *ngIf="submitted && account.dob.errors">
-                          <div *ngIf="account.dob.errors?.required">
+                        <div class="alert-msg" *ngIf="isSubmitted && formObject.dob.errors">
+                          <div *ngIf="formObject.dob.errors?.required">
                             <span class="alert-icon"><img src="assets/images/alert.svg" /></span>
                             <span class="err-msg">{{ 'CREATE_ACCOUNT.FORM.DOB.ERROR.REQUIRED' | translate}}</span>
                           </div>
-                          <div *ngIf="!account.dob.errors?.required && account.dob.errors?.ngbDate">
+                          <div *ngIf="!formObject.dob.errors?.required && formObject.dob.errors?.ngbDate">
                             <span class="alert-icon"><img src="assets/images/alert.svg" /></span>
                             <span class="err-msg">{{ 'CREATE_ACCOUNT.FORM.DOB.ERROR.INVALID' | translate}}</span>
                           </div>
-                        </div> -->
+                        </div>
                       </div>
                       <div class="flex-col-12 mb10">
-                        <div >
-                          <div class="flex-row form-control gender">
+                        <div [ngClass]="{'inline-error': isSubmitted && formObject.gender.errors}">
+                          <div class="flex-row form-control gender" #gender>
                             <div class="mr20">
                               <label for="gender" id="invPersInfoLbl8" class="mb0">Gender</label>
                             </div>
@@ -152,12 +141,12 @@
                             </div>
                           </div>
                         </div>
-                        <!-- <div class="alert-msg" *ngIf="submitted && account.gender.errors">
-                          <div *ngIf="account.gender.errors?.required">
+                        <div class="alert-msg" *ngIf="isSubmitted && formObject.gender.errors">
+                          <div *ngIf="formObject.gender.errors?.required">
                             <span class="alert-icon"><img src="assets/images/alert.svg" /></span>
                             <span class="err-msg">{{ 'CREATE_ACCOUNT.FORM.GENDER.ERROR.REQUIRED' | translate}}</span>
                           </div>
-                        </div> -->
+                        </div>
                       </div>
                       <div class="flex-col-12 mb10">
                         <div class="dropdown-control">
@@ -179,20 +168,20 @@
                         </div>
                       </div>
                       <div class="flex-col-12 mb10">
-                        <div >
-                          <div class="flex-row form-control gender">
+                        <div [ngClass]="{'inline-error': isSubmitted && formObject.smoker.errors}">
+                          <div class="flex-row form-control gender" #smoker>
                             <div class="mr20">
                               <label for="smoker" id="invPersInfoLbl8" class="mb0">Smoker</label>
                             </div>
                             <div class="checkbox-button one-label mr10">
-                              <input type="radio" value="yes" class="field radio"  name="gender" id="smoker_type_1" formControlName="gender"/>
+                              <input type="radio" value="yes" class="field radio"  name="smoker" id="smoker_type_1" formControlName="gender"/>
                               <label for="smoker_type_1">
                                 <div><span class="input-label-black">Yes</span>
                                 </div>
                               </label>
                             </div>
                             <div class="checkbox-button one-label">
-                              <input type="radio" value="no" class="field radio" name="gender" id="smoker_type_2" formControlName="gender"/>
+                              <input type="radio" value="no" class="field radio" name="smoker" id="smoker_type_2" formControlName="gender"/>
                               <label for="smoker_type_2">
                                 <div><span class="input-label-black">No</span>
                                 </div>
@@ -200,14 +189,29 @@
                             </div>
                           </div>
                         </div>
-                        <!-- <div class="alert-msg" *ngIf="submitted && account.gender.errors">
-                          <div *ngIf="account.gender.errors?.required">
+                        <div class="alert-msg" *ngIf="isSubmitted && formObject.smoker.errors">
+                          <div *ngIf="formObject.smoker.errors?.required">
                             <span class="alert-icon"><img src="assets/images/alert.svg" /></span>
                             <span class="err-msg">{{ 'CREATE_ACCOUNT.FORM.GENDER.ERROR.REQUIRED' | translate}}</span>
                           </div>
-                        </div> -->
+                        </div>
                       </div>
-                      <div class="flex-col-12 mb10">
+                      <div class="flex-row mb10">
+                        <div class="flex-col-12 stretch">
+                          <div class="form-group-floating-label" [ngClass]="{'inline-error': isSubmitted && formObject.controls.enquiry.errors}">
+                            <input type="text" id="enquiry" class="form-control"  #enquiry formControlName="enquiry" required >
+                            <label class="form-control-placeholder"
+                              for="enquiry">Any other enquiries</label>
+                          </div>
+                        </div>
+                        <div class="alert-msg" *ngIf="isSubmitted && formObject.controls.enquiry.errors">
+                          <div *ngIf="formObject.controls.enquiry.errors?.required">
+                            <span class="alert-icon"><img src="assets/images/alert.svg" /></span>
+                            <span class="err-msg">Error</span>
+                          </div>
+                        </div>
+                      </div>
+                      <!-- <div class="flex-col-12 mb10">
                           <div class="form-group">
                             <div class="flex-row">
                               <div class="flex-col-12">
@@ -222,7 +226,7 @@
                               </div>
                             </div>
                           </div>
-                        </div>
+                        </div> -->
                       <div>These additional information will let us provide you with more accurate quotes!</div>
                     </div>
                   </ng-template>
@@ -231,7 +235,7 @@
         </div>
         </form>
       </div>
-      <button type="button" class="btn btn-primary width100 footer-btn" (click)="close(true)">Contact Me</button>
+      <button type="button" class="btn btn-primary width100 footer-btn" (click)="contactMe()">Contact Me</button>
     </div>
   </div>
   

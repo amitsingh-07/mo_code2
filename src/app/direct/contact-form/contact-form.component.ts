@@ -10,6 +10,7 @@ import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 })
 export class ContactFormComponent implements OnInit {
   formObject: FormGroup;
+  isSubmitted = false;
 
   constructor(public activeModal: NgbActiveModal, private fb: FormBuilder) {}
 
@@ -34,4 +35,7 @@ export class ContactFormComponent implements OnInit {
     this.activeModal.close(userAction)
   }
 
+  contactMe(){
+    this.isSubmitted = true;
+  }
 }
