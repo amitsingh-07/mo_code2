@@ -40,6 +40,12 @@ app-contact-form{
         box-shadow: 0 4px 6px 0 rgba(0, 0, 0, 0.15);
         margin-top: 20px;
     }
+    .datepicker-control{
+        .date-picker{
+            flex-wrap: nowrap;
+        }
+    }
+    
     .recommnendation-info{
         .title{
             font-family: $muli-bold;
