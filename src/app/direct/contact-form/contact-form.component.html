@@ -21,13 +21,13 @@
             <div class="form-group-floating-label" [ngClass]="{'inline-error': isSubmitted && formObject.controls.fullName.errors}">
               <input type="text" id="fullName" class="form-control"  #fullName formControlName="fullName" required >
               <label class="form-control-placeholder"
-                for="fullName">FULLNAME</label>
+                for="fullName">Full name</label>
             </div>
           </div>
           <div class="alert-msg" *ngIf="isSubmitted && formObject.controls.fullName.errors">
             <div *ngIf="formObject.controls.fullName.errors?.required">
               <span class="alert-icon"><img src="assets/images/alert.svg" /></span>
-              <span class="err-msg">Error</span>
+              <span class="err-msg">Enter full name</span>
             </div>
           </div>
         </div>
@@ -36,22 +36,22 @@
             <div class="form-group-floating-label" [ngClass]="{'inline-error': isSubmitted && formObject.controls.email.errors}">
               <input type="text" id="crtAccInpt4" class="form-control"  #email formControlName="email" required>
               <label class="form-control-placeholder"
-                for="email">EMAIL</label>
+                for="email">Email address</label>
             </div>
           </div>
           <div class="alert-msg" *ngIf="isSubmitted && formObject.controls.email.errors">
             <div *ngIf="formObject.controls.email.errors?.required">
               <span class="alert-icon"><img src="assets/images/alert.svg" /></span>
-              <span class="err-msg">{{ 'CREATE_ACCOUNT.FORM.EMAIL.ERROR.REQUIRED' | translate}}</span>
+              <span class="err-msg">Enter an email address</span>
             </div>
             <div *ngIf="formObject.controls.email.errors?.email || formObject.controls.email.errors?.pattern">
               <span class="alert-icon"><img src="assets/images/alert.svg" /></span>
-              <span class="err-msg">{{ 'CREATE_ACCOUNT.FORM.EMAIL.ERROR.INVALID' | translate}}</span>
+              <span class="err-msg">Enter a valid email address</span>
             </div>
-            <div *ngIf="formObject.controls.email.errors?.invalidDomain">
+            <!-- <div *ngIf="formObject.controls.email.errors?.invalidDomain">
               <span class="alert-icon"><img src="assets/images/alert.svg" /></span>
               <span class="err-msg">{{ 'CREATE_ACCOUNT.FORM.EMAIL.ERROR.INVALID_DOMAIN' | translate}}</span>
-            </div>
+            </div> -->
           </div>
         </div>
         <div class="flex-row mb10">
@@ -59,17 +59,17 @@
             <div class="form-group-floating-label" [ngClass]="{'inline-error': isSubmitted && formObject.controls.mobileNumber.errors}">
               <input type="number" maxlength="15" id="crtAccInpt1" #mobileNumber  formControlName="mobileNumber" class="form-control" required>
               <label class="form-control-placeholder"
-                for="mobileNumber">MOBILE NUMBER</label>
+                for="mobileNumber">Mobile number</label>
             </div>
           </div>
           <div class="alert-msg" *ngIf="isSubmitted && formObject.controls.mobileNumber.errors">
             <div *ngIf="formObject.controls.mobileNumber.errors?.required">
               <span class="alert-icon"><img src="assets/images/alert.svg" /></span>
-              <span class="err-msg">{{ 'CREATE_ACCOUNT.FORM.MOBILE_NUMBER.ERROR.REQUIRED' | translate}}</span>
+              <span class="err-msg">Enter a mobile number</span>
             </div>
             <div *ngIf="formObject.controls.mobileNumber.errors?.mobileRange">
               <span class="alert-icon"><img src="assets/images/alert.svg" /></span>
-              <span class="err-msg">{{ 'CREATE_ACCOUNT.FORM.MOBILE_NUMBER.ERROR.INVALID' | translate}}</span>
+              <span class="err-msg">Enter a valid mobile number</span>
             </div>
           </div>
         </div>
@@ -93,7 +93,7 @@
                                 <input  class="form-control"
                                     name="dp" ngbDatepicker [minDate]="minDate" [maxDate]="maxDate" formControlName="dob"
                                   #dobInput="ngbDatepicker" id="invPersInfoInpt7" required>
-                                  <label class="form-control-placeholder">Date of Birth (DD/MM/YYYY)</label>
+                                  <label class="form-control-placeholder">Date of birth</label>
                                 <div class="input-group-append">
                                   <button  class="btn btn-primary" type="button" (click)="dobInput.toggle()" id="createDobBtn1">
                                     <img class="date-picker-image--valid" id="createDobImg1"
@@ -144,26 +144,26 @@
                         <div class="alert-msg" *ngIf="isSubmitted && formObject.controls.gender.errors">
                           <div *ngIf="formObject.controls.gender.errors?.required">
                             <span class="alert-icon"><img src="assets/images/alert.svg" /></span>
-                            <span class="err-msg">{{ 'CREATE_ACCOUNT.FORM.GENDER.ERROR.REQUIRED' | translate}}</span>
+                            <span class="err-msg">Select Gender</span>
                           </div>
                         </div>
                       </div>
                       <div class="flex-col-12 mb10">
                         <div class="dropdown-control">
-                          <div ngbDropdown>
+                          <div ngbDropdown placement="bottom-right">
                             <button class="btn btn-dropdown" id="salutation-drpdown" ngbDropdownToggle>
                               <span *ngIf="!formObject.controls.interedtedInsurance.value">
                                 Type of insurance interested in 
                               </span>
-                              <!-- <span *ngIf="invPersonalInfoForm.controls.salutation.value">
-                                {{invPersonalInfoForm.controls.salutation.value.name }}
-                              </span> -->
+                              <span *ngIf="formObject.controls.interedtedInsurance.value">
+                                {{formObject.controls.interedtedInsurance.value.name}}
+                              </span>
                             </button>
-                            <!-- <div class="dropdown" ngbDropdownMenu aria-labelledby="salutation-drpdown">
-                              <button class="dropdown-item" *ngFor="let salutaion of salutaionList; let i = index;"
-                                (click)="setDropDownValue($event, 'salutation', salutaion, i)"
-                                id="salutation-option-{{i}}">{{salutaion.name}}</button>
-                            </div> -->
+                            <div class="dropdown" ngbDropdownMenu aria-labelledby="salutation-drpdown">
+                              <button class="dropdown-item" *ngFor="let insurance of interedtedInsuranceList; let i = index;"
+                                (click)="setDropDownValue('interedtedInsurance', insurance, i)"
+                                id="salutation-option-{{i}}">{{insurance.name}}</button>
+                            </div>
                           </div>
                         </div>
                       </div>

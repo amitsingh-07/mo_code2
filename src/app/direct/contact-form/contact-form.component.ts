@@ -1,6 +1,7 @@
 import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
+import { RegexConstants } from '../../shared/utils/api.regex.constants';
 import { SIGN_UP_CONFIG } from 'src/app/sign-up/sign-up.constant';
 
 @Component({
@@ -15,6 +16,7 @@ export class ContactFormComponent implements OnInit {
   formValue: any;
   maxDate: any;
   minDate: any;
+  interedtedInsuranceList = [];
 
   constructor(public activeModal: NgbActiveModal, private fb: FormBuilder) {
     const today: Date = new Date();
@@ -30,12 +32,24 @@ export class ContactFormComponent implements OnInit {
 
   ngOnInit(): void {
     this.buildForm();
+    this.interedtedInsuranceList = [
+      {id: 1,key: "Bundles",listOrder: 1,name: "Bundles",value: "Bundles"},
+      {id: 2,key: "Critical Illness",listOrder: 1,name: "Critical Illness",value: "Critical Illness"},
+      {id: 3,key: "Global Medical",listOrder: 1,name: "Global Medical",value: "Global Medical"},
+      {id: 4,key: "Local Shield Plans",listOrder: 1,name: "Local Shield Plans",value: "Local Shield Plans"}
+    ]
   }
 
   buildForm() {
+    let emailValidators = [
+      Validators.required, 
+      Validators.email, 
+      Validators.pattern(RegexConstants.Email), 
+      // this.signUpService.emailDomainValidator(this.organisationEnabled)
+    ];
     this.formObject = this.fb.group({
       fullName: ['', Validators.required],
-      email: ['', Validators.required],
+      email: ['', emailValidators],
       mobileNumber: ['', Validators.required],
       dob: ['', Validators.required],
       gender: ['', Validators.required],
@@ -43,6 +57,16 @@ export class ContactFormComponent implements OnInit {
       isSmoker: ['', Validators.required],
       pepOtherOccupation: ['', Validators.required],
       enquiry : ['']
+    })
+
+    this.formObject.get('mobileNumber').valueChanges.subscribe(val => {
+      if (!this.formObject.get('mobileNumber').value) {
+        this.formObject.get('mobileNumber').setErrors({ required: true });
+      } else if (!RegexConstants.MobileNumber.test(this.formObject.get('mobileNumber').value)) {
+        this.formObject.get('mobileNumber').setErrors({ mobileRange: true });
+      } else {
+        this.formObject.get('mobileNumber').setErrors(null);
+      }
     })
   }
 
@@ -52,5 +76,9 @@ export class ContactFormComponent implements OnInit {
 
   contactMe(){
     this.isSubmitted = true;
+  }
+
+  setDropDownValue(key, value, index) {
+    this.formObject.controls[key].setValue(value);
   }
 }

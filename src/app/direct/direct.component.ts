@@ -143,7 +143,7 @@ export class DirectComponent implements OnInit, AfterViewInit, IPageComponent, O
       takeUntil(this.destroyContactFormTimer$),
     ).subscribe( idleSeconds => {
       console.log('mouse move response ',idleSeconds)
-      if (idleSeconds === 20) {   // for development displaying contact form when user idling for 20 seconds
+      if (idleSeconds === 10) {   // for development displaying contact form when user idling for 20 seconds
         this.destroyContactFormTimer$.next(true);
         this.openContactFormModal();
         
