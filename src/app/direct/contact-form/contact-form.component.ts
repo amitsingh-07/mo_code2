@@ -3,6 +3,8 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 import { RegexConstants } from '../../shared/utils/api.regex.constants';
 import { SIGN_UP_CONFIG } from 'src/app/sign-up/sign-up.constant';
+import { TranslateService } from '@ngx-translate/core';
+import { DirectService } from './../direct.service';
 
 @Component({
   selector: 'app-contact-form',
@@ -18,7 +20,7 @@ export class ContactFormComponent implements OnInit {
   minDate: any;
   interedtedInsuranceList = [];
 
-  constructor(public activeModal: NgbActiveModal, private fb: FormBuilder) {
+  constructor(public activeModal: NgbActiveModal, private fb: FormBuilder, private translate: TranslateService, private directService: DirectService) {
     const today: Date = new Date();
     this.minDate = {
       year: today.getFullYear() - SIGN_UP_CONFIG.ACCOUNT_CREATION.DOB.DATE_PICKER_MAX_YEAR,
