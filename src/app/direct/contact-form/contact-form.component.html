@@ -1,8 +1,4 @@
-<div class="modal-header">
-    <!-- <h4 class="modal-title">Testing header</h4> -->
-    
-  </div>
-  <div class="modal-body white-bg">
+ <div class="modal-body white-bg">
     <div class="modal-body-title">
       <div class="banner-bg">
         <img src="assets/images/direct/contact-form-banner.svg" />
@@ -53,7 +49,7 @@
             </div>
           </div>
         </div>
-        <div class="flex-row mb10">
+        <div class="flex-row mb20">
           <div class="flex-col-12 stretch">
             <div class="form-group-floating-label" [ngClass]="{'inline-error': isSubmitted && formObject.controls.mobileNumber.errors}">
               <input type="number" maxlength="15" id="crtAccInpt1" #mobileNumber  formControlName="mobileNumber" class="form-control" required>
@@ -83,7 +79,7 @@
                 </ng-template>
                 <ng-template ngbPanelContent>
                     <div>
-                      <div class="flex-row mb10">
+                      <div class="flex-row mb10 mt20">
                         <div #usrFrmDp class="flex-col-12 dob">
                           <div class="form-group-floating-label pt0">
                             <div class="datepicker-control">
@@ -201,7 +197,7 @@
                           </div>
                         </div>
                       </div>
-                      <div class="flex-row mb10">
+                      <div class="flex-row mb20">
                         <div class="flex-col-12 stretch">
                           <div class="form-group-floating-label">
                             <input type="text" id="enquiry" class="form-control"  #enquiry formControlName="enquiry" required >
