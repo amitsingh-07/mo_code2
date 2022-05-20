@@ -327,6 +327,11 @@ app-edit-profile {
     text-align: right;
     span{
       cursor: pointer;
+      &.disabled {
+        cursor: not-allowed;
+        pointer-events: none;
+        opacity: 0.3;
+      }
     }
   }
   .bank_details,
