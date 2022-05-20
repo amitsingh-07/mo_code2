@@ -14,7 +14,7 @@ app-contact-form{
             font-size: 16px;
             line-height: 20px;
             letter-spacing: -0.16px;
-            color: #5E5E5E;
+            color: $silver-grey-color;
 
             .banner-bg{
                 width: 269px;
@@ -25,14 +25,17 @@ app-contact-form{
             .text-bold{
                 font-family: $muli-bold;
                 font-size: 18px;
-                color: #007D7D;
+                color: $darker-teal-color;
                 line-height: 21px;
                 margin-bottom: 4px;
             }
         }
     }
     .form-group-floating-label{
-        border: 1px solid #94CCCC;
+        border: 1px solid $half-baked-blue-color;
+        .form-control-placeholder{
+            color: $dusty-grey-color;
+        }
     }
     .footer-btn {
         font-family: $muli-bold;
@@ -43,9 +46,32 @@ app-contact-form{
     .datepicker-control{
         .date-picker{
             flex-wrap: nowrap;
+            .form-control-placeholder{
+                top: 20px;
+             }
+             .form-control:focus + .form-control-placeholder , 
+             .form-control:valid + .form-control-placeholder {
+               top: 14px
+             }
         }
     }
     
+    .alert-msg{
+        font-family: $muli-italic;
+        font-size: 14px;
+        padding-top: 5px;
+        div{
+            display: flex;
+            align-items: center;
+            .alert-icon{
+                width: 15px;
+                height: 15px;
+                display: flex;
+                margin-right: 7px;
+            }
+        }
+    }
+
     .recommnendation-info{
         .title{
             font-family: $muli-bold;
@@ -53,28 +79,23 @@ app-contact-form{
             line-height: 21px;
             text-align: center;
             letter-spacing: -0.16px;
-            color: #58C4C5;
+            color: $dark-fountain-blue-color;
+            margin-bottom: 15px;
         }
         .card{
             border: none;
             .card-header{
                 padding: 0;
-                background: #ffffff;
+                background: $white-color;
                 border: none;
                 .btn-link {
                     padding: 0px;
                     width: 100%;
-                    // font-size: 16px;
-                    // font-family: $muli-bold;
-                    // line-height: normal;
-                    // letter-spacing: -0.3px;
-                    // color: $black-color;
                     .arrow {
                         border: solid $teal-color;
                         border-width: 0 2px 2px 0;
                         display: inline-block;
                         padding: 4px;
-                        float: right;
                         transform: rotate(-135deg);
                         -webkit-transform: rotate(-135deg);
                     }
@@ -82,6 +103,7 @@ app-contact-form{
                         .arrow {
                             transform: rotate(45deg);
                             -webkit-transform: rotate(45deg);
+                            margin-top: -10px;
                         }
                     }
                     &:hover,
