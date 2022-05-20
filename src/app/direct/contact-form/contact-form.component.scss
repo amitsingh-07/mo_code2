@@ -43,6 +43,13 @@ app-contact-form{
     .datepicker-control{
         .date-picker{
             flex-wrap: nowrap;
+            .form-control-placeholder{
+                top: 20px;
+             }
+             .form-control:focus + .form-control-placeholder , 
+             .form-control:valid + .form-control-placeholder {
+               top: 14px
+             }
         }
     }
     
@@ -80,11 +87,6 @@ app-contact-form{
                 .btn-link {
                     padding: 0px;
                     width: 100%;
-                    // font-size: 16px;
-                    // font-family: $muli-bold;
-                    // line-height: normal;
-                    // letter-spacing: -0.3px;
-                    // color: $black-color;
                     .arrow {
                         border: solid $teal-color;
                         border-width: 0 2px 2px 0;
