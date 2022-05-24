@@ -41,6 +41,10 @@ export class DirectApiService {
         return this.apiService.getDirectSearch(this.constructRecommendationsRequest());
     }
 
+    directContactMeForm(payload) {
+        return this.apiService.directContactMeForm(payload);
+    }
+
     private constructRecommendationsRequest(): IRecommendationRequest {
         const requestObj = {} as IRecommendationRequest;
         requestObj.sessionId = this.authService.getSessionId();

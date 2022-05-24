@@ -5,6 +5,8 @@ import { RegexConstants } from '../../shared/utils/api.regex.constants';
 import { SIGN_UP_CONFIG } from 'src/app/sign-up/sign-up.constant';
 import { TranslateService } from '@ngx-translate/core';
 import { DirectService } from './../direct.service';
+import { DirectApiService } from '../direct.api.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-contact-form',
@@ -18,9 +20,10 @@ export class ContactFormComponent implements OnInit {
   formValue: any;
   maxDate: any;
   minDate: any;
-  interedtedInsuranceList = [];
+  insuranceInterestedInList = [];
 
-  constructor(public activeModal: NgbActiveModal, private fb: FormBuilder, private translate: TranslateService, private directService: DirectService) {
+  constructor(public activeModal: NgbActiveModal, private fb: FormBuilder, private translate: TranslateService, private directService: DirectService,
+    private directApiService: DirectApiService, private router: Router) {
     const today: Date = new Date();
     this.minDate = {
       year: today.getFullYear() - SIGN_UP_CONFIG.ACCOUNT_CREATION.DOB.DATE_PICKER_MAX_YEAR,
@@ -28,13 +31,14 @@ export class ContactFormComponent implements OnInit {
     };
     this.maxDate = {
       year: today.getFullYear() - SIGN_UP_CONFIG.ACCOUNT_CREATION.DOB.DATE_PICKER_MIN_YEAR,
-      month: today.getMonth() + 1, day: today.getDate()
+      month: today.getMonth() + 1, 
+      day: today.getDate()
     };
   }
 
   ngOnInit(): void {
     this.buildForm();
-    this.interedtedInsuranceList = [
+    this.insuranceInterestedInList = [
       {id: 1,key: "Bundles",listOrder: 1,name: "Bundles",value: "Bundles"},
       {id: 2,key: "Critical Illness",listOrder: 1,name: "Critical Illness",value: "Critical Illness"},
       {id: 3,key: "Global Medical",listOrder: 1,name: "Global Medical",value: "Global Medical"},
@@ -46,19 +50,18 @@ export class ContactFormComponent implements OnInit {
     let emailValidators = [
       Validators.required, 
       Validators.email, 
-      Validators.pattern(RegexConstants.Email), 
-      // this.signUpService.emailDomainValidator(this.organisationEnabled)
+      Validators.pattern(RegexConstants.Email)
     ];
     this.formObject = this.fb.group({
       fullName: ['', Validators.required],
       email: ['', emailValidators],
       mobileNumber: ['', Validators.required],
-      dob: ['', Validators.required],
-      gender: ['', Validators.required],
-      interedtedInsurance: ['', Validators.required],
-      isSmoker: ['', Validators.required],
-      pepOtherOccupation: ['', Validators.required],
-      enquiry : ['']
+      dateOfBirth: [''],
+      gender: [''],
+      insuranceInterestedIn: [''],
+      isSmoker: [''],
+      anyOtherQueries : [''],
+      journeyType : ["insurance-direct"]
     })
 
     this.formObject.get('mobileNumber').valueChanges.subscribe(val => {
@@ -72,15 +75,46 @@ export class ContactFormComponent implements OnInit {
     })
   }
 
-  close(userAction: any) {    
+  closeModal(userAction: string) {
     this.activeModal.close(userAction)
   }
 
-  contactMe(){
+  contactMe() {
     this.isSubmitted = true;
+      let payload = this.formObject.value;
+      if (payload.dateOfBirth) {
+          payload.dateOfBirth = `${payload.dateOfBirth.day}/${payload.dateOfBirth.month}/${payload.dateOfBirth.year}`;
+      }
+      if (payload.insuranceInterestedIn) {
+          payload.insuranceInterestedIn = payload.insuranceInterestedIn.value;
+      }
+      this.directApiService.directContactMeForm(payload)
+        .subscribe(data => {
+            if (data.responseMessage.responseCode === 6000) {
+              this.closeModal(data.responseMessage.responseDescription);
+              this.router.navigate(['email-enquiry/success']);
+            }
+          });      
   }
 
   setDropDownValue(key, value, index) {
     this.formObject.controls[key].setValue(value);
   }
+
+  toggleAccordian(event) {
+    const formFields = ['dateOfBirth', 'gender', 'insuranceInterestedIn', 'isSmoker'];
+    if (event.nextState) {
+      this.setValidation(formFields, [Validators.required]);
+    } else {
+      this.setValidation(formFields);
+    }
+  }
+
+  setValidation(formFields, validationTypes = null) {
+    formFields.forEach(fControl => {
+      this.formObject.controls[fControl].setValidators(validationTypes);
+      this.formObject.controls[fControl].updateValueAndValidity();
+    })
+  }
+
 }

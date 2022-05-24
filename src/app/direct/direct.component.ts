@@ -33,6 +33,7 @@ import { DirectService } from './direct.service';
 import { DirectState } from './direct.state';
 
 const mobileThreshold = 567;
+const SHOWN_DIRECTJOURNEY_CONTACTFORM = 'app_isShown_DirectJourney_ContactForm';
 
 @Component({
   selector: 'app-direct',
@@ -134,17 +135,20 @@ export class DirectComponent implements OnInit, AfterViewInit, IPageComponent, O
     if (!this.authService.isSignedUser()) {
       this.appService.setCorporateDetails({organisationEnabled: false, uuid: null});
     }
-    this.contactFormTimerFn()
+    if (!JSON.parse(sessionStorage.getItem(SHOWN_DIRECTJOURNEY_CONTACTFORM))) {
+      this.contactFormTimerFn()
+    }
   }
 
+  /** Systematically trigger contact form when user idling for 2 mins in direct journey */
   contactFormTimerFn() {
     this.mouseMove$.pipe(
       switchMap( option => interval(1000)),
       takeUntil(this.destroyContactFormTimer$),
     ).subscribe( idleSeconds => {
-      console.log('mouse move response ',idleSeconds)
-      if (idleSeconds === 10) {   // for development displaying contact form when user idling for 20 seconds
+      if (idleSeconds === 60) {
         this.destroyContactFormTimer$.next(true);
+        sessionStorage.setItem(SHOWN_DIRECTJOURNEY_CONTACTFORM, JSON.stringify(true));
         this.openContactFormModal();
         
       }
