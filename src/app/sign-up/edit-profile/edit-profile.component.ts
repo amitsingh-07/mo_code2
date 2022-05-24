@@ -74,7 +74,7 @@ export class EditProfileComponent implements OnInit, OnDestroy {
   srsDetails;
   formatedAccountNumber;
   is2faAuthorized: boolean;
-  disableBankSrsEdit = false;
+  disableBankAcctEdit = false;
   linkCatagories;
   CKA_STATUS_CONSTANTS;
   // singpass
@@ -194,7 +194,7 @@ export class EditProfileComponent implements OnInit, OnDestroy {
     // Check if iFast is in maintenance
     this.configService.getConfig().subscribe((config) => {
       if (config.iFastMaintenance && this.configService.checkIFastStatus(config.maintenanceStartTime, config.maintenanceEndTime)) {
-        this.disableBankSrsEdit = true;
+        this.disableBankAcctEdit = true;
       }
     });
 
