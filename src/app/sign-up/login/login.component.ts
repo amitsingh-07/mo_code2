@@ -43,6 +43,7 @@ import { LoginFormError } from './login-form-error';
 import { HubspotService } from './../../shared/analytics/hubspot.service';
 import { SIGN_UP_CONFIG } from './../sign-up.constant';
 import { TermsModalComponent } from './../../shared/modal/terms-modal/terms-modal.component';
+import { SingpassApiService } from '../../singpass/singpass.api.service';
 
 @Component({
   selector: 'app-login',
@@ -105,10 +106,18 @@ export class LoginComponent implements OnInit, AfterViewInit, OnDestroy {
     private loaderService: LoaderService,
     private investmentCommonService: InvestmentCommonService,
     private hubspotService: HubspotService,
-    private helper: HelperService) {
+    private helper: HelperService,
+    private singpassService: SingpassApiService) {
     this.translate.use('en');
     this.translate.get('COMMON').subscribe((result: string) => {
       this.duplicateError = this.translate.instant('COMMON.DUPLICATE_ERROR');
+      this.route.queryParams.subscribe((qp) => {
+        console.log('Get Router Params:', this.route.snapshot.queryParams);
+        if(qp['code'] && qp['state']) {
+          console.log("IM INSIDE "+ "code = "+qp['code']+ "state = "+ qp['state'])
+          this.loginBySingpass();
+        }
+      });
     });
     this.route.params.subscribe((params) => {
       this.heighlightMobileNumber = params.heighlightMobileNumber;
@@ -130,6 +139,8 @@ export class LoginComponent implements OnInit, AfterViewInit, OnDestroy {
       this.signUpService.removeFromLoginPage();
       this.signUpService.removeFromMobileNumber();
     }
+    // Check if mobile device and set last login type
+    this.getSetLoginPref();
   }
   /**
     * Initialize tasks.
@@ -186,30 +197,15 @@ export class LoginComponent implements OnInit, AfterViewInit, OnDestroy {
     }
   }
 
-  initSingpassQR() {
-    const authParamsSupplier = async () => {
-      // Replace the below with an `await`ed call to initiate an auth session on your backend
-      // which will generate state+nonce values, e.g
-      return { state: "" + (Math.random() * 1000000000000000 + '').slice(0, 15), nonce: "" + (Math.random() * 1000000000000000 + '').slice(0, 15) };
-    };
-
-    const onError = (errorId, message) => {
-      console.log(`onError. errorId:${errorId} message:${message}`);
-    };
-
-    const initAuthSessionResponse = window['NDI'].initAuthSession(
-      'qr_wrapper',
-      {
-        clientId: 'iROTlv1CU9Cz3GlYiNosMsZDGIYwWSB3', // Replace with your client ID
-        redirectUri: 'https://newmouat1.ntucbfa.com/app/singpass/callback',        // Replace with a registered redirect URI
-        scope: 'openid',
-        responseType: 'code'
-      },
-      authParamsSupplier,
-      onError
-    );
-
-    console.log('initAuthSession: ', initAuthSessionResponse);
+  async initSingpassQR() {
+      const authParamsSupplier = async () => {
+        const promise = await this.singpassService.getStateNonce().toPromise().catch(() => {
+          // Error handling when app api fail
+          console.log("Implement a nervous system check for this.");
+        });
+        return promise['objectList'][0];
+      }
+      this.singpassService.initSingpassAuthSession(authParamsSupplier);
   }
 
   setCaptchaValidator() {
@@ -658,23 +654,23 @@ export class LoginComponent implements OnInit, AfterViewInit, OnDestroy {
     }
   }
 
-  openModal(event) {
+  openSingpassModal(event, type?) {
     const ref = this.modal.open(ModelWithButtonComponent, { centered: true });
-    ref.componentInstance.errorTitle = this.translate.instant('LOGIN.SINGPASS_ACTIVATE_MODAL.TITLE');
-    ref.componentInstance.errorMessageHTML = this.translate.instant('LOGIN.SINGPASS_ACTIVATE_MODAL.MESSAGE');
+    if (type) {
+      ref.componentInstance.errorTitle = this.translate.instant('LOGIN.SINGPASS_LOGIN_FAIL_MODAL.TITLE');
+      ref.componentInstance.errorMessageHTML = this.translate.instant('LOGIN.SINGPASS_LOGIN_FAIL_MODAL.MESSAGE');
+      ref.componentInstance.primaryActionLabel = this.translate.instant('LOGIN.SINGPASS_LOGIN_FAIL_MODAL.BACK_BTN');
+      ref.componentInstance.primaryAction.subscribe(() => {
+        this.modal.dismissAll();
+      });
+    } else {
+      ref.componentInstance.errorTitle = this.translate.instant('LOGIN.SINGPASS_ACTIVATE_MODAL.TITLE');
+      ref.componentInstance.errorMessageHTML = this.translate.instant('LOGIN.SINGPASS_ACTIVATE_MODAL.MESSAGE');
+    }
     event.stopPropagation();
     event.preventDefault();
   }
-
-  openSingpassLoginFail(event) {
-    const ref = this.modal.open(ModelWithButtonComponent, { centered: true });
-    ref.componentInstance.errorTitle = this.translate.instant('LOGIN.SINGPASS_LOGIN_FAIL_MODAL.TITLE');
-    ref.componentInstance.errorMessageHTML = this.translate.instant('LOGIN.SINGPASS_LOGIN_FAIL_MODAL.TITLE');
-    ref.componentInstance.myInfo = true;
-    event.stopPropagation();
-    event.preventDefault();
-  }
-  
+  // Toggle UI for showing Singpass/Password Login
   toggleSingpass(type) {
     if (type === SIGN_UP_CONFIG.SINGPASS) {
       this.showSingpassLogin = true;
@@ -683,5 +679,33 @@ export class LoginComponent implements OnInit, AfterViewInit, OnDestroy {
       this.showPasswordLogin = true;
       this.showSingpassLogin = false;
     }
+    this.getSetLoginPref(type);
+  }
+  // Get or set the login pref for mobile view
+  getSetLoginPref(type?) {
+    if (window.localStorage && /Mobi|Android/i.test(navigator.userAgent)) {
+      if (type) {
+        if (type !== window.localStorage.getItem("LOGIN_PREFERENCE")) {
+          console.log("SETTING LOGIN TYPE " + type)
+          window.localStorage.setItem('LOGIN_PREFERENCE', type);
+        }
+      } else {
+        if (window.localStorage.getItem("LOGIN_PREFERENCE")) {
+          console.log("GETTING LOGIN TYPE " + window.localStorage.getItem("LOGIN_PREFERENCE"))
+          this.toggleSingpass(window.localStorage.getItem("LOGIN_PREFERENCE"));
+        }
+      }
+    }
+  }
+  // Login method by Singpass
+  loginBySingpass() {
+    // Check if User is authenticated yet
+    if (!this.authService.isAuthenticated()) {
+      this.authService.authenticate().subscribe((token) => {
+      });
+    }
+    // If user not in our DB
+    // openSingpassLoginFail possible pass in fail msg instead?
+    // this.openSingpassModal(window.event, 'Fail');
   }
 }

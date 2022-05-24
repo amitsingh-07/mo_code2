@@ -785,4 +785,11 @@ export class ApiService {
         catchError((error: HttpErrorResponse) => this.handleError(error))
       );
   }
+
+  getStateNonce(payload) {
+    return this.http.post(apiConstants.endpoint.singpass.getStateNonce, payload)
+      .pipe(
+        catchError((error: HttpErrorResponse) => this.handleError(error))
+      );
+  }
 }
