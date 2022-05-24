@@ -154,5 +154,8 @@ export let INVESTMENT_COMMON_CONSTANTS = {
     EQUITIES: 'Equities',
     FIXED_INCOME: 'Fixed Income',
     BONDS: 'Bonds'
+  },
+  ASSET_ALLOCATION_CONST: {
+    MIN_AMOUNT_FOR_ROUNDOFF: 0.05
   }
 };
