@@ -143,12 +143,15 @@
                           </div>
                         </div>
                       </div>
+                      <div class="flex-col-12 mb10 mt20 insurance-lbl">
+                        {{ 'CONTACT_MODAL.FORM.INTERESTED_INSURANCE.LABEL' | translate }} 
+                      </div>
                       <div class="flex-col-12 mb10">
                         <div class="dropdown-control" [ngClass]="{'inline-error': formObject.controls.insuranceInterestedIn.invalid && formObject.controls.insuranceInterestedIn.dirty}">
                           <div ngbDropdown placement="bottom-right">
                             <button class="btn btn-dropdown" id="salutation-drpdown" ngbDropdownToggle>
                               <span *ngIf="!formObject.controls.insuranceInterestedIn.value">
-                                {{ 'CONTACT_MODAL.FORM.INTERESTED_INSURANCE.LABEL' | translate }} 
+                                {{ 'CONTACT_MODAL.FORM.INTERESTED_INSURANCE.PLACEHOLDER_LBL' | translate }} 
                               </span>
                               <span *ngIf="formObject.controls.insuranceInterestedIn.value">
                                 {{formObject.controls.insuranceInterestedIn.value.name}}

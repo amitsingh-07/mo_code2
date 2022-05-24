@@ -247,6 +247,7 @@
           },
           "INTERESTED_INSURANCE":{
             "LABEL": "Type of insurance interested in",
+            "PLACEHOLDER_LBL": "Insurance Type",
             "ERROR":{
               "REQUIRED": "Select Interested Insurance"
             }
