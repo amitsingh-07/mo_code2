@@ -46,7 +46,7 @@ export class CustomErrorHandlerService {
     };
     this.helper.showCustomErrorModal(customError);
     // navigate back to the login page
-    const corporate_details = JSON.parse(localStorage.getItem(CORPORATE_DETAILS));
+    const corporate_details = JSON.parse(sessionStorage.getItem(CORPORATE_DETAILS));
     if (corporate_details.organisationEnabled) {
       this.router.navigate([SIGN_UP_ROUTE_PATHS.CORPORATE_LOGIN], { queryParams: {orgID: corporate_details.uuid }});
     } else {
