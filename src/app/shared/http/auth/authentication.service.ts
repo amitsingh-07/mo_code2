@@ -20,6 +20,7 @@ const APP_SESSION_ID_KEY = 'app-session-id';
 const APP_ENQUIRY_ID = 'app-enquiry-id';
 const FROM_JOURNEY_HM = 'from_journey';
 const EMAIL = 'email';
+const CORPORATE_DETAILS = 'app_corporate_details';
 
 @Injectable({ providedIn: 'root' })
 export class AuthenticationService {
@@ -122,9 +123,13 @@ export class AuthenticationService {
 
   clearSession() {
     // remove user from local storage to log user out
+    const corporateObj = sessionStorage.getItem(CORPORATE_DETAILS);
     this.cache.reset();
     sessionStorage.clear();
-  }
+    if(sessionStorage) {
+      sessionStorage.setItem(CORPORATE_DETAILS, (corporateObj))
+    }
+    }
 
   public getToken(): string {
     return sessionStorage.getItem(appConstants.APP_JWT_TOKEN_KEY);
