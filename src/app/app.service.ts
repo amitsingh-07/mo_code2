@@ -178,11 +178,11 @@ export class AppService {
   }
 
   setCorporateDetails(corporateObj) {
-    localStorage.setItem(CORPORATE_DETAILS, JSON.stringify(corporateObj))
+    sessionStorage.setItem(CORPORATE_DETAILS, JSON.stringify(corporateObj))
   }
 
   getCorporateDetails(): {organisationEnabled: boolean, uuid: string} {
-    return JSON.parse(localStorage.getItem(CORPORATE_DETAILS));
+    return JSON.parse(sessionStorage.getItem(CORPORATE_DETAILS));
   } 
 
 }
