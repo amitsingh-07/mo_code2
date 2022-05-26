@@ -20,7 +20,7 @@ export class ContactFormComponent implements OnInit {
   formValue: any;
   maxDate: any;
   minDate: any;
-  insuranceInterestedInList = [];
+  interestedInsuranceInList = [];
 
   constructor(public activeModal: NgbActiveModal, private fb: FormBuilder, private translate: TranslateService, private directService: DirectService,
     private directApiService: DirectApiService, private router: Router) {
@@ -38,12 +38,7 @@ export class ContactFormComponent implements OnInit {
 
   ngOnInit(): void {
     this.buildForm();
-    this.insuranceInterestedInList = [
-      {id: 1,key: "Bundles",listOrder: 1,name: "Bundles",value: "Bundles"},
-      {id: 2,key: "Critical Illness",listOrder: 1,name: "Critical Illness",value: "Critical Illness"},
-      {id: 3,key: "Global Medical",listOrder: 1,name: "Global Medical",value: "Global Medical"},
-      {id: 4,key: "Local Shield Plans",listOrder: 1,name: "Local Shield Plans",value: "Local Shield Plans"}
-    ]
+    this.getInterestedInsuranceInList();
   }
 
   buildForm() {
@@ -115,6 +110,15 @@ export class ContactFormComponent implements OnInit {
       this.formObject.controls[fControl].setValidators(validationTypes);
       this.formObject.controls[fControl].updateValueAndValidity();
     })
+  }
+
+  getInterestedInsuranceInList() {
+    this.directApiService.getInterestedInList()
+        .subscribe(data => {
+            if (data.responseMessage.responseCode === 6000) {
+              this.interestedInsuranceInList = data.objectList;
+            }
+          }); 
   }
 
 }

@@ -468,6 +468,13 @@ export class ApiService {
       );
   }
 
+  getInterestedInList() {
+    return this.http.get(apiConstants.endpoint.getInterestedInList)
+      .pipe(
+        catchError((error: HttpErrorResponse) => this.handleError(error))
+      );
+  }
+
   getUserProfileInfo() {
     return this.http.get(apiConstants.endpoint.userProfileInfo)
       .pipe(

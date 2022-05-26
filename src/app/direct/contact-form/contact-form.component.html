@@ -158,7 +158,7 @@
                               </span>
                             </button>
                             <div class="dropdown" ngbDropdownMenu aria-labelledby="salutation-drpdown">
-                              <button class="dropdown-item" *ngFor="let insurance of insuranceInterestedInList; let i = index;"
+                              <button class="dropdown-item" *ngFor="let insurance of interestedInsuranceInList; let i = index;"
                                 (click)="setDropDownValue('insuranceInterestedIn', insurance, i)"
                                 id="salutation-option-{{i}}">{{insurance.name}}</button>
                             </div>
