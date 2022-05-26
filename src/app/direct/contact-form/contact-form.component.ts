@@ -2,7 +2,7 @@ import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 import { RegexConstants } from '../../shared/utils/api.regex.constants';
-import { SIGN_UP_CONFIG } from 'src/app/sign-up/sign-up.constant';
+import { SIGN_UP_CONFIG } from '../../sign-up/sign-up.constant';
 import { TranslateService } from '@ngx-translate/core';
 import { DirectService } from './../direct.service';
 import { DirectApiService } from '../direct.api.service';
