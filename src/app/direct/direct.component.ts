@@ -146,11 +146,10 @@ export class DirectComponent implements OnInit, AfterViewInit, IPageComponent, O
       switchMap( option => interval(1000)),
       takeUntil(this.destroyContactFormTimer$),
     ).subscribe( idleSeconds => {
-      if (idleSeconds === 60) {
+      if (idleSeconds === 120) {
         this.destroyContactFormTimer$.next(true);
         sessionStorage.setItem(SHOWN_DIRECTJOURNEY_CONTACTFORM, JSON.stringify(true));
-        this.openContactFormModal();
-        
+        this.openContactFormModal();        
       }
     })
   }
