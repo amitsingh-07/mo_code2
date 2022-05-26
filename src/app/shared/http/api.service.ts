@@ -461,6 +461,13 @@ export class ApiService {
       );
   }
 
+  directContactMeForm(payload) {
+    return this.http.post(apiConstants.endpoint.directContactMeForm, payload)
+      .pipe(
+        catchError((error: HttpErrorResponse) => this.handleError(error))
+      );
+  }
+
   getUserProfileInfo() {
     return this.http.get(apiConstants.endpoint.userProfileInfo)
       .pipe(

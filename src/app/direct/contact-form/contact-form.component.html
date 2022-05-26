@@ -1,0 +1,224 @@
+ <div class="modal-body white-bg">
+    <div class="modal-body-title">
+      <div class="banner-bg">
+        <img src="assets/images/direct/contact-form-banner.svg" />
+      </div>
+      <div class="text-bold">{{ 'CONTACT_MODAL.TITLE' | translate }}</div>
+      <div>{{ 'CONTACT_MODAL.DESC' | translate }}</div>
+    </div>
+    <button type="button" class="close" aria-label="Close" (click)="closeModal('closed')">
+    </button>
+    <div class="modal-body-message " id="errorModelMessage">
+      <div class="flex-col-12">
+        <form [formGroup]="formObject">
+        <div class="flex-row mb10">
+          <div class="flex-col-12 stretch">
+            <div class="form-group-floating-label" [ngClass]="{'inline-error': formObject.controls.fullName.invalid && formObject.controls.fullName.dirty}">
+              <input type="text" id="fullName" class="form-control"  #fullName formControlName="fullName" required >
+              <label class="form-control-placeholder"
+                for="fullName">{{ 'CONTACT_MODAL.FORM.FULLNAME.LABEL' | translate }}</label>
+            </div>
+          </div>
+          <div class="alert-msg" *ngIf="formObject.controls.fullName.invalid && formObject.controls.fullName.dirty">
+            <div *ngIf="formObject.controls.fullName.errors?.required">
+              <span class="alert-icon"><img src="assets/images/alert.svg" /></span>
+              <span class="err-msg">{{ 'CONTACT_MODAL.FORM.FULLNAME.ERROR.REQUIRED' | translate }}</span>
+            </div>
+          </div>
+        </div>
+        <div class="flex-row mb10">
+          <div class="flex-col-12 stretch">
+            <div class="form-group-floating-label" [ngClass]="{'inline-error': formObject.controls.email.invalid && formObject.controls.email.dirty}">
+              <input type="text" id="crtAccInpt4" class="form-control"  #email formControlName="email" required>
+              <label class="form-control-placeholder"
+                for="email">{{ 'CONTACT_MODAL.FORM.EMAIL.LABEL' | translate }}</label>
+            </div>
+          </div>
+          <div class="alert-msg" *ngIf="formObject.controls.email.invalid && formObject.controls.email.dirty">
+            <div *ngIf="formObject.controls.email.errors?.required">
+              <span class="alert-icon"><img src="assets/images/alert.svg" /></span>
+              <span class="err-msg">{{ 'CONTACT_MODAL.FORM.EMAIL.ERROR.REQUIRED' | translate }}</span>
+            </div>
+            <div *ngIf="formObject.controls.email.errors?.email || formObject.controls.email.errors?.pattern">
+              <span class="alert-icon"><img src="assets/images/alert.svg" /></span>
+              <span class="err-msg">{{ 'CONTACT_MODAL.FORM.EMAIL.ERROR.INVALID' | translate }}</span>
+            </div>
+            <div *ngIf="formObject.controls.email.errors?.invalidDomain">
+              <span class="alert-icon"><img src="assets/images/alert.svg" /></span>
+              <span class="err-msg">{{ 'CONTACT_MODAL.FORM.EMAIL.ERROR.INVALID_DOMAIN' | translate}}</span>
+            </div>
+          </div>
+        </div>
+        <div class="flex-row mb20">
+          <div class="flex-col-12 stretch">
+            <div class="form-group-floating-label" [ngClass]="{'inline-error': formObject.controls.mobileNumber.invalid && formObject.controls.mobileNumber.dirty}">
+              <input type="number" maxlength="15" id="crtAccInpt1" #mobileNumber  formControlName="mobileNumber" class="form-control" required>
+              <label class="form-control-placeholder"
+                for="mobileNumber">{{ 'CONTACT_MODAL.FORM.MOBILE_NUMBER.LABEL' | translate }}</label>
+            </div>
+          </div>
+          <div class="alert-msg" *ngIf="formObject.controls.mobileNumber.invalid && formObject.controls.mobileNumber.dirty">
+            <div *ngIf="formObject.controls.mobileNumber.errors?.required">
+              <span class="alert-icon"><img src="assets/images/alert.svg" /></span>
+              <span class="err-msg">{{ 'CONTACT_MODAL.FORM.MOBILE_NUMBER.ERROR.REQUIRED' | translate}}</span>
+            </div>
+            <div *ngIf="formObject.controls.mobileNumber.errors?.mobileRange">
+              <span class="alert-icon"><img src="assets/images/alert.svg" /></span>
+              <span class="err-msg">{{ 'CONTACT_MODAL.FORM.MOBILE_NUMBER.ERROR.INVALID' | translate}}</span>
+            </div>
+          </div>
+        </div>
+        <div class="recommnendation-info">
+          <div class="title">{{ 'CONTACT_MODAL.SUB_TITLE' | translate }}</div>
+          <ngb-accordion #acc="ngbAccordion" (panelChange)="toggleAccordian($event)">
+            <ngb-panel>
+                <ng-template ngbPanelTitle>
+                    <div class="flex justify-center">
+                      <i class='arrow'></i>
+                    </div>
+                </ng-template>
+                <ng-template ngbPanelContent>
+                    <div>
+                      <div class="flex-row mb10 mt20">
+                        <div #usrFrmDp class="flex-col-12 dob">
+                          <div class="form-group-floating-label pt0">
+                            <div class="datepicker-control">
+                              <div class="input-group date-picker mb0" #dob
+                              [ngClass]="{'inline-error': formObject.controls.dateOfBirth.invalid && formObject.controls.dateOfBirth.dirty}">
+                                <input  class="form-control"
+                                    name="dp" ngbDatepicker [minDate]="minDate" [maxDate]="maxDate" formControlName="dateOfBirth"
+                                  #dobInput="ngbDatepicker" id="invPersInfoInpt7" required>
+                                  <label class="form-control-placeholder">{{ 'CONTACT_MODAL.FORM.DOB.PLACEHOLDER_LBL' | translate}}</label>
+                                <div class="input-group-append">
+                                  <button  class="btn btn-primary" type="button" (click)="dobInput.toggle()" id="createDobBtn1">
+                                    <img class="date-picker-image--valid" id="createDobImg1"
+                                    *ngIf="(formObject.controls.dateOfBirth.valid || (formObject.controls.dateOfBirth.invalid && !formObject.controls.dateOfBirth.dirty))"
+                                      src="assets/images/calendar-normal.svg" />
+                                    <img class="date-picker-image--invalid" id="createDobImg1"
+                                      *ngIf="formObject.controls.dateOfBirth.invalid && formObject.controls.dateOfBirth.dirty"
+                                      src="assets/images/calendar-error.svg" />
+                                  </button>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                        <div class="alert-msg" *ngIf="formObject.controls.dateOfBirth.invalid && formObject.controls.dateOfBirth.dirty">
+                          <div *ngIf="formObject.controls.dateOfBirth.errors?.required">
+                            <span class="alert-icon"><img src="assets/images/alert.svg" /></span>
+                            <span class="err-msg">{{ 'CONTACT_MODAL.FORM.DOB.ERROR.REQUIRED' | translate}}</span>
+                          </div>
+                          <div *ngIf="!formObject.controls.dateOfBirth.errors?.required && formObject.controls.dateOfBirth.errors?.ngbDate">
+                            <span class="alert-icon"><img src="assets/images/alert.svg" /></span>
+                            <span class="err-msg">{{ 'CONTACT_MODAL.FORM.DOB.ERROR.INVALID' | translate}}</span>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="flex-col-12 mb10">
+                        <div [ngClass]="{'inline-error': isSubmitted && formObject.controls.gender.errors}">
+                          <div class="flex-row form-control gender" #gender>
+                            <div class="mr20">
+                              <label for="gender" id="invPersInfoLbl8" class="mb0">{{ 'CONTACT_MODAL.FORM.GENDER.LABEL' | translate}}</label>
+                            </div>
+                            <div class="checkbox-button one-label mr10">
+                              <input type="radio" value="Male" class="field radio"  name="gender" id="gender_type_1" formControlName="gender"/>
+                              <label for="gender_type_1">
+                                <div><span class="input-label-black">{{ 'CONTACT_MODAL.FORM.GENDER.MALE' | translate}}</span>
+                                </div>
+                              </label>
+                            </div>
+                            <div class="checkbox-button one-label">
+                              <input type="radio" value="Female" class="field radio" name="gender" id="gender_type_2" formControlName="gender"/>
+                              <label for="gender_type_2">
+                                <div><span class="input-label-black">{{ 'CONTACT_MODAL.FORM.GENDER.FEMALE' | translate}}</span>
+                                </div>
+                              </label>
+                            </div>
+                          </div>
+                        </div>
+                        <div class="alert-msg" *ngIf="isSubmitted && formObject.controls.gender.errors">
+                          <div *ngIf="formObject.controls.gender.errors?.required">
+                            <span class="alert-icon"><img src="assets/images/alert.svg" /></span>
+                            <span class="err-msg">{{ 'CONTACT_MODAL.FORM.GENDER.ERROR.REQUIRED' | translate}}</span>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="flex-col-12 mb10 mt20 insurance-lbl">
+                        {{ 'CONTACT_MODAL.FORM.INTERESTED_INSURANCE.LABEL' | translate }} 
+                      </div>
+                      <div class="flex-col-12 mb10">
+                        <div class="dropdown-control" [ngClass]="{'inline-error': formObject.controls.insuranceInterestedIn.invalid && formObject.controls.insuranceInterestedIn.dirty}">
+                          <div ngbDropdown placement="bottom-right">
+                            <button class="btn btn-dropdown" id="salutation-drpdown" ngbDropdownToggle>
+                              <span *ngIf="!formObject.controls.insuranceInterestedIn.value">
+                                {{ 'CONTACT_MODAL.FORM.INTERESTED_INSURANCE.PLACEHOLDER_LBL' | translate }} 
+                              </span>
+                              <span *ngIf="formObject.controls.insuranceInterestedIn.value">
+                                {{formObject.controls.insuranceInterestedIn.value.name}}
+                              </span>
+                            </button>
+                            <div class="dropdown" ngbDropdownMenu aria-labelledby="salutation-drpdown">
+                              <button class="dropdown-item" *ngFor="let insurance of insuranceInterestedInList; let i = index;"
+                                (click)="setDropDownValue('insuranceInterestedIn', insurance, i)"
+                                id="salutation-option-{{i}}">{{insurance.name}}</button>
+                            </div>
+                          </div>
+                        </div>
+                        <div class="alert-msg" *ngIf="formObject.controls.insuranceInterestedIn.invalid && formObject.controls.insuranceInterestedIn.dirty">
+                          <div *ngIf="formObject.controls.insuranceInterestedIn.errors?.required">
+                            <span class="alert-icon"><img src="assets/images/alert.svg" /></span>
+                            <span class="err-msg">{{ 'CONTACT_MODAL.FORM.INTERESTED_INSURANCE.ERROR.REQUIRED' | translate}}</span>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="flex-col-12 mb10">
+                        <div [ngClass]="{'inline-error': isSubmitted && formObject.controls.isSmoker.errors}">
+                          <div class="flex-row form-control gender" #smoker>
+                            <div class="mr20">
+                              <label for="smoker" id="invPersInfoLbl8" class="mb0">{{ 'CONTACT_MODAL.FORM.SMOKER.LABEL' | translate}}</label>
+                            </div>
+                            <div class="checkbox-button one-label mr10">
+                              <input type="radio" value="true" class="field radio"  name="isSmoker" id="smoker_type_1" formControlName="isSmoker"/>
+                              <label for="smoker_type_1">
+                                <div><span class="input-label-black">{{ 'CONTACT_MODAL.FORM.SMOKER.YES' | translate}}</span>
+                                </div>
+                              </label>
+                            </div>
+                            <div class="checkbox-button one-label">
+                              <input type="radio" value="false" class="field radio" name="isSmoker" id="smoker_type_2" formControlName="isSmoker"/>
+                              <label for="smoker_type_2">
+                                <div><span class="input-label-black">{{ 'CONTACT_MODAL.FORM.SMOKER.NO' | translate}}</span>
+                                </div>
+                              </label>
+                            </div>
+                          </div>
+                        </div>
+                        <div class="alert-msg" *ngIf="isSubmitted && formObject.controls.isSmoker.errors">
+                          <div *ngIf="formObject.controls.isSmoker.errors?.required">
+                            <span class="alert-icon"><img src="assets/images/alert.svg" /></span>
+                            <span class="err-msg">{{ 'CONTACT_MODAL.FORM.SMOKER.ERROR.REQUIRED' | translate}}</span>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="flex-row mb20">
+                        <div class="flex-col-12 stretch">
+                          <div class="form-group-floating-label">
+                            <input type="text" id="enquiry" class="form-control"  #enquiry formControlName="anyOtherQueries">
+                            <label class="form-control-placeholder"
+                              for="enquiry">{{ 'CONTACT_MODAL.FORM.ENQUIRY.LABEL' | translate}}</label>
+                          </div>
+                        </div>
+                      </div>
+                      <div>{{ 'CONTACT_MODAL.INFO' | translate }}</div>
+                    </div>
+                  </ng-template>
+              </ngb-panel>
+          </ngb-accordion>
+        </div>
+        </form>
+      </div>
+      <button type="button" [disabled]="formObject.invalid" class="btn btn-primary width100 footer-btn" 
+      (click)="contactMe()">{{ 'CONTACT_MODAL.BTN_LBL' | translate }}</button>
+    </div>
+  </div>
+  
