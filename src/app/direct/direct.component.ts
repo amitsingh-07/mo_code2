@@ -15,7 +15,8 @@ import {
 import { ActivatedRoute, NavigationEnd, NavigationStart, Router } from '@angular/router';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { TranslateService } from '@ngx-translate/core';
-import { Subscription, SubscriptionLike } from 'rxjs';
+import { fromEvent, interval, Observable, Subject, Subscription, SubscriptionLike } from 'rxjs';
+import { switchMap, takeUntil } from 'rxjs/operators';
 import { AuthenticationService } from '../shared/http/auth/authentication.service';
 
 import { appConstants } from './../app.constants';
@@ -26,11 +27,14 @@ import { NavbarService } from './../shared/navbar/navbar.service';
 import { SelectedPlansService } from './../shared/Services/selected-plans.service';
 import { SeoServiceService } from './../shared/Services/seo-service.service';
 import { StateStoreService } from './../shared/Services/state-store.service';
+import { ContactFormComponent } from './contact-form/contact-form.component';
 import { DirectResultsComponent } from './direct-results/direct-results.component';
 import { DirectService } from './direct.service';
 import { DirectState } from './direct.state';
 
 const mobileThreshold = 567;
+const SHOWN_DIRECTJOURNEY_CONTACTFORM = 'app_isShown_DirectJourney_ContactForm';
+const DISPLAY_CONTACT_FORM = 120;
 
 @Component({
   selector: 'app-direct',
@@ -49,6 +53,9 @@ export class DirectComponent implements OnInit, AfterViewInit, IPageComponent, O
   state: DirectState = new DirectState();
   componentName: string;
   components = [];
+  mouseMove$: Observable<MouseEvent> = fromEvent<MouseEvent>(document, 'mousemove');
+  destroyContactFormTimer$ = new Subject<boolean>();
+  manualContactFormSubscription: Subscription;
 
   constructor(
     private router: Router, public navbarService: NavbarService,
@@ -130,6 +137,40 @@ export class DirectComponent implements OnInit, AfterViewInit, IPageComponent, O
     if (!this.authService.isSignedUser()) {
       this.appService.setCorporateDetails({organisationEnabled: false, uuid: null});
     }
+    if (!JSON.parse(sessionStorage.getItem(SHOWN_DIRECTJOURNEY_CONTACTFORM))) {
+      this.contactFormTimerFn();
+    }
+
+    this.manualContactFormSubscription = this.directService.openContactFormManual$
+      .subscribe(showPopup => {
+        if (showPopup) {
+          this.destroyContactFormTimer$.next(true);
+          this.destroyContactFormTimer$.complete();  
+          sessionStorage.setItem(SHOWN_DIRECTJOURNEY_CONTACTFORM, JSON.stringify(true));
+          this.openContactFormModal();
+        }
+    })
+  }
+
+  /** Systematically trigger contact form when user idling for 2 mins in direct journey */
+  contactFormTimerFn() {
+    this.mouseMove$.pipe(
+      switchMap( option => interval(1000)),
+      takeUntil(this.destroyContactFormTimer$),
+    ).subscribe( idleSeconds => {
+      if (idleSeconds === DISPLAY_CONTACT_FORM) {
+        this.destroyContactFormTimer$.next(true);
+        sessionStorage.setItem(SHOWN_DIRECTJOURNEY_CONTACTFORM, JSON.stringify(true));
+        this.openContactFormModal();        
+      }
+    })
+  }
+
+  openContactFormModal() {
+    const modalRef = this.modal.open(ContactFormComponent, {
+      centered: true,
+      windowClass: 'custom-full-height contact-form-modal',
+    });
   }
 
   ngAfterViewInit() {
@@ -156,7 +197,9 @@ export class DirectComponent implements OnInit, AfterViewInit, IPageComponent, O
     } catch (e) {
 
     }
-
+    this.destroyContactFormTimer$.next(true);
+    this.destroyContactFormTimer$.complete();
+    this.manualContactFormSubscription.unsubscribe();
   }
 
   setPageTitle(title: string, subTitle?: string, helpIcon?) {

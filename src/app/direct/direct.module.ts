@@ -13,6 +13,7 @@ import { HeaderService } from './../shared/header/header.service';
 import { NavbarService } from './../shared/navbar/navbar.service';
 import { SharedModule } from './../shared/shared.module';
 import { ComparePlansComponent } from './compare-plans/compare-plans.component';
+import { ContactFormComponent } from './contact-form/contact-form.component';
 import { DirectAccessGuard } from './direct-access-guard';
 import { DirectResultsComponent } from './direct-results/direct-results.component';
 import { DirectRoutingModule } from './direct-routing.module';
@@ -62,9 +63,11 @@ export function createTranslateLoader(http: HttpClient) {
     HospitalPlanFormComponent, RetirementIncomeFormComponent,
     OcpDisabilityFormComponent, EditProductInfoComponent,
     ComparePlansComponent,
-    SrsApprovedPlansFormComponent],
+    SrsApprovedPlansFormComponent,
+    ContactFormComponent
+  ],
   providers: [CurrencyPipe, TitleCasePipe, LoggedUserService, DirectAccessGuard],
-  entryComponents: [ProductDetailComponent, DirectResultsComponent]
+  entryComponents: [ProductDetailComponent, DirectResultsComponent, ContactFormComponent]
 })
 export class DirectModule {
   constructor(public navbarService: NavbarService, public headerService: HeaderService) {
