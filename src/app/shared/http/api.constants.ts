@@ -66,6 +66,8 @@ export let apiConstants = {
         getReferralCode: ACCOUNT_API_BASE_URL + '/referralcode/welcomeRewards',
         getRefereeList: ACCOUNT_API_BASE_URL + '/referralcode/getRefereeList',   
         getCustOrgPromoCode: ACCOUNT_API_BASE_URL + '/promocode/getCustOrgPromoCode',
+        directContactMeForm: ACCOUNT_API_BASE_URL + '/contactMe?handleError=true',
+        getInterestedInList: ACCOUNT_API_BASE_URL + '/getInstestedInsruanceList',
         customer: {
             validateUIN: ACCOUNT_API_BASE_URL + '/customer/validateUin',
         },
