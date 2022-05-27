@@ -51,7 +51,6 @@ export class DirectService {
 
   constructor(private currencyPipe: CurrencyPipe, private googleAnalyticsService: GoogleAnalyticsService) {
     this.getDirectFormData();
-    console.log('...direct ser initi')
   }
 
   commit() {
