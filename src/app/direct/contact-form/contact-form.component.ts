@@ -17,7 +17,6 @@ import { Router } from '@angular/router';
 export class ContactFormComponent implements OnInit {
   formObject: FormGroup;
   isSubmitted = false;
-  formValue: any;
   maxDate: any;
   minDate: any;
   interestedInsuranceInList: string[];
