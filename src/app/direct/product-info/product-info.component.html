@@ -41,8 +41,12 @@
       <app-education-form (formSubmitted)="formSubmitted($event)" [hidden]="selectedCategoryId != 6"></app-education-form>
       <app-retirement-income-form (formSubmitted)="formSubmitted($event)" [hidden]="selectedCategoryId != 7"></app-retirement-income-form>
       <app-srs-approved-plans-form (formSubmitted)="formSubmitted($event)" [hidden]="selectedCategoryId != 8"></app-srs-approved-plans-form>
+      <button class="btn btn-primary manual-contact-btn">
+        <span class="btn-icon"><img src="assets/images/direct/star-icon.svg"></span>
+        <span class="ml5">{{ 'COVERAGE.MANUAL_CONTACT_BTN' | translate}}</span>
+      </button>
     </div>
-  </div> 
+  </div>
   <button class="btn search-btn" [ngClass]="{'show': toggleFormVisibility}" (click)="search(selectedCategoryId)">
     {{searchText}} 
   </button>
