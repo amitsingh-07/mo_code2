@@ -47,9 +47,11 @@ export class DirectService {
   modalToolTipTrigger = this.modalToolTip.asObservable();
   userInfoSet = this.userInfo.asObservable();
   currentIndexValue: number;
+  openContactFormManual$ = new Subject<boolean>();
 
   constructor(private currencyPipe: CurrencyPipe, private googleAnalyticsService: GoogleAnalyticsService) {
     this.getDirectFormData();
+    console.log('...direct ser initi')
   }
 
   commit() {

@@ -20,7 +20,7 @@ export class ContactFormComponent implements OnInit {
   formValue: any;
   maxDate: any;
   minDate: any;
-  interestedInsuranceInList = [];
+  interestedInsuranceInList: string[];
 
   constructor(public activeModal: NgbActiveModal, private fb: FormBuilder, private translate: TranslateService, private directService: DirectService,
     private directApiService: DirectApiService, private router: Router) {
