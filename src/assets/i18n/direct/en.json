@@ -10,7 +10,8 @@
   },
   "COVERAGE": {
     "TITLE": "Pick A Coverage Type",
-    "MOBILE_TITLE": "Protection Type"
+    "MOBILE_TITLE": "Protection Type",
+    "MANUAL_CONTACT_BTN" : "Don’t Miss Out"
   },
   "PROFILE": {
     "TITLE": "Your Profile",
