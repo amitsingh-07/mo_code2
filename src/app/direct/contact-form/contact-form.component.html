@@ -154,13 +154,13 @@
                                 {{ 'CONTACT_MODAL.FORM.INTERESTED_INSURANCE.PLACEHOLDER_LBL' | translate }} 
                               </span>
                               <span *ngIf="formObject.controls.insuranceInterestedIn.value">
-                                {{formObject.controls.insuranceInterestedIn.value.name}}
+                                {{formObject.controls.insuranceInterestedIn.value}}
                               </span>
                             </button>
                             <div class="dropdown" ngbDropdownMenu aria-labelledby="salutation-drpdown">
                               <button class="dropdown-item" *ngFor="let insurance of interestedInsuranceInList; let i = index;"
                                 (click)="setDropDownValue('insuranceInterestedIn', insurance, i)"
-                                id="salutation-option-{{i}}">{{insurance.name}}</button>
+                                id="salutation-option-{{i}}">{{insurance}}</button>
                             </div>
                           </div>
                         </div>

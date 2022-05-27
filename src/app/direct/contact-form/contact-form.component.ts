@@ -80,9 +80,6 @@ export class ContactFormComponent implements OnInit {
       if (payload.dateOfBirth) {
           payload.dateOfBirth = `${payload.dateOfBirth.day}/${payload.dateOfBirth.month}/${payload.dateOfBirth.year}`;
       }
-      if (payload.insuranceInterestedIn) {
-          payload.insuranceInterestedIn = payload.insuranceInterestedIn.value;
-      }
       this.directApiService.directContactMeForm(payload)
         .subscribe(data => {
             if (data.responseMessage.responseCode === 6000) {
