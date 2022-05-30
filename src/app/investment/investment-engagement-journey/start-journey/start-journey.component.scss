@@ -3,7 +3,7 @@
 app-start-journey {
     .container-fluid {
         &.full-height {
-            min-height: calc(100vh - 84px);
+            min-height: calc(100vh - 45px);
         }
     }
     .journey-wrapper {
@@ -46,6 +46,38 @@ app-start-journey {
         }
         @include tablet {
             width: 245px;
+        }
+    }
+    .btn-primary{
+        font-family: $muli-bold !important;
+        letter-spacing: -0.25px;
+        font-size: 22px;
+        padding: 13px;
+        margin-top: 4px !important;
+        width: 100%;
+        @include desktop {
+            width: 245px;
+        }
+        @include tablet {
+            width: 245px;
+        }
+    }
+    .journey-content-text {
+        background-color: $aqua-squeeze-color;
+        padding: 20px;
+        border-radius: 6px;
+        margin-top: 20px;
+        line-height: 20px;
+
+        @include allmobiles {
+            padding: 20px;
+            width: 100%;
+            margin: 20px auto;
+        }
+
+        .ja-desc-text {
+            font-family: $muli-bold;
+            margin-bottom: 8px;
         }
     }
 }

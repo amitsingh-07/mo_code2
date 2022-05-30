@@ -317,6 +317,9 @@ export class FundingAccountDetailsComponent implements OnInit {
     if (this.fundingAccountDetailsForm.get('srsFundingDetails').get('srsOperatorBank').value) {
       const accNo = this.fundingAccountDetailsForm.get('srsFundingDetails').get('srsAccountNumber').value;
       if (accNo) {
+        if(accNo.indexOf('*') >= 0) {
+          return accNo.replace(/\-/g, '').length;
+        }
         return accNo.match(/\d/g).join('').length;
       } else {
         return 0;
@@ -511,6 +514,9 @@ export class FundingAccountDetailsComponent implements OnInit {
     if (this.fundingAccountDetailsForm.get('cpfIADetails').get('cpfOperatorBank').value) {
       const accNo = this.fundingAccountDetailsForm.get('cpfIADetails').get('cpfAccountNumber').value;
       if (accNo) {
+        if(accNo.indexOf('*') >= 0) {
+          return accNo.replace(/\-/g, '').length;
+        }
         return accNo.match(/\d/g).join('').length;
       } else {
         return 0;

@@ -599,6 +599,11 @@
     "SECONDARY_USER_LOCK_MODAL": {
       "TITLE": "Oops, Unable to Update",
       "DESC": "Only primary holder of this joint account can amend the bank details. As you are the secondary holder, kindly advise your primary holder to edit the bank details for this joint account."
+    },
+    "LOCK_MODAL": {
+      "TITLE": "Oops, Unable to Update",
+      "SRS_DESC": "Contact <a class='anchor-txt' target='_blank' href='mailto:clientsupport@moneyowl.com.sg'>inv_ops@moneyowl.com.sg</a> to update your SRS Account details",
+      "CPF_DESC": "Contact <a class='anchor-txt' target='_blank' href='mailto:clientsupport@moneyowl.com.sg'>inv_ops@moneyowl.com.sg</a> to update your CPF IA details"
     }
   },
   "ADD_BANK": {
@@ -739,8 +744,8 @@
     }
   },
   "SOCIAL_LINK_MESSAGE": {
-    "SOCIAL_MESSAGE": "Hi,\n\n\nInsure, invest, or do a financial planning with MoneyOwl and get welcome GrabFood credits when you join using my referral link/code. I’m already a happy MoneyOwl client, you should check it out too!\n\n\n",
-    "SOCIAL_MAIL_BODY1": "Hi,\n\n\nInsure, invest, or do a financial planning with MoneyOwl and get welcome GrabFood credits when you join using my referral link/code.\n\n\nI’m already a happy MoneyOwl client, you should check it out too!\n\n\n",
+    "SOCIAL_MESSAGE": "Hi,\n\n\nInsure, invest, or do a financial planning with MoneyOwl and get welcome Grab credits when you join using my referral link/code. I’m already a happy MoneyOwl client, you should check it out too!\n\n\n",
+    "SOCIAL_MAIL_BODY1": "Hi,\n\n\nInsure, invest, or do a financial planning with MoneyOwl and get welcome Grab credits when you join using my referral link/code.\n\n\nI’m already a happy MoneyOwl client, you should check it out too!\n\n\n",
     "SOCIAL_MAIL_BODY2": "\n\n\nMake wise money decisions with MoneyOwl\n\n\n",
     "SOCIAL_MAIL_SUBJECT": "Join me at Moneyowl using my referral link!",
     "COPIED": "Copied"
