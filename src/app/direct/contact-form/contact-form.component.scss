@@ -54,6 +54,12 @@ app-contact-form{
                top: 14px
              }
         }
+        .dropdown-menu{
+            &.show{
+                right: 0;
+                left: unset !important;
+            }
+            }
     }
     
     .alert-msg{
