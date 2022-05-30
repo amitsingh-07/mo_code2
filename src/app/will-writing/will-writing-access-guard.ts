@@ -19,10 +19,10 @@ export class WillWritingAccessGuard implements CanActivate {
   }
   canActivate(route: ActivatedRouteSnapshot): Observable<boolean> | Promise<boolean> | boolean {
     const promoCode = this.willWritingService.getPromoCode();
-    if (!this.authService.isSignedUser() && this.appService.getCorporateDetails().organisationEnabled) {
+    if (!this.authService.isSignedUser() && this.appService.getCorporateDetails() && this.appService.getCorporateDetails().organisationEnabled) {
       this.router.navigate([SIGN_UP_ROUTE_PATHS.CORPORATE_LOGIN], { queryParams: { orgID: this.appService.getCorporateDetails().uuid } });
     } else if (Object.keys(promoCode).length === 0 && promoCode.constructor === Object && !this.willWritingService.getIsWillCreated()) {
-      if (this.appService.getCorporateDetails().organisationEnabled) {
+      if (this.appService.getCorporateDetails() && this.appService.getCorporateDetails().organisationEnabled) {
         this.router.navigate([SIGN_UP_ROUTE_PATHS.CORPORATE_LOGIN], { queryParams: { orgID: this.appService.getCorporateDetails().uuid } });
       } else {
         this.router.navigate([WILL_WRITING_ROUTE_PATHS.INTRODUCTION]);
@@ -42,7 +42,7 @@ export class WillWritingIntroductionGuard implements CanActivate {
   ) {
   }
   canActivate(route: ActivatedRouteSnapshot): Observable<boolean> | Promise<boolean> | boolean {
-    if (!this.authService.isSignedUser() && this.appService.getCorporateDetails().organisationEnabled) {
+    if (!this.authService.isSignedUser() && this.appService.getCorporateDetails() && this.appService.getCorporateDetails().organisationEnabled) {
       this.router.navigate([SIGN_UP_ROUTE_PATHS.CORPORATE_LOGIN], { queryParams: { orgID: this.appService.getCorporateDetails().uuid } });
       return false;
     }
