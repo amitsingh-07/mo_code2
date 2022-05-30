@@ -33,34 +33,6 @@ app-contact-form{
     }
     .form-group-floating-label{
         border: 1px solid $half-baked-blue-color;
-        .form-control{
-            &.enquiry{
-                &:valid{
-                    & + .form-control-placeholder{
-                        transform: translate3d(0, 0, 0);
-                        font-size: 16px;
-                    }
-                }
-                &:focus{ 
-                    & + .form-control-placeholder{
-                        font-size: 10px;
-                        transform: translate3d(0, -50%, 0);
-                        opacity: 1;
-                        color: $silver-grey-color;;
-                        z-index: 999;
-                    }
-                }
-                &:read-only{ 
-                    & + .form-control-placeholder{
-                        font-size: 10px;
-                        transform: translate3d(0, -50%, 0);
-                        opacity: 1;
-                        color: $silver-grey-color;;
-                        z-index: 999;
-                    }
-                }
-            }
-        }
         .form-control-placeholder{
             color: $dusty-grey-color;
         }
