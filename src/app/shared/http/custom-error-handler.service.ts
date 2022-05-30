@@ -2,6 +2,7 @@ import { HttpErrorResponse, HttpResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import { throwError } from 'rxjs';
+import { SIGN_UP_ROUTE_PATHS } from './../../sign-up/sign-up.routes.constants';
 
 import { appConstants } from './../../app.constants';
 import { HelperService } from './helper.service';
@@ -9,6 +10,7 @@ import { IError } from './interfaces/error.interface';
 import { IServerResponse } from './interfaces/server-response.interface';
 
 const errorCodes = new Set([5007, 5009]);
+const CORPORATE_DETAILS = 'app_corporate_details';
 
 @Injectable({
   providedIn: 'root'
@@ -44,7 +46,12 @@ export class CustomErrorHandlerService {
     };
     this.helper.showCustomErrorModal(customError);
     // navigate back to the login page
-    this.router.navigate([appConstants.loginPageUrl]);
+    const corporate_details = JSON.parse(sessionStorage.getItem(CORPORATE_DETAILS));
+    if (corporate_details.organisationEnabled) {
+      this.router.navigate([SIGN_UP_ROUTE_PATHS.CORPORATE_LOGIN], { queryParams: {orgID: corporate_details.uuid }});
+    } else {
+      this.router.navigate([appConstants.loginPageUrl]);
+    }
   }
 
   /*

@@ -20,6 +20,7 @@ const APP_SESSION_ID_KEY = 'app-session-id';
 const APP_ENQUIRY_ID = 'app-enquiry-id';
 const FROM_JOURNEY_HM = 'from_journey';
 const EMAIL = 'email';
+const CORPORATE_DETAILS = 'app_corporate_details';
 
 @Injectable({ providedIn: 'root' })
 export class AuthenticationService {
@@ -34,6 +35,7 @@ export class AuthenticationService {
   get2faUpdateEvent = this.get2faUpdate.asObservable();
   private timer2fa: any;
   private is2faVerifyAllowed: boolean = false;
+  isUserTypeCorporate = false;
 
   constructor(
     private httpClient: HttpClient, public jwtHelper: JwtHelperService,
@@ -49,11 +51,12 @@ export class AuthenticationService {
   }
 
   // tslint:disable-next-line: max-line-length
-  login(userEmail: string, userPassword: string, captchaValue?: string, sessionId?: string, enqId?: number, journeyType?: string, finlitEnabled?: boolean, accessCode?: string, loginType?: string) {
+  login(userEmail: string, userPassword: string, captchaValue?: string, sessionId?: string, enqId?: number, journeyType?: string, finlitEnabled?: boolean, accessCode?: string, loginType?: string, organisationCode?: string) {
     const authenticateBody = {
       email: (userEmail && this.isUserNameEmail(userEmail)) ? userEmail : '',
       mobile: (userEmail && !this.isUserNameEmail(userEmail)) ? userEmail : '',
       password: userPassword ? userPassword : '',
+      organisationCode: organisationCode
       //secretKey: this.getAppSecretKey()
     };
     if (sessionId) { authenticateBody['sessionId'] = sessionId; }
@@ -82,10 +85,11 @@ export class AuthenticationService {
   }
 
   private doAuthenticate(authenticateBody: any, handleError?: string, finlitEnabled?: boolean) {
+    const organisationEnabled = authenticateBody.organisationCode || null;
     if (!handleError) {
       handleError = '';
     }
-    const authenticateUrl = (finlitEnabled) ? apiConstants.endpoint.authenticateWorkshop : apiConstants.endpoint.authenticate;
+    const authenticateUrl = (finlitEnabled ? apiConstants.endpoint.authenticateWorkshop : (organisationEnabled ? apiConstants.endpoint.authenticateCorporate : apiConstants.endpoint.authenticate));
     return this.httpClient.post<IServerResponse>(`${this.apiBaseUrl}/${authenticateUrl}${handleError}`, authenticateBody)
       .pipe(map((response) => {
         // login successful if there's a jwt token in the response
@@ -119,9 +123,13 @@ export class AuthenticationService {
 
   clearSession() {
     // remove user from local storage to log user out
+    const corporateObj = sessionStorage.getItem(CORPORATE_DETAILS);
     this.cache.reset();
     sessionStorage.clear();
-  }
+    if(sessionStorage) {
+      sessionStorage.setItem(CORPORATE_DETAILS, (corporateObj))
+    }
+    }
 
   public getToken(): string {
     return sessionStorage.getItem(appConstants.APP_JWT_TOKEN_KEY);
@@ -207,6 +215,22 @@ export class AuthenticationService {
 
     const decodedInfo = this.jwtHelper.decodeToken(token);
     const isLoggedInToken = decodedInfo.roles.split(',').indexOf(role) >= 0;
+    const isTokenExpired = this.jwtHelper.isTokenExpired(token);
+    return !isTokenExpired && isLoggedInToken;
+  }
+
+  public accessCorporateUserFeature(access_feature): boolean {
+    const token = this.getToken();
+    if (!token) {
+      return false;
+    }
+    const decodedInfo = this.jwtHelper.decodeToken(token);
+    const isLoggedInToken = decodedInfo.roles.split(',');
+    for(let org_role in appConstants.ORGANISATION_ROLES) {
+      if(isLoggedInToken.includes(org_role)) {
+        return appConstants.ORGANISATION_ROLES[org_role][access_feature];
+      }
+    }
     const isTokenExpired = this.jwtHelper.isTokenExpired(token);
     return !isTokenExpired && isLoggedInToken;
   }
@@ -379,7 +403,7 @@ export class AuthenticationService {
         return response;
       }));
   }
-  public doValidate2faLogin(otp: string, userEmail: any, journeyType: any, enquiryId: any, handleError?: string) {
+  public doValidate2faLogin(otp: string, userEmail: any, journeyType: any, enquiryId: any, handleError?: string, isCorporateUserType = false) {
     if (!handleError) {
       handleError = '?handleError=true';
     }
@@ -392,6 +416,11 @@ export class AuthenticationService {
     };
     if(this.getAccessCode()) {
       validate2faBody['accessCode'] = this.getAccessCode();
+    }
+    if (isCorporateUserType) {
+      validate2faBody['profileType'] = appConstants.USERTYPE.CORPORATE;
+    } else {
+      validate2faBody['profileType'] = appConstants.USERTYPE.PUBLIC;
     }
     const authenticateUrl = apiConstants.endpoint.authenticate2faOTPLogin;
     return this.httpClient.post<IServerResponse>(`${this.apiBaseUrl}/${authenticateUrl}${handleError}`, validate2faBody)

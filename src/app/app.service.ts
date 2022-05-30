@@ -17,6 +17,7 @@ export const SESSION_KEY = 'app_session';
 const PROMO_CODE_ACTION_TYPE = 'app_promo_code_action_type';
 const PROMO_CODE = 'app_promo_code';
 const SESSION_CUSTOMER = 'app_customer_id';
+const CORPORATE_DETAILS = 'app_corporate_details';
 
 @Injectable({
   providedIn: 'root'
@@ -175,4 +176,13 @@ export class AppService {
   getCustomerId() {
     return this.getCustomer().id;
   }
+
+  setCorporateDetails(corporateObj) {
+    sessionStorage.setItem(CORPORATE_DETAILS, JSON.stringify(corporateObj))
+  }
+
+  getCorporateDetails(): {organisationEnabled: boolean, uuid: string} {
+    return JSON.parse(sessionStorage.getItem(CORPORATE_DETAILS));
+  } 
+
 }

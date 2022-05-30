@@ -80,6 +80,7 @@ export class VerifyMobileComponent implements OnInit, OnDestroy {
   };
   showOtpComponent = false;
   protected ngUnsubscribe: Subject<void> = new Subject<void>();
+  organisationEnabled = false;
 
   constructor(
     private formBuilder: FormBuilder,
@@ -161,6 +162,7 @@ export class VerifyMobileComponent implements OnInit, OnDestroy {
     this.two2faAuth = this.authService.get2faVerifyAllowed();
     if (this.route.snapshot.data[0]) {
       this.finlitEnabled = this.route.snapshot.data[0]['finlitEnabled'];
+      this.organisationEnabled = this.route.snapshot.data[0]['organisationEnabled'];
       this.accountCreationPage = (this.route.snapshot.data[0]['twoFactorEnabled'] === SIGN_UP_CONFIG.VERIFY_MOBILE.TWO_FA);
       if (!this.roleTwoFAEnabled) {
         this.appService.clearJourneys();
@@ -357,8 +359,9 @@ export class VerifyMobileComponent implements OnInit, OnDestroy {
   }
 
   resendEmailVerification() {
+    let organisationCode = (this.organisationEnabled && appConstants.USERTYPE.FACEBOOK) || null;
     const mobileNo = this.mobileNumber.number.toString();
-    this.signUpApiService.resendEmailVerification(mobileNo, false).subscribe((data) => {
+    this.signUpApiService.resendEmailVerification(mobileNo, false, organisationCode).subscribe((data) => {
       if (data.responseMessage.responseCode === 6007) {
         this.navbarService.logoutUser();
         this.signUpService.clearData();
@@ -371,6 +374,8 @@ export class VerifyMobileComponent implements OnInit, OnDestroy {
         }
         if (this.finlitEnabled) {
           this.router.navigate([SIGN_UP_ROUTE_PATHS.ACCOUNT_CREATED_FINLIT]);
+        } else if (this.organisationEnabled) {
+          this.router.navigate([SIGN_UP_ROUTE_PATHS.ACCOUNT_CREATED_CORPORATE]);
         } else {
           this.router.navigate([SIGN_UP_ROUTE_PATHS.ACCOUNT_CREATED]);
         }
@@ -481,7 +486,8 @@ export class VerifyMobileComponent implements OnInit, OnDestroy {
     if (window.sessionStorage && sessionStorage.getItem('email')) {
       userEmail = sessionStorage.getItem('email');
     }
-    this.authService.doValidate2faLogin(otp, userEmail, journeyType, enqId).subscribe((data: any) => {
+    const isCorporateUserType = this.signUpService.getUserType() === appConstants.USERTYPE.CORPORATE;
+    this.authService.doValidate2faLogin(otp, userEmail, journeyType, enqId, null, isCorporateUserType).subscribe((data: any) => {
       if (data.responseMessage.responseCode >= 6000) {
         this.mobileNumberVerified = true;
         this.mobileNumberVerifiedMessage = this.loading['verified2fa'];

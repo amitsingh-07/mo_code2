@@ -405,7 +405,6 @@ app-checkout {
         display: flex;
         align-items: center;
         flex-direction: row;
-        width: calc(100% - 90px);
         .valid-logo {
           width: 18px;
           height: 18px;
@@ -414,6 +413,14 @@ app-checkout {
         .promo-display{
           white-space: nowrap;
           overflow: hidden;
+        }
+        
+        &.valid-promo-normal {
+          width: calc(100% - 90px);
+        }
+        &.valid-promo-corporate {
+          width: 100%;
+          min-height: 40px;
         }
       }
       .remove-btn {

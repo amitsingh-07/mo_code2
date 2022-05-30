@@ -3,6 +3,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { TranslateService } from '@ngx-translate/core';
+import { AuthenticationService } from '../../shared/http/auth/authentication.service';
 
 import { HeaderService } from '../../shared/header/header.service';
 import { ErrorModalComponent } from '../../shared/modal/error-modal/error-modal.component';
@@ -25,6 +26,7 @@ export class EditPasswordComponent implements OnInit {
   resetPasswordForm: FormGroup;
   formValues: any;
   pageTitle: string;
+  organisationEnabled = false;
   constructor(
     // tslint:disable-next-line
     private formBuilder: FormBuilder,
@@ -36,12 +38,14 @@ export class EditPasswordComponent implements OnInit {
     private signUpService: SignUpService,
     private route: ActivatedRoute,
     private router: Router,
-    private translate: TranslateService) {
+    private translate: TranslateService,
+    private authService: AuthenticationService) {
     this.translate.use('en');
     this.translate.get('COMMON').subscribe((result: string) => {
       this.pageTitle = 'Change Password';
       this.setPageTitle(this.pageTitle);
     });
+    this.organisationEnabled = authService.isUserTypeCorporate;
   }
   setPageTitle(title: string) {
     this.navbarService.setPageTitle(title);
@@ -98,7 +102,8 @@ export class EditPasswordComponent implements OnInit {
         if (data.responseMessage.responseCode === 6000) {
           this.navbarService.logoutUser();
           // tslint:disable-next-line:max-line-length
-          this.router.navigate([SIGN_UP_ROUTE_PATHS.SUCCESS_MESSAGE], { queryParams: { buttonTitle: 'Login Now', redir: SIGN_UP_ROUTE_PATHS.LOGIN, Message: 'Password Successfully Reset!' }, fragment: 'loading' });
+          const redirectTo = this.authService.isUserTypeCorporate ? SIGN_UP_ROUTE_PATHS.CORP_SUCCESS_MESSAGE : SIGN_UP_ROUTE_PATHS.SUCCESS_MESSAGE;
+          this.router.navigate([redirectTo], { queryParams: { buttonTitle: 'Login Now', redir: SIGN_UP_ROUTE_PATHS.LOGIN, Message: 'Password Successfully Reset!' }, fragment: 'loading' });
         }
       });
     }

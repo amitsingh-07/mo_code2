@@ -173,6 +173,7 @@ app-portfolio-summary {
       }
 
       img {
+        width: 100%;
         @include allmobiles {
           width: 100%;
         }

@@ -60,6 +60,7 @@ export class PortfolioDetailsComponent implements OnInit {
   userInputSubtext;
   investmentCriteria: IInvestmentCriteria;
   wiseIncomeEnabled: boolean;
+  corpFaq = appConstants.CORPORATE_FAQ;
 
   constructor(
     private appService: AppService,

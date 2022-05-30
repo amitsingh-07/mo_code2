@@ -30,7 +30,7 @@ import { ForgotPasswordComponent } from './forgot-password/forgot-password.compo
 import { LoginComponent } from './login/login.component';
 import { PreLoginComponent } from './pre-login/pre-login.component';
 import { ResetPasswordComponent } from './reset-password/reset-password.component';
-import { SignUpAccessGuard } from './sign-up-access-guard';
+import { SignUpAccessGuard, SignUpCorporateAccessGuard } from './sign-up-access-guard';
 import { SignUpRoutingModule } from './sign-up-routing.module';
 import { SuccessMessageComponent } from './success-message/success-message.component';
 import {
@@ -115,7 +115,7 @@ export function createTranslateLoader(http: HttpClient) {
     AddUpdateCpfiaComponent,
     CpfiaSuccessModalComponent
   ],
-  providers: [SignUpAccessGuard, AuthGuardService, TwoFactorAuthGuardService],
+  providers: [SignUpAccessGuard, SignUpCorporateAccessGuard, AuthGuardService, TwoFactorAuthGuardService],
   entryComponents: [EditMobileNumberComponent, SrsSuccessModalComponent]
 })
 export class SignUpModule { }

@@ -1,4 +1,4 @@
-import { Component, ElementRef, HostListener, OnInit, ViewChild } from '@angular/core';
+import { Component, ElementRef, HostListener, OnInit, ViewChild, ViewEncapsulation} from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
@@ -22,7 +22,8 @@ import { SubscribeMember } from './../../shared/Services/subscribeMember';
 @Component({
   selector: 'app-introduction',
   templateUrl: './introduction.component.html',
-  styleUrls: ['./introduction.component.scss']
+  styleUrls: ['./introduction.component.scss'],
+  encapsulation: ViewEncapsulation.None
 })
 export class IntroductionComponent implements OnInit {
   pageTitle: string;
@@ -116,11 +117,20 @@ export class IntroductionComponent implements OnInit {
       this.subscribeMessage = '';
       this.subscribeSuccess = false;
     });
+    if(this.authService.isSignedUser() && this.authService.isUserTypeCorporate) {
+      this.getCustOrgPromoCode();
+    }
   }
 
   @HostListener('input', ['$event'])
   onChange() {
     this.promoCodeRef.nativeElement.value = this.promoCodeRef.nativeElement.value.toUpperCase();
+  }
+
+  getCustOrgPromoCode(){
+    this.willWritingApiService.getCustOrgPromoCode().subscribe((data) => {
+      this.promoCodeForm.get('promoCode').patchValue(data.objectList[0].promoCode);
+    })
   }
 
   verifyPromoCode(promoCode) {

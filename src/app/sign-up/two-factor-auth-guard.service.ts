@@ -1,13 +1,11 @@
 import { Injectable } from '@angular/core';
-import { CanActivate, GuardsCheckEnd, Router, ActivatedRouteSnapshot, RouterStateSnapshot } from '@angular/router';
+import { CanActivate, Router, ActivatedRouteSnapshot, RouterStateSnapshot } from '@angular/router';
 import { Observable } from 'rxjs';
-import { filter } from 'rxjs/operators';
 
 import { AppService } from '../app.service';
 import { AuthenticationService } from '../shared/http/auth/authentication.service';
 import { SIGN_UP_ROUTE_PATHS, EDIT_PROFILE_PATH } from './sign-up.routes.constants';
 import { SignUpService } from './sign-up.service';
-import { TranslateService } from '@ngx-translate/core';
 import { SIGN_UP_CONFIG } from './sign-up.constant';
 import { appConstants } from './../../app/app.constants';
 
@@ -31,7 +29,11 @@ export class TwoFactorAuthGuardService implements CanActivate {
       return true;
     } else if (!this.authService.isSignedUser()) {
       this.authService.set2faVerifyAllowed(false);
-      this.route.navigate([SIGN_UP_ROUTE_PATHS.LOGIN]);
+      if (this.appService.getCorporateDetails().organisationEnabled) {
+        this.route.navigate([SIGN_UP_ROUTE_PATHS.CORPORATE_LOGIN], { queryParams: {orgID: this.appService.getCorporateDetails().uuid}});
+      } else {
+        this.route.navigate([SIGN_UP_ROUTE_PATHS.LOGIN]);
+      }
       return false;
     } else {
       this.route.navigate([SIGN_UP_ROUTE_PATHS.VERIFY_2FA]);
@@ -49,7 +51,8 @@ export class TwoFactorAuthGuardService implements CanActivate {
 export class TwoFactorScreenGuardService implements CanActivate {
   error2fa: any;
   constructor(private route: Router, private authService: AuthenticationService,
-  private signUpService: SignUpService
+  private signUpService: SignUpService,
+  private appService: AppService
   ) {}
 
   canActivate(): boolean {
@@ -57,6 +60,9 @@ export class TwoFactorScreenGuardService implements CanActivate {
       if (!this.authService.get2faVerifyAllowed()) {
         if (this.signUpService.getUserType() === appConstants.USERTYPE.FINLIT) {
           this.route.navigate([SIGN_UP_ROUTE_PATHS.FINLIT_LOGIN]);
+          return false;
+        } else if (this.signUpService.getUserType() === appConstants.USERTYPE.CORPORATE) {
+          this.route.navigate([SIGN_UP_ROUTE_PATHS.CORPORATE_LOGIN], { queryParams: {orgID: this.appService.getCorporateDetails().uuid}});
           return false;
         } else {
           this.route.navigate([SIGN_UP_ROUTE_PATHS.LOGIN]);

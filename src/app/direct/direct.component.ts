@@ -16,6 +16,7 @@ import { ActivatedRoute, NavigationEnd, NavigationStart, Router } from '@angular
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { TranslateService } from '@ngx-translate/core';
 import { Subscription, SubscriptionLike } from 'rxjs';
+import { AuthenticationService } from '../shared/http/auth/authentication.service';
 
 import { appConstants } from './../app.constants';
 import { AppService } from './../app.service';
@@ -55,7 +56,8 @@ export class DirectComponent implements OnInit, AfterViewInit, IPageComponent, O
     public modal: NgbModal, private route: ActivatedRoute,
     private factoryResolver: ComponentFactoryResolver, private appService: AppService,
     private planService: SelectedPlansService, private stateStoreService: StateStoreService,
-    private location: Location, private seoService: SeoServiceService, private changeDetector: ChangeDetectorRef) {
+    private location: Location, private seoService: SeoServiceService, private changeDetector: ChangeDetectorRef,
+    private authService: AuthenticationService) {
 
     /* ************** STATE HANDLING - START ***************** */
     this.componentName = DirectComponent.name;
@@ -124,6 +126,9 @@ export class DirectComponent implements OnInit, AfterViewInit, IPageComponent, O
         this.directService.setModalFreeze(true);
       }
       this.state.hideForm = true;
+    }
+    if (!this.authService.isSignedUser()) {
+      this.appService.setCorporateDetails({organisationEnabled: false, uuid: null});
     }
   }
 
