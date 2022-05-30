@@ -21,7 +21,7 @@ export class ManageInvestmentsGuardService implements CanActivate {
   canActivate() {
     const investmentStatus = this.investmentCommonService.getInvestmentStatus();
     if (!this.authService.isSignedUser()) {
-      if (this.appService.getCorporateDetails().organisationEnabled) {
+      if (this.appService.getCorporateDetails() && this.appService.getCorporateDetails().organisationEnabled) {
         this.route.navigate([SIGN_UP_ROUTE_PATHS.CORPORATE_LOGIN], { queryParams: {orgID: this.appService.getCorporateDetails().uuid}});
       } else {
         this.route.navigate([SIGN_UP_ROUTE_PATHS.LOGIN]);
