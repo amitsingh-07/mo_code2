@@ -1,24 +1,28 @@
 import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
+import { NgbActiveModal, NgbDateParserFormatter, NgbDateStruct } from '@ng-bootstrap/ng-bootstrap';
 import { RegexConstants } from '../../shared/utils/api.regex.constants';
 import { SIGN_UP_CONFIG } from '../../sign-up/sign-up.constant';
 import { TranslateService } from '@ngx-translate/core';
 import { DirectService } from './../direct.service';
 import { DirectApiService } from '../direct.api.service';
 import { Router } from '@angular/router';
+import { NgbDateCustomParserFormatter } from '../../shared/utils/ngb-date-custom-parser-formatter';
 
 @Component({
   selector: 'app-contact-form',
   templateUrl: './contact-form.component.html',
   styleUrls: ['./contact-form.component.scss'],
+  providers: [
+    { provide: NgbDateParserFormatter, useClass: NgbDateCustomParserFormatter }
+  ],
   encapsulation: ViewEncapsulation.None
 })
 export class ContactFormComponent implements OnInit {
   formObject: FormGroup;
   isSubmitted = false;
-  maxDate: any;
-  minDate: any;
+  maxDate: NgbDateStruct;
+  minDate: NgbDateStruct;
   interestedInsuranceInList: string[];
 
   constructor(public activeModal: NgbActiveModal, private fb: FormBuilder, private translate: TranslateService, private directService: DirectService,
