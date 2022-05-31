@@ -1,13 +1,14 @@
 import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { NgbActiveModal, NgbDateParserFormatter, NgbDateStruct } from '@ng-bootstrap/ng-bootstrap';
+import { Router } from '@angular/router';
 import { RegexConstants } from '../../shared/utils/api.regex.constants';
 import { SIGN_UP_CONFIG } from '../../sign-up/sign-up.constant';
 import { TranslateService } from '@ngx-translate/core';
 import { DirectService } from './../direct.service';
 import { DirectApiService } from '../direct.api.service';
-import { Router } from '@angular/router';
 import { NgbDateCustomParserFormatter } from '../../shared/utils/ngb-date-custom-parser-formatter';
+import { EMAIL_ENQUIRY_SUCCESS } from '../direct-routes.constants';
 
 @Component({
   selector: 'app-contact-form',
@@ -45,21 +46,16 @@ export class ContactFormComponent implements OnInit {
   }
 
   buildForm() {
-    let emailValidators = [
-      Validators.required, 
-      Validators.email, 
-      Validators.pattern(RegexConstants.Email)
-    ];
     this.formObject = this.fb.group({
       fullName: ['', Validators.required],
-      email: ['', emailValidators],
+      email: ['', [Validators.required, Validators.email, Validators.pattern(RegexConstants.Email)]],
       mobileNumber: ['', Validators.required],
       dateOfBirth: [''],
       gender: [''],
       insuranceInterestedIn: [''],
       isSmoker: [''],
       anyOtherQueries : [''],
-      journeyType : ["insurance-direct"]
+      journeyType : ['insurance-direct']
     })
 
     this.formObject.get('mobileNumber').valueChanges.subscribe(val => {
@@ -87,12 +83,12 @@ export class ContactFormComponent implements OnInit {
         .subscribe(data => {
             if (data.responseMessage.responseCode === 6000) {
               this.closeModal(data.responseMessage.responseDescription);
-              this.router.navigate(['email-enquiry/success']);
+              this.router.navigate([EMAIL_ENQUIRY_SUCCESS]);
             }
           });      
   }
 
-  setDropDownValue(key, value, index) {
+  setDropDownValue(key, value) {
     this.formObject.controls[key].setValue(value);
   }
 
