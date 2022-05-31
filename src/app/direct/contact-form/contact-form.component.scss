@@ -138,7 +138,7 @@ app-contact-form{
                 }
                 [placeholder]:empty::before {
                     content: attr(placeholder);
-                    color: $form-input-placeholder-txt-color;
+                    color: $dusty-grey-color;
                 }
             
                 [placeholder]:empty:focus::before {
