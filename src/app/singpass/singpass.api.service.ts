@@ -18,6 +18,12 @@ export class SingpassApiService {
     return this.apiService.getStateNonce(payload);
   }
 
+  // Get state & nonce using session id
+  loginSingpass(code, state) {
+    const payload = { code: code, state: state };
+    return this.apiService.loginSingpass(payload);
+  }
+
   initSingpassAuthSession(authParamsSupplier) {
     const onError = (errorId, message) => {
       console.log(`onError. errorId:${errorId} message:${message}`);

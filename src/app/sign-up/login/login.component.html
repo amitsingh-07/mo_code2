@@ -19,12 +19,12 @@
         <div class="signup-wrapper">
           <div class="password-qr-toggle">
             <div class="toggle-container">
-              <div [ngClass]="{'white-txt': showPasswordLogin}" class="toggle-btn" (click)="toggleSingpass('PASSWORD')">{{
+              <div [ngClass]="{'white-txt': showPasswordLogin}" class="toggle-btn" (click)="toggleSingpass('PASSWORD', $event)">{{
                 'LOGIN.PASSWORD_LOGIN' | translate}}</div>
               <div [hidden]="showSingpassLogin" class=" underline"></div>
             </div>
             <div class="toggle-container">
-              <div [ngClass]="{'white-txt': showSingpassLogin}" class="toggle-btn" (click)="toggleSingpass('SINGPASS')">
+              <div [ngClass]="{'white-txt': showSingpassLogin}" class="toggle-btn" (click)="toggleSingpass('SINGPASS', $event)">
                 <img [hidden]="showSingpassLogin" src="assets/images/singpass/icon-scan-qr.svg">
                 <img [hidden]="showPasswordLogin" src="assets/images/singpass/icon-scan-qr-white.svg">
                 <div>{{ 'LOGIN.SINGPASS_MOBILE' | translate}}</div>
@@ -109,7 +109,6 @@
               translate}}</a></div>
         </div>
         <div id="qr_wrapper"></div>
-        <a href="http://localhost:4200/app/singpass/callback?code=XcyzlSeX1hIyJFlstxsSF_UeXC5DtiYkFgJ8VVx52mg&state=NGRlZThmNzQtZDU5YS00YTY1LWFkODItYmE4NDA4Y2UwY2Uw">CALLBACK</a>
         <div class="footer-container">{{ 'LOGIN.DONT_HAVE_SINGPASS' | translate}}<a href="https://app.singpass.gov.sg/"
             target="_blank">{{ 'LOGIN.DOWNLOAD_NOW' | translate}}</a></div>
       </div>
