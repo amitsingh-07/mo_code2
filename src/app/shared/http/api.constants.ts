@@ -145,7 +145,7 @@ export let apiConstants = {
         },
         singpass: {
             getStateNonce: SINGPASS_API_BASE_URL+ 'getStateNonce',
-            loginSingpass: SINGPASS_API_BASE_URL+ 'loginSingpasss'
+            loginSingpass: SINGPASS_API_BASE_URL+ 'loginSingpass'
         }
     }
 };
