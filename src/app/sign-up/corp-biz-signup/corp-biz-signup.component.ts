@@ -1,9 +1,15 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { NgbModal, NgbModalOptions, NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
 import { TranslateService } from '@ngx-translate/core';
+import { ConfigService, IConfig } from '../../config/config.service';
+import { MyInfoService } from '../../shared/Services/my-info.service';
 import { FooterService } from '../../shared/footer/footer.service';
 import { NavbarService } from '../../shared/navbar/navbar.service';
+import { CreateAccountMyinfoModalComponent } from '../create-account-myinfo-modal/create-account-myinfo-modal.component';
+import { SignUpService } from '../sign-up.service';
+import { ModelWithButtonComponent } from 'src/app/shared/modal/model-with-button/model-with-button.component';
+import { SIGN_UP_ROUTE_PATHS } from '../sign-up.routes.constants';
 
 @Component({
   selector: 'app-corp-biz-signup',
@@ -12,22 +18,111 @@ import { NavbarService } from '../../shared/navbar/navbar.service';
 })
 export class CorpBizSignupComponent implements OnInit {
 
+  secondTimer: any;
+  loader2StartTime: any;
+  loader2Modal: any;
+  loader3Modal: any;
+  loadingModalRef: NgbModalRef;
+  myInfoSubscription: any;
   constructor(
     private modal: NgbModal,
     private router: Router,
+    private configService: ConfigService,
+    private myInfoService: MyInfoService,
+    private signUpService: SignUpService,
     public navbarService: NavbarService,
     public footerService: FooterService,
     public readonly translate: TranslateService
   ) {
     this.translate.use('en');
     this.translate.get('COMMON').subscribe((result: string) => {
+      this.loader2Modal = this.translate.instant(
+        'CREATE_ACCOUNT_MY_INFO.LOADER2'
+      );
+    });
+
+    this.configService.getConfig().subscribe((config: IConfig) => {
+      this.loader2StartTime = config.account.loaderStartTime * 1000;
     });
   }
 
   ngOnInit(): void {
+    this.navbarService.setNavbarVisibility(true);
+    this.navbarService.setNavbarMode(101);
+    this.footerService.setFooterVisibility(false);
   }
 
   goToNext() {
 
+  }
+
+  getMyInfo() {
+    this.myInfoService.setCorpBizMyInfoAttributes(
+      this.signUpService.corpBizMyInfoAttributes
+    );
+    this.myInfoService.goToMyInfo();
+  }
+
+  proceedToMyInfo() {
+    const ref = this.modal.open(CreateAccountMyinfoModalComponent, { centered: true });
+    ref.componentInstance.myInfo = true;
+    ref.result
+      .then(() => {
+        this.getMyInfo();
+      })
+      .catch((e) => { });
+  }
+
+  showFetchPopUp() {
+    this.secondTimer = setTimeout(() => {
+      if (this.myInfoService.loadingModalRef) {
+        this.openSecondPopup();
+      }
+    }, this.loader2StartTime);
+  }
+
+  openSecondPopup() {
+    this.myInfoService.loadingModalRef.componentInstance.errorMessage = this.loader2Modal.message;
+  }
+
+  closeMyInfoPopup(error: boolean) {
+    this.myInfoService.closeMyInfoPopup(false);
+    clearTimeout(this.secondTimer);
+    if (error) {
+      const ngbModalOptions: NgbModalOptions = {
+        backdrop: 'static',
+        keyboard: false,
+        centered: true,
+      };
+      this.loadingModalRef = this.modal.open(ModelWithButtonComponent, ngbModalOptions);
+      this.loadingModalRef.componentInstance.errorTitle = this.loader3Modal.title;
+      this.loadingModalRef.componentInstance.errorMessage = this.loader3Modal.message;
+      this.loadingModalRef.componentInstance.primaryActionLabel = this.loader3Modal.primaryActionLabel;
+      this.loadingModalRef.componentInstance.secondaryActionLabel = this.loader3Modal.secondaryActionLabel;
+      this.loadingModalRef.componentInstance.secondaryActionDim = true;
+      this.loadingModalRef.componentInstance.closeBtn = false;
+      this.loadingModalRef.componentInstance.primaryAction.subscribe(() => {
+        this.modal.dismissAll();
+      });
+      this.loadingModalRef.componentInstance.secondaryAction.subscribe(() => {
+        this.modal.dismissAll();
+        this.skipMyInfo();
+      });
+    }
+  }
+
+  cancelMyInfo() {
+    this.myInfoService.isMyInfoEnabled = false;
+    this.closeMyInfoPopup(false);
+    if (this.myInfoSubscription) {
+      this.myInfoSubscription.unsubscribe();
+    }
+  }
+
+  skipMyInfo() {
+    this.signUpService.setMyInfoStatus(false);    
+    if(true) {
+      this.router.navigate([SIGN_UP_ROUTE_PATHS.FINLIT_CREATE_ACCOUNT]);
+    } 
   }
 }

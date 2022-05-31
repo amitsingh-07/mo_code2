@@ -52,6 +52,7 @@ export class SignUpService {
   private mobileOptimized = new BehaviorSubject(false);
   mobileOptimizedObservable$ = this.mobileOptimized.asObservable();
   myInfoAttributes = SIGN_UP_CONFIG.MY_INFO_ATTRIBUTES;
+  corpBizMyInfoAttributes = SIGN_UP_CONFIG.CORP_BIZ_MY_INFO_ATTRIBUTES; // Corp Biz attributes
   organisationName: string = '';
   constructor(
     private apiService: ApiService,
@@ -832,5 +833,11 @@ export class SignUpService {
       cpfOperatorBank: this.signUpFormData.cpfOperatorBank,
       customerId: this.signUpFormData.customerId
     };
+  }
+
+  // Corp Biz changes
+  setCorpBizMyInfoStatus(status) {
+    this.signUpFormData.isCorpBizMyInfoEnabled = status;
+    this.commit();
   }
 }
