@@ -46,6 +46,7 @@ app-contact-form{
         }
         &:disabled{
             color: $teal-color !important;
+            background: $btn-disabled-light-bg !important;
         }
     }
     .datepicker-control{
@@ -134,6 +135,14 @@ app-contact-form{
                 }
                 .insurance-lbl{
                     color: $dove-grey-color;
+                }
+                [placeholder]:empty::before {
+                    content: attr(placeholder);
+                    color: $form-input-placeholder-txt-color;
+                }
+            
+                [placeholder]:empty:focus::before {
+                    content: "";
                 }
             }
         }

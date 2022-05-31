@@ -200,6 +200,9 @@
                           </div>
                         </div>
                       </div>
+                      <div class="flex-col-12 mb10 mt20 insurance-lbl">
+                        {{ 'CONTACT_MODAL.FORM.ENQUIRY.LABEL' | translate}} 
+                      </div>
                       <div class="flex-row mb20">
                         <div class="flex-col-12 stretch">
                           <div contenteditable="true" id="enquiry"
@@ -207,7 +210,7 @@
                           (focusout)="setControlValue($event.target.textContent, 'anyOtherQueries')"
                           (keypress)="onKeyPressEvent($event, $event.target.textContent)"
                           maxlength="300" class="content-editable" 
-                          placeholder="Any other enquiries">
+                          placeholder="Other enquiries">
                           </div>
                         </div>
                       </div>
