@@ -195,14 +195,12 @@ export class LoginComponent implements OnInit, AfterViewInit, OnDestroy {
 
   async initSingpassQR() {
       const authParamsSupplier = async () => {
-        const promise = await this.singpassService.getStateNonce().toPromise().then(() => {
-          return promise['objectList'][0];
-        })
+        const promise = await this.singpassService.getStateNonce().toPromise()
         .catch(() => {
           // Error handling when app api fail
           console.log("Implement a nervous system check for this.");
         });
-
+        return promise['objectList'][0];
       }
       this.loginForm.reset();
       this.singpassService.initSingpassAuthSession(authParamsSupplier);
@@ -712,16 +710,8 @@ export class LoginComponent implements OnInit, AfterViewInit, OnDestroy {
           this.authService.authenticate().subscribe((token) => {
           });
         }
-        this.router.navigate([], { queryParams: { 'code': null, 'state': null, }, queryParamsHandling: 'merge' });
-        this.openSingpassModal(window.event, 'Fail');
-        // this.signUpApiService.verifyLogin("97320546", "Money@123", "", false, "", "", null).subscribe((data) => {
-        //   if (data) {
-        //     this.loginService.onSuccessLogin(data);
-        //   } else {
-        //     this.router.navigate([], { queryParams: { 'code': null, 'state': null, }, queryParamsHandling: 'merge' });
-        //     this.openSingpassModal(window.event, 'Fail');
-        //   }
-        // });
+        // this.router.navigate([], { queryParams: { 'code': null, 'state': null, }, queryParamsHandling: 'merge' });
+        // this.openSingpassModal(window.event, 'Fail');
       }
     });
   }
