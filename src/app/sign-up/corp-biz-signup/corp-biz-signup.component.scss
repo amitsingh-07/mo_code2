@@ -1,0 +1,109 @@
+@import '../../../variables';
+@import "../../../_mixins.scss"; 
+
+app-corp-biz-signup{
+.corp-sign-content{
+    color: #000000;
+    font-family: $muli-regular;
+    min-height: calc(100vh - 84px);
+    @include allmobiles{
+        min-height: calc(100vh - 45px);
+    }
+    @include minPhabletmaxTablet{
+        min-height: calc(100vh - 45px);
+    }
+    .container-fluid{
+        padding: 30px 0 55px;
+        max-width: 450px;
+        text-align: center;
+        @include allmobiles{
+            padding: 0 0 25px !important;
+        }
+    }
+    .signup-wrapper{
+            width: 450px;
+            display: flex;
+            @include allmobiles{
+                width: 100%;
+            }
+        .create_account__header-icon{
+            width: 100%;
+            height: auto;
+            display: flex;
+        }
+    }
+    .signup-wrapper__title{
+        padding-top: 30px;
+        margin-bottom: 20px;
+        font-size: 21px;
+        line-height: 26px;
+        text-align: center;
+        letter-spacing: -0.1575px;
+        color: #00A7A7;
+    }
+    .sign-up-max-width{
+        max-width: 335px;
+        text-align: center;
+        margin: 0 auto;
+        @include allmobiles{
+            max-width: 100%;
+            padding: 0 20px;
+        }
+    }
+    .signup-wrapper__description{
+        font-size: 14px;
+        line-height: 20px;
+        letter-spacing: -0.15px;
+        color: #5E5E5E;
+        .text-bold{
+            font-family: $muli-bold
+        }
+    }
+    .autofill-logo{
+        display: flex;
+        margin-top: 20px;
+        cursor: pointer;
+        img {
+            width: 100%;
+            height: auto;
+            }
+    }
+    .separator {
+        margin: 40px 0;
+        background-color: $persian-teal-color;
+        height: 1px;
+        text-align: center;
+        .txt-or {
+        color: $morning-glory-color;
+        background-color: $persian-teal-color;
+        border-radius: 50px;
+        width: 38px;
+        height: 38px;
+        text-align: center;
+        line-height: 40px;
+        top: -20px;
+        font-family: $muli-bold;
+        font-size: 13px;
+        position: relative;
+        display: inline-block;
+        }
+    }
+    .autofill-link{
+        border: 1px solid #00A7A7;
+        border-radius: 6px;
+        padding: 13px 0 11px;
+        font-family: $muli-regular;
+        font-size: 14px;
+        line-height: 21px;
+        text-align: center;
+        letter-spacing: -0.14px;
+        color: #757575;
+        .autofill-text{
+            font-family: $muli-bold;
+            font-size: 18px;
+            line-height: 24px;
+            color: #00A7A7;
+        }
+    }
+}
+}

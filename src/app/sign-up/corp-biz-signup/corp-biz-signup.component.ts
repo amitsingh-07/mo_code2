@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { Router } from '@angular/router';
 import { NgbModal, NgbModalOptions, NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
 import { TranslateService } from '@ngx-translate/core';
@@ -14,7 +14,8 @@ import { SIGN_UP_ROUTE_PATHS } from '../sign-up.routes.constants';
 @Component({
   selector: 'app-corp-biz-signup',
   templateUrl: './corp-biz-signup.component.html',
-  styleUrls: ['./corp-biz-signup.component.scss']
+  styleUrls: ['./corp-biz-signup.component.scss'],
+  encapsulation: ViewEncapsulation.None
 })
 export class CorpBizSignupComponent implements OnInit {
 
