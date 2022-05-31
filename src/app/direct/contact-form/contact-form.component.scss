@@ -15,6 +15,7 @@ app-contact-form{
             line-height: 20px;
             letter-spacing: -0.16px;
             color: $silver-grey-color;
+            display: block;
 
             .banner-bg{
                 width: 269px;
@@ -33,43 +34,21 @@ app-contact-form{
     }
     .form-group-floating-label{
         border: 1px solid $half-baked-blue-color;
-        .form-control{
-            &.enquiry{
-                &:valid{
-                    & + .form-control-placeholder{
-                        transform: translate3d(0, 0, 0);
-                        font-size: 16px;
-                    }
-                }
-                &:focus{ 
-                    & + .form-control-placeholder{
-                        font-size: 10px;
-                        transform: translate3d(0, -50%, 0);
-                        opacity: 1;
-                        color: $silver-grey-color;;
-                        z-index: 999;
-                    }
-                }
-                &:read-only{ 
-                    & + .form-control-placeholder{
-                        font-size: 10px;
-                        transform: translate3d(0, -50%, 0);
-                        opacity: 1;
-                        color: $silver-grey-color;;
-                        z-index: 999;
-                    }
-                }
-            }
-        }
         .form-control-placeholder{
             color: $dusty-grey-color;
         }
     }
-    .footer-btn {
-        font-family: $muli-bold;
-        background-color: $teal-color;
-        box-shadow: 0 4px 6px 0 rgba(0, 0, 0, 0.15);
-        margin-top: 20px;
+    .btn-primary{
+        &.footer-btn {
+            font-family: $muli-bold;
+            background-color: $teal-color;
+            box-shadow: 0 4px 6px 0 rgba(0, 0, 0, 0.15);
+            margin-top: 20px;
+        }
+        &:disabled{
+            color: $teal-color !important;
+            background: $btn-disabled-light-bg !important;
+        }
     }
     .datepicker-control{
         .date-picker{
@@ -157,6 +136,14 @@ app-contact-form{
                 }
                 .insurance-lbl{
                     color: $dove-grey-color;
+                }
+                [placeholder]:empty::before {
+                    content: attr(placeholder);
+                    color: $dusty-grey-color;
+                }
+            
+                [placeholder]:empty:focus::before {
+                    content: "";
                 }
             }
         }

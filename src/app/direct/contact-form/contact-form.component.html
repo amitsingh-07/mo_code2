@@ -200,12 +200,17 @@
                           </div>
                         </div>
                       </div>
+                      <div class="flex-col-12 mb10 mt20 insurance-lbl">
+                        {{ 'CONTACT_MODAL.FORM.ENQUIRY.LABEL' | translate}} 
+                      </div>
                       <div class="flex-row mb20">
                         <div class="flex-col-12 stretch">
-                          <div class="form-group-floating-label">
-                            <input type="text" id="enquiry" class="form-control enquiry"  #enquiry formControlName="anyOtherQueries">
-                            <label class="form-control-placeholder"
-                              for="enquiry">{{ 'CONTACT_MODAL.FORM.ENQUIRY.LABEL' | translate}}</label>
+                          <div contenteditable="true" id="enquiry"
+                          [textContent]="formObject.get('anyOtherQueries').value"
+                          (focusout)="setControlValue($event.target.textContent, 'anyOtherQueries')"
+                          (keypress)="onKeyPressEvent($event, $event.target.textContent)"
+                          maxlength="300" class="content-editable" 
+                          placeholder="Other enquiries">
                           </div>
                         </div>
                       </div>
