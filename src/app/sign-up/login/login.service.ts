@@ -179,7 +179,7 @@ export class LoginService {
   }
 
   // Test login method
-  loginBySingpass(code, state) {
+  loginBySingpass(code: String, state: String) {
     // Pass in code & state get back the authenticate response
     this.singpassApiService.loginSingpass(code, state).subscribe((data)=>{
       if (data) {
