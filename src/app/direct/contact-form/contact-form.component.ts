@@ -121,4 +121,42 @@ export class ContactFormComponent implements OnInit {
           }); 
   }
 
+  setControlValue(value, controlName) {
+    value = value.trim().replace(RegexConstants.trimSpace, ' ');
+    if (value !== undefined) {
+      value = value.replace(/\n/g, '');
+      value = value.substring(0, 300);
+      this.formObject.controls[controlName].setValue(value);
+      return value;
+    }
+  }
+
+    // #SET THE CONTROL FOR 300 CHARACTERS LIMIT
+  onKeyPressEvent(event: any, content: any) {
+      const selection = window.getSelection();
+      if (content.length >= 300 && selection.type !== 'Range') {
+        const id = event.target.id;
+        const el = document.querySelector('#' + id);
+        this.setCaratTo(el, 300, content);
+        event.preventDefault();
+      }
+      return (event.which !== 13);
+  }
+
+    // #FOR 300 CHARACTERS FIELD CURSOR POSITION
+    setCaratTo(contentEditableElement, position, content) {
+      contentEditableElement.innerText = content;
+      if (document.createRange) {
+        const range = document.createRange();
+        range.selectNodeContents(contentEditableElement);
+  
+        range.setStart(contentEditableElement.firstChild, position);
+        range.setEnd(contentEditableElement.firstChild, position);
+  
+        const selection = window.getSelection();
+        selection.removeAllRanges();
+        selection.addRange(range);
+      }
+    }
+
 }
