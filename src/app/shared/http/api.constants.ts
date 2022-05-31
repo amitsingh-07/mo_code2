@@ -144,7 +144,8 @@ export let apiConstants = {
             getOrganisationCodeByUUID: ACCOUNT_API_BASE_URL+ '/getOrganisationCodeByUUID'
         },
         singpass: {
-            getStateNonce: SINGPASS_API_BASE_URL+ '/getStateNonce'
+            getStateNonce: SINGPASS_API_BASE_URL+ 'getStateNonce',
+            loginSingpass: SINGPASS_API_BASE_URL+ 'loginSingpasss'
         }
     }
 };
