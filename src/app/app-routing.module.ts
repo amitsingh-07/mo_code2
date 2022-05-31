@@ -91,7 +91,10 @@ const routes: Routes = [
         canActivate: [InvestmentEnableGuard],
         canActivateChild: [InvestmentChildEnableGuard]
       },
-      { path: 'singpass/callback', component: SingpassCallBackComponent },
+      { 
+        path: 'singpass/callback', 
+        component: SingpassCallBackComponent
+      },
       // Legacy Routes
       { path: 'email-enquiry/success', component: EmailEnquirySuccessComponent },
       { path: 'page-not-found', component: NotFoundComponent },

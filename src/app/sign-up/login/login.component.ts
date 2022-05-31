@@ -8,7 +8,7 @@ import { FormBuilder, FormGroup, Validators, FormControl } from '@angular/forms'
 import { ActivatedRoute, Router } from '@angular/router';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { TranslateService } from '@ngx-translate/core';
-import { flatMap } from 'rxjs/operators';
+import { flatMap, mergeMap } from 'rxjs/operators';
 
 import { SessionsService } from './../../shared/Services/sessions/sessions.service';
 import { appConstants } from '../../app.constants';
@@ -44,6 +44,7 @@ import { HubspotService } from './../../shared/analytics/hubspot.service';
 import { SIGN_UP_CONFIG } from './../sign-up.constant';
 import { TermsModalComponent } from './../../shared/modal/terms-modal/terms-modal.component';
 import { SingpassApiService } from '../../singpass/singpass.api.service';
+import { LoginService } from './login.service';
 
 @Component({
   selector: 'app-login',
@@ -107,17 +108,12 @@ export class LoginComponent implements OnInit, AfterViewInit, OnDestroy {
     private investmentCommonService: InvestmentCommonService,
     private hubspotService: HubspotService,
     private helper: HelperService,
-    private singpassService: SingpassApiService) {
+    private singpassService: SingpassApiService,
+    private loginService: LoginService) {
     this.translate.use('en');
     this.translate.get('COMMON').subscribe((result: string) => {
       this.duplicateError = this.translate.instant('COMMON.DUPLICATE_ERROR');
-      this.route.queryParams.subscribe((qp) => {
-        console.log('Get Router Params:', this.route.snapshot.queryParams);
-        if(qp['code'] && qp['state']) {
-          console.log("IM INSIDE "+ "code = "+qp['code']+ "state = "+ qp['state'])
-          this.loginBySingpass();
-        }
-      });
+      this.singpassCallbackCheck();
     });
     this.route.params.subscribe((params) => {
       this.heighlightMobileNumber = params.heighlightMobileNumber;
@@ -131,7 +127,7 @@ export class LoginComponent implements OnInit, AfterViewInit, OnDestroy {
       this.singpassEnabled = route.snapshot.data[0]['singpassEnabled'];
       this.appService.clearJourneys();
       this.appService.clearPromoCode();
-    }   
+    }
     this.appService.setCorporateDetails({organisationEnabled: this.organisationEnabled, uuid: this.route.snapshot.queryParams.orgID || null});
     this.signUpService.removeUserType();
     if(this.authService.isSignedUserWithRole(SIGN_UP_CONFIG.ROLE_2FA)) {
@@ -199,12 +195,16 @@ export class LoginComponent implements OnInit, AfterViewInit, OnDestroy {
 
   async initSingpassQR() {
       const authParamsSupplier = async () => {
-        const promise = await this.singpassService.getStateNonce().toPromise().catch(() => {
+        const promise = await this.singpassService.getStateNonce().toPromise().then(() => {
+          return promise['objectList'][0];
+        })
+        .catch(() => {
           // Error handling when app api fail
           console.log("Implement a nervous system check for this.");
         });
-        return promise['objectList'][0];
+
       }
+      this.loginForm.reset();
       this.singpassService.initSingpassAuthSession(authParamsSupplier);
   }
 
@@ -375,46 +375,48 @@ export class LoginComponent implements OnInit, AfterViewInit, OnDestroy {
             
           } else {
             if (data.responseMessage && data.responseMessage.responseCode >= 6000) {
+              this.loginService.onSuccessLogin(data);
               // Pulling Customer information to log on Hubspot
-              this.signUpApiService.getUserProfileInfo().subscribe((data) => {
-                let userInfo = data.objectList;
-                this.hubspotService.registerEmail(userInfo.emailAddress);
-                this.hubspotService.registerPhone(userInfo.mobileNumber);
-                const hsPayload = [
-                  {
-                    name: "email",
-                    value: userInfo.emailAddress
-                  },
-                  {
-                    name: "phone",
-                    value: userInfo.mobileNumber
-                  },
-                  {
-                    name: "firstname",
-                    value: userInfo.firstName
-                  },
-                  {
-                    name: "lastname",
-                    value: userInfo.lastName
-                  }];
-                this.hubspotService.submitLogin(hsPayload);
-              });
+              // this.signUpApiService.getUserProfileInfo().subscribe((data) => {
+              //   let userInfo = data.objectList;
+              //   this.hubspotService.registerEmail(userInfo.emailAddress);
+              //   this.hubspotService.registerPhone(userInfo.mobileNumber);
+              //   const hsPayload = [
+              //     {
+              //       name: "email",
+              //       value: userInfo.emailAddress
+              //     },
+              //     {
+              //       name: "phone",
+              //       value: userInfo.mobileNumber
+              //     },
+              //     {
+              //       name: "firstname",
+              //       value: userInfo.firstName
+              //     },
+              //     {
+              //       name: "lastname",
+              //       value: userInfo.lastName
+              //     }];
+              //   this.hubspotService.submitLogin(hsPayload);
+              // });
+              // this.loginService.hubspotLogin();
   
-              this.investmentCommonService.clearAccountCreationActions();
-              try {
-                if (data.objectList[0].customerId) {
-                  this.appService.setCustomerId(data.objectList[0].customerId);
-                }
-              } catch (e) {
-                console.log(e);
-              }
-              this.signUpService.removeCaptchaSessionId();
-              const insuranceEnquiry = this.selectedPlansService.getSelectedPlan();
-              if (this.checkInsuranceEnquiry(insuranceEnquiry)) {
-                this.updateInsuranceEnquiry(insuranceEnquiry, data, false);
-              } else {
-                this.goToNext();
-              }
+              // this.investmentCommonService.clearAccountCreationActions();
+              // try {
+              //   if (data.objectList[0].customerId) {
+              //     this.appService.setCustomerId(data.objectList[0].customerId);
+              //   }
+              // } catch (e) {
+              //   console.log(e);
+              // }
+              // this.signUpService.removeCaptchaSessionId();
+              // const insuranceEnquiry = this.selectedPlansService.getSelectedPlan();
+              // if (this.checkInsuranceEnquiry(insuranceEnquiry)) {
+              //   this.updateInsuranceEnquiry(insuranceEnquiry, data, false);
+              // } else {
+              //   this.goToNext();
+              // }
             } else if (data.responseMessage.responseCode === 5016 || data.responseMessage.responseCode === 5011) {
               this.loginForm.controls['captchaValue'].reset();
               this.loginForm.controls['loginPassword'].reset();
@@ -429,7 +431,7 @@ export class LoginComponent implements OnInit, AfterViewInit, OnDestroy {
                 this.signUpService.setCustomerRef(data.objectList[0].customerRef);
               }
               const insuranceEnquiry = this.selectedPlansService.getSelectedPlan();
-              if (this.checkInsuranceEnquiry(insuranceEnquiry)) {
+              if (this.loginService.checkInsuranceEnquiry(insuranceEnquiry)) {
                 this.updateInsuranceEnquiry(insuranceEnquiry, data, true);
               } else {
                 this.callErrorModal(data);
@@ -457,28 +459,28 @@ export class LoginComponent implements OnInit, AfterViewInit, OnDestroy {
     }
   }
 
-  goToNext() {
-    const investmentRoutes = [INVESTMENT_ACCOUNT_ROUTE_PATHS.ROOT, INVESTMENT_ACCOUNT_ROUTE_PATHS.START];
-    const redirect_url = this.signUpService.getRedirectUrl();
-    const journeyType = this.appService.getJourneyType();
-    if (this.appService.getJourneyType() === appConstants.JOURNEY_TYPE_COMPREHENSIVE) {
-      this.getUserProfileAndNavigate(appConstants.JOURNEY_TYPE_COMPREHENSIVE);
-    } else if (redirect_url && investmentRoutes.indexOf(redirect_url) >= 0) {
-      this.signUpService.clearRedirectUrl();
-      this.getUserProfileAndNavigate(appConstants.JOURNEY_TYPE_INVESTMENT);
-    } else if (journeyType === appConstants.JOURNEY_TYPE_WILL_WRITING && this.willWritingService.getWillCreatedPrelogin()) {
-      this.getUserProfileAndNavigate(appConstants.JOURNEY_TYPE_WILL_WRITING);
-    } else {
-      this.router.navigate([SIGN_UP_ROUTE_PATHS.DASHBOARD]);
-    }
-  }
+  // goToNext() {
+  //   const investmentRoutes = [INVESTMENT_ACCOUNT_ROUTE_PATHS.ROOT, INVESTMENT_ACCOUNT_ROUTE_PATHS.START];
+  //   const redirect_url = this.signUpService.getRedirectUrl();
+  //   const journeyType = this.appService.getJourneyType();
+  //   if (this.appService.getJourneyType() === appConstants.JOURNEY_TYPE_COMPREHENSIVE) {
+  //     this.getUserProfileAndNavigate(appConstants.JOURNEY_TYPE_COMPREHENSIVE);
+  //   } else if (redirect_url && investmentRoutes.indexOf(redirect_url) >= 0) {
+  //     this.signUpService.clearRedirectUrl();
+  //     this.getUserProfileAndNavigate(appConstants.JOURNEY_TYPE_INVESTMENT);
+  //   } else if (journeyType === appConstants.JOURNEY_TYPE_WILL_WRITING && this.willWritingService.getWillCreatedPrelogin()) {
+  //     this.getUserProfileAndNavigate(appConstants.JOURNEY_TYPE_WILL_WRITING);
+  //   } else {
+  //     this.router.navigate([SIGN_UP_ROUTE_PATHS.DASHBOARD]);
+  //   }
+  // }
 
-  checkInsuranceEnquiry(insuranceEnquiry): boolean {
-    return ((this.appService.getJourneyType() === appConstants.JOURNEY_TYPE_DIRECT ||
-      this.appService.getJourneyType() === appConstants.JOURNEY_TYPE_GUIDED) &&
-      ((insuranceEnquiry.plans && insuranceEnquiry.plans.length > 0)
-        || (insuranceEnquiry.enquiryProtectionTypeData && insuranceEnquiry.enquiryProtectionTypeData.length > 0)));
-  }
+  // checkInsuranceEnquiry(insuranceEnquiry): boolean {
+  //   return ((this.appService.getJourneyType() === appConstants.JOURNEY_TYPE_DIRECT ||
+  //     this.appService.getJourneyType() === appConstants.JOURNEY_TYPE_GUIDED) &&
+  //     ((insuranceEnquiry.plans && insuranceEnquiry.plans.length > 0)
+  //       || (insuranceEnquiry.enquiryProtectionTypeData && insuranceEnquiry.enquiryProtectionTypeData.length > 0)));
+  // }
 
   updateInsuranceEnquiry(insuranceEnquiry, data, errorModal: boolean) {
     const journeyType = (insuranceEnquiry.journeyType === appConstants.JOURNEY_TYPE_DIRECT) ?
@@ -534,7 +536,7 @@ export class LoginComponent implements OnInit, AfterViewInit, OnDestroy {
     if (emailResend) {
       ref.componentInstance.enableResendEmail = true;
       ref.componentInstance.resendEmail.pipe(
-        flatMap(($e) =>
+        mergeMap(($e) =>
           this.resendEmailVerification()))
         .subscribe((data) => {
           if (data.responseMessage.responseCode === 6007) {
@@ -542,13 +544,12 @@ export class LoginComponent implements OnInit, AfterViewInit, OnDestroy {
           }
         });
     }
-
   }
-
 
   resendEmailVerification() {
     const organisationCode = this.organisationEnabled && this.loginForm.get('organisationCode').value || null;
     const isEmail = this.authService.isUserNameEmail(this.loginForm.value.loginUsername);
+    console.log("organisationCode = " + organisationCode)
     return this.signUpApiService.resendEmailVerification(this.loginForm.value.loginUsername, isEmail, organisationCode);
   }
   openErrorModal(error) {
@@ -671,7 +672,7 @@ export class LoginComponent implements OnInit, AfterViewInit, OnDestroy {
     event.preventDefault();
   }
   // Toggle UI for showing Singpass/Password Login
-  toggleSingpass(type) {
+  toggleSingpass(type, event?) {
     if (type === SIGN_UP_CONFIG.SINGPASS) {
       this.showSingpassLogin = true;
       this.showPasswordLogin = false;
@@ -680,6 +681,10 @@ export class LoginComponent implements OnInit, AfterViewInit, OnDestroy {
       this.showSingpassLogin = false;
     }
     this.getSetLoginPref(type);
+    if(event) {
+      event.stopPropagation();
+      event.preventDefault();
+    }
   }
   // Get or set the login pref for mobile view
   getSetLoginPref(type?) {
@@ -697,15 +702,28 @@ export class LoginComponent implements OnInit, AfterViewInit, OnDestroy {
       }
     }
   }
-  // Login method by Singpass
-  loginBySingpass() {
-    // Check if User is authenticated yet
-    if (!this.authService.isAuthenticated()) {
-      this.authService.authenticate().subscribe((token) => {
-      });
-    }
-    // If user not in our DB
-    // openSingpassLoginFail possible pass in fail msg instead?
-    // this.openSingpassModal(window.event, 'Fail');
+
+  singpassCallbackCheck() {
+    this.route.queryParams.subscribe((qp) => {
+      console.log('Get Router Params:', this.route.snapshot.queryParams);
+      if(qp['code'] && qp['state']) {
+        // Check if User is authenticated yet
+        if (!this.authService.isAuthenticated()) {
+          this.authService.authenticate().subscribe((token) => {
+          });
+        }
+        this.router.navigate([], { queryParams: { 'code': null, 'state': null, }, queryParamsHandling: 'merge' });
+        this.openSingpassModal(window.event, 'Fail');
+        // this.signUpApiService.verifyLogin("97320546", "Money@123", "", false, "", "", null).subscribe((data) => {
+        //   if (data) {
+        //     this.loginService.onSuccessLogin(data);
+        //   } else {
+        //     this.router.navigate([], { queryParams: { 'code': null, 'state': null, }, queryParamsHandling: 'merge' });
+        //     this.openSingpassModal(window.event, 'Fail');
+        //   }
+        // });
+      }
+    });
   }
+
 }
