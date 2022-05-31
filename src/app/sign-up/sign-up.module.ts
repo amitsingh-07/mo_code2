@@ -54,6 +54,9 @@ import { ReferalRedirectingPartComponent } from './referal-redirecting-part/refe
 import { ManageProfileComponent } from './manage-profile/manage-profile.component';
 import { AddUpdateCpfiaComponent } from './add-update-cpfia/add-update-cpfia.component';
 import { CpfiaSuccessModalComponent } from './add-update-cpfia/cpfia-success-modal/cpfia-success-modal.component';
+import { CreateAccountMyinfoModalComponent } from './create-account-myinfo-modal/create-account-myinfo-modal.component';
+import { CorpBizSignupComponent } from './corp-biz-signup/corp-biz-signup.component';
+import { CorpBizSignupWithDataComponent } from './corp-biz-signup-with-data/corp-biz-signup-with-data.component';
 
 export function createTranslateLoader(http: HttpClient) {
   return new MultiTranslateHttpLoader(
@@ -113,9 +116,12 @@ export function createTranslateLoader(http: HttpClient) {
     ReferalRedirectingPartComponent,
     ManageProfileComponent,
     AddUpdateCpfiaComponent,
-    CpfiaSuccessModalComponent
+    CpfiaSuccessModalComponent,
+    CreateAccountMyinfoModalComponent,
+    CorpBizSignupComponent,
+    CorpBizSignupWithDataComponent
   ],
   providers: [SignUpAccessGuard, SignUpCorporateAccessGuard, AuthGuardService, TwoFactorAuthGuardService],
-  entryComponents: [EditMobileNumberComponent, SrsSuccessModalComponent]
+  entryComponents: [EditMobileNumberComponent, SrsSuccessModalComponent, CreateAccountMyinfoModalComponent]
 })
 export class SignUpModule { }
