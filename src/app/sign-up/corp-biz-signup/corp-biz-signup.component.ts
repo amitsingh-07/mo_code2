@@ -124,9 +124,13 @@ export class CorpBizSignupComponent implements OnInit {
   }
 
   skipMyInfo() {
-    this.signUpService.setCorpBizMyInfoStatus(false);    
-    if(true) {
+    this.signUpService.setCorpBizMyInfoStatus(false);
+    if (true) {
       this.router.navigate([SIGN_UP_ROUTE_PATHS.CREATE_ACCOUNT]);
-    } 
+    }
+  }
+  openModal() {
+    const ref = this.modal.open(CreateAccountMyinfoModalComponent, { centered: true });
+    ref.componentInstance.primaryActionLabel = "Let’s go!";
   }
 }
