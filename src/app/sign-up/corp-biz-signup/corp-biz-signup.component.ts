@@ -38,7 +38,10 @@ export class CorpBizSignupComponent implements OnInit {
     this.translate.use('en');
     this.translate.get('COMMON').subscribe((result: string) => {
       this.loader2Modal = this.translate.instant(
-        'CREATE_ACCOUNT_MY_INFO.LOADER2'
+        'CORP_BIZ_SIGN_UP.LOADER2'
+      );
+      this.loader3Modal = this.translate.instant(
+        'CORP_BIZ_SIGN_UP.LOADER3'
       );
     });
 
@@ -121,9 +124,9 @@ export class CorpBizSignupComponent implements OnInit {
   }
 
   skipMyInfo() {
-    this.signUpService.setMyInfoStatus(false);    
+    this.signUpService.setCorpBizMyInfoStatus(false);    
     if(true) {
-      this.router.navigate([SIGN_UP_ROUTE_PATHS.FINLIT_CREATE_ACCOUNT]);
+      this.router.navigate([SIGN_UP_ROUTE_PATHS.CREATE_ACCOUNT]);
     } 
   }
 }

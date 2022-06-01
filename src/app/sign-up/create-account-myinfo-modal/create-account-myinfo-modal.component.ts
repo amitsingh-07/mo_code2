@@ -1,7 +1,8 @@
 import { Component, OnInit, ViewEncapsulation } from '@angular/core';
-import { Router } from '@angular/router';
+import { NavigationEnd, Router } from '@angular/router';
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 import { TranslateService } from '@ngx-translate/core';
+import { filter } from 'rxjs/operators';
 
 @Component({
   selector: 'app-create-account-myinfo-modal',
@@ -22,6 +23,12 @@ export class CreateAccountMyinfoModalComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.router.events
+      .pipe(filter((event) => event instanceof NavigationEnd))
+      .subscribe(({ urlAfterRedirects }: NavigationEnd) => {
+        // dismiss all bootstrap modal dialog
+        this.activeModal.dismiss();
+      });
   }
 
 }
