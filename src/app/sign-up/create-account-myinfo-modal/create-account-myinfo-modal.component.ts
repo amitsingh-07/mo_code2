@@ -1,8 +1,12 @@
-import { Component, OnInit, ViewEncapsulation } from '@angular/core';
-import { Router } from '@angular/router';
+import { filter } from 'rxjs/operators';
+import { Component, EventEmitter, Input, OnInit, Output, ViewEncapsulation } from '@angular/core';
+import { NavigationEnd,Router } from '@angular/router';
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 import { TranslateService } from '@ngx-translate/core';
+import { ANIMATION_DATA } from './../../../assets/animation/animationData';
 
+declare var require: any;
+const bodymovin = require("./../../../assets/scripts/lottie_svg.min.js");
 @Component({
   selector: 'app-create-account-myinfo-modal',
   templateUrl: './create-account-myinfo-modal.component.html',
@@ -10,7 +14,14 @@ import { TranslateService } from '@ngx-translate/core';
   encapsulation: ViewEncapsulation.None
 })
 export class CreateAccountMyinfoModalComponent implements OnInit {
-
+  @Input() errorTitle: any;
+  @Input() primaryActionLabel: any;
+  @Input() lockIcon: any;
+  @Input() closeBtn = true;
+  @Input() spinner: any;
+  @Input() myInfo: any;
+  @Output() primaryAction = new EventEmitter<any>();
+  @Output() closeAction = new EventEmitter<any>();
   constructor(
     public activeModal: NgbActiveModal,
     private router: Router,
@@ -21,7 +32,36 @@ export class CreateAccountMyinfoModalComponent implements OnInit {
     });
   }
 
-  ngOnInit(): void {
+  ngOnInit() {
+    this.router.events
+      .pipe(filter((event) => event instanceof NavigationEnd))
+      .subscribe(({ urlAfterRedirects }: NavigationEnd) => {
+        // dismiss all bootstrap modal dialog
+        this.activeModal.dismiss();
+      });
+    this.createAnimation();
+  }
+
+  primaryActionSelected() {
+    this.primaryAction.emit();
+    this.activeModal.close();
+  }
+
+  closeIconAction() {
+    this.closeAction.emit();
+    this.activeModal.dismiss('Cross click');    
+  }
+
+  createAnimation() {
+    const animationData = ANIMATION_DATA.MO_SPINNER;
+    bodymovin.loadAnimation({
+      container: document.getElementById('mo_spinner'), // Required
+      path: '/app/assets/animation/mo_spinner.json', // Required
+      renderer: 'canvas', // Required
+      loop: true, // Optional
+      autoplay: true, // Optional
+      animationData: animationData
+    })
   }
 
 }

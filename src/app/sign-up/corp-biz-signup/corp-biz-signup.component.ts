@@ -4,6 +4,7 @@ import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { TranslateService } from '@ngx-translate/core';
 import { FooterService } from '../../shared/footer/footer.service';
 import { NavbarService } from '../../shared/navbar/navbar.service';
+import { CreateAccountMyinfoModalComponent } from '../create-account-myinfo-modal/create-account-myinfo-modal.component';
 
 @Component({
   selector: 'app-corp-biz-signup',
@@ -30,5 +31,10 @@ export class CorpBizSignupComponent implements OnInit {
 
   goToNext() {
 
+  }
+
+  openModal(){
+    const ref = this.modal.open(CreateAccountMyinfoModalComponent, { centered: true });
+    ref.componentInstance.primaryActionLabel = "Let’s go!";
   }
 }
