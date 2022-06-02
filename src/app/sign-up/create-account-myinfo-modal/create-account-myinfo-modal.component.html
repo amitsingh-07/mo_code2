@@ -1,189 +1,227 @@
-
-  <div class="modal-body white-bg" [ngClass]="{'my-info': myInfo}">
+<div class="modal-body white-bg" [ngClass]="{'my-info': myInfo}">
     <div class="modal-body-title">
-      <div [ngStyle]="{'display': spinner? 'flex' : 'none'}" class="spinner-container">
-        <div id="mo_spinner"></div>
-      </div>
-      <div id="errorModeltitle">
-        Retrieve Myinfo with Singpass
-        <span class="lock"><img src="assets/images/lock.svg"></span>
+        <div [ngStyle]="{'display': spinner? 'flex' : 'none'}" class="spinner-container">
+            <div id="mo_spinner"></div>
+        </div>
+        <div id="errorModeltitle">
+            {{'CORP_BIZ_SIGN_UP.MY_INFO_MODAL.TITLE' | translate}}
+            <span class="lock"><img src="assets/images/lock.svg"></span>
         </div>
     </div>
-    <button type="button" class="close" aria-label="Close" (click)="closeIconAction()">
-      <span aria-hidden="true" id="errorModelCloseIcon"></span>
+    <button type="button" class="close" aria-label="Close" (click)="activeModal.dismiss('Cross click')">
+        <span aria-hidden="true" id="errorModelCloseIcon"></span>
     </button>
-    
+
     <div class="modal-body-message " id="errorModelMessage">
-        <div class="text-bold">Applicable to all Singpass Registered users.</div>
-        <div class="text-bold  mb30">Please use your own account only.</div>
-        <div class="mb30">You will now proceed to login via MyInfo and retrieve your following details which will be used in creating your account and your financial planning with MoneyOwl.</div> 
+        <div class="text-bold">{{'CORP_BIZ_SIGN_UP.MY_INFO_MODAL.DESC' | translate}}</div>
+        <div class="text-bold  mb30">{{'CORP_BIZ_SIGN_UP.MY_INFO_MODAL.OWN_ACC_TEXT' | translate}}</div>
+        <div class="mb30">{{'CORP_BIZ_SIGN_UP.MY_INFO_MODAL.MY_INFO_DESC' | translate}}</div>
         <div class="myinfo-data-block">
             <ngb-accordion #acc="ngbAccordion">
                 <ngb-panel>
                     <ng-template ngbPanelTitle>
                         <div class="flex space-between">
-                            <div>Personal</div>
+                            <div>{{'CORP_BIZ_SIGN_UP.MY_INFO_MODAL.MODAL_ATTR.PERSONAL.TITLE' | translate}}</div>
                             <div><i class='arrow'></i></div>
                         </div>
                     </ng-template>
                     <ng-template ngbPanelContent>
                         <div class="myinfo-data-content">
-                            <div>Principal Name</div>
-                            <div>Sex</div> 
-                            <div>Race</div>
-                            <div>Date of Birth</div>
-                            <div>NRIC/FIN</div>
-                            <div>Country of Birth</div>
-                            <div>Residential Status</div>
-                            <div>Registered Address</div>
-                            <div>Email Address</div>
-                            <div>Mobile Number</div>
+                            <div>{{'CORP_BIZ_SIGN_UP.MY_INFO_MODAL.MODAL_ATTR.PERSONAL.NAME_TEXT' | translate}}</div>
+                            <div>{{'CORP_BIZ_SIGN_UP.MY_INFO_MODAL.MODAL_ATTR.PERSONAL.SEX_TEXT' | translate}}</div>
+                            <div>{{'CORP_BIZ_SIGN_UP.MY_INFO_MODAL.MODAL_ATTR.PERSONAL.RACE_TEXT' | translate}}</div>
+                            <div>{{'CORP_BIZ_SIGN_UP.MY_INFO_MODAL.MODAL_ATTR.PERSONAL.DOB_TEXT' | translate}}</div>
+                            <div>{{'CORP_BIZ_SIGN_UP.MY_INFO_MODAL.MODAL_ATTR.PERSONAL.NRIC_TEXT' | translate}}</div>
+                            <div>{{'CORP_BIZ_SIGN_UP.MY_INFO_MODAL.MODAL_ATTR.PERSONAL.BIRTH_COUNTRY_TEXT' | translate}}
+                            </div>
+                            <div>{{'CORP_BIZ_SIGN_UP.MY_INFO_MODAL.MODAL_ATTR.PERSONAL.RESIDENCE_TEXT' | translate}}
+                            </div>
+                            <div>{{'CORP_BIZ_SIGN_UP.MY_INFO_MODAL.MODAL_ATTR.PERSONAL.ADDRESS_TEXT' | translate}}</div>
+                            <div>{{'CORP_BIZ_SIGN_UP.MY_INFO_MODAL.MODAL_ATTR.PERSONAL.EMAIL_TEXT' | translate}}</div>
+                            <div>{{'CORP_BIZ_SIGN_UP.MY_INFO_MODAL.MODAL_ATTR.PERSONAL.MOBILE_TEXT' | translate}}</div>
                         </div>
                     </ng-template>
                 </ngb-panel>
                 <ngb-panel>
                     <ng-template ngbPanelTitle>
                         <div class="flex space-between">
-                            <div>Family</div>
+                            <div>{{'CORP_BIZ_SIGN_UP.MY_INFO_MODAL.MODAL_ATTR.FAMILY.TITLE' | translate}}</div>
                             <div><i class='arrow'></i></div>
                         </div>
                     </ng-template>
                     <ng-template ngbPanelContent>
                         <div class="myinfo-data-content">
-                            <div>Marital Status</div>
-                            <div>Children Birth records - Name</div> 
-                            <div>Children Birth records - Date of Birth</div>
-                            <div>Children Birth Records: Sex</div>
-                            <div>Children Records - Residential Status</div>
-                            <div>Children Birth Records - Life Status</div>
-                            <div>Sponsored Children Birth records - Name</div>
-                            <div>Sponsored Children Records - Date of Birth</div>
-                            <div>Sponsored Children Records - Sex</div>
-                            <div>Sponsored Children Records - Residential Status</div>
-                            <div>Sponsored Children Records - Life Status</div>
+                            <div>{{'CORP_BIZ_SIGN_UP.MY_INFO_MODAL.MODAL_ATTR.FAMILY.MARITAL_TEXT' | translate}}</div>
+                            <div>{{'CORP_BIZ_SIGN_UP.MY_INFO_MODAL.MODAL_ATTR.FAMILY.CHILD.NAME' | translate}}</div>
+                            <div>{{'CORP_BIZ_SIGN_UP.MY_INFO_MODAL.MODAL_ATTR.FAMILY.CHILD.DOB_TEXT' | translate}}</div>
+                            <div>{{'CORP_BIZ_SIGN_UP.MY_INFO_MODAL.MODAL_ATTR.FAMILY.CHILD.GENDER_TEXT' | translate}}
+                            </div>
+                            <div>{{'CORP_BIZ_SIGN_UP.MY_INFO_MODAL.MODAL_ATTR.FAMILY.CHILD.RESIDENTIAL_TEXT' |
+                                translate}}</div>
+                            <div>{{'CORP_BIZ_SIGN_UP.MY_INFO_MODAL.MODAL_ATTR.FAMILY.CHILD.LIFE_STATUS_TEXT' |
+                                translate}}</div>
+                            <div>{{'CORP_BIZ_SIGN_UP.MY_INFO_MODAL.MODAL_ATTR.FAMILY.SPONSORED_CHILD.NAME' | translate}}
+                            </div>
+                            <div>{{'CORP_BIZ_SIGN_UP.MY_INFO_MODAL.MODAL_ATTR.FAMILY.SPONSORED_CHILD.DOB_TEXT' |
+                                translate}}</div>
+                            <div>{{'CORP_BIZ_SIGN_UP.MY_INFO_MODAL.MODAL_ATTR.FAMILY.SPONSORED_CHILD.GENDER_TEXT' |
+                                translate}}</div>
+                            <div>{{'CORP_BIZ_SIGN_UP.MY_INFO_MODAL.MODAL_ATTR.FAMILY.SPONSORED_CHILD.RESIDENTIAL_TEXT' |
+                                translate}}</div>
+                            <div>{{'CORP_BIZ_SIGN_UP.MY_INFO_MODAL.MODAL_ATTR.FAMILY.SPONSORED_CHILD.LIFE_STATUS_TEXT' |
+                                translate}}</div>
                         </div>
                     </ng-template>
                 </ngb-panel>
                 <ngb-panel>
                     <ng-template ngbPanelTitle>
                         <div class="flex space-between">
-                            <div>Employment & Education</div>
+                            <div>{{'CORP_BIZ_SIGN_UP.MY_INFO_MODAL.MODAL_ATTR.EMPLOYMENT_AND_EDU.TITLE' | translate}}
+                            </div>
                             <div><i class='arrow'></i></div>
                         </div>
                     </ng-template>
                     <ng-template ngbPanelContent>
                         <div class="myinfo-data-content">
-                            <div>Occupation</div>
-                            <div>Name of Employer</div>
+                            <div>{{'CORP_BIZ_SIGN_UP.MY_INFO_MODAL.MODAL_ATTR.EMPLOYMENT_AND_EDU.OCCUPATION_TEXT' |
+                                translate}}</div>
+                            <div>{{'CORP_BIZ_SIGN_UP.MY_INFO_MODAL.MODAL_ATTR.EMPLOYMENT_AND_EDU.EMPLOYER_NAME_TEXT' |
+                                translate}}</div>
                         </div>
                     </ng-template>
                 </ngb-panel>
                 <ngb-panel>
                     <ng-template ngbPanelTitle>
                         <div class="flex space-between">
-                            <div>Property</div>
+                            <div>{{'CORP_BIZ_SIGN_UP.MY_INFO_MODAL.MODAL_ATTR.PROPERTY.TITLE' | translate}}</div>
                             <div><i class='arrow'></i></div>
                         </div>
                     </ng-template>
                     <ng-template ngbPanelContent>
                         <div class="myinfo-data-content">
-                            <div>HDB Ownership - Date of Purchase</div>
-                            <div>HDB Ownership - Loan Granted</div> 
-                            <div>HDB Ownership -Outstanding HDB Loan Balance</div> 
-                            <div>HDB Ownership - Monthly Loan Instalment</div>
-                            <div>HDB Ownership – Lease Commencement Date</div>
+                            <div>{{'CORP_BIZ_SIGN_UP.MY_INFO_MODAL.MODAL_ATTR.PROPERTY.HDB_TEXT.PURCHASE_DATE_TEXT' |
+                                translate}}</div>
+                            <div>{{'CORP_BIZ_SIGN_UP.MY_INFO_MODAL.MODAL_ATTR.PROPERTY.HDB_TEXT.LOAN_TEXT' | translate}}
+                            </div>
+                            <div>{{'CORP_BIZ_SIGN_UP.MY_INFO_MODAL.MODAL_ATTR.PROPERTY.HDB_TEXT.OUTSTANDING_LOAN_TEXT' |
+                                translate}}</div>
+                            <div>{{'CORP_BIZ_SIGN_UP.MY_INFO_MODAL.MODAL_ATTR.PROPERTY.HDB_TEXT.MONTHLY_LOAN_TEXT' |
+                                translate}}</div>
+                            <div>{{'CORP_BIZ_SIGN_UP.MY_INFO_MODAL.MODAL_ATTR.PROPERTY.HDB_TEXT.LEASE_TEXT' |
+                                translate}}</div>
                         </div>
                     </ng-template>
                 </ngb-panel>
                 <ngb-panel>
                     <ng-template ngbPanelTitle>
                         <div class="flex space-between">
-                            <div>Income Breakdown</div>
+                            <div>{{'CORP_BIZ_SIGN_UP.MY_INFO_MODAL.MODAL_ATTR.INCOME_BREAKDOWN.TITLE' | translate}}
+                            </div>
                             <div><i class='arrow'></i></div>
                         </div>
                     </ng-template>
                     <ng-template ngbPanelContent>
                         <div class="myinfo-data-content">
-                            <div>Employment</div>
-                            <div>Trade</div>
-                            <div>Rent</div>
-                            <div>Interest</div>
+                            <div>{{'CORP_BIZ_SIGN_UP.MY_INFO_MODAL.MODAL_ATTR.INCOME_BREAKDOWN.EMPLOYMENT_TEXT' |
+                                translate}}</div>
+                            <div>{{'CORP_BIZ_SIGN_UP.MY_INFO_MODAL.MODAL_ATTR.INCOME_BREAKDOWN.TRADE_TEXT' | translate}}
+                            </div>
+                            <div>{{'CORP_BIZ_SIGN_UP.MY_INFO_MODAL.MODAL_ATTR.INCOME_BREAKDOWN.RENT_TEXT' | translate}}
+                            </div>
+                            <div>{{'CORP_BIZ_SIGN_UP.MY_INFO_MODAL.MODAL_ATTR.INCOME_BREAKDOWN.INTEREST_TEXT' |
+                                translate}}</div>
                         </div>
                     </ng-template>
                 </ngb-panel>
                 <ngb-panel>
                     <ng-template ngbPanelTitle>
                         <div class="flex space-between">
-                            <div>Notice of Assessment</div>
+                            <div>{{'CORP_BIZ_SIGN_UP.MY_INFO_MODAL.MODAL_ATTR.ASSESSMENT_NOTICE.TITLE' | translate}}
+                            </div>
                             <div><i class='arrow'></i></div>
                         </div>
                     </ng-template>
                     <ng-template ngbPanelContent>
                         <div class="myinfo-data-content">
-                            <div>Year of Assessment</div>
-                            <div>Type</div>
-                            <div>Assessable Income</div>
+                            <div>{{'CORP_BIZ_SIGN_UP.MY_INFO_MODAL.MODAL_ATTR.ASSESSMENT_NOTICE.ASSESSMENT_YEAR_TEXT' |
+                                translate}}</div>
+                            <div>{{'CORP_BIZ_SIGN_UP.MY_INFO_MODAL.MODAL_ATTR.ASSESSMENT_NOTICE.TYPE_TEXT' | translate}}
+                            </div>
+                            <div>{{'CORP_BIZ_SIGN_UP.MY_INFO_MODAL.MODAL_ATTR.ASSESSMENT_NOTICE.INCOME_TEXT' |
+                                translate}}</div>
                         </div>
                     </ng-template>
                 </ngb-panel>
                 <ngb-panel>
                     <ng-template ngbPanelTitle>
                         <div class="flex space-between">
-                            <div>CPF Account Balance</div>
+                            <div>{{'CORP_BIZ_SIGN_UP.MY_INFO_MODAL.MODAL_ATTR.CPF_ACC_BAL.TITLE' | translate}}</div>
                             <div><i class='arrow'></i></div>
                         </div>
                     </ng-template>
                     <ng-template ngbPanelContent>
                         <div class="myinfo-data-content">
-                            <div>Ordinary Account (OA)</div>
-                            <div>Special Account (SA)</div>
-                            <div>Medisave Account (MA)</div>
-                            <div>Retirement Account (RA)</div>
+                            <div>{{'CORP_BIZ_SIGN_UP.MY_INFO_MODAL.MODAL_ATTR.CPF_ACC_BAL.TITLE' | translate}}</div>
+                            <div>{{'CORP_BIZ_SIGN_UP.MY_INFO_MODAL.MODAL_ATTR.CPF_ACC_BAL.SPECIAL_ACC_TEXT' |
+                                translate}}</div>
+                            <div>{{'CORP_BIZ_SIGN_UP.MY_INFO_MODAL.MODAL_ATTR.CPF_ACC_BAL.MEDISAFE_ACC_TEXT' |
+                                translate}}</div>
+                            <div>{{'CORP_BIZ_SIGN_UP.MY_INFO_MODAL.MODAL_ATTR.CPF_ACC_BAL.RETIREMENT_ACC_TEXT' |
+                                translate}}</div>
                         </div>
                     </ng-template>
                 </ngb-panel>
                 <ngb-panel>
                     <ng-template ngbPanelTitle>
                         <div class="flex space-between">
-                            <div>CPF Housing Withdrawal</div>
+                            <div>{{'CORP_BIZ_SIGN_UP.MY_INFO_MODAL.MODAL_ATTR.CPF_HOUSING.TITLE' | translate}}</div>
                             <div><i class='arrow'></i></div>
                         </div>
                     </ng-template>
                     <ng-template ngbPanelContent>
                         <div class="myinfo-data-content">
-                            <div>Principal withdrawal amount</div>
-                            <div>Monthly Installment Amount</div>
-                            <div>Acrued Interest Amount</div>
-                            <div>Total Amount of CPF Used for Property</div>
+                            <div>{{'CORP_BIZ_SIGN_UP.MY_INFO_MODAL.MODAL_ATTR.CPF_HOUSING.WITHDRAWAL_ACC_TEXT' |
+                                translate}}</div>
+                            <div>{{'CORP_BIZ_SIGN_UP.MY_INFO_MODAL.MODAL_ATTR.CPF_HOUSING.MONTHLY_EMI_TEXT' |
+                                translate}}</div>
+                            <div>{{'CORP_BIZ_SIGN_UP.MY_INFO_MODAL.MODAL_ATTR.CPF_HOUSING.INTEREST_TEXT' | translate}}
+                            </div>
+                            <div>{{'CORP_BIZ_SIGN_UP.MY_INFO_MODAL.MODAL_ATTR.CPF_HOUSING.CPF_AMOUNT_TEXT' | translate}}
+                            </div>
                         </div>
                     </ng-template>
                 </ngb-panel>
                 <ngb-panel>
                     <ng-template ngbPanelTitle>
                         <div class="flex space-between">
-                            <div>Vehicles & Driving</div>
+                            <div>{{'CORP_BIZ_SIGN_UP.MY_INFO_MODAL.MODAL_ATTR.VEHICLES.TITLE' | translate}}</div>
                             <div><i class='arrow'></i></div>
                         </div>
                     </ng-template>
                     <ng-template ngbPanelContent>
                         <div class="myinfo-data-content">
-                            <div>First Registration Date (LTA)</div>
-                            <div>COE expiry date</div> 
-                            <div>Open Market Value (LTA)</div>
-                            <div>Vehicle Status</div>
+                            <div>{{'CORP_BIZ_SIGN_UP.MY_INFO_MODAL.MODAL_ATTR.VEHICLES.REGISTRATION_DATE_TEXT' |
+                                translate}}</div>
+                            <div>{{'CORP_BIZ_SIGN_UP.MY_INFO_MODAL.MODAL_ATTR.VEHICLES.EXPIRY_DATE_TEXT' | translate}}
+                            </div>
+                            <div>{{'CORP_BIZ_SIGN_UP.MY_INFO_MODAL.MODAL_ATTR.VEHICLES.MARKET_VALUE_TEXT' | translate}}
+                            </div>
+                            <div>{{'CORP_BIZ_SIGN_UP.MY_INFO_MODAL.MODAL_ATTR.VEHICLES.VEHICLE_STATUS_TEXT' |
+                                translate}}</div>
                         </div>
                     </ng-template>
                 </ngb-panel>
             </ngb-accordion>
         </div>
-        <div class="mt30">Would you like to proceed?</div>
+        <div class="mt30">{{'CORP_BIZ_SIGN_UP.MY_INFO_MODAL.PROCEED_QUEST' | translate}}</div>
     </div>
     <div class="row">
-      <div class="col-12" *ngIf="primaryActionLabel">
-        <button type="button" class="action-button modal-btn-disabled" (click)="primaryActionSelected()" id="errorModeButton" [disabled]="disablePrimaryBtn" >
-          {{primaryActionLabel}}
-        </button>
-      </div>
+        <div class="col-12" *ngIf="primaryActionLabel">
+            <button type="button" class="action-button modal-btn-disabled" (click)="primaryActionSelected()"
+                id="errorModeButton" [disabled]="disablePrimaryBtn">
+                {{primaryActionLabel}}
+            </button>
+        </div>
     </div>
-    
-  </div>
+
+</div>

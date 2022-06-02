@@ -10,6 +10,8 @@ import { CreateAccountMyinfoModalComponent } from '../create-account-myinfo-moda
 import { SignUpService } from '../sign-up.service';
 import { ModelWithButtonComponent } from 'src/app/shared/modal/model-with-button/model-with-button.component';
 import { SIGN_UP_ROUTE_PATHS } from '../sign-up.routes.constants';
+import { Subscription } from 'rxjs';
+import { SIGN_UP_CONFIG } from '../sign-up.constant';
 
 @Component({
   selector: 'app-corp-biz-signup',
@@ -21,10 +23,14 @@ export class CorpBizSignupComponent implements OnInit {
 
   secondTimer: any;
   loader2StartTime: any;
+  loader1Modal: any;
   loader2Modal: any;
   loader3Modal: any;
   loadingModalRef: NgbModalRef;
   myInfoSubscription: any;
+  modalBtnTxt: string;
+  myinfoChangeListener: Subscription;
+
   constructor(
     private modal: NgbModal,
     private router: Router,
@@ -43,6 +49,12 @@ export class CorpBizSignupComponent implements OnInit {
       this.loader3Modal = this.translate.instant(
         'CORP_BIZ_SIGN_UP.LOADER3'
       );
+      this.modalBtnTxt = this.translate.instant(
+        'CORP_BIZ_SIGN_UP.MY_INFO_MODAL.BTN'
+      );
+      this.loader1Modal = this.translate.instant(
+        'CORP_BIZ_SIGN_UP.LOADER1'
+      );
     });
 
     this.configService.getConfig().subscribe((config: IConfig) => {
@@ -54,6 +66,47 @@ export class CorpBizSignupComponent implements OnInit {
     this.navbarService.setNavbarVisibility(true);
     this.navbarService.setNavbarMode(101);
     this.footerService.setFooterVisibility(false);
+
+    this.myinfoChangeListener = this.myInfoService.changeListener.subscribe((myinfoObj: any) => {
+      if (myinfoObj && myinfoObj !== '' &&
+        this.myInfoService.getMyInfoAttributes() === this.signUpService.myInfoAttributes.join()) {
+        if (myinfoObj.status && myinfoObj.status === SIGN_UP_CONFIG.CREATE_ACCOUNT_STATIC.SUCCESS && this.myInfoService.isMyInfoEnabled) {
+          this.getMyInfoAccountCreateData();
+        } else if (myinfoObj.status && myinfoObj.status === SIGN_UP_CONFIG.CREATE_ACCOUNT_STATIC.CANCELLED) {
+          this.cancelMyInfo();
+        } else {
+          this.closeMyInfoPopup(false);
+        }
+      }
+    });
+  }
+
+  ngOnDestroy(): void {
+    if (this.myinfoChangeListener) {
+      this.myinfoChangeListener.unsubscribe();
+    }
+  }
+
+  getMyInfoAccountCreateData() {
+    this.showFetchPopUp();
+    this.myInfoSubscription = this.myInfoService.getMyInfoAccountCreateData().subscribe((data) => {
+      if (data.responseMessage.responseCode === 6000 && data && data.objectList[0]) {
+        this.closeMyInfoPopup(false);
+        this.signUpService.setCreateAccountMyInfoFormData(data.objectList[0]);
+        this.router.navigate([SIGN_UP_ROUTE_PATHS.CORP_BIZ_SIGNUP_DATA]);
+      } else if (data.responseMessage.responseCode === 6014) {
+        this.closeMyInfoPopup(false);
+        const ref = this.modal.open(ModelWithButtonComponent, { centered: true });
+        ref.componentInstance.errorTitle = this.loader1Modal.title;
+        ref.componentInstance.errorMessageHTML = this.loader1Modal.message;
+        ref.componentInstance.primaryActionLabel = this.loader1Modal.btn;
+      }
+      else {
+        this.closeMyInfoPopup(true);
+      }
+    }, (error) => {
+      this.closeMyInfoPopup(true);
+    });
   }
 
   goToNext() {
@@ -69,7 +122,7 @@ export class CorpBizSignupComponent implements OnInit {
 
   proceedToMyInfo() {
     const ref = this.modal.open(CreateAccountMyinfoModalComponent, { centered: true });
-    ref.componentInstance.myInfo = true;
+    ref.componentInstance.primaryActionLabel = this.modalBtnTxt;
     ref.result
       .then(() => {
         this.getMyInfo();
@@ -126,11 +179,7 @@ export class CorpBizSignupComponent implements OnInit {
   skipMyInfo() {
     this.signUpService.setCorpBizMyInfoStatus(false);
     if (true) {
-      this.router.navigate([SIGN_UP_ROUTE_PATHS.CREATE_ACCOUNT]);
+      this.router.navigate([SIGN_UP_ROUTE_PATHS.CORP_BIZ_CREATE_ACC]);
     }
-  }
-  openModal() {
-    const ref = this.modal.open(CreateAccountMyinfoModalComponent, { centered: true });
-    ref.componentInstance.primaryActionLabel = "Let’s go!";
   }
 }

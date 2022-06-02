@@ -129,5 +129,6 @@ export let SIGN_UP_CONFIG = {
     'mobileno',
     'dob',
     'sex'
-  ]
+  ],
+  ACC_TYPE_CORPBIZ: 'corpbiz'
 };
