@@ -88,7 +88,7 @@ export class EmailVerificationComponent implements OnInit {
     if (this.userType.toLowerCase() === appConstants.USERTYPE.FINLIT.toLowerCase()) {
       this.router.navigate([SIGN_UP_ROUTE_PATHS.FINLIT_LOGIN]);
     } else if (this.userType.toLowerCase() === appConstants.USERTYPE.CORPORATE.toLowerCase()) { 
-      this.router.navigate([SIGN_UP_ROUTE_PATHS.CORPORATE_LOGIN], { queryParams: {orgID: this.appService.getCorporateDetails().uuid}});
+      this.router.navigate([SIGN_UP_ROUTE_PATHS.CORPORATE_LOGIN]);
     } else {
       this.router.navigate([SIGN_UP_ROUTE_PATHS.LOGIN]);
     }
