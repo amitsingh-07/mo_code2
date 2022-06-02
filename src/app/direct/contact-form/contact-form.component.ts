@@ -1,26 +1,30 @@
 import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
+import { NgbActiveModal, NgbDateParserFormatter, NgbDateStruct } from '@ng-bootstrap/ng-bootstrap';
+import { Router } from '@angular/router';
 import { RegexConstants } from '../../shared/utils/api.regex.constants';
-import { SIGN_UP_CONFIG } from 'src/app/sign-up/sign-up.constant';
+import { SIGN_UP_CONFIG } from '../../sign-up/sign-up.constant';
 import { TranslateService } from '@ngx-translate/core';
 import { DirectService } from './../direct.service';
 import { DirectApiService } from '../direct.api.service';
-import { Router } from '@angular/router';
+import { NgbDateCustomParserFormatter } from '../../shared/utils/ngb-date-custom-parser-formatter';
+import { EMAIL_ENQUIRY_SUCCESS } from '../direct-routes.constants';
 
 @Component({
   selector: 'app-contact-form',
   templateUrl: './contact-form.component.html',
   styleUrls: ['./contact-form.component.scss'],
+  providers: [
+    { provide: NgbDateParserFormatter, useClass: NgbDateCustomParserFormatter }
+  ],
   encapsulation: ViewEncapsulation.None
 })
 export class ContactFormComponent implements OnInit {
   formObject: FormGroup;
   isSubmitted = false;
-  formValue: any;
-  maxDate: any;
-  minDate: any;
-  insuranceInterestedInList = [];
+  maxDate: NgbDateStruct;
+  minDate: NgbDateStruct;
+  interestedInsuranceInList: string[];
 
   constructor(public activeModal: NgbActiveModal, private fb: FormBuilder, private translate: TranslateService, private directService: DirectService,
     private directApiService: DirectApiService, private router: Router) {
@@ -38,30 +42,20 @@ export class ContactFormComponent implements OnInit {
 
   ngOnInit(): void {
     this.buildForm();
-    this.insuranceInterestedInList = [
-      {id: 1,key: "Bundles",listOrder: 1,name: "Bundles",value: "Bundles"},
-      {id: 2,key: "Critical Illness",listOrder: 1,name: "Critical Illness",value: "Critical Illness"},
-      {id: 3,key: "Global Medical",listOrder: 1,name: "Global Medical",value: "Global Medical"},
-      {id: 4,key: "Local Shield Plans",listOrder: 1,name: "Local Shield Plans",value: "Local Shield Plans"}
-    ]
+    this.getInterestedInsuranceInList();
   }
 
   buildForm() {
-    let emailValidators = [
-      Validators.required, 
-      Validators.email, 
-      Validators.pattern(RegexConstants.Email)
-    ];
     this.formObject = this.fb.group({
       fullName: ['', Validators.required],
-      email: ['', emailValidators],
+      email: ['', [Validators.required, Validators.email, Validators.pattern(RegexConstants.Email)]],
       mobileNumber: ['', Validators.required],
       dateOfBirth: [''],
       gender: [''],
       insuranceInterestedIn: [''],
       isSmoker: [''],
       anyOtherQueries : [''],
-      journeyType : ["insurance-direct"]
+      journeyType : ['insurance-direct']
     })
 
     this.formObject.get('mobileNumber').valueChanges.subscribe(val => {
@@ -85,19 +79,16 @@ export class ContactFormComponent implements OnInit {
       if (payload.dateOfBirth) {
           payload.dateOfBirth = `${payload.dateOfBirth.day}/${payload.dateOfBirth.month}/${payload.dateOfBirth.year}`;
       }
-      if (payload.insuranceInterestedIn) {
-          payload.insuranceInterestedIn = payload.insuranceInterestedIn.value;
-      }
       this.directApiService.directContactMeForm(payload)
         .subscribe(data => {
             if (data.responseMessage.responseCode === 6000) {
               this.closeModal(data.responseMessage.responseDescription);
-              this.router.navigate(['email-enquiry/success']);
+              this.router.navigate([EMAIL_ENQUIRY_SUCCESS]);
             }
           });      
   }
 
-  setDropDownValue(key, value, index) {
+  setDropDownValue(key, value) {
     this.formObject.controls[key].setValue(value);
   }
 
@@ -116,5 +107,52 @@ export class ContactFormComponent implements OnInit {
       this.formObject.controls[fControl].updateValueAndValidity();
     })
   }
+
+  getInterestedInsuranceInList() {
+    this.directApiService.getInterestedInList()
+        .subscribe(data => {
+            if (data.responseMessage.responseCode === 6000) {
+              this.interestedInsuranceInList = data.objectList;
+            }
+          }); 
+  }
+
+  setControlValue(value, controlName) {
+    value = value.trim().replace(RegexConstants.trimSpace, ' ');
+    if (value !== undefined) {
+      value = value.replace(/\n/g, '');
+      value = value.substring(0, 300);
+      this.formObject.controls[controlName].setValue(value);
+      return value;
+    }
+  }
+
+    // #SET THE CONTROL FOR 300 CHARACTERS LIMIT
+  onKeyPressEvent(event: any, content: any) {
+      const selection = window.getSelection();
+      if (content.length >= 300 && selection.type !== 'Range') {
+        const id = event.target.id;
+        const el = document.querySelector('#' + id);
+        this.setCaratTo(el, 300, content);
+        event.preventDefault();
+      }
+      return (event.which !== 13);
+  }
+
+    // #FOR 300 CHARACTERS FIELD CURSOR POSITION
+    setCaratTo(contentEditableElement, position, content) {
+      contentEditableElement.innerText = content;
+      if (document.createRange) {
+        const range = document.createRange();
+        range.selectNodeContents(contentEditableElement);
+  
+        range.setStart(contentEditableElement.firstChild, position);
+        range.setEnd(contentEditableElement.firstChild, position);
+  
+        const selection = window.getSelection();
+        selection.removeAllRanges();
+        selection.addRange(range);
+      }
+    }
 
 }

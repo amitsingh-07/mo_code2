@@ -10,7 +10,8 @@
   },
   "COVERAGE": {
     "TITLE": "Pick A Coverage Type",
-    "MOBILE_TITLE": "Protection Type"
+    "MOBILE_TITLE": "Protection Type",
+    "MANUAL_CONTACT_BTN" : "Don’t Miss Out"
   },
   "PROFILE": {
     "TITLE": "Your Profile",
@@ -210,7 +211,7 @@
         "BTN_LBL": "Contact Me",
         "FORM": {
           "FULLNAME": {
-            "LABEL": "Full name",
+            "LABEL": "Name",
             "ERROR": {
               "REQUIRED": "Enter a Name"
             }

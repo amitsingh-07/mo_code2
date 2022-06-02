@@ -69,14 +69,14 @@ export class CreateAccountModelComponent implements OnInit, AfterViewInit {
     this.activeModal.close();
     if (page === 'signup') {
       this.signUpService.clearData();
-      if (this.appService.getCorporateDetails().organisationEnabled) {
+      if (this.appService.getCorporateDetails() && this.appService.getCorporateDetails().organisationEnabled) {
         this.router.navigate([SIGN_UP_ROUTE_PATHS.CORPORATE_CREATE_ACCOUNT_MY_INFO]);
       } else {
         this.router.navigate([SIGN_UP_ROUTE_PATHS.CREATE_ACCOUNT_MY_INFO]);
       }
     }
     if (page === 'login') {
-      if (this.appService.getCorporateDetails().organisationEnabled) {
+      if (this.appService.getCorporateDetails() && this.appService.getCorporateDetails().organisationEnabled) {
         this.router.navigate([SIGN_UP_ROUTE_PATHS.CORPORATE_LOGIN], { queryParams: {orgID: this.appService.getCorporateDetails().uuid}});
       } else {
         this.router.navigate([SIGN_UP_ROUTE_PATHS.LOGIN]);

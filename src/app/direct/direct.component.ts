@@ -34,6 +34,7 @@ import { DirectState } from './direct.state';
 
 const mobileThreshold = 567;
 const SHOWN_DIRECTJOURNEY_CONTACTFORM = 'app_isShown_DirectJourney_ContactForm';
+const DISPLAY_CONTACT_FORM = 120;
 
 @Component({
   selector: 'app-direct',
@@ -53,7 +54,8 @@ export class DirectComponent implements OnInit, AfterViewInit, IPageComponent, O
   componentName: string;
   components = [];
   mouseMove$: Observable<MouseEvent> = fromEvent<MouseEvent>(document, 'mousemove');
-  destroyContactFormTimer$: Subject<boolean> = new Subject();
+  destroyContactFormTimer$ = new Subject<boolean>();
+  manualContactFormSubscription: Subscription;
 
   constructor(
     private router: Router, public navbarService: NavbarService,
@@ -136,8 +138,18 @@ export class DirectComponent implements OnInit, AfterViewInit, IPageComponent, O
       this.appService.setCorporateDetails({organisationEnabled: false, uuid: null});
     }
     if (!JSON.parse(sessionStorage.getItem(SHOWN_DIRECTJOURNEY_CONTACTFORM))) {
-      this.contactFormTimerFn()
+      this.contactFormTimerFn();
     }
+
+    this.manualContactFormSubscription = this.directService.openContactFormManual$
+      .subscribe(showPopup => {
+        if (showPopup) {
+          this.destroyContactFormTimer$.next(true);
+          this.destroyContactFormTimer$.complete();  
+          sessionStorage.setItem(SHOWN_DIRECTJOURNEY_CONTACTFORM, JSON.stringify(true));
+          this.openContactFormModal();
+        }
+    })
   }
 
   /** Systematically trigger contact form when user idling for 2 mins in direct journey */
@@ -146,27 +158,19 @@ export class DirectComponent implements OnInit, AfterViewInit, IPageComponent, O
       switchMap( option => interval(1000)),
       takeUntil(this.destroyContactFormTimer$),
     ).subscribe( idleSeconds => {
-      if (idleSeconds === 60) {
+      if (idleSeconds === DISPLAY_CONTACT_FORM) {
         this.destroyContactFormTimer$.next(true);
         sessionStorage.setItem(SHOWN_DIRECTJOURNEY_CONTACTFORM, JSON.stringify(true));
-        this.openContactFormModal();
-        
+        this.openContactFormModal();        
       }
     })
   }
 
-  async openContactFormModal(): Promise < any > {
-    const userAction = await this.contactFormModalResponse();
-    console.log('userAction ', userAction)
-    return userAction;
-  }
-
-  contactFormModalResponse() {
+  openContactFormModal() {
     const modalRef = this.modal.open(ContactFormComponent, {
       centered: true,
       windowClass: 'custom-full-height contact-form-modal',
     });
-    return modalRef.result;
   }
 
   ngAfterViewInit() {
@@ -195,7 +199,7 @@ export class DirectComponent implements OnInit, AfterViewInit, IPageComponent, O
     }
     this.destroyContactFormTimer$.next(true);
     this.destroyContactFormTimer$.complete();
-
+    this.manualContactFormSubscription.unsubscribe();
   }
 
   setPageTitle(title: string, subTitle?: string, helpIcon?) {
