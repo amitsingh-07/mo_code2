@@ -601,8 +601,8 @@
     },
     "LOCK_MODAL": {
       "TITLE": "To update details",
-      "SRS_DESC": "Please contact <a class='anchor-txt' target='_blank' href='mailto:clientsupport@moneyowl.com.sg'>inv_ops@moneyowl.com.sg</a> to update your SRS Account details",
-      "CPF_DESC": "Please contact <a class='anchor-txt' target='_blank' href='mailto:clientsupport@moneyowl.com.sg'>inv_ops@moneyowl.com.sg</a> to update your CPF IA details"
+      "SRS_DESC": "Please contact <a class='anchor-txt' target='_blank' href='mailto:inv_ops@moneyowl.com.sg'>inv_ops@moneyowl.com.sg</a> to update your SRS Account details",
+      "CPF_DESC": "Please contact <a class='anchor-txt' target='_blank' href='mailto:inv_ops@moneyowl.com.sg'>inv_ops@moneyowl.com.sg</a> to update your CPF IA details"
     }
   },
   "ADD_BANK": {
