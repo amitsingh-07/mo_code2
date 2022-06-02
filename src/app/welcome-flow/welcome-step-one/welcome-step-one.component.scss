@@ -1,0 +1,126 @@
+@import '../../../variables';
+@import '../../../mixins';
+
+
+app-welcome-step-one{
+
+.container-fluid{
+    &.max-width--1024{
+        max-width: 600px !important;
+    }
+    padding-top: 40px;
+}
+
+
+.back-btn-1{
+    @include allmobiles{
+        display: none !important;
+    }
+    @include minPhabletmaxTablet{
+        display: block !important;
+    }
+    @include desktop{
+        display: block !important;
+    }
+}
+
+
+
+@include allmobiles{
+    .back-btn-1{
+        display: none !important;
+    }
+    .back-btn-2{
+        display: block !important;
+    }
+}
+
+
+
+.slidecontainer {
+    width: 100%;
+  }
+  
+.intro_sub-title{
+    font-size: 16px;
+    line-height: 20.08px;
+    text-align: center;
+}
+.form-container{
+    padding: 15px;
+    background-color: $black-squeeze-grey-color;
+    border-radius: 0px 0px 6px 6px;
+}
+.img-center{
+    text-align: center;
+}
+.ring-img{
+    position: absolute;
+}
+.form-control i.right {
+    top: 52%;
+    font-family: "muli regular";
+  }
+.form-control-right input {
+text-align: left !important;
+}
+.form-control.retireTxt.view-mode {
+    background: $white-color !important;
+    opacity: .6;
+  }
+.sub-title{
+    color: #2E8289;
+    font-size: 18px;
+    line-height: 23px;
+    letter-spacing: -0.166667px;
+}
+.slider-dark [disabled].noUi-target .noUi-connects {
+    opacity: .8 !important;
+  }
+  .min-max-val {
+    display: flex;
+     justify-content: space-between;
+    }
+    .min-val, .max-val {
+      color: #2E8289;
+      font-family: $muli-regular;
+      font-size: 14px;
+     }
+    .max-val {
+       text-align: right;
+     }
+     .min-text, .max-text {
+       color: #2E8289;
+       font-family: $muli-regular;
+       font-size: 12px;
+       display: block;
+     }
+.wl-content{
+    font-size: 14px;
+    color: #2E8289;
+}
+.retirement-title{
+    color: $black-color;
+    font-size: 16px;
+    border-radius: 6px 6px 0px 0px;
+    background-color: $white-color;
+    margin-top: 10px;
+    text-align: center;
+    padding: 15px;
+}
+
+
+}
+app-navbar{
+    @include allmobiles{
+        display: none !important;
+    }
+    @include minPhabletmaxTablet{
+        display: block !important;
+    }
+    @include desktop{
+        display: block !important;
+    }
+
+
+}
