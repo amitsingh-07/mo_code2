@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { Router } from '@angular/router';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { TranslateService } from '@ngx-translate/core';
@@ -8,7 +8,8 @@ import { NavbarService } from '../../shared/navbar/navbar.service';
 @Component({
   selector: 'app-corp-biz-signup-with-data',
   templateUrl: './corp-biz-signup-with-data.component.html',
-  styleUrls: ['./corp-biz-signup-with-data.component.scss']
+  styleUrls: ['./corp-biz-signup-with-data.component.scss'],
+  encapsulation: ViewEncapsulation.None,
 })
 export class CorpBizSignupWithDataComponent implements OnInit {
 
