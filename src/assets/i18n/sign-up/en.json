@@ -600,7 +600,7 @@
       "DESC": "Only primary holder of this joint account can amend the bank details. As you are the secondary holder, kindly advise your primary holder to edit the bank details for this joint account."
     },
     "LOCK_MODAL": {
-      "TITLE": "Oops, Unable to Update",
+      "TITLE": "To update details",
       "SRS_DESC": "Please contact <a class='anchor-txt' target='_blank' href='mailto:clientsupport@moneyowl.com.sg'>inv_ops@moneyowl.com.sg</a> to update your SRS Account details",
       "CPF_DESC": "Please contact <a class='anchor-txt' target='_blank' href='mailto:clientsupport@moneyowl.com.sg'>inv_ops@moneyowl.com.sg</a> to update your CPF IA details"
     }
