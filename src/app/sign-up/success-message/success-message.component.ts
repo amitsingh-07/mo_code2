@@ -45,7 +45,7 @@ export class SuccessMessageComponent implements OnInit {
   }
   redirectToLogin() {
     if (this.organisationEnabled) {
-      this.router.navigate([SIGN_UP_ROUTE_PATHS.CORPORATE_LOGIN], { queryParams: {orgID: this.appService.getCorporateDetails().uuid}});
+      this.router.navigate([SIGN_UP_ROUTE_PATHS.CORPORATE_LOGIN]);
     } else {
       this.router.navigate([SIGN_UP_ROUTE_PATHS.LOGIN]);
     }
