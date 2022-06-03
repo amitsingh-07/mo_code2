@@ -245,7 +245,7 @@ export class SignUpService {
       captcha: captchaValue,
       sessionId: this.authService.getSessionId(),
       profileType: profileType,
-      redirectUrl: window.location.origin + resetUrl + '?key='
+      redirectUrl: window.location.origin + resetUrl + '?token='
     };
   }
   setRestEmailInfo(email, captcha, oldEmail) {
@@ -295,7 +295,7 @@ export class SignUpService {
   constructResetPasswordInfo(pass, key, profileType) {
     return {
       password: pass,
-      resetKey: key,
+      token: key,
       sessionId: this.authService.getSessionId(),
       profileType: profileType
     };

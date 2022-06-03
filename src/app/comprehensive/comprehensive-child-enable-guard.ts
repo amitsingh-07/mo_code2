@@ -36,7 +36,7 @@ export class ComprehensiveChildEnableGuard implements CanActivateChild {
         } else if (!this.authService.isSignedUser()) {
           this.appService.setJourneyType(appConstants.JOURNEY_TYPE_COMPREHENSIVE);
           this.signUpService.setRedirectUrl(state.url);
-          if (this.appService.getCorporateDetails().organisationEnabled) {
+          if (this.appService.getCorporateDetails() && this.appService.getCorporateDetails().organisationEnabled) {
             this.router.navigate([SIGN_UP_ROUTE_PATHS.CORPORATE_LOGIN], { queryParams: {orgID: this.appService.getCorporateDetails().uuid}});
           } else {
             this.router.navigate([SIGN_UP_ROUTE_PATHS.LOGIN]);

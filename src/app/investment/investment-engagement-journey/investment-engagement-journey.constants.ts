@@ -22,7 +22,7 @@ export let INVESTMENT_ENGAGEMENT_JOURNEY_CONSTANTS = {
     CPF_PORTFOLIO: 'CPF'
   },
   PROSPECTUS_FILE: {
-    INVESTMENT: 'prospectus_investment.pdf',
+    INVESTMENT: 'Product Prospectus.pdf',
     WISESAVER: 'prospectus_wise_saver.pdf',
     WISEINCOME: 'prospectus_wise_income.pdf',
     CPF_LGI: 'Prospectus_CPF_LGI fund.pdf',

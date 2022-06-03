@@ -18,10 +18,10 @@ export class DirectAccessGuard implements CanActivate {
     }
     canActivate(route: ActivatedRouteSnapshot): Observable<boolean> | Promise<boolean> | boolean {
         const selectedPlans = this.directService.getSelectedPlans();
-        if (!this.authService.isSignedUser() && this.appService.getCorporateDetails().organisationEnabled) {
+        if (!this.authService.isSignedUser() && this.appService.getCorporateDetails() && this.appService.getCorporateDetails().organisationEnabled) {
             this.router.navigate([SIGN_UP_ROUTE_PATHS.CORPORATE_LOGIN], { queryParams: { orgID: this.appService.getCorporateDetails().uuid } });
         } else if (route.routeConfig.path === DIRECT_ROUTES.COMPARE_PLANS && (!selectedPlans || selectedPlans.length === 0)) {
-            if (this.appService.getCorporateDetails().organisationEnabled) {
+            if (this.appService.getCorporateDetails() && this.appService.getCorporateDetails().organisationEnabled) {
                 this.router.navigate([SIGN_UP_ROUTE_PATHS.CORPORATE_LOGIN], { queryParams: { orgID: this.appService.getCorporateDetails().uuid } });
             } else {
                 this.router.navigate([DIRECT_BASE_ROUTE]);
