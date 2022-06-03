@@ -21,4 +21,6 @@ export interface IEnvironment {
     configJsonUrl?: string; // Config Json
     hsPortalId?: string; // Hubspot Portal Id
     hsUrlTrack?: string; // Hubspot Tracking of HUKT Code
+    singpassClientId: string; // Singpass Login Client Id
+    singpassAuthJs: string; // Singpass NDI embedded JS
 }

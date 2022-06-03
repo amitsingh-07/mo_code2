@@ -21,5 +21,7 @@ export const environment: IEnvironment = {
   promoCodeJsonUrl: 'https://mo-static-assets.s3-ap-southeast-1.amazonaws.com/promo/prod/promo-details.json',
   configJsonUrl:'https://mo-static-assets.s3.ap-southeast-1.amazonaws.com/promo/KS098130_config.json',
   hsPortalId: '6324163',
-  hsUrlTrack: '3e764f66-0b93-4f91-8e29-75fdf4dc9177'
+  hsUrlTrack: '3e764f66-0b93-4f91-8e29-75fdf4dc9177',
+  singpassClientId: 'iROTlv1CU9Cz3GlYiNosMsZDGIYwWSB3',
+  singpassAuthJs: 'https://id.singpass.gov.sg/static/ndi_embedded_auth.js'
 };

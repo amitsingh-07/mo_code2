@@ -799,4 +799,18 @@ export class ApiService {
         catchError((error: HttpErrorResponse) => this.handleError(error))
       );
   }
+
+  getStateNonce(payload) {
+    return this.http.post(apiConstants.endpoint.singpass.getStateNonce, payload)
+      .pipe(
+        catchError((error: HttpErrorResponse) => this.handleError(error))
+      );
+  }
+
+  loginSingpass(payload) {
+    return this.http.post(apiConstants.endpoint.singpass.loginSingpass, payload)
+      .pipe(
+        catchError((error: HttpErrorResponse) => this.handleError(error))
+      );
+  }
 }
