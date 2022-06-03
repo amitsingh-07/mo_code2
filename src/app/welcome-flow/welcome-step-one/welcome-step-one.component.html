@@ -6,10 +6,10 @@
         <div class="intro_sub-title col-11">
             <p>Tell us about you. You’ll see snapshots of<br> your financial outlook right away...</p>
         </div>
-        <!-- <img class="mx-auto d-block" src="assets/images/welcome-flow/Group 923.svg"> -->
+        <!-- <img class="mx-auto d-block" src="assets/images/welcome-journey/Group 923.svg"> -->
     </div>
 
-    <div class="img-center mt20"><img src="assets/images/welcome-flow/ChillingOut.svg"></div>
+    <div class="img-center mt20"><img src="assets/images/welcome-journey/ChillingOut.svg"></div>
     
     <div class="retirement-title">How ready are you for retirement?</div>
     <div class="form-container">
@@ -29,20 +29,41 @@
             </div>
           </div>
         <!-- <form> -->
-            <div class="slider-dark mt20 mb20">
-                <!-- <nouislider [connect]="true" [min]="0" [max]="15" [(ngModel)]="someRange"></nouislider> -->
-                <!-- <nouislider [disabled]="viewMode" id="retirementSlider" #ciMultiplierSlider (slide)="onSliderChange($event)"
-                [config]="ciSliderConfig"></nouislider> -->
-                <input class="slidecontainer" type="range" min="1" max="100" value="50">
-            
-        <div class="min-max-val">
-        <div class="min-val">{{'CMP.RETIREMENT_PLAN.MIN_AGE'|translate}}<span
-            class="min-text">{{'CMP.RETIREMENT_PLAN.MIN_LABEL'|translate}}</span></div>
-        <div class="max-val">{{'CMP.RETIREMENT_PLAN.MAX_AGE'|translate}}<span
-            class="max-text">{{'CMP.RETIREMENT_PLAN.MAX_LABEL'|translate}}</span>
-        </div>
-      </div>
-            </div>
+            <!-- <div class="slider-dark mt20 mb20">
+                <nouislider [disabled]="viewMode" id="retirementSlider" #ciMultiplierSlider (slide)="onSliderChange($event)"
+                    [config]="ciSliderConfig"></nouislider>
+                <div class="min-max-val">
+                    <div class="min-val">{{'CMP.RETIREMENT_PLAN.MIN_AGE'|translate}}<span
+                            class="min-text">{{'CMP.RETIREMENT_PLAN.MIN_LABEL'|translate}}</span></div>
+                    <div class="max-val">{{'CMP.RETIREMENT_PLAN.MAX_AGE'|translate}}<span
+                            class="max-text">{{'CMP.RETIREMENT_PLAN.MAX_LABEL'|translate}}</span>
+                    </div>
+                </div>
+            </div> -->
+
+            <div class="slider-dark mt20">
+                <nouislider [disabled]="viewMode" id="retirementSlider" #ciMultiplierSlider (slide)="onSliderChange($event)"
+                  [config]="ciSliderConfig"></nouislider>
+                <div class="min-max-val">
+                  <div class="min-val">{{'CMP.RETIREMENT_PLAN.MIN_AGE'|translate}}<span
+                      class="min-text">{{'CMP.RETIREMENT_PLAN.MIN_LABEL'|translate}}</span></div>
+                  <div class="max-val">{{'CMP.RETIREMENT_PLAN.MAX_AGE'|translate}}<span
+                      class="max-text">{{'CMP.RETIREMENT_PLAN.MAX_LABEL'|translate}}</span>
+                  </div>
+                </div>
+              </div>
+              <div class="flex-row retirementAgeValid" *ngIf="!(sliderValid.minAge && sliderValid.userAge)">
+                <div class="flex-col-12">
+                  <div class="form-group-with-bg--content-label" *ngIf="!sliderValid.userAge">
+                    <img src="assets/images/comprehensive/age-warn.svg" />
+                    {{ 'CMP.RETIREMENT_PLAN.RETIREMENT_USER_AGE_VALIDATION' | translate}}
+                  </div>
+                  <div class="form-group-with-bg--content-label mb20" *ngIf="!sliderValid.minAge">
+                    <img src="assets/images/comprehensive/age-warn.svg" />
+                    {{ 'CMP.RETIREMENT_PLAN.RETIREMENT_MIN_AGE_VALIDATION' | translate}}
+                  </div>
+                </div>
+              </div>
 
             <div class="flex-row">
                 <div class="flex-col-7 align-center">
@@ -66,7 +87,7 @@
     </div>
     <div class="row">
         <div class="back-btn back-btn-1 hidden-lg mt30 col-2"><img src="assets/images/back-web.svg"></div>
-        <div class="col-10"><button type="button" class="btn btn__footer--fixed btn-primary width100" id="myFinancialGoNextBtn">Continue</button></div>
+        <div class="col-10"><button type="button" class="btn btn__footer--fixed btn-primary width100" id="myFinancialGoNextBtn" routerLink="/welcome-journey/welcome-step2">Continue</button></div>
     </div>
     
 </div>

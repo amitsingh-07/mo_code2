@@ -15,6 +15,7 @@ import { FormGroup, FormArray, FormBuilder, } from '@angular/forms';
 })
 export class WelcomeStepOneComponent implements OnInit {
   viewMode: boolean;
+  retirementValueChanges = false;
   retirementPlanForm: FormGroup;
   sliderValue = COMPREHENSIVE_CONST.RETIREMENT_PLAN.MIN_AGE;
   sliderValid = { minAge: true, userAge: true };
@@ -42,7 +43,7 @@ export class WelcomeStepOneComponent implements OnInit {
   constructor(  public footerService: FooterService,
                 public navbarService: NavbarService,
                 private translate: TranslateService) {
-                  
+
                   this.translate.use('en');
                   this.translate.get('COMMON').subscribe((result: string) => {
                   });
@@ -54,18 +55,32 @@ export class WelcomeStepOneComponent implements OnInit {
     this.footerService.setFooterVisibility(false);
   }
   changeSlide($event) {
+    // debugger
     this.sliderValid = { minAge: true, userAge: true };
     if ($event.target.value >= COMPREHENSIVE_CONST.RETIREMENT_PLAN.MAX_AGE) {
       $event.target.value = COMPREHENSIVE_CONST.RETIREMENT_PLAN.MAX_AGE;
     } else if ($event.target.value === '' || $event.target.value < COMPREHENSIVE_CONST.RETIREMENT_PLAN.MIN_AGE) {
       this.sliderValid.minAge = false;
     }
-    if ($event.target.value >= COMPREHENSIVE_CONST.RETIREMENT_PLAN.MIN_AGE && $event.target.value < this.userAge) {
+    if ($event.target.value >= COMPREHENSIVE_CONST.RETIREMENT_PLAN.MIN_AGE ) {
+    // if ($event.target.value >= COMPREHENSIVE_CONST.RETIREMENT_PLAN.MIN_AGE && $event.target.value < this.userAge) {
       this.sliderValid.userAge = false;
     } else if ($event.target.value >= COMPREHENSIVE_CONST.RETIREMENT_PLAN.MIN_AGE
-      && $event.target.value <= COMPREHENSIVE_CONST.RETIREMENT_PLAN.MAX_AGE && $event.target.value >= this.userAge) {
+      && $event.target.value <= COMPREHENSIVE_CONST.RETIREMENT_PLAN.MAX_AGE ) {
+      // && $event.target.value <= COMPREHENSIVE_CONST.RETIREMENT_PLAN.MAX_AGE && $event.target.value >= this.userAge) {
       this.ciMultiplierSlider.writeValue($event.target.value);
       this.sliderValue = $event.target.value;
+    }
+  }
+
+  onSliderChange(value): void {
+    this.sliderValid = { minAge: true, userAge: true };
+    this.sliderValue = value;
+    this.retirementValueChanges = true;
+    if (this.sliderValue >= COMPREHENSIVE_CONST.RETIREMENT_PLAN.MIN_AGE && this.sliderValue < this.userAge) {
+      //this.sliderValue = Math.ceil(this.userAge / 5) * 5;
+      this.sliderValue = this.userAge;
+      this.ciMultiplierSlider.writeValue(this.sliderValue);
     }
   }
 }

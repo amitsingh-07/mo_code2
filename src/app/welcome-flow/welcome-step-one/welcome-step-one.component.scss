@@ -10,7 +10,9 @@ app-welcome-step-one{
     }
     padding-top: 40px;
 }
-
+.form-group-with-bg--content-label{
+    color: #2E8289;
+}
 
 .back-btn-1{
     @include allmobiles{

@@ -11,6 +11,9 @@ import { MultiTranslateHttpLoader } from 'ngx-translate-multi-http-loader';
 import { WelcomeflowRoutingModule } from './welcomeflow-routing.module';
 import { SharedModule } from '../shared/shared.module';
 import { WelcomeStepOneComponent } from './welcome-step-one/welcome-step-one.component';
+import { WelcomeStepTwoComponent } from './welcome-step-two/welcome-step-two.component';
+import { DownloadReportComponent } from './download-report/download-report.component';
+import { StartPlanningComponent } from './start-planning/start-planning.component';
 
 export function createTranslateLoader(http: HttpClient) {
   return new MultiTranslateHttpLoader(
@@ -23,7 +26,7 @@ export function createTranslateLoader(http: HttpClient) {
 }
 
 @NgModule({
-  declarations: [WelcomeStaticPageComponent, WelcomeStepOneComponent],
+  declarations: [WelcomeStaticPageComponent, WelcomeStepOneComponent, WelcomeStepTwoComponent, DownloadReportComponent, StartPlanningComponent],
   imports: [
     CommonModule,
     ReactiveFormsModule,

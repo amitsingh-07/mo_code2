@@ -1,6 +1,8 @@
 import { Component, OnInit, ViewChild, ViewEncapsulation } from '@angular/core';
 import { FooterService } from 'src/app/shared/footer/footer.service';
 import { NavbarService } from 'src/app/shared/navbar/navbar.service';
+import { TranslateService } from '@ngx-translate/core';
+
 
 @Component({
   selector: 'app-welcome-static-page',
@@ -13,7 +15,10 @@ export class WelcomeStaticPageComponent implements OnInit {
   constructor(
     public footerService: FooterService,
     public navbarService: NavbarService,
-  ) { }
+    public readonly translate: TranslateService
+  ) { 
+    this.translate.use('en');
+  }
 
   ngOnInit(): void {
     this.navbarService.setNavbarMode(101);

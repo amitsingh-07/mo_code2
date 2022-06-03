@@ -1,0 +1,101 @@
+@import '../../../variables';
+@import '../../../mixins';
+app-start-planning {
+    .container-fluid {
+        &.benefits-screen {
+            @include desktop {
+            max-width: 600px;
+            } }}
+    .benefits-card-wrapper {
+        .benefits-card {
+            border-radius: 6px;
+            &__top {
+                width: 450px;
+                height: 175px;
+                background-color: #00C9C3;
+                display: flex;
+                // justify-content: space-between;
+                // margin-top: 10px;
+                &--left {
+                    color: #ffffff;
+                    font-size: 22px;
+                    font-family: $muli-bold;
+                    line-height: 24px;
+                    letter-spacing: -0.18px;
+                    margin: 83px 0 44px 20px;
+                }
+                &--right {
+                    margin: 10px 20px 5px 0;
+                }
+            }
+            &__bottom {
+                width: 450px;
+                height: 582px;
+                padding: 20px;
+                background-color: #ffffff;
+                color: black;
+                hr{
+                    margin: 15px auto;
+                }
+                .title-box{
+                    color: #000000;
+                    font-size: 16px;
+                    font-family: $muli-bold;
+                    line-height: 24px;
+                    letter-spacing: -0.18px;
+                     margin-bottom: 15px;
+                    //     margin-top: 20px;
+                }
+                .start-planning {
+                    display: flex;
+                    .start-planning-img{
+                        margin-top: 7px;
+                    }
+                    .start-planning-details{
+                        margin-left: 15px;
+                    }
+                    .heading {
+                        color: #000000;
+                        font-size: 16px;
+                        font-family: $muli-bold;
+                        line-height: 24px;
+                        letter-spacing: -0.18px;
+                         margin-bottom: 5px;
+                        //     margin-top: 15px;
+                    }
+                    .desc {
+                        color: #000000;
+                        font-size: 14px;
+                        font-family: $muli-regular;
+                        line-height: 17.5px;
+                        letter-spacing: -0.16px;
+                    }
+                }
+            }
+            .dld {
+                width: 350px;
+                height: 60px;
+                margin: auto;
+                margin-left: 25px;
+                margin-top: 30px;
+                border-radius: 6px;
+                background-color: #FF9C39;
+                color: #ffffff;
+                font-size: 22px;
+                font-family: $muli-bold;
+                line-height: 27px;
+                letter-spacing: -0.15px;
+            }
+            .btm-txt{
+                text-align: center;
+                color: #000000;
+                    font-size: 14px;
+                    font-family: $muli-regular;
+                    line-height: 16px;
+                    letter-spacing: -0.18px;
+                    margin-top: 15px;
+                    margin-bottom: 31px;
+            }
+        }
+    }
+}
