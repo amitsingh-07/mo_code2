@@ -44,7 +44,6 @@ import { HubspotService } from './../../shared/analytics/hubspot.service';
 import { SIGN_UP_CONFIG } from './../sign-up.constant';
 import { TermsModalComponent } from './../../shared/modal/terms-modal/terms-modal.component';
 import { SingpassApiService } from '../../singpass/singpass.api.service';
-import { LoginService } from './login.service';
 
 @Component({
   selector: 'app-login',
@@ -108,12 +107,10 @@ export class LoginComponent implements OnInit, AfterViewInit, OnDestroy {
     private investmentCommonService: InvestmentCommonService,
     private hubspotService: HubspotService,
     private helper: HelperService,
-    private singpassService: SingpassApiService,
-    private loginService: LoginService) {
+    private singpassService: SingpassApiService) {
     this.translate.use('en');
     this.translate.get('COMMON').subscribe((result: string) => {
       this.duplicateError = this.translate.instant('COMMON.DUPLICATE_ERROR');
-      this.singpassCallbackCheck();
     });
     this.route.params.subscribe((params) => {
       this.heighlightMobileNumber = params.heighlightMobileNumber;
@@ -373,48 +370,45 @@ export class LoginComponent implements OnInit, AfterViewInit, OnDestroy {
             
           } else {
             if (data.responseMessage && data.responseMessage.responseCode >= 6000) {
-              this.loginService.onSuccessLogin(data);
               // Pulling Customer information to log on Hubspot
-              // this.signUpApiService.getUserProfileInfo().subscribe((data) => {
-              //   let userInfo = data.objectList;
-              //   this.hubspotService.registerEmail(userInfo.emailAddress);
-              //   this.hubspotService.registerPhone(userInfo.mobileNumber);
-              //   const hsPayload = [
-              //     {
-              //       name: "email",
-              //       value: userInfo.emailAddress
-              //     },
-              //     {
-              //       name: "phone",
-              //       value: userInfo.mobileNumber
-              //     },
-              //     {
-              //       name: "firstname",
-              //       value: userInfo.firstName
-              //     },
-              //     {
-              //       name: "lastname",
-              //       value: userInfo.lastName
-              //     }];
-              //   this.hubspotService.submitLogin(hsPayload);
-              // });
-              // this.loginService.hubspotLogin();
-  
-              // this.investmentCommonService.clearAccountCreationActions();
-              // try {
-              //   if (data.objectList[0].customerId) {
-              //     this.appService.setCustomerId(data.objectList[0].customerId);
-              //   }
-              // } catch (e) {
-              //   console.log(e);
-              // }
-              // this.signUpService.removeCaptchaSessionId();
-              // const insuranceEnquiry = this.selectedPlansService.getSelectedPlan();
-              // if (this.checkInsuranceEnquiry(insuranceEnquiry)) {
-              //   this.updateInsuranceEnquiry(insuranceEnquiry, data, false);
-              // } else {
-              //   this.goToNext();
-              // }
+              this.signUpApiService.getUserProfileInfo().subscribe((data) => {
+                let userInfo = data.objectList;
+                this.hubspotService.registerEmail(userInfo.emailAddress);
+                this.hubspotService.registerPhone(userInfo.mobileNumber);
+                const hsPayload = [
+                  {
+                    name: "email",
+                    value: userInfo.emailAddress
+                  },
+                  {
+                    name: "phone",
+                    value: userInfo.mobileNumber
+                  },
+                  {
+                    name: "firstname",
+                    value: userInfo.firstName
+                  },
+                  {
+                    name: "lastname",
+                    value: userInfo.lastName
+                  }];
+                this.hubspotService.submitLogin(hsPayload);
+              });  
+              this.investmentCommonService.clearAccountCreationActions();
+              try {
+                if (data.objectList[0].customerId) {
+                  this.appService.setCustomerId(data.objectList[0].customerId);
+                }
+              } catch (e) {
+                console.log(e);
+              }
+              this.signUpService.removeCaptchaSessionId();
+              const insuranceEnquiry = this.selectedPlansService.getSelectedPlan();
+              if (this.checkInsuranceEnquiry(insuranceEnquiry)) {
+                this.updateInsuranceEnquiry(insuranceEnquiry, data, false);
+              } else {
+                this.goToNext();
+              }
             } else if (data.responseMessage.responseCode === 5016 || data.responseMessage.responseCode === 5011) {
               this.loginForm.controls['captchaValue'].reset();
               this.loginForm.controls['loginPassword'].reset();
@@ -429,7 +423,7 @@ export class LoginComponent implements OnInit, AfterViewInit, OnDestroy {
                 this.signUpService.setCustomerRef(data.objectList[0].customerRef);
               }
               const insuranceEnquiry = this.selectedPlansService.getSelectedPlan();
-              if (this.loginService.checkInsuranceEnquiry(insuranceEnquiry)) {
+              if (this.checkInsuranceEnquiry(insuranceEnquiry)) {
                 this.updateInsuranceEnquiry(insuranceEnquiry, data, true);
               } else {
                 this.callErrorModal(data);
@@ -457,28 +451,28 @@ export class LoginComponent implements OnInit, AfterViewInit, OnDestroy {
     }
   }
 
-  // goToNext() {
-  //   const investmentRoutes = [INVESTMENT_ACCOUNT_ROUTE_PATHS.ROOT, INVESTMENT_ACCOUNT_ROUTE_PATHS.START];
-  //   const redirect_url = this.signUpService.getRedirectUrl();
-  //   const journeyType = this.appService.getJourneyType();
-  //   if (this.appService.getJourneyType() === appConstants.JOURNEY_TYPE_COMPREHENSIVE) {
-  //     this.getUserProfileAndNavigate(appConstants.JOURNEY_TYPE_COMPREHENSIVE);
-  //   } else if (redirect_url && investmentRoutes.indexOf(redirect_url) >= 0) {
-  //     this.signUpService.clearRedirectUrl();
-  //     this.getUserProfileAndNavigate(appConstants.JOURNEY_TYPE_INVESTMENT);
-  //   } else if (journeyType === appConstants.JOURNEY_TYPE_WILL_WRITING && this.willWritingService.getWillCreatedPrelogin()) {
-  //     this.getUserProfileAndNavigate(appConstants.JOURNEY_TYPE_WILL_WRITING);
-  //   } else {
-  //     this.router.navigate([SIGN_UP_ROUTE_PATHS.DASHBOARD]);
-  //   }
-  // }
+  goToNext() {
+    const investmentRoutes = [INVESTMENT_ACCOUNT_ROUTE_PATHS.ROOT, INVESTMENT_ACCOUNT_ROUTE_PATHS.START];
+    const redirect_url = this.signUpService.getRedirectUrl();
+    const journeyType = this.appService.getJourneyType();
+    if (this.appService.getJourneyType() === appConstants.JOURNEY_TYPE_COMPREHENSIVE) {
+      this.getUserProfileAndNavigate(appConstants.JOURNEY_TYPE_COMPREHENSIVE);
+    } else if (redirect_url && investmentRoutes.indexOf(redirect_url) >= 0) {
+      this.signUpService.clearRedirectUrl();
+      this.getUserProfileAndNavigate(appConstants.JOURNEY_TYPE_INVESTMENT);
+    } else if (journeyType === appConstants.JOURNEY_TYPE_WILL_WRITING && this.willWritingService.getWillCreatedPrelogin()) {
+      this.getUserProfileAndNavigate(appConstants.JOURNEY_TYPE_WILL_WRITING);
+    } else {
+      this.router.navigate([SIGN_UP_ROUTE_PATHS.DASHBOARD]);
+    }
+  }
 
-  // checkInsuranceEnquiry(insuranceEnquiry): boolean {
-  //   return ((this.appService.getJourneyType() === appConstants.JOURNEY_TYPE_DIRECT ||
-  //     this.appService.getJourneyType() === appConstants.JOURNEY_TYPE_GUIDED) &&
-  //     ((insuranceEnquiry.plans && insuranceEnquiry.plans.length > 0)
-  //       || (insuranceEnquiry.enquiryProtectionTypeData && insuranceEnquiry.enquiryProtectionTypeData.length > 0)));
-  // }
+  checkInsuranceEnquiry(insuranceEnquiry): boolean {
+    return ((this.appService.getJourneyType() === appConstants.JOURNEY_TYPE_DIRECT ||
+      this.appService.getJourneyType() === appConstants.JOURNEY_TYPE_GUIDED) &&
+      ((insuranceEnquiry.plans && insuranceEnquiry.plans.length > 0)
+        || (insuranceEnquiry.enquiryProtectionTypeData && insuranceEnquiry.enquiryProtectionTypeData.length > 0)));
+  }
 
   updateInsuranceEnquiry(insuranceEnquiry, data, errorModal: boolean) {
     const journeyType = (insuranceEnquiry.journeyType === appConstants.JOURNEY_TYPE_DIRECT) ?
@@ -699,21 +693,6 @@ export class LoginComponent implements OnInit, AfterViewInit, OnDestroy {
         }
       }
     }
-  }
-
-  singpassCallbackCheck() {
-    this.route.queryParams.subscribe((qp) => {
-      console.log('Get Router Params:', this.route.snapshot.queryParams);
-      if(qp['code'] && qp['state']) {
-        // Check if User is authenticated yet
-        if (!this.authService.isAuthenticated()) {
-          this.authService.authenticate().subscribe((token) => {
-          });
-        }
-        // this.router.navigate([], { queryParams: { 'code': null, 'state': null, }, queryParamsHandling: 'merge' });
-        // this.openSingpassModal(window.event, 'Fail');
-      }
-    });
   }
 
 }
