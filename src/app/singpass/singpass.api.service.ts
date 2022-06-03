@@ -1,6 +1,9 @@
 import { Injectable } from '@angular/core';
+
 import { ApiService } from '../shared/http/api.service';
 import { AuthenticationService } from '../shared/http/auth/authentication.service';
+import { environment } from './../../environments/environment';
+import { SIGN_UP_ROUTE_PATHS } from '../sign-up/sign-up.routes.constants';
 
 @Injectable({
   providedIn: 'root'
@@ -25,6 +28,7 @@ export class SingpassApiService {
   }
 
   initSingpassAuthSession(authParamsSupplier) {
+    console.log("URL = " + environment.apiBaseUrl + SIGN_UP_ROUTE_PATHS.SINGPASS_CALLBACK_URL)
     const onError = (errorId, message) => {
       console.log(`onError. errorId:${errorId} message:${message}`);
     }
@@ -32,7 +36,7 @@ export class SingpassApiService {
       'qr_wrapper',
       {
         clientId: 'iROTlv1CU9Cz3GlYiNosMsZDGIYwWSB3', // Replace with your client ID
-        redirectUri: 'https://newmouat1.ntucbfa.com/app/singpass/callback',        // Replace with a registered redirect URI
+        redirectUri: environment.apiBaseUrl + SIGN_UP_ROUTE_PATHS.SINGPASS_CALLBACK_URL,        // Replace with a registered redirect URI
         scope: 'openid',
         responseType: 'code'
       },
