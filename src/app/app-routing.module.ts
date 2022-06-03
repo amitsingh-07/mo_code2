@@ -23,7 +23,6 @@ import { WillWritingEnableGuard } from './will-writing/will-writing-enable-guard
 import { PaymentChildEnableGuard } from './payment/payment-child-enable-guard';
 import { PaymentEnableGuard } from './payment/payment-enable-guard';
 import { NotSupportedComponent } from './not-supported/not-supported.component';
-import { SingpassCallBackComponent } from './singpass/callback/singpass-callback.component';
 
 const routes: Routes = [
   {
@@ -90,10 +89,6 @@ const routes: Routes = [
         loadChildren: () => import('./promo-code/promo-code.module').then(m => m.PromoCodeModule),
         canActivate: [InvestmentEnableGuard],
         canActivateChild: [InvestmentChildEnableGuard]
-      },
-      { 
-        path: 'singpass/callback', 
-        component: SingpassCallBackComponent
       },
       // Legacy Routes
       { path: 'email-enquiry/success', component: EmailEnquirySuccessComponent },
