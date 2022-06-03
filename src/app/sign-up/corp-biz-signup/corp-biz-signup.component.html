@@ -6,21 +6,20 @@
                     <img class="create_account__header-icon" src="assets/images/corp-sign-up-myinfo.svg" />
                 </div>
                 <div class="sign-up-max-width">
-                    <h2 class="signup-wrapper__title">Choose how you want to activate your Corporate Account
+                    <h2 class="signup-wrapper__title">{{'CORP_BIZ_SIGN_UP.SIGN_UP_DESC' | translate}}
                     </h2>
                     <div class="signup-wrapper__description">
-                        <p>Retrieve Myinfo with Singpass is a fast and secured way to activate your account.
-                            <span class="text-bold">Applicable to Singapore Citizens and Singapore Permanent Citizens
-                                (PRs) only.</span>
+                        <p [innerHTML]="'CORP_BIZ_SIGN_UP.SIGN_UP_MY_INFO_DESC' | translate">
                         </p>
                     </div>
-                    <div id="nextDependentBtn" class="autofill-logo" (click)="openModal()"><img
-                            src="assets/images/retrieve-singpass-logo.svg" /></div>
-                    <div class="separator"><span class="txt-or">Or</span></div>
+                    <div id="nextDependentBtn" class="autofill-logo">
+                        <img src="assets/images/retrieve-singpass-logo.svg" (click)="proceedToMyInfo()" />
+                    </div>
+                    <div class="separator"><span class="txt-or">{{'CORP_BIZ_SIGN_UP.OR_TXT' | translate}}</span></div>
                     <div class="flex-col-12">
-                        <div class="flex-col autofill-link">
-                            <div class="autofill-text">Complete Form Manually</div>
-                            <div class="autofill-estimation">Estimated 3 minutes</div>
+                        <div class="flex-col autofill-link" (click)="skipMyInfo()">
+                            <div class="autofill-text">{{'CORP_BIZ_SIGN_UP.SIGN_UP_MANUAL_BTN_TXT' | translate}}</div>
+                            <div class="autofill-estimation">{{'CORP_BIZ_SIGN_UP.MANUAL_ESTIMATED_TIME_TXT' | translate}}</div>
                         </div>
                     </div>
                 </div>

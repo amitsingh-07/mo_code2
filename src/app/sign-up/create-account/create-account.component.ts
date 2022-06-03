@@ -74,6 +74,7 @@ export class CreateAccountComponent implements OnInit, AfterViewInit {
   maxDate: any;
   minDate: any;
   organisationEnabled = false;
+  isCorpBiz: boolean;
 
   constructor(
     private formBuilder: FormBuilder,
@@ -131,6 +132,8 @@ export class CreateAccountComponent implements OnInit, AfterViewInit {
 
       }
     });
+
+    router.url && router.url.indexOf(SIGN_UP_CONFIG.ACC_TYPE_CORPBIZ) >= 0 ? this.isCorpBiz = true : this.isCorpBiz = false;
   }
 
   /**
@@ -204,8 +207,14 @@ export class CreateAccountComponent implements OnInit, AfterViewInit {
     if (this.distribution && this.distribution.login) {
       this.createAccountForm = this.formBuilder.group({
         countryCode: ['', [Validators.required]],
-        mobileNumber: [myInfoMobile, [Validators.required]],
-        email: [myInfoEmail, [Validators.required, Validators.pattern(this.distribution.login.regex)]],
+        mobileNumber: [{
+          value: myInfoMobile,
+          disabled: this.isCorpBiz
+        }, [Validators.required]],
+        email: [{
+          value: myInfoEmail,
+          disabled: this.isCorpBiz
+        }, [Validators.required, Validators.pattern(this.distribution.login.regex)]],
         confirmEmail: [''],
         password: ['', [Validators.required, ValidatePassword]],
         confirmPassword: [''],
@@ -230,8 +239,14 @@ export class CreateAccountComponent implements OnInit, AfterViewInit {
 
     this.createAccountForm = this.formBuilder.group({
       countryCode: ['', [Validators.required]],
-      mobileNumber: [myInfoMobile, [Validators.required]],
-      email: [myInfoEmail, emailValidators],
+      mobileNumber: [{
+        value: myInfoMobile,
+        disabled: this.isCorpBiz
+      }, [Validators.required]],
+      email: [{
+        value: myInfoEmail,
+        disabled: this.isCorpBiz
+      }, emailValidators],
       confirmEmail: [''],
       password: ['', [Validators.required, ValidatePassword]],
       confirmPassword: [''],

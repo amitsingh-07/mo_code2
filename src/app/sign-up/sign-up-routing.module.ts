@@ -292,6 +292,10 @@ const routes: Routes = [
     path: SIGN_UP_ROUTES.CORP_BIZ_SIGNUP_DATA,
     component: CorpBizSignupWithDataComponent
   },
+  {
+    path: SIGN_UP_ROUTES.CORPBIZ_CREATE_ACCOUNT,
+    component: CreateAccountComponent
+  },
   { path: '**', redirectTo: '/page-not-found' }
 ];
 
