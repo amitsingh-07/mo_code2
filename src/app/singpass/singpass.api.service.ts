@@ -27,16 +27,16 @@ export class SingpassApiService {
     return this.apiService.loginSingpass(payload);
   }
 
+  // Init Singpass QR
   initSingpassAuthSession(authParamsSupplier) {
-    console.log("URL = " + environment.apiBaseUrl + SIGN_UP_ROUTE_PATHS.SINGPASS_CALLBACK_URL)
     const onError = (errorId, message) => {
       console.log(`onError. errorId:${errorId} message:${message}`);
     }
     const initAuthSessionResponse = window['NDI'].initAuthSession(
       'qr_wrapper',
       {
-        clientId: 'iROTlv1CU9Cz3GlYiNosMsZDGIYwWSB3', // Replace with your client ID
-        redirectUri: environment.apiBaseUrl + SIGN_UP_ROUTE_PATHS.SINGPASS_CALLBACK_URL,        // Replace with a registered redirect URI
+        clientId: environment.singpassClientId,
+        redirectUri: environment.apiBaseUrl + SIGN_UP_ROUTE_PATHS.SINGPASS_CALLBACK_URL,
         scope: 'openid',
         responseType: 'code'
       },
@@ -44,5 +44,10 @@ export class SingpassApiService {
       onError
     );
     console.log('initAuthSession: ', initAuthSessionResponse);
+  }
+
+  // Method to invoke when user abort login
+  cancelSingpassAuthSession() {
+    window['NDI'].cancelAuthSession();
   }
 }

@@ -62,5 +62,12 @@ if (environment.production) {
   enableProdMode();
 }
 
+// Add Singpass Login NDI Script
+if (environment.singpassClientId && environment.singpassAuthJs) {
+  const singpassScript = document.createElement('script');
+  singpassScript.setAttribute('src', environment.singpassAuthJs);
+  document.head.appendChild(singpassScript);
+}
+
 platformBrowserDynamic().bootstrapModule(AppModule)
   .catch((err) => console.log(err));

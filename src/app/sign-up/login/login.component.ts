@@ -192,16 +192,13 @@ export class LoginComponent implements OnInit, AfterViewInit, OnDestroy {
   }
 
   async initSingpassQR() {
-      const authParamsSupplier = async () => {
-        const promise = await this.singpassApiService.getStateNonce().toPromise()
-        .catch(() => {
-          // Error handling when app api fail
-          console.log("Implement a nervous system check for this.");
-        });
-        return promise['objectList'][0];
-      }
-      this.loginForm.reset();
+    const authParamsSupplier = async () => {
+      const promise = await this.singpassApiService.getStateNonce().toPromise();
+      return promise['objectList'][0];
+    }
+    if (authParamsSupplier) {
       this.singpassApiService.initSingpassAuthSession(authParamsSupplier);
+    }
   }
 
   setCaptchaValidator() {
@@ -486,12 +483,8 @@ export class LoginComponent implements OnInit, AfterViewInit, OnDestroy {
   onSuccessLogin(data) {
     this.hubspotLogin();
     this.investmentCommonService.clearAccountCreationActions();
-    try {
-      if (data.objectList[0].customerId) {
-        this.appService.setCustomerId(data.objectList[0].customerId);
-      }
-    } catch (e) {
-      console.log(e);
+    if (data.objectList[0] && data.objectList[0].customerId) {
+      this.appService.setCustomerId(data.objectList[0].customerId);
     }
     this.signUpService.removeCaptchaSessionId();
     const insuranceEnquiry = this.selectedPlansService.getSelectedPlan();
@@ -689,12 +682,10 @@ export class LoginComponent implements OnInit, AfterViewInit, OnDestroy {
     if (window.localStorage && /Mobi|Android/i.test(navigator.userAgent)) {
       if (type) {
         if (type !== window.localStorage.getItem("LOGIN_PREFERENCE")) {
-          console.log("SETTING LOGIN TYPE " + type)
           window.localStorage.setItem('LOGIN_PREFERENCE', type);
         }
       } else {
         if (window.localStorage.getItem("LOGIN_PREFERENCE")) {
-          console.log("GETTING LOGIN TYPE " + window.localStorage.getItem("LOGIN_PREFERENCE"))
           this.toggleSingpass(window.localStorage.getItem("LOGIN_PREFERENCE"));
         }
       }
@@ -704,13 +695,13 @@ export class LoginComponent implements OnInit, AfterViewInit, OnDestroy {
   singpassCallbackCheck() {
     this.route.queryParams.subscribe((qp) => {
       console.log('Get Router Params:', this.route.snapshot.queryParams);
-      if(qp['code'] && qp['state']) {
+      if (qp['code'] && qp['state']) {
         // Check if User is authenticated yet
         if (!this.authService.isAuthenticated()) {
           this.authService.authenticate().subscribe((token) => {
           });
         }
-        this.singpassApiService.loginSingpass(qp['code'], qp['state']).subscribe((res)=> {
+        this.singpassApiService.loginSingpass(qp['code'], qp['state']).subscribe((res) => {
           if (res) {
             console.log("RESPONSE = " + res)
             // continue successful login
@@ -718,7 +709,7 @@ export class LoginComponent implements OnInit, AfterViewInit, OnDestroy {
           } else {
             this.failSingpassLogin('Fail');
           }
-        }, (err)=> {
+        }, (err) => {
           this.failSingpassLogin(err);
         });
       }
