@@ -15,7 +15,9 @@ export const environment: IEnvironment = {
   gtagPropertyId: '',
   gaPropertyId: '',
   fbPropertyId: '',
-  brand: 'g'
+  brand: 'g',
+  singpassClientId: '',
+  singpassAuthJs: ''
 };
 
 /*

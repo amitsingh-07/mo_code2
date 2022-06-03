@@ -19,12 +19,12 @@
         <div class="signup-wrapper">
           <div class="password-qr-toggle">
             <div class="toggle-container">
-              <div [ngClass]="{'white-txt': showPasswordLogin}" class="toggle-btn" (click)="toggleSingpass('PASSWORD')">{{
+              <div [ngClass]="{'white-txt': showPasswordLogin}" class="toggle-btn" (click)="toggleSingpass('PASSWORD', $event)">{{
                 'LOGIN.PASSWORD_LOGIN' | translate}}</div>
               <div [hidden]="showSingpassLogin" class=" underline"></div>
             </div>
             <div class="toggle-container">
-              <div [ngClass]="{'white-txt': showSingpassLogin}" class="toggle-btn" (click)="toggleSingpass('SINGPASS')">
+              <div [ngClass]="{'white-txt': showSingpassLogin}" class="toggle-btn" (click)="toggleSingpass('SINGPASS', $event)">
                 <img [hidden]="showSingpassLogin" src="assets/images/singpass/icon-scan-qr.svg">
                 <img [hidden]="showPasswordLogin" src="assets/images/singpass/icon-scan-qr-white.svg">
                 <div>{{ 'LOGIN.SINGPASS_MOBILE' | translate}}</div>
@@ -105,7 +105,7 @@
       <div class="singpass-container" [ngClass]="{'show-element': showSingpassLogin}">
         <div class="title-container">
           <img src="assets/images/singpass/icon-new.svg" />
-          <div>{{ 'LOGIN.LOGIN_USE_SINGPASS' | translate}}<a (click)="openModal($event)">{{ 'LOGIN.HOW_TO_ACTIVATE' |
+          <div>{{ 'LOGIN.LOGIN_USE_SINGPASS' | translate}}<a (click)="openSingpassModal($event)">{{ 'LOGIN.HOW_TO_ACTIVATE' |
               translate}}</a></div>
         </div>
         <div id="qr_wrapper"></div>

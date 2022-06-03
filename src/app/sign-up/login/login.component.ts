@@ -8,7 +8,7 @@ import { FormBuilder, FormGroup, Validators, FormControl } from '@angular/forms'
 import { ActivatedRoute, Router } from '@angular/router';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { TranslateService } from '@ngx-translate/core';
-import { flatMap } from 'rxjs/operators';
+import { mergeMap } from 'rxjs/operators';
 
 import { SessionsService } from './../../shared/Services/sessions/sessions.service';
 import { appConstants } from '../../app.constants';
@@ -43,6 +43,7 @@ import { LoginFormError } from './login-form-error';
 import { HubspotService } from './../../shared/analytics/hubspot.service';
 import { SIGN_UP_CONFIG } from './../sign-up.constant';
 import { TermsModalComponent } from './../../shared/modal/terms-modal/terms-modal.component';
+import { SingpassApiService } from '../../singpass/singpass.api.service';
 
 @Component({
   selector: 'app-login',
@@ -70,7 +71,7 @@ export class LoginComponent implements OnInit, AfterViewInit, OnDestroy {
   capslockFocus: boolean;
   showPasswordLogin = true;
   showSingpassLogin = false;
-  singpassEnabled = false;
+  singpassEnabled = true;
   @ViewChild('welcomeTitle') welcomeTitle: ElementRef;
 
   @HostListener('window:resize', ['$event'])
@@ -105,10 +106,12 @@ export class LoginComponent implements OnInit, AfterViewInit, OnDestroy {
     private loaderService: LoaderService,
     private investmentCommonService: InvestmentCommonService,
     private hubspotService: HubspotService,
-    private helper: HelperService) {
+    private helper: HelperService,
+    private singpassApiService: SingpassApiService) {
     this.translate.use('en');
     this.translate.get('COMMON').subscribe((result: string) => {
       this.duplicateError = this.translate.instant('COMMON.DUPLICATE_ERROR');
+      this.singpassCallbackCheck();
     });
     this.route.params.subscribe((params) => {
       this.heighlightMobileNumber = params.heighlightMobileNumber;
@@ -119,10 +122,10 @@ export class LoginComponent implements OnInit, AfterViewInit, OnDestroy {
     if (route.snapshot.data[0]) {
       this.finlitEnabled = route.snapshot.data[0]['finlitEnabled'];
       this.organisationEnabled = route.snapshot.data[0]['organisationEnabled'];
-      this.singpassEnabled = route.snapshot.data[0]['singpassEnabled'];
+      this.singpassEnabled = false;
       this.appService.clearJourneys();
       this.appService.clearPromoCode();
-    }   
+    }
     this.appService.setCorporateDetails({organisationEnabled: this.organisationEnabled, uuid: this.route.snapshot.queryParams.orgID || null});
     this.signUpService.removeUserType();
     if(this.authService.isSignedUserWithRole(SIGN_UP_CONFIG.ROLE_2FA)) {
@@ -130,6 +133,8 @@ export class LoginComponent implements OnInit, AfterViewInit, OnDestroy {
       this.signUpService.removeFromLoginPage();
       this.signUpService.removeFromMobileNumber();
     }
+    // Check if mobile device and set last login type
+    this.getSetLoginPref();
   }
   /**
     * Initialize tasks.
@@ -186,30 +191,14 @@ export class LoginComponent implements OnInit, AfterViewInit, OnDestroy {
     }
   }
 
-  initSingpassQR() {
+  async initSingpassQR() {
     const authParamsSupplier = async () => {
-      // Replace the below with an `await`ed call to initiate an auth session on your backend
-      // which will generate state+nonce values, e.g
-      return { state: "" + (Math.random() * 1000000000000000 + '').slice(0, 15), nonce: "" + (Math.random() * 1000000000000000 + '').slice(0, 15) };
-    };
-
-    const onError = (errorId, message) => {
-      console.log(`onError. errorId:${errorId} message:${message}`);
-    };
-
-    const initAuthSessionResponse = window['NDI'].initAuthSession(
-      'qr_wrapper',
-      {
-        clientId: 'iROTlv1CU9Cz3GlYiNosMsZDGIYwWSB3', // Replace with your client ID
-        redirectUri: 'https://newmouat1.ntucbfa.com/app/singpass/callback',        // Replace with a registered redirect URI
-        scope: 'openid',
-        responseType: 'code'
-      },
-      authParamsSupplier,
-      onError
-    );
-
-    console.log('initAuthSession: ', initAuthSessionResponse);
+      const promise = await this.singpassApiService.getStateNonce().toPromise();
+      return promise['objectList'][0];
+    }
+    if (authParamsSupplier) {
+      this.singpassApiService.initSingpassAuthSession(authParamsSupplier);
+    }
   }
 
   setCaptchaValidator() {
@@ -376,49 +365,9 @@ export class LoginComponent implements OnInit, AfterViewInit, OnDestroy {
                 this.setCaptchaValidator();
               }
             }
-            
           } else {
             if (data.responseMessage && data.responseMessage.responseCode >= 6000) {
-              // Pulling Customer information to log on Hubspot
-              this.signUpApiService.getUserProfileInfo().subscribe((data) => {
-                let userInfo = data.objectList;
-                this.hubspotService.registerEmail(userInfo.emailAddress);
-                this.hubspotService.registerPhone(userInfo.mobileNumber);
-                const hsPayload = [
-                  {
-                    name: "email",
-                    value: userInfo.emailAddress
-                  },
-                  {
-                    name: "phone",
-                    value: userInfo.mobileNumber
-                  },
-                  {
-                    name: "firstname",
-                    value: userInfo.firstName
-                  },
-                  {
-                    name: "lastname",
-                    value: userInfo.lastName
-                  }];
-                this.hubspotService.submitLogin(hsPayload);
-              });
-  
-              this.investmentCommonService.clearAccountCreationActions();
-              try {
-                if (data.objectList[0].customerId) {
-                  this.appService.setCustomerId(data.objectList[0].customerId);
-                }
-              } catch (e) {
-                console.log(e);
-              }
-              this.signUpService.removeCaptchaSessionId();
-              const insuranceEnquiry = this.selectedPlansService.getSelectedPlan();
-              if (this.checkInsuranceEnquiry(insuranceEnquiry)) {
-                this.updateInsuranceEnquiry(insuranceEnquiry, data, false);
-              } else {
-                this.goToNext();
-              }
+              this.onSuccessLogin(data);
             } else if (data.responseMessage.responseCode === 5016 || data.responseMessage.responseCode === 5011) {
               this.loginForm.controls['captchaValue'].reset();
               this.loginForm.controls['loginPassword'].reset();
@@ -459,6 +408,32 @@ export class LoginComponent implements OnInit, AfterViewInit, OnDestroy {
           this.progressModal = false;
         });
     }
+  }
+  // Pulling Customer information to log on Hubspot
+  hubspotLogin() {
+    this.signUpApiService.getUserProfileInfo().subscribe((data) => {
+      let userInfo = data.objectList;
+      this.hubspotService.registerEmail(userInfo.emailAddress);
+      this.hubspotService.registerPhone(userInfo.mobileNumber);
+      const hsPayload = [
+        {
+          name: "email",
+          value: userInfo.emailAddress
+        },
+        {
+          name: "phone",
+          value: userInfo.mobileNumber
+        },
+        {
+          name: "firstname",
+          value: userInfo.firstName
+        },
+        {
+          name: "lastname",
+          value: userInfo.lastName
+        }];
+      this.hubspotService.submitLogin(hsPayload);
+    }); 
   }
 
   goToNext() {
@@ -505,6 +480,21 @@ export class LoginComponent implements OnInit, AfterViewInit, OnDestroy {
     });
   }
 
+  onSuccessLogin(data) {
+    this.hubspotLogin();
+    this.investmentCommonService.clearAccountCreationActions();
+    if (data.objectList[0] && data.objectList[0].customerId) {
+      this.appService.setCustomerId(data.objectList[0].customerId);
+    }
+    this.signUpService.removeCaptchaSessionId();
+    const insuranceEnquiry = this.selectedPlansService.getSelectedPlan();
+    if (this.checkInsuranceEnquiry(insuranceEnquiry)) {
+      this.updateInsuranceEnquiry(insuranceEnquiry, data, false);
+    } else {
+      this.goToNext();
+    }
+  }
+
   callErrorModal(data) {
     if (data.responseMessage.responseCode === 5012) {
       this.showErrorModal(this.translate.instant('SIGNUP_ERRORS.LOGIN_EMAIL_TITLE'),
@@ -538,7 +528,7 @@ export class LoginComponent implements OnInit, AfterViewInit, OnDestroy {
     if (emailResend) {
       ref.componentInstance.enableResendEmail = true;
       ref.componentInstance.resendEmail.pipe(
-        flatMap(($e) =>
+        mergeMap(($e) =>
           this.resendEmailVerification()))
         .subscribe((data) => {
           if (data.responseMessage.responseCode === 6007) {
@@ -546,9 +536,7 @@ export class LoginComponent implements OnInit, AfterViewInit, OnDestroy {
           }
         });
     }
-
   }
-
 
   resendEmailVerification() {
     const organisationCode = this.organisationEnabled && this.loginForm.get('organisationCode').value || null;
@@ -658,24 +646,24 @@ export class LoginComponent implements OnInit, AfterViewInit, OnDestroy {
     }
   }
 
-  openModal(event) {
+  openSingpassModal(event, type?) {
     const ref = this.modal.open(ModelWithButtonComponent, { centered: true });
-    ref.componentInstance.errorTitle = this.translate.instant('LOGIN.SINGPASS_ACTIVATE_MODAL.TITLE');
-    ref.componentInstance.errorMessageHTML = this.translate.instant('LOGIN.SINGPASS_ACTIVATE_MODAL.MESSAGE');
+    if (type) {
+      ref.componentInstance.errorTitle = this.translate.instant('LOGIN.SINGPASS_LOGIN_FAIL_MODAL.TITLE');
+      ref.componentInstance.errorMessageHTML = this.translate.instant('LOGIN.SINGPASS_LOGIN_FAIL_MODAL.MESSAGE');
+      ref.componentInstance.primaryActionLabel = this.translate.instant('LOGIN.SINGPASS_LOGIN_FAIL_MODAL.BACK_BTN');
+      ref.componentInstance.primaryAction.subscribe(() => {
+        this.modal.dismissAll();
+      });
+    } else {
+      ref.componentInstance.errorTitle = this.translate.instant('LOGIN.SINGPASS_ACTIVATE_MODAL.TITLE');
+      ref.componentInstance.errorMessageHTML = this.translate.instant('LOGIN.SINGPASS_ACTIVATE_MODAL.MESSAGE');
+    }
     event.stopPropagation();
     event.preventDefault();
   }
-
-  openSingpassLoginFail(event) {
-    const ref = this.modal.open(ModelWithButtonComponent, { centered: true });
-    ref.componentInstance.errorTitle = this.translate.instant('LOGIN.SINGPASS_LOGIN_FAIL_MODAL.TITLE');
-    ref.componentInstance.errorMessageHTML = this.translate.instant('LOGIN.SINGPASS_LOGIN_FAIL_MODAL.TITLE');
-    ref.componentInstance.myInfo = true;
-    event.stopPropagation();
-    event.preventDefault();
-  }
-  
-  toggleSingpass(type) {
+  // Toggle UI for showing Singpass/Password Login
+  toggleSingpass(type, event?) {
     if (type === SIGN_UP_CONFIG.SINGPASS) {
       this.showSingpassLogin = true;
       this.showPasswordLogin = false;
@@ -683,5 +671,56 @@ export class LoginComponent implements OnInit, AfterViewInit, OnDestroy {
       this.showPasswordLogin = true;
       this.showSingpassLogin = false;
     }
+    this.getSetLoginPref(type);
+    if(event) {
+      event.stopPropagation();
+      event.preventDefault();
+    }
   }
+  // Get or set the login pref for mobile view
+  getSetLoginPref(type?) {
+    if (this.singpassEnabled) {
+      if (window.localStorage && /Mobi|Android/i.test(navigator.userAgent)) {
+        if (type) {
+          if (type !== window.localStorage.getItem("LOGIN_PREFERENCE")) {
+            window.localStorage.setItem('LOGIN_PREFERENCE', type);
+          }
+        } else {
+          if (window.localStorage.getItem("LOGIN_PREFERENCE")) {
+            this.toggleSingpass(window.localStorage.getItem("LOGIN_PREFERENCE"));
+          }
+        }
+      }
+    }
+  }
+
+  singpassCallbackCheck() {
+    this.route.queryParams.subscribe((qp) => {
+      console.log('Get Router Params:', this.route.snapshot.queryParams);
+      if (qp['code'] && qp['state']) {
+        // Check if User is authenticated yet
+        if (!this.authService.isAuthenticated()) {
+          this.authService.authenticate().subscribe((token) => {
+          });
+        }
+        this.singpassApiService.loginSingpass(qp['code'], qp['state']).subscribe((res) => {
+          if (res) {
+            console.log("RESPONSE = " + res)
+            // continue successful login
+            this.onSuccessLogin(res);
+          } else {
+            this.failSingpassLogin('Fail');
+          }
+        }, (err) => {
+          this.failSingpassLogin(err);
+        });
+      }
+    });
+  }
+
+  failSingpassLogin(error) {
+    this.router.navigate([], { queryParams: { 'code': null, 'state': null, }, queryParamsHandling: 'merge' });
+    this.openSingpassModal(window.event, error);
+  }
+
 }
