@@ -33,6 +33,7 @@ const routes: Routes = [
       { path: 'home', component: HomeComponent },
       { path: '9462test-myinfo', component: TestMyInfoComponent },
       { path: 'direct', loadChildren: () => import('./direct/direct.module').then(m => m.DirectModule) },
+      { path: 'welcome-journey', loadChildren: () => import('./welcome-flow/welcome-flow.module').then(m => m.WelcomeFlowModule) },
       { path: 'guideme', loadChildren: () => import('./guide-me/guide-me.module').then(m => m.GuideMeModule) },
       { path: 'accounts', loadChildren: () => import('./sign-up/sign-up.module').then(m => m.SignUpModule) },
       { path: 'myinfo', component: CallBackComponent },

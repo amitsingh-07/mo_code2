@@ -1,0 +1,51 @@
+{
+  "STATIC_PAGE":{
+    "TITLE": "Welcome to MoneyOwl!",
+    "SUB_TITLE": "In just a few steps, you will embark on a Comprehensive Financial Planning Journey with MoneyOwl. We’ll be taking you through your finances now and throughout your retirement years.",
+    "SUB_TEXT": "Corporate partner plans for Free!",
+    "CONT_BTN": "Let's go"
+  },
+
+
+  "DOWNLOAD_REPORT":{
+    "DESC": "Your financial outlook is ready  in this preview report!",
+    "BTN_TEXT": "Download Report",
+    "TITLE": "What’s Next?",
+    "MESSAGE": "Follow your downloaded report where we will guide you on how to bring your recommendations and insights to life.",
+    "CONT_BTN": "Continue"
+  },
+  "START_PLANNING":{
+    "DESC": "Great, you are all ready to start planning!",
+    "TITLE": "Features and benefits to explore:",
+    "SUB_HEAD1": "Cover your insurance needs",
+    "SUB_TXT1": "Fully close your insurance gaps to protect the future of your loved ones.",
+    "SUB_HEAD2": "Cover your investment needs",
+    "SUB_TXT2": "Invest your available cash for a comfortable retirement.",
+    "SUB_HEAD3": "Enhance your report recommendations ",
+    "SUB_TXT3": "Refine your report when you continue to update more details about you and your family.",
+    "SUB_HEAD4": "Speak to adviser",
+    "SUB_TXT4": "Contact us for a one-on-one advice should you need any customised planning.",
+    "BTN_TXT": "Start Planning",
+    "MESSAGE": "Corporate partner plans for Free!"
+  }
+
+
+
+
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+}
