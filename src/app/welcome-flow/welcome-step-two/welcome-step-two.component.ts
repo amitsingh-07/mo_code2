@@ -10,15 +10,22 @@ import { FormGroup, FormArray, FormBuilder, } from '@angular/forms';
   encapsulation: ViewEncapsulation.None
 })
 export class WelcomeStepTwoComponent implements OnInit {
+  showCpfLifePayout: boolean;
 
   constructor( 
     public footerService: FooterService,
     public navbarService: NavbarService,
-    private translate: TranslateService) { }
+    private translate: TranslateService) {
+      this.translate.use('en');
+     }
 
   ngOnInit(): void {
     this.navbarService.setNavbarMode(101);
     this.footerService.setFooterVisibility(false);
+    this.showCpfLifePayout = false;
+  }
+  showPayout(){
+    this.showCpfLifePayout = true;
   }
 
 }

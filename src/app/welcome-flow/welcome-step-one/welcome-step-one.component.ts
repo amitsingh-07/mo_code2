@@ -5,7 +5,6 @@ import { NouisliderComponent } from 'ng2-nouislider';
 import { TranslateService } from '@ngx-translate/core';
 import { COMPREHENSIVE_CONST } from '../../comprehensive/comprehensive-config.constants';
 import { FormGroup, FormArray, FormBuilder, } from '@angular/forms';
-// import {WELCOME_JOURNEY_CONST } from './welcome-config.constants';
 
 @Component({
   selector: 'app-welcome-step-one',
@@ -55,7 +54,7 @@ export class WelcomeStepOneComponent implements OnInit {
     this.footerService.setFooterVisibility(false);
   }
   changeSlide($event) {
-    // debugger
+    debugger
     this.sliderValid = { minAge: true, userAge: true };
     if ($event.target.value >= COMPREHENSIVE_CONST.RETIREMENT_PLAN.MAX_AGE) {
       $event.target.value = COMPREHENSIVE_CONST.RETIREMENT_PLAN.MAX_AGE;
