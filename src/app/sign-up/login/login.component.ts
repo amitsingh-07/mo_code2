@@ -71,7 +71,7 @@ export class LoginComponent implements OnInit, AfterViewInit, OnDestroy {
   capslockFocus: boolean;
   showPasswordLogin = true;
   showSingpassLogin = false;
-  singpassEnabled = false;
+  singpassEnabled = true;
   @ViewChild('welcomeTitle') welcomeTitle: ElementRef;
 
   @HostListener('window:resize', ['$event'])
@@ -122,7 +122,7 @@ export class LoginComponent implements OnInit, AfterViewInit, OnDestroy {
     if (route.snapshot.data[0]) {
       this.finlitEnabled = route.snapshot.data[0]['finlitEnabled'];
       this.organisationEnabled = route.snapshot.data[0]['organisationEnabled'];
-      this.singpassEnabled = route.snapshot.data[0]['singpassEnabled'];
+      this.singpassEnabled = false;
       this.appService.clearJourneys();
       this.appService.clearPromoCode();
     }
@@ -679,14 +679,16 @@ export class LoginComponent implements OnInit, AfterViewInit, OnDestroy {
   }
   // Get or set the login pref for mobile view
   getSetLoginPref(type?) {
-    if (window.localStorage && /Mobi|Android/i.test(navigator.userAgent)) {
-      if (type) {
-        if (type !== window.localStorage.getItem("LOGIN_PREFERENCE")) {
-          window.localStorage.setItem('LOGIN_PREFERENCE', type);
-        }
-      } else {
-        if (window.localStorage.getItem("LOGIN_PREFERENCE")) {
-          this.toggleSingpass(window.localStorage.getItem("LOGIN_PREFERENCE"));
+    if (this.singpassEnabled) {
+      if (window.localStorage && /Mobi|Android/i.test(navigator.userAgent)) {
+        if (type) {
+          if (type !== window.localStorage.getItem("LOGIN_PREFERENCE")) {
+            window.localStorage.setItem('LOGIN_PREFERENCE', type);
+          }
+        } else {
+          if (window.localStorage.getItem("LOGIN_PREFERENCE")) {
+            this.toggleSingpass(window.localStorage.getItem("LOGIN_PREFERENCE"));
+          }
         }
       }
     }

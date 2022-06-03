@@ -23,7 +23,7 @@ export class SingpassApiService {
 
   // Get state & nonce using session id
   loginSingpass(code, state) {
-    const payload = { code: code, state: state };
+    const payload = { code: code, state: state, redirect_uri: environment.apiBaseUrl + SIGN_UP_ROUTE_PATHS.SINGPASS_REDIRECT_URL };
     return this.apiService.loginSingpass(payload);
   }
 
@@ -36,7 +36,7 @@ export class SingpassApiService {
       'qr_wrapper',
       {
         clientId: environment.singpassClientId,
-        redirectUri: environment.apiBaseUrl + SIGN_UP_ROUTE_PATHS.SINGPASS_CALLBACK_URL,
+        redirectUri: environment.apiBaseUrl + SIGN_UP_ROUTE_PATHS.SINGPASS_REDIRECT_URL,
         scope: 'openid',
         responseType: 'code'
       },
