@@ -44,9 +44,6 @@ export class WelcomeStepOneComponent implements OnInit {
                 private translate: TranslateService) {
 
                   this.translate.use('en');
-                  this.translate.get('COMMON').subscribe((result: string) => {
-                  });
-
                  }
 
   ngOnInit(): void {
