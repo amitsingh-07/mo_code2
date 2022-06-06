@@ -1,13 +1,12 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { WelcomeStaticPageComponent } from './welcome-static-page/welcome-static-page.component';
-
 import { HttpClient } from '@angular/common/http';
 import { ReactiveFormsModule } from '@angular/forms';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
 import { NouisliderModule } from 'ng2-nouislider';
 import { MultiTranslateHttpLoader } from 'ngx-translate-multi-http-loader';
+import { WelcomeStaticPageComponent } from './welcome-static-page/welcome-static-page.component';
 import { WelcomeflowRoutingModule } from './welcomeflow-routing.module';
 import { SharedModule } from '../shared/shared.module';
 import { WelcomeStepOneComponent } from './welcome-step-one/welcome-step-one.component';

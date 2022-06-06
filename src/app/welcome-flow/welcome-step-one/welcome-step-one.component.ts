@@ -1,10 +1,10 @@
 import { Component, OnInit, ViewChild, ViewEncapsulation } from '@angular/core';
 import { TranslateService } from '@ngx-translate/core';
+import { FormGroup, FormArray, FormBuilder, } from '@angular/forms';
 import { FooterService } from '../../shared/footer/footer.service';
 import { NavbarService } from '../../shared/navbar/navbar.service';
 import { NouisliderComponent } from 'ng2-nouislider';
 import { COMPREHENSIVE_CONST } from '../../comprehensive/comprehensive-config.constants';
-import { FormGroup, FormArray, FormBuilder, } from '@angular/forms';
 
 @Component({
   selector: 'app-welcome-step-one',
@@ -51,7 +51,6 @@ export class WelcomeStepOneComponent implements OnInit {
     this.footerService.setFooterVisibility(false);
   }
   changeSlide($event) {
-    debugger
     this.sliderValid = { minAge: true, userAge: true };
     if ($event.target.value >= COMPREHENSIVE_CONST.RETIREMENT_PLAN.MAX_AGE) {
       $event.target.value = COMPREHENSIVE_CONST.RETIREMENT_PLAN.MAX_AGE;
@@ -59,11 +58,9 @@ export class WelcomeStepOneComponent implements OnInit {
       this.sliderValid.minAge = false;
     }
     if ($event.target.value >= COMPREHENSIVE_CONST.RETIREMENT_PLAN.MIN_AGE ) {
-    // if ($event.target.value >= COMPREHENSIVE_CONST.RETIREMENT_PLAN.MIN_AGE && $event.target.value < this.userAge) {
       this.sliderValid.userAge = false;
     } else if ($event.target.value >= COMPREHENSIVE_CONST.RETIREMENT_PLAN.MIN_AGE
       && $event.target.value <= COMPREHENSIVE_CONST.RETIREMENT_PLAN.MAX_AGE ) {
-      // && $event.target.value <= COMPREHENSIVE_CONST.RETIREMENT_PLAN.MAX_AGE && $event.target.value >= this.userAge) {
       this.ciMultiplierSlider.writeValue($event.target.value);
       this.sliderValue = $event.target.value;
     }
