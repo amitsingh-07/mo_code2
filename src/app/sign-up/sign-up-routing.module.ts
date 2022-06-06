@@ -41,6 +41,7 @@ import { ReferAFriendComponent } from './refer-a-friend/refer-a-friend.component
 import { ReferalRedirectingPartComponent } from './referal-redirecting-part/referal-redirecting-part.component';
 import { ManageProfileComponent } from './manage-profile/manage-profile.component';
 import { AddUpdateCpfiaComponent } from './add-update-cpfia/add-update-cpfia.component';
+import { CorpBizActivationLinkComponent } from './corp-biz-activation-link/corp-biz-activation-link.component';
 
 const routes: Routes = [
   {
@@ -281,6 +282,10 @@ const routes: Routes = [
     path: SIGN_UP_ROUTES.UPDATE_CPFIA,
     component: AddUpdateCpfiaComponent,
     canActivate: [AuthGuard, TwoFactorAuthGuardService]
+  },
+  {
+    path: SIGN_UP_ROUTES.CORP_BIZ_ACTIVATIONLINK,
+    component: CorpBizActivationLinkComponent
   },
   { path: '**', redirectTo: '/page-not-found' }
 ];
