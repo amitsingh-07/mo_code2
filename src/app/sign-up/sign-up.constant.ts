@@ -134,5 +134,10 @@ export let SIGN_UP_CONFIG = {
     'childrenbirthrecords',
     
   ],
-  ACC_TYPE_CORPBIZ: 'corpbiz'
+  ACC_TYPE_CORPBIZ: 'corpbiz',
+  CORP_BIZ_ACTIVATIONLINK:{
+    INVALID_USER: 'invalid-user',
+    LINK_EXPIRED: 'link-expired',
+    ACC_EXIST: 'account-exists'
+  }
 };

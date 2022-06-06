@@ -57,6 +57,7 @@ import { CpfiaSuccessModalComponent } from './add-update-cpfia/cpfia-success-mod
 import { CreateAccountMyinfoModalComponent } from './create-account-myinfo-modal/create-account-myinfo-modal.component';
 import { CorpBizSignupComponent } from './corp-biz-signup/corp-biz-signup.component';
 import { CorpBizSignupWithDataComponent } from './corp-biz-signup-with-data/corp-biz-signup-with-data.component';
+import { CorpBizActivationLinkComponent } from './corp-biz-activation-link/corp-biz-activation-link.component';
 
 export function createTranslateLoader(http: HttpClient) {
   return new MultiTranslateHttpLoader(
@@ -119,7 +120,8 @@ export function createTranslateLoader(http: HttpClient) {
     CpfiaSuccessModalComponent,
     CreateAccountMyinfoModalComponent,
     CorpBizSignupComponent,
-    CorpBizSignupWithDataComponent
+    CorpBizSignupWithDataComponent,
+    CorpBizActivationLinkComponent
   ],
   providers: [SignUpAccessGuard, SignUpCorporateAccessGuard, AuthGuardService, TwoFactorAuthGuardService],
   entryComponents: [EditMobileNumberComponent, SrsSuccessModalComponent, CreateAccountMyinfoModalComponent]

@@ -373,6 +373,10 @@ export class ApiService {
     return this.http.post(apiConstants.endpoint.emailValidityCheck + this.handleErrorFlag, payload);
   }
 
+  corporateEmailValidityCheck(payload) {
+    return this.http.post(apiConstants.endpoint.corporateEmailValidityCheck + this.handleErrorFlag, payload);
+  }
+
   verifyEmail(payload) {
     return this.http.post(apiConstants.endpoint.verifyEmail + '?handleError=true', payload)
       .pipe(
@@ -795,6 +799,20 @@ export class ApiService {
 
   getOrganisationCode(organisationUUID) {
     return this.http.get(`${apiConstants.endpoint.organisation.getOrganisationCodeByUUID}?uuid=${organisationUUID}`)
+      .pipe(
+        catchError((error: HttpErrorResponse) => this.handleError(error))
+      );
+  }
+
+  getStateNonce(payload) {
+    return this.http.post(apiConstants.endpoint.singpass.getStateNonce, payload)
+      .pipe(
+        catchError((error: HttpErrorResponse) => this.handleError(error))
+      );
+  }
+
+  loginSingpass(payload) {
+    return this.http.post(apiConstants.endpoint.singpass.loginSingpass, payload)
       .pipe(
         catchError((error: HttpErrorResponse) => this.handleError(error))
       );

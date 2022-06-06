@@ -149,7 +149,7 @@
                       <div class="flex-col-12 mb10">
                         <div class="dropdown-control" [ngClass]="{'inline-error': formObject.controls.insuranceInterestedIn.invalid && formObject.controls.insuranceInterestedIn.dirty}">
                           <div ngbDropdown placement="bottom-right">
-                            <button class="btn btn-dropdown" id="salutation-drpdown" ngbDropdownToggle>
+                            <button class="btn btn-dropdown" id="insurance-drpdown" ngbDropdownToggle>
                               <span *ngIf="!formObject.controls.insuranceInterestedIn.value">
                                 {{ 'CONTACT_MODAL.FORM.INTERESTED_INSURANCE.PLACEHOLDER_LBL' | translate }} 
                               </span>
@@ -157,10 +157,9 @@
                                 {{formObject.controls.insuranceInterestedIn.value}}
                               </span>
                             </button>
-                            <div class="dropdown" ngbDropdownMenu aria-labelledby="salutation-drpdown">
-                              <button class="dropdown-item" *ngFor="let insurance of interestedInsuranceInList; let i = index;"
-                                (click)="setDropDownValue('insuranceInterestedIn', insurance, i)"
-                                id="salutation-option-{{i}}">{{insurance}}</button>
+                            <div class="dropdown" ngbDropdownMenu aria-labelledby="insurance-drpdown">
+                              <button class="dropdown-item" *ngFor="let insurance of interestedInsuranceInList"
+                                (click)="setDropDownValue('insuranceInterestedIn', insurance)">{{insurance}}</button>
                             </div>
                           </div>
                         </div>
@@ -200,12 +199,17 @@
                           </div>
                         </div>
                       </div>
+                      <div class="flex-col-12 mb10 mt20 insurance-lbl">
+                        {{ 'CONTACT_MODAL.FORM.ENQUIRY.LABEL' | translate}} 
+                      </div>
                       <div class="flex-row mb20">
                         <div class="flex-col-12 stretch">
-                          <div class="form-group-floating-label">
-                            <input type="text" id="enquiry" class="form-control"  #enquiry formControlName="anyOtherQueries">
-                            <label class="form-control-placeholder"
-                              for="enquiry">{{ 'CONTACT_MODAL.FORM.ENQUIRY.LABEL' | translate}}</label>
+                          <div contenteditable="true" id="enquiry"
+                          [textContent]="formObject.get('anyOtherQueries').value"
+                          (focusout)="setControlValue($event.target.textContent, 'anyOtherQueries')"
+                          (keypress)="onKeyPressEvent($event, $event.target.textContent)"
+                          maxlength="300" class="content-editable" 
+                          placeholder="Other enquiries">
                           </div>
                         </div>
                       </div>

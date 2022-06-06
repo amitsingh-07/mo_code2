@@ -119,7 +119,7 @@ export class CreateAccountComponent implements OnInit, AfterViewInit {
       this.appService.clearJourneys();
       this.appService.clearPromoCode();
     }
-    this.appService.setCorporateDetails({organisationEnabled: this.organisationEnabled, uuid: this.route.snapshot.queryParams.orgID || this.appService.getCorporateDetails().uuid || null});
+    this.appService.setCorporateDetails({organisationEnabled: this.organisationEnabled, uuid: this.route.snapshot.queryParams.orgID || (this.appService.getCorporateDetails() && this.appService.getCorporateDetails().uuid) || null});
 
     // Set referral code base on the query param
     this.route.queryParams.subscribe((params) => {
