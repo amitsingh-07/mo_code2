@@ -10,4 +10,5 @@ export interface IServerResponse {
     projectedValue: any;
     tenure: any;
     projectedReturns: any;
+    showWelcomeFlow?: boolean;
 }

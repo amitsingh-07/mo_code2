@@ -20,7 +20,7 @@ import { RegexConstants } from '../../shared/utils/api.regex.constants';
 import { Util } from '../../shared/utils/util';
 import { WillWritingService } from '../../will-writing/will-writing.service';
 import { SignUpApiService } from '../sign-up.api.service';
-import { SIGN_UP_ROUTE_PATHS } from '../sign-up.routes.constants';
+import { SIGN_UP_ROUTE_PATHS, WELCOME_JOURNEY_PATH } from '../sign-up.routes.constants';
 import { SignUpService } from '../sign-up.service';
 import { appConstants } from './../../../app/app.constants';
 import { AppService } from './../../../app/app.service';
@@ -588,7 +588,11 @@ export class VerifyMobileComponent implements OnInit, OnDestroy {
     } else if (journeyType === appConstants.JOURNEY_TYPE_WILL_WRITING && this.willWritingService.getWillCreatedPrelogin()) {
       this.getUserProfileAndNavigate(appConstants.JOURNEY_TYPE_WILL_WRITING);
     } else {
-      this.redirectAfterLogin = SIGN_UP_ROUTE_PATHS.DASHBOARD;
+      if (this.authService.isShowWelcomeFlow) {
+        this.redirectAfterLogin = WELCOME_JOURNEY_PATH;
+      } else {
+        this.redirectAfterLogin = SIGN_UP_ROUTE_PATHS.DASHBOARD;
+      }
       this.progressModal = true;
       this.loaderService.hideLoader();
       this.router.navigate([this.redirectAfterLogin]);

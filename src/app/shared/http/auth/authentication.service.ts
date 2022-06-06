@@ -36,6 +36,7 @@ export class AuthenticationService {
   private timer2fa: any;
   private is2faVerifyAllowed: boolean = false;
   isUserTypeCorporate = false;
+  isShowWelcomeFlow: boolean = false;
 
   constructor(
     private httpClient: HttpClient, public jwtHelper: JwtHelperService,
@@ -97,6 +98,10 @@ export class AuthenticationService {
           // store user details and jwt token in local storage to keep user logged in between page refreshes
           this.saveAuthDetails(response.objectList[0]);
         }
+        if (organisationEnabled) { // This condition shoudl be removed once api is ready
+          response.showWelcomeFlow = true;
+        }
+        this.isShowWelcomeFlow = response.showWelcomeFlow;
         return response;
       }));
   }
