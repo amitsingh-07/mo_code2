@@ -62,6 +62,11 @@ app-start-journey {
             width: 245px;
         }
     }
+    .btn {
+        &.btn-primary {
+        box-shadow: 0px 6px 7px rgba(0, 0, 0, 0.14) !important;
+        }
+    }
     .journey-content-text {
         background-color: $aqua-squeeze-color;
         padding: 20px;
