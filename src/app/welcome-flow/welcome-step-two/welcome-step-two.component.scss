@@ -24,6 +24,7 @@ app-welcome-step-two{
       .card{
       margin: 30px 0 20px;
       border-radius: 6px;
+      border: none;
       .card-title{
         padding: 15px 0 14px;
         background-color: $white-color;
@@ -40,12 +41,15 @@ app-welcome-step-two{
         padding: 25px;
         background-color:#F4FAFB;
         text-align: center;
-        @include min350max375{
-          padding: 15px;
-        }
-        @include iphone6{
-          padding: 15px;
-        }
+          @include allmobiles{
+            padding: 15px;
+          }
+          @include iphone12{
+            padding: 25px;
+          }
+          @include iphone6plus{
+            padding: 25px;
+          }
         .btn-orange{
           font-family: $muli-bold;
           font-size: 22px;

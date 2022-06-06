@@ -1,8 +1,7 @@
 import { Component, OnInit, ViewChild, ViewEncapsulation } from '@angular/core';
-import { FooterService } from 'src/app/shared/footer/footer.service';
-import { NavbarService } from 'src/app/shared/navbar/navbar.service';
 import { TranslateService } from '@ngx-translate/core';
-
+import { FooterService } from '../../shared/footer/footer.service';
+import { NavbarService } from '../../shared/navbar/navbar.service';
 
 @Component({
   selector: 'app-welcome-static-page',

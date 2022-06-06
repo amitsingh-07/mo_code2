@@ -1,9 +1,11 @@
-import { Component, OnInit, ViewEncapsulation} from '@angular/core';
+import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { TranslateService } from '@ngx-translate/core';
-import { ComprehensiveApiService } from 'src/app/comprehensive/comprehensive-api.service';
-import { ComprehensiveService } from 'src/app/comprehensive/comprehensive.service';
-import { FileUtil } from 'src/app/shared/utils/file.util';
+import { ComprehensiveApiService } from '../../comprehensive/comprehensive-api.service';
+import { ComprehensiveService } from '../../comprehensive/comprehensive.service';
+import { FileUtil } from '../../shared/utils/file.util';
 import { COMPREHENSIVE_CONST } from '../../comprehensive/comprehensive-config.constants';
+import { FooterService } from '../../shared/footer/footer.service';
+import { NavbarService } from '../../shared/navbar/navbar.service';
 
 @Component({
   selector: 'app-download-report',
@@ -16,22 +18,27 @@ export class DownloadReportComponent implements OnInit {
   getCurrentVersionType = COMPREHENSIVE_CONST.VERSION_TYPE.FULL;
 
   constructor(public readonly translate: TranslateService,
-    private comprehensiveService: ComprehensiveService,
-    private downloadfile: FileUtil,
-    private comprehensiveApiService: ComprehensiveApiService,) { 
+              private comprehensiveService: ComprehensiveService,
+              private downloadfile: FileUtil,
+              private comprehensiveApiService: ComprehensiveApiService,
+              public footerService: FooterService,
+              public navbarService: NavbarService
+    ) {
     this.translate.use('en');
   }
 
   ngOnInit(): void {
     this.getComprehensiveSummaryDashboard()
+    this.navbarService.setNavbarMode(101);
+    this.footerService.setFooterVisibility(false);
   }
 
-  getComprehensiveSummaryDashboard(){
+  getComprehensiveSummaryDashboard() {
     this.comprehensiveApiService.getComprehensiveSummaryDashboard().subscribe((dashboardData: any) => {
       if (dashboardData && dashboardData.objectList[0]) {
         this.getComprehensiveSummaryDashboardInfo = this.comprehensiveService.filterDataByInput(dashboardData.objectList, 'type', this.getCurrentVersionType);
       }
-    }); 
+    });
   }
 
   downloadComprehensiveReport() {
@@ -41,7 +48,6 @@ export class DownloadReportComponent implements OnInit {
       newWindow = window.open();
     }
     const payload = { reportId: this.getComprehensiveSummaryDashboardInfo.reportId, enquiryId: this.getComprehensiveSummaryDashboardInfo.enquiryId };
-    // const payload = { reportId: 148302, enquiryId: 5986 };
     this.comprehensiveApiService.downloadComprehensiveReport(payload).subscribe((data: any) => {
       const pdfUrl = window.URL.createObjectURL(data.body);
       if (iOS) {
@@ -56,6 +62,5 @@ export class DownloadReportComponent implements OnInit {
         this.downloadfile.saveAs(data.body, COMPREHENSIVE_CONST.REPORT_PDF_NAME);
       }
     });
-
   }
 }
