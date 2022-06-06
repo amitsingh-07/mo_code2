@@ -311,6 +311,10 @@ export class SignUpApiService {
     return this.apiService.emailValidityCheck(payload);
   }
 
+  checkCorporateEmailValidity(payload) {
+    return this.apiService.corporateEmailValidityCheck(payload);
+  }
+
   resendEmailVerification(value: any, isEmail: boolean, organisationCode = null) {
     const payload = {
       mobileNumber: isEmail ? '' : value,

@@ -122,5 +122,10 @@ export let SIGN_UP_CONFIG = {
     JOINT_ACCOUNT: {
       SATUS: 'ACTIVE'
     }
+  },
+  CORP_BIZ_ACTIVATIONLINK:{
+    INVALID_USER: 'invalid-user',
+    LINK_EXPIRED: 'link-expired',
+    ACC_EXIST: 'account-exists'
   }
 };
