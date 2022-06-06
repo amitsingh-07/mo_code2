@@ -140,7 +140,7 @@ export function createTranslateLoader(http: HttpClient) {
     [
       { prefix: './assets/i18n/app/', suffix: '.json' },
       { prefix: './assets/i18n/home/', suffix: '.json' },
-      { prefix: './assets/i18n/faq/', suffix: '.json' },
+      { prefix: './assets/i18n/faq/', suffix: '.json' }
     ]);
 }
 

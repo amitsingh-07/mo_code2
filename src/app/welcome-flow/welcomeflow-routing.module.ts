@@ -8,8 +8,6 @@ import { DownloadReportComponent } from './download-report/download-report.compo
 import { StartPlanningComponent } from './start-planning/start-planning.component';
 
 const routes: Routes = [
-  // { path: 'welcome-journey', component: WelcomeJourneyComponent },
-  // { path: 'welcome-journey1', component: WelcomeJourney1Component },
   { path: 'welcome-step1', component: WelcomeStepOneComponent },
   { path: 'welcome-step2', component: WelcomeStepTwoComponent },
   { path: 'download-report', component: DownloadReportComponent },
