@@ -98,10 +98,10 @@ export class AuthenticationService {
           // store user details and jwt token in local storage to keep user logged in between page refreshes
           this.saveAuthDetails(response.objectList[0]);
         }
-        if (organisationEnabled) { // This condition shoudl be removed once api is ready
-          response.showWelcomeFlow = true;
+        if (response && response.objectList[1] && typeof response.objectList[1].showWelcomeFlag === 'boolean') {
+          response.objectList[1].showWelcomeFlag = true;  // This line should be removed once api is ready
+          this.isShowWelcomeFlow = response.objectList[1].showWelcomeFlag;
         }
-        this.isShowWelcomeFlow = response.showWelcomeFlow;
         return response;
       }));
   }
