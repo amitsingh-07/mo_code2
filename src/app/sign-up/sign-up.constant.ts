@@ -128,7 +128,11 @@ export let SIGN_UP_CONFIG = {
     'email',
     'mobileno',
     'dob',
-    'sex'
+    'sex',
+    'race',
+    'marital',
+    'childrenbirthrecords',
+    
   ],
   ACC_TYPE_CORPBIZ: 'corpbiz'
 };

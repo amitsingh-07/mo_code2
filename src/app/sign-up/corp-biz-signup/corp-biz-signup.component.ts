@@ -9,7 +9,7 @@ import { NavbarService } from '../../shared/navbar/navbar.service';
 import { CreateAccountMyinfoModalComponent } from '../create-account-myinfo-modal/create-account-myinfo-modal.component';
 import { SignUpService } from '../sign-up.service';
 import { ModelWithButtonComponent } from 'src/app/shared/modal/model-with-button/model-with-button.component';
-import { SIGN_UP_ROUTE_PATHS } from '../sign-up.routes.constants';
+import { SIGN_UP_ROUTES, SIGN_UP_ROUTE_PATHS } from '../sign-up.routes.constants';
 import { Subscription } from 'rxjs';
 import { SIGN_UP_CONFIG } from '../sign-up.constant';
 
@@ -74,6 +74,7 @@ export class CorpBizSignupComponent implements OnInit {
           this.getMyInfoAccountCreateData();
         } else if (myinfoObj.status && myinfoObj.status === SIGN_UP_CONFIG.CREATE_ACCOUNT_STATIC.CANCELLED) {
           this.cancelMyInfo();
+          this.router.navigate([SIGN_UP_ROUTES.CORPBIZ_CREATE_ACCOUNT]);
         } else {
           this.closeMyInfoPopup(false);
         }

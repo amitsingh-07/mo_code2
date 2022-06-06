@@ -157,7 +157,7 @@ export class CreateAccountComponent implements OnInit, AfterViewInit {
       this.createAccountForm.controls['referralCode'].setValue(this.route.snapshot.paramMap.get('referralCode'));
       this.showClearBtn = true;
     }
-    this.createAnimation();      
+    this.createAnimation();
   }
 
   ngAfterViewInit() {
