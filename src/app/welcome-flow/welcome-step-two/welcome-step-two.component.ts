@@ -2,7 +2,7 @@ import { Component, OnInit, ViewChild, ViewEncapsulation } from '@angular/core';
 import { TranslateService } from '@ngx-translate/core';
 import { FooterService } from '../../shared/footer/footer.service';
 import { NavbarService } from '../../shared/navbar/navbar.service';
-import { FormGroup, FormArray, FormBuilder, } from '@angular/forms';
+
 @Component({
   selector: 'app-welcome-step-two',
   templateUrl: './welcome-step-two.component.html',
