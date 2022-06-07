@@ -5,46 +5,49 @@ app-start-planning {
         &.benefits-screen {
             @include desktop {
             max-width: 600px;
-            } }}
+            } }
+        &.max-width--1024{
+            @include allmobiles{
+                padding: 0px !important;
+            }
+        }
+        }
     .benefits-card-wrapper {
         .benefits-card {
             border-radius: 6px;
             &__top {
-                width: 450px;
                 height: 175px;
-                background-color: #00C9C3;
+                background-color: $robins-egg-blue-color;
                 display: flex;
-                // justify-content: space-between;
-                // margin-top: 10px;
                 &--left {
-                    color: #ffffff;
+                    color: $white-color;
                     font-size: 22px;
                     font-family: $muli-bold;
                     line-height: 24px;
                     letter-spacing: -0.18px;
-                    margin: 83px 0 44px 20px;
+                    margin: 50px 0 44px 20px;
                 }
                 &--right {
                     margin: 10px 20px 5px 0;
+                    width: 160px;
+                    height: 160px;
+                    display: flex;
                 }
             }
             &__bottom {
-                width: 450px;
-                height: 582px;
                 padding: 20px;
-                background-color: #ffffff;
-                color: black;
+                background-color: $white-color;
+                color: $black-color;
                 hr{
                     margin: 15px auto;
                 }
                 .title-box{
-                    color: #000000;
+                    color: $black-color;
                     font-size: 16px;
                     font-family: $muli-bold;
                     line-height: 24px;
                     letter-spacing: -0.18px;
                      margin-bottom: 15px;
-                    //     margin-top: 20px;
                 }
                 .start-planning {
                     display: flex;
@@ -55,16 +58,15 @@ app-start-planning {
                         margin-left: 15px;
                     }
                     .heading {
-                        color: #000000;
+                        color: $black-color;
                         font-size: 16px;
                         font-family: $muli-bold;
                         line-height: 24px;
                         letter-spacing: -0.18px;
                          margin-bottom: 5px;
-                        //     margin-top: 15px;
                     }
                     .desc {
-                        color: #000000;
+                        color: $black-color;
                         font-size: 14px;
                         font-family: $muli-regular;
                         line-height: 17.5px;
@@ -73,14 +75,13 @@ app-start-planning {
                 }
             }
             .dld {
-                width: 350px;
-                height: 60px;
-                margin: auto;
-                margin-left: 25px;
-                margin-top: 30px;
-                border-radius: 6px;
-                background-color: #FF9C39;
-                color: #ffffff;
+                position: initial;
+                max-width: 335px;
+                display: flex;
+                justify-content: center;
+                border-radius: 6px !important;
+                background-color: $crusta-orange-color;
+                color: $white-color;
                 font-size: 22px;
                 font-family: $muli-bold;
                 line-height: 27px;
@@ -88,7 +89,7 @@ app-start-planning {
             }
             .btm-txt{
                 text-align: center;
-                color: #000000;
+                color: $black-color;
                     font-size: 14px;
                     font-family: $muli-regular;
                     line-height: 16px;

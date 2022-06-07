@@ -16,6 +16,7 @@ import { NavbarService } from '../../shared/navbar/navbar.service';
 export class DownloadReportComponent implements OnInit {
   getComprehensiveSummaryDashboardInfo: any;
   getCurrentVersionType = COMPREHENSIVE_CONST.VERSION_TYPE.FULL;
+  showDownloadReport = true;
 
   constructor(public readonly translate: TranslateService,
               private comprehensiveService: ComprehensiveService,
@@ -28,7 +29,7 @@ export class DownloadReportComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.getComprehensiveSummaryDashboard()
+    // this.getComprehensiveSummaryDashboard()
     this.navbarService.setNavbarMode(101);
     this.footerService.setFooterVisibility(false);
   }
