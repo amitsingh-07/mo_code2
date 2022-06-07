@@ -8,6 +8,7 @@ import { TranslateService } from '@ngx-translate/core';
 import { ErrorModalComponent } from './../../../shared/modal/error-modal/error-modal.component';
 import { NgbDateCustomParserFormatter } from './../../../shared/utils/ngb-date-custom-parser-formatter';
 import { DirectService } from './../../direct.service';
+import { CRITICAL_ILLNESS_CONST } from '../../direct.constants';
 import { Subscription } from 'rxjs';
 import { Util } from './../../../shared/utils/util';
 
@@ -28,9 +29,7 @@ export class CriticalIllnessFormComponent implements OnInit, OnDestroy {
   doberror = false;
   coverageAmtValuesTemp = Array(10).fill(100000).map((x, i) => x += i * 100000);
   coverageAmtValues = Array(12);
-  durationValues = ['5 Years', '10 Years', 'Till Age 55',
-                    'Till Age 60', 'Till Age 65', 'Till Age 70',
-                    'Whole Life', 'Whole life w/Multiplier'];
+  durationValues = CRITICAL_ILLNESS_CONST.DURATION_LIST;
   minDate;
   maxDate;
   private userInfoSubscription: Subscription;
