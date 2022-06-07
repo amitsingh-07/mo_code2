@@ -1,20 +1,20 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { WelcomeStepOneComponent } from './welcome-step-one.component';
+import { WelcomeflowComponent } from './welcomeflow.component';
 
-describe('WelcomeStepOneComponent', () => {
-  let component: WelcomeStepOneComponent;
-  let fixture: ComponentFixture<WelcomeStepOneComponent>;
+describe('WelcomeflowComponent', () => {
+  let component: WelcomeflowComponent;
+  let fixture: ComponentFixture<WelcomeflowComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ WelcomeStepOneComponent ]
+      declarations: [ WelcomeflowComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(WelcomeStepOneComponent);
+    fixture = TestBed.createComponent(WelcomeflowComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

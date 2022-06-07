@@ -7,12 +7,12 @@ import { NouisliderComponent } from 'ng2-nouislider';
 import { COMPREHENSIVE_CONST } from '../../comprehensive/comprehensive-config.constants';
 
 @Component({
-  selector: 'app-welcome-step-one',
-  templateUrl: './welcome-step-one.component.html',
-  styleUrls: ['./welcome-step-one.component.scss'],
+  selector: 'app-welcomeflow-tell-about-you',
+  templateUrl: './welcomeflow-tell-about-you.component.html',
+  styleUrls: ['./welcomeflow-tell-about-you.component.scss'],
   encapsulation: ViewEncapsulation.None
 })
-export class WelcomeStepOneComponent implements OnInit {
+export class WelcomeflowTellAboutYouComponent implements OnInit {
   viewMode: boolean;
   retirementValueChanges = false;
   retirementPlanForm: FormGroup;
@@ -77,3 +77,4 @@ export class WelcomeStepOneComponent implements OnInit {
     }
   }
 }
+

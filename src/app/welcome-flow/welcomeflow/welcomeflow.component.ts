@@ -4,12 +4,12 @@ import { FooterService } from '../../shared/footer/footer.service';
 import { NavbarService } from '../../shared/navbar/navbar.service';
 
 @Component({
-  selector: 'app-welcome-static-page',
-  templateUrl: './welcome-static-page.component.html',
-  styleUrls: ['./welcome-static-page.component.scss'],
+  selector: 'app-welcomeflow',
+  templateUrl: './welcomeflow.component.html',
+  styleUrls: ['./welcomeflow.component.scss'],
   encapsulation: ViewEncapsulation.None
 })
-export class WelcomeStaticPageComponent implements OnInit {
+export class WelcomeflowComponent implements OnInit {
 
   constructor(
     public footerService: FooterService,

@@ -119,11 +119,6 @@ app-download-report {
                 padding: 0px !important;
             }
         }
-        // &.max-width--1024{
-        //     @include allmobiles{
-        //         padding: 0px !important;
-        //     }
-        // }
         }
     .benefits-card-wrapper {
         .benefits-card {
@@ -187,19 +182,21 @@ app-download-report {
                     }
                 }
             }
-            .dld {
-                position: initial;
-                max-width: 335px;
-                display: flex;
-                justify-content: center;
-                border-radius: 6px !important;
-                background-color: $crusta-orange-color;
-                color: $white-color;
-                font-size: 22px;
-                font-family: $muli-bold;
-                line-height: 27px;
-                letter-spacing: -0.15px;
-            }
+            .btn{
+                &.btn-orange{
+                    position: initial;
+                    max-width: 335px;
+                    display: flex;
+                    justify-content: center;
+                    border-radius: 6px !important;
+                    background-color: $crusta-orange-color;
+                    color: $white-color;
+                    font-size: 22px;
+                    font-family: $muli-bold;
+                    line-height: 27px;
+                    letter-spacing: -0.15px;
+                }
+            } 
             .btm-txt{
                 text-align: center;
                 color: $black-color;

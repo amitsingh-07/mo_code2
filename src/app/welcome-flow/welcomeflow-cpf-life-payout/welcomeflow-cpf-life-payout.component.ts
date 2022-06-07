@@ -4,12 +4,12 @@ import { FooterService } from '../../shared/footer/footer.service';
 import { NavbarService } from '../../shared/navbar/navbar.service';
 
 @Component({
-  selector: 'app-welcome-step-two',
-  templateUrl: './welcome-step-two.component.html',
-  styleUrls: ['./welcome-step-two.component.scss'],
+  selector: 'app-welcomeflow-cpf-life-payout',
+  templateUrl: './welcomeflow-cpf-life-payout.component.html',
+  styleUrls: ['./welcomeflow-cpf-life-payout.component.scss'],
   encapsulation: ViewEncapsulation.None
 })
-export class WelcomeStepTwoComponent implements OnInit {
+export class WelcomeflowCpfLifePayoutComponent implements OnInit {
   showCpfLifePayout: boolean;
 
   constructor( 
@@ -29,3 +29,4 @@ export class WelcomeStepTwoComponent implements OnInit {
   }
 
 }
+
