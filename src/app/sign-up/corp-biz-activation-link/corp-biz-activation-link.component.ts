@@ -12,17 +12,16 @@ import { SIGN_UP_CONFIG } from '../sign-up.constant';
   selector: 'app-corp-biz-activation-link',
   templateUrl: './corp-biz-activation-link.component.html',
   styleUrls: ['./corp-biz-activation-link.component.scss'],
-  encapsulation: ViewEncapsulation.None,
+  encapsulation: ViewEncapsulation.None
 })
 export class CorpBizActivationLinkComponent implements OnInit {
-
   screenToShow: string;
   queryParams;
   token;
   
   constructor(private router: Router,public footerService: FooterService, 
     public navbarService: NavbarService,private translate: TranslateService, private route: ActivatedRoute,
-    public authService: AuthenticationService,private signUpApiService: SignUpApiService) { 
+    private authService: AuthenticationService,private signUpApiService: SignUpApiService) { 
       this.translate.use('en');
       this.screenToShow = SIGN_UP_CONFIG.CORP_BIZ_ACTIVATIONLINK.INVALID_USER; // temp screen
     }
