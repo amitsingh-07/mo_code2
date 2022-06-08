@@ -1,10 +1,11 @@
 
 <div class="container-fluid max-width--1024">
     <div class="row">
-        <div class="back-btn back-btn-2 hidden-lg col-1" style=" display: none"><img
-                src="assets/images/back-web.svg"></div>
-        <div class="intro_sub-title col-11">
-            <p [innerHtml]="'WELCOME_RETIREMENT.RETIREMENT_MAIN_TITLE'|translate" ></p>
+        <!-- <div class="back-btn back-btn-2 hidden-lg col-1" style=" display: none"><img
+                src="assets/images/back-web.svg"></div> -->
+        <div class="intro_sub-title flex-col-12">
+          <div class="back-btn mobile-back-btn hidden-lg"><img src="assets/images/back-web.svg"></div>
+            <p class="main-desc" [innerHtml]="'WELCOME_RETIREMENT.RETIREMENT_MAIN_TITLE'|translate" ></p>
         </div>
     </div>
 
@@ -72,8 +73,8 @@
         </div>
 
     </div>
-    <div class="row">
-        <div class="back-btn back-btn-1 hidden-lg mt30 col-2"><img src="assets/images/back-web.svg"></div>
+    <div class="row bottom-btn">
+        <div class="back-btn hidden-sm mt30 col-2"><img src="assets/images/back-web.svg"></div>
         <div class="col-10"><button type="button" class="btn btn__footer--fixed btn-primary width100" id="myFinancialGoNextBtn" routerLink="/welcome-journey/life-payout">{{'WELCOME_RETIREMENT.CONT_BTN' | translate}}</button></div>
     </div>
     

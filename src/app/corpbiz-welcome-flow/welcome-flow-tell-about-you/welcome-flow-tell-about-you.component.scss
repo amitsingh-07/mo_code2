@@ -27,18 +27,18 @@ app-welcome-flow-tell-about-you{
 }
 
 
-
-@include allmobiles{
-    .back-btn-1{
-        display: none !important;
-    }
-    .back-btn-2{
-        display: block !important;
+.mobile-back-btn{
+    @include allmobiles{
+        position: absolute;
     }
 }
 
-
-
+.main-desc{
+    padding: 0px 40px;
+}
+.bottom-btn{
+    padding: 0px 33px;
+}
 .slidecontainer {
     width: 100%;
   }

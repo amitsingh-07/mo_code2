@@ -146,6 +146,7 @@ app-download-report {
                 padding: 20px;
                 background-color: $white-color;
                 color: $black-color;
+                height: calc(100vh - 175px);
                 hr{
                     margin: 15px auto;
                 }
@@ -184,8 +185,8 @@ app-download-report {
             }
             .btn{
                 &.btn-orange{
-                    position: initial;
                     max-width: 335px;
+                    height: 60px;
                     display: flex;
                     justify-content: center;
                     border-radius: 6px !important;
@@ -195,6 +196,8 @@ app-download-report {
                     font-family: $muli-bold;
                     line-height: 27px;
                     letter-spacing: -0.15px;
+                    margin: 30px 0px 20px !important;
+                    align-items: center;
                 }
             } 
             .btm-txt{
@@ -209,9 +212,5 @@ app-download-report {
             }
         }
     }
-}
-
-
-
-
+   }
   }
