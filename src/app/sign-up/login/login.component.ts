@@ -684,9 +684,8 @@ export class LoginComponent implements OnInit, AfterViewInit, OnDestroy {
     this.route.queryParams.subscribe((qp) => {
       if (qp['code'] && qp['state']) {
         this.singpassApiService.loginSingpass(qp['code'], qp['state']).subscribe((data) => {
-          if (data && data.responseMessage && data.responseMessage.responseCode >= 6000 &&
-            data.objectList[0] && data.objectList[0].securityToken) {
-              this.authService.saveAuthDetails(data.objectList[0]);
+          if (data.responseMessage.responseCode >= 6000 && data.objectList[0] && data.objectList[0].securityToken) {
+            this.authService.saveAuthDetails(data.objectList[0]);
             this.onSuccessLogin(data);
           } else {
             this.handleError(data);
