@@ -15,9 +15,7 @@ const bodymovin = require("./../../../assets/scripts/lottie_svg.min.js");
   encapsulation: ViewEncapsulation.None
 })
 export class CreateAccountMyinfoModalComponent implements OnInit {
-  @Input() errorTitle: any;
   @Input() primaryActionLabel: any;
-  @Input() lockIcon: any;
   @Input() closeBtn = true;
   @Input() spinner: any;
   @Input() myInfo: any;

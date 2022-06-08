@@ -839,4 +839,8 @@ export class SignUpService {
     this.signUpFormData.isCorpBizMyInfoEnabled = status;
     this.commit();
   }
+
+  getCorpBizMyInfoStatus() {
+    return this.signUpFormData.isCorpBizMyInfoEnabled;
+  }
 }

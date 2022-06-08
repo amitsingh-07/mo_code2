@@ -2,15 +2,15 @@ import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { Router } from '@angular/router';
 import { NgbModal, NgbModalOptions, NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
 import { TranslateService } from '@ngx-translate/core';
+import { Subscription } from 'rxjs';
 import { ConfigService, IConfig } from '../../config/config.service';
 import { MyInfoService } from '../../shared/Services/my-info.service';
 import { FooterService } from '../../shared/footer/footer.service';
 import { NavbarService } from '../../shared/navbar/navbar.service';
 import { CreateAccountMyinfoModalComponent } from '../create-account-myinfo-modal/create-account-myinfo-modal.component';
 import { SignUpService } from '../sign-up.service';
-import { ModelWithButtonComponent } from 'src/app/shared/modal/model-with-button/model-with-button.component';
+import { ModelWithButtonComponent } from '../../shared/modal/model-with-button/model-with-button.component';
 import { SIGN_UP_ROUTES, SIGN_UP_ROUTE_PATHS } from '../sign-up.routes.constants';
-import { Subscription } from 'rxjs';
 import { SIGN_UP_CONFIG } from '../sign-up.constant';
 
 @Component({
