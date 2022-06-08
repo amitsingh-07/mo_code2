@@ -74,6 +74,8 @@ export class CreateAccountComponent implements OnInit, AfterViewInit {
   maxDate: any;
   minDate: any;
   organisationEnabled = false;
+  isCorpBiz: boolean;
+  corpBizData: any;
 
   constructor(
     private formBuilder: FormBuilder,
@@ -95,8 +97,6 @@ export class CreateAccountComponent implements OnInit, AfterViewInit {
     private changeDetectorRef: ChangeDetectorRef,
     private affiliateService: AffiliateService,
     private investmentAccountService: InvestmentAccountService
-
-
   ) {
     const today: Date = new Date();
     this.minDate = {
@@ -131,6 +131,10 @@ export class CreateAccountComponent implements OnInit, AfterViewInit {
 
       }
     });
+
+    this.corpBizData = appService.getCorpBizData();
+    // this.isCorpBiz = this.corpBizData && this.corpBizData.isCorpBiz ? true : false;
+    this.isCorpBiz = router.url && router.url.indexOf('corpbiz') >= 0 ? true : false;
   }
 
   /**
@@ -154,7 +158,7 @@ export class CreateAccountComponent implements OnInit, AfterViewInit {
       this.createAccountForm.controls['referralCode'].setValue(this.route.snapshot.paramMap.get('referralCode'));
       this.showClearBtn = true;
     }
-    this.createAnimation();      
+    this.createAnimation();
   }
 
   ngAfterViewInit() {
@@ -204,8 +208,14 @@ export class CreateAccountComponent implements OnInit, AfterViewInit {
     if (this.distribution && this.distribution.login) {
       this.createAccountForm = this.formBuilder.group({
         countryCode: ['', [Validators.required]],
-        mobileNumber: [myInfoMobile, [Validators.required]],
-        email: [myInfoEmail, [Validators.required, Validators.pattern(this.distribution.login.regex)]],
+        mobileNumber: [{
+          value: this.isCorpBiz ? this.corpBizData.mobile : myInfoMobile,
+          disabled: this.isCorpBiz
+        }, [Validators.required]],
+        email: [{
+          value: this.isCorpBiz ? this.corpBizData.email : myInfoEmail,
+          disabled: this.isCorpBiz
+        }, [Validators.required, Validators.pattern(this.distribution.login.regex)]],
         confirmEmail: [''],
         password: ['', [Validators.required, ValidatePassword]],
         confirmPassword: [''],
@@ -230,8 +240,14 @@ export class CreateAccountComponent implements OnInit, AfterViewInit {
 
     this.createAccountForm = this.formBuilder.group({
       countryCode: ['', [Validators.required]],
-      mobileNumber: [myInfoMobile, [Validators.required]],
-      email: [myInfoEmail, emailValidators],
+      mobileNumber: [{
+        value: this.isCorpBiz && this.corpBizData && this.corpBizData.mobile ? this.corpBizData.mobile : myInfoMobile,
+        disabled: this.isCorpBiz
+      }, [Validators.required]],
+      email: [{
+        value: this.isCorpBiz && this.corpBizData && this.corpBizData.email ? this.corpBizData.email : myInfoEmail,
+        disabled: this.isCorpBiz
+      }, emailValidators],
       confirmEmail: [''],
       password: ['', [Validators.required, ValidatePassword]],
       confirmPassword: [''],
