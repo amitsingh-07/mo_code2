@@ -76,9 +76,9 @@ export class LoginComponent implements OnInit, AfterViewInit, OnDestroy {
 
   @HostListener('window:resize', ['$event'])
   onResize(event) {
-    this.showPasswordLogin = true;
-    this.showSingpassLogin = false;
     if (/Android|Windows/.test(navigator.userAgent)) {
+      this.showPasswordLogin = true;
+      this.showSingpassLogin = false;
       this.welcomeTitle.nativeElement.scrollIntoView(true);
     }
   }
@@ -683,6 +683,9 @@ export class LoginComponent implements OnInit, AfterViewInit, OnDestroy {
   singpassCallbackCheck() {
     this.route.queryParams.subscribe((qp) => {
       if (qp['code'] && qp['state']) {
+        if (!this.authService.isAuthenticated()) {
+          this.authService.authenticate().subscribe((token) => {});
+        }
         this.singpassApiService.loginSingpass(qp['code'], qp['state']).subscribe((data) => {
           if (data.responseMessage && data.responseMessage.responseCode >= 6000) {
             this.onSuccessLogin(data);
