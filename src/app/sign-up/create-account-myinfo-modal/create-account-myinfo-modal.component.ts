@@ -1,4 +1,5 @@
 import { Component, EventEmitter, Input, OnInit, Output, ViewEncapsulation } from '@angular/core';
+import { FormBuilder, FormGroup } from '@angular/forms';
 import { NavigationEnd, Router } from '@angular/router';
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 import { TranslateService } from '@ngx-translate/core';
@@ -22,13 +23,21 @@ export class CreateAccountMyinfoModalComponent implements OnInit {
   @Input() myInfo: any;
   @Output() primaryAction = new EventEmitter<any>();
   @Output() closeAction = new EventEmitter<any>();
+  @Output() myInfoEnableFlags = new EventEmitter<any>();
+  myInfoEnableForm: FormGroup;
+  
   constructor(
     public activeModal: NgbActiveModal,
     private router: Router,
-    public readonly translate: TranslateService
+    public readonly translate: TranslateService,
+    private formBuilder: FormBuilder
   ) {
     this.translate.use('en');
     this.translate.get('COMMON').subscribe((result: string) => {
+    });
+    this.myInfoEnableForm = this.formBuilder.group({
+      cpfHousingFlag: [true],
+      vehicleFlag: [true]
     });
   }
 
@@ -44,6 +53,7 @@ export class CreateAccountMyinfoModalComponent implements OnInit {
 
   primaryActionSelected() {
     this.primaryAction.emit();
+    this.myInfoEnableFlags.emit(this.myInfoEnableForm.value);
     this.activeModal.close();
   }
 

@@ -11,7 +11,6 @@ import { ModelWithButtonComponent } from '../modal/model-with-button/model-with-
 import { SIGN_UP_ROUTE_PATHS } from './../../sign-up/sign-up.routes.constants';
 
 const MYINFO_ATTRIBUTE_KEY = 'myinfo_person_attributes';
-const CORP_BIZ_MYINFO_ATTRIBUTE_KEY = 'corpbiz_myinfo_person_attributes';
 declare var window: Window;
 
 const CANCELLED = -2;
@@ -250,11 +249,5 @@ export class MyInfoService {
     } else {
       return false;
     }
-  }
-
-  // Corp Biz Changes
-  setCorpBizMyInfoAttributes(attributes) {
-    this.attributes = attributes;
-    window.sessionStorage.setItem(CORP_BIZ_MYINFO_ATTRIBUTE_KEY, this.attributes);
   }
 }

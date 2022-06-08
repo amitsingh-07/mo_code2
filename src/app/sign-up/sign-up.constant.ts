@@ -132,7 +132,12 @@ export let SIGN_UP_CONFIG = {
     'race',
     'marital',
     'childrenbirthrecords',
-    
+    'regadd',
+    'assessableincome',
+    'assessyear',
+    'occupation',
+    'vehno',
+    'cpfbalances'
   ],
   ACC_TYPE_CORPBIZ: 'corpbiz',
   CORP_BIZ_ACTIVATIONLINK:{

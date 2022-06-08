@@ -50,8 +50,8 @@ export const SIGN_UP_ROUTES = {
   REFER_REDIRECT : 'referee',
   MANAGE_PROFILE : 'manage-profile',
   UPDATE_CPFIA: 'update-cpfia',
-  CORP_BIZ_SIGNUP: 'corpbiz/signup',
-  CORP_BIZ_SIGNUP_DATA: 'corpbiz/signup/data',
+  CORP_BIZ_SIGNUP: 'corpbiz/sign-up',
+  CORP_BIZ_SIGNUP_DATA: 'corpbiz/sign-up/data',
   CORPBIZ_CREATE_ACCOUNT: 'corpbiz/sign-up-account',
   CORP_BIZ_ACTIVATIONLINK: 'corpbiz/activation-link'
 };

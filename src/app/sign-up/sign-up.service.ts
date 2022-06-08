@@ -20,7 +20,6 @@ import { SIGN_UP_CONFIG } from './sign-up.constant';
 import { InvestmentAccountService } from '../investment/investment-account/investment-account-service';
 import { appConstants } from '../app.constants';
 import { ManageInvestmentsService } from '../investment/manage-investments/manage-investments.service';
-import { map } from 'rxjs/operators';
 
 const SIGNUP_SESSION_STORAGE_KEY = 'app_signup_session_storage_key';
 const CUSTOMER_REF_SESSION_STORAGE_KEY = 'app_customer_ref_session_storage_key';

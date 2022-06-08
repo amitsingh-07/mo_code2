@@ -3,7 +3,7 @@
 
 app-corp-biz-signup{
 .corp-sign-content{
-    color: #000000;
+    color: $black-color;
     font-family: $muli-regular;
     min-height: calc(100vh - 84px);
     @include allmobiles{
@@ -39,7 +39,7 @@ app-corp-biz-signup{
         line-height: 26px;
         text-align: center;
         letter-spacing: -0.1575px;
-        color: #00A7A7;
+        color: $teal-color;
     }
     .sign-up-max-width{
         max-width: 335px;
@@ -54,7 +54,7 @@ app-corp-biz-signup{
         font-size: 14px;
         line-height: 20px;
         letter-spacing: -0.15px;
-        color: #5E5E5E;
+        color: $silver-grey-color;
         .text-bold{
             font-family: $muli-bold
         }
@@ -89,7 +89,7 @@ app-corp-biz-signup{
         }
     }
     .autofill-link{
-        border: 1px solid #00A7A7;
+        border: 1px solid $app-backgrnd-color;
         border-radius: 6px;
         padding: 13px 0 11px;
         font-family: $muli-regular;
@@ -97,13 +97,13 @@ app-corp-biz-signup{
         line-height: 21px;
         text-align: center;
         letter-spacing: -0.14px;
-        color: #757575;
+        color: $boulder-grey-color;
         cursor: pointer;
         .autofill-text{
             font-family: $muli-bold;
             font-size: 18px;
             line-height: 24px;
-            color: #00A7A7;
+            color: $teal-color;
         }
     }
 }

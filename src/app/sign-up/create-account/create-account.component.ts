@@ -75,6 +75,7 @@ export class CreateAccountComponent implements OnInit, AfterViewInit {
   minDate: any;
   organisationEnabled = false;
   isCorpBiz: boolean;
+  corpBizData: any;
 
   constructor(
     private formBuilder: FormBuilder,
@@ -96,8 +97,6 @@ export class CreateAccountComponent implements OnInit, AfterViewInit {
     private changeDetectorRef: ChangeDetectorRef,
     private affiliateService: AffiliateService,
     private investmentAccountService: InvestmentAccountService
-
-
   ) {
     const today: Date = new Date();
     this.minDate = {
@@ -133,7 +132,8 @@ export class CreateAccountComponent implements OnInit, AfterViewInit {
       }
     });
 
-    router.url && router.url.indexOf(SIGN_UP_CONFIG.ACC_TYPE_CORPBIZ) >= 0 ? this.isCorpBiz = true : this.isCorpBiz = false;
+    this.corpBizData = appService.getCorpBizData();
+    this.isCorpBiz = this.corpBizData && this.corpBizData.isCorpBiz ? true : false;
   }
 
   /**
@@ -208,11 +208,11 @@ export class CreateAccountComponent implements OnInit, AfterViewInit {
       this.createAccountForm = this.formBuilder.group({
         countryCode: ['', [Validators.required]],
         mobileNumber: [{
-          value: myInfoMobile,
+          value: this.isCorpBiz ? this.corpBizData.mobile : myInfoMobile,
           disabled: this.isCorpBiz
         }, [Validators.required]],
         email: [{
-          value: myInfoEmail,
+          value: this.isCorpBiz ? this.corpBizData.email : myInfoEmail,
           disabled: this.isCorpBiz
         }, [Validators.required, Validators.pattern(this.distribution.login.regex)]],
         confirmEmail: [''],
@@ -240,11 +240,11 @@ export class CreateAccountComponent implements OnInit, AfterViewInit {
     this.createAccountForm = this.formBuilder.group({
       countryCode: ['', [Validators.required]],
       mobileNumber: [{
-        value: myInfoMobile,
+        value: this.isCorpBiz && this.corpBizData && this.corpBizData.mobile ? this.corpBizData.mobile : myInfoMobile,
         disabled: this.isCorpBiz
       }, [Validators.required]],
       email: [{
-        value: myInfoEmail,
+        value: this.isCorpBiz && this.corpBizData && this.corpBizData.email ? this.corpBizData.email : myInfoEmail,
         disabled: this.isCorpBiz
       }, emailValidators],
       confirmEmail: [''],

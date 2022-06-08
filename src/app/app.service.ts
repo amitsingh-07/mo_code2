@@ -18,6 +18,7 @@ const PROMO_CODE_ACTION_TYPE = 'app_promo_code_action_type';
 const PROMO_CODE = 'app_promo_code';
 const SESSION_CUSTOMER = 'app_customer_id';
 const CORPORATE_DETAILS = 'app_corporate_details';
+const CORP_BIZ_FLAG = 'app_corpbiz';
 
 @Injectable({
   providedIn: 'root'
@@ -185,4 +186,11 @@ export class AppService {
     return JSON.parse(sessionStorage.getItem(CORPORATE_DETAILS));
   } 
 
+  setCorpBizData(corpBizFlag) {
+    sessionStorage.setItem(CORP_BIZ_FLAG, JSON.stringify(corpBizFlag))
+  }
+
+  getCorpBizData() {
+    return JSON.parse(sessionStorage.getItem(CORP_BIZ_FLAG));
+  }
 }

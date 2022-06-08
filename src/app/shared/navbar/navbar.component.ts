@@ -143,6 +143,8 @@ export class NavbarComponent implements OnInit, AfterViewInit {
   private ngUnsubscribe = new Subject();
   accessReferrelProgramOnRoles:boolean = true;
 
+  corpBizData: boolean;
+
   constructor(
     private navbarService: NavbarService,
     private config: NgbDropdownConfig, private renderer: Renderer2,
@@ -216,6 +218,8 @@ export class NavbarComponent implements OnInit, AfterViewInit {
     if (this.hideHomepage) {
       this.setMenuDisplay();
     }
+
+    this.corpBizData = appService.getCorpBizData();
   }
 
   @HostListener('window:scroll', ['$event'])

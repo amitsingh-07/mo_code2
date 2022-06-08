@@ -4,32 +4,37 @@
 app-corp-biz-signup-with-data {
     .container-fluid {
         &.max-width--1024 {
-            @include allmobiles {               
+            @include allmobiles {
                 padding-top: 30px;
             }
         }
     }
+
     .corpbiz-data-wrapper__title {
         font-family: $muli-semi-bold;
         letter-spacing: -0.18px;
         text-align: center;
         text-align: left;
+
         @include allmobiles {
             font-size: 24px;
             margin-bottom: 20px;
             text-align: center;
         }
     }
-    .corpbiz-max-width{
+
+    .corpbiz-max-width {
         padding: 0;
         max-width: 335px;
         margin-right: 0;
-        @include allmobiles{
+
+        @include allmobiles {
             padding: 0 15px;
             max-width: 100%;
             margin: 0 auto;
         }
     }
+
     .create_account__header-icon {
         width: 260px !important;
         height: 232px !important;
@@ -41,43 +46,51 @@ app-corp-biz-signup-with-data {
             margin-bottom: 36px;
         }
     }
+
     .corpbiz-data-wrapper__description {
         font-family: $muli-bold;
         font-size: 24px;
         letter-spacing: -0.18px;
         color: $white-color;
-        .myinfo-accordian-block{
+
+        .myinfo-accordian-block {
             padding: 20px;
             background: $white-color;
             border-radius: 6px;
-            .check-icon{
+
+            .check-icon {
                 width: 20px;
                 height: 20px;
-                
+
             }
-            .title{
+
+            .title {
                 font-family: $muli-semi-bold;
                 font-size: 16px;
                 line-height: 20px;
                 letter-spacing: -0.18px;
-                color: #005960;
+                color: $blue-stone-color;
             }
+
             hr {
-                border: 1px solid #E7E7E7;
+                border: 1px solid $mercury-smoke-color;
                 margin: 20px 0;
             }
         }
-        .myinfo-data-block{
+
+        .myinfo-data-block {
             .card {
                 margin-bottom: 10px;
                 border-radius: 6px !important;
                 background-color: $white-color;
                 border: none;
                 line-height: 22px;
+
                 .card-header {
                     padding: 0px;
                     background-color: $white-color;
                     border: none !important;
+
                     .btn-link {
                         padding: 0 3px 0 0;
                         width: 100%;
@@ -86,6 +99,7 @@ app-corp-biz-signup-with-data {
                         line-height: 22px;
                         letter-spacing: -0.3px;
                         color: $black-color;
+
                         .arrow {
                             border: solid $black-color;
                             border-width: 0 2px 2px 0;
@@ -95,33 +109,40 @@ app-corp-biz-signup-with-data {
                             transform: rotate(-135deg);
                             -webkit-transform: rotate(-135deg);
                         }
+
                         &.collapsed {
                             .arrow {
                                 transform: rotate(45deg);
                                 -webkit-transform: rotate(45deg);
                             }
                         }
+
                         &:hover,
                         &:focus {
                             text-decoration: none;
                         }
                     }
                 }
+
                 .card-body {
                     padding: 10px 0 0 0;
-                    .myinfo-data-content{
-                        font-family: $muli-semi-bold;
+
+                    .myinfo-data-content {
+                        font-family: $muli-regular;
                         font-size: 14px;
                         line-height: 22px;
                         color: $dark-dusty-grey-color;
-                        .data_lbl{
+
+                        .data_lbl {
                             color: $teal-color;
+                            font-family: $muli-semi-bold;
                         }
                     }
                 }
             }
         }
     }
+
     .note {
         padding: 20px 10px 10px 0;
         font-family: $muli-regular;
@@ -129,16 +150,22 @@ app-corp-biz-signup-with-data {
         line-height: 16px;
         letter-spacing: -0.16px;
         color: $white-color;
-        .lock-icon{
+
+        .lock-icon {
             width: 48px;
             height: 48px;
             display: flex;
-            @include allmobiles{
+
+            @include allmobiles {
                 margin-left: 10px;
             }
         }
-        .text-bold{
+
+        .text-bold {
             font-family: $muli-bold;
+        }
+        .text-regular {
+            font-family: $muli-regular;
         }
     }
 }

@@ -110,25 +110,39 @@ export class CorpBizSignupComponent implements OnInit {
     });
   }
 
-  goToNext() {
-
+  getMyInfo(attributesFlags: any) {
+    let attributes = this.signUpService.corpBizMyInfoAttributes;
+    if(attributesFlags) {
+      attributes = this.removeMyInfoAttributes(attributesFlags.cpfHousingFlag, 'cpfbalances', attributes);
+      attributes = this.removeMyInfoAttributes(attributesFlags.vehicleFlag, 'vehno', attributes);
+    }
+    this.myInfoService.setMyInfoAttributes(
+      attributes
+    );
+    console.log(this.myInfoService.getMyInfoAttributes());
+    // this.myInfoService.goToMyInfo();
   }
 
-  getMyInfo() {
-    this.myInfoService.setCorpBizMyInfoAttributes(
-      this.signUpService.corpBizMyInfoAttributes
-    );
-    this.myInfoService.goToMyInfo();
+  removeMyInfoAttributes(flag: any, attribute: any, attributes: any) {
+    const attributeList = JSON.parse(JSON.stringify(attributes))
+    if(!flag && attributeList.indexOf(attribute) >= 0) {
+      const attributeIndex = attributeList.indexOf(attribute);
+      attributeList.splice(attributeIndex, 1);
+    }
+    return attributeList;
   }
 
   proceedToMyInfo() {
     const ref = this.modal.open(CreateAccountMyinfoModalComponent, { centered: true });
     ref.componentInstance.primaryActionLabel = this.modalBtnTxt;
-    ref.result
-      .then(() => {
-        this.getMyInfo();
-      })
-      .catch((e) => { });
+    ref.componentInstance.myInfoEnableFlags.subscribe((value: any) => {
+      console.log('boolean values', value);
+      ref.result
+        .then(() => {
+          this.getMyInfo(value);
+        })
+        .catch((e) => { });
+    });
   }
 
   showFetchPopUp() {
