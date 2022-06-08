@@ -43,7 +43,6 @@ export const SIGN_UP_ROUTES = {
   ACCOUNT_CREATED_CORPORATE: 'corp/success',
   FINLIT_VERIFY_MOBILE: 'finlit/verify-mobile',
   CORPORATE_VERIFY_MOBILE: 'corp/verify-mobile',
-  SINGPASS_LOGIN: 'singpass-test/login',
   FINLIT_CREATE_ACCOUNT_MY_INFO: 'finlit/sign-up',
   CORPORATE_CREATE_ACCOUNT_MY_INFO: 'corp/sign-up',
   REFER_FRIEND: 'refer-a-friend',

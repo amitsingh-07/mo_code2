@@ -359,7 +359,7 @@
     },
     "SINGPASS_LOGIN_FAIL_MODAL": {
       "TITLE": "Singpass login unsuccessful",
-      "MESSAGE": "If you <span class='bold-txt'>have</span> a MoneyOwl account, please do a Password Login and activate Singpass Login in your Profile page.<br><br>If you <span class='bold-txt'>do not have</span> a MoneyOwl account, <a class='anchor-txt' target='_blank' href='./accounts/sign-up'>click here</a> to create an account.",
+      "MESSAGE": "If you <span class='bold-txt'>have</span> a MoneyOwl account, please do a Password Login and activate Singpass Login in your Profile page.<br><br>If you <span class='bold-txt'>do not have</span> a MoneyOwl account, <a class='anchor-txt' target='_self' href='./accounts/sign-up'>click here</a> to create an account.",
       "BACK_BTN": "Back to Login"
     }
   },
