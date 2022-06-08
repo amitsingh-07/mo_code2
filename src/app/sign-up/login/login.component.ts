@@ -335,74 +335,15 @@ export class LoginComponent implements OnInit, AfterViewInit, OnDestroy {
               this.signUpService.setUserMobileCountryCode(data.objectList[0].countryCode);
               this.signUpService.setFromLoginPage();
               this.router.navigate([SIGN_UP_ROUTE_PATHS.VERIFY_2FA]);
-            } else if (data.responseMessage.responseCode === 5016 || data.responseMessage.responseCode === 5011) {
-              this.loginForm.controls['captchaValue'].reset();
-              this.loginForm.controls['loginPassword'].reset();
-              this.openErrorModal(data.responseMessage.responseDescription);
-              this.refreshCaptcha();
-            } else if (data.responseMessage.responseCode === 5012 || data.responseMessage.responseCode === 5014) {
-              if (data.responseMessage.responseCode === 5014) {
-                this.signUpService.setUserMobileNo(data.objectList[0].mobileNumber);
-                this.signUpService.setFromLoginPage();
-              }
-              if (data.objectList[0]) {
-                this.signUpService.setCustomerRef(data.objectList[0].customerRef);
-              }
-             
-              this.callErrorModal(data);
             } else {
-              this.loginForm.controls['captchaValue'].reset();
-              this.loginForm.controls['loginPassword'].reset();
-              if (this.finlitEnabled) {
-                this.loginForm.controls['accessCode'].reset();
-              }
-              this.openErrorModal(data.responseMessage.responseDescription);
-              this.signUpService.setCaptchaCount();
-              if (data.objectList[0] && data.objectList[0].sessionId) {
-                this.signUpService.setCaptchaSessionId(data.objectList[0].sessionId);
-              } else if (data.objectList[0].attempt >= 3 || this.signUpService.getCaptchaCount() >= 2) {
-                this.signUpService.setCaptchaShown();
-                this.setCaptchaValidator();
-              }
+              this.handleError(data);
             }
           } else {
             if (data.responseMessage && data.responseMessage.responseCode >= 6000) {
               this.onSuccessLogin(data);
-            } else if (data.responseMessage.responseCode === 5016 || data.responseMessage.responseCode === 5011) {
-              this.loginForm.controls['captchaValue'].reset();
-              this.loginForm.controls['loginPassword'].reset();
-              this.openErrorModal(data.responseMessage.responseDescription);
-              this.refreshCaptcha();
-            } else if (data.responseMessage.responseCode === 5012 || data.responseMessage.responseCode === 5014) {
-              if (data.responseMessage.responseCode === 5014) {
-                this.signUpService.setUserMobileNo(data.objectList[0].mobileNumber);
-                this.signUpService.setFromLoginPage();
-              }
-              if (data.objectList[0]) {
-                this.signUpService.setCustomerRef(data.objectList[0].customerRef);
-              }
-              const insuranceEnquiry = this.selectedPlansService.getSelectedPlan();
-              if (this.checkInsuranceEnquiry(insuranceEnquiry)) {
-                this.updateInsuranceEnquiry(insuranceEnquiry, data, true);
-              } else {
-                this.callErrorModal(data);
-              }
             } else {
-              this.loginForm.controls['captchaValue'].reset();
-              this.loginForm.controls['loginPassword'].reset();
-              if (this.finlitEnabled) {
-                this.loginForm.controls['accessCode'].reset();
-              }
-              this.openErrorModal(data.responseMessage.responseDescription);
-              this.signUpService.setCaptchaCount();
-              if (data.objectList[0] && data.objectList[0].sessionId) {
-                this.signUpService.setCaptchaSessionId(data.objectList[0].sessionId);
-              } else if (data.objectList[0].attempt >= 3 || this.signUpService.getCaptchaCount() >= 2) {
-                this.signUpService.setCaptchaShown();
-                this.setCaptchaValidator();
-              }
+              this.handleError(data);
             }
-
           }
         }).add(() => {
           this.progressModal = false;
@@ -480,6 +421,7 @@ export class LoginComponent implements OnInit, AfterViewInit, OnDestroy {
     });
   }
 
+  // non 2fa success login method
   onSuccessLogin(data) {
     this.hubspotLogin();
     this.investmentCommonService.clearAccountCreationActions();
@@ -492,6 +434,49 @@ export class LoginComponent implements OnInit, AfterViewInit, OnDestroy {
       this.updateInsuranceEnquiry(insuranceEnquiry, data, false);
     } else {
       this.goToNext();
+    }
+  }
+
+  handleError(data) {
+    if (data.responseMessage.responseCode === 5011 || data.responseMessage.responseCode === 5016) {
+      this.loginForm.controls['captchaValue'].reset();
+      this.loginForm.controls['loginPassword'].reset();
+      this.openErrorModal(data.responseMessage.responseDescription);
+      this.refreshCaptcha();
+    } else if (data.responseMessage.responseCode === 5012 || data.responseMessage.responseCode === 5014) {
+      if (data.responseMessage.responseCode === 5014) {
+        this.signUpService.setUserMobileNo(data.objectList[0].mobileNumber);
+        this.signUpService.setFromLoginPage();
+      }
+      if (data.objectList[0]) {
+        this.signUpService.setCustomerRef(data.objectList[0].customerRef);
+      }
+      if (SIGN_UP_CONFIG.AUTH_2FA_ENABLED) {
+        this.callErrorModal(data);
+      } else {
+        const insuranceEnquiry = this.selectedPlansService.getSelectedPlan();
+        if (this.checkInsuranceEnquiry(insuranceEnquiry)) {
+          this.updateInsuranceEnquiry(insuranceEnquiry, data, true);
+        } else {
+          this.callErrorModal(data);
+        }
+      }
+    } else if (data.responseMessage.responseCode === 5126) {
+      this.failSingpassLogin(data.responseMessage.responseDescription);
+    } else {
+      this.loginForm.controls['captchaValue'].reset();
+      this.loginForm.controls['loginPassword'].reset();
+      if (this.finlitEnabled) {
+        this.loginForm.controls['accessCode'].reset();
+      }
+      this.openErrorModal(data.responseMessage.responseDescription);
+      this.signUpService.setCaptchaCount();
+      if (data.objectList[0] && data.objectList[0].sessionId) {
+        this.signUpService.setCaptchaSessionId(data.objectList[0].sessionId);
+      } else if (data.objectList[0].attempt >= 3 || this.signUpService.getCaptchaCount() >= 2) {
+        this.signUpService.setCaptchaShown();
+        this.setCaptchaValidator();
+      }
     }
   }
 
@@ -653,6 +638,7 @@ export class LoginComponent implements OnInit, AfterViewInit, OnDestroy {
       ref.componentInstance.errorMessageHTML = this.translate.instant('LOGIN.SINGPASS_LOGIN_FAIL_MODAL.MESSAGE');
       ref.componentInstance.primaryActionLabel = this.translate.instant('LOGIN.SINGPASS_LOGIN_FAIL_MODAL.BACK_BTN');
       ref.componentInstance.primaryAction.subscribe(() => {
+        this.toggleSingpass('PASSWORD', window.event);
         this.modal.dismissAll();
       });
     } else {
@@ -663,7 +649,7 @@ export class LoginComponent implements OnInit, AfterViewInit, OnDestroy {
     event.preventDefault();
   }
   // Toggle UI for showing Singpass/Password Login
-  toggleSingpass(type, event?) {
+  toggleSingpass(type:string, event?) {
     if (type === SIGN_UP_CONFIG.SINGPASS) {
       this.showSingpassLogin = true;
       this.showPasswordLogin = false;
@@ -678,7 +664,7 @@ export class LoginComponent implements OnInit, AfterViewInit, OnDestroy {
     }
   }
   // Get or set the login pref for mobile view
-  getSetLoginPref(type?) {
+  getSetLoginPref(type?: string) {
     if (this.singpassEnabled) {
       if (window.localStorage && /Mobi|Android/i.test(navigator.userAgent)) {
         if (type) {
@@ -696,20 +682,12 @@ export class LoginComponent implements OnInit, AfterViewInit, OnDestroy {
 
   singpassCallbackCheck() {
     this.route.queryParams.subscribe((qp) => {
-      console.log('Get Router Params:', this.route.snapshot.queryParams);
       if (qp['code'] && qp['state']) {
-        // Check if User is authenticated yet
-        if (!this.authService.isAuthenticated()) {
-          this.authService.authenticate().subscribe((token) => {
-          });
-        }
-        this.singpassApiService.loginSingpass(qp['code'], qp['state']).subscribe((res) => {
-          if (res) {
-            console.log("RESPONSE = " + res)
-            // continue successful login
-            this.onSuccessLogin(res);
+        this.singpassApiService.loginSingpass(qp['code'], qp['state']).subscribe((data) => {
+          if (data.responseMessage && data.responseMessage.responseCode >= 6000) {
+            this.onSuccessLogin(data);
           } else {
-            this.failSingpassLogin('Fail');
+            this.handleError(data);
           }
         }, (err) => {
           this.failSingpassLogin(err);

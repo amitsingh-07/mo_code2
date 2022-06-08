@@ -1,8 +1,6 @@
 
 import {of as observableOf,  Observable ,  EMPTY } from 'rxjs';
-
 import {tap} from 'rxjs/operators';
-
 import {
     HttpErrorResponse, HttpEvent, HttpHandler, HttpHeaders, HttpInterceptor, HttpRequest,
     HttpResponse
@@ -10,8 +8,6 @@ import {
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 
-import { environment } from '../../../../environments/environment.dev';
-import { appConstants } from '../../../app.constants';
 import { NavbarService } from '../../navbar/navbar.service';
 import { apiConstants } from '../api.constants';
 import { CustomErrorHandlerService } from '../custom-error-handler.service';
@@ -57,7 +53,7 @@ export class JwtInterceptor implements HttpInterceptor {
                     sessionId: `${this.auth.getSessionId()}`
                 })
             });
-        } else if (request.url.indexOf('authenticate') > -1) { // for login{
+        } else if (request.url.indexOf('authenticate') > -1 || request.url.indexOf('loginSingpass') > -1) { // for login & singpass login
             request = request.clone({
                 headers: new HttpHeaders({
                     'Content-Type': 'application/json',
