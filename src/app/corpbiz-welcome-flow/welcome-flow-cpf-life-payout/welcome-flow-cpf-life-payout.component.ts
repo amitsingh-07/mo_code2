@@ -4,24 +4,29 @@ import { FooterService } from '../../shared/footer/footer.service';
 import { NavbarService } from '../../shared/navbar/navbar.service';
 
 @Component({
-  selector: 'app-welcomeflow',
-  templateUrl: './welcomeflow.component.html',
-  styleUrls: ['./welcomeflow.component.scss'],
+  selector: 'app-welcome-flow-cpf-life-payout',
+  templateUrl: './welcome-flow-cpf-life-payout.component.html',
+  styleUrls: ['./welcome-flow-cpf-life-payout.component.scss'],
   encapsulation: ViewEncapsulation.None
 })
-export class WelcomeflowComponent implements OnInit {
+export class WelcomeflowCpfLifePayoutComponent implements OnInit {
+  showCpfLifePayout: boolean;
 
-  constructor(
+  constructor( 
     public footerService: FooterService,
     public navbarService: NavbarService,
-    public readonly translate: TranslateService
-  ) { 
-    this.translate.use('en');
-  }
+    private translate: TranslateService) {
+      this.translate.use('en');
+     }
 
   ngOnInit(): void {
     this.navbarService.setNavbarMode(101);
     this.footerService.setFooterVisibility(false);
+    this.showCpfLifePayout = false;
+  }
+  showPayout(){
+    this.showCpfLifePayout = true;
   }
 
 }
+

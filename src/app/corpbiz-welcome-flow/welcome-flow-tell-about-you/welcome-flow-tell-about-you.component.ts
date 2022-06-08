@@ -7,9 +7,9 @@ import { NouisliderComponent } from 'ng2-nouislider';
 import { COMPREHENSIVE_CONST } from '../../comprehensive/comprehensive-config.constants';
 
 @Component({
-  selector: 'app-welcomeflow-tell-about-you',
-  templateUrl: './welcomeflow-tell-about-you.component.html',
-  styleUrls: ['./welcomeflow-tell-about-you.component.scss'],
+  selector: 'app-welcome-flow-tell-about-you',
+  templateUrl: './welcome-flow-tell-about-you.component.html',
+  styleUrls: ['./welcome-flow-tell-about-you.component.scss'],
   encapsulation: ViewEncapsulation.None
 })
 export class WelcomeflowTellAboutYouComponent implements OnInit {
