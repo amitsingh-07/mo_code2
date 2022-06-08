@@ -143,7 +143,7 @@ export class NavbarComponent implements OnInit, AfterViewInit {
   private ngUnsubscribe = new Subject();
   accessReferrelProgramOnRoles:boolean = true;
 
-  corpBizData: boolean;
+  corpBizData: any;
 
   constructor(
     private navbarService: NavbarService,

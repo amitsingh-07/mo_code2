@@ -188,15 +188,8 @@
               </div>
             </div>
             <div class="flex-col-7 stretch">
-              <div class="form-group-floating-label" *ngIf="!isCorpBiz"
-                [ngClass]="{'inline-error': submitted && account.mobileNumber.errors}">
-                <input type="number" maxlength="15" id="crtAccInpt1" #mobileNumber formControlName="mobileNumber"
-                  class="form-control" (keyup)="onlyNumber(mobileNumber)" required>
-                <label class="form-control-placeholder" for="name">{{ 'CREATE_ACCOUNT.FORM.MOBILE_NUMBER.LABEL' |
-                  translate}}</label>
-              </div>
-              <!-- Duplicated Mobile div for Corpbiz user -->
-              <div class="form-group-floating-label" *ngIf="isCorpBiz" [ngClass]="{'disabled': isCorpBiz}">
+              <div class="form-group-floating-label"
+                [ngClass]="{'inline-error': submitted && account.mobileNumber.errors, 'disabled': isCorpBiz}">
                 <input type="number" maxlength="15" id="crtAccInpt1" #mobileNumber formControlName="mobileNumber"
                   class="form-control" (keyup)="onlyNumber(mobileNumber)" required>
                 <label class="form-control-placeholder" for="name">{{ 'CREATE_ACCOUNT.FORM.MOBILE_NUMBER.LABEL' |
@@ -217,16 +210,8 @@
 
           <div class="flex-row mb15">
             <div class="flex-col-12 stretch">
-              <div class="form-group-floating-label" *ngIf="!isCorpBiz"
-                [ngClass]="{'inline-error': submitted && account.email.errors}">
-                <input type="text" id="crtAccInpt4" class="form-control" #email formControlName="email"
-                  (paste)="onPaste($event, 'email')" (keyup)="onKeyupEvent($event, 'email')" required>
-                <label class="form-control-placeholder" for="lastName">{{ 'CREATE_ACCOUNT.FORM.EMAIL.LABEL' |
-                  translate}}</label>
-              </div>
-
-              <!-- Duplicated Mobile div for Corpbiz user -->
-              <div class="form-group-floating-label" *ngIf="isCorpBiz" [ngClass]="{'disabled': isCorpBiz}">
+              <div class="form-group-floating-label"
+                [ngClass]="{'inline-error': submitted && account.email.errors, 'disabled': isCorpBiz}">
                 <input type="text" id="crtAccInpt4" class="form-control" #email formControlName="email"
                   (paste)="onPaste($event, 'email')" (keyup)="onKeyupEvent($event, 'email')" required>
                 <label class="form-control-placeholder" for="lastName">{{ 'CREATE_ACCOUNT.FORM.EMAIL.LABEL' |
