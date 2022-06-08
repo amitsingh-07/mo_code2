@@ -8,7 +8,7 @@
             <button type="button" class="btn btn-orange" (click)="showPayout()" *ngIf="!showCpfLifePayout"
             id="intro-continue"><span>{{'WELCOME_STEP_TWO.SHOW_ME' | translate}}</span><span class="btn-icon"><img src="assets/images/welcome-journey/half-moon-icon.svg"></span></button>
             <div class="show-content" *ngIf="showCpfLifePayout">
-            <div class="data-content">$4,000</div>
+            <div class="data-content">{{cpfPayoutAmount}}</div>
             <div>{{'WELCOME_STEP_TWO.DURATION' | translate}}</div>
             </div>      
         </div>

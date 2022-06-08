@@ -11,6 +11,7 @@ import { NavbarService } from '../../shared/navbar/navbar.service';
 })
 export class WelcomeflowCpfLifePayoutComponent implements OnInit {
   showCpfLifePayout: boolean;
+  cpfPayoutAmount: string = "$4,000";
 
   constructor( 
     public footerService: FooterService,

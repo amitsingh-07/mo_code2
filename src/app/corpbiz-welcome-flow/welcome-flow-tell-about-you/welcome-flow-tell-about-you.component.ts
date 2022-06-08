@@ -1,9 +1,9 @@
 import { Component, OnInit, ViewChild, ViewEncapsulation } from '@angular/core';
 import { TranslateService } from '@ngx-translate/core';
+import { NouisliderComponent } from 'ng2-nouislider';
 import { FormGroup, FormArray, FormBuilder, } from '@angular/forms';
 import { FooterService } from '../../shared/footer/footer.service';
 import { NavbarService } from '../../shared/navbar/navbar.service';
-import { NouisliderComponent } from 'ng2-nouislider';
 import { COMPREHENSIVE_CONST } from '../../comprehensive/comprehensive-config.constants';
 
 @Component({
