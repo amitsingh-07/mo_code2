@@ -6,12 +6,12 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
 import { NouisliderModule } from 'ng2-nouislider';
 import { MultiTranslateHttpLoader } from 'ngx-translate-multi-http-loader';
-import { WelcomeflowRoutingModule } from './welcomeflow-routing.module';
+import { CorpBizWelcomeflowRoutingModule } from './corpbiz-welcome-flow-routing.module';
 import { SharedModule } from '../shared/shared.module';
 import { DownloadReportComponent } from './download-report/download-report.component';
-import { WelcomeflowComponent } from './welcomeflow/welcomeflow.component';
-import { WelcomeflowTellAboutYouComponent } from './welcomeflow-tell-about-you/welcomeflow-tell-about-you.component';
-import { WelcomeflowCpfLifePayoutComponent } from './welcomeflow-cpf-life-payout/welcomeflow-cpf-life-payout.component';
+import { WelcomeflowComponent } from './welcome-flow-start/welcomeflow.component';
+import { WelcomeflowTellAboutYouComponent } from './welcome-flow-tell-about-you/welcomeflow-tell-about-you.component';
+import { WelcomeflowCpfLifePayoutComponent } from './welcome-flow-cpf-life-payout/welcomeflow-cpf-life-payout.component';
 
 export function createTranslateLoader(http: HttpClient) {
   return new MultiTranslateHttpLoader(
@@ -36,9 +36,9 @@ export function createTranslateLoader(http: HttpClient) {
         deps: [HttpClient]
       }
     }),
-    WelcomeflowRoutingModule,
+    CorpBizWelcomeflowRoutingModule,
     NgbModule,
     SharedModule
   ]
 })
-export class WelcomeFlowModule { }
+export class CorpBizWelcomeFlowModule { }
