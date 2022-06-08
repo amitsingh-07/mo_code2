@@ -144,6 +144,10 @@
       }
     }
   },
+  "CORP_BIZ_ERROR_MODAL": {
+    "TITLE": "You are already enrolled with us!",
+    "SUB_TITLE": "<strong>Seems like your Email Address and Mobile Number are different from the enrolled record. Enter the correct Email Address and Mobile Number to proceed.</strong><br/><br/>"
+  },
   "CREATE_ACCOUNT": {
     "TITLE": "Create Your Account",
     "DESCRIPTION": "Please fill in your details below.",

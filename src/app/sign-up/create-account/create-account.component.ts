@@ -401,6 +401,8 @@ export class CreateAccountComponent implements OnInit, AfterViewInit {
             this.createAccountForm.controls['confirmPassword'].reset();
           } else if (data.responseMessage.responseCode === 5024) {
             this.createAccountForm.controls['referralCode'].setErrors({ invalidRefCode: true });
+          } else if (data.responseMessage.responseCode === 5135) {
+            this.openCorpBizErrorModal();
           } else {
             this.showErrorModal('', data.responseMessage.responseDescription, '', '', false);
           }
@@ -432,6 +434,12 @@ export class CreateAccountComponent implements OnInit, AfterViewInit {
         this.translate.instant('COMMON.LOG_IN'),
         (this.organisationEnabled && SIGN_UP_ROUTE_PATHS.CORPORATE_LOGIN) || SIGN_UP_ROUTE_PATHS.LOGIN, true);
     }
+  }
+
+  openCorpBizErrorModal() {
+    const ref = this.modal.open(ErrorModalComponent, { centered: true });
+    ref.componentInstance.errorTitle = this.translate.instant('CORP_BIZ_ERROR_MODAL.TITLE');
+    ref.componentInstance.errorMessage = this.translate.instant('CORP_BIZ_ERROR_MODAL.SUB_TITLE');
   }
 
   showErrorModal(title: string, message: string, buttonLabel: string, redirect: string, emailResend: boolean) {
