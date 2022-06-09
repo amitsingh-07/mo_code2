@@ -52,4 +52,7 @@ export class SignUpFormData {
   // cpf detail
   cpfAccountNumber: number;
   cpfOperatorBank: any;
+
+  // Corp Biz Status My info flag
+  isCorpBizMyInfoEnabled: boolean
 }

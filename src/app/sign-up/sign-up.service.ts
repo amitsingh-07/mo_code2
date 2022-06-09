@@ -20,7 +20,6 @@ import { SIGN_UP_CONFIG } from './sign-up.constant';
 import { InvestmentAccountService } from '../investment/investment-account/investment-account-service';
 import { appConstants } from '../app.constants';
 import { ManageInvestmentsService } from '../investment/manage-investments/manage-investments.service';
-import { map } from 'rxjs/operators';
 
 const SIGNUP_SESSION_STORAGE_KEY = 'app_signup_session_storage_key';
 const CUSTOMER_REF_SESSION_STORAGE_KEY = 'app_customer_ref_session_storage_key';
@@ -52,6 +51,7 @@ export class SignUpService {
   private mobileOptimized = new BehaviorSubject(false);
   mobileOptimizedObservable$ = this.mobileOptimized.asObservable();
   myInfoAttributes = SIGN_UP_CONFIG.MY_INFO_ATTRIBUTES;
+  corpBizMyInfoAttributes = SIGN_UP_CONFIG.CORP_BIZ_MY_INFO_ATTRIBUTES; // Corp Biz attributes
   organisationName: string = '';
   constructor(
     private apiService: ApiService,
@@ -832,5 +832,15 @@ export class SignUpService {
       cpfOperatorBank: this.signUpFormData.cpfOperatorBank,
       customerId: this.signUpFormData.customerId
     };
+  }
+
+  // Corp Biz changes
+  setCorpBizMyInfoStatus(status) {
+    this.signUpFormData.isCorpBizMyInfoEnabled = status;
+    this.commit();
+  }
+
+  getCorpBizMyInfoStatus() {
+    return this.signUpFormData.isCorpBizMyInfoEnabled;
   }
 }

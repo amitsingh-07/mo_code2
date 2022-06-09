@@ -74,6 +74,8 @@ export class CreateAccountComponent implements OnInit, AfterViewInit {
   maxDate: any;
   minDate: any;
   organisationEnabled = false;
+  isCorpBiz: boolean;
+  corpBizData: any;
 
   constructor(
     private formBuilder: FormBuilder,
@@ -95,8 +97,6 @@ export class CreateAccountComponent implements OnInit, AfterViewInit {
     private changeDetectorRef: ChangeDetectorRef,
     private affiliateService: AffiliateService,
     private investmentAccountService: InvestmentAccountService
-
-
   ) {
     const today: Date = new Date();
     this.minDate = {
@@ -131,6 +131,10 @@ export class CreateAccountComponent implements OnInit, AfterViewInit {
 
       }
     });
+
+    this.corpBizData = appService.getCorpBizData();
+    // this.isCorpBiz = this.corpBizData && this.corpBizData.isCorpBiz ? true : false;
+    this.isCorpBiz = router.url && router.url.indexOf('corpbiz') >= 0 ? true : false;
   }
 
   /**
@@ -154,7 +158,7 @@ export class CreateAccountComponent implements OnInit, AfterViewInit {
       this.createAccountForm.controls['referralCode'].setValue(this.route.snapshot.paramMap.get('referralCode'));
       this.showClearBtn = true;
     }
-    this.createAnimation();      
+    this.createAnimation();
   }
 
   ngAfterViewInit() {
@@ -204,8 +208,14 @@ export class CreateAccountComponent implements OnInit, AfterViewInit {
     if (this.distribution && this.distribution.login) {
       this.createAccountForm = this.formBuilder.group({
         countryCode: ['', [Validators.required]],
-        mobileNumber: [myInfoMobile, [Validators.required]],
-        email: [myInfoEmail, [Validators.required, Validators.pattern(this.distribution.login.regex)]],
+        mobileNumber: [{
+          value: this.isCorpBiz ? this.corpBizData.mobile : myInfoMobile,
+          disabled: this.isCorpBiz
+        }, [Validators.required]],
+        email: [{
+          value: this.isCorpBiz ? this.corpBizData.email : myInfoEmail,
+          disabled: this.isCorpBiz
+        }, [Validators.required, Validators.pattern(this.distribution.login.regex)]],
         confirmEmail: [''],
         password: ['', [Validators.required, ValidatePassword]],
         confirmPassword: [''],
@@ -230,8 +240,14 @@ export class CreateAccountComponent implements OnInit, AfterViewInit {
 
     this.createAccountForm = this.formBuilder.group({
       countryCode: ['', [Validators.required]],
-      mobileNumber: [myInfoMobile, [Validators.required]],
-      email: [myInfoEmail, emailValidators],
+      mobileNumber: [{
+        value: this.isCorpBiz && this.corpBizData && this.corpBizData.mobile ? this.corpBizData.mobile : myInfoMobile,
+        disabled: this.isCorpBiz
+      }, [Validators.required]],
+      email: [{
+        value: this.isCorpBiz && this.corpBizData && this.corpBizData.email ? this.corpBizData.email : myInfoEmail,
+        disabled: this.isCorpBiz
+      }, emailValidators],
       confirmEmail: [''],
       password: ['', [Validators.required, ValidatePassword]],
       confirmPassword: [''],
@@ -385,6 +401,8 @@ export class CreateAccountComponent implements OnInit, AfterViewInit {
             this.createAccountForm.controls['confirmPassword'].reset();
           } else if (data.responseMessage.responseCode === 5024) {
             this.createAccountForm.controls['referralCode'].setErrors({ invalidRefCode: true });
+          } else if (data.responseMessage.responseCode === 5135) {
+            this.openCorpBizErrorModal();
           } else {
             this.showErrorModal('', data.responseMessage.responseDescription, '', '', false);
           }
@@ -416,6 +434,12 @@ export class CreateAccountComponent implements OnInit, AfterViewInit {
         this.translate.instant('COMMON.LOG_IN'),
         (this.organisationEnabled && SIGN_UP_ROUTE_PATHS.CORPORATE_LOGIN) || SIGN_UP_ROUTE_PATHS.LOGIN, true);
     }
+  }
+
+  openCorpBizErrorModal() {
+    const ref = this.modal.open(ErrorModalComponent, { centered: true });
+    ref.componentInstance.errorTitle = this.translate.instant('CORP_BIZ_ERROR_MODAL.TITLE');
+    ref.componentInstance.errorMessage = this.translate.instant('CORP_BIZ_ERROR_MODAL.SUB_TITLE');
   }
 
   showErrorModal(title: string, message: string, buttonLabel: string, redirect: string, emailResend: boolean) {

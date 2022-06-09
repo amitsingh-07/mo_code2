@@ -189,7 +189,7 @@ export class AppComponent implements IComponentCanDeactivate, OnInit, AfterViewI
   doBeforeUnload() {
     // Alert the user window is closing
     // Not to show alert when on login page
-    if (this.route.url == '/accounts/singpass-test/login' || this.route.url == '/accounts/login') {
+    if (this.route.url == '/accounts/login') {
       return true;
     } else {
       return false;
