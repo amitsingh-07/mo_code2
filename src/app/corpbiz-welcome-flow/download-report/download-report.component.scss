@@ -8,6 +8,9 @@ app-download-report {
         padding-top: 10px !important;
       }
     }
+    .text-center{
+      justify-content: center;
+    }
     .intro-block__content {
       .banner-image img {
         padding-top: 0px;
@@ -16,7 +19,6 @@ app-download-report {
         }
       }
       .intro-block__content__desc {
-        margin: 15px auto 0;
         max-width: 600px;
         color: $intro-block-content-desc-color;
         box-sizing: border-box;
@@ -28,9 +30,9 @@ app-download-report {
           margin-top: 30px;
         }
         .btn-orange{
-            font-family: $muli-bold;
-            font-size: 22px;
-            width: 335px;
+            font-family: $muli-semi-bold;
+            font-size: 18px;
+            width: 310px;
             background-color: $crusta-orange-color !important;
             box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25) !important;
             border-radius: 6px;
@@ -63,7 +65,7 @@ app-download-report {
           padding: 20px;
           background-color: $white-color;
           color: $black-color;
-          margin: 20px auto;
+          margin: 30px auto;
           .content-desc{
             display: flex;
             align-items: center;
@@ -77,6 +79,7 @@ app-download-report {
             text-align: center;
             margin-top: 5px;
             padding-left: 10px;
+            color: $robins-egg-blue-color;
           }
         }
           .sub-title {
@@ -100,6 +103,9 @@ app-download-report {
           }
         }
       }
+    }
+    .btn__footer--fixed{
+      margin-top: 18px !important;
     }
   }
   .btn-primary{
@@ -146,7 +152,9 @@ app-download-report {
                 padding: 20px;
                 background-color: $white-color;
                 color: $black-color;
-                height: calc(100vh - 175px);
+                @include allmobiles{
+                  height: calc(100vh - 175px);
+                }
                 hr{
                     margin: 15px auto;
                 }
@@ -196,7 +204,7 @@ app-download-report {
                     font-family: $muli-bold;
                     line-height: 27px;
                     letter-spacing: -0.15px;
-                    margin: 30px 0px 20px !important;
+                    margin: 30px auto !important;
                     align-items: center;
                 }
             } 

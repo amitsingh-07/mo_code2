@@ -39,8 +39,29 @@ app-welcome-flow-tell-about-you{
 .main-desc{
     padding: 0px 40px;
 }
-.bottom-btn{
+.btn-container{
+    display: flex;
+    margin-top: 16px;
     padding: 0px 33px;
+    justify-content: center;
+    align-items: flex-end;
+    .back-btn{
+        display: flex;
+        width: 48px;
+        height: 48px;
+        margin-right: 20px;
+    }
+    .btn{
+        // font-size: 18px;
+        // padding: 0.7rem;
+        width: 315px;
+        @include allmobiles{
+            width: 100%;
+        }
+    }
+}
+.form-control{
+    font-size: 14px;
 }
 .slidecontainer {
     width: 100%;
@@ -52,7 +73,7 @@ app-welcome-flow-tell-about-you{
     text-align: center;
 }
 .form-container{
-    padding: 15px 69px;
+    padding: 30px 70px;
     background-color: $black-squeeze-grey-color;
     border-radius: 0px 0px 6px 6px;
     @include allmobiles{
