@@ -378,6 +378,7 @@ export class LoginComponent implements OnInit, AfterViewInit, OnDestroy {
   }
 
   goToNext() {
+    this.loaderService.hideLoader;
     const investmentRoutes = [INVESTMENT_ACCOUNT_ROUTE_PATHS.ROOT, INVESTMENT_ACCOUNT_ROUTE_PATHS.START];
     const redirect_url = this.signUpService.getRedirectUrl();
     const journeyType = this.appService.getJourneyType();
@@ -410,6 +411,7 @@ export class LoginComponent implements OnInit, AfterViewInit, OnDestroy {
       enquiryProtectionTypeData: insuranceEnquiry.enquiryProtectionTypeData,
       journeyType: journeyType
     };
+    this.loaderService.hideLoader;
     this.apiService.updateInsuranceEnquiry(payload).subscribe(() => {
       if (errorModal) {
         this.callErrorModal(data);
@@ -683,15 +685,17 @@ export class LoginComponent implements OnInit, AfterViewInit, OnDestroy {
   singpassCallbackCheck() {
     this.route.queryParams.subscribe((qp) => {
       if (qp['code'] && qp['state']) {
+        this.loaderService.showLoader({ title: 'Logging in' });
         this.singpassApiService.loginSingpass(qp['code'], qp['state']).subscribe((data) => {
           if (data.responseMessage.responseCode >= 6000 && data.objectList[0] && data.objectList[0].securityToken) {
             this.authService.saveAuthDetails(data.objectList[0]);
             this.onSuccessLogin(data);
           } else {
+            this.loaderService.hideLoader;
             this.handleError(data);
           }
         }, (err) => {
-          this.failSingpassLogin(err);
+          this.loaderService.hideLoader;
         });
       }
     });
