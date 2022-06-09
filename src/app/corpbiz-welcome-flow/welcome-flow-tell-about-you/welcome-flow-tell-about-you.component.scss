@@ -20,11 +20,17 @@ app-welcome-flow-tell-about-you{
 .mobile-back-btn{
     @include allmobiles{
         position: absolute;
+        left: 10px;
     }
 }
 
 .main-desc{
-    padding: 0px 40px;
+    padding: 0px 20px;
+    @include allmobiles{
+        max-width: 280px;
+        margin: 0 auto;
+        padding: 0px;
+    }
 }
 .btn-container{
     display: flex;
@@ -58,13 +64,14 @@ app-welcome-flow-tell-about-you{
     font-size: 16px;
     line-height: 20.08px;
     text-align: center;
+    letter-spacing: -0.25px;
 }
 .form-container{
     padding: 30px 70px;
     background-color: $black-squeeze-grey-color;
     border-radius: 0px 0px 6px 6px;
     @include allmobiles{
-        padding: 15px !important;
+        padding: 20px;
     }
 }
 .img-center{
@@ -125,7 +132,7 @@ text-align: left !important;
     background-color: $white-color;
     margin-top: 30px;
     text-align: center;
-    height: 69px;
+    padding: 25px 20px;
     display: flex;
     justify-content: center;
     align-items: center;
