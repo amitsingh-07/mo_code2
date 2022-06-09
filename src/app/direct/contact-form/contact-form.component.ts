@@ -9,6 +9,7 @@ import { DirectService } from './../direct.service';
 import { DirectApiService } from '../direct.api.service';
 import { NgbDateCustomParserFormatter } from '../../shared/utils/ngb-date-custom-parser-formatter';
 import { EMAIL_ENQUIRY_SUCCESS } from '../direct-routes.constants';
+import { AuthenticationService } from '../../shared/http/auth/authentication.service';
 
 @Component({
   selector: 'app-contact-form',
@@ -27,7 +28,7 @@ export class ContactFormComponent implements OnInit {
   interestedInsuranceInList: string[];
 
   constructor(public activeModal: NgbActiveModal, private fb: FormBuilder, private translate: TranslateService, private directService: DirectService,
-    private directApiService: DirectApiService, private router: Router) {
+    private directApiService: DirectApiService, private router: Router, private authService: AuthenticationService) {
     const today: Date = new Date();
     this.minDate = {
       year: today.getFullYear() - SIGN_UP_CONFIG.ACCOUNT_CREATION.DOB.DATE_PICKER_MAX_YEAR,
@@ -55,7 +56,11 @@ export class ContactFormComponent implements OnInit {
       insuranceInterestedIn: [''],
       isSmoker: [''],
       anyOtherQueries : [''],
-      journeyType : ['insurance-direct']
+      journeyType : ['insurance-direct'],
+      validateCaptchaBean: this.fb.group({
+        captcha: '',
+        sessionId: this.authService.getSessionId()
+      })
     })
 
     this.formObject.get('mobileNumber').valueChanges.subscribe(val => {
