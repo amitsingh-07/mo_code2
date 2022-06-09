@@ -17,19 +17,6 @@ app-welcome-flow-tell-about-you{
     color: #2E8289;
 }
 
-.back-btn-1{
-    // @include allmobiles{
-    //     display: none !important;
-    // }
-    // @include minPhabletmaxTablet{
-    //     display: block !important;
-    // }
-    // @include desktop{
-    //     display: block !important;
-    // }
-}
-
-
 .mobile-back-btn{
     @include allmobiles{
         position: absolute;
