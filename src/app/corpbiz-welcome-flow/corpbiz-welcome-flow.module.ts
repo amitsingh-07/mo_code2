@@ -9,9 +9,9 @@ import { MultiTranslateHttpLoader } from 'ngx-translate-multi-http-loader';
 import { CorpBizWelcomeflowRoutingModule } from './corpbiz-welcome-flow-routing.module';
 import { SharedModule } from '../shared/shared.module';
 import { DownloadReportComponent } from './download-report/download-report.component';
-import { WelcomeflowComponent } from './get-start/get-start.component';
-import { WelcomeflowTellAboutYouComponent } from './tell-about-you/tell-about-you.component';
-import { WelcomeflowCpfLifePayoutComponent } from './cpf-life-payout/cpf-life-payout.component';
+import { GetStartedComponent } from './get-start/get-start.component';
+import { TellAboutYouComponent } from './tell-about-you/tell-about-you.component';
+import { CpfLifePayoutComponent } from './cpf-life-payout/cpf-life-payout.component';
 
 export function createTranslateLoader(http: HttpClient) {
   return new MultiTranslateHttpLoader(
@@ -24,7 +24,7 @@ export function createTranslateLoader(http: HttpClient) {
 }
 
 @NgModule({
-  declarations: [DownloadReportComponent, WelcomeflowComponent, WelcomeflowTellAboutYouComponent, WelcomeflowCpfLifePayoutComponent],
+  declarations: [DownloadReportComponent, GetStartedComponent, TellAboutYouComponent, CpfLifePayoutComponent],
   imports: [
     CommonModule,
     ReactiveFormsModule,

@@ -1,20 +1,20 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { WelcomeflowTellAboutYouComponent } from './tell-about-you.component';
+import { TellAboutYouComponent } from './tell-about-you.component';
 
-describe('WelcomeflowTellAboutYouComponent', () => {
-  let component: WelcomeflowTellAboutYouComponent;
-  let fixture: ComponentFixture<WelcomeflowTellAboutYouComponent>;
+describe('TellAboutYouComponent', () => {
+  let component: TellAboutYouComponent;
+  let fixture: ComponentFixture<TellAboutYouComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ WelcomeflowTellAboutYouComponent ]
+      declarations: [ TellAboutYouComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(WelcomeflowTellAboutYouComponent);
+    fixture = TestBed.createComponent(TellAboutYouComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

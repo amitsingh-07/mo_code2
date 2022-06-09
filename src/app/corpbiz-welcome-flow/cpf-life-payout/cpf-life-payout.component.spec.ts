@@ -1,20 +1,20 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { WelcomeflowCpfLifePayoutComponent } from './cpf-life-payout.component';
+import { CpfLifePayoutComponent } from './cpf-life-payout.component';
 
 describe('WelcomeflowCpfLifePayoutComponent', () => {
-  let component: WelcomeflowCpfLifePayoutComponent;
-  let fixture: ComponentFixture<WelcomeflowCpfLifePayoutComponent>;
+  let component: CpfLifePayoutComponent;
+  let fixture: ComponentFixture<CpfLifePayoutComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ WelcomeflowCpfLifePayoutComponent ]
+      declarations: [ CpfLifePayoutComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(WelcomeflowCpfLifePayoutComponent);
+    fixture = TestBed.createComponent(CpfLifePayoutComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

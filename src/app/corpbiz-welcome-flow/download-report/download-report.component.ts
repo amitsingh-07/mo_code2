@@ -1,5 +1,6 @@
 import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { TranslateService } from '@ngx-translate/core';
+import { CORPBIZ_WELCOME_FLOW } from '../corpbiz-welcome-flow.constant';
 import { ComprehensiveApiService } from '../../comprehensive/comprehensive-api.service';
 import { ComprehensiveService } from '../../comprehensive/comprehensive.service';
 import { FileUtil } from '../../shared/utils/file.util';
@@ -55,7 +56,7 @@ export class DownloadReportComponent implements OnInit {
     this.comprehensiveApiService.downloadComprehensiveReport(payload).subscribe((data: any) => {
       const pdfUrl = window.URL.createObjectURL(data.body);
       if (iOS) {
-        if (newWindow.document.readyState === 'complete') {
+        if (newWindow.document.readyState === CORPBIZ_WELCOME_FLOW.CONDITION_CONST.COMPLETE) {
           newWindow.location.assign(pdfUrl);
         } else {
           newWindow.onload = () => {

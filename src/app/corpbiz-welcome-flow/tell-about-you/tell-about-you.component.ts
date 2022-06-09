@@ -12,7 +12,7 @@ import { COMPREHENSIVE_CONST } from '../../comprehensive/comprehensive-config.co
   styleUrls: ['./tell-about-you.component.scss'],
   encapsulation: ViewEncapsulation.None
 })
-export class WelcomeflowTellAboutYouComponent implements OnInit {
+export class TellAboutYouComponent implements OnInit {
   viewMode: boolean;
   retirementValueChanges = false;
   retirementPlanForm: FormGroup;

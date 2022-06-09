@@ -9,7 +9,7 @@ import { NavbarService } from '../../shared/navbar/navbar.service';
   styleUrls: ['./get-start.component.scss'],
   encapsulation: ViewEncapsulation.None
 })
-export class WelcomeflowComponent implements OnInit {
+export class GetStartedComponent implements OnInit {
 
   constructor(
     private footerService: FooterService,

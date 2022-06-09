@@ -9,7 +9,7 @@ import { NavbarService } from '../../shared/navbar/navbar.service';
   styleUrls: ['./cpf-life-payout.component.scss'],
   encapsulation: ViewEncapsulation.None
 })
-export class WelcomeflowCpfLifePayoutComponent implements OnInit {
+export class CpfLifePayoutComponent implements OnInit {
   showCpfLifePayout: boolean;
   cpfPayoutAmount: string = "$4,000";
 
