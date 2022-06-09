@@ -4,17 +4,17 @@ import { FooterService } from '../../shared/footer/footer.service';
 import { NavbarService } from '../../shared/navbar/navbar.service';
 
 @Component({
-  selector: 'app-welcome-flow',
-  templateUrl: './welcome-flow.component.html',
-  styleUrls: ['./welcome-flow.component.scss'],
+  selector: 'app-get-start',
+  templateUrl: './get-start.component.html',
+  styleUrls: ['./get-start.component.scss'],
   encapsulation: ViewEncapsulation.None
 })
 export class WelcomeflowComponent implements OnInit {
 
   constructor(
-    public footerService: FooterService,
-    public navbarService: NavbarService,
-    public readonly translate: TranslateService
+    private footerService: FooterService,
+    private navbarService: NavbarService,
+    private readonly translate: TranslateService
   ) { 
     this.translate.use('en');
   }

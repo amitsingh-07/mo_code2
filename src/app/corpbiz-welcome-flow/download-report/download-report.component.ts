@@ -18,12 +18,12 @@ export class DownloadReportComponent implements OnInit {
   getCurrentVersionType = COMPREHENSIVE_CONST.VERSION_TYPE.FULL;
   showDownloadReport = true;
 
-  constructor(public readonly translate: TranslateService,
+  constructor(private readonly translate: TranslateService,
               private comprehensiveService: ComprehensiveService,
               private downloadfile: FileUtil,
               private comprehensiveApiService: ComprehensiveApiService,
-              public footerService: FooterService,
-              public navbarService: NavbarService
+              private footerService: FooterService,
+              private navbarService: NavbarService
     ) {
     this.translate.use('en');
   }

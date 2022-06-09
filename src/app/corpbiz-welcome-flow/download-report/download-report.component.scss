@@ -3,9 +3,9 @@
 app-download-report {
   .intro-block {
     .container-fluid {
-      padding-top: 30px !important;
+      padding-top: 64px !important;
       @include allmobiles {
-        padding-top: 10px !important;
+        padding-top: 86px !important;
       }
     }
     .text-center{
@@ -23,7 +23,7 @@ app-download-report {
         color: $intro-block-content-desc-color;
         box-sizing: border-box;
         @include allmobiles {
-          margin-top: 30px;
+          margin-top: 40px;
           text-align: center;
         }
         @include tablet {
@@ -36,7 +36,7 @@ app-download-report {
             background-color: $crusta-orange-color !important;
             box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25) !important;
             border-radius: 6px;
-            padding: 14px 0;
+            padding: 15px 23px;
             @include min350max375{
               width: 100%;
             }
@@ -57,7 +57,7 @@ app-download-report {
           letter-spacing: -0.25px;
           text-align: center;
           color: $white-color;
-          margin: 20px auto;
+          margin: 0px auto 20px;
         }
         .title-box {
           max-width: 410px;

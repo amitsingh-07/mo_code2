@@ -1,9 +1,9 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 
-import { WelcomeflowComponent } from './welcome-flow-start/welcome-flow.component';
-import { WelcomeflowTellAboutYouComponent } from './welcome-flow-tell-about-you/welcome-flow-tell-about-you.component';
-import { WelcomeflowCpfLifePayoutComponent } from './welcome-flow-cpf-life-payout/welcome-flow-cpf-life-payout.component';
+import { WelcomeflowComponent } from './get-start/get-start.component';
+import { WelcomeflowTellAboutYouComponent } from './tell-about-you/tell-about-you.component';
+import { WelcomeflowCpfLifePayoutComponent } from './cpf-life-payout/cpf-life-payout.component';
 import { DownloadReportComponent } from './download-report/download-report.component';
 
 const routes: Routes = [

@@ -7,9 +7,9 @@ import { NavbarService } from '../../shared/navbar/navbar.service';
 import { COMPREHENSIVE_CONST } from '../../comprehensive/comprehensive-config.constants';
 
 @Component({
-  selector: 'app-welcome-flow-tell-about-you',
-  templateUrl: './welcome-flow-tell-about-you.component.html',
-  styleUrls: ['./welcome-flow-tell-about-you.component.scss'],
+  selector: 'app-tell-about-you',
+  templateUrl: './tell-about-you.component.html',
+  styleUrls: ['./tell-about-you.component.scss'],
   encapsulation: ViewEncapsulation.None
 })
 export class WelcomeflowTellAboutYouComponent implements OnInit {
@@ -39,8 +39,8 @@ export class WelcomeflowTellAboutYouComponent implements OnInit {
     step: COMPREHENSIVE_CONST.RETIREMENT_PLAN.STEP
   };
 
-  constructor(  public footerService: FooterService,
-                public navbarService: NavbarService,
+  constructor(  private footerService: FooterService,
+                private navbarService: NavbarService,
                 private translate: TranslateService) {
 
                   this.translate.use('en');

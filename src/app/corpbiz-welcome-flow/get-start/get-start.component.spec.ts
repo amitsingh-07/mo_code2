@@ -1,6 +1,6 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { WelcomeflowComponent } from './welcome-flow.component';
+import { WelcomeflowComponent } from './get-start.component';
 
 describe('WelcomeflowComponent', () => {
   let component: WelcomeflowComponent;

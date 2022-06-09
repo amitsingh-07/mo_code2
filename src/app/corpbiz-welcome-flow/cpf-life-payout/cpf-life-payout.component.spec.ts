@@ -1,6 +1,6 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { WelcomeflowCpfLifePayoutComponent } from './welcome-flow-cpf-life-payout.component';
+import { WelcomeflowCpfLifePayoutComponent } from './cpf-life-payout.component';
 
 describe('WelcomeflowCpfLifePayoutComponent', () => {
   let component: WelcomeflowCpfLifePayoutComponent;
