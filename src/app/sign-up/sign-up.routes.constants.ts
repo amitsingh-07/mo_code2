@@ -5,7 +5,7 @@ export const INVESTMENT_MANAGEMENT_PATH = 'investment/manage/';
 export const ACCOUNTS_PATH = '/app/accounts/';
 
 export const SIGN_UP_ROUTES = {
-  ROOT: '',
+  ROOT: '', 
   ACCOUNT_CREATED: 'success',
   ACCOUNT_UPDATED: 'account-updated',
   CREATE_ACCOUNT: 'sign-up-account',
