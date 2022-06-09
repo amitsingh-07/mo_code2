@@ -9,21 +9,24 @@ app-welcome-flow-tell-about-you{
         max-width: 600px !important;
     }
     padding-top: 40px;
+    @include allmobiles{
+        padding-top: 30px;  
+    }
 }
 .form-group-with-bg--content-label{
     color: #2E8289;
 }
 
 .back-btn-1{
-    @include allmobiles{
-        display: none !important;
-    }
-    @include minPhabletmaxTablet{
-        display: block !important;
-    }
-    @include desktop{
-        display: block !important;
-    }
+    // @include allmobiles{
+    //     display: none !important;
+    // }
+    // @include minPhabletmaxTablet{
+    //     display: block !important;
+    // }
+    // @include desktop{
+    //     display: block !important;
+    // }
 }
 
 
@@ -49,12 +52,18 @@ app-welcome-flow-tell-about-you{
     text-align: center;
 }
 .form-container{
-    padding: 15px;
+    padding: 15px 69px;
     background-color: $black-squeeze-grey-color;
     border-radius: 0px 0px 6px 6px;
+    @include allmobiles{
+        padding: 15px !important;
+    }
 }
 .img-center{
     text-align: center;
+    @include allmobiles{
+        margin-top: 20px !important;
+    }
 }
 .ring-img{
     position: absolute;
@@ -106,9 +115,12 @@ text-align: left !important;
     font-size: 16px;
     border-radius: 6px 6px 0px 0px;
     background-color: $white-color;
-    margin-top: 10px;
+    margin-top: 30px;
     text-align: center;
-    padding: 15px;
+    height: 69px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 
