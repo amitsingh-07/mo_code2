@@ -20,7 +20,7 @@ import { RegexConstants } from '../../shared/utils/api.regex.constants';
 import { Util } from '../../shared/utils/util';
 import { WillWritingService } from '../../will-writing/will-writing.service';
 import { SignUpApiService } from '../sign-up.api.service';
-import { SIGN_UP_ROUTE_PATHS, WELCOME_JOURNEY_PATH } from '../sign-up.routes.constants';
+import { SIGN_UP_ROUTE_PATHS } from '../sign-up.routes.constants';
 import { SignUpService } from '../sign-up.service';
 import { appConstants } from './../../../app/app.constants';
 import { AppService } from './../../../app/app.service';
@@ -41,6 +41,7 @@ import {
 import { InvestmentCommonService } from '../../investment/investment-common/investment-common.service';
 import { HubspotService } from './../../shared/analytics/hubspot.service';
 import { INVESTMENT_COMMON_ROUTES } from '../../investment/investment-common/investment-common-routes.constants';
+import { CORPBIZ_ROUTES_PATHS } from '../../corpbiz-welcome-flow/corpbiz-welcome-flow.routes.constants';
 
 @Component({
   selector: 'app-verify-mobile',
@@ -589,7 +590,7 @@ export class VerifyMobileComponent implements OnInit, OnDestroy {
       this.getUserProfileAndNavigate(appConstants.JOURNEY_TYPE_WILL_WRITING);
     } else {
       if (this.authService.isShowWelcomeFlow) {
-        this.redirectAfterLogin = WELCOME_JOURNEY_PATH;
+        this.redirectAfterLogin = CORPBIZ_ROUTES_PATHS.GET_STARTED;
       } else {
         this.redirectAfterLogin = SIGN_UP_ROUTE_PATHS.DASHBOARD;
       }

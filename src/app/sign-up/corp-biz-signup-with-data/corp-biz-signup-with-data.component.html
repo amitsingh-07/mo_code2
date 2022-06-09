@@ -1,0 +1,469 @@
+<div class="container-fluid max-width--1024">
+    <div class="content">
+        <div class="row">
+            <div class="col-lg-7 col-md-6 hidden-sm">
+                <div class="corpbiz-data-wrapper">
+                    <h2 class="corpbiz-data-wrapper__title order1 sm-order2 hidden-sm">{{ 'CREATE_ACCOUNT_MY_INFO.TITLE'
+                        |translate}}
+                    </h2>
+                    <div class="desc order2 hidden-sm">{{ 'CREATE_ACCOUNT_MY_INFO.DESCRIPTION_THREE' | translate}}</div>
+                    <img class="create_account__header-icon order3 sm-order1" src="assets/images/sign-up-myinfo.svg" />
+                </div>
+            </div>
+            <div class="col-lg-5 col-md-6 corpbiz-max-width">
+                <h2 class="corpbiz-data-wrapper__title hidden-lg">{{ 'CREATE_ACCOUNT_MY_INFO.TITLE' | translate}}
+                </h2>
+                <div class="corpbiz-data-wrapper__description order2">
+                    <div class="myinfo-accordian-block">
+                        <div class="flex">
+                            <span class="check-icon mr10"><img src="assets/images/check-icon-green.svg" alt="" /></span>
+                            <span class="title">{{'CORP_BIZ_SIGN_UP.CORP_BIZ_SUCCESS_MSG' |
+                                translate}} </span>
+                        </div>
+                        <hr>
+                        <div class="myinfo-data-block">
+                            <ngb-accordion #acc="ngbAccordion">
+                                <ngb-panel>
+                                    <ng-template ngbPanelTitle>
+                                        <div class="flex space-between">
+                                            <div>{{'CORP_BIZ_SIGN_UP.MY_INFO_MODAL.MODAL_ATTR.PERSONAL.TITLE' |
+                                                translate}}</div>
+                                            <div><i class='arrow'></i></div>
+                                        </div>
+                                    </ng-template>
+                                    <ng-template ngbPanelContent>
+                                        <div class="myinfo-data-content">
+                                            <div>
+                                                <div>{{'CORP_BIZ_SIGN_UP.MY_INFO_MODAL.MODAL_ATTR.PERSONAL.NAME_TEXT' |
+                                                    translate}}</div>
+                                                <div class="data_lbl">{{corpBizMyInfoData.fullName}}</div>
+                                            </div>
+                                            <div>
+                                                <div>{{'CORP_BIZ_SIGN_UP.MY_INFO_MODAL.MODAL_ATTR.PERSONAL.SEX_TEXT' |
+                                                    translate}}</div>
+                                                <div class="data_lbl">{{corpBizMyInfoData.gender}}</div>
+                                            </div>
+                                            <div>
+                                                <div>{{'CORP_BIZ_SIGN_UP.MY_INFO_MODAL.MODAL_ATTR.PERSONAL.RACE_TEXT' |
+                                                    translate}}</div>
+                                                <div class="data_lbl">Chinese</div>
+                                            </div>
+                                            <div>
+                                                <div>{{'CORP_BIZ_SIGN_UP.MY_INFO_MODAL.MODAL_ATTR.PERSONAL.DOB_TEXT' |
+                                                    translate}}</div>
+                                                <div class="data_lbl">01/02/1990</div>
+                                            </div>
+                                            <div>
+                                                <div>{{'CORP_BIZ_SIGN_UP.MY_INFO_MODAL.MODAL_ATTR.PERSONAL.NRIC_TEXT' |
+                                                    translate}}</div>
+                                                <div class="data_lbl">{{corpBizMyInfoData.nricNumber}}</div>
+                                            </div>
+                                            <div>
+                                                <div>
+                                                    {{'CORP_BIZ_SIGN_UP.MY_INFO_MODAL.MODAL_ATTR.PERSONAL.BIRTH_COUNTRY_TEXT'
+                                                    | translate}}</div>
+                                                <div class="data_lbl">Singapore</div>
+                                            </div>
+                                            <div>
+                                                <div>
+                                                    {{'CORP_BIZ_SIGN_UP.MY_INFO_MODAL.MODAL_ATTR.PERSONAL.RESIDENCE_TEXT'
+                                                    | translate}}</div>
+                                                <div class="data_lbl">Citizen</div>
+                                            </div>
+                                            <div>
+                                                <div>{{'CORP_BIZ_SIGN_UP.MY_INFO_MODAL.MODAL_ATTR.PERSONAL.ADDRESS_TEXT'
+                                                    | translate}}</div>
+                                                <div class="data_lbl">BLOCK 123 JALAN JALAN #12-345 SINGAPORE 123456
+                                                </div>
+                                            </div>
+                                            <div>
+                                                <div>{{'CORP_BIZ_SIGN_UP.MY_INFO_MODAL.MODAL_ATTR.PERSONAL.EMAIL_TEXT' |
+                                                    translate}}</div>
+                                                <div class="data_lbl">{{corpBizUserData && corpBizUserData.email ? corpBizUserData.email : '-'}}</div>
+                                            </div>
+                                            <div>
+                                                <div>{{'CORP_BIZ_SIGN_UP.MY_INFO_MODAL.MODAL_ATTR.PERSONAL.MOBILE_TEXT'
+                                                    | translate}}</div>
+                                                <div class="data_lbl">{{corpBizUserData && corpBizUserData.mobile ? corpBizUserData.mobile : '-'}}</div>
+                                            </div>
+                                        </div>
+                                    </ng-template>
+                                </ngb-panel>
+                                <ngb-panel>
+                                    <ng-template ngbPanelTitle>
+                                        <div class="flex space-between">
+                                            <div>{{'CORP_BIZ_SIGN_UP.MY_INFO_MODAL.MODAL_ATTR.FAMILY.TITLE' |
+                                                translate}}</div>
+                                            <div><i class='arrow'></i></div>
+                                        </div>
+                                    </ng-template>
+                                    <ng-template ngbPanelContent>
+                                        <div class="myinfo-data-content">
+                                            <div>
+                                                <div>{{'CORP_BIZ_SIGN_UP.MY_INFO_MODAL.MODAL_ATTR.FAMILY.MARITAL_TEXT' |
+                                                    translate}}</div>
+                                                <div class="data_lbl">Married</div>
+                                            </div>
+                                            <div>
+                                                <div>{{'CORP_BIZ_SIGN_UP.MY_INFO_MODAL.MODAL_ATTR.FAMILY.CHILD.NAME' |
+                                                    translate}}</div>
+                                                <div class="data_lbl">Goh Mary</div>
+                                            </div>
+                                            <div>
+                                                <div>{{'CORP_BIZ_SIGN_UP.MY_INFO_MODAL.MODAL_ATTR.FAMILY.CHILD.DOB_TEXT'
+                                                    |
+                                                    translate}}</div>
+                                                <div class="data_lbl">11/1/2020</div>
+                                            </div>
+                                            <div>
+                                                <div>
+                                                    {{'CORP_BIZ_SIGN_UP.MY_INFO_MODAL.MODAL_ATTR.FAMILY.CHILD.GENDER_TEXT'
+                                                    |
+                                                    translate}}</div>
+                                                <div class="data_lbl">Female</div>
+                                            </div>
+                                            <div>
+                                                <div>
+                                                    {{'CORP_BIZ_SIGN_UP.MY_INFO_MODAL.MODAL_ATTR.FAMILY.CHILD.RESIDENTIAL_TEXT'
+                                                    |
+                                                    translate}}</div>
+                                                <div class="data_lbl">Citizen</div>
+                                            </div>
+                                            <div>
+                                                <div>
+                                                    {{'CORP_BIZ_SIGN_UP.MY_INFO_MODAL.MODAL_ATTR.FAMILY.CHILD.LIFE_STATUS_TEXT'
+                                                    |
+                                                    translate}}</div>
+                                                <div class="data_lbl">Alive</div>
+                                            </div>
+                                            <div>
+                                                <div>
+                                                    {{'CORP_BIZ_SIGN_UP.MY_INFO_MODAL.MODAL_ATTR.FAMILY.SPONSORED_CHILD.NAME'
+                                                    |
+                                                    translate}}</div>
+                                                <div class="data_lbl">Goh John</div>
+                                            </div>
+                                            <div>
+                                                <div>
+                                                    {{'CORP_BIZ_SIGN_UP.MY_INFO_MODAL.MODAL_ATTR.FAMILY.SPONSORED_CHILD.DOB_TEXT'
+                                                    |
+                                                    translate}}</div>
+                                                <div class="data_lbl">11/1/2020</div>
+                                            </div>
+                                            <div>
+                                                <div>
+                                                    {{'CORP_BIZ_SIGN_UP.MY_INFO_MODAL.MODAL_ATTR.FAMILY.SPONSORED_CHILD.GENDER_TEXT'
+                                                    |
+                                                    translate}}</div>
+                                                <div class="data_lbl">Male</div>
+                                            </div>
+                                            <div>
+                                                <div>
+                                                    {{'CORP_BIZ_SIGN_UP.MY_INFO_MODAL.MODAL_ATTR.FAMILY.SPONSORED_CHILD.RESIDENTIAL_TEXT'
+                                                    |
+                                                    translate}}</div>
+                                                <div class="data_lbl">Citizen</div>
+                                            </div>
+                                            <div>
+                                                <div>
+                                                    {{'CORP_BIZ_SIGN_UP.MY_INFO_MODAL.MODAL_ATTR.FAMILY.SPONSORED_CHILD.LIFE_STATUS_TEXT'
+                                                    |
+                                                    translate}}</div>
+                                                <div class="data_lbl">Alive</div>
+                                            </div>
+                                        </div>
+                                    </ng-template>
+                                </ngb-panel>
+                                <ngb-panel>
+                                    <ng-template ngbPanelTitle>
+                                        <div class="flex space-between">
+                                            <div>{{'CORP_BIZ_SIGN_UP.MY_INFO_MODAL.MODAL_ATTR.EMPLOYMENT_AND_EDU.TITLE'
+                                                |
+                                                translate}}</div>
+                                            <div><i class='arrow'></i></div>
+                                        </div>
+                                    </ng-template>
+                                    <ng-template ngbPanelContent>
+                                        <div class="myinfo-data-content">
+                                            <div>
+                                                <div>
+                                                    {{'CORP_BIZ_SIGN_UP.MY_INFO_MODAL.MODAL_ATTR.EMPLOYMENT_AND_EDU.OCCUPATION_TEXT'
+                                                    |
+                                                    translate}}</div>
+                                                <div class="data_lbl">Accountant</div>
+                                            </div>
+                                            <div>
+                                                <div>
+                                                    {{'CORP_BIZ_SIGN_UP.MY_INFO_MODAL.MODAL_ATTR.EMPLOYMENT_AND_EDU.EMPLOYER_NAME_TEXT'
+                                                    |
+                                                    translate}}</div>
+                                                <div class="data_lbl">MoneyOwl Ptd Ltd</div>
+                                            </div>
+                                        </div>
+                                    </ng-template>
+                                </ngb-panel>
+                                <ngb-panel>
+                                    <ng-template ngbPanelTitle>
+                                        <div class="flex space-between">
+                                            <div>{{'CORP_BIZ_SIGN_UP.MY_INFO_MODAL.MODAL_ATTR.PROPERTY.TITLE' |
+                                                translate}}</div>
+                                            <div><i class='arrow'></i></div>
+                                        </div>
+                                    </ng-template>
+                                    <ng-template ngbPanelContent>
+                                        <div class="myinfo-data-content">
+                                            <div>
+                                                <div>
+                                                    {{'CORP_BIZ_SIGN_UP.MY_INFO_MODAL.MODAL_ATTR.PROPERTY.HDB_TEXT.PURCHASE_DATE_TEXT'
+                                                    |
+                                                    translate}}</div>
+                                                <div class="data_lbl">11/1/2020</div>
+                                            </div>
+                                            <div>
+                                                <div>
+                                                    {{'CORP_BIZ_SIGN_UP.MY_INFO_MODAL.MODAL_ATTR.PROPERTY.HDB_TEXT.LOAN_TEXT'
+                                                    |
+                                                    translate}}</div>
+                                                <div class="data_lbl">$100,000</div>
+                                            </div>
+                                            <div>
+                                                <div>
+                                                    {{'CORP_BIZ_SIGN_UP.MY_INFO_MODAL.MODAL_ATTR.PROPERTY.HDB_TEXT.OUTSTANDING_LOAN_TEXT'
+                                                    |
+                                                    translate}}</div>
+                                                <div class="data_lbl">$100,000</div>
+                                            </div>
+                                            <div>
+                                                <div>
+                                                    {{'CORP_BIZ_SIGN_UP.MY_INFO_MODAL.MODAL_ATTR.PROPERTY.HDB_TEXT.MONTHLY_LOAN_TEXT'
+                                                    |
+                                                    translate}}</div>
+                                                <div class="data_lbl">$1,000</div>
+                                            </div>
+                                            <div>
+                                                <div>
+                                                    {{'CORP_BIZ_SIGN_UP.MY_INFO_MODAL.MODAL_ATTR.PROPERTY.HDB_TEXT.LEASE_TEXT'
+                                                    |
+                                                    translate}}</div>
+                                                <div class="data_lbl">11/1/2020</div>
+                                            </div>
+                                        </div>
+                                    </ng-template>
+                                </ngb-panel>
+                                <ngb-panel>
+                                    <ng-template ngbPanelTitle>
+                                        <div class="flex space-between">
+                                            <div>{{'CORP_BIZ_SIGN_UP.MY_INFO_MODAL.MODAL_ATTR.INCOME_BREAKDOWN.TITLE' |
+                                                translate}}</div>
+                                            <div><i class='arrow'></i></div>
+                                        </div>
+                                    </ng-template>
+                                    <ng-template ngbPanelContent>
+                                        <div class="myinfo-data-content">
+                                            <div>
+                                                <div>
+                                                    {{'CORP_BIZ_SIGN_UP.MY_INFO_MODAL.MODAL_ATTR.INCOME_BREAKDOWN.EMPLOYMENT_TEXT'
+                                                    |
+                                                    translate}}</div>
+                                                <div class="data_lbl">$100,000</div>
+                                            </div>
+                                            <div>
+                                                <div>
+                                                    {{'CORP_BIZ_SIGN_UP.MY_INFO_MODAL.MODAL_ATTR.INCOME_BREAKDOWN.TRADE_TEXT'
+                                                    |
+                                                    translate}}</div>
+                                                <div class="data_lbl">$100,000</div>
+                                            </div>
+                                            <div>
+                                                <div>
+                                                    {{'CORP_BIZ_SIGN_UP.MY_INFO_MODAL.MODAL_ATTR.INCOME_BREAKDOWN.RENT_TEXT'
+                                                    |
+                                                    translate}}</div>
+                                                <div class="data_lbl">-</div>
+                                            </div>
+                                            <div>
+                                                <div>
+                                                    {{'CORP_BIZ_SIGN_UP.MY_INFO_MODAL.MODAL_ATTR.INCOME_BREAKDOWN.INTEREST_TEXT'
+                                                    |
+                                                    translate}}</div>
+                                                <div class="data_lbl">-</div>
+                                            </div>
+                                        </div>
+                                    </ng-template>
+                                </ngb-panel>
+                                <ngb-panel>
+                                    <ng-template ngbPanelTitle>
+                                        <div class="flex space-between">
+                                            <div>{{'CORP_BIZ_SIGN_UP.MY_INFO_MODAL.MODAL_ATTR.ASSESSMENT_NOTICE.TITLE' |
+                                                translate}}</div>
+                                            <div><i class='arrow'></i></div>
+                                        </div>
+                                    </ng-template>
+                                    <ng-template ngbPanelContent>
+                                        <div class="myinfo-data-content">
+                                            <div>
+                                                <div>
+                                                    {{'CORP_BIZ_SIGN_UP.MY_INFO_MODAL.MODAL_ATTR.ASSESSMENT_NOTICE.ASSESSMENT_YEAR_TEXT'
+                                                    |
+                                                    translate}}</div>
+                                                <div class="data_lbl">2018</div>
+                                            </div>
+                                            <div>
+                                                <div>
+                                                    {{'CORP_BIZ_SIGN_UP.MY_INFO_MODAL.MODAL_ATTR.ASSESSMENT_NOTICE.TYPE_TEXT'
+                                                    |
+                                                    translate}}</div>
+                                                <div class="data_lbl">Original (Clearance)</div>
+                                            </div>
+                                            <div>
+                                                <div>
+                                                    {{'CORP_BIZ_SIGN_UP.MY_INFO_MODAL.MODAL_ATTR.ASSESSMENT_NOTICE.INCOME_TEXT'
+                                                    |
+                                                    translate}}</div>
+                                                <div class="data_lbl">$100,000</div>
+                                            </div>
+                                        </div>
+                                    </ng-template>
+                                </ngb-panel>
+                                <ngb-panel>
+                                    <ng-template ngbPanelTitle>
+                                        <div class="flex space-between">
+                                            <div>{{'CORP_BIZ_SIGN_UP.MY_INFO_MODAL.MODAL_ATTR.CPF_ACC_BAL.TITLE' |
+                                                translate}}</div>
+                                            <div><i class='arrow'></i></div>
+                                        </div>
+                                    </ng-template>
+                                    <ng-template ngbPanelContent>
+                                        <div class="myinfo-data-content">
+                                            <div>
+                                                <div>
+                                                    {{'CORP_BIZ_SIGN_UP.MY_INFO_MODAL.MODAL_ATTR.CPF_ACC_BAL.ORDINARY_ACC_TEXT'
+                                                    |
+                                                    translate}}</div>
+                                                <div class="data_lbl">$100,000</div>
+                                            </div>
+                                            <div>
+                                                <div>
+                                                    {{'CORP_BIZ_SIGN_UP.MY_INFO_MODAL.MODAL_ATTR.CPF_ACC_BAL.SPECIAL_ACC_TEXT'
+                                                    |
+                                                    translate}}</div>
+                                                <div class="data_lbl">$100,000</div>
+                                            </div>
+                                            <div>
+                                                <div>
+                                                    {{'CORP_BIZ_SIGN_UP.MY_INFO_MODAL.MODAL_ATTR.CPF_ACC_BAL.MEDISAFE_ACC_TEXT'
+                                                    |
+                                                    translate}}</div>
+                                                <div class="data_lbl">$100,000</div>
+                                            </div>
+                                            <div>
+                                                <div>
+                                                    {{'CORP_BIZ_SIGN_UP.MY_INFO_MODAL.MODAL_ATTR.CPF_ACC_BAL.RETIREMENT_ACC_TEXT'
+                                                    |
+                                                    translate}}</div>
+                                                <div class="data_lbl">$100,000</div>
+                                            </div>
+                                        </div>
+                                    </ng-template>
+                                </ngb-panel>
+                                <ngb-panel>
+                                    <ng-template ngbPanelTitle>
+                                        <div class="flex space-between">
+                                            <div>{{'CORP_BIZ_SIGN_UP.MY_INFO_MODAL.MODAL_ATTR.CPF_HOUSING.TITLE' |
+                                                translate}}</div>
+                                            <div><i class='arrow'></i></div>
+                                        </div>
+                                    </ng-template>
+                                    <ng-template ngbPanelContent>
+                                        <div class="myinfo-data-content">
+                                            <div>
+                                                <div>
+                                                    {{'CORP_BIZ_SIGN_UP.MY_INFO_MODAL.MODAL_ATTR.CPF_HOUSING.WITHDRAWAL_ACC_TEXT'
+                                                    |
+                                                    translate}}</div>
+                                                <div class="data_lbl">$100,000</div>
+                                            </div>
+                                            <div>
+                                                <div>
+                                                    {{'CORP_BIZ_SIGN_UP.MY_INFO_MODAL.MODAL_ATTR.CPF_HOUSING.MONTHLY_EMI_TEXT'
+                                                    |
+                                                    translate}}</div>
+                                                <div class="data_lbl">$100,000</div>
+                                            </div>
+                                            <div>
+                                                <div>
+                                                    {{'CORP_BIZ_SIGN_UP.MY_INFO_MODAL.MODAL_ATTR.CPF_HOUSING.INTEREST_TEXT'
+                                                    |
+                                                    translate}}</div>
+                                                <div class="data_lbl">$100,000</div>
+                                            </div>
+                                            <div>
+                                                <div>
+                                                    {{'CORP_BIZ_SIGN_UP.MY_INFO_MODAL.MODAL_ATTR.CPF_HOUSING.CPF_AMOUNT_TEXT'
+                                                    |
+                                                    translate}}</div>
+                                                <div class="data_lbl">$100,000</div>
+                                            </div>
+                                        </div>
+                                    </ng-template>
+                                </ngb-panel>
+                                <ngb-panel>
+                                    <ng-template ngbPanelTitle>
+                                        <div class="flex space-between">
+                                            <div>{{'CORP_BIZ_SIGN_UP.MY_INFO_MODAL.MODAL_ATTR.VEHICLES.TITLE' |
+                                                translate}}</div>
+                                            <div><i class='arrow'></i></div>
+                                        </div>
+                                    </ng-template>
+                                    <ng-template ngbPanelContent>
+                                        <div class="myinfo-data-content">
+                                            <div>
+                                                <div>
+                                                    {{'CORP_BIZ_SIGN_UP.MY_INFO_MODAL.MODAL_ATTR.VEHICLES.REGISTRATION_DATE_TEXT'
+                                                    |
+                                                    translate}}</div>
+                                                <div class="data_lbl">11/1/2020</div>
+                                            </div>
+                                            <div>
+                                                <div>
+                                                    {{'CORP_BIZ_SIGN_UP.MY_INFO_MODAL.MODAL_ATTR.VEHICLES.EXPIRY_DATE_TEXT'
+                                                    |
+                                                    translate}}</div>
+                                                <div class="data_lbl">11/1/2020</div>
+                                            </div>
+                                            <div>
+                                                <div>
+                                                    {{'CORP_BIZ_SIGN_UP.MY_INFO_MODAL.MODAL_ATTR.VEHICLES.MARKET_VALUE_TEXT'
+                                                    |
+                                                    translate}}</div>
+                                                <div class="data_lbl">$100,000</div>
+                                            </div>
+                                            <div>
+                                                <div>
+                                                    {{'CORP_BIZ_SIGN_UP.MY_INFO_MODAL.MODAL_ATTR.VEHICLES.VEHICLE_STATUS_TEXT'
+                                                    |
+                                                    translate}}</div>
+                                                <div class="data_lbl">Alive</div>
+                                            </div>
+                                        </div>
+                                    </ng-template>
+                                </ngb-panel>
+                            </ngb-accordion>
+                        </div>
+                    </div>
+                    <div class="flex note">
+                        <span class="lock-icon mr10"><img src="assets/images/check-lock-icon.svg" alt="" /></span>
+                        <div>
+                            <span class="text-bold">{{'CORP_BIZ_SIGN_UP.CORP_BIZ_ENSURE_TXT' |
+                                translate}}</span>
+                            <span class="text-regular">{{'CORP_BIZ_SIGN_UP.CORP_BIZ_STEP_CONTINUE_TXT' |
+                                translate}}</span>
+                        </div>
+                        <button id="nextDependentBtn" type="button" (click)="goToNext()"
+                            class="btn btn__footer--fixed btn-primary width100 mt20">{{
+                            'COMMON.LABEL.CONTINUE' | translate }}</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>

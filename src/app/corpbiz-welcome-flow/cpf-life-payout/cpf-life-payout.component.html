@@ -1,0 +1,20 @@
+<div class="container-fluid">
+    <div class="content">
+        <div class="page-info">{{'LIFE_PAYOUT.PAGE_INFO' | translate}}</div>
+        <div class="banner"><img src="assets/images/welcome-journey/corpbiz-welcome-owl.svg"></div>
+        <div class="card">
+        <div class="card-title">{{'LIFE_PAYOUT.CARD_TITLE' | translate}}</div>
+        <div class="card-body">
+            <button type="button" class="btn btn-orange" (click)="showPayout()" *ngIf="!showCpfLifePayout"
+            id="intro-continue"><span>{{'LIFE_PAYOUT.SHOW_ME' | translate}}</span><span class="btn-icon"><img src="assets/images/welcome-journey/half-moon-icon.svg"></span></button>
+            <div class="show-content" *ngIf="showCpfLifePayout">
+            <div class="data-content">{{cpfPayoutAmount}}</div>
+            <div>{{'LIFE_PAYOUT.DURATION' | translate}}</div>
+            </div>      
+        </div>
+        </div>
+        <div>{{'LIFE_PAYOUT.DESC' | translate}} </div>
+            <button type="button" class="flex btn btn__footer--fixed btn-primary"
+            id="intro-continue"  routerLink="/welcome-journey/download-report">{{'LIFE_PAYOUT.CONT_BTN' | translate}}</button>
+    </div>
+  </div>  

@@ -1,21 +1,22 @@
 {
-  "STATIC_PAGE":{
+  "GET_START":{
     "TITLE": "Welcome to MoneyOwl!",
-    "SUB_TITLE": "In just a few steps, you will embark on a Comprehensive Financial Planning Journey with MoneyOwl. We’ll be taking you through your finances now and throughout your retirement years.",
+    "SUB_TITLE": "In just a few steps, you will embark on a Comprehensive Financial Planning Journey with MoneyOwl. <span class=\"txt-desc\"> We’ll be taking you through your finances now and throughout your retirement years.</span>",
     "SUB_TEXT": "Corporate partner plans for Free!",
     "CONT_BTN": "Let's go"
   },
-  "WELCOME_RETIREMENT":{
+  "TELL_ABOUT_YOU":{
     "RETIREMENT_TITLE": "How ready are you for retirement?",
-    "RETIREMENT_MAIN_TITLE": "Tell us about you. You’ll see snapshots of<br> your financial outlook right away...",
+    "RETIREMENT_MAIN_TITLE": "Tell us about you. You’ll see snapshots of your financial outlook right away...",
     "RETIREMENT_MIN_TEXT": "You can add up the amount of cash in all your bank accounts. The more detailed the amount, the more accurate is our recommendation.",
     "RETIREMENT_CASH_TITLE": "Cash in bank",
     "CONT_BTN": "Continue"
   },
-  "WELCOME_STEP_TWO":{
+  "LIFE_PAYOUT":{
     "PAGE_INFO": "We have used our CPF Analyser and your Myinfo details to project your estimated payouts from CPF LIFE.",
     "CARD_TITLE": "Minimum CPF LIFE payout if you retire at age 55",
     "SHOW_ME": "Show Me!",
+    "DURATION": "per month!",
     "DESC": "Continue and know exactly the steps to take for greater financial confidence in attaining life and family goals, both now and in retirement.",
     "CONT_BTN": "Continue"
 
@@ -40,27 +41,7 @@
     "SUB_TXT3": "Refine your report when you continue to update more details about you and your family.",
     "SUB_HEAD4": "Speak to adviser",
     "SUB_TXT4": "Contact us for a one-on-one advice should you need any customised planning.",
-    "BTN_TXT": "Start Planning",
+    "BTN_TXT": "Start Now",
     "MESSAGE": "Corporate partner plans for Free!"
   }
-
-
-
-
- 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 }
