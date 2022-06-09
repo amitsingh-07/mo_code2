@@ -1,6 +1,6 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { GetStartedComponent } from './get-start.component';
+import { GetStartedComponent } from './get-started.component';
 
 describe('GetStartedComponent', () => {
   let component: GetStartedComponent;

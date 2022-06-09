@@ -9,7 +9,7 @@ import { MultiTranslateHttpLoader } from 'ngx-translate-multi-http-loader';
 import { CorpBizWelcomeflowRoutingModule } from './corpbiz-welcome-flow-routing.module';
 import { SharedModule } from '../shared/shared.module';
 import { DownloadReportComponent } from './download-report/download-report.component';
-import { GetStartedComponent } from './get-start/get-start.component';
+import { GetStartedComponent } from './get-started/get-started.component';
 import { TellAboutYouComponent } from './tell-about-you/tell-about-you.component';
 import { CpfLifePayoutComponent } from './cpf-life-payout/cpf-life-payout.component';
 
