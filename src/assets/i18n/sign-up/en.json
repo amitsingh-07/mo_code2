@@ -30,9 +30,128 @@
     "VERIFY_EMAIL_MESSAGE": "You are almost there! An email verification is sent. We need you to verify your email to complete your account creation!",
     "VERIFY_EMAIL_OTP": "Seems like you have previously created an account but has yet to complete the account verification. Let us guide you through it."
   },
+  "CORP_BIZ_SIGN_UP": {
+    "SIGN_UP_DESC": "Choose how you want to activate your Corporate Account",
+    "SIGN_UP_MY_INFO_DESC": "Retrieve Myinfo with Singpass is a fast and secured way to activate your account.<span class='text-bold'>Applicable to Singapore Citizens and Singapore Permanent Citizens (PRs) only.</span>",
+    "SIGN_UP_MANUAL_BTN_TXT": "Complete Form Manually",
+    "MANUAL_ESTIMATED_TIME_TXT": "Estimated 3 minutes",
+    "CORP_BIZ_SUCCESS_MSG": "Use these details from Myinfo to create account and financial planning with MoneyOwl.",
+    "CORP_BIZ_ENSURE_TXT": "We will ensure that your information is safe with us.",
+    "CORP_BIZ_STEP_CONTINUE_TXT": "This step is required to continue.",
+    "OR_TXT": "Or",
+    "LOADER1": {
+      "title": "Unable to proceed with the NRIC/FIN",
+      "message": "We have detected that the NRIC/FIN is already in use by another account.<strong class=\"text-bold\"> Please use your own account only.</strong><br></br>Contact us at <span class=\"email_txt\"><a target='_blank' href='mailto:enquiries@moneyowl.com.sg'>enquiries@moneyowl.com.sg</a></span> if you require any assistance.",
+      "btn": "Okay, Got It!"
+    },
+    "LOADER2": {
+      "message": "Sorry that this is taking longer than usual. Please be patient while we fetch your required data from Myinfo."
+    },
+    "LOADER3": {
+      "title": "Oops, Unable to Connect",
+      "message": "We are unable to connect to Myinfo temporarily. Please try again later.",
+      "primaryActionLabel": "Try Again Later",
+      "secondaryActionLabel": "Create Account Manually"
+    },
+    "MY_INFO_MODAL": {
+      "BTN": "Let’s go",
+      "TITLE": "Retrieve Myinfo with Singpass",
+      "DESC": "Applicable to all Singpass Registered users.",
+      "OWN_ACC_TEXT": "Please use your own account only.",
+      "MY_INFO_DESC": "You will now proceed to login via MyInfo and retrieve your following details which will be used in creating your account and your financial planning with MoneyOwl.",
+      "PROCEED_QUEST": "Would you like to proceed?",
+      "MODAL_ATTR": {
+        "PERSONAL": {
+          "TITLE": "Personal",
+          "NAME_TEXT": "Principal Name",
+          "SEX_TEXT": "Sex",
+          "RACE_TEXT": "Race",
+          "DOB_TEXT": "Date of Birth",
+          "NRIC_TEXT": "NRIC/FIN",
+          "BIRTH_COUNTRY_TEXT": "Country of Birth",
+          "RESIDENCE_TEXT": "Residential Status",
+          "ADDRESS_TEXT": "Registered Address",
+          "EMAIL_TEXT": "Email Address",
+          "MOBILE_TEXT": "Mobile Number"
+        },
+        "FAMILY": {
+          "TITLE": "Family",
+          "MARITAL_TEXT": "Marital Status",
+          "SPONSORED_CHILD": {
+            "NAME": "Sponsored Children Birth records - Name",
+            "DOB_TEXT": "Sponsored Children Records - Date of Birth",
+            "GENDER_TEXT": "Sponsored Children Records - Sex",
+            "RESIDENTIAL_TEXT": "Sponsored Children Records - Residential Status",
+            "LIFE_STATUS_TEXT": "Sponsored Children Records - Life Status"
+          },
+          "CHILD": {
+            "NAME": "Children Birth records - Name",
+            "DOB_TEXT": "Children Birth records - Date of Birth",
+            "GENDER_TEXT": "Children Birth Records: Sex",
+            "RESIDENTIAL_TEXT": "Children Records - Residential Status",
+            "LIFE_STATUS_TEXT": "Children Birth Records - Life Status"
+          }
+        },
+        "EMPLOYMENT_AND_EDU": {
+          "TITLE": "Employment & Education",
+          "OCCUPATION_TEXT": "Occupation",
+          "EMPLOYER_NAME_TEXT": "Name of Employer"
+        },
+        "PROPERTY": {
+          "TITLE": "Property",
+          "HDB_TEXT": {
+            "PURCHASE_DATE_TEXT": "HDB Ownership - Date of Purchase",
+            "LOAN_TEXT": "HDB Ownership - Loan Granted",
+            "OUTSTANDING_LOAN_TEXT": "HDB Ownership -Outstanding HDB Loan Balance",
+            "MONTHLY_LOAN_TEXT": "HDB Ownership - Monthly Loan Instalment",
+            "LEASE_TEXT": "HDB Ownership – Lease Commencement Date"
+          }
+        },
+        "INCOME_BREAKDOWN": {
+          "TITLE": "Income Breakdown",
+          "EMPLOYMENT_TEXT": "Employment",
+          "TRADE_TEXT": "Trade",
+          "RENT_TEXT": "Rent",
+          "INTEREST_TEXT": "Interest"
+        },
+        "ASSESSMENT_NOTICE": {
+          "TITLE": "Notice of Assessment",
+          "ASSESSMENT_YEAR_TEXT": "Year of Assessment",
+          "TYPE_TEXT": "Type",
+          "INCOME_TEXT": "Assessable Income"
+        },
+        "CPF_ACC_BAL": {
+          "TITLE": "CPF Account Balance",
+          "ORDINARY_ACC_TEXT": "Ordinary Account (OA)",
+          "SPECIAL_ACC_TEXT": "Special Account (SA)",
+          "MEDISAFE_ACC_TEXT": "Medisave Account (MA)",
+          "RETIREMENT_ACC_TEXT": "Retirement Account (RA)"
+        },
+        "CPF_HOUSING": {
+          "TITLE": "CPF Housing Withdrawal",
+          "WITHDRAWAL_ACC_TEXT": "Principal withdrawal amount",
+          "MONTHLY_EMI_TEXT": "Monthly Installment Amount",
+          "INTEREST_TEXT": "Acrued Interest Amount",
+          "CPF_AMOUNT_TEXT": "Total Amount of CPF Used for Property"
+        },
+        "VEHICLES": {
+          "TITLE": "Vehicles & Driving",
+          "REGISTRATION_DATE_TEXT": "First Registration Date (LTA)",
+          "EXPIRY_DATE_TEXT": "COE expiry date",
+          "MARKET_VALUE_TEXT": "Open Market Value (LTA)",
+          "VEHICLE_STATUS_TEXT": "Vehicle Status"
+        }
+      }
+    }
+  },
+  "CORP_BIZ_ERROR_MODAL": {
+    "TITLE": "You are already enrolled with us!",
+    "SUB_TITLE": "<strong>Seems like your Email Address and Mobile Number are different from the enrolled record. Enter the correct Email Address and Mobile Number to proceed.</strong><br/><br/>"
+  },
   "CREATE_ACCOUNT": {
     "TITLE": "Create Your Account",
     "DESCRIPTION": "Please fill in your details below.",
+    "CORP_BIZ_ACC_CREATION_TEXT": "Use these details from Myinfo to create account and financial planning with MoneyOwl.",
     "FORM": {
       "FULLNAME": {
         "LABEL": "Name",
@@ -55,7 +174,7 @@
           "INVALID": "Select valid Date of Birth"
         }
       },
-      "GENDER":{
+      "GENDER": {
         "LABEL": "Gender",
         "MALE": "Male",
         "FEMALE": "Female",
@@ -149,9 +268,9 @@
     "FORM": {
       "INSTRUCTION": "Enter the 6-digit OTP code sent to:",
       "EDIT_NUMBER": "Edit Number",
-      "ACCOUNT_DIDNT_RECIEVE": "Didn’t receive it?",     
+      "ACCOUNT_DIDNT_RECIEVE": "Didn’t receive it?",
       "ACCOUNT_REQUEST_NEW_CODE": "Resend OTP",
-      "DIDNT_RECIEVE": "Didn’t receive your OTP?",     
+      "DIDNT_RECIEVE": "Didn’t receive your OTP?",
       "REQUEST_NEW_CODE": "Resend",
       "SEND_TO_MAIL": "Send to Email",
       "CODE_SENT": "Code sent!",
@@ -382,7 +501,7 @@
     }
   },
   "DASHBOARD": {
-    "TOAST_MESSAGE" :"Your report is ready to be downloaded",
+    "TOAST_MESSAGE": "Your report is ready to be downloaded",
     "PROFILE": {
       "WELCOME": "Welcome back,",
       "EDIT_PROFILE": "Edit Profile",
@@ -483,7 +602,7 @@
           "TEXT": "You will now be able to share your MoneyOwl referral link and start earning rewards. Look for it at <strong>Dashboard > Menu > Refer a friend</strong> and start sharing!",
           "APP_URL": "/accounts/refer-a-friend",
           "URL_TEXT": "Refer a friend"
-        },  
+        },
         {
           "TITLE": "New Updates",
           "TITLE_IMG": "srs-joint-account/speaker.svg",
@@ -493,7 +612,7 @@
           "APP_URL": "/investment/engagement/wise-income-payout",
           "QUERY_PARAMS": "wise-income",
           "URL_TEXT": "Start now"
-        },        
+        },
         {
           "TITLE": "New Updates",
           "TITLE_IMG": "srs-joint-account/speaker.svg",
@@ -522,7 +641,7 @@
           "APP_URL": "/investment/engagement/wise-income-payout",
           "QUERY_PARAMS": "wise-income",
           "URL_TEXT": "Start now"
-        },        
+        },
         {
           "TITLE": "New Updates",
           "TITLE_IMG": "srs-joint-account/speaker.svg",
@@ -671,7 +790,7 @@
     "NOT_STARTED": "Not started",
     "CKA_PASSED": "CKA Passed (Expires ",
     "CKA_UPLOAD": "CKA Certificate Uploaded",
-    "CKA_BRACKET":")"
+    "CKA_BRACKET": ")"
   },
   "ACTIVATE_SINGPASS_MODAL": {
     "MESSAGE": "<h4>Activate Singpass Login</h4><div>Use Myinfo to activate your MoneyOwl Singpass Mobile App login. No more remembering of password. This feature is available to all Singpass Registered users.</div><div class=\"more-info\"><a target=\"_blank\" href='https://www.singpass.gov.sg/myinfo/intro'>Learn more about Myinfo</a></div>"
@@ -750,21 +869,21 @@
     "SOCIAL_MAIL_SUBJECT": "Join me at Moneyowl using my referral link!",
     "COPIED": "Copied"
   },
-  "REFER_A_FRIEND":{
-  "REFER_LINK_MODAL": {
+  "REFER_A_FRIEND": {
+    "REFER_LINK_MODAL": {
       "TITLE": "Get referral link",
       "MESSAGE": "We want you to try us out before your friends do! <br></br>Get started with any of our services (from your Dashboard), and come back here again. Your referral link will show after processing completes within 2 to 4 weeks.",
       "PRIMARY_ACTION_LBL": "Go to Dashboard"
-    }    
+    }
   },
-  "REFERRAL_REWARD_DETAILS":{
-    "MORE_BOUT_REFERRAL_REWARDS":"More about referral rewards",
+  "REFERRAL_REWARD_DETAILS": {
+    "MORE_BOUT_REFERRAL_REWARDS": "More about referral rewards",
     "NOTE": [
       "All payment must be completed to be eligible for any of the rewards.",
       "All rewards are sent to your email within 2 to 4 weeks after implementation. Please refer to the email for all rewards redemption instructions.",
-     "View our website for more <span ><a class='faq-link'  target='_blank' href='/referral/'>rewards details</a></span> and <span ><a class='faq-link'  target='_blank' href='/referral/#referral-faq'>FAQs</a></span>"
-  ],
-  "TERMS_CONDITION":"Terms & Conditions"
+      "View our website for more <span ><a class='faq-link'  target='_blank' href='/referral/'>rewards details</a></span> and <span ><a class='faq-link'  target='_blank' href='/referral/#referral-faq'>FAQs</a></span>"
+    ],
+    "TERMS_CONDITION": "Terms & Conditions"
   },
   "REFEREE-MODAL": {
     "CLOSE_BTN": "X",
@@ -773,19 +892,19 @@
     "HEADING": " Welcome rewards to claim!",
     "PARA_TWO": "You and your friend both <b>earn the same amount</b> when you complete any of these!",
     "COUPON_CARD_COMP": "Get a comprehensive financial planning",
-    "CREDITS":"credits",
+    "CREDITS": "credits",
     "COUPON_CARD_INS": "Get any insurance coverage",
     "COUPON_CARD_INVEST": "Invest or save in any portfolio",
     "GET_STARTED": "Get Started",
     "MORE_ABOUT": "More about referral rewards",
-    "REWARD_HAS_BEEN_ISSUED":"Reward has been issued",
-    "NOT_APPLICABLE":"Not Applicable",
+    "REWARD_HAS_BEEN_ISSUED": "Reward has been issued",
+    "NOT_APPLICABLE": "Not Applicable",
     "MORE_ABOUT_LIST_ONE": "All payment must be completed to be eligible for any of the rewards.",
     "MORE_ABOUT_LIST_TWO": "All rewards are sent to your email within 2 to 4 weeks after implementation. Please refer to the email for all rewards redemption instructions.",
     "MORE_ABOUT_LIST_THREE": "View our website for more <a target='_blank' href='https://www.moneyowl.com.sg/referral/'>rewards details</a> and <a target='_blank' href='https://www.moneyowl.com.sg/referral/#referral-faq'>FAQs</a>",
     "TERMS_AND_COND": "<a target='_blank' href='https://www.moneyowl.com.sg/referral/#referral-tnc'>Terms & Conditions</a>"
-},
-  "REFER_FRIEND":{
+  },
+  "REFER_FRIEND": {
     "PAGE_TITLE_LBL": "Refer a friend",
     "BANNER_LBL": "Share MoneyOwl with your friends",
     "DESC_LBL": "You both earn when your friend signs up as a new user using your referral link and use MoneyOwl services eligible for the rewards.",
@@ -806,7 +925,7 @@
     "RECEIVED_LBL": "You received",
     "OF_LBL": "of",
     "SHOW_MORE_BTN_LBL": "Show More",
-    "SPREAD_WORDS_LBL":"Oops, pretty lonely here. Go on, help us spread the word.",
+    "SPREAD_WORDS_LBL": "Oops, pretty lonely here. Go on, help us spread the word.",
     "WELCOME_REWARDS": "You’ve welcome rewards"
   },
   "LOADER_MESSAGES": {

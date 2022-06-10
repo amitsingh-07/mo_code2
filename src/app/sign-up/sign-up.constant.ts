@@ -122,5 +122,27 @@ export let SIGN_UP_CONFIG = {
     JOINT_ACCOUNT: {
       SATUS: 'ACTIVE'
     }
+  },
+  CORP_BIZ_MY_INFO_ATTRIBUTES: [
+    'name',
+    'email',
+    'mobileno',
+    'dob',
+    'sex',
+    'race',
+    'marital',
+    'childrenbirthrecords',
+    'regadd',
+    'assessableincome',
+    'assessyear',
+    'occupation',
+    'vehno',
+    'cpfbalances'
+  ],
+  ACC_TYPE_CORPBIZ: 'corpbiz',
+  CORP_BIZ_ACTIVATIONLINK:{
+    INVALID_USER: 'invalid-user',
+    LINK_EXPIRED: 'link-expired',
+    ACC_EXIST: 'account-exists'
   }
 };

@@ -1,0 +1,155 @@
+@import '../../../variables';
+@import '../../../mixins';
+
+
+app-tell-about-you{
+
+.container-fluid{
+    &.max-width--1024{
+        max-width: 600px !important;
+    }
+    padding-top: 40px;
+    @include allmobiles{
+        padding-top: 30px;  
+    }
+}
+.form-group-with-bg--content-label{
+    color: #2E8289;
+}
+
+.mobile-back-btn{
+    @include allmobiles{
+        position: absolute;
+        left: 10px;
+    }
+}
+
+.main-desc{
+    padding: 0px 20px;
+    @include allmobiles{
+        max-width: 280px;
+        margin: 0 auto;
+        padding: 0px;
+    }
+}
+.btn-container{
+    display: flex;
+    margin-top: 16px;
+    padding: 0px 33px;
+    justify-content: center;
+    align-items: flex-end;
+    .back-btn{
+        display: flex;
+        width: 48px;
+        height: 48px;
+        margin-right: 20px;
+    }
+    .btn{
+        // font-size: 18px;
+        // padding: 0.7rem;
+        width: 315px;
+        @include allmobiles{
+            width: 100%;
+        }
+    }
+}
+.form-control{
+    font-size: 14px;
+}
+.slidecontainer {
+    width: 100%;
+  }
+  
+.intro_sub-title{
+    font-size: 16px;
+    line-height: 20.08px;
+    text-align: center;
+    letter-spacing: -0.25px;
+}
+.form-container{
+    padding: 30px 70px;
+    background-color: $black-squeeze-grey-color;
+    border-radius: 0px 0px 6px 6px;
+    @include allmobiles{
+        padding: 20px;
+    }
+}
+.img-center{
+    text-align: center;
+    @include allmobiles{
+        margin-top: 20px !important;
+    }
+}
+.ring-img{
+    position: absolute;
+}
+.form-control i.right {
+    top: 52%;
+    font-family: "muli regular";
+  }
+.form-control-right input {
+text-align: left !important;
+}
+.form-control.retireTxt.view-mode {
+    background: $white-color !important;
+    opacity: .6;
+  }
+.sub-title{
+    color: #2E8289;
+    font-size: 18px;
+    line-height: 23px;
+    letter-spacing: -0.166667px;
+}
+.slider-dark [disabled].noUi-target .noUi-connects {
+    opacity: .8 !important;
+  }
+  .min-max-val {
+    display: flex;
+     justify-content: space-between;
+    }
+    .min-val, .max-val {
+      color: #2E8289;
+      font-family: $muli-regular;
+      font-size: 14px;
+     }
+    .max-val {
+       text-align: right;
+     }
+     .min-text, .max-text {
+       color: #2E8289;
+       font-family: $muli-regular;
+       font-size: 14px;
+       display: block;
+     }
+.wl-content{
+    font-size: 14px;
+    color: #2E8289;
+}
+.retirement-title{
+    color: $black-color;
+    font-size: 16px;
+    border-radius: 6px 6px 0px 0px;
+    background-color: $white-color;
+    margin-top: 30px;
+    text-align: center;
+    padding: 25px 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+
+}
+app-navbar{
+    @include allmobiles{
+        display: none !important;
+    }
+    @include minPhabletmaxTablet{
+        display: block !important;
+    }
+    @include desktop{
+        display: block !important;
+    }
+
+
+}
