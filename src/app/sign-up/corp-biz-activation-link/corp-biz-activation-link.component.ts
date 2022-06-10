@@ -19,6 +19,7 @@ export class CorpBizActivationLinkComponent implements OnInit {
   screenToShow: string;
   queryParams: Params;
   token: string;
+  screenConstants = SIGN_UP_CONFIG.CORP_BIZ_ACTIVATIONLINK;
 
   constructor(
     private router: Router,
@@ -31,22 +32,24 @@ export class CorpBizActivationLinkComponent implements OnInit {
     private appService: AppService
   ) {
     this.translate.use('en');
+    this.authService.clearSession();
   }
 
   ngOnInit(): void {
     this.navbarService.setNavbarMode(101);
     this.footerService.setFooterVisibility(false);
     this.queryParams = this.route.snapshot.queryParams;
-    this.token = encodeURIComponent(this.queryParams.token);
+    this.token = encodeURIComponent(this.queryParams.confirmation_token);
     this.authService.authenticate().subscribe(() => {
       this.signUpApiService.checkCorporateEmailValidity({ token: `${this.token}` }).subscribe((data) => {
         if (data.responseMessage.responseCode === 6000) {
-          const userData = {
+          const corpBizData = {
             isCorpBiz: true,
             email: data.objectList && data.objectList.length ? data.objectList[0].email : null,
-            mobile: data.objectList && data.objectList.length ? data.objectList[0].mobileNumber : null
+            mobile: data.objectList && data.objectList.length ? data.objectList[0].maskedMobileNumber : null,
+            enrollmentId: data.objectList && data.objectList.length ? data.objectList[0].enrolmentId : null
           }
-          this.appService.setCorpBizData(userData);
+          this.appService.setCorpBizData(corpBizData);
           this.router.navigate([SIGN_UP_ROUTE_PATHS.CORP_BIZ_SIGNUP]);
         } else if (data.responseMessage.responseCode === 5033) {
           this.screenToShow = SIGN_UP_CONFIG.CORP_BIZ_ACTIVATIONLINK.INVALID_USER;
@@ -57,11 +60,16 @@ export class CorpBizActivationLinkComponent implements OnInit {
         } else {
           this.router.navigate(['/page-not-found']);
         }
+       // redirect to home page after 10 seconds if activation link not valid
+        if(this.screenToShow) {
+          setTimeout(() => {
+            window.location.replace("./home");
+          }, 10000);
+        }
+      }, err => {
+        this.router.navigate(['/page-not-found']);
       });
     });
-    setTimeout(() => {
-      window.location.replace("./home");
-    }, 10000);
   }
 
 }
