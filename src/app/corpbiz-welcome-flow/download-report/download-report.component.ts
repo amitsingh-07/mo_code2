@@ -73,6 +73,7 @@ export class DownloadReportComponent implements OnInit {
   }
 
   redirectToDashboard() {
+    this.navbarService.displayingWelcomeFlowContent$.next(false);
     this.router.navigate([SIGN_UP_ROUTE_PATHS.DASHBOARD]);
   }
 }

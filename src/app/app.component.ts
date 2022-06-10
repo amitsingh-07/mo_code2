@@ -42,7 +42,7 @@ export class AppComponent implements IComponentCanDeactivate, OnInit, AfterViewI
   navbarMode = null;
 
   constructor(
-    private translate: TranslateService, private navbarService: NavbarService, private _location: Location,
+    private translate: TranslateService, public navbarService: NavbarService, private _location: Location,
     private googleAnalyticsService: GoogleAnalyticsService,
     private modal: NgbModal, public route: Router, public routingService: RoutingService, private location: Location,
     private configService: ConfigService, private authService: AuthenticationService, private sessionsService: SessionsService,

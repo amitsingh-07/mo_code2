@@ -43,6 +43,7 @@ app-tell-about-you{
         width: 48px;
         height: 48px;
         margin-right: 20px;
+        cursor: pointer;
     }
     .btn{
         // font-size: 18px;
@@ -137,19 +138,4 @@ text-align: left !important;
     justify-content: center;
     align-items: center;
 }
-
-
-}
-app-navbar{
-    @include allmobiles{
-        display: none !important;
-    }
-    @include minPhabletmaxTablet{
-        display: block !important;
-    }
-    @include desktop{
-        display: block !important;
-    }
-
-
 }
