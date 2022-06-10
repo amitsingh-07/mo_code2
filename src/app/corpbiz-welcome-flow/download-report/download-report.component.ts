@@ -1,4 +1,5 @@
 import { Component, OnInit, ViewEncapsulation } from '@angular/core';
+import { Router } from '@angular/router';
 import { TranslateService } from '@ngx-translate/core';
 import { CORPBIZ_WELCOME_FLOW } from '../corpbiz-welcome-flow.constant';
 import { ComprehensiveApiService } from '../../comprehensive/comprehensive-api.service';
@@ -7,6 +8,7 @@ import { FileUtil } from '../../shared/utils/file.util';
 import { COMPREHENSIVE_CONST } from '../../comprehensive/comprehensive-config.constants';
 import { FooterService } from '../../shared/footer/footer.service';
 import { NavbarService } from '../../shared/navbar/navbar.service';
+import { SIGN_UP_ROUTE_PATHS } from '../../sign-up/sign-up.routes.constants';
 
 @Component({
   selector: 'app-download-report',
@@ -24,7 +26,8 @@ export class DownloadReportComponent implements OnInit {
               private downloadfile: FileUtil,
               private comprehensiveApiService: ComprehensiveApiService,
               private footerService: FooterService,
-              private navbarService: NavbarService
+              private navbarService: NavbarService,
+              private router: Router
     ) {
     this.translate.use('en');
   }
@@ -67,5 +70,9 @@ export class DownloadReportComponent implements OnInit {
         this.downloadfile.saveAs(data.body, COMPREHENSIVE_CONST.REPORT_PDF_NAME);
       }
     });
+  }
+
+  redirectToDashboard() {
+    this.router.navigate([SIGN_UP_ROUTE_PATHS.DASHBOARD]);
   }
 }
