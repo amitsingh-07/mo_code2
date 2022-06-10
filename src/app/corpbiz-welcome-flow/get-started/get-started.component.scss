@@ -94,14 +94,3 @@ app-get-started{
         }
     }
 }
-app-navbar{
-    @include allmobiles{
-        display: none !important;
-    }
-    @include minPhabletmaxTablet{
-        display: block !important;
-    }
-    @include desktop{
-        display: block !important;
-    }
-}
