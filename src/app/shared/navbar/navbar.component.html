@@ -19,7 +19,7 @@
           <!-- <span class="navbar__back-btn--mobile hidden-lg" (click)="goBack()"></span>-->
         </li>
         <!-- Logo -->
-        <ng-container *ngIf="!authService.isUserTypeCorporate && (corpBizData && !corpBizData.isCorpBiz)">
+        <ng-container *ngIf="!authService.isUserTypeCorporate || (corpBizData && !corpBizData.isCorpBiz)">
           <li class="navbar__logo--primary hidden-sm-md" (click)="goToExternal('/')"></li>
           <li class="navbar__logo--secondary hidden-lg" (click)="goToExternal('/')"></li> 
         </ng-container>
@@ -36,7 +36,7 @@
       <div class="navbar-btn-group hidden-lg">
         <!-- Notifications -->
         <div *ngIf="isLoggedIn && isNotificationEnabled && showNotifications" class="notification-icon"
-          (click)="toggleRecentNotification()">
+          (click)="toggleRecentNotification()"> {{corpBizData}}, {{authService.isUserTypeCorporate}}
           <span class="notification-number" *ngIf="notificationCount && notificationCount > 0">
             <span *ngIf="notificationCount <= notificationLimit">{{ notificationCount }}</span>
             <span *ngIf="notificationCount > notificationLimit">{{ notificationLimit }}+</span>
