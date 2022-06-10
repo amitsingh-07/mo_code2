@@ -24,6 +24,8 @@ import { ConfigService, IConfig } from './../../config/config.service';
 import { LoaderService } from './../../shared/components/loader/loader.service';
 import { FooterService } from './../../shared/footer/footer.service';
 import { SessionsService } from './../../shared/Services/sessions/sessions.service';
+import { appConstants } from './../../app.constants';
+
 
 import { ActivateSingpassModalComponent } from './activate-singpass-modal/activate-singpass-modal.component';
 import { MyInfoService } from '../../shared/Services/my-info.service';
@@ -94,6 +96,7 @@ export class EditProfileComponent implements OnInit, OnDestroy {
   myInfoStatus2: string;
   isMyInfoEnabled = false;
   ckaInfo: any;
+  displaySingpassLink:boolean;
 
   constructor(
     private modal: NgbModal,
@@ -226,6 +229,8 @@ export class EditProfileComponent implements OnInit, OnDestroy {
         }
       }
     });
+    this.displaySingpassLink = this.signUpService.getUserType() === appConstants.USERTYPE.FINLIT ||
+      this.signUpService.getUserType() === appConstants.USERTYPE.CORPORATE ? false : true;
   }
 
   ngOnDestroy() {
