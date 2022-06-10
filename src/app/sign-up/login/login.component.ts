@@ -43,7 +43,7 @@ import { LoginFormError } from './login-form-error';
 import { HubspotService } from './../../shared/analytics/hubspot.service';
 import { SIGN_UP_CONFIG } from './../sign-up.constant';
 import { TermsModalComponent } from './../../shared/modal/terms-modal/terms-modal.component';
-import { SingpassApiService } from '../../singpass/singpass.api.service';
+import { SingpassService } from '../../singpass/singpass.service';
 
 @Component({
   selector: 'app-login',
@@ -72,6 +72,7 @@ export class LoginComponent implements OnInit, AfterViewInit, OnDestroy {
   showPasswordLogin = true;
   showSingpassLogin = false;
   singpassEnabled = true;
+
   @ViewChild('welcomeTitle') welcomeTitle: ElementRef;
 
   @HostListener('window:resize', ['$event'])
@@ -107,7 +108,7 @@ export class LoginComponent implements OnInit, AfterViewInit, OnDestroy {
     private investmentCommonService: InvestmentCommonService,
     private hubspotService: HubspotService,
     private helper: HelperService,
-    private singpassApiService: SingpassApiService) {
+    private singpassService: SingpassService) {
     this.translate.use('en');
     this.translate.get('COMMON').subscribe((result: string) => {
       this.duplicateError = this.translate.instant('COMMON.DUPLICATE_ERROR');
@@ -135,10 +136,20 @@ export class LoginComponent implements OnInit, AfterViewInit, OnDestroy {
     }
     // Check if mobile device and set last login type
     this.getSetLoginPref();
+    this.loadScript();
   }
   /**
     * Initialize tasks.
     */
+
+  async loadScript() {
+    console.log('preparing to load script...')
+    const singpassScript = document.createElement('script');
+    singpassScript.type = 'text/javascript';
+    singpassScript.async = true;
+    singpassScript.setAttribute('src', 'https://stg-id.singpass.gov.sg/static/ndi_embedded_auth.js');
+    document.head.appendChild(singpassScript);
+  }
   ngOnInit() {
     this.navbarService.setNavbarVisibility(true);
     this.navbarService.setNavbarMode(101);
@@ -185,19 +196,6 @@ export class LoginComponent implements OnInit, AfterViewInit, OnDestroy {
   ngAfterViewInit() {
     if (this.signUpService.getCaptchaShown()) {
       this.setCaptchaValidator();
-    }
-    if (this.singpassEnabled) {
-      this.initSingpassQR();
-    }
-  }
-
-  async initSingpassQR() {
-    const authParamsSupplier = async () => {
-      const promise = await this.singpassApiService.getStateNonce().toPromise();
-      return promise['objectList'][0];
-    }
-    if (authParamsSupplier) {
-      this.singpassApiService.initSingpassAuthSession(authParamsSupplier);
     }
   }
 
@@ -633,23 +631,6 @@ export class LoginComponent implements OnInit, AfterViewInit, OnDestroy {
     }
   }
 
-  openSingpassModal(event, type?) {
-    const ref = this.modal.open(ModelWithButtonComponent, { centered: true });
-    if (type) {
-      ref.componentInstance.errorTitle = this.translate.instant('LOGIN.SINGPASS_LOGIN_FAIL_MODAL.TITLE');
-      ref.componentInstance.errorMessageHTML = this.translate.instant('LOGIN.SINGPASS_LOGIN_FAIL_MODAL.MESSAGE');
-      ref.componentInstance.primaryActionLabel = this.translate.instant('LOGIN.SINGPASS_LOGIN_FAIL_MODAL.BACK_BTN');
-      ref.componentInstance.primaryAction.subscribe(() => {
-        this.toggleSingpass('PASSWORD', window.event);
-        this.modal.dismissAll();
-      });
-    } else {
-      ref.componentInstance.errorTitle = this.translate.instant('LOGIN.SINGPASS_ACTIVATE_MODAL.TITLE');
-      ref.componentInstance.errorMessageHTML = this.translate.instant('LOGIN.SINGPASS_ACTIVATE_MODAL.MESSAGE');
-    }
-    event.stopPropagation();
-    event.preventDefault();
-  }
   // Toggle UI for showing Singpass/Password Login
   toggleSingpass(type:string, event?) {
     if (type === SIGN_UP_CONFIG.SINGPASS) {
@@ -686,7 +667,7 @@ export class LoginComponent implements OnInit, AfterViewInit, OnDestroy {
     this.route.queryParams.subscribe((qp) => {
       if (qp['code'] && qp['state']) {
         this.loaderService.showLoader({ title: 'Logging in' });
-        this.singpassApiService.loginSingpass(qp['code'], qp['state']).subscribe((data) => {
+        this.singpassService.loginSingpass(qp['code'], qp['state']).subscribe((data) => {
           if (data.responseMessage.responseCode >= 6000 && data.objectList[0] && data.objectList[0].securityToken) {
             this.authService.saveAuthDetails(data.objectList[0]);
             this.onSuccessLogin(data);
@@ -703,7 +684,14 @@ export class LoginComponent implements OnInit, AfterViewInit, OnDestroy {
 
   failSingpassLogin(error) {
     this.router.navigate([], { queryParams: { 'code': null, 'state': null, }, queryParamsHandling: 'merge' });
-    this.openSingpassModal(window.event, error);
+    const ref = this.modal.open(ModelWithButtonComponent, { centered: true });
+    ref.componentInstance.errorTitle = this.translate.instant('LOGIN.SINGPASS_LOGIN_FAIL_MODAL.TITLE');
+    ref.componentInstance.errorMessageHTML = this.translate.instant('LOGIN.SINGPASS_LOGIN_FAIL_MODAL.MESSAGE');
+    ref.componentInstance.primaryActionLabel = this.translate.instant('LOGIN.SINGPASS_LOGIN_FAIL_MODAL.BACK_BTN');
+    ref.componentInstance.primaryAction.subscribe(() => {
+      this.toggleSingpass('PASSWORD', window.event);
+      this.modal.dismissAll();
+    });
   }
 
 }
