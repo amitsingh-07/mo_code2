@@ -14,43 +14,61 @@ app-tell-about-you{
     }
 }
 .form-group-with-bg--content-label{
-    color: #2E8289;
+    color: $dark-lochinvar-color;
 }
 
 .mobile-back-btn{
     @include allmobiles{
         position: absolute;
         left: 10px;
+        z-index: 100;
+    }
+    @include max360{
+        left:3px;
     }
 }
 
 .main-desc{
     padding: 0px 20px;
     @include allmobiles{
-        max-width: 280px;
+        max-width: 290px;
         margin: 0 auto;
-        padding: 0px;
+        padding-left: 8px;
+        padding-right: 0;
     }
 }
 .btn-container{
     display: flex;
-    margin-top: 16px;
+    margin-top: 30px;
     padding: 0px 33px;
     justify-content: center;
-    align-items: flex-end;
+    align-items: center;
+    @include allmobiles{
+        margin-top: 16px;
+    }
     .back-btn{
         display: flex;
         width: 48px;
         height: 48px;
         margin-right: 20px;
+        margin-top: 6px;
         cursor: pointer;
+        background-repeat: no-repeat;
+        background-image: url("/assets/images/back-web.svg");
+        background-size: 100% 100%;
+        &:hover{
+            background-image: url("/assets/images/back-web-hover.svg");
+        }
     }
     .btn{
-        // font-size: 18px;
-        // padding: 0.7rem;
+        margin: 0 !important;
+        padding: 13px 0 12px;
         width: 315px;
+        line-height: 23px;
         @include allmobiles{
             width: 100%;
+            padding: 0.9rem;
+            line-height: 1.5;
         }
     }
 }
@@ -68,6 +86,7 @@ app-tell-about-you{
     letter-spacing: -0.25px;
 }
 .form-container{
+    margin-top: -1px;
     padding: 30px 70px;
     background-color: $black-squeeze-grey-color;
     border-radius: 0px 0px 6px 6px;
@@ -75,14 +94,15 @@ app-tell-about-you{
         padding: 20px;
     }
 }
-.img-center{
+.page-banner{
     text-align: center;
+    width: 180px;
+    height: 145px;
+    display: flex;
+    margin: 30px auto 0;
     @include allmobiles{
-        margin-top: 20px !important;
+        margin-top: 20px;
     }
-}
-.ring-img{
-    position: absolute;
 }
 .form-control i.right {
     top: 52%;
@@ -96,7 +116,7 @@ text-align: left !important;
     opacity: .6;
   }
 .sub-title{
-    color: #2E8289;
+    color: $dark-lochinvar-color;
     font-size: 18px;
     line-height: 23px;
     letter-spacing: -0.166667px;
@@ -109,7 +129,7 @@ text-align: left !important;
      justify-content: space-between;
     }
     .min-val, .max-val {
-      color: #2E8289;
+      color: $dark-lochinvar-color;
       font-family: $muli-regular;
       font-size: 14px;
      }
@@ -117,25 +137,25 @@ text-align: left !important;
        text-align: right;
      }
      .min-text, .max-text {
-       color: #2E8289;
+       color: $dark-lochinvar-color;
        font-family: $muli-regular;
        font-size: 14px;
        display: block;
      }
-.wl-content{
-    font-size: 14px;
-    color: #2E8289;
-}
-.retirement-title{
+
+.retirement-card-title{
     color: $black-color;
     font-size: 16px;
     border-radius: 6px 6px 0px 0px;
     background-color: $white-color;
     margin-top: 30px;
     text-align: center;
-    padding: 25px 20px;
+    padding: 25px 20px 24px;
+    line-height: normal;
     display: flex;
     justify-content: center;
     align-items: center;
 }
+
+
 }

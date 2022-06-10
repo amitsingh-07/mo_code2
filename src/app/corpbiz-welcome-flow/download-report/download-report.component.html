@@ -1,5 +1,5 @@
 <div *ngIf="showDownloadReport" class="intro-block">
-    <div class="container-fluid max-width--1024 ">
+    <div class="container-fluid">
       <div class="intro-block__content">
         <div class="row text-center">
           <div class="col-12">
@@ -26,7 +26,7 @@
   </div>
 
   <div *ngIf="!showDownloadReport" class="start-planning">
-    <div class="container-fluid max-width--1024 benefits-screen">
+    <div class="container-fluid benefits-screen">
     <div class="benefits-card-wrapper">
         <div class="benefits-card">
             <div class="benefits-card__top">
@@ -98,7 +98,7 @@
             </div>
                 <button type="button" (click)="redirectToDashboard()" class="btn btn-orange width100 ">
                     {{'START_PLANNING.BTN_TXT' |translate}}</button>
-                <div class="btm-txt">{{'START_PLANNING.MESSAGE' | translate}} </div>
+                <div class="info-txt">{{'START_PLANNING.MESSAGE' | translate}} </div>
             </div>
         </div>
     </div>

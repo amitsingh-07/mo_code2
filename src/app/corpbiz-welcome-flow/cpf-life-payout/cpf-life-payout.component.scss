@@ -5,6 +5,8 @@ app-cpf-life-payout{
     .container-fluid {
         padding: 40px 0px 65px;
         max-width: 450px;
+        line-height: 20px;
+        letter-spacing: -0.25px;
         @include allmobiles {
           padding: 30px 0px 65px;
         }
@@ -14,6 +16,10 @@ app-cpf-life-payout{
       text-align: center;
       letter-spacing: -0.25px;
       padding: 0 19px 20px;
+      @include allmobiles{
+        max-width: 320px;
+        margin: 0 auto;
+        }
       }
       .banner{
       width: 180px;
@@ -39,7 +45,7 @@ app-cpf-life-payout{
       }
       .card-body{
         padding: 25px;
-        background-color:#F4FAFB;
+        background-color:$black-squeeze-grey-color;
         text-align: center;
           @include allmobiles{
             padding: 15px;
@@ -75,7 +81,7 @@ app-cpf-life-payout{
           font-size: 14px;
           color: $white-color;
           width: 335px;
-          background-color: #005960;
+          background-color: $blue-stone-color;
           border-radius: 6px;
           padding: 14px 0;
           margin: 0 auto;
@@ -98,10 +104,10 @@ app-cpf-life-payout{
       }
       }
       .btn-primary{
-      margin-top: 30px;
-      min-width: 315px;
-      padding: 13px 0 12px;
-      justify-content: center;
+        margin-top: 30px !important;
+        min-width: 315px;
+        padding: 13px 0 12px;
+        justify-content: center;
       }
   }
   
