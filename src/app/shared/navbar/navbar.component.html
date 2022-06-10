@@ -36,7 +36,7 @@
       <div class="navbar-btn-group hidden-lg">
         <!-- Notifications -->
         <div *ngIf="isLoggedIn && isNotificationEnabled && showNotifications" class="notification-icon"
-          (click)="toggleRecentNotification()"> {{corpBizData}}, {{authService.isUserTypeCorporate}}
+          (click)="toggleRecentNotification()">
           <span class="notification-number" *ngIf="notificationCount && notificationCount > 0">
             <span *ngIf="notificationCount <= notificationLimit">{{ notificationCount }}</span>
             <span *ngIf="notificationCount > notificationLimit">{{ notificationLimit }}+</span>
