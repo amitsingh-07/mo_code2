@@ -36,6 +36,7 @@ export class AuthenticationService {
   private timer2fa: any;
   private is2faVerifyAllowed: boolean = false;
   isUserTypeCorporate = false;
+  isShowWelcomeFlow: boolean = false;
 
   constructor(
     private httpClient: HttpClient, public jwtHelper: JwtHelperService,
@@ -96,6 +97,9 @@ export class AuthenticationService {
         if (response && response.objectList[0] && response.objectList[0].securityToken) {
           // store user details and jwt token in local storage to keep user logged in between page refreshes
           this.saveAuthDetails(response.objectList[0]);
+        }
+        if (response && response.objectList[1] && typeof response.objectList[1].showWelcomeFlag === 'boolean') {
+          this.isShowWelcomeFlow = response.objectList[1].showWelcomeFlag;
         }
         return response;
       }));

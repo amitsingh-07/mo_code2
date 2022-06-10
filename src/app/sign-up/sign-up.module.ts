@@ -54,6 +54,7 @@ import { ReferalRedirectingPartComponent } from './referal-redirecting-part/refe
 import { ManageProfileComponent } from './manage-profile/manage-profile.component';
 import { AddUpdateCpfiaComponent } from './add-update-cpfia/add-update-cpfia.component';
 import { CpfiaSuccessModalComponent } from './add-update-cpfia/cpfia-success-modal/cpfia-success-modal.component';
+import { SingPassModule } from '../singpass/singpass.module';
 import { CreateAccountMyinfoModalComponent } from './create-account-myinfo-modal/create-account-myinfo-modal.component';
 import { CorpBizSignupComponent } from './corp-biz-signup/corp-biz-signup.component';
 import { CorpBizSignupWithDataComponent } from './corp-biz-signup-with-data/corp-biz-signup-with-data.component';
@@ -85,7 +86,8 @@ export function createTranslateLoader(http: HttpClient) {
         deps: [HttpClient]
       }
     }),
-    NgOtpInputModule
+    NgOtpInputModule,
+    SingPassModule
   ],
   declarations: [
     AccountCreatedComponent,

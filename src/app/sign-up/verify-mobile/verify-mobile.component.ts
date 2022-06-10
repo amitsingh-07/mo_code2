@@ -41,6 +41,7 @@ import {
 import { InvestmentCommonService } from '../../investment/investment-common/investment-common.service';
 import { HubspotService } from './../../shared/analytics/hubspot.service';
 import { INVESTMENT_COMMON_ROUTES } from '../../investment/investment-common/investment-common-routes.constants';
+import { CORPBIZ_ROUTES_PATHS } from '../../corpbiz-welcome-flow/corpbiz-welcome-flow.routes.constants';
 
 @Component({
   selector: 'app-verify-mobile',
@@ -588,7 +589,11 @@ export class VerifyMobileComponent implements OnInit, OnDestroy {
     } else if (journeyType === appConstants.JOURNEY_TYPE_WILL_WRITING && this.willWritingService.getWillCreatedPrelogin()) {
       this.getUserProfileAndNavigate(appConstants.JOURNEY_TYPE_WILL_WRITING);
     } else {
-      this.redirectAfterLogin = SIGN_UP_ROUTE_PATHS.DASHBOARD;
+      if (this.authService.isShowWelcomeFlow) {
+        this.redirectAfterLogin = CORPBIZ_ROUTES_PATHS.GET_STARTED;
+      } else {
+        this.redirectAfterLogin = SIGN_UP_ROUTE_PATHS.DASHBOARD;
+      }
       this.progressModal = true;
       this.loaderService.hideLoader();
       this.router.navigate([this.redirectAfterLogin]);
