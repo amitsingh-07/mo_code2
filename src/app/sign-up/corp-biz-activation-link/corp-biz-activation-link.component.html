@@ -1,27 +1,30 @@
 <div class="container-fluid max-width--1024 activation-screen">
-    <div class="content">
-      <div class="row">
-        <div *ngIf="screenToShow === 'link-expired'" class="col-12">
-          <h2 class="title" [innerHtml]="'ACTIVATION_ERROR.LINK_EXP.TITLE'|translate"></h2>
-          <h6 class="sub-title" [innerHtml]="'ACTIVATION_ERROR.LINK_EXP.SUB-TITLE'|translate"></h6>
-          <div class="banner-image">
-            <img [src]="'ACTIVATION_ERROR.LINK_EXP.IMG'|translate" id="custModalImg1" />
-          </div>
+  <div class="content">
+    <div class="row">
+      <div *ngIf="screenToShow === 'link-expired'" class="col-12">
+      <div *ngIf="screenToShow === screenConstants.LINK_EXPIRED" class="col-12">
+        <h2 class="title" [innerHtml]="'ACTIVATION_ERROR.LINK_EXP.TITLE'|translate"></h2>
+        <h6 class="sub-title" [innerHtml]="'ACTIVATION_ERROR.LINK_EXP.SUB-TITLE'|translate"></h6>
+        <div class="banner-image">
+          <img [src]="'ACTIVATION_ERROR.LINK_EXP.IMG'|translate" id="custModalImg1" />
         </div>
-        <div *ngIf="screenToShow === 'invalid-user'" class="col-12">
-          <h2 class="title txt" [innerHtml]="'ACTIVATION_ERROR.USER_NOT_FOUND.TITLE'|translate"></h2>
-          <h6 class="sub-title" [innerHtml]="'ACTIVATION_ERROR.USER_NOT_FOUND.SUB-TITLE'|translate"></h6>
-          <div class="banner-image">
-            <img [src]="'ACTIVATION_ERROR.USER_NOT_FOUND.IMG'|translate" id="custModalImg1" />
-          </div>
+      </div>
+      <div *ngIf="screenToShow === 'invalid-user'" class="col-12">
+      <div *ngIf="screenToShow === screenConstants.INVALID_USER" class="col-12">
+        <h2 class="title txt" [innerHtml]="'ACTIVATION_ERROR.USER_NOT_FOUND.TITLE'|translate"></h2>
+        <h6 class="sub-title" [innerHtml]="'ACTIVATION_ERROR.USER_NOT_FOUND.SUB-TITLE'|translate"></h6>
+        <div class="banner-image">
+          <img [src]="'ACTIVATION_ERROR.USER_NOT_FOUND.IMG'|translate" id="custModalImg1" />
         </div>
-        <div *ngIf="screenToShow === 'account-exists'" class="col-12">
-          <h2 class="title" [innerHtml]="'ACTIVATION_ERROR.ACCOUNT_EXIST.TITLE'|translate"></h2>
-          <h6 class="sub-title" [innerHtml]="'ACTIVATION_ERROR.ACCOUNT_EXIST.SUB-TITLE'|translate"></h6>
-          <div class="banner-image">
-            <img [src]="'ACTIVATION_ERROR.ACCOUNT_EXIST.IMG'|translate" id="custModalImg1" />
-          </div>
+      </div>
+      <div *ngIf="screenToShow === 'account-exists'" class="col-12">
+      <div *ngIf="screenToShow === screenConstants.ACC_EXIST" class="col-12">
+        <h2 class="title" [innerHtml]="'ACTIVATION_ERROR.ACCOUNT_EXIST.TITLE'|translate"></h2>
+        <h6 class="sub-title" [innerHtml]="'ACTIVATION_ERROR.ACCOUNT_EXIST.SUB-TITLE'|translate"></h6>
+        <div class="banner-image">
+          <img [src]="'ACTIVATION_ERROR.ACCOUNT_EXIST.IMG'|translate" id="custModalImg1" />
         </div>
       </div>
     </div>
   </div>
+</div>

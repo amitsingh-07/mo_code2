@@ -2,14 +2,16 @@
 <div class="container-fluid max-width--1024">
     <div class="row">
         <div class="intro_sub-title flex-col-12">
-          <div class="back-btn mobile-back-btn hidden-lg"><img src="assets/images/back-web.svg"></div>
+          <div class="back-btn mobile-back-btn hidden-lg">
+            <img src="assets/images/back-web.svg">
+          </div>
             <div class="main-desc" [innerHtml]="'TELL_ABOUT_YOU.RETIREMENT_MAIN_TITLE'|translate" ></div>
         </div>
     </div>
 
-    <div class="img-center mt30"><img src="assets/images/welcome-journey/corpbiz-chilling.svg"></div>
+    <div class="page-banner"><img src="assets/images/welcome-journey/corpbiz-chilling.svg"></div>
     
-    <div class="retirement-title">{{'TELL_ABOUT_YOU.RETIREMENT_TITLE' | translate}}</div>
+    <div class="retirement-card-title">{{'TELL_ABOUT_YOU.RETIREMENT_TITLE' | translate}}</div>
     <div class="form-container">
       <form [formGroup]="formObject">
         <div class="flex-row">
@@ -67,8 +69,8 @@
       </form>
     </div>
     <div class="row btn-container">
-        <div class="back-btn hidden-sm"><img src="assets/images/back-web.svg"></div>
-        <div class=""><button type="button" (click)="goToNext()" class="btn btn__footer--fixed btn-primary width100" id="myFinancialGoNextBtn">{{'TELL_ABOUT_YOU.CONT_BTN' | translate}}</button></div>
+        <div class="back-btn hidden-sm"></div>
+        <button type="button" (click)="goToNext()" class="btn btn__footer--fixed btn-primary width100" id="myFinancialGoNextBtn">{{'TELL_ABOUT_YOU.CONT_BTN' | translate}}</button>
     </div>
     
 </div>
