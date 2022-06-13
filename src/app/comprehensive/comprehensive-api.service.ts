@@ -194,4 +194,11 @@ export class ComprehensiveApiService {
         return this.apiService.getCustOrgPromoCode(payload);
     }
 
+    generateReport(payload) {
+        return this.http
+            .post(apiConstants.endpoint.comprehensive.generateReport, payload)
+            .pipe(catchError((error: HttpErrorResponse) => this.helperService.handleError(error)));
+    }
+    
+
 }
