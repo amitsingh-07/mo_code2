@@ -48,10 +48,6 @@ export class SingpassService {
   initSingpassAuthSession(authParamsSupplier) {
     const onError = (errorId, message) => {
       console.log(`onError. errorId:${errorId} message:${message}`);
-      if (message == 'authentication_fail') {
-        // Re initialized Singpass QR
-        this.initSingPassQR();
-      }
     }
     try {
       const initAuthSessionResponse = window['NDI'].initAuthSession(
@@ -65,7 +61,6 @@ export class SingpassService {
         authParamsSupplier,
         onError
       );
-      console.log('initAuthSession: ', initAuthSessionResponse);
     } catch {
       console.log('error initAuthSession: ');
     }

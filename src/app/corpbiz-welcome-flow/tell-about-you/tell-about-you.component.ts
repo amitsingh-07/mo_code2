@@ -1,8 +1,8 @@
 import { Component, OnInit, ViewChild, ViewEncapsulation } from '@angular/core';
 import { TranslateService } from '@ngx-translate/core';
+import { Router } from '@angular/router';
 import { NouisliderComponent } from 'ng2-nouislider';
 import { FormGroup, FormArray, FormBuilder, Validators, } from '@angular/forms';
-import { Router } from '@angular/router';
 import { FooterService } from '../../shared/footer/footer.service';
 import { NavbarService } from '../../shared/navbar/navbar.service';
 import { COMPREHENSIVE_CONST } from '../../comprehensive/comprehensive-config.constants';
@@ -67,6 +67,9 @@ export class TellAboutYouComponent implements OnInit {
     })
   }
 
+  goBack(){
+    this.router.navigate([CORPBIZ_ROUTES_PATHS.GET_STARTED])
+  }
   changeSlide($event) {
     this.sliderValid = { minAge: true, userAge: true };
     this.retirementAgeValidaitions($event.target.value);

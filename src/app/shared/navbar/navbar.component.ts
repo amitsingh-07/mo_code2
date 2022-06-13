@@ -146,7 +146,7 @@ export class NavbarComponent implements OnInit, AfterViewInit {
   corpBizData: any;
 
   constructor(
-    private navbarService: NavbarService,
+    public navbarService: NavbarService,
     private config: NgbDropdownConfig, private renderer: Renderer2,
     private cdr: ChangeDetectorRef, private router: Router, private configService: ConfigService,
     private signUpService: SignUpService, public authService: AuthenticationService,
