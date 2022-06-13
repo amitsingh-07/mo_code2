@@ -75,7 +75,6 @@ export class DynamicScriptLoaderService {
       var allElements = document.getElementsByTagName("script")
       for (var i = allElements.length; i >= 0; i--) {
         if (allElements[i] && allElements[i].getAttribute('src') != null && allElements[i].getAttribute('src').indexOf(this.scripts[name].src) != -1) {
-          console.log("FOUND = " + this.scripts[name].src)
           allElements[i].parentNode.removeChild(allElements[i])
           resolve({ script: name, unloaded: true, status: 'UnLoaded' });
         }
