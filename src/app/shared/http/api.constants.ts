@@ -147,6 +147,9 @@ export let apiConstants = {
         singpass: {
             getStateNonce: SINGPASS_API_BASE_URL+ 'getStateNonce',
             loginSingpass: SINGPASS_API_BASE_URL+ 'loginSingpass'
+        },
+        welcomeflow: {
+            getUserDob: ACCOUNT_API_BASE_URL+ '/customer/dateofBirth'
         }
     }
 };

@@ -7,6 +7,7 @@ import { FooterService } from '../../shared/footer/footer.service';
 import { NavbarService } from '../../shared/navbar/navbar.service';
 import { CORPBIZ_ROUTES_PATHS } from '../corpbiz-welcome-flow.routes.constants'
 import { COMPREHENSIVE_CONST } from '../../comprehensive/comprehensive-config.constants';
+import { TellAboutYouService } from '../tell-about-you.service';
 
 @Component({
   selector: 'app-tell-about-you',
@@ -44,6 +45,7 @@ export class TellAboutYouComponent implements OnInit {
   constructor(  private footerService: FooterService,
                 private navbarService: NavbarService,
                 private translate: TranslateService,
+                private tellAboutYouService: TellAboutYouService,
                 private router: Router) {
 
                   this.translate.use('en');
@@ -52,6 +54,7 @@ export class TellAboutYouComponent implements OnInit {
   ngOnInit(): void {
     this.navbarService.setNavbarMode(101);
     this.footerService.setFooterVisibility(false);
+    this.tellAboutYouService.getDob()
   }
   goBack(){
     this.router.navigate([CORPBIZ_ROUTES_PATHS.GET_STARTED])
