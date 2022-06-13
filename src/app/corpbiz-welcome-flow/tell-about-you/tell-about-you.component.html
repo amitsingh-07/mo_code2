@@ -2,7 +2,7 @@
 <div class="container-fluid max-width--1024">
     <div class="row">
         <div class="intro_sub-title flex-col-12">
-          <div class="back-btn mobile-back-btn hidden-lg">
+          <div class="back-btn mobile-back-btn hidden-lg" (click)="goBack()">
             <img src="assets/images/back-web.svg">
           </div>
             <div class="main-desc" [innerHtml]="'TELL_ABOUT_YOU.RETIREMENT_MAIN_TITLE'|translate" ></div>
@@ -71,7 +71,7 @@
 
     </div>
     <div class="row btn-container">
-        <div class="back-btn hidden-sm"></div>
+        <div class="back-btn hidden-sm" (click)="goBack()"></div>
         <button type="button" class="btn btn__footer--fixed btn-primary width100" id="myFinancialGoNextBtn" routerLink="/welcome-journey/life-payout">{{'TELL_ABOUT_YOU.CONT_BTN' | translate}}</button>
     </div>
     

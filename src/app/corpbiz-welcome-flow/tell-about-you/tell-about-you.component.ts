@@ -1,9 +1,11 @@
 import { Component, OnInit, ViewChild, ViewEncapsulation } from '@angular/core';
 import { TranslateService } from '@ngx-translate/core';
+import { Router } from '@angular/router';
 import { NouisliderComponent } from 'ng2-nouislider';
 import { FormGroup, FormArray, FormBuilder, } from '@angular/forms';
 import { FooterService } from '../../shared/footer/footer.service';
 import { NavbarService } from '../../shared/navbar/navbar.service';
+import { CORPBIZ_ROUTES_PATHS } from '../corpbiz-welcome-flow.routes.constants'
 import { COMPREHENSIVE_CONST } from '../../comprehensive/comprehensive-config.constants';
 
 @Component({
@@ -41,7 +43,8 @@ export class TellAboutYouComponent implements OnInit {
 
   constructor(  private footerService: FooterService,
                 private navbarService: NavbarService,
-                private translate: TranslateService) {
+                private translate: TranslateService,
+                private router: Router) {
 
                   this.translate.use('en');
                  }
@@ -49,6 +52,9 @@ export class TellAboutYouComponent implements OnInit {
   ngOnInit(): void {
     this.navbarService.setNavbarMode(101);
     this.footerService.setFooterVisibility(false);
+  }
+  goBack(){
+    this.router.navigate([CORPBIZ_ROUTES_PATHS.GET_STARTED])
   }
   changeSlide($event) {
     this.sliderValid = { minAge: true, userAge: true };
