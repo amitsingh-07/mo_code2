@@ -51,10 +51,10 @@ export class CorpBizActivationLinkComponent implements OnInit {
           }
           this.appService.setCorpBizData(corpBizData);
           this.router.navigate([SIGN_UP_ROUTE_PATHS.CORP_BIZ_SIGNUP]);
-        } else if (data.responseMessage.responseCode === 5033) {
-          this.screenToShow = SIGN_UP_CONFIG.CORP_BIZ_ACTIVATIONLINK.INVALID_USER;
         } else if (data.responseMessage.responseCode === 5022) {
           this.screenToShow = SIGN_UP_CONFIG.CORP_BIZ_ACTIVATIONLINK.LINK_EXPIRED;
+        } else if (data.responseMessage.responseCode === 5033) {
+          this.screenToShow = SIGN_UP_CONFIG.CORP_BIZ_ACTIVATIONLINK.INVALID_USER;
         } else if (data.responseMessage.responseCode === 6008) {
           this.screenToShow = SIGN_UP_CONFIG.CORP_BIZ_ACTIVATIONLINK.ACC_EXIST;
         } else {
