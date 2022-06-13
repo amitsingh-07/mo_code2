@@ -46,7 +46,7 @@ app-contact-form{
             margin-top: 20px;
         }
         &:disabled{
-            color: $teal-color !important;
+            color: $btn-disabled-teal-color !important;
             background: $btn-disabled-light-bg !important;
         }
     }
