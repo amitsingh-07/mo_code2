@@ -1,5 +1,5 @@
 <div [ngClass]="{'modal--freeze': state.modalFreeze}">
-  <div #productInfoContainer>
+  <div>
     <app-product-info [hideForm]="state.hideForm" (formSubmitCallback)="formSubmitCallback()" (backPressed)="backPressed()"></app-product-info>
   </div>
   <div>
