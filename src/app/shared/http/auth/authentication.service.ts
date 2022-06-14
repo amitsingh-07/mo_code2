@@ -99,7 +99,7 @@ export class AuthenticationService {
           this.saveAuthDetails(response.objectList[0]);
         }
         if (response && response.objectList[1] && typeof response.objectList[1].showWelcomeFlag === 'boolean') {
-          this.isShowWelcomeFlow = true;
+          this.isShowWelcomeFlow = response.objectList[1].showWelcomeFlag;
         }
         return response;
       }));
