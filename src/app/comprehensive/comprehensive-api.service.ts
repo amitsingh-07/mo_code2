@@ -201,9 +201,7 @@ export class ComprehensiveApiService {
     }
 
     getUserDob() {
-        // return of( {"objectList":{"dateofBirth":"12/04/1960"},"responseMessage":{"responseCode":6000,"responseDescription":"Successful response"}})
-        // return this.httpClient.get('http://bfa-fb-newdev.ntucbfa.cloud/svc/account/account-microservice/api/customer/dateOfBirth')
-        return this.httpClient.get(apiConstants.endpoint.comprehensive.getUserDob)
+        return this.http.get(apiConstants.endpoint.comprehensive.getUserDob)
         .pipe(catchError((error: HttpErrorResponse) => this.helperService.handleError(error)));
     }
     

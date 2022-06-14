@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild, ViewEncapsulation } from '@angular/core';
+import { ChangeDetectorRef, Component, OnInit, ViewChild, ViewEncapsulation } from '@angular/core';
 import { TranslateService } from '@ngx-translate/core';
 import { Router } from '@angular/router';
 import { NouisliderComponent } from 'ng2-nouislider';
@@ -59,33 +59,25 @@ export class TellAboutYouComponent implements OnInit {
   ngOnInit(): void {
     this.navbarService.setNavbarMode(101);
     this.footerService.setFooterVisibility(false);
+    this.buildForm();
     this.getUserDob();
   }
   
-  
-  // {"objectList":{"dateofBirth":"12/04/1993"},"responseMessage":{"responseCode":6000,"responseDescription":"Successful response"}}
-  getUserDob(){
-    this.comprehensiveApiService.getUserDob().subscribe(res=>{
-      console.log(res);
-      console.log(res['objectList']);
-      console.log(res['objectList'][0]);
-      console.log(res['objectList'][0].dateOfBirth);
-      // res['objectList'].dateofBirth = "12/04/1993";
-      if (res && res['objectList'][0].dateOfBirth) 
-      {
+  getUserDob() {
+    this.comprehensiveApiService.getUserDob().subscribe(res=> {
+      if (res && res['objectList'][0].dateOfBirth) {
         this.userAge = this.aboutAge.calculateAgeByYear(
           res['objectList'][0].dateOfBirth,
           new Date()
-          )
-          this.buildForm();
-          this.onSliderChange(this.userAge)
+        )
+        this.formObject.get('retirementAge').patchValue(this.userAge > DEFAULT_RETIRE_AGE ? this.userAge: DEFAULT_RETIRE_AGE);
       }
     })
   }
 
   buildForm() {
     this.formObject = this.fb.group({
-      retirementAge: [this.userAge > DEFAULT_RETIRE_AGE ? this.userAge: DEFAULT_RETIRE_AGE, [Validators.required]],
+      retirementAge: [0, [Validators.required]],
       cashInBank: [0, [Validators.required]]
     })
   }
@@ -115,7 +107,6 @@ export class TellAboutYouComponent implements OnInit {
   }
 
   onSliderChange(value): void {
-
    this.retirementAgeValidaitions(value);
   }
 
