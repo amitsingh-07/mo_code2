@@ -30,7 +30,7 @@
     },
     "USER_NOT_FOUND":{
     "TITLE": "User not found",
-    "SUB-TITLE": "We are unable to find you as a MoneyOwl user. Click <a href='https://www.moneyowl.com.sg/contact-us/'>here</a> to contact us if you require any assistance.<br/><br/>This page will automatically redirect to MoneyOwl’s home page in 10 seconds,<br/><br/> or click <a href='https://www.moneyowl.com.sg/'>here</a> to immediately redirect.",
+    "SUB-TITLE": "We are unable to find you as a MoneyOwl user. Check the URL or click <a href='https://www.moneyowl.com.sg/contact-us/'>here</a> to contact us if you require any assistance.<br/><br/>This page will automatically redirect to MoneyOwl’s home page in 10 seconds,<br/><br/> or click <a href='https://www.moneyowl.com.sg/'>here</a> to immediately redirect.",
     "IMG": "assets/images/corpbiz-activationlink/activation-link-notfound.svg"
     },
     "ACCOUNT_EXIST":{
