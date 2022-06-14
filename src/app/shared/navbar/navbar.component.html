@@ -14,7 +14,7 @@
     <div class="navbar-group space-between">
       <div class="navbar-brand">
         <!-- Back Button -->
-        <li *ngIf="showNavBackBtn" [ngClass]="{'is-hidden': (navbarService.displayingWelcomeFlowContent$ | async) === true}" class="nav-item">
+        <li *ngIf="showNavBackBtn" [ngClass]="{'is-hidden': (navbarService.displayingWelcomeFlowContent$ | async) === true || (navbarService.hideBackBtn$ | async) === true }" class="nav-item">
           <span class="navbar__back-btn--web hidden-sm-md" (click)="goBack()"></span>
           <!-- <span class="navbar__back-btn--mobile hidden-lg" (click)="goBack()"></span>-->
         </li>
