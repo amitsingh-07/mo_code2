@@ -10,7 +10,8 @@ import {
   ViewContainerRef,
   ViewEncapsulation,
   ComponentRef,
-  ChangeDetectorRef 
+  ChangeDetectorRef, 
+  ElementRef
 } from '@angular/core';
 import { ActivatedRoute, NavigationEnd, NavigationStart, Router } from '@angular/router';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
@@ -56,6 +57,7 @@ export class DirectComponent implements OnInit, AfterViewInit, IPageComponent, O
   mouseMove$: Observable<MouseEvent> = fromEvent<MouseEvent>(document, 'mousemove');
   destroyContactFormTimer$ = new Subject<boolean>();
   manualContactFormSubscription: Subscription;
+  @ViewChild('productInfoContainer') private productInfoContainer: ElementRef<HTMLElement>;
 
   constructor(
     private router: Router, public navbarService: NavbarService,
@@ -180,6 +182,7 @@ export class DirectComponent implements OnInit, AfterViewInit, IPageComponent, O
       (selectedComparePlans && selectedComparePlans.hasOwnProperty('length') && selectedComparePlans.length > 0)) {
       this.formSubmitCallback();
     }
+    this.triggerFalseMouseMove();
     this.changeDetector.detectChanges();
   }
 
@@ -246,4 +249,9 @@ export class DirectComponent implements OnInit, AfterViewInit, IPageComponent, O
       this.components.splice(componentIndex, 1);
     }
   }
+
+  triggerFalseMouseMove() {
+    this.productInfoContainer.nativeElement.dispatchEvent(new MouseEvent('mousemove',  { bubbles: true }));
+  }
+
 }
