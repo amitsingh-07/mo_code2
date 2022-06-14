@@ -1,7 +1,7 @@
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { catchError } from 'rxjs/operators';
-import { Observable, throwError } from 'rxjs';
+import { Observable, of, throwError } from 'rxjs';
 
 import { apiConstants } from '../shared/http/api.constants';
 import { ApiService } from '../shared/http/api.service';
@@ -198,6 +198,13 @@ export class ComprehensiveApiService {
         return this.http
             .post(apiConstants.endpoint.comprehensive.generateReport, payload)
             .pipe(catchError((error: HttpErrorResponse) => this.helperService.handleError(error)));
+    }
+
+    getUserDob() {
+        // return of( {"objectList":{"dateofBirth":"12/04/1960"},"responseMessage":{"responseCode":6000,"responseDescription":"Successful response"}})
+        // return this.httpClient.get('http://bfa-fb-newdev.ntucbfa.cloud/svc/account/account-microservice/api/customer/dateOfBirth')
+        return this.httpClient.get(apiConstants.endpoint.comprehensive.getUserDob)
+        .pipe(catchError((error: HttpErrorResponse) => this.helperService.handleError(error)));
     }
     
 

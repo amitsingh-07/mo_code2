@@ -8,7 +8,7 @@ import { NavbarService } from '../../shared/navbar/navbar.service';
 import { COMPREHENSIVE_CONST } from '../../comprehensive/comprehensive-config.constants';
 import { CORPBIZ_ROUTES_PATHS } from '../corpbiz-welcome-flow.routes.constants';
 import { ComprehensiveApiService } from '../../comprehensive/comprehensive-api.service';
-import { TellAboutYouService } from '../tell-about-you.service';
+import { AboutAge } from '../../shared/utils/about-age.util';
 
 const DEFAULT_RETIRE_AGE = 55;
 @Component({
@@ -23,7 +23,7 @@ export class TellAboutYouComponent implements OnInit {
   retirementPlanForm: FormGroup;
   sliderValue = COMPREHENSIVE_CONST.RETIREMENT_PLAN.MIN_AGE;
   sliderValid = { minAge: true, userAge: true };
-  userAge: number = 50;
+  userAge: number;
   @ViewChild('ciMultiplierSlider') ciMultiplierSlider: NouisliderComponent;
   ciSliderConfig: any = {
     behaviour: 'snap',
@@ -48,7 +48,7 @@ export class TellAboutYouComponent implements OnInit {
   constructor(  private footerService: FooterService,
                 private navbarService: NavbarService,
                 private translate: TranslateService,
-                private tellAboutYouService: TellAboutYouService,
+                private aboutAge: AboutAge,
                 private router: Router,
                 private fb: FormBuilder,
                 private comprehensiveApiService: ComprehensiveApiService) {
@@ -59,13 +59,27 @@ export class TellAboutYouComponent implements OnInit {
   ngOnInit(): void {
     this.navbarService.setNavbarMode(101);
     this.footerService.setFooterVisibility(false);
-    this.buildForm();
-    this.getUserDob()
+    this.getUserDob();
   }
   
+  
+  // {"objectList":{"dateofBirth":"12/04/1993"},"responseMessage":{"responseCode":6000,"responseDescription":"Successful response"}}
   getUserDob(){
-    this.comprehensiveApiService.getDob().subscribe(res=>{
-
+    this.comprehensiveApiService.getUserDob().subscribe(res=>{
+      console.log(res);
+      console.log(res['objectList']);
+      console.log(res['objectList'][0]);
+      console.log(res['objectList'][0].dateOfBirth);
+      // res['objectList'].dateofBirth = "12/04/1993";
+      if (res && res['objectList'][0].dateOfBirth) 
+      {
+        this.userAge = this.aboutAge.calculateAgeByYear(
+          res['objectList'][0].dateOfBirth,
+          new Date()
+          )
+          this.buildForm();
+          this.onSliderChange(this.userAge)
+      }
     })
   }
 
