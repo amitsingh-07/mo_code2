@@ -10,14 +10,13 @@ import {
   ViewContainerRef,
   ViewEncapsulation,
   ComponentRef,
-  ChangeDetectorRef, 
-  ElementRef
+  ChangeDetectorRef
 } from '@angular/core';
 import { ActivatedRoute, NavigationEnd, NavigationStart, Router } from '@angular/router';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { TranslateService } from '@ngx-translate/core';
 import { fromEvent, interval, Observable, Subject, Subscription, SubscriptionLike } from 'rxjs';
-import { switchMap, takeUntil } from 'rxjs/operators';
+import { startWith, switchMap, takeUntil } from 'rxjs/operators';
 import { AuthenticationService } from '../shared/http/auth/authentication.service';
 
 import { appConstants } from './../app.constants';
@@ -57,7 +56,6 @@ export class DirectComponent implements OnInit, AfterViewInit, IPageComponent, O
   mouseMove$: Observable<MouseEvent> = fromEvent<MouseEvent>(document, 'mousemove');
   destroyContactFormTimer$ = new Subject<boolean>();
   manualContactFormSubscription: Subscription;
-  @ViewChild('productInfoContainer') private productInfoContainer: ElementRef<HTMLElement>;
 
   constructor(
     private router: Router, public navbarService: NavbarService,
@@ -157,6 +155,7 @@ export class DirectComponent implements OnInit, AfterViewInit, IPageComponent, O
   /** Systematically trigger contact form when user idling for 2 mins in direct journey */
   contactFormTimerFn() {
     this.mouseMove$.pipe(
+      startWith(null),
       switchMap( option => interval(1000)),
       takeUntil(this.destroyContactFormTimer$),
     ).subscribe( idleSeconds => {
@@ -182,7 +181,6 @@ export class DirectComponent implements OnInit, AfterViewInit, IPageComponent, O
       (selectedComparePlans && selectedComparePlans.hasOwnProperty('length') && selectedComparePlans.length > 0)) {
       this.formSubmitCallback();
     }
-    this.triggerFalseMouseMove();
     this.changeDetector.detectChanges();
   }
 
@@ -248,10 +246,6 @@ export class DirectComponent implements OnInit, AfterViewInit, IPageComponent, O
       this.componentRef.destroy();
       this.components.splice(componentIndex, 1);
     }
-  }
-
-  triggerFalseMouseMove() {
-    this.productInfoContainer.nativeElement.dispatchEvent(new MouseEvent('mousemove',  { bubbles: true }));
   }
 
 }
