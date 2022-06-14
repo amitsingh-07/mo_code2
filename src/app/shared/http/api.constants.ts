@@ -125,6 +125,8 @@ export let apiConstants = {
             updateComprehensiveStatus: COMPREHENSIVE_API_BASE_URL +'updateComprehensiveReportStatus',
             insuranceData: 'assets/comprehensive/insurancePlan.json',
             generateComprehensiveCashflow: FINANCE_API_BASE_URL + 'generateComprehensiveCashflow',
+            generateReport: ACCOUNT_API_BASE_URL + '/robo3MyInfoMapping',
+            getUserDob: ACCOUNT_API_BASE_URL+ '/customer/dateOfBirth'
         },
         payment: {
             getRequestSignature: PAYMENT_API_BASE_URL + 'getRequestSignature',
