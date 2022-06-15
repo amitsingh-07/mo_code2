@@ -331,61 +331,110 @@ app-dashboard {
                 margin-left: 10px;
                 background-image: linear-gradient(8deg, #98dfdf 50%, transparent 50%), linear-gradient(-90deg, #98dfdf 50%, transparent 50%);
             }
-            .btn-with-icon {
-                border-radius: 6px;
-                box-shadow: 0 4px 5px 0 rgba(0, 0, 0, 0.21) !important;
-                background-color: $btn-primary-backgrnd-color;
-                font-family: $muli-bold;
-                font-size: 21px;
-                line-height: normal;
-                letter-spacing: -0.3px;
-                text-align: center;
-                color: $white-color;
-                width: 135px;
-                height: 45px;
-                padding: 10px 0px;
-                cursor: pointer;
-                &.top_up_btn {
-                    font-size: 15px;
-                    line-height: 23px;
-                    background-color: $white-color;
-                    color: $secondary-action-color;
-                    border: 1px solid #f1f1f1;
-                    display: flex;
-                    justify-content: center;
-                    &:active, &:focus {
-                        outline: none;
-                        background-color: $white-color;
+                  .dropdown {
+                    position: relative;
+                    display: inline-block;
+                    .dropbtn {
+                        &.btn-with-icon {
+                            border-radius: 25px;
+                            box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.3) !important;
+                            background-color: #005960;
+                            border: none;
+                            font-family: $muli-bold;
+                            font-size: 14px;
+                            line-height: 16px;
+                            letter-spacing: -0.3px;
+                            text-align: center;
+                            color: $white-color;
+                            width: 101px;
+                            height: 32px;
+                            padding: 0;
+                            display: flex;
+                            justify-content: center;
+                            align-items: center;
+                            cursor: pointer;
+                            &.disabled{
+                                cursor: not-allowed;
+                            }
+                            .invest-btn-img {
+                                height: 9.3px;
+                                width: 9.3px;
+                                margin-left: 13px;
+                                display: flex;
+                                img {
+                                    width: 100%;
+                                    height: auto;
+                                    margin: 0;
+                                }
+                            }
+                        }
                     }
-                    &.disabled{
-                      cursor: not-allowed;
+                    &:hover{
+                        .dropbtn {
+                            &.btn-with-icon {
+                                outline: none;
+                                border: none;
+                                background-color: $btn-primary-backgrnd-color;
+                            }
+                        }
                     }
-                    .topup-btn-img {
-                        height: 25px;
-                        width: 35px;
-                        margin-right: 5px;
+                  }
+                  
+                  .dropdown-content {
+                    display: none;
+                    position: absolute;
+                    background-color: #FFFFFF;
+                    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+                    z-index: 1;
+                  }
+                  
+                  .dropdown-content a {
+                    color: black;
+                    text-decoration: none;
+                    display: block;
+                  }
+                  
+                  .dropdown-content a:hover {background-color: #ffffff;}
+                  
+                   .dropdown:hover .dropdown-content {    
                         display: flex;
-                        img {
-                            width: 100%;
-                            height: auto;
+                        flex-direction: column;
+                    }
+           
+            .dropdown-content{
+                &.btn-menu{
+                    padding: 24px;
+                    font-size: 16px;
+                    font-family: $muli-bold;
+                    line-height: 24px;
+                    color: #000000;
+                    box-shadow: 0px 4px 8px -2px rgba(16, 24, 40, 0.1), 0px 2px 4px -2px rgba(16, 24, 40, 0.06);
+                    border-radius: 6px;
+                    z-index: 999;
+                    min-width: 375px;
+                    right: 0;
+                    cursor: pointer;
+                    .menu-icon{
+                        width: 48px;
+                        height: 48px;
+                        display: flex;
+                        margin-right: 20px;
+                        img{
                             margin: 0;
                         }
                     }
-                }
-                &:active {
-                    outline: none;
-                    background-color: $btn-primary-backgrnd-color;
-                }
-                &:hover {
-                    outline: none;
-                }
-                &:focus {
-                    outline: none;
-                    background-color: $btn-primary-backgrnd-color;
-                }
-                img {
-                    margin-left: 8px;
-                    margin-top: -1px;
+                    hr{
+                        margin: 20px 0;
+                        border-color: #E7E7E7;
+                    }
+                    .sub-text{
+                        font-family: $muli-regular;
+                        font-size: 14px;
+                        color: #5E5E5E;
+                    }
+                    @include allmobiles{
+                        display: none !important;
+                    }
                 }
             }
             .total-portfolio-title {
@@ -435,6 +484,7 @@ app-dashboard {
                 padding:20px 18px 5px;
                 align-items: self-start!important;
                 line-height: 1.25;
+                position: relative;
               }
               div.reward-points + .widget-portfolio-title {
                 @include allmobiles {
