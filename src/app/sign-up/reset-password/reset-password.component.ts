@@ -93,7 +93,7 @@ export class ResetPasswordComponent implements OnInit {
   }
 
   gotoHomePage(data) {
-    this.router.navigate([APP_ROUTES.HOME]);
+    this.router.navigate([APP_ROUTES.ROOT]);
     if (data !== null) {
       this.errorHandler.handleCustomError(data);
     }
