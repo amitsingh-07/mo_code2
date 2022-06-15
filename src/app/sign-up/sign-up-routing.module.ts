@@ -8,6 +8,7 @@ import { AuthGuardService as AuthGuard, SingpassLoginGuard } from './auth-guard.
 import { FinlitLoggedUserService as FinlitLoggedUserGuard } from './auth-guard.service';
 import { LoggedUserService as LoggedUserGuard } from './auth-guard.service';
 import { FacebookLoggedUserService as FacebookLoggedUserGuard } from './auth-guard.service';
+import { CorpbizAuthGuardService as CorpbizAuthGuard } from './auth-guard.service';
 import { CreateAccountComponent } from './create-account/create-account.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { EditPasswordComponent } from './edit-password/edit-password.component';
@@ -282,7 +283,8 @@ const routes: Routes = [
   },
   {
     path: SIGN_UP_ROUTES.CORP_BIZ_SIGNUP,
-    component: CorpBizSignupComponent
+    component: CorpBizSignupComponent,
+    canActivate: [CorpbizAuthGuard]
   },
   {
     path: SIGN_UP_ROUTES.CORP_BIZ_SIGNUP_DATA,
@@ -290,7 +292,8 @@ const routes: Routes = [
   },
   {
     path: SIGN_UP_ROUTES.CORPBIZ_CREATE_ACCOUNT,
-    component: CreateAccountComponent
+    component: CreateAccountComponent,
+    canActivate: [CorpbizAuthGuard]
   },
   {
     path: SIGN_UP_ROUTES.CORP_BIZ_ACTIVATIONLINK,
