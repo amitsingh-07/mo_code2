@@ -9,7 +9,7 @@ export const environment: IEnvironment = {
   production: false,
   isDebugMode: true,
   apiBaseUrl: 'https://bfa-fb-newdev.ntucbfa.cloud',
-  myInfoClientId: 'STG2-MYINFO-SELF-TEST',
+  myInfoClientId: 'STG-201820691C-MONEYOWL-BFA',
   myInfoCallbackBaseUrl: 'https://bfa-fb-newdev.ntucbfa.cloud/app/myinfo',
   myInfoAuthorizeUrl: 'https://test.api.myinfo.gov.sg/com/v3/authorise',
   gAdPropertyId: 'AW-782920447',
