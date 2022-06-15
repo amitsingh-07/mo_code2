@@ -58,7 +58,7 @@ export class CorpBizActivationLinkComponent implements OnInit, OnDestroy {
           this.screenToShow = SIGN_UP_CONFIG.CORP_BIZ_ACTIVATIONLINK.INVALID_USER;
         } else if (data.responseMessage.responseCode === 6008) {
           this.screenToShow = SIGN_UP_CONFIG.CORP_BIZ_ACTIVATIONLINK.ACC_EXIST;
-        } else if (!this.appService.getCorpBizData()) {
+        } else if (data.responseMessage.responseCode === 5135) {
           this.screenToShow = SIGN_UP_CONFIG.CORP_BIZ_ACTIVATIONLINK.INVALID_USER;
         } else {
           this.router.navigate(['/page-not-found']);
