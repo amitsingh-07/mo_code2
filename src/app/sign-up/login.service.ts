@@ -35,6 +35,7 @@ export class LoginService {
 
   private toogleLoginType = new Subject<string>();
   toogleLoginType$ = this.toogleLoginType.asObservable();
+  private modalText;
 
   constructor(
     private apiService: ApiService,
@@ -55,6 +56,9 @@ export class LoginService {
     private willWritingService: WillWritingService
   ) {
     this.translate.use('en');
+    this.translate.get('LOGIN').subscribe((result) => {
+      this.modalText = result;
+    });
   }
 
   // non 2fa success login method
@@ -189,17 +193,25 @@ export class LoginService {
     ref.componentInstance.errorMessage = desc;
   }
 
-  handleUserNotFound(data) {
-    if (data.responseMessage.responseCode === 5126) {
-      this.translate.get('LOGIN').subscribe((result) => {
-        const ref = this.modal.open(ModelWithButtonComponent, { centered: true });
-        ref.componentInstance.errorTitle = this.translate.instant(result.SINGPASS_LOGIN_FAIL_MODAL.TITLE);
-        ref.componentInstance.errorMessageHTML = this.translate.instant(result.SINGPASS_LOGIN_FAIL_MODAL.MESSAGE);
-        ref.componentInstance.primaryActionLabel = this.translate.instant(result.SINGPASS_LOGIN_FAIL_MODAL.BACK_BTN);
-        ref.componentInstance.primaryAction.subscribe(() => {
-          this.toogleLoginType.next('PASSWORD');
-          this.modal.dismissAll();
-        });
+  displaySingpassLoginError(data) {
+    if (data.responseMessage.responseCode === 5127) {  // Multiple NRIC
+      this.displayErrorModal(this.modalText.SINGPASS_MULTIPLE_ACC_MODAL, false);
+    } else if (data.responseMessage.responseCode === 5128) { // Investment Acc Pending
+      this.displayErrorModal(this.modalText.SINGPASS_INVESTMENT_ACC_PENDING_MODAL, false);
+    } else { // SingPass Login Unsuccessful
+      this.displayErrorModal(this.modalText.SINGPASS_LOGIN_FAIL_MODAL, true);
+    }
+  }
+
+  displayErrorModal(modalMsg, withBtn) {
+    const ref = this.modal.open(ModelWithButtonComponent, { centered: true });
+    ref.componentInstance.errorTitle = this.translate.instant(modalMsg.TITLE);
+    ref.componentInstance.errorMessageHTML = this.translate.instant(modalMsg.MESSAGE);
+    if (withBtn) {
+      ref.componentInstance.primaryActionLabel = this.translate.instant(modalMsg.BACK_BTN);
+      ref.componentInstance.primaryAction.subscribe(() => {
+        this.toogleLoginType.next('PASSWORD');
+        this.modal.dismissAll();
       });
     }
   }

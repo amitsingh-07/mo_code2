@@ -141,7 +141,7 @@ export class SingpassLoginGuard implements CanActivate {
         } else {
           this.loaderService.hideLoader;
           this.route.navigate([SIGN_UP_ROUTE_PATHS.LOGIN], { queryParams: { 'code': null, 'state': null, }, queryParamsHandling: 'merge' });
-          this.loginService.handleUserNotFound(data);
+          this.loginService.displaySingpassLoginError(data);
           return false;
         }
       }, (err) => {
