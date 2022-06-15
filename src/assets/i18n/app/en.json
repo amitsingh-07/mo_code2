@@ -583,7 +583,7 @@
     },
     "EMAIL_ENQUIRY": {
         "THANKYOU": "Thank you!",
-        "TITLE": "Your enquiry has been sent successfully. Our advisors will contact you by the end of the next working day.",
+        "TITLE": "Your enquiry has been sent successfully. Our advisors will contact you as soon as possible.",
         "FOR_ENQUIRY": "For enquiries, please contact us at:"
     },
     "INVESTMENT_ADD_PORTFOLIO_ERROR": {

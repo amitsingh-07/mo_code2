@@ -91,7 +91,7 @@ export let SIGN_UP_CONFIG = {
     NOT_APPLICABLE: "NOT_APPLICABLE",
     REFER_A_FRIEND: "refer-a-friend",
     DASHBOARD: "dashboard",
-    GRAB_FOOD: "GrabFood"
+    GRAB: "Grab"
   },
   AUTH_2FA_ENABLED: true,
   ROLE_2FA: 'ROLE_2FA',

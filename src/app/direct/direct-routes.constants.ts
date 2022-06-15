@@ -1,4 +1,5 @@
 export const DIRECT_BASE_ROUTE = '../direct/';
+export const EMAIL_ENQUIRY_SUCCESS = 'email-enquiry/success';
 
 export const DIRECT_ROUTES = {
   ROOT: '',

@@ -1425,4 +1425,12 @@ body.modal-open::-webkit-scrollbar {
   text-decoration: underline;
   cursor: pointer;
 }
+
+.contact-form-modal{
+  margin: 20px !important;
+  width: calc(100% - 40px) !important;
+  &.modal{
+    border-radius: 8px !important;
+  }
+}
  

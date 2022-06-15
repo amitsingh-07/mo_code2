@@ -7,13 +7,13 @@ import { DIRECT_ROUTES } from './direct-routes.constants';
 import { DirectComponent } from './direct.component';
 
 const routes: Routes = [
-  { path: '', component: DirectComponent, canActivate: [DirectAccessGuard] },
-  {
-    path: DIRECT_ROUTES.COMPARE_PLANS,
-    component: ComparePlansComponent,
-    canActivate: [DirectAccessGuard]
-  },
-  { path: '**', redirectTo: '/page-not-found' }
+      { path: '', component: DirectComponent, canActivate: [DirectAccessGuard] },
+      {
+        path: DIRECT_ROUTES.COMPARE_PLANS,
+        component: ComparePlansComponent,
+        canActivate: [DirectAccessGuard]
+      },
+      { path: '**', redirectTo: '/page-not-found' }
 ];
 
 @NgModule({
