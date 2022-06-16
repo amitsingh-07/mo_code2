@@ -47,6 +47,8 @@ import { INVESTMENT_COMMON_CONSTANTS } from '../../investment/investment-common/
 import { ComprehensiveService } from '../../comprehensive/comprehensive.service';
 import { Util } from '../../shared/utils/util';
 import { appConstants } from '../../app.constants';
+import { InvestmentEngagementJourneyService} from '../../investment/investment-engagement-journey/investment-engagement-journey.service';
+import { INVESTMENT_ENGAGEMENT_JOURNEY_CONSTANTS } from '../../investment/investment-engagement-journey/investment-engagement-journey.constants';
 
 @Component({
   selector: 'app-dashboard',
@@ -116,7 +118,8 @@ export class DashboardComponent implements OnInit {
     public errorHandler: CustomErrorHandlerService,
     private guideMeService: GuideMeService,
     private selectedPlansService: SelectedPlansService,
-    private comprehensiveService: ComprehensiveService
+    private comprehensiveService: ComprehensiveService,
+    private investmentEngagementService: InvestmentEngagementJourneyService
   ) {
     this.translate.use('en');
     this.translate.get('COMMON').subscribe((result: string) => {
@@ -551,6 +554,17 @@ export class DashboardComponent implements OnInit {
         this.router.navigate([MANAGE_INVESTMENTS_ROUTE_PATHS.TOPUP]);
       }
     });
+  }
+  addPortfolio() {
+    this.authService.removeEnquiryId();
+    this.investmentCommonService.clearFundingDetails();  
+    this.investmentCommonService.clearJourneyData();
+    if (this.authService.accessCorporateUserFeature('CREATE_JOINT_ACCOUNT')) {
+      this.router.navigate([INVESTMENT_ENGAGEMENT_JOURNEY_ROUTE_PATHS.SELECT_PORTFOLIO_TYPE]);
+    } else {
+      this.investmentEngagementService.setUserPortfolioType(INVESTMENT_ENGAGEMENT_JOURNEY_CONSTANTS.PORTFOLIO_TYPE.PERSONAL_ACCOUNT_ID);
+      this.router.navigate([INVESTMENT_ENGAGEMENT_JOURNEY_ROUTE_PATHS.SELECT_PORTFOLIO]);
+    }
   }
   showCashAccountPopUp() {
     const ref = this.modal.open(ErrorModalComponent, { centered: true });
