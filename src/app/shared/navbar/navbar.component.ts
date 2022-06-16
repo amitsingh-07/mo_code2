@@ -189,6 +189,7 @@ export class NavbarComponent implements OnInit, AfterViewInit {
         if (this.authService.isSignedUser()) {
           this.isLoggedIn = true;
           this.authService.isUserTypeCorporate = this.authService.isSignedUserWithRole(SIGN_UP_CONFIG.ROLE_CORP_FB_USER);    
+          this.authService.displayCorporateLogo$.next(this.authService.isUserTypeCorporate);
           this.accessReferrelProgramOnRoles = this.authService.accessCorporateUserFeature('REFERREL_PROGRAM');
         }
       }

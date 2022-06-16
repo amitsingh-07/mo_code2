@@ -112,6 +112,7 @@ export class FacebookLoggedUserService implements CanActivate {
       return false;
     }
     this.authService.isUserTypeCorporate = true;
+    this.authService.displayCorporateLogo$.next(true);
     return true;
   }
 }
