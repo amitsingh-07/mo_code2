@@ -75,8 +75,8 @@
                             alt="" /></span>
                       </button>
                       <div class="dropdown-content btn-menu">
-                        <a href="#">
-                          <div class="flex btn-menu-item">
+                        <!-- <a href="#"> -->
+                          <div class="flex btn-menu-item" (click)="addPortfolio()">
                             <div class="menu-icon"><img src="assets/images/new-portfolio-icon.svg"
                               alt="" /></div>
                             <div>
@@ -84,10 +84,10 @@
                               <div class="sub-text">{{'DASHBOARD.INVESTMENT.MENU_SUB_LBL_1' | translate}}</div>
                             </div>
                           </div>
-                        </a>
+                        <!-- </a> -->
                         <hr>
-                        <a href="#">
-                          <div class="flex btn-menu-item">
+                        <!-- <a href="#"> -->
+                          <div class="flex btn-menu-item" (click)="gotoTopUp()">
                             <div class="menu-icon"><img src="assets/images/existing-portfolio-icon.svg"
                               alt="" /></div>
                             <div>
@@ -95,7 +95,7 @@
                               <div class="sub-text">{{'DASHBOARD.INVESTMENT.MENU_SUB_LBL_2' | translate}}</div>
                             </div>
                           </div>
-                        </a>
+                        <!-- </a> -->
                       </div>
                     </div>
                   </div>
@@ -106,8 +106,8 @@
                           alt="" /></span>
                     </button>
                     <div class="dropdown-content btn-menu">
-                      <a href="#">
-                        <div class="flex btn-menu-item">
+                      <!-- <a href="#"> -->
+                        <div class="flex btn-menu-item" (click)="addPortfolio()">
                           <div class="menu-icon"><img src="assets/images/new-portfolio-icon.svg"
                             alt="" /></div>
                           <div>
@@ -115,10 +115,10 @@
                             <div class="sub-text">{{'DASHBOARD.INVESTMENT.MENU_SUB_LBL_1' | translate}}</div>
                           </div>
                         </div>
-                      </a>
+                      <!-- </a> -->
                       <hr>
-                      <a href="#">
-                        <div class="flex btn-menu-item">
+                      <!-- <a href="#"> -->
+                        <div class="flex btn-menu-item" (click)="gotoTopUp()">
                           <div class="menu-icon"><img src="assets/images/existing-portfolio-icon.svg"
                             alt="" /></div>
                           <div>
@@ -126,7 +126,7 @@
                             <div class="sub-text">{{'DASHBOARD.INVESTMENT.MENU_SUB_LBL_2' | translate}}</div>
                           </div>
                         </div>
-                      </a>
+                      <!-- </a> -->
                     </div>
                   </div>
                   <!-- <div class="topup-btn" *ngIf="getReferralInfo && getReferralInfo.isWelcomeRewardsValid && getReferralInfo.refereeExists"> <button type="button" class="btn-with-icon top_up_btn" id="top-up_button" (click)="gotoTopUp()">
