@@ -68,14 +68,17 @@
                   <div class="widget-title widget-portfolio-title">
                     <span class="flex">{{'DASHBOARD.INVESTMENT.TITLE_INVESTMENT' | translate}}
                     </span>
-                    <div class="dropdown" *ngIf="getReferralInfo && !getReferralInfo.isWelcomeRewardsValid && !getReferralInfo.refereeExists">
-                      <button type="button" class="dropbtn btn-with-icon" id="invest_button">
+                      <button type="button" class="btn-with-icon hidden-lg hidden-tablet" id="invest_button" (click)="openInvestMenuModal()" *ngIf="getReferralInfo && !getReferralInfo.isWelcomeRewardsValid && !getReferralInfo.refereeExists">
                         <span>{{'DASHBOARD.INVESTMENT.INVEST' | translate}}</span>
                         <span class="invest-btn-img"><img id="top-up_img" src="assets/images/investment-account/plus-white.svg"
                             alt="" /></span>
                       </button>
-                      <div class="dropdown-content btn-menu">
-                        <!-- <a href="#"> -->
+                      <button type="button" class="btn-with-icon hidden-sm" id="invest_button" *ngIf="getReferralInfo && !getReferralInfo.isWelcomeRewardsValid && !getReferralInfo.refereeExists">
+                        <span>{{'DASHBOARD.INVESTMENT.INVEST' | translate}}</span>
+                        <span class="invest-btn-img"><img id="top-up_img" src="assets/images/investment-account/plus-white.svg"
+                            alt="" /></span>
+                      </button>
+                      <div class="card btn-menu">
                           <div class="flex btn-menu-item" (click)="addPortfolio()">
                             <div class="menu-icon"><img src="assets/images/new-portfolio-icon.svg"
                               alt="" /></div>
@@ -84,29 +87,24 @@
                               <div class="sub-text">{{'DASHBOARD.INVESTMENT.MENU_SUB_LBL_1' | translate}}</div>
                             </div>
                           </div>
-                        <!-- </a> -->
                         <hr>
-                        <!-- <a href="#"> -->
                           <div class="flex btn-menu-item" (click)="gotoTopUp()">
                             <div class="menu-icon"><img src="assets/images/existing-portfolio-icon.svg"
                               alt="" /></div>
                             <div>
-                              <div>{{'DASHBOARD.INVESTMENT.MENU_LBL_2' | translate}}Existing Portfolio</div>
+                              <div>{{'DASHBOARD.INVESTMENT.MENU_LBL_2' | translate}}</div>
                               <div class="sub-text">{{'DASHBOARD.INVESTMENT.MENU_SUB_LBL_2' | translate}}</div>
                             </div>
                           </div>
-                        <!-- </a> -->
                       </div>
-                    </div>
                   </div>
-                  <div class="dropdown" *ngIf="getReferralInfo && getReferralInfo.isWelcomeRewardsValid && getReferralInfo.refereeExists">
-                    <button type="button" class="dropbtn btn-with-icon" id="invest_button">
+                  <div class="invest-btn hidden-sm" *ngIf="getReferralInfo && getReferralInfo.isWelcomeRewardsValid && getReferralInfo.refereeExists">
+                    <button type="button" class="btn-with-icon" id="invest_button">
                       <span>{{'DASHBOARD.INVESTMENT.INVEST' | translate}}</span>
                       <span class="invest-btn-img"><img id="top-up_img" src="assets/images/investment-account/plus-white.svg"
                           alt="" /></span>
                     </button>
-                    <div class="dropdown-content btn-menu">
-                      <!-- <a href="#"> -->
+                    <div class="card btn-menu">
                         <div class="flex btn-menu-item" (click)="addPortfolio()">
                           <div class="menu-icon"><img src="assets/images/new-portfolio-icon.svg"
                             alt="" /></div>
@@ -115,9 +113,7 @@
                             <div class="sub-text">{{'DASHBOARD.INVESTMENT.MENU_SUB_LBL_1' | translate}}</div>
                           </div>
                         </div>
-                      <!-- </a> -->
                       <hr>
-                      <!-- <a href="#"> -->
                         <div class="flex btn-menu-item" (click)="gotoTopUp()">
                           <div class="menu-icon"><img src="assets/images/existing-portfolio-icon.svg"
                             alt="" /></div>
@@ -126,14 +122,13 @@
                             <div class="sub-text">{{'DASHBOARD.INVESTMENT.MENU_SUB_LBL_2' | translate}}</div>
                           </div>
                         </div>
-                      <!-- </a> -->
                     </div>
                   </div>
-                  <!-- <div class="topup-btn" *ngIf="getReferralInfo && getReferralInfo.isWelcomeRewardsValid && getReferralInfo.refereeExists"> <button type="button" class="btn-with-icon top_up_btn" id="top-up_button" (click)="gotoTopUp()">
-                    <span class="topup-btn-img"><img id="top-up_img" src="assets/images/dashboard-currency.svg"
+                  <div class="invest-btn hidden-lg hidden-tablet" *ngIf="getReferralInfo && getReferralInfo.isWelcomeRewardsValid && getReferralInfo.refereeExists"> <button type="button" class="btn-with-icon top_up_btn" id="top-up_button" (click)="gotoTopUp()">
+                    <span class="invest-btn-img"><img id="top-up_img" src="assets/images/dashboard-currency.svg"
                         alt="" /></span>
                     <span>{{'DASHBOARD.INVESTMENT.TOP_UP' | translate}}</span>
-                  </button></div> -->
+                  </button></div>
                   <div class="widget-body investment-card">
                     <div class="flex-row widget-portfolio-body">
                       <div class="flex-col-6 border-portfolio-section">

@@ -49,6 +49,7 @@ import { Util } from '../../shared/utils/util';
 import { appConstants } from '../../app.constants';
 import { InvestmentEngagementJourneyService} from '../../investment/investment-engagement-journey/investment-engagement-journey.service';
 import { INVESTMENT_ENGAGEMENT_JOURNEY_CONSTANTS } from '../../investment/investment-engagement-journey/investment-engagement-journey.constants';
+import { InvestModalComponent } from '../invest-modal/invest-modal.component';
 
 @Component({
   selector: 'app-dashboard',
@@ -597,6 +598,10 @@ export class DashboardComponent implements OnInit {
     && Util.isEmptyOrNull(this.investmentsSummary.portfolioSummary.cpfPortfolio)
     && Util.isEmptyOrNull(this.investmentsSummary.portfolioSummary.wiseIncomePortfolio)
     && Util.isEmptyOrNull(this.investmentsSummary.portfolioSummary.wiseSaverPortfolio)
+  }
+
+  openInvestMenuModal() {
+    const ref = this.modal.open(InvestModalComponent, { centered: true });
   }
 }
 

@@ -110,6 +110,7 @@ app-dashboard {
                 border-radius: 6px;
                 box-shadow: 0 8px 12px 0 rgba(0, 0, 0, 0.25);
                 .widget-title {
+                    position: relative;
                     font-family: $muli-bold;
                     font-size: 22px;
                     letter-spacing: -0.2px;
@@ -331,78 +332,54 @@ app-dashboard {
                 margin-left: 10px;
                 background-image: linear-gradient(8deg, #98dfdf 50%, transparent 50%), linear-gradient(-90deg, #98dfdf 50%, transparent 50%);
             }
-                  .dropdown {
-                    position: relative;
-                    display: inline-block;
-                    .dropbtn {
-                        &.btn-with-icon {
-                            border-radius: 25px;
-                            box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.3) !important;
-                            background-color: #005960;
-                            border: none;
-                            font-family: $muli-bold;
-                            font-size: 14px;
-                            line-height: 16px;
-                            letter-spacing: -0.3px;
-                            text-align: center;
-                            color: $white-color;
-                            width: 101px;
-                            height: 32px;
-                            padding: 0;
-                            display: flex;
-                            justify-content: center;
-                            align-items: center;
-                            cursor: pointer;
-                            &.disabled{
-                                cursor: not-allowed;
-                            }
-                            .invest-btn-img {
-                                height: 9.3px;
-                                width: 9.3px;
-                                margin-left: 13px;
-                                display: flex;
-                                img {
-                                    width: 100%;
-                                    height: auto;
-                                    margin: 0;
-                                }
-                            }
-                        }
+            .btn-with-icon {
+                border-radius: 25px;
+                box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.3) !important;
+                background-color: #005960;
+                border: none;
+                font-family: $muli-bold;
+                font-size: 14px;
+                line-height: 16px;
+                letter-spacing: -0.3px;
+                text-align: center;
+                color: $white-color;
+                width: 101px;
+                height: 32px;
+                padding: 0;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                cursor: pointer;
+                &.disabled{
+                    cursor: not-allowed;
+                }
+                .invest-btn-img {
+                    height: 9.3px;
+                    width: 9.3px;
+                    margin-left: 13px;
+                    display: flex;
+                    img {
+                        width: 100%;
+                        height: auto;
+                        margin: 0;
                     }
-                    &:hover{
-                        .dropbtn {
-                            &.btn-with-icon {
-                                outline: none;
-                                border: none;
-                                background-color: $btn-primary-backgrnd-color;
-                            }
-                        }
+                }
+                &:hover{
+                    outline: none;
+                    background-color: $btn-primary-backgrnd-color;
+                }
+                &:active, &:focus{
+                    outline: none;
+                    background-color: $btn-primary-backgrnd-color;
+                    & + .btn-menu{
+                        display: flex;
                     }
-                  }
-                  
-                  .dropdown-content {
+                }
+            }
+            .card{
+                &.btn-menu{
                     display: none;
                     position: absolute;
-                    background-color: #FFFFFF;
-                    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
-                    z-index: 1;
-                  }
-                  
-                  .dropdown-content a {
-                    color: black;
-                    text-decoration: none;
-                    display: block;
-                  }
-                  
-                  .dropdown-content a:hover {background-color: #ffffff;}
-                  
-                   .dropdown:hover .dropdown-content {    
-                        display: flex;
-                        flex-direction: column;
-                    }
-           
-            .dropdown-content{
-                &.btn-menu{
                     padding: 24px;
                     font-size: 16px;
                     font-family: $muli-bold;
@@ -412,7 +389,8 @@ app-dashboard {
                     border-radius: 6px;
                     z-index: 999;
                     min-width: 375px;
-                    right: 0;
+                    right: 20px;
+                    top: 68px;
                     cursor: pointer;
                     .menu-icon{
                         width: 48px;
@@ -491,7 +469,7 @@ app-dashboard {
                     width: 68%;
                 }
               }
-              div.reward-points ~ .topup-btn {
+              div.reward-points ~ .invest-btn {
                 @include allmobiles {  
                     margin-top: -37px !important;
                 }
@@ -728,7 +706,7 @@ app-dashboard {
         border-bottom-left-radius: 20px;
         color: $dusty-grey-color;
     }
-    .topup-btn {
+    .invest-btn {
         display: flex;
         justify-content: flex-end;
         padding-right: 20px;
