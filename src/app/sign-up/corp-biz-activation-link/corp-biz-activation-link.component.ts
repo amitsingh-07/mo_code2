@@ -43,23 +43,24 @@ export class CorpBizActivationLinkComponent implements OnInit, OnDestroy {
     this.token = encodeURIComponent(this.queryParams.confirmation_token);
     this.authService.authenticate().subscribe(() => {
       this.signUpApiService.checkCorporateEmailValidity({ token: `${this.token}` }).subscribe((data) => {
-        if (data.responseMessage.responseCode === 6000) {
-          const corpBizData = {
-            isCorpBiz: true,
-            email: data.objectList && data.objectList.length ? data.objectList[0].email : null,
-            mobile: data.objectList && data.objectList.length ? data.objectList[0].maskedMobileNumber : null,
-            enrollmentId: data.objectList && data.objectList.length ? data.objectList[0].enrolmentId : null
-          }
-          this.appService.setCorpBizData(corpBizData);
-          this.router.navigate([SIGN_UP_ROUTE_PATHS.CORP_BIZ_SIGNUP]);
-        } else if (data.responseMessage.responseCode === 5022) {
+        let responseCode = data.responseMessage.responseCode;
+        let response = data.objectList?.length?data.objectList[0]:'';
+        if (responseCode === 6000 && response) {
+            const corpBizData = {
+              isCorpBiz: true,
+              email: response.email,
+              maskedMobileNumber: response.maskedMobileNumber,
+              enrollmentId: response.enrolmentId,
+              mobileNumber: response.mobileNumber
+            }
+            this.appService.setCorpBizData(corpBizData);
+            this.router.navigate([SIGN_UP_ROUTE_PATHS.CORP_BIZ_SIGNUP]);
+        } else if (responseCode === 5022) {
           this.screenToShow = SIGN_UP_CONFIG.CORP_BIZ_ACTIVATIONLINK.LINK_EXPIRED;
-        } else if (data.responseMessage.responseCode === 5033) {
+        } else if (responseCode === 5033 || responseCode === 5135) {
           this.screenToShow = SIGN_UP_CONFIG.CORP_BIZ_ACTIVATIONLINK.INVALID_USER;
-        } else if (data.responseMessage.responseCode === 6008) {
+        } else if (responseCode === 6008) {
           this.screenToShow = SIGN_UP_CONFIG.CORP_BIZ_ACTIVATIONLINK.ACC_EXIST;
-        } else if (data.responseMessage.responseCode === 5135) {
-          this.screenToShow = SIGN_UP_CONFIG.CORP_BIZ_ACTIVATIONLINK.INVALID_USER;
         } else {
           this.router.navigate(['/page-not-found']);
         }

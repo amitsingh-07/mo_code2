@@ -51,6 +51,8 @@ export class SignUpApiService {
     const insuranceEnquiry = this.selectedPlansService.getSelectedPlan();
     let journeyType = this.appService.getJourneyType();
     let enquiryId = -1;
+    let enrolmentId = this.appService.getCorpBizData()?.enrollmentId;
+    let isCorpBizEnrolluser = this.appService.getCorpBizData()?.isCorpBiz;
 
     if ((this.appService.getJourneyType() === appConstants.JOURNEY_TYPE_DIRECT ||
       this.appService.getJourneyType() === appConstants.JOURNEY_TYPE_GUIDED) && ((insuranceEnquiry.plans && insuranceEnquiry.plans.length > 0)
@@ -89,7 +91,9 @@ export class SignUpApiService {
         referralCode: getAccountInfo.referralCode,
         userType: getAccountInfo.userType,
         accountCreationType: getAccountInfo.accountCreationType,
-        organisationCode: getAccountInfo.organisationCode
+        organisationCode: getAccountInfo.organisationCode,
+        enrolmentId,
+        isCorpBizEnrolluser
       };
     } else {
       return {
@@ -111,7 +115,9 @@ export class SignUpApiService {
         referralCode: getAccountInfo.referralCode,
         userType: getAccountInfo.userType,
         accountCreationType: getAccountInfo.accountCreationType,
-        organisationCode: getAccountInfo.organisationCode
+        organisationCode: getAccountInfo.organisationCode,
+        enrolmentId,
+        isCorpBizEnrolluser
       };
     }
   }
