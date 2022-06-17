@@ -544,7 +544,7 @@ export class DashboardComponent implements OnInit {
       }, (error) => console.log('ERROR: ', error));
     }
   }
-  gotoTopUp() {
+  existingPortfolio() {
     this.manageInvestmentsService.setSelectedCustomerPortfolioId(null);
     this.manageInvestmentsService.setSelectedCustomerPortfolio(null);
     this.manageInvestmentsService.getInvestmentOverview().subscribe((data) => {
@@ -556,7 +556,8 @@ export class DashboardComponent implements OnInit {
       }
     });
   }
-  addPortfolio() {
+
+  newPortfolio() {
     this.authService.removeEnquiryId();
     this.investmentCommonService.clearFundingDetails();  
     this.investmentCommonService.clearJourneyData();
@@ -567,6 +568,7 @@ export class DashboardComponent implements OnInit {
       this.router.navigate([INVESTMENT_ENGAGEMENT_JOURNEY_ROUTE_PATHS.SELECT_PORTFOLIO]);
     }
   }
+  
   showCashAccountPopUp() {
     const ref = this.modal.open(ErrorModalComponent, { centered: true });
     ref.componentInstance.errorTitle = this.translate.instant(

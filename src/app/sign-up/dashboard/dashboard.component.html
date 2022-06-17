@@ -79,7 +79,7 @@
                             alt="" /></span>
                       </button>
                       <div class="card btn-menu">
-                          <div class="flex btn-menu-item" (click)="addPortfolio()">
+                          <div class="flex btn-menu-item" (click)="newPortfolio()">
                             <div class="menu-icon"><img src="assets/images/new-portfolio-icon.svg"
                               alt="" /></div>
                             <div>
@@ -88,7 +88,7 @@
                             </div>
                           </div>
                         <hr>
-                          <div class="flex btn-menu-item" (click)="gotoTopUp()">
+                          <div class="flex btn-menu-item" (click)="existingPortfolio()">
                             <div class="menu-icon"><img src="assets/images/existing-portfolio-icon.svg"
                               alt="" /></div>
                             <div>
@@ -105,7 +105,7 @@
                           alt="" /></span>
                     </button>
                     <div class="card btn-menu">
-                        <div class="flex btn-menu-item" (click)="addPortfolio()">
+                        <div class="flex btn-menu-item" (click)="newPortfolio()">
                           <div class="menu-icon"><img src="assets/images/new-portfolio-icon.svg"
                             alt="" /></div>
                           <div>
@@ -114,7 +114,7 @@
                           </div>
                         </div>
                       <hr>
-                        <div class="flex btn-menu-item" (click)="gotoTopUp()">
+                        <div class="flex btn-menu-item" (click)="existingPortfolio()">
                           <div class="menu-icon"><img src="assets/images/existing-portfolio-icon.svg"
                             alt="" /></div>
                           <div>
@@ -124,7 +124,7 @@
                         </div>
                     </div>
                   </div>
-                  <div class="invest-btn hidden-lg hidden-tablet" *ngIf="getReferralInfo && getReferralInfo.isWelcomeRewardsValid && getReferralInfo.refereeExists"> <button type="button" class="btn-with-icon top_up_btn" id="top-up_button" (click)="gotoTopUp()">
+                  <div class="invest-btn hidden-lg hidden-tablet" *ngIf="getReferralInfo && getReferralInfo.isWelcomeRewardsValid && getReferralInfo.refereeExists"> <button type="button" class="btn-with-icon top_up_btn" id="top-up_button" (click)="existingPortfolio()">
                     <span class="invest-btn-img"><img id="top-up_img" src="assets/images/dashboard-currency.svg"
                         alt="" /></span>
                     <span>{{'DASHBOARD.INVESTMENT.TOP_UP' | translate}}</span>

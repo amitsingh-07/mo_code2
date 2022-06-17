@@ -9,8 +9,7 @@
             <div id="errorModeltitle">Select Invest Option</div>
           </div>
         <div class="btn-menu">
-            <div class="flex btn-menu-item" >
-                <!-- (click)="addPortfolio()" -->
+            <div class="flex btn-menu-item" (click)="newPortfolio()">
               <div class="menu-icon"><img src="assets/images/new-portfolio-icon.svg"
                 alt="" /></div>
               <div>
@@ -19,8 +18,7 @@
               </div>
             </div>
           <hr>
-            <div class="flex btn-menu-item">
-                <!-- (click)="gotoTopUp()" -->
+            <div class="flex btn-menu-item" (click)="existingPortfolio()"> 
               <div class="menu-icon"><img src="assets/images/existing-portfolio-icon.svg"
                 alt="" /></div>
               <div>
