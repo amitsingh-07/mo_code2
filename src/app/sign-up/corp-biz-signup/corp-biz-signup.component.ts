@@ -12,6 +12,7 @@ import { SignUpService } from '../sign-up.service';
 import { ModelWithButtonComponent } from '../../shared/modal/model-with-button/model-with-button.component';
 import { SIGN_UP_ROUTES, SIGN_UP_ROUTE_PATHS } from '../sign-up.routes.constants';
 import { SIGN_UP_CONFIG } from '../sign-up.constant';
+import { AppService } from '../../app.service';
 
 @Component({
   selector: 'app-corp-biz-signup',
@@ -37,9 +38,10 @@ export class CorpBizSignupComponent implements OnInit {
     private configService: ConfigService,
     private myInfoService: MyInfoService,
     private signUpService: SignUpService,
-    public navbarService: NavbarService,
-    public footerService: FooterService,
-    public readonly translate: TranslateService
+    private navbarService: NavbarService,
+    private footerService: FooterService,
+    private readonly translate: TranslateService,
+    private appService: AppService
   ) {
     this.translate.use('en');
     this.translate.get('COMMON').subscribe((result: string) => {
@@ -93,6 +95,8 @@ export class CorpBizSignupComponent implements OnInit {
     this.myInfoSubscription = this.myInfoService.getMyInfoAccountCreateData().subscribe((data) => {
       if (data.responseMessage.responseCode === 6000 && data && data.objectList[0]) {
         this.closeMyInfoPopup(false);
+        data.objectList[0].email.value = this.appService.getCorpBizData()?.email;
+        data.objectList[0].mobileno.nbr = this.appService.getCorpBizData()?.email;
         this.signUpService.setCreateAccountMyInfoFormData(data.objectList[0]);
         this.router.navigate([SIGN_UP_ROUTE_PATHS.CORP_BIZ_SIGNUP_DATA]);
       } else if (data.responseMessage.responseCode === 6014) {
@@ -112,20 +116,18 @@ export class CorpBizSignupComponent implements OnInit {
 
   getMyInfo(attributesFlags: any) {
     let attributes = this.signUpService.corpBizMyInfoAttributes;
-    if(attributesFlags) {
-      attributes = this.removeMyInfoAttributes(attributesFlags.cpfHousingFlag, 'cpfbalances', attributes);
-      attributes = this.removeMyInfoAttributes(attributesFlags.vehicleFlag, 'vehno', attributes);
+    if (attributesFlags) {
+      attributes = this.removeMyInfoAttributes(attributesFlags.cpfHousingFlag, SIGN_UP_CONFIG.EXCLUDABLE_CORP_BIZ_MY_INFO_ATTRIBUTES.CPF_BALANCES, attributes);
+      attributes = this.removeMyInfoAttributes(attributesFlags.vehicleFlag, SIGN_UP_CONFIG.EXCLUDABLE_CORP_BIZ_MY_INFO_ATTRIBUTES.VEHICLES, attributes);
     }
-    this.myInfoService.setMyInfoAttributes(
-      attributes
-    );
-    console.log(this.myInfoService.getMyInfoAttributes());
-    // this.myInfoService.goToMyInfo();
+    this.myInfoService.setMyInfoAttributes(attributes);
+    // Need to uncomment when deploying to UAT
+    this.myInfoService.goToMyInfo();
   }
 
   removeMyInfoAttributes(flag: any, attribute: any, attributes: any) {
     const attributeList = JSON.parse(JSON.stringify(attributes))
-    if(!flag && attributeList.indexOf(attribute) >= 0) {
+    if (!flag && attributeList.indexOf(attribute) >= 0) {
       const attributeIndex = attributeList.indexOf(attribute);
       attributeList.splice(attributeIndex, 1);
     }
@@ -136,7 +138,6 @@ export class CorpBizSignupComponent implements OnInit {
     const ref = this.modal.open(CreateAccountMyinfoModalComponent, { centered: true });
     ref.componentInstance.primaryActionLabel = this.modalBtnTxt;
     ref.componentInstance.myInfoEnableFlags.subscribe((value: any) => {
-      console.log('boolean values', value);
       ref.result
         .then(() => {
           this.getMyInfo(value);

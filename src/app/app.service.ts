@@ -196,7 +196,7 @@ export class AppService {
 
   clearCorpBizUserData() {
     if (window.sessionStorage) {
-      sessionStorage.removeItem(CORP_BIZ_FLAG);
+      sessionStorage.removeItem(CORP_BIZ_DATA);
     }
   }
 }
