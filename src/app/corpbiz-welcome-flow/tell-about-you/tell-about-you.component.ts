@@ -66,7 +66,6 @@ export class TellAboutYouComponent implements OnInit {
   
   getUserDob() {
     this.comprehensiveApiService.getUserDob().subscribe(res=> {
-      res['objectList'][0].dateOfBirth = '08/04/1957';
       if (res && res['objectList'][0].dateOfBirth) {
         this.userAge = this.aboutAge.calculateAgeByYear(
           res['objectList'][0].dateOfBirth,
