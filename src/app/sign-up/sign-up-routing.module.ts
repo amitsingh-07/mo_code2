@@ -79,6 +79,11 @@ const routes: Routes = [
     data: [{ organisationEnabled: SIGN_UP_CONFIG.LOGIN.CORPORATE_LOGIN }]
   },
   {
+    path: SIGN_UP_ROUTES.CORPBIZ_VERIFY_MOBILE,
+    component: VerifyMobileComponent,
+    canActivate: [CorpbizAuthGuard]
+  },
+  {
     path: SIGN_UP_ROUTES.TWOFA_MOBILE,
     component: VerifyMobileComponent,
     canActivate: [TwoFactorScreenGuardService],
@@ -119,6 +124,11 @@ const routes: Routes = [
     component: LoginComponent,
     canActivate: [FacebookLoggedUserGuard],
     data: [{ organisationEnabled: SIGN_UP_CONFIG.LOGIN.CORPORATE_LOGIN }]
+  },
+  {
+    path: SIGN_UP_ROUTES.CORPBIZ_LOGIN,
+    component: LoginComponent,
+    canActivate: [CorpbizAuthGuard]
   },
   {
     path: SIGN_UP_ROUTES.FORGOT_PASSWORD,
