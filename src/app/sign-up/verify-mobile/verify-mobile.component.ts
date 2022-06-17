@@ -82,6 +82,7 @@ export class VerifyMobileComponent implements OnInit, OnDestroy {
   showOtpComponent = false;
   protected ngUnsubscribe: Subject<void> = new Subject<void>();
   organisationEnabled = false;
+  isCorpBiz: boolean;
 
   constructor(
     private formBuilder: FormBuilder,
@@ -152,6 +153,7 @@ export class VerifyMobileComponent implements OnInit, OnDestroy {
     this.footerService.setFooterVisibility(false);
     this.buildVerifyMobileForm();
     this.fromLoginPage = this.signUpService.getFromLoginPage();
+    this.isCorpBiz = this.appService.getCorpBizData()?.isCorpBiz;
     if (this.fromLoginPage) {
       this.mobileNumber = {
         code: (this.signUpService.getUserMobileCountryCode()) ? this.signUpService.getUserMobileCountryCode() : appConstants.SINGAPORE_COUNTRY_CODE,

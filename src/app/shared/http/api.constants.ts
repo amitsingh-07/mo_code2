@@ -125,7 +125,7 @@ export let apiConstants = {
             updateComprehensiveStatus: COMPREHENSIVE_API_BASE_URL +'updateComprehensiveReportStatus',
             insuranceData: 'assets/comprehensive/insurancePlan.json',
             generateComprehensiveCashflow: FINANCE_API_BASE_URL + 'generateComprehensiveCashflow',
-            generateReport: ACCOUNT_API_BASE_URL + '/robo3MyInfoMapping',
+            generateReport: ACCOUNT_API_BASE_URL + '/customer/comprehensive/myinfo',
             getUserDob: ACCOUNT_API_BASE_URL+ '/customer/dateOfBirth'
         },
         payment: {
@@ -147,8 +147,8 @@ export let apiConstants = {
             getOrganisationCodeByUUID: ACCOUNT_API_BASE_URL+ '/getOrganisationCodeByUUID'
         },
         singpass: {
-            getStateNonce: SINGPASS_API_BASE_URL+ 'getStateNonce',
-            loginSingpass: SINGPASS_API_BASE_URL+ 'loginSingpass'
+            getStateNonce: SINGPASS_API_BASE_URL+ 'getStateNonce?handleError=true',
+            loginSingpass: SINGPASS_API_BASE_URL+ 'loginSingpass?handleError=true'
         }
     }
 };

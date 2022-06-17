@@ -47,10 +47,10 @@ export class SingpassService {
   // Init Singpass QR
   initSingpassAuthSession(authParamsSupplier) {
     const onError = (errorId, message) => {
-      console.log(`onError. errorId:${errorId} message:${message}`);
+      console.error(`onError. errorId:${errorId} message:${message}`);
     }
     try {
-      const initAuthSessionResponse = window['NDI'].initAuthSession(
+      window['NDI'].initAuthSession(
         'qr_wrapper',
         {
           clientId: environment.singpassClientId,
@@ -62,7 +62,7 @@ export class SingpassService {
         onError
       );
     } catch {
-      console.log('error initAuthSession: ');
+      console.error('error initAuthSession: ');
     }
   }
 

@@ -25,7 +25,7 @@ import { SignUpApiService } from '../sign-up.api.service';
 import { SIGN_UP_ROUTE_PATHS } from '../sign-up.routes.constants';
 import { LoaderService } from './../../shared/components/loader/loader.service';
 import { SignUpService } from '../sign-up.service';
-import { IEnquiryUpdate } from '../signup-types';
+import { ICorpBizData, IEnquiryUpdate } from '../signup-types';
 import { ValidatePassword } from './password.validator';
 import { ValidateRange } from './range.validator';
 import { ANIMATION_DATA } from '../../../assets/animation/animationData';
@@ -74,8 +74,9 @@ export class CreateAccountComponent implements OnInit, AfterViewInit {
   maxDate: any;
   minDate: any;
   organisationEnabled = false;
-  isCorpBiz: boolean;
-  corpBizData: any;
+  isCorpBiz:boolean ;
+  corpBizData: ICorpBizData;
+  isCorpBizMyInfoEnabled:boolean;
 
   constructor(
     private formBuilder: FormBuilder,
@@ -131,10 +132,9 @@ export class CreateAccountComponent implements OnInit, AfterViewInit {
 
       }
     });
-
-    this.corpBizData = appService.getCorpBizData();
-    // this.isCorpBiz = this.corpBizData && this.corpBizData.isCorpBiz ? true : false;
-    this.isCorpBiz = router.url && router.url.indexOf('corpbiz') >= 0 ? true : false;
+    this.isCorpBizMyInfoEnabled = this.signUpService.getCorpBizMyInfoStatus();
+    this.corpBizData = this.appService.getCorpBizData();
+    this.isCorpBiz = this.corpBizData?.isCorpBiz;
   }
 
   /**
@@ -209,11 +209,11 @@ export class CreateAccountComponent implements OnInit, AfterViewInit {
       this.createAccountForm = this.formBuilder.group({
         countryCode: ['', [Validators.required]],
         mobileNumber: [{
-          value: this.isCorpBiz ? this.corpBizData.mobile : myInfoMobile,
+          value: this.corpBizData?.maskedMobileNumber || myInfoMobile,
           disabled: this.isCorpBiz
         }, [Validators.required]],
         email: [{
-          value: this.isCorpBiz ? this.corpBizData.email : myInfoEmail,
+          value: this.corpBizData?.email || myInfoEmail,
           disabled: this.isCorpBiz
         }, [Validators.required, Validators.pattern(this.distribution.login.regex)]],
         confirmEmail: [''],
@@ -241,11 +241,11 @@ export class CreateAccountComponent implements OnInit, AfterViewInit {
     this.createAccountForm = this.formBuilder.group({
       countryCode: ['', [Validators.required]],
       mobileNumber: [{
-        value: this.isCorpBiz && this.corpBizData && this.corpBizData.mobile ? this.corpBizData.mobile : myInfoMobile,
+        value: this.corpBizData?.maskedMobileNumber || myInfoMobile,
         disabled: this.isCorpBiz
       }, [Validators.required]],
       email: [{
-        value: this.isCorpBiz && this.corpBizData && this.corpBizData.email ? this.corpBizData.email : myInfoEmail,
+        value: this.corpBizData?.email || myInfoEmail,
         disabled: this.isCorpBiz
       }, emailValidators],
       confirmEmail: [''],
@@ -313,6 +313,12 @@ export class CreateAccountComponent implements OnInit, AfterViewInit {
       }
       if (form.value && form.value.dob && typeof form.value.dob === 'object') {
         form.value.dob = `${form.value.dob.day}/${form.value.dob.month}/${form.value.dob.year}`;
+      }
+      if(this.isCorpBiz && form.value) {
+        form.value.mobileNumber = this.corpBizData?.mobileNumber;
+        form.value.email = this.corpBizData?.email;
+        form.value.enrolmentId = this.corpBizData?.enrollmentId;
+        form.value.isCorpBizEnrolluser = this.corpBizData?.isCorpBiz;
       }
       this.signUpService.setAccountInfo(form.value);
       this.openTermsOfConditions();
@@ -386,6 +392,8 @@ export class CreateAccountComponent implements OnInit, AfterViewInit {
                 this.router.navigate([SIGN_UP_ROUTE_PATHS.FINLIT_VERIFY_MOBILE]);
               } else if (this.organisationEnabled) {
                 this.router.navigate([SIGN_UP_ROUTE_PATHS.CORPORATE_VERIFY_MOBILE]);
+              } else if (this.isCorpBiz) {
+                this.router.navigate([SIGN_UP_ROUTE_PATHS.CORPBIZ_VERIFY_MOBILE]);
               } else {
                 this.router.navigate([SIGN_UP_ROUTE_PATHS.VERIFY_MOBILE]);
               }
@@ -416,6 +424,9 @@ export class CreateAccountComponent implements OnInit, AfterViewInit {
   }
 
   callErrorModal(data: any) {
+    let redirectUrl = this.organisationEnabled ? SIGN_UP_ROUTE_PATHS.CORPORATE_LOGIN :
+                      this.isCorpBiz ? SIGN_UP_ROUTE_PATHS.CORPBIZ_LOGIN :
+                      SIGN_UP_ROUTE_PATHS.LOGIN;
     if (data.responseMessage.responseCode === 6008) {
       this.signUpService.setUserMobileNo(this.createAccountForm.controls['mobileNumber'].value);
       this.showErrorModal(this.translate.instant('SIGNUP_ERRORS.TITLE'),
@@ -423,16 +434,19 @@ export class CreateAccountComponent implements OnInit, AfterViewInit {
         this.translate.instant('COMMON.VERIFY_NOW'),
         SIGN_UP_ROUTE_PATHS.VERIFY_MOBILE, false);
     } else if (data.objectList[0].accountAlreadyCreated) {
-      this.showErrorModal(this.translate.instant('SIGNUP_ERRORS.TITLE'),
+      this.showErrorModal(
+        this.translate.instant('SIGNUP_ERRORS.TITLE'),
         this.translate.instant('SIGNUP_ERRORS.ACCOUNT_EXIST_MESSAGE'),
         this.translate.instant('COMMON.LOG_IN'),
-        (this.organisationEnabled && SIGN_UP_ROUTE_PATHS.CORPORATE_LOGIN) || SIGN_UP_ROUTE_PATHS.LOGIN, false);
+        redirectUrl, 
+        false);
     } else if (!data.objectList[0].emailVerified) {
       this.signUpService.setUserMobileNo(this.createAccountForm.controls['mobileNumber'].value);
       this.showErrorModal(this.translate.instant('SIGNUP_ERRORS.TITLE'),
         this.translate.instant('SIGNUP_ERRORS.VERIFY_EMAIL_MESSAGE'),
         this.translate.instant('COMMON.LOG_IN'),
-        (this.organisationEnabled && SIGN_UP_ROUTE_PATHS.CORPORATE_LOGIN) || SIGN_UP_ROUTE_PATHS.LOGIN, true);
+        redirectUrl,
+        true);
     }
   }
 
@@ -573,18 +587,18 @@ export class CreateAccountComponent implements OnInit, AfterViewInit {
       }
 
       // Confirm E-mail
-      if (!emailConfirmationInput.value) {
+      if (!this.isCorpBiz && !emailConfirmationInput.value) {
         emailConfirmationInput.setErrors({ required: true });
-      } else if (emailInput.value && emailInput.value.toLowerCase() !== emailConfirmationInput.value.toLowerCase()) {
+      } else if (!this.isCorpBiz && emailInput.value && emailInput.value.toLowerCase() !== emailConfirmationInput.value.toLowerCase()) {
         emailConfirmationInput.setErrors({ notEquivalent: true });
       } else {
         emailConfirmationInput.setErrors(null);
       }
 
       // Mobile Number
-      if (!mobileNumberInput.value) {
+      if (!this.isCorpBiz && !mobileNumberInput.value) {
         mobileNumberInput.setErrors({ required: true });
-      } else if (!SINGAPORE_MOBILE_REGEXP.test(mobileNumberInput.value)) {
+      } else if (!this.isCorpBiz && !SINGAPORE_MOBILE_REGEXP.test(mobileNumberInput.value)) {
         mobileNumberInput.setErrors({ mobileRange: true });
       } else {
         mobileNumberInput.setErrors(null);

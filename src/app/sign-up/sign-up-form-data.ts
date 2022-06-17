@@ -56,6 +56,10 @@ export class SignUpFormData {
   // Corp Biz Status My info flag
   isCorpBizMyInfoEnabled: boolean
 
+  // payload details for corpbiz
+  enrolmentId: number;
+  isCorpBizEnrolluser: boolean;
+
   // CorpBiz user data from MyInfo
   marital: any;
   regadd: any;

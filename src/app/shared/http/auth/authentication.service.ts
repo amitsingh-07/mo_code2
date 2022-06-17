@@ -36,6 +36,7 @@ export class AuthenticationService {
   private timer2fa: any;
   private is2faVerifyAllowed: boolean = false;
   isUserTypeCorporate = false;
+  displayCorporateLogo$ = new BehaviorSubject<boolean>(false);
   isShowWelcomeFlow: boolean = false;
 
   constructor(
