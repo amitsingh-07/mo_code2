@@ -193,4 +193,10 @@ export class AppService {
   getCorpBizData() {
     return JSON.parse(sessionStorage.getItem(CORP_BIZ_FLAG));
   }
+
+  clearCorpBizUserData() {
+    if (window.sessionStorage) {
+      sessionStorage.removeItem(CORP_BIZ_FLAG);
+    }
+  }
 }

@@ -6,13 +6,13 @@ export class SignUpFormData {
   email: string;
   marketingAcceptance: boolean;
   password: string;
-  fullName:string;
-  nricNumber:any;
+  fullName: string;
+  nricNumber: any;
   dob: any;
   gender: string;
-  disableAttributes :any;
-  isMyInfoEnabled :boolean;
-  
+  disableAttributes: any;
+  isMyInfoEnabled: boolean;
+
   // Login
   loginUsername: string;
   loginPassword: string;
@@ -47,7 +47,7 @@ export class SignUpFormData {
   // referral code
   referralCode: string;
   userType: string;
-  accountCreationType:string;
+  accountCreationType: string;
   organisationCode?: string;
   // cpf detail
   cpfAccountNumber: number;
@@ -55,4 +55,26 @@ export class SignUpFormData {
 
   // Corp Biz Status My info flag
   isCorpBizMyInfoEnabled: boolean
+
+  // CorpBiz user data from MyInfo
+  marital: any;
+  regadd: any;
+  uinfin: string;
+  childrenRecords: any;
+  sponsoredChildrenRecords: any;
+  residentialstatus: string;
+  cpfhousingwithdrawal: any;
+  noa: any;
+  cpfBalances: CPFBalances;
+  race: any;
+  birthCountry: any;
+  hdbProperty: any;
+  vehicles: any;
+}
+
+export class CPFBalances {
+  sa: number;
+  ma: number;
+  oa: number;
+  ra: number;
 }
