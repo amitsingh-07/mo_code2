@@ -2,13 +2,15 @@ import { ChangeDetectorRef, Component, OnInit, ViewChild, ViewEncapsulation } fr
 import { TranslateService } from '@ngx-translate/core';
 import { Router } from '@angular/router';
 import { NouisliderComponent } from 'ng2-nouislider';
-import { FormGroup, FormArray, FormBuilder, Validators, } from '@angular/forms';
+import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { FooterService } from '../../shared/footer/footer.service';
 import { NavbarService } from '../../shared/navbar/navbar.service';
 import { COMPREHENSIVE_CONST } from '../../comprehensive/comprehensive-config.constants';
 import { CORPBIZ_ROUTES_PATHS } from '../corpbiz-welcome-flow.routes.constants';
 import { ComprehensiveApiService } from '../../comprehensive/comprehensive-api.service';
 import { AboutAge } from '../../shared/utils/about-age.util';
+import { AuthenticationService } from '../../shared/http/auth/authentication.service';
+import { ComprehensiveService } from '../../comprehensive/comprehensive.service';
 
 const DEFAULT_RETIRE_AGE = 55;
 @Component({
@@ -18,9 +20,7 @@ const DEFAULT_RETIRE_AGE = 55;
   encapsulation: ViewEncapsulation.None
 })
 export class TellAboutYouComponent implements OnInit {
-  viewMode: boolean;
-  retirementValueChanges = false;
-  retirementPlanForm: FormGroup;
+  formObject: FormGroup;
   sliderValue = COMPREHENSIVE_CONST.RETIREMENT_PLAN.MIN_AGE;
   sliderValid = { minAge: true, userAge: true };
   userAge: number;
@@ -43,7 +43,6 @@ export class TellAboutYouComponent implements OnInit {
     },
     step: COMPREHENSIVE_CONST.RETIREMENT_PLAN.STEP
   };
-  formObject: FormGroup;
 
   constructor(  private footerService: FooterService,
                 private navbarService: NavbarService,
@@ -51,7 +50,9 @@ export class TellAboutYouComponent implements OnInit {
                 private aboutAge: AboutAge,
                 private router: Router,
                 private fb: FormBuilder,
-                private comprehensiveApiService: ComprehensiveApiService) {
+                private comprehensiveApiService: ComprehensiveApiService,
+                private authService: AuthenticationService,
+                private comprehensiveService: ComprehensiveService) {
 
                   this.translate.use('en');
                  }
@@ -70,7 +71,10 @@ export class TellAboutYouComponent implements OnInit {
           res['objectList'][0].dateOfBirth,
           new Date()
         )
-        this.formObject.get('retirementAge').patchValue(this.userAge > DEFAULT_RETIRE_AGE ? this.userAge: DEFAULT_RETIRE_AGE);
+        const sliderValue = this.userAge > DEFAULT_RETIRE_AGE ? this.userAge: DEFAULT_RETIRE_AGE;
+        this.ciMultiplierSlider.writeValue(sliderValue);
+        this.sliderValue = sliderValue;
+        this.formObject.get('retirementAge').patchValue(sliderValue);
       }
     })
   }
@@ -78,43 +82,53 @@ export class TellAboutYouComponent implements OnInit {
   buildForm() {
     this.formObject = this.fb.group({
       retirementAge: [0, [Validators.required]],
-      cashInBank: [0, [Validators.required]]
+      cashInBank: [0, [Validators.required]],
+      sessionId: this.authService.getSessionId()
     })
   }
 
   goBack(){
     this.router.navigate([CORPBIZ_ROUTES_PATHS.GET_STARTED])
   }
-  changeSlide($event) {
-    this.sliderValid = { minAge: true, userAge: true };
-    this.retirementAgeValidaitions($event.target.value);
-  }
 
-  retirementAgeValidaitions(value) {
-    if (value >= COMPREHENSIVE_CONST.RETIREMENT_PLAN.MAX_AGE) {
-      value = COMPREHENSIVE_CONST.RETIREMENT_PLAN.MAX_AGE;
-    } else if (value === '' || value < COMPREHENSIVE_CONST.RETIREMENT_PLAN.MIN_AGE) { 
-      }
-    if (value < this.userAge) {    // 51 < 58 = 51(with error)
-      this.sliderValid.userAge = false;
-      this.formObject.get('retirementAge').patchValue(value);
-    } else if (value >= COMPREHENSIVE_CONST.RETIREMENT_PLAN.MIN_AGE
-      && value <= COMPREHENSIVE_CONST.RETIREMENT_PLAN.MAX_AGE ) {
-        this.sliderValid.userAge = true;
-      this.sliderValue = value;
-      this.formObject.get('retirementAge').patchValue(value);
+  onSliderChange(value): void {
+    this.sliderValid = { minAge: true, userAge: true };
+    this.sliderValue = value;
+    if (this.sliderValue >= COMPREHENSIVE_CONST.RETIREMENT_PLAN.MIN_AGE && this.sliderValue < this.userAge) {
+      this.sliderValue = this.userAge;
+      this.ciMultiplierSlider.writeValue(this.sliderValue);
+      this.formObject.get('retirementAge').patchValue(this.sliderValue);
     }
   }
 
-  onSliderChange(value): void {
-   this.retirementAgeValidaitions(value);
+  changeSlide($event) {
+    this.sliderValid = { minAge: true, userAge: true };
+    if ($event.target.value >= COMPREHENSIVE_CONST.RETIREMENT_PLAN.MAX_AGE) {
+      $event.target.value = COMPREHENSIVE_CONST.RETIREMENT_PLAN.MAX_AGE;
+    } else if ($event.target.value === '' || $event.target.value < COMPREHENSIVE_CONST.RETIREMENT_PLAN.MIN_AGE) {
+      this.sliderValid.minAge = false;
+    }
+    if ($event.target.value >= COMPREHENSIVE_CONST.RETIREMENT_PLAN.MIN_AGE && $event.target.value < this.userAge) {
+      this.sliderValid.userAge = false;
+    } else if ($event.target.value >= COMPREHENSIVE_CONST.RETIREMENT_PLAN.MIN_AGE
+      && $event.target.value <= COMPREHENSIVE_CONST.RETIREMENT_PLAN.MAX_AGE && $event.target.value >= this.userAge) {
+      this.ciMultiplierSlider.writeValue($event.target.value);
+      this.sliderValue = $event.target.value;
+      this.formObject.get('retirementAge').patchValue(this.sliderValue);
+    }
   }
 
-  goToNext() {
-    this.comprehensiveApiService.generateReport(this.formObject.value).subscribe(res => {
-      if (res && res.objectList[0]) {
-        this.router.navigate([CORPBIZ_ROUTES_PATHS.LIFE_PAYOUT]);
-      }
-    })
+  generateReport() {
+    if (this.sliderValid.minAge && this.sliderValid.userAge) {
+      let payload = this.formObject.value;
+      payload.retirementAge = payload.retirementAge.toString();
+      this.comprehensiveApiService.generateReport(payload).subscribe(res => {
+        if (res.responseMessage && res.responseMessage.responseCode == 6000) {
+          this.comprehensiveService.cpfPayoutAmount = res.objectList.showMe;
+          this.router.navigate([CORPBIZ_ROUTES_PATHS.LIFE_PAYOUT]);
+        }
+      })
+    }
   }
+
 }
