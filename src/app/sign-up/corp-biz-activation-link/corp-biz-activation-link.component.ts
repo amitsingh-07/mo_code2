@@ -43,26 +43,32 @@ export class CorpBizActivationLinkComponent implements OnInit, OnDestroy {
     this.token = encodeURIComponent(this.queryParams.confirmation_token);
     this.authService.authenticate().subscribe(() => {
       this.signUpApiService.checkCorporateEmailValidity({ token: `${this.token}` }).subscribe((data) => {
-        let responseCode = data.responseMessage.responseCode;
-        let response = data.objectList?.length?data.objectList[0]:'';
-        if (responseCode === 6000 && response) {
-            const corpBizData = {
-              isCorpBiz: true,
-              email: response.email,
-              maskedMobileNumber: response.maskedMobileNumber,
-              enrollmentId: response.enrolmentId,
-              mobileNumber: response.mobileNumber
-            }
-            this.appService.setCorpBizData(corpBizData);
-            this.router.navigate([SIGN_UP_ROUTE_PATHS.CORP_BIZ_SIGNUP]);
-        } else if (responseCode === 5022) {
-          this.screenToShow = SIGN_UP_CONFIG.CORP_BIZ_ACTIVATIONLINK.LINK_EXPIRED;
-        } else if (responseCode === 5033 || responseCode === 5135) {
-          this.screenToShow = SIGN_UP_CONFIG.CORP_BIZ_ACTIVATIONLINK.INVALID_USER;
-        } else if (responseCode === 6008) {
-          this.screenToShow = SIGN_UP_CONFIG.CORP_BIZ_ACTIVATIONLINK.ACC_EXIST;
-        } else {
-          this.router.navigate(['/page-not-found']);
+        const responseCode = data.responseMessage.responseCode;
+        const response = data.objectList?.length?data.objectList[0]:'';
+        switch(responseCode){
+          case 6000:
+              const corpBizData = response && {
+                isCorpBiz: true,
+                email: response.email,
+                maskedMobileNumber: response.maskedMobileNumber,
+                enrollmentId: response.enrolmentId,
+                mobileNumber: response.mobileNumber
+              }
+              this.appService.setCorpBizData(corpBizData);
+              this.router.navigate([SIGN_UP_ROUTE_PATHS.CORP_BIZ_SIGNUP]);
+            break;
+          case 5022:
+            this.screenToShow = SIGN_UP_CONFIG.CORP_BIZ_ACTIVATIONLINK.LINK_EXPIRED;
+            break;
+          case 5033:
+          case 5135: 
+            this.screenToShow = SIGN_UP_CONFIG.CORP_BIZ_ACTIVATIONLINK.INVALID_USER;
+            break;
+          case 6008: 
+            this.screenToShow = SIGN_UP_CONFIG.CORP_BIZ_ACTIVATIONLINK.ACC_EXIST;
+            break;
+          default: 
+            this.router.navigate(['/page-not-found']);
         }
        // redirect to home page after 10 seconds if activation link not valid
         if(this.screenToShow) {
@@ -75,10 +81,8 @@ export class CorpBizActivationLinkComponent implements OnInit, OnDestroy {
       });
     });
   }
-
   ngOnDestroy() {
     this.navbarService.hideBackBtn$.next(false);
   }
-
 }
 

@@ -192,7 +192,7 @@
                 [ngClass]="{'inline-error': submitted && account.mobileNumber.errors, 'disabled': isCorpBiz}">
                 <input *ngIf="!isCorpBiz" type="number" maxlength="15" id="crtAccInpt1" #mobileNumber formControlName="mobileNumber"
                   class="form-control" (keyup)="onlyNumber(mobileNumber)" required>
-                <input *ngIf="isCorpBiz" #mobileNumber formControlName="mobileNumber" class="form-control">
+                <input *ngIf="isCorpBiz" formControlName="mobileNumber" class="form-control">
                 <label class="form-control-placeholder" for="name">{{ 'CREATE_ACCOUNT.FORM.MOBILE_NUMBER.LABEL' |
                   translate}}</label>
               </div>

@@ -133,7 +133,8 @@ export class CreateAccountComponent implements OnInit, AfterViewInit {
       }
     });
     this.isCorpBizMyInfoEnabled = this.signUpService.getCorpBizMyInfoStatus();
-    this.isCorpBiz = this.corpBizData ?.isCorpBiz;
+    this.corpBizData = this.appService.getCorpBizData();
+    this.isCorpBiz = this.corpBizData?.isCorpBiz;
   }
 
   /**
@@ -208,11 +209,11 @@ export class CreateAccountComponent implements OnInit, AfterViewInit {
       this.createAccountForm = this.formBuilder.group({
         countryCode: ['', [Validators.required]],
         mobileNumber: [{
-          value: this.corpBizData ?.maskedMobileNumber,
+          value: this.corpBizData?.maskedMobileNumber || myInfoMobile,
           disabled: this.isCorpBiz
         }, [Validators.required]],
         email: [{
-          value: this.corpBizData?.email,
+          value: this.corpBizData?.email || myInfoEmail,
           disabled: this.isCorpBiz
         }, [Validators.required, Validators.pattern(this.distribution.login.regex)]],
         confirmEmail: [''],
@@ -240,11 +241,11 @@ export class CreateAccountComponent implements OnInit, AfterViewInit {
     this.createAccountForm = this.formBuilder.group({
       countryCode: ['', [Validators.required]],
       mobileNumber: [{
-        value: this.corpBizData ? this.corpBizData.maskedMobileNumber : myInfoMobile,
+        value: this.corpBizData?.maskedMobileNumber || myInfoMobile,
         disabled: this.isCorpBiz
       }, [Validators.required]],
       email: [{
-        value: this.corpBizData ? this.corpBizData.email : myInfoEmail,
+        value: this.corpBizData?.email || myInfoEmail,
         disabled: this.isCorpBiz
       }, emailValidators],
       confirmEmail: [''],
@@ -312,6 +313,12 @@ export class CreateAccountComponent implements OnInit, AfterViewInit {
       }
       if (form.value && form.value.dob && typeof form.value.dob === 'object') {
         form.value.dob = `${form.value.dob.day}/${form.value.dob.month}/${form.value.dob.year}`;
+      }
+      if(this.isCorpBiz && form.value) {
+        form.value.mobileNumber = this.corpBizData?.mobileNumber;
+        form.value.email = this.corpBizData?.email;
+        form.value.enrolmentId = this.corpBizData?.enrollmentId;
+        form.value.isCorpBizEnrolluser = this.corpBizData?.isCorpBiz;
       }
       this.signUpService.setAccountInfo(form.value);
       this.openTermsOfConditions();
