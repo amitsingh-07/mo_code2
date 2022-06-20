@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewEncapsulation } from '@angular/core';
+import { Component, ElementRef, OnInit, Renderer2, ViewChild, ViewEncapsulation } from '@angular/core';
 import { Router } from '@angular/router';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { TranslateService } from '@ngx-translate/core';
@@ -100,6 +100,11 @@ export class DashboardComponent implements OnInit {
   showModalStartDate = appConstants.SHOW_NEWUPDATES_MODAL_START_DATE;
   showModalEndDate = appConstants.SHOW_NEWUPDATES_MODAL_END_DATE;
 
+  // invest-menu
+  isCollapsed: boolean = false;
+  @ViewChild('toggleButton') toggleButton: ElementRef;
+  @ViewChild('investmenu') investmenu: ElementRef;
+
   constructor(
     private router: Router,
     private configService: ConfigService,
@@ -120,7 +125,8 @@ export class DashboardComponent implements OnInit {
     private guideMeService: GuideMeService,
     private selectedPlansService: SelectedPlansService,
     private comprehensiveService: ComprehensiveService,
-    private investmentEngagementService: InvestmentEngagementJourneyService
+    private investmentEngagementService: InvestmentEngagementJourneyService,
+    private renderer: Renderer2
   ) {
     this.translate.use('en');
     this.translate.get('COMMON').subscribe((result: string) => {
@@ -140,6 +146,12 @@ export class DashboardComponent implements OnInit {
     if (!this.authService.isUserTypeCorporate) {
       this.getReferralCodeData();
     }
+
+    this.renderer.listen('window', 'click',(e:Event)=>{
+      if(e.target !== this.toggleButton.nativeElement && e.target!==this.investmenu.nativeElement){
+          this.isCollapsed = !this.isCollapsed;
+      }
+    });
   }
 
   ngOnInit() {
@@ -604,6 +616,10 @@ export class DashboardComponent implements OnInit {
 
   openInvestMenuModal() {
     const ref = this.modal.open(InvestModalComponent, { centered: true });
+  }
+
+  toggleinfo(event) {
+    this.isCollapsed = !this.isCollapsed;
   }
 }
 

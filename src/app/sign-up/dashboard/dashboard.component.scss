@@ -335,7 +335,7 @@ app-dashboard {
             .btn-with-icon {
                 border-radius: 25px;
                 box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.3) !important;
-                background-color: #005960;
+                background-color: $blue-stone-color;
                 border: none;
                 font-family: $muli-bold;
                 font-size: 14px;
@@ -368,11 +368,11 @@ app-dashboard {
                     outline: none;
                     background-color: $btn-primary-backgrnd-color;
                 }
-                &:active, &:focus{
+                &:active, &:focus, &.active{
                     outline: none;
                     background-color: $btn-primary-backgrnd-color;
                     & + .btn-menu{
-                        display: flex;
+                        display: block;
                     }
                 }
             }
@@ -380,11 +380,11 @@ app-dashboard {
                 &.btn-menu{
                     display: none;
                     position: absolute;
-                    padding: 24px;
+                    padding: 8px 16px;
                     font-size: 16px;
                     font-family: $muli-bold;
                     line-height: 24px;
-                    color: #000000;
+                    color: $black-color;
                     box-shadow: 0px 4px 8px -2px rgba(16, 24, 40, 0.1), 0px 2px 4px -2px rgba(16, 24, 40, 0.06);
                     border-radius: 6px;
                     z-index: 999;
@@ -392,9 +392,10 @@ app-dashboard {
                     right: 20px;
                     top: 68px;
                     cursor: pointer;
-                    // .btn-menu-item{
-                    //     padding: 24px;
-                    // }
+                    .btn-menu-item{
+                        width: 100%;
+                        padding: 16px 0;
+                    }
                     .menu-icon{
                         width: 48px;
                         height: 48px;
@@ -405,13 +406,13 @@ app-dashboard {
                         }
                     }
                     hr{
-                        margin: 20px 0;
-                        border-color: #E7E7E7;
+                        margin: 0;
+                        border-color: $mercury-smoke-color;
                     }
                     .sub-text{
                         font-family: $muli-regular;
                         font-size: 14px;
-                        color: #5E5E5E;
+                        color: $silver-grey-color;
                     }
                     @include allmobiles{
                         display: none !important;

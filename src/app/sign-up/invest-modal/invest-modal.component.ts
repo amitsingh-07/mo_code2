@@ -8,6 +8,7 @@ import { InvestmentCommonService } from '../../investment/investment-common/inve
 import { INVESTMENT_ENGAGEMENT_JOURNEY_ROUTE_PATHS } from '../../investment/investment-engagement-journey/investment-engagement-journey-routes.constants';
 import { MANAGE_INVESTMENTS_ROUTE_PATHS } from '../../investment/manage-investments/manage-investments-routes.constants';
 import { ManageInvestmentsService } from '../../investment/manage-investments/manage-investments.service';
+import { Observable, Subscription, fromEvent } from 'rxjs';
 
 @Component({
   selector: 'app-invest-modal',
@@ -16,6 +17,10 @@ import { ManageInvestmentsService } from '../../investment/manage-investments/ma
   encapsulation: ViewEncapsulation.None
 })
 export class InvestModalComponent implements OnInit {
+  resizeObservable$: Observable<Event>;
+  resizeSubscription$: Subscription;
+  innerWidth: any;
+  mobileThreshold = 567;
 
   constructor(
     private router: Router,
@@ -26,6 +31,13 @@ export class InvestModalComponent implements OnInit {
     private investmentEngagementService: InvestmentEngagementJourneyService) {}
 
   ngOnInit(): void {
+    this.resizeObservable$ = fromEvent(window, 'resize');
+    this.innerWidth = window.innerWidth;
+    this.resizeSubscription$ = this.resizeObservable$.subscribe( evt => {
+      if (innerWidth > this.mobileThreshold) {
+        this.activeModal.close();
+      }
+    })
   }
 
   newPortfolio() {
@@ -38,6 +50,7 @@ export class InvestModalComponent implements OnInit {
       this.investmentEngagementService.setUserPortfolioType(INVESTMENT_ENGAGEMENT_JOURNEY_CONSTANTS.PORTFOLIO_TYPE.PERSONAL_ACCOUNT_ID);
       this.router.navigate([INVESTMENT_ENGAGEMENT_JOURNEY_ROUTE_PATHS.SELECT_PORTFOLIO]);
     }
+    this.activeModal.close();
   }
 
   existingPortfolio() {
@@ -51,6 +64,7 @@ export class InvestModalComponent implements OnInit {
         this.router.navigate([MANAGE_INVESTMENTS_ROUTE_PATHS.TOPUP]);
       }
     });
+    this.activeModal.close();
   }
   
 }

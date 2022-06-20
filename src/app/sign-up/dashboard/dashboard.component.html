@@ -73,12 +73,13 @@
                         <span class="invest-btn-img"><img id="top-up_img" src="assets/images/investment-account/plus-white.svg"
                             alt="" /></span>
                       </button>
-                      <button type="button" class="btn-with-icon hidden-sm" id="invest_button" *ngIf="getReferralInfo && !getReferralInfo.isWelcomeRewardsValid && !getReferralInfo.refereeExists">
+                      <button type="button" class="btn-with-icon hidden-sm" id="invest_button" #toggleButton (click)="toggleinfo($event)" [ngClass]="{'active':
+                      isCollapsed}" *ngIf="getReferralInfo && !getReferralInfo.isWelcomeRewardsValid && !getReferralInfo.refereeExists">
                         <span>{{'DASHBOARD.INVESTMENT.INVEST' | translate}}</span>
                         <span class="invest-btn-img"><img id="top-up_img" src="assets/images/investment-account/plus-white.svg"
                             alt="" /></span>
                       </button>
-                      <div class="card btn-menu">
+                      <div class="card btn-menu" #investmenu>
                           <div class="flex btn-menu-item" (click)="newPortfolio()">
                             <div class="menu-icon"><img src="assets/images/new-portfolio-icon.svg"
                               alt="" /></div>
@@ -99,12 +100,13 @@
                       </div>
                   </div>
                   <div class="invest-btn hidden-sm" *ngIf="getReferralInfo && getReferralInfo.isWelcomeRewardsValid && getReferralInfo.refereeExists">
-                    <button type="button" class="btn-with-icon" id="invest_button">
+                    <button type="button" class="btn-with-icon" id="invest_button" #toggleButton (click)="toggleinfo($event)" [ngClass]="{'active':
+                    isCollapsed}">
                       <span>{{'DASHBOARD.INVESTMENT.INVEST' | translate}}</span>
                       <span class="invest-btn-img"><img id="top-up_img" src="assets/images/investment-account/plus-white.svg"
                           alt="" /></span>
                     </button>
-                    <div class="card btn-menu">
+                    <div class="card btn-menu" #investmenu>
                         <div class="flex btn-menu-item" (click)="newPortfolio()">
                           <div class="menu-icon"><img src="assets/images/new-portfolio-icon.svg"
                             alt="" /></div>
@@ -124,11 +126,13 @@
                         </div>
                     </div>
                   </div>
-                  <div class="invest-btn hidden-lg hidden-tablet" *ngIf="getReferralInfo && getReferralInfo.isWelcomeRewardsValid && getReferralInfo.refereeExists"> <button type="button" class="btn-with-icon top_up_btn" id="top-up_button" (click)="existingPortfolio()">
-                    <span class="invest-btn-img"><img id="top-up_img" src="assets/images/dashboard-currency.svg"
-                        alt="" /></span>
-                    <span>{{'DASHBOARD.INVESTMENT.TOP_UP' | translate}}</span>
-                  </button></div>
+                  <div class="invest-btn hidden-lg hidden-tablet" *ngIf="getReferralInfo && getReferralInfo.isWelcomeRewardsValid && getReferralInfo.refereeExists"> 
+                    <button type="button" class="btn-with-icon" id="invest_button" (click)="openInvestMenuModal()">
+                      <span>{{'DASHBOARD.INVESTMENT.INVEST' | translate}}</span>
+                      <span class="invest-btn-img"><img id="top-up_img" src="assets/images/investment-account/plus-white.svg"
+                          alt="" /></span>
+                    </button>
+                  </div>
                   <div class="widget-body investment-card">
                     <div class="flex-row widget-portfolio-body">
                       <div class="flex-col-6 border-portfolio-section">

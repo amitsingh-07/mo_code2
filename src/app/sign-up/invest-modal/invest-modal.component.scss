@@ -9,10 +9,9 @@ app-invest-modal{
                 }
             }
         .modal-body{
-            display: none;
             @include allmobiles{
-                display: block;
                 border-radius: 10px 10px 0px 0px !important;
+                padding: 20px 24px !important;
             }
         }
         .modal-body-title{
@@ -20,16 +19,20 @@ app-invest-modal{
             font-size: 16px;
             line-height: 20px;
             letter-spacing: -0.23px;
-            color: #000000;
+            color: $black-color;
             margin-bottom: 18px;
         }
             .btn-menu{
                 font-size: 16px;
                 font-family: $muli-bold;
                 line-height: 24px;
-                color: #000000;
+                color: $black-color;
                 border-radius: 6px;
                 cursor: pointer;
+                .btn-menu-item{
+                    width: 100%;
+                    padding: 16px 0;
+                }
                 .menu-icon{
                     width: 48px;
                     height: 48px;
@@ -40,16 +43,13 @@ app-invest-modal{
                     }
                 }
                 hr{
-                    margin: 20px 0;
-                    border-color: #E7E7E7;
+                    margin: 0 24px;
+                    border-color: $mercury-smoke-color;
                 }
                 .sub-text{
                     font-family: $muli-regular;
                     font-size: 14px;
-                    color: #5E5E5E;
-                }
-                @include allmobiles{
-                    display: block;
+                    color: $silver-grey-color;
                 }
             }
     }
