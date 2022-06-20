@@ -392,6 +392,9 @@ app-dashboard {
                     right: 20px;
                     top: 68px;
                     cursor: pointer;
+                    &.reward{
+                        top: 107px;
+                    }
                     .btn-menu-item{
                         width: 100%;
                         padding: 16px 0;
@@ -476,6 +479,12 @@ app-dashboard {
               div.reward-points ~ .invest-btn {
                 @include allmobiles {  
                     margin-top: -37px !important;
+                }
+                @include min450max475 {  
+                    margin-top: -15px !important;
+                }
+                @include min475max568 {  
+                    margin-top: -15px !important;
                 }
               }
               .reward-points ~ .investment-card {

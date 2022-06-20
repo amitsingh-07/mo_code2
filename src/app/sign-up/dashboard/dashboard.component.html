@@ -68,7 +68,7 @@
                   <div class="widget-title widget-portfolio-title">
                     <span class="flex">{{'DASHBOARD.INVESTMENT.TITLE_INVESTMENT' | translate}}
                     </span>
-                      <button type="button" class="btn-with-icon hidden-lg hidden-tablet" id="invest_button" (click)="openInvestMenuModal()" *ngIf="getReferralInfo && !getReferralInfo.isWelcomeRewardsValid && !getReferralInfo.refereeExists">
+                      <button type="button" class="btn-with-icon show-sm" id="invest_button" (click)="openInvestMenuModal()" *ngIf="getReferralInfo && !getReferralInfo.isWelcomeRewardsValid && !getReferralInfo.refereeExists">
                         <span>{{'DASHBOARD.INVESTMENT.INVEST' | translate}}</span>
                         <span class="invest-btn-img"><img id="top-up_img" src="assets/images/investment-account/plus-white.svg"
                             alt="" /></span>
@@ -106,7 +106,7 @@
                       <span class="invest-btn-img"><img id="top-up_img" src="assets/images/investment-account/plus-white.svg"
                           alt="" /></span>
                     </button>
-                    <div class="card btn-menu" #investmenu>
+                    <div class="card btn-menu reward" #investmenu>
                         <div class="flex btn-menu-item" (click)="newPortfolio()">
                           <div class="menu-icon"><img src="assets/images/new-portfolio-icon.svg"
                             alt="" /></div>
@@ -126,7 +126,7 @@
                         </div>
                     </div>
                   </div>
-                  <div class="invest-btn hidden-lg hidden-tablet" *ngIf="getReferralInfo && getReferralInfo.isWelcomeRewardsValid && getReferralInfo.refereeExists"> 
+                  <div class="invest-btn show-sm" *ngIf="getReferralInfo && getReferralInfo.isWelcomeRewardsValid && getReferralInfo.refereeExists"> 
                     <button type="button" class="btn-with-icon" id="invest_button" (click)="openInvestMenuModal()">
                       <span>{{'DASHBOARD.INVESTMENT.INVEST' | translate}}</span>
                       <span class="invest-btn-img"><img id="top-up_img" src="assets/images/investment-account/plus-white.svg"
