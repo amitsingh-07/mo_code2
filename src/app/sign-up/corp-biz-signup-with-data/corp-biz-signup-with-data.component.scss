@@ -140,6 +140,11 @@ app-corp-biz-signup-with-data {
 
                         .iterable-key-text {
                             font-family: $muli-semi-bold;
+                            color: $black-color;
+                        }
+
+                        .text-capitalise {
+                            text-transform: capitalize;
                         }
                     }
                 }

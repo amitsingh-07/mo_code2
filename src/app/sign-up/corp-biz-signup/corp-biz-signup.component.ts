@@ -92,26 +92,29 @@ export class CorpBizSignupComponent implements OnInit {
 
   getMyInfoAccountCreateData() {
     this.showFetchPopUp();
-    this.myInfoSubscription = this.myInfoService.getMyInfoAccountCreateData().subscribe((data) => {
-      if (data.responseMessage.responseCode === 6000 && data && data.objectList[0]) {
-        this.closeMyInfoPopup(false);
-        data.objectList[0].email.value = this.appService.getCorpBizData()?.email;
-        data.objectList[0].mobileno.nbr = this.appService.getCorpBizData()?.email;
-        this.signUpService.setCreateAccountMyInfoFormData(data.objectList[0]);
-        this.router.navigate([SIGN_UP_ROUTE_PATHS.CORP_BIZ_SIGNUP_DATA]);
-      } else if (data.responseMessage.responseCode === 6014) {
-        this.closeMyInfoPopup(false);
-        const ref = this.modal.open(ModelWithButtonComponent, { centered: true });
-        ref.componentInstance.errorTitle = this.loader1Modal.title;
-        ref.componentInstance.errorMessageHTML = this.loader1Modal.message;
-        ref.componentInstance.primaryActionLabel = this.loader1Modal.btn;
-      }
-      else {
+    let email = this.appService.getCorpBizData()?.email;
+    let mobile = this.appService.getCorpBizData()?.mobile;
+    this.myInfoSubscription = this.myInfoService.getCorpBizMyInfoAccountCreateData(email, mobile, null)
+      .subscribe((data) => {
+        if (data.responseMessage.responseCode === 6000 && data && data.objectList[0]) {
+          this.closeMyInfoPopup(false);
+          data.objectList[0].email.value = email;
+          data.objectList[0].mobileno.nbr = mobile;
+          this.signUpService.setCreateAccountMyInfoFormData(data.objectList[0]);
+          this.router.navigate([SIGN_UP_ROUTE_PATHS.CORP_BIZ_SIGNUP_DATA]);
+        } else if (data.responseMessage.responseCode === 6014) {
+          this.closeMyInfoPopup(false);
+          const ref = this.modal.open(ModelWithButtonComponent, { centered: true });
+          ref.componentInstance.errorTitle = this.loader1Modal.title;
+          ref.componentInstance.errorMessageHTML = this.loader1Modal.message;
+          ref.componentInstance.primaryActionLabel = this.loader1Modal.btn;
+        }
+        else {
+          this.closeMyInfoPopup(true);
+        }
+      }, (error) => {
         this.closeMyInfoPopup(true);
-      }
-    }, (error) => {
-      this.closeMyInfoPopup(true);
-    });
+      });
   }
 
   getMyInfo(attributesFlags: any) {

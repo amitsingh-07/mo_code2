@@ -819,13 +819,18 @@ export class SignUpService {
     }
   }
 
+  setResidentialStatus(residentialStatus) {
+    if (residentialStatus.desc && residentialStatus.desc.toUpperCase() == SIGN_UP_CONFIG.RESIDENTIAL_STATUS.CITIZEN.VALUE) {
+      return SIGN_UP_CONFIG.RESIDENTIAL_STATUS.CITIZEN.DESC;
+    } else if (residentialStatus.desc && residentialStatus.desc.toUpperCase() == SIGN_UP_CONFIG.RESIDENTIAL_STATUS.PR.VALUE) {
+      return SIGN_UP_CONFIG.RESIDENTIAL_STATUS.PR.DESC;
+    }
+    return null;
+  }
+
   setCorpBizMyInfoData(data) {
     if (data.residentialstatus) { // Set Residential Status
-      if (data.residentialstatus.desc && data.residentialstatus.desc.toUpperCase() == SIGN_UP_CONFIG.RESIDENTIAL_STATUS.CITIZEN.VALUE) {
-        this.signUpFormData.residentialstatus = SIGN_UP_CONFIG.RESIDENTIAL_STATUS.CITIZEN.DESC;
-      } else if (data.residentialstatus.desc && data.residentialstatus.desc.toUpperCase() == SIGN_UP_CONFIG.RESIDENTIAL_STATUS.PR.VALUE) {
-        this.signUpFormData.residentialstatus = SIGN_UP_CONFIG.RESIDENTIAL_STATUS.PR.DESC;
-      }
+      this.signUpFormData.residentialstatus = this.setResidentialStatus(data.residentialstatus);
     }
     // Set Income breakdown and Notice of Assessment Data
     if (data.noa) {
@@ -884,13 +889,13 @@ export class SignUpService {
     let childrenData = [];
     children.forEach(child => {
       const childDOB = child.dob.value ? this.investmentAccountService.dateFormat(child.dob.value) : null;
-      if (child.lifeStatus && child.lifeStatus == SIGN_UP_CONFIG.LIFE_STATUS.ALIVE.VALUE) {
+      if (child.lifeStatus && child.lifeStatus.value == SIGN_UP_CONFIG.LIFE_STATUS.ALIVE.VALUE) {
         childrenData.push({
           name: child.name ? child.name.value : null,
           gender: child.sex ? (child.sex.value == SIGN_UP_CONFIG.GENDER.FEMALE.VALUE ? SIGN_UP_CONFIG.GENDER.FEMALE.DESC : SIGN_UP_CONFIG.GENDER.MALE.DESC) : null,
           lifeStatus: SIGN_UP_CONFIG.LIFE_STATUS.ALIVE.DESC,
           dob: childDOB ? `${childDOB.day}/${childDOB.month}/${childDOB.year}` : null,
-          residentialStatus: child.residentialStatus ? child.residentialStatus : null
+          residentialStatus: child.residentialStatus ? this.setResidentialStatus(child.residentialStatus) : null
         })
       }
     });

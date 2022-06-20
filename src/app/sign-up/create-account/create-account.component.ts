@@ -690,5 +690,9 @@ export class CreateAccountComponent implements OnInit, AfterViewInit {
     })
   }
 
+  // Go to Corp biz signup with data page 
+  goToPrevious() {
+    this.router.navigate([SIGN_UP_ROUTE_PATHS.CORP_BIZ_SIGNUP_DATA]);
+  }
 }
 

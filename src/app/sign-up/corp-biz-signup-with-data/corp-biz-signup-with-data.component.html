@@ -36,14 +36,12 @@
                                             <div>
                                                 <div>{{'CORP_BIZ_SIGN_UP.MY_INFO_MODAL.MODAL_ATTR.PERSONAL.NAME_TEXT' |
                                                     translate}}</div>
-                                                <div class="data_lbl">{{corpBizMyInfoData.fullName ?
-                                                    corpBizMyInfoData.fullName : '-'}}</div>
+                                                <div class="data_lbl">{{ corpBizMyInfoData.fullName || '-'}}</div>
                                             </div>
                                             <div>
                                                 <div>{{'CORP_BIZ_SIGN_UP.MY_INFO_MODAL.MODAL_ATTR.PERSONAL.SEX_TEXT' |
                                                     translate}}</div>
-                                                <div class="data_lbl">{{corpBizMyInfoData.gender ?
-                                                    corpBizMyInfoData.gender : '-'}}&nbsp;</div>
+                                                <div class="data_lbl text-capitalise">{{ corpBizMyInfoData.gender || '-'}}&nbsp;</div>
                                             </div>
                                             <div>
                                                 <div>{{'CORP_BIZ_SIGN_UP.MY_INFO_MODAL.MODAL_ATTR.PERSONAL.DOB_TEXT' |
@@ -55,42 +53,41 @@
                                             <div>
                                                 <div>{{'CORP_BIZ_SIGN_UP.MY_INFO_MODAL.MODAL_ATTR.PERSONAL.NRIC_TEXT' |
                                                     translate}}</div>
-                                                <div class="data_lbl">{{corpBizMyInfoData.nricNumber ?
-                                                    corpBizMyInfoData.nricNumber : '-'}}&nbsp;</div>
+                                                <div class="data_lbl">{{ corpBizMyInfoData.nricNumber || '-'}}&nbsp;
+                                                </div>
                                             </div>
                                             <div>
                                                 <div>
                                                     {{'CORP_BIZ_SIGN_UP.MY_INFO_MODAL.MODAL_ATTR.PERSONAL.BIRTH_COUNTRY_TEXT'
                                                     | translate}}</div>
-                                                <div class="data_lbl">{{corpBizMyInfoData.birthCountry ?
-                                                    corpBizMyInfoData.birthCountry?.name : '-'}}&nbsp;
+                                                <div class="data_lbl text-capitalise">{{ corpBizMyInfoData?.birthCountry?.name.toLowerCase() ||
+                                                    '-'}}&nbsp;
                                                 </div>
                                             </div>
                                             <div>
                                                 <div>
                                                     {{'CORP_BIZ_SIGN_UP.MY_INFO_MODAL.MODAL_ATTR.PERSONAL.RESIDENCE_TEXT'
                                                     | translate}}</div>
-                                                <div class="data_lbl">{{corpBizMyInfoData.residentialstatus ?
-                                                    corpBizMyInfoData.residentialstatus : '-'}} &nbsp;
+                                                <div class="data_lbl">{{ corpBizMyInfoData.residentialstatus || '-'}}
+                                                    &nbsp;
                                                 </div>
                                             </div>
                                             <div>
                                                 <div>{{'CORP_BIZ_SIGN_UP.MY_INFO_MODAL.MODAL_ATTR.PERSONAL.ADDRESS_TEXT'
                                                     | translate}}</div>
-                                                <div class="data_lbl">{{corpBizMyInfoData?.regadd}}
+                                                <div class="data_lbl">{{corpBizMyInfoData.regadd || '-'}}
                                                 </div>
                                             </div>
                                             <div>
                                                 <div>{{'CORP_BIZ_SIGN_UP.MY_INFO_MODAL.MODAL_ATTR.PERSONAL.EMAIL_TEXT' |
                                                     translate}}</div>
-                                                <div class="data_lbl">{{corpBizMyInfoData.email ?
-                                                    corpBizMyInfoData.email : '-'}}</div>
+                                                <div class="data_lbl">{{ corpBizMyInfoData.email || '-'}}</div>
                                             </div>
                                             <div>
                                                 <div>{{'CORP_BIZ_SIGN_UP.MY_INFO_MODAL.MODAL_ATTR.PERSONAL.MOBILE_TEXT'
                                                     | translate}}</div>
-                                                <div class="data_lbl">{{corpBizMyInfoData.mobileNumber ?
-                                                    corpBizMyInfoData.mobileNumber : '-'}}&nbsp;</div>
+                                                <div class="data_lbl">{{ corpBizMyInfoData.mobileNumber || '-'}}&nbsp;
+                                                </div>
                                             </div>
                                         </div>
                                     </ng-template>
@@ -118,21 +115,21 @@
                                                             {{'CORP_BIZ_SIGN_UP.MY_INFO_MODAL.MODAL_ATTR.FAMILY.CHILD.NAME'
                                                             |
                                                             translate}}</div>
-                                                        <div class="data_lbl">{{child.name ? child.name : '-'}}</div>
+                                                        <div class="data_lbl">{{child.name || '-'}}</div>
                                                     </div>
                                                     <div>
                                                         <div>
                                                             {{'CORP_BIZ_SIGN_UP.MY_INFO_MODAL.MODAL_ATTR.FAMILY.CHILD.DOB_TEXT'
                                                             |
                                                             translate}}</div>
-                                                        <div class="data_lbl">{{child.dob ? child.dob : '-'}}</div>
+                                                        <div class="data_lbl">{{child.dob || '-'}}</div>
                                                     </div>
                                                     <div>
                                                         <div>
                                                             {{'CORP_BIZ_SIGN_UP.MY_INFO_MODAL.MODAL_ATTR.FAMILY.CHILD.GENDER_TEXT'
                                                             |
                                                             translate}}</div>
-                                                        <div class="data_lbl">{{child.gender ? child.gender : '-'}}
+                                                        <div class="data_lbl text-capitalise">{{child.gender || '-'}}
                                                         </div>
                                                     </div>
                                                     <div>
@@ -140,16 +137,14 @@
                                                             {{'CORP_BIZ_SIGN_UP.MY_INFO_MODAL.MODAL_ATTR.FAMILY.CHILD.RESIDENTIAL_TEXT'
                                                             |
                                                             translate}}</div>
-                                                        <div class="data_lbl">{{child.residentialStatus ?
-                                                            child.residentialStatus : '-'}}</div>
+                                                        <div class="data_lbl">{{ child.residentialStatus || '-'}}</div>
                                                     </div>
                                                     <div>
                                                         <div>
                                                             {{'CORP_BIZ_SIGN_UP.MY_INFO_MODAL.MODAL_ATTR.FAMILY.CHILD.LIFE_STATUS_TEXT'
                                                             |
                                                             translate}}</div>
-                                                        <div class="data_lbl">{{child.lifeStatus ? child.lifeStatus :
-                                                            '-'}}</div>
+                                                        <div class="data_lbl">{{ child.lifeStatus || '-'}}</div>
                                                     </div>
                                                 </div>
                                             </ng-container>
@@ -193,7 +188,7 @@
                                             <!-- Sponsored Child Data -->
                                             <ng-container
                                                 *ngIf="sponsoredChildrenRecords && sponsoredChildrenRecords.length > 0; else sponsoredChildBlankRecord">
-                                                <div
+                                                <div class="mt10"
                                                     *ngFor="let sponsoredChild of sponsoredChildrenRecords; let i = index">
                                                     <div *ngIf="sponsoredChildrenRecords.length > 1"
                                                         class="iterable-key-text mb10" [ngClass]="{'mt10': i > 0}">
@@ -205,40 +200,36 @@
                                                             {{'CORP_BIZ_SIGN_UP.MY_INFO_MODAL.MODAL_ATTR.FAMILY.SPONSORED_CHILD.NAME'
                                                             |
                                                             translate}}</div>
-                                                        <div class="data_lbl">{{sponsoredChild.name ?
-                                                            sponsoredChild.name : '-'}}</div>
+                                                        <div class="data_lbl">{{ sponsoredChild.name || '-'}}</div>
                                                     </div>
                                                     <div>
                                                         <div>
                                                             {{'CORP_BIZ_SIGN_UP.MY_INFO_MODAL.MODAL_ATTR.FAMILY.SPONSORED_CHILD.DOB_TEXT'
                                                             |
                                                             translate}}</div>
-                                                        <div class="data_lbl">{{sponsoredChild.dob ? sponsoredChild.dob
-                                                            : '-'}}</div>
+                                                        <div class="data_lbl">{{ sponsoredChild.dob || '-'}}</div>
                                                     </div>
                                                     <div>
                                                         <div>
                                                             {{'CORP_BIZ_SIGN_UP.MY_INFO_MODAL.MODAL_ATTR.FAMILY.SPONSORED_CHILD.GENDER_TEXT'
                                                             |
                                                             translate}}</div>
-                                                        <div class="data_lbl">{{sponsoredChild.gender ?
-                                                            sponsoredChild.gender : '-'}}</div>
+                                                        <div class="data_lbl text-capitalise">{{ sponsoredChild.gender || '-'}}</div>
                                                     </div>
                                                     <div>
                                                         <div>
                                                             {{'CORP_BIZ_SIGN_UP.MY_INFO_MODAL.MODAL_ATTR.FAMILY.SPONSORED_CHILD.RESIDENTIAL_TEXT'
                                                             |
                                                             translate}}</div>
-                                                        <div class="data_lbl">{{sponsoredChild.residentialStatus ?
-                                                            sponsoredChild.name : '-'}}</div>
+                                                        <div class="data_lbl">{{ sponsoredChild.residentialStatus || '-'}}</div>
                                                     </div>
                                                     <div>
                                                         <div>
                                                             {{'CORP_BIZ_SIGN_UP.MY_INFO_MODAL.MODAL_ATTR.FAMILY.SPONSORED_CHILD.LIFE_STATUS_TEXT'
                                                             |
                                                             translate}}</div>
-                                                        <div class="data_lbl">{{sponsoredChild.lifeStatus ?
-                                                            sponsoredChild.lifeStatus : '-'}}</div>
+                                                        <div class="data_lbl">{{ sponsoredChild.lifeStatus || '-'}}
+                                                        </div>
                                                     </div>
                                                 </div>
                                             </ng-container>
@@ -303,24 +294,23 @@
                                                     {{'CORP_BIZ_SIGN_UP.MY_INFO_MODAL.MODAL_ATTR.PROPERTY.HDB_TEXT.PURCHASE_DATE_TEXT'
                                                     |
                                                     translate}}</div>
-                                                <div class="data_lbl">{{house.dateOfPurchase ? house.dateOfPurchase :
-                                                    '-'}}</div>
+                                                <div class="data_lbl">{{ house.dateOfPurchase || '-'}}</div>
                                             </div>
                                             <div>
                                                 <div>
                                                     {{'CORP_BIZ_SIGN_UP.MY_INFO_MODAL.MODAL_ATTR.PROPERTY.HDB_TEXT.LOAN_TEXT'
                                                     |
                                                     translate}}</div>
-                                                <div class="data_lbl">{{house.loanGranted ? (house.loanGranted |
-                                                    formatCurrency) : '-'}}</div>
+                                                <div class="data_lbl">{{ (house?.loanGranted |
+                                                    formatCurrency) || '-'}}</div>
                                             </div>
                                             <div>
                                                 <div>
                                                     {{'CORP_BIZ_SIGN_UP.MY_INFO_MODAL.MODAL_ATTR.PROPERTY.HDB_TEXT.OUTSTANDING_LOAN_TEXT'
                                                     |
                                                     translate}}</div>
-                                                <div class="data_lbl">{{house.outstandingLoanBalance ?
-                                                    (house.outstandingLoanBalance | formatCurrency) : '-'}}
+                                                <div class="data_lbl">{{ (house.outstandingLoanBalance | formatCurrency)
+                                                    || '-'}}
                                                 </div>
                                             </div>
                                             <div>
@@ -328,8 +318,8 @@
                                                     {{'CORP_BIZ_SIGN_UP.MY_INFO_MODAL.MODAL_ATTR.PROPERTY.HDB_TEXT.MONTHLY_LOAN_TEXT'
                                                     |
                                                     translate}}</div>
-                                                <div class="data_lbl">{{house.monthlyLoanInstalment ?
-                                                    (house.monthlyLoanInstalment | formatCurrency) : '-'}}
+                                                <div class="data_lbl">{{ (house.monthlyLoanInstalment | formatCurrency)
+                                                    || '-'}}
                                                 </div>
                                             </div>
                                             <div>
@@ -337,8 +327,7 @@
                                                     {{'CORP_BIZ_SIGN_UP.MY_INFO_MODAL.MODAL_ATTR.PROPERTY.HDB_TEXT.LEASE_TEXT'
                                                     |
                                                     translate}}</div>
-                                                <div class="data_lbl">{{house.leaseCommenceDate ?
-                                                    house.leaseCommenceDate : '-'}}</div>
+                                                <div class="data_lbl">{{ house.leaseCommenceDate || '-'}}</div>
                                             </div>
                                         </div>
                                     </ng-template>
@@ -397,32 +386,29 @@
                                                     {{'CORP_BIZ_SIGN_UP.MY_INFO_MODAL.MODAL_ATTR.INCOME_BREAKDOWN.EMPLOYMENT_TEXT'
                                                     |
                                                     translate}}</div>
-                                                <div class="data_lbl">{{noaData.employment ? (noaData.employment |
-                                                    formatCurrency) : '-'}}</div>
+                                                <div class="data_lbl">{{ (noaData.employment | formatCurrency) || '-'}}
+                                                </div>
                                             </div>
                                             <div>
                                                 <div>
                                                     {{'CORP_BIZ_SIGN_UP.MY_INFO_MODAL.MODAL_ATTR.INCOME_BREAKDOWN.TRADE_TEXT'
                                                     |
                                                     translate}}</div>
-                                                <div class="data_lbl">{{noaData.trade ? (noaData.trade | formatCurrency)
-                                                    : '-'}}</div>
+                                                <div class="data_lbl">{{ (noaData.trade | formatCurrency) || '-'}}</div>
                                             </div>
                                             <div>
                                                 <div>
                                                     {{'CORP_BIZ_SIGN_UP.MY_INFO_MODAL.MODAL_ATTR.INCOME_BREAKDOWN.RENT_TEXT'
                                                     |
                                                     translate}}</div>
-                                                <div class="data_lbl">{{noaData.rent ? (noaData.rent | formatCurrency) :
-                                                    '-'}}</div>
+                                                <div class="data_lbl">{{ (noaData.rent | formatCurrency) || '-'}}</div>
                                             </div>
                                             <div>
                                                 <div>
                                                     {{'CORP_BIZ_SIGN_UP.MY_INFO_MODAL.MODAL_ATTR.INCOME_BREAKDOWN.INTEREST_TEXT'
                                                     |
                                                     translate}}</div>
-                                                <div class="data_lbl">{{noaData.interest ? (noaData.interest |
-                                                    formatCurrency) : '-'}}
+                                                <div class="data_lbl">{{ (noaData.interest | formatCurrency) || '-'}}
                                                 </div>
                                             </div>
                                         </div>
@@ -443,17 +429,16 @@
                                                     {{'CORP_BIZ_SIGN_UP.MY_INFO_MODAL.MODAL_ATTR.ASSESSMENT_NOTICE.ASSESSMENT_YEAR_TEXT'
                                                     |
                                                     translate}}</div>
-                                                <div class="data_lbl">{{noaData.yearOfAssessment ?
-                                                    noaData.yearOfAssessment : '-'}}</div>
+                                                <div class="data_lbl">{{ noaData.yearOfAssessment || '-'}}</div>
                                             </div>
                                             <div>
                                                 <div>
                                                     {{'CORP_BIZ_SIGN_UP.MY_INFO_MODAL.MODAL_ATTR.ASSESSMENT_NOTICE.TYPE_TEXT'
                                                     |
                                                     translate}}</div>
-                                                <div class="data_lbl">{{noaData.type ? noaData.type : '-'}} {{
+                                                <div class="data_lbl text-capitalise">{{ noaData?.type.toLowerCase() || '-'}} {{
                                                     noaData.type && noaData?.taxClearance ===
-                                                    taxClearanceConsts.VALUE ? taxClearanceConsts.DESC : ''}}
+                                                    taxClearanceConsts.YES.VALUE ? taxClearanceConsts.YES.DESC : ''}}
                                                 </div>
                                             </div>
                                             <div>
@@ -461,8 +446,8 @@
                                                     {{'CORP_BIZ_SIGN_UP.MY_INFO_MODAL.MODAL_ATTR.ASSESSMENT_NOTICE.INCOME_TEXT'
                                                     |
                                                     translate}}</div>
-                                                <div class="data_lbl">{{noaData.assessableIncome ?
-                                                    (noaData.assessableIncome | formatCurrency) : '-'}}
+                                                <div class="data_lbl">{{ (noaData.assessableIncome | formatCurrency) ||
+                                                    '-'}}
                                                 </div>
                                             </div>
                                         </div>
@@ -492,27 +477,24 @@
                                                     {{'CORP_BIZ_SIGN_UP.MY_INFO_MODAL.MODAL_ATTR.CPF_ACC_BAL.SPECIAL_ACC_TEXT'
                                                     |
                                                     translate}}</div>
-                                                <div class="data_lbl">{{corpBizMyInfoData.cpfbalances ?
-                                                    (corpBizMyInfoData.cpfbalances?.sa |
-                                                    formatCurrency) : '-'}}&nbsp;</div>
+                                                <div class="data_lbl">{{ (corpBizMyInfoData.cpfbalances?.sa |
+                                                    formatCurrency) || '-'}}&nbsp;</div>
                                             </div>
                                             <div>
                                                 <div>
                                                     {{'CORP_BIZ_SIGN_UP.MY_INFO_MODAL.MODAL_ATTR.CPF_ACC_BAL.MEDISAFE_ACC_TEXT'
                                                     |
                                                     translate}}</div>
-                                                <div class="data_lbl">{{corpBizMyInfoData.cpfbalances ?
-                                                    (corpBizMyInfoData.cpfbalances.ma |
-                                                    formatCurrency) : '-'}}</div>
+                                                <div class="data_lbl">{{ (corpBizMyInfoData.cpfbalances?.ma |
+                                                    formatCurrency) || '-'}}</div>
                                             </div>
                                             <div>
                                                 <div>
                                                     {{'CORP_BIZ_SIGN_UP.MY_INFO_MODAL.MODAL_ATTR.CPF_ACC_BAL.RETIREMENT_ACC_TEXT'
                                                     |
                                                     translate}}</div>
-                                                <div class="data_lbl">{{ corpBizMyInfoData.cpfbalances ?
-                                                    (corpBizMyInfoData.cpfbalances?.ra |
-                                                    formatCurrency) : '-' }}</div>
+                                                <div class="data_lbl">{{ (corpBizMyInfoData.cpfbalances?.ra |
+                                                    formatCurrency) || '-' }}</div>
                                             </div>
                                         </div>
                                     </ng-template>
@@ -538,32 +520,32 @@
                                                         {{'CORP_BIZ_SIGN_UP.MY_INFO_MODAL.MODAL_ATTR.CPF_HOUSING.WITHDRAWAL_ACC_TEXT'
                                                         |
                                                         translate}}</div>
-                                                    <div class="data_lbl">{{housingData.withdrawalAmount ?
-                                                        (housingData.withdrawalAmount | formatCurrency) : '-'}}</div>
+                                                    <div class="data_lbl">{{ (housingData.withdrawalAmount |
+                                                        formatCurrency) || '-'}}</div>
                                                 </div>
                                                 <div>
                                                     <div>
                                                         {{'CORP_BIZ_SIGN_UP.MY_INFO_MODAL.MODAL_ATTR.CPF_HOUSING.MONTHLY_EMI_TEXT'
                                                         |
                                                         translate}}</div>
-                                                    <div class="data_lbl">{{housingData.installmentAmount ?
-                                                        (housingData.installmentAmount | formatCurrency) : '-'}}</div>
+                                                    <div class="data_lbl">{{ (housingData.installmentAmount |
+                                                        formatCurrency) || '-'}}</div>
                                                 </div>
                                                 <div>
                                                     <div>
                                                         {{'CORP_BIZ_SIGN_UP.MY_INFO_MODAL.MODAL_ATTR.CPF_HOUSING.INTEREST_TEXT'
                                                         |
                                                         translate}}</div>
-                                                    <div class="data_lbl">{{housingData.acruedInterest ?
-                                                        (housingData.acruedInterest | formatCurrency) : '-'}}</div>
+                                                    <div class="data_lbl">{{ (housingData.acruedInterest |
+                                                        formatCurrency) || '-'}}</div>
                                                 </div>
                                                 <div>
                                                     <div>
                                                         {{'CORP_BIZ_SIGN_UP.MY_INFO_MODAL.MODAL_ATTR.CPF_HOUSING.CPF_AMOUNT_TEXT'
                                                         |
                                                         translate}}</div>
-                                                    <div class="data_lbl">{{housingData.totalCPFAmount ?
-                                                        (housingData.totalCPFAmount | formatCurrency) : '-'}}</div>
+                                                    <div class="data_lbl">{{ (housingData.totalCPFAmount |
+                                                        formatCurrency) || '-'}}</div>
                                                 </div>
                                             </div>
                                         </div>
@@ -627,31 +609,29 @@
                                                     {{'CORP_BIZ_SIGN_UP.MY_INFO_MODAL.MODAL_ATTR.VEHICLES.REGISTRATION_DATE_TEXT'
                                                     |
                                                     translate}}</div>
-                                                <div class="data_lbl">{{vehicle.registrationDate ?
-                                                    vehicle.registrationDate : '-'}}</div>
+                                                <div class="data_lbl">{{ vehicle.registrationDate || '-'}}</div>
                                             </div>
                                             <div>
                                                 <div>
                                                     {{'CORP_BIZ_SIGN_UP.MY_INFO_MODAL.MODAL_ATTR.VEHICLES.EXPIRY_DATE_TEXT'
                                                     |
                                                     translate}}</div>
-                                                <div class="data_lbl">{{vehicle.coeExpiryDate ? vehicle.coeExpiryDate :
-                                                    '-'}}</div>
+                                                <div class="data_lbl">{{ vehicle.coeExpiryDate || '-'}}</div>
                                             </div>
                                             <div>
                                                 <div>
                                                     {{'CORP_BIZ_SIGN_UP.MY_INFO_MODAL.MODAL_ATTR.VEHICLES.MARKET_VALUE_TEXT'
                                                     |
                                                     translate}}</div>
-                                                <div class="data_lbl">{{vehicle.openMarketValue ?
-                                                    (vehicle.openMarketValue | formatCurrency) : '-'}}</div>
+                                                <div class="data_lbl">{{ (vehicle.openMarketValue | formatCurrency) ||
+                                                    '-'}}</div>
                                             </div>
                                             <div>
                                                 <div>
                                                     {{'CORP_BIZ_SIGN_UP.MY_INFO_MODAL.MODAL_ATTR.VEHICLES.VEHICLE_STATUS_TEXT'
                                                     |
                                                     translate}}</div>
-                                                <div class="data_lbl">{{vehicle.status ? vehicle.status : '-'}}</div>
+                                                <div class="data_lbl">{{ vehicle.status || '-'}}</div>
                                             </div>
                                         </div>
                                     </ng-template>
