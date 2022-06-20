@@ -25,12 +25,16 @@ export class AllocationComponent implements OnInit, OnChanges {
   wiseIncomeEnabled: boolean;
   cpfEnabled: boolean;
   assetTypeConst : any;
+  minRoundoffAmt: number;
+  roundoffAmt: number;
 
   constructor(
     private investmentEngagementJourneyService: InvestmentEngagementJourneyService,
     public modal: NgbModal,
   ) { 
     this.assetTypeConst = INVESTMENT_COMMON_CONSTANTS.ASSET_TYPE;
+    this.minRoundoffAmt = INVESTMENT_COMMON_CONSTANTS.ASSET_ALLOCATION_CONST.MIN_AMOUNT_FOR_ROUNDOFF;
+    this.roundoffAmt = INVESTMENT_COMMON_CONSTANTS.ASSET_ALLOCATION_CONST.ROUNDOFF_AMOUNT;
   }
 
   ngOnInit() {

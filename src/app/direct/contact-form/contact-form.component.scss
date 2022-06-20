@@ -1,0 +1,158 @@
+@import '../../../variables';
+@import '../../../mixins';
+
+app-contact-form{
+    .modal-body{
+        @include allmobiles{
+            border-radius: 8px !important;
+            padding-left: 20px !important;
+        }
+        .modal-body-title{
+            margin-right: 0px;
+            margin-bottom: 15px;
+            font-family: $muli-regular;
+            font-size: 16px;
+            line-height: 20px;
+            letter-spacing: -0.16px;
+            color: $silver-grey-color;
+            display: block;
+
+            .banner-bg{
+                width: 269px;
+                height: 193px;
+                text-align: center;
+                margin: 20px auto;
+            }
+            .text-bold{
+                font-family: $muli-bold;
+                font-size: 18px;
+                color: $darker-teal-color;
+                line-height: 21px;
+                margin-bottom: 4px;
+            }
+        }
+    }
+    .form-group-floating-label{
+        border: 1px solid $half-baked-blue-color;
+        .form-control-placeholder{
+            color: $dusty-grey-color;
+        }
+    }
+    .btn-primary{
+        &.footer-btn {
+            font-family: $muli-bold;
+            background-color: $teal-color;
+            box-shadow: 0 4px 6px 0 rgba(0, 0, 0, 0.15);
+            margin-top: 20px;
+        }
+        &:disabled{
+            color: $btn-disabled-teal-color !important;
+            background: $btn-disabled-light-bg !important;
+        }
+    }
+    .datepicker-control{
+        .date-picker{
+            flex-wrap: nowrap;
+            .form-control-placeholder{
+                top: 20px;
+             }
+             .form-control:focus + .form-control-placeholder , 
+             .form-control:valid + .form-control-placeholder {
+               top: 14px
+             }
+        }
+        .dropdown-menu{
+            &.show{
+                right: 0;
+                left: unset !important;
+            }
+        }
+    }
+    
+    .alert-msg{
+        font-family: $muli-italic;
+        font-size: 14px;
+        padding-top: 5px;
+        div{
+            display: flex;
+            align-items: center;
+            .alert-icon{
+                width: 15px;
+                height: 15px;
+                display: flex;
+                margin-right: 7px;
+            }
+        }
+    }
+
+    .recommnendation-info{
+        .title{
+            font-family: $muli-bold;
+            font-size: 14px;
+            line-height: 21px;
+            text-align: center;
+            letter-spacing: -0.16px;
+            color: $dark-fountain-blue-color;
+            margin-bottom: 15px;
+        }
+        .card{
+            border: none;
+            .card-header{
+                padding: 0;
+                background: $white-color;
+                border: none;
+                .btn-link {
+                    padding: 0px;
+                    width: 100%;
+                    .arrow {
+                        border: solid $half-baked-blue-color;
+                        border-width: 0 2px 2px 0;
+                        display: inline-block;
+                        padding: 4px;
+                        transform: rotate(-135deg);
+                        -webkit-transform: rotate(-135deg);
+                    }
+                    &.collapsed {
+                        .arrow {
+                            transform: rotate(45deg);
+                            -webkit-transform: rotate(45deg);
+                            margin-top: -10px;
+                        }
+                    }
+                    &:hover,
+                    &:focus {
+                        text-decoration: none;
+                    }
+                }
+            }
+            .card-body{
+                padding: 0;
+                .form-control{
+                    &.gender{
+                      padding: 0.9rem !important;
+                      color: $teal-color;
+                      flex-direction: row;
+                    }
+                }
+                .insurance-lbl{
+                    color: $dove-grey-color;
+                }
+                [placeholder]:empty::before {
+                    content: attr(placeholder);
+                    color: $dusty-grey-color;
+                }
+            
+                [placeholder]:empty:focus::before {
+                    content: "";
+                }
+                .dropdown-control{
+                    .dropdown-menu{
+                        &.show{
+                           max-height: 220px;
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
