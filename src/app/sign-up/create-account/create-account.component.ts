@@ -74,7 +74,7 @@ export class CreateAccountComponent implements OnInit, AfterViewInit {
   maxDate: any;
   minDate: any;
   organisationEnabled = false;
-  isCorpBiz:boolean ;
+  isCorpBiz = false;
   corpBizData: ICorpBizData;
   isCorpBizMyInfoEnabled:boolean;
 
@@ -469,6 +469,7 @@ export class CreateAccountComponent implements OnInit, AfterViewInit {
       ref.componentInstance.buttonLabel = buttonLabel;
     }
     if (emailResend) {
+      ref.componentInstance.isCorpBiz = this.isCorpBiz;
       ref.componentInstance.enableResendEmail = true;
       ref.componentInstance.resendEmail.pipe(
         flatMap(($e) =>

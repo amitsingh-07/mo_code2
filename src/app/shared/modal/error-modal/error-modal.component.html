@@ -56,7 +56,7 @@
     (click)="activeModal.close()">{{tooltipButtonLabel}}</button>
   <div *ngIf="enableResendEmail" (click)="resendEmailVerification()" class="login-mail"><a>Didn’t receive? Resend email
       verification</a></div>
-  <div *ngIf="enableResendEmail" [routerLink]="redirect_url" class="login-mail enter-mail"><a>Entered email wrongly?
+  <div *ngIf="!isCorpBiz && enableResendEmail" [routerLink]="redirect_url" class="login-mail enter-mail"><a>Entered email wrongly?
       Change email</a></div>
   <p *ngIf="emailSent" class="modal-body-message email-sent"><span>Email Sent!</span></p>
 </div>
