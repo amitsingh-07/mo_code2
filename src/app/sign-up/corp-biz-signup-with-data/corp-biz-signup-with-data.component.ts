@@ -7,6 +7,7 @@ import { NavbarService } from '../../shared/navbar/navbar.service';
 import { SIGN_UP_ROUTE_PATHS } from '../sign-up.routes.constants';
 import { SignUpService } from '../sign-up.service';
 import { SIGN_UP_CONFIG } from '../sign-up.constant';
+import { Child, CPFBalances, CPFWithdrawal, Noa } from '../sign-up-form-data';
 
 @Component({
   selector: 'app-corp-biz-signup-with-data',
@@ -18,12 +19,13 @@ export class CorpBizSignupWithDataComponent implements OnInit {
 
   corpBizMyInfoData: any;
   corpBizUserData: any;
-  noaData: any;
-  childrenRecords: any;
-  sponsoredChildrenRecords: any
-  cpfHousingWihdrawal: any;
+  noaData: Noa;
+  childrenRecords: Child[];
+  sponsoredChildrenRecords: Child[];
+  cpfHousingWihdrawal: CPFWithdrawal[];
   hdbProperty = [];
   vehicles = [];
+  cpfBalances: CPFBalances;
   taxClearanceConsts = SIGN_UP_CONFIG.TAX_CLEARANCE
   constructor(
     private router: Router,
@@ -44,6 +46,7 @@ export class CorpBizSignupWithDataComponent implements OnInit {
     this.cpfHousingWihdrawal = this.corpBizMyInfoData && this.corpBizMyInfoData.cpfhousingwithdrawal && this.corpBizMyInfoData.cpfhousingwithdrawal.length > 0 ? this.corpBizMyInfoData.cpfhousingwithdrawal : [];
     this.hdbProperty = this.corpBizMyInfoData.hdbProperty;
     this.vehicles = this.corpBizMyInfoData.vehicles;
+    this.cpfBalances = this.corpBizMyInfoData.cpfBalances
     this.corpBizUserData = appService.getCorpBizData();
   }
 

@@ -64,11 +64,11 @@ export class SignUpFormData {
   marital: any;
   regadd: any;
   uinfin: string;
-  childrenRecords: any;
-  sponsoredChildrenRecords: any;
+  childrenRecords: Child[];
+  sponsoredChildrenRecords: Child[];
   residentialstatus: string;
-  cpfhousingwithdrawal: any;
-  noa: any;
+  cpfhousingwithdrawal: CPFWithdrawal[];
+  noa: Noa;
   cpfBalances: CPFBalances;
   race: any;
   birthCountry: any;
@@ -81,4 +81,30 @@ export class CPFBalances {
   ma: number;
   oa: number;
   ra: number;
+}
+
+export class Noa {
+  type: string | null;
+  yearOfAssessment: number | null;
+  trade: number | null;
+  employment: number | null;
+  rent: number | null;
+  interest: number | null;
+  taxClearance: string | null;
+  assessableIncome: number | null;
+}
+
+export class CPFWithdrawal {
+  withdrawalAmount: number | null;
+  installmentAmount: number | null;
+  acruedInterest: number | null;
+  totalCPFAmount: number | null;
+}
+
+export class Child {
+  name: string | null;
+  dob: string | null;
+  gender: string;
+  residentialStatus: string;
+  lifeStatus: string;
 }

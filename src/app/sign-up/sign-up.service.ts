@@ -15,7 +15,7 @@ import {
 import { RegexConstants } from '../shared/utils/api.regex.constants';
 import { CryptoService } from '../shared/utils/crypto';
 import { CreateAccountFormError } from './create-account/create-account-form-error';
-import { SignUpFormData } from './sign-up-form-data';
+import { Child, CPFWithdrawal, SignUpFormData } from './sign-up-form-data';
 import { SIGN_UP_CONFIG } from './sign-up.constant';
 import { InvestmentAccountService } from '../investment/investment-account/investment-account-service';
 import { appConstants } from '../app.constants';
@@ -835,12 +835,12 @@ export class SignUpService {
     // Set Income breakdown and Notice of Assessment Data
     if (data.noa) {
       this.signUpFormData.noa = {
-        assessableIncome: data.noa.amount,
-        trade: data.noa.trade,
-        interest: data.noa.interest,
+        assessableIncome: data.noa.amount > 0 ? data.noa.amount : null,
+        trade: data.noa.trade > 0 ? data.noa.trade : null,
+        interest: data.noa.interest > 0 ? data.noa.interest : null,
         yearOfAssessment: data.noa.yearofassessment,
-        employment: data.noa.employment,
-        rent: data.noa.rent,
+        employment: data.noa.employment > 0 ? data.noa.employment : null,
+        rent: data.noa.rent > 0 ? data.noa.rent : null,
         taxClearance: data.noa.taxclearance,
         type: data.noa.category
       };
@@ -848,7 +848,7 @@ export class SignUpService {
     // Set CPF Housing Withdrawal Data
     if (data.cpfhousingwithdrawal && data.cpfhousingwithdrawal.withdrawaldetails && data.cpfhousingwithdrawal.withdrawaldetails.length > 0) {
       const withdrawalData = data.cpfhousingwithdrawal.withdrawaldetails;
-      let cpfHousingData = [];
+      let cpfHousingData: CPFWithdrawal[] = [];
       withdrawalData.forEach(element => {
         cpfHousingData.push({
           withdrawalAmount: element.principalwithdrawalamt,
@@ -886,7 +886,7 @@ export class SignUpService {
   }
 
   setChildRecords(children) {
-    let childrenData = [];
+    let childrenData: Child[] = [];
     children.forEach(child => {
       const childDOB = child.dob.value ? this.investmentAccountService.dateFormat(child.dob.value) : null;
       if (child.lifeStatus && child.lifeStatus.value == SIGN_UP_CONFIG.LIFE_STATUS.ALIVE.VALUE) {

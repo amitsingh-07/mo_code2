@@ -41,7 +41,8 @@
                                             <div>
                                                 <div>{{'CORP_BIZ_SIGN_UP.MY_INFO_MODAL.MODAL_ATTR.PERSONAL.SEX_TEXT' |
                                                     translate}}</div>
-                                                <div class="data_lbl text-capitalise">{{ corpBizMyInfoData.gender || '-'}}&nbsp;</div>
+                                                <div class="data_lbl text-capitalise">{{ corpBizMyInfoData.gender ||
+                                                    '-'}}&nbsp;</div>
                                             </div>
                                             <div>
                                                 <div>{{'CORP_BIZ_SIGN_UP.MY_INFO_MODAL.MODAL_ATTR.PERSONAL.DOB_TEXT' |
@@ -60,7 +61,8 @@
                                                 <div>
                                                     {{'CORP_BIZ_SIGN_UP.MY_INFO_MODAL.MODAL_ATTR.PERSONAL.BIRTH_COUNTRY_TEXT'
                                                     | translate}}</div>
-                                                <div class="data_lbl text-capitalise">{{ corpBizMyInfoData?.birthCountry?.name.toLowerCase() ||
+                                                <div class="data_lbl text-capitalise">{{
+                                                    corpBizMyInfoData?.birthCountry?.name.toLowerCase() ||
                                                     '-'}}&nbsp;
                                                 </div>
                                             </div>
@@ -214,14 +216,16 @@
                                                             {{'CORP_BIZ_SIGN_UP.MY_INFO_MODAL.MODAL_ATTR.FAMILY.SPONSORED_CHILD.GENDER_TEXT'
                                                             |
                                                             translate}}</div>
-                                                        <div class="data_lbl text-capitalise">{{ sponsoredChild.gender || '-'}}</div>
+                                                        <div class="data_lbl text-capitalise">{{ sponsoredChild.gender
+                                                            || '-'}}</div>
                                                     </div>
                                                     <div>
                                                         <div>
                                                             {{'CORP_BIZ_SIGN_UP.MY_INFO_MODAL.MODAL_ATTR.FAMILY.SPONSORED_CHILD.RESIDENTIAL_TEXT'
                                                             |
                                                             translate}}</div>
-                                                        <div class="data_lbl">{{ sponsoredChild.residentialStatus || '-'}}</div>
+                                                        <div class="data_lbl">{{ sponsoredChild.residentialStatus ||
+                                                            '-'}}</div>
                                                     </div>
                                                     <div>
                                                         <div>
@@ -302,14 +306,15 @@
                                                     |
                                                     translate}}</div>
                                                 <div class="data_lbl">{{ (house?.loanGranted |
-                                                    formatCurrency) || '-'}}</div>
+                                                    currencyEditor:'USD':'':'symbol-narrow') || '-'}}</div>
                                             </div>
                                             <div>
                                                 <div>
                                                     {{'CORP_BIZ_SIGN_UP.MY_INFO_MODAL.MODAL_ATTR.PROPERTY.HDB_TEXT.OUTSTANDING_LOAN_TEXT'
                                                     |
                                                     translate}}</div>
-                                                <div class="data_lbl">{{ (house.outstandingLoanBalance | formatCurrency)
+                                                <div class="data_lbl">{{ (house.outstandingLoanBalance |
+                                                    currencyEditor:'USD':'':'symbol-narrow')
                                                     || '-'}}
                                                 </div>
                                             </div>
@@ -318,7 +323,8 @@
                                                     {{'CORP_BIZ_SIGN_UP.MY_INFO_MODAL.MODAL_ATTR.PROPERTY.HDB_TEXT.MONTHLY_LOAN_TEXT'
                                                     |
                                                     translate}}</div>
-                                                <div class="data_lbl">{{ (house.monthlyLoanInstalment | formatCurrency)
+                                                <div class="data_lbl">{{ (house.monthlyLoanInstalment |
+                                                    currencyEditor:'USD':'':'symbol-narrow')
                                                     || '-'}}
                                                 </div>
                                             </div>
@@ -386,7 +392,8 @@
                                                     {{'CORP_BIZ_SIGN_UP.MY_INFO_MODAL.MODAL_ATTR.INCOME_BREAKDOWN.EMPLOYMENT_TEXT'
                                                     |
                                                     translate}}</div>
-                                                <div class="data_lbl">{{ (noaData.employment | formatCurrency) || '-'}}
+                                                <div class="data_lbl">{{ (noaData.employment |
+                                                    currencyEditor:'USD':'':'symbol-narrow') || '-'}}
                                                 </div>
                                             </div>
                                             <div>
@@ -394,21 +401,24 @@
                                                     {{'CORP_BIZ_SIGN_UP.MY_INFO_MODAL.MODAL_ATTR.INCOME_BREAKDOWN.TRADE_TEXT'
                                                     |
                                                     translate}}</div>
-                                                <div class="data_lbl">{{ (noaData.trade | formatCurrency) || '-'}}</div>
+                                                <div class="data_lbl">{{ (noaData.trade |
+                                                    currencyEditor:'USD':'':'symbol-narrow') || '-'}}</div>
                                             </div>
                                             <div>
                                                 <div>
                                                     {{'CORP_BIZ_SIGN_UP.MY_INFO_MODAL.MODAL_ATTR.INCOME_BREAKDOWN.RENT_TEXT'
                                                     |
                                                     translate}}</div>
-                                                <div class="data_lbl">{{ (noaData.rent | formatCurrency) || '-'}}</div>
+                                                <div class="data_lbl">{{ (noaData.rent |
+                                                    currencyEditor:'USD':'':'symbol-narrow') || '-'}}</div>
                                             </div>
                                             <div>
                                                 <div>
                                                     {{'CORP_BIZ_SIGN_UP.MY_INFO_MODAL.MODAL_ATTR.INCOME_BREAKDOWN.INTEREST_TEXT'
                                                     |
                                                     translate}}</div>
-                                                <div class="data_lbl">{{ (noaData.interest | formatCurrency) || '-'}}
+                                                <div class="data_lbl">{{ (noaData.interest |
+                                                    currencyEditor:'USD':'':'symbol-narrow') || '-'}}
                                                 </div>
                                             </div>
                                         </div>
@@ -436,7 +446,8 @@
                                                     {{'CORP_BIZ_SIGN_UP.MY_INFO_MODAL.MODAL_ATTR.ASSESSMENT_NOTICE.TYPE_TEXT'
                                                     |
                                                     translate}}</div>
-                                                <div class="data_lbl text-capitalise">{{ noaData?.type.toLowerCase() || '-'}} {{
+                                                <div class="data_lbl text-capitalise">{{ noaData?.type.toLowerCase() ||
+                                                    '-'}} {{
                                                     noaData.type && noaData?.taxClearance ===
                                                     taxClearanceConsts.YES.VALUE ? taxClearanceConsts.YES.DESC : ''}}
                                                 </div>
@@ -446,7 +457,8 @@
                                                     {{'CORP_BIZ_SIGN_UP.MY_INFO_MODAL.MODAL_ATTR.ASSESSMENT_NOTICE.INCOME_TEXT'
                                                     |
                                                     translate}}</div>
-                                                <div class="data_lbl">{{ (noaData.assessableIncome | formatCurrency) ||
+                                                <div class="data_lbl">{{ (noaData.assessableIncome |
+                                                    currencyEditor:'USD':'':'symbol-narrow') ||
                                                     '-'}}
                                                 </div>
                                             </div>
@@ -468,33 +480,28 @@
                                                     {{'CORP_BIZ_SIGN_UP.MY_INFO_MODAL.MODAL_ATTR.CPF_ACC_BAL.ORDINARY_ACC_TEXT'
                                                     |
                                                     translate}}</div>
-                                                <div class="data_lbl">{{corpBizMyInfoData.cpfbalances ?
-                                                    (corpBizMyInfoData.cpfbalances?.oa |
-                                                    formatCurrency) : '-'}}</div>
+                                                <div class="data_lbl">{{ (cpfBalances.oa | currencyEditor:'USD':'':'symbol-narrow') || '-'}}</div>
                                             </div>
                                             <div>
                                                 <div>
                                                     {{'CORP_BIZ_SIGN_UP.MY_INFO_MODAL.MODAL_ATTR.CPF_ACC_BAL.SPECIAL_ACC_TEXT'
                                                     |
                                                     translate}}</div>
-                                                <div class="data_lbl">{{ (corpBizMyInfoData.cpfbalances?.sa |
-                                                    formatCurrency) || '-'}}&nbsp;</div>
+                                                <div class="data_lbl">{{ (cpfBalances.sa | currencyEditor:'USD':'':'symbol-narrow') || '-'}}&nbsp;</div>
                                             </div>
                                             <div>
                                                 <div>
                                                     {{'CORP_BIZ_SIGN_UP.MY_INFO_MODAL.MODAL_ATTR.CPF_ACC_BAL.MEDISAFE_ACC_TEXT'
                                                     |
                                                     translate}}</div>
-                                                <div class="data_lbl">{{ (corpBizMyInfoData.cpfbalances?.ma |
-                                                    formatCurrency) || '-'}}</div>
+                                                <div class="data_lbl">{{ (cpfBalances.ma | currencyEditor:'USD':'':'symbol-narrow') || '-'}}</div>
                                             </div>
                                             <div>
                                                 <div>
                                                     {{'CORP_BIZ_SIGN_UP.MY_INFO_MODAL.MODAL_ATTR.CPF_ACC_BAL.RETIREMENT_ACC_TEXT'
                                                     |
                                                     translate}}</div>
-                                                <div class="data_lbl">{{ (corpBizMyInfoData.cpfbalances?.ra |
-                                                    formatCurrency) || '-' }}</div>
+                                                <div class="data_lbl">{{ (cpfBalances.ra | currencyEditor:'USD':'':'symbol-narrow') || '-' }}</div>
                                             </div>
                                         </div>
                                     </ng-template>
@@ -521,7 +528,7 @@
                                                         |
                                                         translate}}</div>
                                                     <div class="data_lbl">{{ (housingData.withdrawalAmount |
-                                                        formatCurrency) || '-'}}</div>
+                                                        currencyEditor:'USD':'':'symbol-narrow') || '-'}}</div>
                                                 </div>
                                                 <div>
                                                     <div>
@@ -529,7 +536,7 @@
                                                         |
                                                         translate}}</div>
                                                     <div class="data_lbl">{{ (housingData.installmentAmount |
-                                                        formatCurrency) || '-'}}</div>
+                                                        currencyEditor:'USD':'':'symbol-narrow') || '-'}}</div>
                                                 </div>
                                                 <div>
                                                     <div>
@@ -537,7 +544,7 @@
                                                         |
                                                         translate}}</div>
                                                     <div class="data_lbl">{{ (housingData.acruedInterest |
-                                                        formatCurrency) || '-'}}</div>
+                                                        currencyEditor:'USD':'':'symbol-narrow') || '-'}}</div>
                                                 </div>
                                                 <div>
                                                     <div>
@@ -545,7 +552,7 @@
                                                         |
                                                         translate}}</div>
                                                     <div class="data_lbl">{{ (housingData.totalCPFAmount |
-                                                        formatCurrency) || '-'}}</div>
+                                                        currencyEditor:'USD':'':'symbol-narrow') || '-'}}</div>
                                                 </div>
                                             </div>
                                         </div>
@@ -623,7 +630,8 @@
                                                     {{'CORP_BIZ_SIGN_UP.MY_INFO_MODAL.MODAL_ATTR.VEHICLES.MARKET_VALUE_TEXT'
                                                     |
                                                     translate}}</div>
-                                                <div class="data_lbl">{{ (vehicle.openMarketValue | formatCurrency) ||
+                                                <div class="data_lbl">{{ (vehicle.openMarketValue |
+                                                    currencyEditor:'USD':'':'symbol-narrow') ||
                                                     '-'}}</div>
                                             </div>
                                             <div>
@@ -679,10 +687,10 @@
                             <span class="text-regular">{{'CORP_BIZ_SIGN_UP.CORP_BIZ_STEP_CONTINUE_TXT' |
                                 translate}}</span>
                         </div>
-                        <button id="nextDependentBtn" type="button" (click)="goToNext()"
-                            class="btn btn__footer--fixed btn-primary width100 mt20">{{
-                            'COMMON.LABEL.CONTINUE' | translate }}</button>
                     </div>
+                    <button id="nextDependentBtn" type="button" (click)="goToNext()"
+                        class="btn btn__footer--fixed btn-primary width100 mt20">{{
+                        'COMMON.LABEL.CONTINUE' | translate }}</button>
                 </div>
             </div>
         </div>

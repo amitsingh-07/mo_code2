@@ -197,8 +197,6 @@ export class CorpBizSignupComponent implements OnInit {
 
   skipMyInfo() {
     this.signUpService.setCorpBizMyInfoStatus(false);
-    if (true) {
-      this.router.navigate([SIGN_UP_ROUTE_PATHS.CORP_BIZ_CREATE_ACC]);
-    }
+    this.router.navigate([SIGN_UP_ROUTE_PATHS.CORP_BIZ_CREATE_ACC]);
   }
 }
