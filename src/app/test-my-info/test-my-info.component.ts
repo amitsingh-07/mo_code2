@@ -51,8 +51,6 @@ export class TestMyInfoComponent implements OnInit {
           if (this.project === 'robo') {
             this.closeMyInfoPopup();
             window.opener.postMessage(myinfoObj.authorizeCode, '*');
-            // tslint:disable-next-line:max-line-length
-            // window.location.href = 'https://bfa-uat2.ntucbfa.com/myinfo?code=' + myinfoObj.authorizeCode + '&scope=occupation%20mailadd%20passportnumber%20nationality%20dob%20name%20regadd%20passportexpirydate%20householdincome%20sex%20employment&iss=https%3A%2F%2Fstg-home.singpass.gov.sg%2Fconsent%2Foauth2%2Fconsent%2Fmyinfo-com&state=149&client_id=myinfo';
           } else {
             this.myInfoService.getMyInfoData().subscribe((data) => {
               if (this.project === 'robo2') {
@@ -114,17 +112,19 @@ export class TestMyInfoComponent implements OnInit {
       // tslint:disable-next-line:max-line-length
       //const myInfoAttributes = 'name,sex,race,nationality,dob,email,mobileno,regadd,housingtype,hdbtype,marital,edulevel,assessableincome,ownerprivate,assessyear,cpfcontributions,cpfbalances,passportnumber,passportexpirydate,mailadd,occupation,employment,householdincome';
       const myInfoAttributes = 'cpfbalances';
+      const corpBizAttributes =  "uinfin,name,sex,dob,regadd,mobileno,email,nationality,residentialstatus,birthcountry,cpfhousingwithdrawal,childrenbirthrecords.name,noa,childrenbirthrecords.sex,childrenbirthrecords.dob,childrenbirthrecords.lifestatus,sponsoredchildrenrecords.name,sponsoredchildrenrecords.sex,sponsoredchildrenrecords.dob,sponsoredchildrenrecords.lifestatus,sponsoredchildrenrecords.residentialstatus,hdbownership.dateofpurchase,hdbownership.loangranted,hdbownership.outstandingloanbalance,hdbownership.monthlyloaninstalment,vehicles.firstregistrationdate,vehicles.coeexpirydate,vehicles.openmarketvalue,vehicles.status,cpfbalances";
       if (this.project === 'robo2') {
         const myInfoAttributes1 = ['nationality', 'name', 'passportnumber', 'passportexpirydate',
         'dob', 'sex', 'regadd', 'mailadd', 'employment', 'occupation', 'householdincome'];
         this.myInfoService.setMyInfoAttributes(myInfoAttributes1);
+      } else if (this.project === 'corpbiz') {
+        this.myInfoService.setMyInfoAttributes(corpBizAttributes);
       } else {
         this.myInfoService.setMyInfoAttributes(myInfoAttributes);
       }
       this.myInfoService.goToMyInfo();
     }).catch((e) => {
     });
-
   }
 
   /* Onchange Currency Addition */

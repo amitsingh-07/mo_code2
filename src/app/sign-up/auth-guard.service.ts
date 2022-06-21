@@ -112,6 +112,7 @@ export class FacebookLoggedUserService implements CanActivate {
       return false;
     }
     this.authService.isUserTypeCorporate = true;
+    this.authService.displayCorporateLogo$.next(true);
     return true;
   }
 }
@@ -155,5 +156,26 @@ export class SingpassLoginGuard implements CanActivate {
       }
       return true;
     }
+  }
+}
+
+@Injectable({
+  providedIn: 'root'
+})
+
+// tslint:disable-next-line:max-classes-per-file
+export class CorpbizAuthGuardService implements CanActivate {
+  constructor(private route: Router,
+    private authService: AuthenticationService,
+    private appService: AppService
+  ) {
+  }
+  canActivate(): boolean {
+    if(!this.appService.getCorpBizData()) {
+      this.route.navigate([SIGN_UP_ROUTE_PATHS.CORP_BIZ_ACTIVATIONLINK]);
+      return false;
+    }
+    this.authService.displayCorporateLogo$.next(true);
+    return true;
   }
 }
