@@ -1,4 +1,4 @@
-import { Component, ElementRef, OnInit, ViewChild, ViewEncapsulation } from '@angular/core';
+import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { Router } from '@angular/router';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { TranslateService } from '@ngx-translate/core';
@@ -99,11 +99,6 @@ export class DashboardComponent implements OnInit {
   showFixedToastMessage: boolean;
   showModalStartDate = appConstants.SHOW_NEWUPDATES_MODAL_START_DATE;
   showModalEndDate = appConstants.SHOW_NEWUPDATES_MODAL_END_DATE;
-
-  // invest-menu
-  isCollapsed: boolean = false;
-  @ViewChild('toggleButton') toggleButton: ElementRef;
-  @ViewChild('investmenu') investmenu: ElementRef;
 
   constructor(
     private router: Router,
@@ -609,10 +604,6 @@ export class DashboardComponent implements OnInit {
 
   openInvestMenuModal() {
     const ref = this.modal.open(InvestModalComponent, { centered: true });
-  }
-
-  toggleinfo(event) {
-    this.isCollapsed = !this.isCollapsed;
   }
 }
 
