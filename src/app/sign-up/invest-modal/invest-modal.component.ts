@@ -1,5 +1,6 @@
 import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { Router } from '@angular/router';
+import { Observable, Subscription, fromEvent } from 'rxjs';
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 import { AuthenticationService } from '../../shared/http/auth/authentication.service';
 import { InvestmentEngagementJourneyService } from '../../investment/investment-engagement-journey/investment-engagement-journey.service';
@@ -8,7 +9,6 @@ import { InvestmentCommonService } from '../../investment/investment-common/inve
 import { INVESTMENT_ENGAGEMENT_JOURNEY_ROUTE_PATHS } from '../../investment/investment-engagement-journey/investment-engagement-journey-routes.constants';
 import { MANAGE_INVESTMENTS_ROUTE_PATHS } from '../../investment/manage-investments/manage-investments-routes.constants';
 import { ManageInvestmentsService } from '../../investment/manage-investments/manage-investments.service';
-import { Observable, Subscription, fromEvent } from 'rxjs';
 
 @Component({
   selector: 'app-invest-modal',
@@ -19,7 +19,7 @@ import { Observable, Subscription, fromEvent } from 'rxjs';
 export class InvestModalComponent implements OnInit {
   resizeObservable$: Observable<Event>;
   resizeSubscription$: Subscription;
-  innerWidth: any;
+  innerWidth: number;
   mobileThreshold = 567;
 
   constructor(
