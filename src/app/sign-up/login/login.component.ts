@@ -60,6 +60,7 @@ export class LoginComponent implements OnInit, AfterViewInit, OnDestroy {
   showSingpassLogin = false;
   singpassEnabled = true;
   subscription: Subscription;
+  isCorpBiz = false;
 
   @ViewChild('welcomeTitle') welcomeTitle: ElementRef;
 
@@ -131,6 +132,7 @@ export class LoginComponent implements OnInit, AfterViewInit, OnDestroy {
     this.footerService.setFooterVisibility(false);
     this.investmentEnquiryId = this.authService.getEnquiryId();
     this.buildLoginForm();
+    this.isCorpBiz= this.router.url.indexOf('corpbiz')>=0
     if (!this.authService.isAuthenticated()) {
       this.loaderService.showLoader({ title: 'Loading' });
       const userInfo = this.signUpService.getUserProfileInfo();
@@ -399,6 +401,7 @@ export class LoginComponent implements OnInit, AfterViewInit, OnDestroy {
       ref.componentInstance.buttonLabel = buttonLabel;
     }
     if (emailResend) {
+      ref.componentInstance.isCorpBiz = this.isCorpBiz;
       ref.componentInstance.enableResendEmail = true;
       ref.componentInstance.resendEmail.pipe(
         mergeMap(($e) =>
