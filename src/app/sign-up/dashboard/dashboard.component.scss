@@ -730,3 +730,7 @@ app-dashboard {
         color: $black-color;
     }
 }
+
+.dropdown-menu.show {
+    top: 10px !important;
+}

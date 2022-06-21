@@ -65,7 +65,7 @@
               <ng-container *ngIf="isInvestmentEnabled; else loader">
                 <!-- Purchased Investment and WiseSaver Card -->
                 <ng-container *ngIf="showPortfolioPurchased">
-                  <div class="widget-title widget-portfolio-title">
+                  <div ngbDropdown placement="bottom-right" class="widget-title widget-portfolio-title">
                     <span class="flex">{{'DASHBOARD.INVESTMENT.TITLE_INVESTMENT' | translate}}
                     </span>
                       <button type="button" class="btn-with-icon show-sm" id="invest_button" (click)="openInvestMenuModal()" *ngIf="getReferralInfo && !getReferralInfo.isWelcomeRewardsValid && !getReferralInfo.refereeExists">
@@ -73,7 +73,7 @@
                         <span class="invest-btn-img"><img id="top-up_img" src="assets/images/investment-account/plus-white.svg"
                             alt="" /></span>
                       </button>
-                      <button type="button" class="btn-with-icon hidden-sm" id="invest_button" #toggleButton (click)="toggleinfo($event)" [ngClass]="{'active':
+                      <!-- <button type="button" class="btn-with-icon hidden-sm" id="invest_button" #toggleButton (click)="toggleinfo($event)" [ngClass]="{'active':
                       isCollapsed}" *ngIf="getReferralInfo && !getReferralInfo.isWelcomeRewardsValid && !getReferralInfo.refereeExists">
                         <span>{{'DASHBOARD.INVESTMENT.INVEST' | translate}}</span>
                         <span class="invest-btn-img"><img id="top-up_img" src="assets/images/investment-account/plus-white.svg"
@@ -98,7 +98,37 @@
                             </div>
                           </div>
                       </div>
+                       -->    
+                      <button  id="investmenu" ngbDropdownToggle type="button" class="btn-with-icon hidden-sm" *ngIf="getReferralInfo && !getReferralInfo.isWelcomeRewardsValid && !getReferralInfo.refereeExists">
+                        <span>{{'DASHBOARD.INVESTMENT.INVEST' | translate}}</span>
+                        <span class="invest-btn-img"><img id="top-up_img" src="assets/images/investment-account/plus-white.svg"
+                            alt="" /></span>
+                      </button>
+                      <div ngbDropdownMenu="investmenu">
+                        <button ngbDropdownItem (click)="newPortfolio()">
+                          <div class="flex btn-menu-item" >
+                            <div class="menu-icon"><img src="assets/images/new-portfolio-icon.svg"
+                              alt="" /></div>
+                            <div>
+                              <div>{{'DASHBOARD.INVESTMENT.MENU_LBL_1' | translate}}</div>
+                              <div class="sub-text">{{'DASHBOARD.INVESTMENT.MENU_SUB_LBL_1' | translate}}</div>
+                            </div>
+                          </div>
+                        </button>
+                        <div class="dropdown-divider"></div>
+                        <button ngbDropdownItem (click)="existingPortfolio()">
+                          <div class="flex btn-menu-item" >
+                            <div class="menu-icon"><img src="assets/images/existing-portfolio-icon.svg"
+                              alt="" /></div>
+                            <div>
+                              <div>{{'DASHBOARD.INVESTMENT.MENU_LBL_2' | translate}}</div>
+                              <div class="sub-text">{{'DASHBOARD.INVESTMENT.MENU_SUB_LBL_2' | translate}}</div>
+                            </div>
+                          </div>
+                          </button>
+                      </div>
                   </div>
+
                   <div class="invest-btn hidden-sm" *ngIf="getReferralInfo && getReferralInfo.isWelcomeRewardsValid && getReferralInfo.refereeExists">
                     <button type="button" class="btn-with-icon" id="invest_button" #toggleButton (click)="toggleinfo($event)" [ngClass]="{'active':
                     isCollapsed}">

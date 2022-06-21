@@ -1,4 +1,4 @@
-import { Component, ElementRef, OnInit, Renderer2, ViewChild, ViewEncapsulation } from '@angular/core';
+import { Component, ElementRef, OnInit, ViewChild, ViewEncapsulation } from '@angular/core';
 import { Router } from '@angular/router';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { TranslateService } from '@ngx-translate/core';
@@ -125,8 +125,7 @@ export class DashboardComponent implements OnInit {
     private guideMeService: GuideMeService,
     private selectedPlansService: SelectedPlansService,
     private comprehensiveService: ComprehensiveService,
-    private investmentEngagementService: InvestmentEngagementJourneyService,
-    private renderer: Renderer2
+    private investmentEngagementService: InvestmentEngagementJourneyService
   ) {
     this.translate.use('en');
     this.translate.get('COMMON').subscribe((result: string) => {
@@ -145,13 +144,7 @@ export class DashboardComponent implements OnInit {
     this.portfolioCategory = INVESTMENT_COMMON_CONSTANTS.PORTFOLIO_CATEGORY;
     if (!this.authService.isUserTypeCorporate) {
       this.getReferralCodeData();
-    }
-
-    this.renderer.listen('window', 'click',(e:Event)=>{
-      if(e.target !== this.toggleButton.nativeElement && e.target!==this.investmenu.nativeElement){
-          this.isCollapsed = !this.isCollapsed;
-      }
-    });
+    }    
   }
 
   ngOnInit() {
