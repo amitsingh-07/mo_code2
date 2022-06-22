@@ -15,11 +15,10 @@ import {
 import { RegexConstants } from '../shared/utils/api.regex.constants';
 import { CryptoService } from '../shared/utils/crypto';
 import { CreateAccountFormError } from './create-account/create-account-form-error';
-import { SignUpFormData } from './sign-up-form-data';
+import { Child, CPFWithdrawal, SignUpFormData } from './sign-up-form-data';
 import { SIGN_UP_CONFIG } from './sign-up.constant';
 import { InvestmentAccountService } from '../investment/investment-account/investment-account-service';
 import { appConstants } from '../app.constants';
-import { ManageInvestmentsService } from '../investment/manage-investments/manage-investments.service';
 
 const SIGNUP_SESSION_STORAGE_KEY = 'app_signup_session_storage_key';
 const CUSTOMER_REF_SESSION_STORAGE_KEY = 'app_customer_ref_session_storage_key';
@@ -61,8 +60,7 @@ export class SignUpService {
     private datePipe: DatePipe,
     public modal: NgbModal,
     private translate: TranslateService,
-    private investmentAccountService: InvestmentAccountService,
-    private manageInvestmentsService: ManageInvestmentsService
+    private investmentAccountService: InvestmentAccountService
   ) {
     this.getAccountInfo();
     this.configService.getConfig().subscribe((config: IConfig) => {
@@ -765,7 +763,8 @@ export class SignUpService {
     }
     if (data.mobileno && data.mobileno.nbr) {
       this.signUpFormData.mobileNumber = data.mobileno.nbr;
-    }if (data.dob.value) {
+    }
+    if (data.dob.value) {
       this.signUpFormData.dob = this.investmentAccountService.dateFormat(data.dob.value);
       this.disableAttributes.push('dob');
     }
@@ -776,10 +775,18 @@ export class SignUpService {
       this.signUpFormData.gender = SIGN_UP_CONFIG.GENDER.FEMALE.DESC;
       this.disableAttributes.push('gender');
     }
+    if (data.birthcountry && data.birthcountry.countryDetails) {
+      this.signUpFormData.birthCountry = this.investmentAccountService.getCountryObject(data.birthcountry.countryDetails);
+    }
+    this.setCorpBizMyInfoData(data);
+    this.setPropertyData(data?.hdbOwnerships);
+    this.setVehicleData(data?.vehicles);
+
     this.signUpFormData.isMyInfoEnabled = true;
     this.signUpFormData.disableAttributes = this.disableAttributes;
     this.commit();
   }
+
   isDisabled(fieldName): boolean {
     let disable: boolean;
     if (this.signUpFormData &&
@@ -791,6 +798,126 @@ export class SignUpService {
       disable = false;
     }
     return disable;
+  }
+
+  setVehicleData(vehicles) {
+    if (vehicles && vehicles.length > 0) {
+      let vehicleData = [];
+      vehicles.forEach(vehicle => {
+        if (vehicle.status === SIGN_UP_CONFIG.VEHICLE_STATUS.LIVE.VALUE) {
+          const expiryDate = vehicle.coeExpiryDate ? this.investmentAccountService.dateFormat(vehicle.coeExpiryDate) : null;
+          const registerDate = vehicle.firstRegistrationDate ? this.investmentAccountService.dateFormat(vehicle.firstRegistrationDate) : null;
+          vehicleData.push({
+            coeExpiryDate: expiryDate ? `${expiryDate.day}/${expiryDate.month}/${expiryDate.year}` : null,
+            registrationDate: registerDate ? `${registerDate.day}/${registerDate.month}/${registerDate.year}` : null,
+            openMarketValue: vehicle.openMarketValue,
+            status: SIGN_UP_CONFIG.VEHICLE_STATUS.LIVE.DESC
+          });
+        }
+      });
+      this.signUpFormData.vehicles = vehicleData;
+    }
+  }
+
+  setResidentialStatus(residentialStatus) {
+    if (residentialStatus.desc && residentialStatus.desc.toUpperCase() == SIGN_UP_CONFIG.RESIDENTIAL_STATUS.CITIZEN.VALUE) {
+      return SIGN_UP_CONFIG.RESIDENTIAL_STATUS.CITIZEN.DESC;
+    } else if (residentialStatus.desc && residentialStatus.desc.toUpperCase() == SIGN_UP_CONFIG.RESIDENTIAL_STATUS.PR.VALUE) {
+      return SIGN_UP_CONFIG.RESIDENTIAL_STATUS.PR.DESC;
+    }
+    return null;
+  }
+
+  setCorpBizMyInfoData(data) {
+    if (data.residentialstatus) { // Set Residential Status
+      this.signUpFormData.residentialstatus = this.setResidentialStatus(data.residentialstatus);
+    }
+    // Set Income breakdown and Notice of Assessment Data
+    if (data.noa) {
+      this.signUpFormData.noa = {
+        assessableIncome: data.noa.amount > 0 ? data.noa.amount : null,
+        trade: data.noa.trade > 0 ? data.noa.trade : null,
+        interest: data.noa.interest > 0 ? data.noa.interest : null,
+        yearOfAssessment: data.noa.yearofassessment,
+        employment: data.noa.employment > 0 ? data.noa.employment : null,
+        rent: data.noa.rent > 0 ? data.noa.rent : null,
+        taxClearance: data.noa.taxclearance,
+        type: data.noa.category
+      };
+    }
+    // Set CPF Housing Withdrawal Data
+    if (data.cpfhousingwithdrawal && data.cpfhousingwithdrawal.withdrawaldetails && data.cpfhousingwithdrawal.withdrawaldetails.length > 0) {
+      const withdrawalData = data.cpfhousingwithdrawal.withdrawaldetails;
+      let cpfHousingData: CPFWithdrawal[] = [];
+      withdrawalData.forEach(element => {
+        cpfHousingData.push({
+          withdrawalAmount: element.principalwithdrawalamt,
+          installmentAmount: element.monthlyinstalmentamt,
+          acruedInterest: element.accruedinterestamt,
+          totalCPFAmount: element.totalamountofcpfallowedforproperty
+        });
+      });
+      this.signUpFormData.cpfhousingwithdrawal = cpfHousingData;
+    }
+    // Set Children Birth Records
+    if (data.childrenRecords && data.childrenRecords.length > 0) {
+      this.signUpFormData.childrenRecords = this.setChildRecords(data.childrenRecords);
+    }
+    // Set Sponsored Children Birth Records
+    if (data.sponsoredChildrenRecords && data.sponsoredChildrenRecords.length > 0) {
+      this.signUpFormData.sponsoredChildrenRecords = this.setChildRecords(data.sponsoredChildrenRecords);
+    }
+
+    // Set CPF Account Balances data - RA, OA, MA, SA
+    if (data.cpfbalances) {
+      const cpfAccBal = data.cpfbalances;
+      this.signUpFormData.cpfBalances = {
+        ma: cpfAccBal?.ma,
+        sa: cpfAccBal?.sa,
+        oa: cpfAccBal?.oa,
+        ra: cpfAccBal?.ra,
+      };
+    }
+
+    // Set Residential Address
+    this.signUpFormData.regadd = data?.regadd?.formattedSingleLineAddress;
+    // Set Race
+    this.signUpFormData.race = data?.race;
+  }
+
+  setChildRecords(children) {
+    let childrenData: Child[] = [];
+    children.forEach(child => {
+      const childDOB = child.dob.value ? this.investmentAccountService.dateFormat(child.dob.value) : null;
+      if (child.lifeStatus && child.lifeStatus.value == SIGN_UP_CONFIG.LIFE_STATUS.ALIVE.VALUE) {
+        childrenData.push({
+          name: child.name ? child.name.value : null,
+          gender: child.sex ? (child.sex.value == SIGN_UP_CONFIG.GENDER.FEMALE.VALUE ? SIGN_UP_CONFIG.GENDER.FEMALE.DESC : SIGN_UP_CONFIG.GENDER.MALE.DESC) : null,
+          lifeStatus: SIGN_UP_CONFIG.LIFE_STATUS.ALIVE.DESC,
+          dob: childDOB ? `${childDOB.day}/${childDOB.month}/${childDOB.year}` : null,
+          residentialStatus: child.residentialStatus ? this.setResidentialStatus(child.residentialStatus) : null
+        })
+      }
+    });
+    return childrenData;
+  }
+
+  setPropertyData(data) {
+    let hdbOwnerships = [];
+    if (data && data.length > 0) {
+      data.forEach(house => {
+        const purchaseDate = house.dateOfPurchase ? this.investmentAccountService.dateFormat(house.dateOfPurchase) : null;
+        const leaseDate = house.leasecommencementdate ? this.investmentAccountService.dateFormat(house.leasecommencementdate) : null;
+        hdbOwnerships.push({
+          dateOfPurchase: purchaseDate ? `${purchaseDate.day}/${purchaseDate.month}/${purchaseDate.year}` : null,
+          monthlyLoanInstalment: house.monthlyLoanInstalment,
+          outstandingLoanBalance: house.outstandingLoanBalance,
+          loanGranted: house.loanGranted,
+          leaseCommenceDate: leaseDate ? `${leaseDate.day}/${leaseDate.month}/${leaseDate.year}` : null
+        })
+      });
+    }
+    this.signUpFormData.hdbProperty = hdbOwnerships;
   }
 
   setMyInfoStatus(status) {
@@ -809,17 +936,17 @@ export class SignUpService {
   emailDomainValidator(organisationEnabled = false): ValidatorFn {
     return (control: AbstractControl): ValidationErrors | null => {
       const isEnteredEmailId = isNaN(parseInt(control.value));
-        if (organisationEnabled && isEnteredEmailId && appConstants.ORGANISATION_ROLES.ALLOWED_DOMAIN_CORP.filter(ele => control.value?.includes(ele)).length === 0) {
-          return { invalidDomain: true };
-        } else if (!organisationEnabled && isEnteredEmailId && appConstants.RESTRICTED_DOMAIN_PUBLIC.filter(ele => control.value?.includes(ele)).length > 0) {
-          return { invalidDomain: true };
-        }
+      if (organisationEnabled && isEnteredEmailId && appConstants.ORGANISATION_ROLES.ALLOWED_DOMAIN_CORP.filter(ele => control.value?.includes(ele)).length === 0) {
+        return { invalidDomain: true };
+      } else if (!organisationEnabled && isEnteredEmailId && appConstants.RESTRICTED_DOMAIN_PUBLIC.filter(ele => control.value?.includes(ele)).length > 0) {
+        return { invalidDomain: true };
+      }
       return null;
     }
   }
-  
+
   // cpf
-   setEditProfileCpfDetails(accountNumber, cpfBankOperator, customerId) {
+  setEditProfileCpfDetails(accountNumber, cpfBankOperator, customerId) {
     this.signUpFormData.cpfAccountNumber = accountNumber;
     this.signUpFormData.cpfOperatorBank = cpfBankOperator;
     this.signUpFormData.customerId = customerId;

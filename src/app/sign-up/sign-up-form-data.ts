@@ -6,13 +6,13 @@ export class SignUpFormData {
   email: string;
   marketingAcceptance: boolean;
   password: string;
-  fullName:string;
-  nricNumber:any;
+  fullName: string;
+  nricNumber: any;
   dob: any;
   gender: string;
-  disableAttributes :any;
-  isMyInfoEnabled :boolean;
-  
+  disableAttributes: any;
+  isMyInfoEnabled: boolean;
+
   // Login
   loginUsername: string;
   loginPassword: string;
@@ -47,7 +47,7 @@ export class SignUpFormData {
   // referral code
   referralCode: string;
   userType: string;
-  accountCreationType:string;
+  accountCreationType: string;
   organisationCode?: string;
   // cpf detail
   cpfAccountNumber: number;
@@ -59,4 +59,52 @@ export class SignUpFormData {
   // payload details for corpbiz
   enrolmentId: number;
   isCorpBizEnrolluser: boolean;
+
+  // CorpBiz user data from MyInfo
+  marital: any;
+  regadd: any;
+  uinfin: string;
+  childrenRecords: Child[];
+  sponsoredChildrenRecords: Child[];
+  residentialstatus: string;
+  cpfhousingwithdrawal: CPFWithdrawal[];
+  noa: Noa;
+  cpfBalances: CPFBalances;
+  race: any;
+  birthCountry: any;
+  hdbProperty: any;
+  vehicles: any;
+}
+
+export class CPFBalances {
+  sa: number;
+  ma: number;
+  oa: number;
+  ra: number;
+}
+
+export class Noa {
+  type: string | null;
+  yearOfAssessment: number | null;
+  trade: number | null;
+  employment: number | null;
+  rent: number | null;
+  interest: number | null;
+  taxClearance: string | null;
+  assessableIncome: number | null;
+}
+
+export class CPFWithdrawal {
+  withdrawalAmount: number | null;
+  installmentAmount: number | null;
+  acruedInterest: number | null;
+  totalCPFAmount: number | null;
+}
+
+export class Child {
+  name: string | null;
+  dob: string | null;
+  gender: string;
+  residentialStatus: string;
+  lifeStatus: string;
 }

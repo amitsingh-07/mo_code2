@@ -137,6 +137,15 @@ app-corp-biz-signup-with-data {
                             color: $teal-color;
                             font-family: $muli-semi-bold;
                         }
+
+                        .iterable-key-text {
+                            font-family: $muli-semi-bold;
+                            color: $black-color;
+                        }
+
+                        .text-capitalise {
+                            text-transform: capitalize;
+                        }
                     }
                 }
             }
@@ -163,9 +172,7 @@ app-corp-biz-signup-with-data {
 
         .text-bold {
             font-family: $muli-bold;
-        }
-        .text-regular {
-            font-family: $muli-regular;
+            font-size: 13px;
         }
     }
 }

@@ -65,8 +65,8 @@ export class AccountCreatedComponent implements OnInit, OnDestroy {
       this.appService.clearJourneys();
       this.appService.clearPromoCode();
     }
+    this.appService.clearCorpBizUserData();
     this.isCorpBiz = this.appService.getCorpBizData()?.isCorpBiz;
-
   }
 
   /**

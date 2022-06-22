@@ -15,7 +15,7 @@
         </div>
       </div>
       <div class="col-lg-5 col-md-6">
-        <div class="corpbiz-success-box mb20" *ngIf="isCorpBizMyInfoEnabled">
+        <div class="corpbiz-success-box mb20" (click)="goToPrevious()" *ngIf="isCorpBizMyInfoEnabled">
           <div class="mr10">
             <img src="assets/images/green-tick-icon.svg">
           </div>

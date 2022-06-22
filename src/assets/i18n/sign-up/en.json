@@ -141,6 +141,13 @@
           "MARKET_VALUE_TEXT": "Open Market Value (LTA)",
           "VEHICLE_STATUS_TEXT": "Vehicle Status"
         }
+      },
+      "ITERATABLE_KEYS": {
+        "CHILD": "Child",
+        "SPONSORED_CHILD": "Sponsored Child",
+        "HDB_OWNERSHIP": "HDB Ownership",
+        "WITHDRAWAL": "Withdrawal",
+        "VEHICLE": "Vehicle"
       }
     }
   },
