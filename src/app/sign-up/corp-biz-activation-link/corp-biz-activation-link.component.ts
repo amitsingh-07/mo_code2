@@ -40,7 +40,7 @@ export class CorpBizActivationLinkComponent implements OnInit, OnDestroy {
     this.navbarService.hideBackBtn$.next(true);
     this.footerService.setFooterVisibility(false);
     this.queryParams = this.route.snapshot.queryParams;
-    this.token = encodeURIComponent(this.queryParams.confirmation_token);
+    this.token = encodeURIComponent(this.queryParams.token);
     this.authService.authenticate().subscribe(() => {
       this.signUpApiService.checkCorporateEmailValidity({ token: `${this.token}` }).subscribe((data) => {
         const responseCode = data.responseMessage.responseCode;
