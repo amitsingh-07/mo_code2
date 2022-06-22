@@ -85,7 +85,9 @@ app-corp-biz-signup-with-data {
                 background-color: $white-color;
                 border: none;
                 line-height: 22px;
-
+                &:last-child{
+                    margin-bottom: 0;
+                }
                 .card-header {
                     padding: 0px;
                     background-color: $white-color;
