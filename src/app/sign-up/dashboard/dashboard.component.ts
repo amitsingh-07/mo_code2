@@ -603,7 +603,7 @@ export class DashboardComponent implements OnInit {
   }
 
   openInvestMenuModal() {
-    const ref = this.modal.open(InvestModalComponent, { centered: true });
+    this.modal.open(InvestModalComponent, { centered: true });
   }
 }
 

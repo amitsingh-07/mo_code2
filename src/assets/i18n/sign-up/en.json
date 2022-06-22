@@ -561,7 +561,14 @@
       "MENU_LBL_1": "New Portfolio",
       "MENU_SUB_LBL_1": "Investible with CPF, SRS and Cash",
       "MENU_LBL_2": "Existing Portfolio",
-      "MENU_SUB_LBL_2": "Top up or set up regular savings plan"
+      "MENU_SUB_LBL_2": "Top up or set up regular savings plan",
+      "MODAL":{
+        "TITLE": "Select Invest Option",
+        "MENU_LBL_1": "New Portfolio",
+        "MENU_SUB_LBL_1": "Investible with CPF, SRS and Cash",
+        "MENU_LBL_2": "Existing Portfolio",
+        "MENU_SUB_LBL_2": "Top up or set up regular savings plan"
+      }
     },
     "WILL_WRITING": {
       "TITLE": "Will Writing",
