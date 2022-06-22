@@ -376,4 +376,8 @@ export class SignUpApiService {
    getOrganisationCode(orgID) {
     return this.apiService.getOrganisationCode(orgID);
   }
+
+  getSampleMyInfoResponse() {
+    return this.apiService.getCorpBizMyInfoSampleData();
+  }
 }
