@@ -10,54 +10,30 @@
     </div>
     <div class="col-lg-5 col-md-6">
       <div>
-        <form id="testMyInfoForm" name="testMyInfoForm" [formGroup]="testMyInfoForm">
-          <!-- Robo2 -->
-          <div class="form-group-with-bg--content" *ngIf="project === 'robo2'">
-            <div class="flex-row">
-              <div class="flex-col-12">
-                <div class="form-group-with-bg--content-label" for="name">
-                  <button type="button" class="button" (click)="openModal()()">
-                    Robo2 MyInfo
-                  </button>
-                </div>
-              </div>
-            </div>
-            <div class="flex-row">
-              <div class="flex-col-12">
-                <div class="form-group-with-bg--content-label" for="name">
-                  <div>{{robo2Results}}</div>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="form-group-with-bg" *ngIf="project !== 'robo2'">
+        <form id="testMyInfoForm" name="testMyInfoForm">
+          <div class="form-group-with-bg">
             <!--Form Header-->
             <div class="form-group-with-bg--header">
               <div class="flex-row">
                 <div class="flex-col-6">
-                  <div class="form-group-with-bg--header-label">{{ 'Test MyInfo For: ' | translate}}<div class="form-group-with-bg--header-sub-label">{{project}}</div>
+                  <div class="form-group-with-bg--header-label">
+                    {{ 'Test MyInfo For: ' | translate}}
                   </div>
                 </div>
                 <div class="flex-col-6">
-                  <div class="total">{{assetsTotal | currency:'USD':'symbol-narrow':'1.0-2'}}</div>
+                  <div class="total">{{project}}</div>
                 </div>
               </div>
             </div>
             <!--Form Content-->
             <div class="form-group-with-bg--content">
-              <div class="flex-row">
+              <div class="sing-pass-link"><img class="auto-fill-logo" src="assets/images/retrieve-singpass-logo.svg" (click)="openModal()"></div>
+              <div *ngFor="let attribute of myInfoAttributes" class="flex-row">
                 <div class="flex-col-6">
-                  <div class="sing-pass-link" (click)="openModal()">{{ 'Fill Via SingPass' | translate}}<span
-                    class="sing-pass-icon"></span></div>
-                  <div class="form-group-with-bg--content-label" for="name">{{ 'CPF' | translate}}
-                  </div>
+                  <div class="form-group-with-bg--content-label" for="name">{{attribute}}</div>
                 </div>
                 <div class="flex-col-6">
-                  <div class="form-control">
-                    <i>$</i>
-                    <div name="cpf" [ngClass]="{'readonly': cpf.value != 0}"><input class="input-control" type="text"
-                        appCurrencyInput maxLength="7" #cpf formControlName="cpf" value="0"></div>
-                  </div>
+                  <div class="form-group-with-bg--content-label" for="name">{{getAttributeVal(attribute)}}</div>
                 </div>
               </div>
             </div>
