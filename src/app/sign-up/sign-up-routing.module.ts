@@ -104,7 +104,7 @@ const routes: Routes = [
   {
     path: SIGN_UP_ROUTES.ACCOUNT_CREATED_CORPBIZ,
     component: AccountCreatedComponent,
-    canActivate: [CorpbizAuthGuard],
+    canActivate: [CorpbizAuthGuard]
   },
   {
     path: SIGN_UP_ROUTES.ACCOUNT_CREATED,
@@ -122,7 +122,7 @@ const routes: Routes = [
   {
     path: SIGN_UP_ROUTES.CORPBIZ_EMAIL_VERIFIED,
     component: EmailVerificationComponent,
-    canActivate: [CorpbizAuthGuard],
+    canActivate: [CorpbizAuthGuard]
   },
   {
     path: SIGN_UP_ROUTES.LOGIN,
