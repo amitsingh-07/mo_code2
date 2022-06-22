@@ -13,6 +13,7 @@ import { ModelWithButtonComponent } from '../../shared/modal/model-with-button/m
 import { SIGN_UP_ROUTES, SIGN_UP_ROUTE_PATHS } from '../sign-up.routes.constants';
 import { SIGN_UP_CONFIG } from '../sign-up.constant';
 import { AppService } from '../../app.service';
+import { SignUpApiService } from '../sign-up.api.service';
 
 @Component({
   selector: 'app-corp-biz-signup',
@@ -41,7 +42,8 @@ export class CorpBizSignupComponent implements OnInit {
     private navbarService: NavbarService,
     private footerService: FooterService,
     private readonly translate: TranslateService,
-    private appService: AppService
+    private appService: AppService,
+    private signUpApiService: SignUpApiService
   ) {
     this.translate.use('en');
     this.translate.get('COMMON').subscribe((result: string) => {
@@ -125,7 +127,16 @@ export class CorpBizSignupComponent implements OnInit {
     }
     this.myInfoService.setMyInfoAttributes(attributes);
     // Need to uncomment when deploying to UAT
-    this.myInfoService.goToMyInfo();
+    // this.myInfoService.goToMyInfo();
+
+    let email = this.appService.getCorpBizData()?.email;
+    let mobile = this.appService.getCorpBizData()?.mobile;
+    this.signUpApiService.getSampleMyInfoResponse().subscribe((resp: any) => {
+      resp.objectList[0].email.value = email;
+      resp.objectList[0].mobileno.nbr = mobile;
+      this.signUpService.setCreateAccountMyInfoFormData(resp.objectList[0])
+      this.router.navigate([SIGN_UP_ROUTE_PATHS.CORP_BIZ_SIGNUP_DATA]);
+    })
   }
 
   removeMyInfoAttributes(flag: any, attribute: any, attributes: any) {
