@@ -33,6 +33,7 @@ app-corp-biz-signup{
         }
     }
     .signup-wrapper__title{
+        font-family: $muli-bold;
         padding-top: 30px;
         margin-bottom: 20px;
         font-size: 21px;
@@ -69,7 +70,7 @@ app-corp-biz-signup{
             }
     }
     .separator {
-        margin: 40px 0;
+        margin: 45px 0;
         background-color: $persian-teal-color;
         height: 1px;
         text-align: center;

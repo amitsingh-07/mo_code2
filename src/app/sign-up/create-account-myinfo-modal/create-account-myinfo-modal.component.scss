@@ -91,6 +91,7 @@ app-create-account-myinfo-modal {
 
   .modal-body-title {
     display: flex;
+    margin-bottom: 20px;
 
     div {
       flex-grow: 0;
@@ -141,7 +142,9 @@ app-create-account-myinfo-modal {
       border-radius: 6px !important;
       background-color: $white-color;
       border: none;
-
+      &:last-child{
+        margin-bottom: 0;
+      }
       .card-header {
         padding: 0px;
         background-color: $white-color;
