@@ -89,8 +89,6 @@ export class EmailVerificationComponent implements OnInit {
       this.router.navigate([SIGN_UP_ROUTE_PATHS.FINLIT_LOGIN]);
     } else if (this.userType.toLowerCase() === appConstants.USERTYPE.CORPORATE.toLowerCase()) { 
       this.router.navigate([SIGN_UP_ROUTE_PATHS.CORPORATE_LOGIN]);
-    } else if (this.userType.toLowerCase() === appConstants.USERTYPE.CORPBIZ.toLowerCase()) { 
-      this.router.navigate([SIGN_UP_ROUTE_PATHS.CORPBIZ_LOGIN]);
     } else {
       this.router.navigate([SIGN_UP_ROUTE_PATHS.LOGIN]);
     }

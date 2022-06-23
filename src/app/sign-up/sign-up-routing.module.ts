@@ -102,11 +102,6 @@ const routes: Routes = [
     data: [{ organisationEnabled: SIGN_UP_CONFIG.LOGIN.CORPORATE_LOGIN }]
   },
   {
-    path: SIGN_UP_ROUTES.ACCOUNT_CREATED_CORPBIZ,
-    component: AccountCreatedComponent,
-    canActivate: [CorpbizAuthGuard]
-  },
-  {
     path: SIGN_UP_ROUTES.ACCOUNT_CREATED,
     component: AccountCreatedComponent
   },
@@ -120,11 +115,6 @@ const routes: Routes = [
     canActivate: [FacebookLoggedUserGuard],
   },
   {
-    path: SIGN_UP_ROUTES.CORPBIZ_EMAIL_VERIFIED,
-    component: EmailVerificationComponent,
-    canActivate: [CorpbizAuthGuard]
-  },
-  {
     path: SIGN_UP_ROUTES.LOGIN,
     component: LoginComponent,
     canActivate: [SingpassLoginGuard]
@@ -134,11 +124,6 @@ const routes: Routes = [
     component: LoginComponent,
     canActivate: [FacebookLoggedUserGuard],
     data: [{ organisationEnabled: SIGN_UP_CONFIG.LOGIN.CORPORATE_LOGIN }]
-  },
-  {
-    path: SIGN_UP_ROUTES.CORPBIZ_LOGIN,
-    component: LoginComponent,
-    canActivate: [CorpbizAuthGuard]
   },
   {
     path: SIGN_UP_ROUTES.FORGOT_PASSWORD,
