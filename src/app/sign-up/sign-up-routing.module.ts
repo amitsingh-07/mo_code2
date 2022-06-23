@@ -102,11 +102,6 @@ const routes: Routes = [
     data: [{ organisationEnabled: SIGN_UP_CONFIG.LOGIN.CORPORATE_LOGIN }]
   },
   {
-    path: SIGN_UP_ROUTES.ACCOUNT_CREATED_CORPBIZ,
-    component: AccountCreatedComponent,
-    canActivate: [CorpbizAuthGuard]
-  },
-  {
     path: SIGN_UP_ROUTES.ACCOUNT_CREATED,
     component: AccountCreatedComponent
   },

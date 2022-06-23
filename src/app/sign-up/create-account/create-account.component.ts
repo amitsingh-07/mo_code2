@@ -431,8 +431,8 @@ export class CreateAccountComponent implements OnInit, AfterViewInit {
       this.showErrorModal(this.translate.instant('SIGNUP_ERRORS.TITLE'),
         this.translate.instant('SIGNUP_ERRORS.VERIFY_EMAIL_OTP'),
         this.translate.instant('COMMON.VERIFY_NOW'),
-        redirectUrl,
-        false); 
+        SIGN_UP_ROUTE_PATHS.VERIFY_MOBILE, 
+        false);
     } else if (data.objectList[0].accountAlreadyCreated) {
       this.showErrorModal(
         this.translate.instant('SIGNUP_ERRORS.TITLE'),
