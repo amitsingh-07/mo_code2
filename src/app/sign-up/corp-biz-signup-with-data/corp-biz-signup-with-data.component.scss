@@ -23,6 +23,10 @@ app-corp-biz-signup-with-data {
         }
     }
 
+    .corpbiz-data-wrapper__sub-title {
+        font-size: 18px;
+    }
+
     .corpbiz-max-width {
         padding: 0;
         max-width: 335px;
@@ -54,14 +58,13 @@ app-corp-biz-signup-with-data {
         color: $white-color;
 
         .myinfo-accordian-block {
-            padding: 20px;
+            padding: 22px 20px 20px 20px;
             background: $white-color;
             border-radius: 6px;
 
             .check-icon {
                 width: 20px;
                 height: 20px;
-
             }
 
             .title {
