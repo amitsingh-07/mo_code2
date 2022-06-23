@@ -12,6 +12,7 @@ export const environment: IEnvironment = {
   myInfoCallbackBaseUrl: 'https://bfa-uat3.ntucbfa.com/app/myinfo',
   myInfoAuthorizeUrl: 'https://test.api.myinfo.gov.sg/com/v3/authorise',
   gAdPropertyId: 'AW-782920447',
+  gtagPropertyId: 'GTM-TQGHCHD',
   gaPropertyId: 'UA-125256446-1',
   hideHomepage: true,
   mockInvestAccount: false,
