@@ -357,13 +357,13 @@ export class VerifyMobileComponent implements OnInit, OnDestroy {
   }
 
   sendWelcomeEmail() {
-    const mobileNo = this.mobileNumber.number.toString();
+    const mobileNo = this.isCorpBiz? this.appService.getCorpBizData().mobileNumber.toString() : this.mobileNumber.number.toString();
     this.signUpApiService.sendWelcomeEmail(mobileNo, false).subscribe((data) => { });
   }
 
   resendEmailVerification() {
     let organisationCode = (this.organisationEnabled && appConstants.USERTYPE.FACEBOOK) || null;
-    const mobileNo = this.mobileNumber.number.toString();
+    const mobileNo = this.isCorpBiz? this.appService.getCorpBizData().mobileNumber.toString() : this.mobileNumber.number.toString();
     this.signUpApiService.resendEmailVerification(mobileNo, false, organisationCode).subscribe((data) => {
       if (data.responseMessage.responseCode === 6007) {
         this.navbarService.logoutUser();
