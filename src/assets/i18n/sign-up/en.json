@@ -54,7 +54,7 @@
       "secondaryActionLabel": "Create Account Manually"
     },
     "MY_INFO_MODAL": {
-      "BTN": "Let’s go",
+      "BTN": "Let’s go!",
       "TITLE": "Retrieve Myinfo with Singpass",
       "DESC": "Applicable to all Singpass Registered users.",
       "OWN_ACC_TEXT": "Please use your own account only.",
