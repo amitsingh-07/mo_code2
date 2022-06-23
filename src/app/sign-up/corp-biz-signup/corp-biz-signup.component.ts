@@ -95,13 +95,14 @@ export class CorpBizSignupComponent implements OnInit {
   getMyInfoAccountCreateData() {
     this.showFetchPopUp();
     let email = this.appService.getCorpBizData()?.email;
-    let mobile = this.appService.getCorpBizData()?.mobile;
+    let mobile = this.appService.getCorpBizData()?.mobileNumber;
     this.myInfoSubscription = this.myInfoService.getCorpBizMyInfoAccountCreateData(email, mobile, null)
       .subscribe((data) => {
         if (data.responseMessage.responseCode === 6000 && data && data.objectList[0]) {
           this.closeMyInfoPopup(false);
           data.objectList[0].email.value = email;
           data.objectList[0].mobileno.nbr = mobile;
+          this.signUpService.setCorpBizMyInfoStatus(true);
           this.signUpService.setCreateAccountMyInfoFormData(data.objectList[0]);
           this.router.navigate([SIGN_UP_ROUTE_PATHS.CORP_BIZ_SIGNUP_DATA]);
         } else if (data.responseMessage.responseCode === 6014) {
@@ -130,10 +131,11 @@ export class CorpBizSignupComponent implements OnInit {
     // this.myInfoService.goToMyInfo();
 
     let email = this.appService.getCorpBizData()?.email;
-    let mobile = this.appService.getCorpBizData()?.mobile;
+    let mobile = this.appService.getCorpBizData()?.mobileNumber;
     this.signUpApiService.getSampleMyInfoResponse().subscribe((resp: any) => {
       resp.objectList[0].email.value = email;
       resp.objectList[0].mobileno.nbr = mobile;
+      this.signUpService.setCorpBizMyInfoStatus(true);
       this.signUpService.setCreateAccountMyInfoFormData(resp.objectList[0])
       this.router.navigate([SIGN_UP_ROUTE_PATHS.CORP_BIZ_SIGNUP_DATA]);
     })
@@ -208,6 +210,7 @@ export class CorpBizSignupComponent implements OnInit {
 
   skipMyInfo() {
     this.signUpService.setCorpBizMyInfoStatus(false);
+    this.signUpService.setMyInfoStatus(false);
     this.router.navigate([SIGN_UP_ROUTE_PATHS.CORP_BIZ_CREATE_ACC]);
   }
 }

@@ -61,8 +61,8 @@ export class SignUpFormData {
   isCorpBizEnrolluser: boolean;
 
   // CorpBiz user data from MyInfo
-  marital: any;
-  regadd: any;
+  marital: string;
+  regadd: string;
   uinfin: string;
   childrenRecords: Child[];
   sponsoredChildrenRecords: Child[];
