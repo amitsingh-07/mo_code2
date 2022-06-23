@@ -23,8 +23,6 @@ export class AccountCreatedComponent implements OnInit, OnDestroy {
   finlitEnabled = false;
   routeSubscription: Subscription;
   organisationEnabled = false;
-  isCorpBiz = false;
-
   constructor(
     private translate: TranslateService,
     private googleAnalyticsService: GoogleAnalyticsService,
@@ -66,7 +64,6 @@ export class AccountCreatedComponent implements OnInit, OnDestroy {
       this.appService.clearPromoCode();
     }
     this.appService.clearCorpBizUserData();
-    this.isCorpBiz = this.appService.getCorpBizData()?.isCorpBiz;
   }
 
   /**
@@ -75,7 +72,6 @@ export class AccountCreatedComponent implements OnInit, OnDestroy {
   redirectToLogin() {
     this.router.navigate([this.finlitEnabled?SIGN_UP_ROUTE_PATHS.FINLIT_LOGIN:
                           this.organisationEnabled?[SIGN_UP_ROUTE_PATHS.CORPORATE_LOGIN, { queryParams: {orgID: this.appService.getCorporateDetails().uuid}}]:
-                          this.isCorpBiz?[SIGN_UP_ROUTE_PATHS.CORPBIZ_LOGIN]:
                           SIGN_UP_ROUTE_PATHS.LOGIN])
   }
 

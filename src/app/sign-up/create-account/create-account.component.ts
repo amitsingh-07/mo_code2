@@ -425,14 +425,14 @@ export class CreateAccountComponent implements OnInit, AfterViewInit {
 
   callErrorModal(data: any) {
     let redirectUrl = this.organisationEnabled ? SIGN_UP_ROUTE_PATHS.CORPORATE_LOGIN :
-                      this.isCorpBiz ? SIGN_UP_ROUTE_PATHS.CORPBIZ_LOGIN :
                       SIGN_UP_ROUTE_PATHS.LOGIN;
     if (data.responseMessage.responseCode === 6008) {
       this.signUpService.setUserMobileNo(this.createAccountForm.controls['mobileNumber'].value);
       this.showErrorModal(this.translate.instant('SIGNUP_ERRORS.TITLE'),
         this.translate.instant('SIGNUP_ERRORS.VERIFY_EMAIL_OTP'),
         this.translate.instant('COMMON.VERIFY_NOW'),
-        SIGN_UP_ROUTE_PATHS.VERIFY_MOBILE, false);
+        redirectUrl,
+        false); 
     } else if (data.objectList[0].accountAlreadyCreated) {
       this.showErrorModal(
         this.translate.instant('SIGNUP_ERRORS.TITLE'),
