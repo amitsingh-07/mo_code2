@@ -1,0 +1,56 @@
+@import '../../../variables';
+@import '../../../mixins';
+
+app-invest-modal{
+    .invest-menu-modal-block{
+            .close{
+                @include allmobiles{
+                    top: 35px !important
+                }
+            }
+        .modal-body{
+            @include allmobiles{
+                border-radius: 10px 10px 0px 0px !important;
+                padding: 20px 24px !important;
+            }
+        }
+        .modal-body-title{
+            font-family: $muli-semi-bold;
+            font-size: 16px;
+            line-height: 20px;
+            letter-spacing: -0.23px;
+            color: $black-color;
+            margin-bottom: 18px;
+        }
+            .btn-menu{
+                font-size: 16px;
+                font-family: $muli-bold;
+                line-height: 24px;
+                color: $black-color;
+                border-radius: 6px;
+                cursor: pointer;
+                .btn-menu-item{
+                    width: 100%;
+                    padding: 16px 0;
+                }
+                .menu-icon{
+                    width: 48px;
+                    height: 48px;
+                    display: flex;
+                    margin-right: 20px;
+                    img{
+                        margin: 0;
+                    }
+                }
+                hr{
+                    margin: 0;
+                    border-color: $mercury-smoke-color;
+                }
+                .sub-text{
+                    font-family: $muli-regular;
+                    font-size: 14px;
+                    color: $silver-grey-color;
+                }
+            }
+    }
+}
