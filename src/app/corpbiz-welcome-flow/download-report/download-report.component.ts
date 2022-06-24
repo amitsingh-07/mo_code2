@@ -1,6 +1,7 @@
 import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { Router } from '@angular/router';
 import { TranslateService } from '@ngx-translate/core';
+import { Subscription } from 'rxjs';
 import { CORPBIZ_WELCOME_FLOW } from '../corpbiz-welcome-flow.constant';
 import { ComprehensiveApiService } from '../../comprehensive/comprehensive-api.service';
 import { ComprehensiveService } from '../../comprehensive/comprehensive.service';
@@ -9,7 +10,6 @@ import { COMPREHENSIVE_CONST } from '../../comprehensive/comprehensive-config.co
 import { FooterService } from '../../shared/footer/footer.service';
 import { NavbarService } from '../../shared/navbar/navbar.service';
 import { SIGN_UP_ROUTE_PATHS } from '../../sign-up/sign-up.routes.constants';
-import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-download-report',
