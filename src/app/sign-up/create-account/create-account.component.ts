@@ -318,7 +318,7 @@ export class CreateAccountComponent implements OnInit, AfterViewInit {
         form.value.mobileNumber = this.corpBizData?.mobileNumber;
         form.value.email = this.corpBizData?.email;
         form.value.enrolmentId = this.corpBizData?.enrollmentId;
-        form.value.isCorpBizEnrolluser = this.corpBizData?.isCorpBiz;
+        form.value.isCorpBizEnrollUser = this.corpBizData?.isCorpBiz;
       }
       this.signUpService.setAccountInfo(form.value);
       this.openTermsOfConditions();

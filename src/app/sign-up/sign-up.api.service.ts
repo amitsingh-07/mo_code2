@@ -90,7 +90,7 @@ export class SignUpApiService {
         accountCreationType: getAccountInfo.accountCreationType,
         organisationCode: getAccountInfo.organisationCode,
         enrolmentId: getAccountInfo.enrolmentId,
-        isCorpBizEnrolluser:getAccountInfo.isCorpBizEnrolluser
+        isCorpBizEnrollUser:getAccountInfo.isCorpBizEnrollUser
       };
     } else {
       return {
@@ -114,7 +114,7 @@ export class SignUpApiService {
         accountCreationType: getAccountInfo.accountCreationType,
         organisationCode: getAccountInfo.organisationCode,
         enrolmentId: getAccountInfo.enrolmentId,
-        isCorpBizEnrolluser:getAccountInfo.isCorpBizEnrolluser
+        isCorpBizEnrollUser:getAccountInfo.isCorpBizEnrollUser
       };
     }
   }
