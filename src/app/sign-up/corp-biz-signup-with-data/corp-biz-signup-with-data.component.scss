@@ -23,13 +23,17 @@ app-corp-biz-signup-with-data {
         }
     }
 
+    .corpbiz-data-wrapper__sub-title {
+        font-size: 18px;
+    }
+
     .corpbiz-max-width {
         padding: 0;
         max-width: 335px;
         margin-right: 0;
 
         @include allmobiles {
-            padding: 0 15px;
+            padding: 0 20px;
             max-width: 100%;
             margin: 0 auto;
         }
@@ -54,14 +58,13 @@ app-corp-biz-signup-with-data {
         color: $white-color;
 
         .myinfo-accordian-block {
-            padding: 20px;
+            padding: 22px 20px 20px 20px;
             background: $white-color;
             border-radius: 6px;
 
             .check-icon {
                 width: 20px;
                 height: 20px;
-
             }
 
             .title {
@@ -85,7 +88,9 @@ app-corp-biz-signup-with-data {
                 background-color: $white-color;
                 border: none;
                 line-height: 22px;
-
+                &:last-child{
+                    margin-bottom: 0;
+                }
                 .card-header {
                     padding: 0px;
                     background-color: $white-color;
