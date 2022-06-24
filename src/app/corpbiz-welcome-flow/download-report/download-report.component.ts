@@ -9,6 +9,7 @@ import { COMPREHENSIVE_CONST } from '../../comprehensive/comprehensive-config.co
 import { FooterService } from '../../shared/footer/footer.service';
 import { NavbarService } from '../../shared/navbar/navbar.service';
 import { SIGN_UP_ROUTE_PATHS } from '../../sign-up/sign-up.routes.constants';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-download-report',
@@ -20,6 +21,7 @@ export class DownloadReportComponent implements OnInit {
   getComprehensiveSummaryDashboardInfo: any;
   getCurrentVersionType = COMPREHENSIVE_CONST.VERSION_TYPE.FULL;
   showDownloadReport = true;
+  subscription: Subscription;
 
   constructor(private readonly translate: TranslateService,
               private comprehensiveService: ComprehensiveService,
@@ -36,6 +38,7 @@ export class DownloadReportComponent implements OnInit {
     // this.getComprehensiveSummaryDashboard()
     this.navbarService.setNavbarMode(101);
     this.footerService.setFooterVisibility(false);
+    this.subscription = this.navbarService.preventBackButton().subscribe();
   }
 
   getComprehensiveSummaryDashboard() {
@@ -77,4 +80,9 @@ export class DownloadReportComponent implements OnInit {
     this.navbarService.hideBackBtn$.next(false);
     this.router.navigate([SIGN_UP_ROUTE_PATHS.DASHBOARD]);
   }
+
+  ngOnDestroy() {
+    this.subscription.unsubscribe();
+  }
+  
 }

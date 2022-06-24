@@ -1,9 +1,9 @@
 import { Location } from '@angular/common';
 import { ElementRef, Injectable, ViewChild } from '@angular/core';
 import { NavigationStart, Router } from '@angular/router';
-import { BehaviorSubject } from 'rxjs';
+import { BehaviorSubject, fromEvent, Observable } from 'rxjs';
 import { Subject } from 'rxjs/internal/Subject';
-import { filter } from 'rxjs/operators';
+import { filter, tap } from 'rxjs/operators';
 
 import { IHeaderMenuItem } from './navbar.types';
 
@@ -296,4 +296,15 @@ export class NavbarService {
   setPromoCodeCpf(promoCode: any) {
     this.setCpfPromoCode.next(promoCode);
   }
+
+  /** This method restrict browser's backbutton action */
+  preventBackButton(): Observable<Event> {
+    history.pushState(null, "null", window.location.href);
+    return fromEvent(window, 'popstate')
+    .pipe(tap(res => {
+      history.pushState(null, "null", window.location.href);
+     })
+    );
+  }
+  
 }
