@@ -1,6 +1,7 @@
 import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { Router } from '@angular/router';
 import { TranslateService } from '@ngx-translate/core';
+import { Subscription } from 'rxjs';
 import { CORPBIZ_WELCOME_FLOW } from '../corpbiz-welcome-flow.constant';
 import { ComprehensiveApiService } from '../../comprehensive/comprehensive-api.service';
 import { ComprehensiveService } from '../../comprehensive/comprehensive.service';
@@ -20,6 +21,7 @@ export class DownloadReportComponent implements OnInit {
   getComprehensiveSummaryDashboardInfo: any;
   getCurrentVersionType = COMPREHENSIVE_CONST.VERSION_TYPE.FULL;
   showDownloadReport = true;
+  subscription: Subscription;
 
   constructor(private readonly translate: TranslateService,
               private comprehensiveService: ComprehensiveService,
@@ -36,6 +38,7 @@ export class DownloadReportComponent implements OnInit {
     // this.getComprehensiveSummaryDashboard()
     this.navbarService.setNavbarMode(101);
     this.footerService.setFooterVisibility(false);
+    this.subscription = this.navbarService.preventBackButton().subscribe();
   }
 
   getComprehensiveSummaryDashboard() {
@@ -77,4 +80,9 @@ export class DownloadReportComponent implements OnInit {
     this.navbarService.hideBackBtn$.next(false);
     this.router.navigate([SIGN_UP_ROUTE_PATHS.DASHBOARD]);
   }
+
+  ngOnDestroy() {
+    this.subscription.unsubscribe();
+  }
+  
 }
