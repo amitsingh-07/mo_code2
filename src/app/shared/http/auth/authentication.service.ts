@@ -99,8 +99,8 @@ export class AuthenticationService {
           // store user details and jwt token in local storage to keep user logged in between page refreshes
           this.saveAuthDetails(response.objectList[0]);
         }
-        if (response && response.objectList[1] && typeof response.objectList[1].showWelcomeFlag === 'boolean') {
-          this.isShowWelcomeFlow = response.objectList[1].showWelcomeFlag;
+        if (response && response.objectList[1] && typeof response.objectList[1].showWelcomeFlow === 'boolean') {
+          this.isShowWelcomeFlow = response.objectList[1].showWelcomeFlow;
         }
         return response;
       }));
