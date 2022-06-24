@@ -9,7 +9,7 @@ export interface ISignUp {
     accountCreationType:string;
     organisationCode?: string;
     enrolmentId?: number;
-    isCorpBizEnrolluser?: boolean;
+    isCorpBizEnrollUser?: boolean;
 }
 
 export interface IEnquiryUpdate {
