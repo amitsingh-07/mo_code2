@@ -102,6 +102,10 @@ const routes: Routes = [
     data: [{ organisationEnabled: SIGN_UP_CONFIG.LOGIN.CORPORATE_LOGIN }]
   },
   {
+    path: SIGN_UP_ROUTES.ACCOUNT_CREATED_CORPBIZ,
+    component: AccountCreatedComponent
+  },
+  {
     path: SIGN_UP_ROUTES.ACCOUNT_CREATED,
     component: AccountCreatedComponent
   },
@@ -113,6 +117,10 @@ const routes: Routes = [
     path: SIGN_UP_ROUTES.CORP_EMAIL_VERIFIED,
     component: EmailVerificationComponent,
     canActivate: [FacebookLoggedUserGuard],
+  },
+  {
+    path: SIGN_UP_ROUTES.CORPBIZ_EMAIL_VERIFIED,
+    component: EmailVerificationComponent,
   },
   {
     path: SIGN_UP_ROUTES.LOGIN,

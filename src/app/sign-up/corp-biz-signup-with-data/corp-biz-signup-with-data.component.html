@@ -1,4 +1,5 @@
 <div class="container-fluid max-width--1024">
+    <div class="back-btn hidden-lg" (click)="goBack()"></div>
     <div class="content">
         <div class="row">
             <div class="col-lg-7 col-md-6 hidden-sm">
@@ -15,7 +16,7 @@
                 </h2>
                 <div class="corpbiz-data-wrapper__description order2">
                     <div class="myinfo-accordian-block">
-                        <div class="flex">
+                        <div class="flex align-center">
                             <span class="check-icon mr10"><img src="assets/images/check-icon-green.svg" alt="" /></span>
                             <span class="title">{{'CORP_BIZ_SIGN_UP.CORP_BIZ_SUCCESS_MSG' |
                                 translate}} </span>
