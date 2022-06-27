@@ -63,7 +63,6 @@ export class AccountCreatedComponent implements OnInit, OnDestroy {
       this.appService.clearJourneys();
       this.appService.clearPromoCode();
     }
-    this.appService.clearCorpBizUserData();
   }
 
   /**
@@ -80,6 +79,7 @@ export class AccountCreatedComponent implements OnInit, OnDestroy {
       this.emailTriggered = true;
       const mobile = this.signUpService.getUserMobileNo();
       this.signUpApiService.resendEmailVerification(mobile, false).subscribe((data) => {
+        this.appService.clearCorpBizUserData();
         if (data.responseMessage.responseCode === 6007) {
           this.emailTriggered = false;
           this.emailSent = true;
