@@ -17,6 +17,7 @@
   "resetPasswordCorpUrl": "/app/accounts/corp/resetPassword",
   "verifyEmailUrl": "/app/accounts/email-verification",
   "corpEmailVerifyUrl": "/app/accounts/corp/email-verification",
+  "corpBizEmailVerifyUrl": "/app/accounts/corpbiz/email-verification",
   "showAnnualizedReturns": false,
   "paymentEnabled": true,
   "iFastMaintenance": true,

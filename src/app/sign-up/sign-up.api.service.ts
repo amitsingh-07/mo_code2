@@ -21,6 +21,7 @@ import { SIGN_UP_CONFIG } from './sign-up.constant';
 export class SignUpApiService {
   private emailVerifyUrl: String;
   private corpEmailVerifyUrl: String;
+  private corpBizEmailVerifyUrl: String;
 
   constructor(
     private configService: ConfigService, private hubspotService: HubspotService,
@@ -32,6 +33,7 @@ export class SignUpApiService {
     this.configService.getConfig().subscribe((config: IConfig) => {
       this.emailVerifyUrl = config.verifyEmailUrl;
       this.corpEmailVerifyUrl = config.corpEmailVerifyUrl;
+      this.corpBizEmailVerifyUrl = config.corpBizEmailVerifyUrl;
     });
   }
 

@@ -379,6 +379,8 @@ export class VerifyMobileComponent implements OnInit, OnDestroy {
           this.router.navigate([SIGN_UP_ROUTE_PATHS.ACCOUNT_CREATED_FINLIT]);
         } else if (this.organisationEnabled) {
           this.router.navigate([SIGN_UP_ROUTE_PATHS.ACCOUNT_CREATED_CORPORATE]);
+        } else if (this.isCorpBiz) {
+          this.router.navigate([SIGN_UP_ROUTE_PATHS.ACCOUNT_CREATED_CORPBIZ]);
         } else {
           this.router.navigate([SIGN_UP_ROUTE_PATHS.ACCOUNT_CREATED]);
         }

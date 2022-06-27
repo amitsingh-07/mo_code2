@@ -38,6 +38,7 @@ export class AuthenticationService {
   isUserTypeCorporate = false;
   displayCorporateLogo$ = new BehaviorSubject<boolean>(false);
   isShowWelcomeFlow: boolean = false;
+  isCorpBiz: boolean = false;
 
   constructor(
     private httpClient: HttpClient, public jwtHelper: JwtHelperService,
@@ -102,6 +103,7 @@ export class AuthenticationService {
         if (response && response.objectList[1] && typeof response.objectList[1].showWelcomeFlag === 'boolean') {
           this.isShowWelcomeFlow = response.objectList[1].showWelcomeFlag;
         }
+        this.isCorpBiz = response?.objectList[1]?.isCorpBizUser;
         return response;
       }));
   }
