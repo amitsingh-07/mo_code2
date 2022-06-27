@@ -1,3 +1,4 @@
+import { Location } from '@angular/common';
 import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { Router } from '@angular/router';
 import { TranslateService } from '@ngx-translate/core';
@@ -32,6 +33,7 @@ export class CorpBizSignupWithDataComponent implements OnInit {
     public navbarService: NavbarService,
     public footerService: FooterService,
     public readonly translate: TranslateService,
+    private _location: Location,
     private signUpService: SignUpService,
     private appService: AppService,
   ) {
@@ -58,5 +60,9 @@ export class CorpBizSignupWithDataComponent implements OnInit {
 
   goToNext() {
     this.router.navigate([SIGN_UP_ROUTE_PATHS.CORP_BIZ_CREATE_ACC]);
+  }
+
+  goBack() {
+    this._location.back();
   }
 }

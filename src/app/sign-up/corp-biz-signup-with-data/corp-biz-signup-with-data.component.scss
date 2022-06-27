@@ -10,6 +10,19 @@ app-corp-biz-signup-with-data {
         }
     }
 
+    .back-btn {
+        background-image: url("../../../assets/images/back-web.svg");
+        width: 32px;
+        height: 32px;
+        cursor: pointer;
+        position: absolute;
+        top: 25px;
+        left: 15px;
+        background-repeat: no-repeat;
+        background-size: 100%;
+        z-index: 999;
+    }
+
     .corpbiz-data-wrapper__title {
         font-family: $muli-semi-bold;
         letter-spacing: -0.18px;
@@ -30,7 +43,8 @@ app-corp-biz-signup-with-data {
     .corpbiz-max-width {
         padding: 0;
         max-width: 335px;
-        margin-right: 0;
+        margin-right: 15px;
+        margin-left: auto;
 
         @include allmobiles {
             padding: 0 20px;
@@ -63,8 +77,9 @@ app-corp-biz-signup-with-data {
             border-radius: 6px;
 
             .check-icon {
-                width: 20px;
-                height: 20px;
+                width: 24px;
+                height: 24px;
+                display: flex;
             }
 
             .title {
