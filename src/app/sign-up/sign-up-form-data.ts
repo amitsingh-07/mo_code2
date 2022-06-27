@@ -58,7 +58,7 @@ export class SignUpFormData {
 
   // payload details for corpbiz
   enrolmentId: number;
-  isCorpBizEnrolluser: boolean;
+  isCorpBizEnrollUser: boolean;
 
   // CorpBiz user data from MyInfo
   marital: string;
