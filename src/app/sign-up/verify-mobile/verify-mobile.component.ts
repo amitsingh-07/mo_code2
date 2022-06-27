@@ -357,13 +357,13 @@ export class VerifyMobileComponent implements OnInit, OnDestroy {
   }
 
   sendWelcomeEmail() {
-    const mobileNo = this.mobileNumber.number.toString();
+    const mobileNo = this.isCorpBiz? this.appService.getCorpBizData().mobileNumber.toString() : this.mobileNumber.number.toString();
     this.signUpApiService.sendWelcomeEmail(mobileNo, false).subscribe((data) => { });
   }
 
   resendEmailVerification() {
     let organisationCode = (this.organisationEnabled && appConstants.USERTYPE.FACEBOOK) || null;
-    const mobileNo = this.mobileNumber.number.toString();
+    const mobileNo = this.isCorpBiz? this.appService.getCorpBizData().mobileNumber.toString() : this.mobileNumber.number.toString();
     this.signUpApiService.resendEmailVerification(mobileNo, false, organisationCode).subscribe((data) => {
       if (data.responseMessage.responseCode === 6007) {
         this.navbarService.logoutUser();
@@ -379,6 +379,8 @@ export class VerifyMobileComponent implements OnInit, OnDestroy {
           this.router.navigate([SIGN_UP_ROUTE_PATHS.ACCOUNT_CREATED_FINLIT]);
         } else if (this.organisationEnabled) {
           this.router.navigate([SIGN_UP_ROUTE_PATHS.ACCOUNT_CREATED_CORPORATE]);
+        } else if (this.isCorpBiz) {
+          this.router.navigate([SIGN_UP_ROUTE_PATHS.ACCOUNT_CREATED_CORPBIZ]);
         } else {
           this.router.navigate([SIGN_UP_ROUTE_PATHS.ACCOUNT_CREATED]);
         }
@@ -594,6 +596,7 @@ export class VerifyMobileComponent implements OnInit, OnDestroy {
       if (this.authService.isShowWelcomeFlow) {
         this.redirectAfterLogin = CORPBIZ_ROUTES_PATHS.GET_STARTED;
         this.navbarService.displayingWelcomeFlowContent$.next(true);
+        this.navbarService.hideBackBtn$.next(true);
       } else {
         this.redirectAfterLogin = SIGN_UP_ROUTE_PATHS.DASHBOARD;
       }

@@ -60,7 +60,7 @@ export class LoginComponent implements OnInit, AfterViewInit, OnDestroy {
   showSingpassLogin = false;
   singpassEnabled = true;
   subscription: Subscription;
-  isCorpBiz = false;
+  isCorpBiz: boolean = false;
 
   @ViewChild('welcomeTitle') welcomeTitle: ElementRef;
 
@@ -132,7 +132,6 @@ export class LoginComponent implements OnInit, AfterViewInit, OnDestroy {
     this.footerService.setFooterVisibility(false);
     this.investmentEnquiryId = this.authService.getEnquiryId();
     this.buildLoginForm();
-    this.isCorpBiz= this.router.url.indexOf('corpbiz')>=0
     if (!this.authService.isAuthenticated()) {
       this.loaderService.showLoader({ title: 'Loading' });
       const userInfo = this.signUpService.getUserProfileInfo();
@@ -292,6 +291,7 @@ export class LoginComponent implements OnInit, AfterViewInit, OnDestroy {
       const loginType = (SIGN_UP_CONFIG.AUTH_2FA_ENABLED) ? SIGN_UP_CONFIG.LOGIN_TYPE_2FA : '';
       this.signUpApiService.verifyLogin(this.loginForm.value.loginUsername, this.loginForm.value.loginPassword,
         this.loginForm.value.captchaValue, this.finlitEnabled, accessCode, loginType, organisationCode).subscribe((data) => {
+          this.isCorpBiz = this.authService.isCorpBiz;
           if(SIGN_UP_CONFIG.AUTH_2FA_ENABLED) {
             if (data.responseMessage && data.responseMessage.responseCode >= 6000) {
               try {
@@ -391,6 +391,7 @@ export class LoginComponent implements OnInit, AfterViewInit, OnDestroy {
     const ref = this.modal.open(ErrorModalComponent, { centered: true });
     ref.componentInstance.errorMessage = message;
     ref.componentInstance.redirect_url = SIGN_UP_ROUTE_PATHS.VERIFY_EMAIL;
+    ref.componentInstance.isCorpBiz = this.isCorpBiz;
     ref.result.then((data) => {
       if (!data && redirect) {
         this.router.navigate([redirect]);
@@ -401,7 +402,6 @@ export class LoginComponent implements OnInit, AfterViewInit, OnDestroy {
       ref.componentInstance.buttonLabel = buttonLabel;
     }
     if (emailResend) {
-      ref.componentInstance.isCorpBiz = this.isCorpBiz;
       ref.componentInstance.enableResendEmail = true;
       ref.componentInstance.resendEmail.pipe(
         mergeMap(($e) =>

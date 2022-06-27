@@ -1,5 +1,6 @@
 import { Component, OnInit, ViewChild, ViewEncapsulation } from '@angular/core';
 import { TranslateService } from '@ngx-translate/core';
+import { Subscription } from 'rxjs';
 import { FooterService } from '../../shared/footer/footer.service';
 import { NavbarService } from '../../shared/navbar/navbar.service';
 
@@ -10,7 +11,8 @@ import { NavbarService } from '../../shared/navbar/navbar.service';
   encapsulation: ViewEncapsulation.None
 })
 export class GetStartedComponent implements OnInit {
-
+  subscription: Subscription;  
+  
   constructor(
     private footerService: FooterService,
     private navbarService: NavbarService,
@@ -22,6 +24,11 @@ export class GetStartedComponent implements OnInit {
   ngOnInit(): void {
     this.navbarService.setNavbarMode(101);
     this.footerService.setFooterVisibility(false);
+    this.subscription = this.navbarService.preventBackButton().subscribe();
+  }
+
+  ngOnDestroy() {
+    this.subscription.unsubscribe();
   }
 
 }

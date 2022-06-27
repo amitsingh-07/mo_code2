@@ -54,7 +54,7 @@
       "secondaryActionLabel": "Create Account Manually"
     },
     "MY_INFO_MODAL": {
-      "BTN": "Let’s go",
+      "BTN": "Let’s go!",
       "TITLE": "Retrieve Myinfo with Singpass",
       "DESC": "Applicable to all Singpass Registered users.",
       "OWN_ACC_TEXT": "Please use your own account only.",
@@ -141,6 +141,13 @@
           "MARKET_VALUE_TEXT": "Open Market Value (LTA)",
           "VEHICLE_STATUS_TEXT": "Vehicle Status"
         }
+      },
+      "ITERATABLE_KEYS": {
+        "CHILD": "Child",
+        "SPONSORED_CHILD": "Sponsored Child",
+        "HDB_OWNERSHIP": "HDB Ownership",
+        "WITHDRAWAL": "Withdrawal",
+        "VEHICLE": "Vehicle"
       }
     }
   },
@@ -561,7 +568,14 @@
       "MENU_LBL_1": "New Portfolio",
       "MENU_SUB_LBL_1": "Investible with CPF, SRS and Cash",
       "MENU_LBL_2": "Existing Portfolio",
-      "MENU_SUB_LBL_2": "Top up or set up regular savings plan"
+      "MENU_SUB_LBL_2": "Top up or set up regular savings plan",
+      "MODAL":{
+        "TITLE": "Select Invest Option",
+        "MENU_LBL_1": "New Portfolio",
+        "MENU_SUB_LBL_1": "Investible with CPF, SRS and Cash",
+        "MENU_LBL_2": "Existing Portfolio",
+        "MENU_SUB_LBL_2": "Top up or set up regular savings plan"
+      }
     },
     "WILL_WRITING": {
       "TITLE": "Will Writing",

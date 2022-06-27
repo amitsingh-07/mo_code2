@@ -137,9 +137,7 @@ export class DashboardComponent implements OnInit {
       this.isComprehensiveEnabled = config.comprehensiveEnabled;
     });
     this.portfolioCategory = INVESTMENT_COMMON_CONSTANTS.PORTFOLIO_CATEGORY;
-    if (!this.authService.isUserTypeCorporate) {
       this.getReferralCodeData();
-    }    
   }
 
   ngOnInit() {
@@ -603,7 +601,7 @@ export class DashboardComponent implements OnInit {
   }
 
   openInvestMenuModal() {
-    const ref = this.modal.open(InvestModalComponent, { centered: true });
+    this.modal.open(InvestModalComponent, { centered: true });
   }
 }
 
