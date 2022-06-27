@@ -21,7 +21,7 @@ import { SIGN_UP_CONFIG } from './sign-up.constant';
 export class SignUpApiService {
   private emailVerifyUrl: String;
   private corpEmailVerifyUrl: String;
-  private corpBizEmailVerifyUrl: String;
+  private corpbizEmailVerifyUrl: String;
 
   constructor(
     private configService: ConfigService, private hubspotService: HubspotService,
@@ -33,7 +33,7 @@ export class SignUpApiService {
     this.configService.getConfig().subscribe((config: IConfig) => {
       this.emailVerifyUrl = config.verifyEmailUrl;
       this.corpEmailVerifyUrl = config.corpEmailVerifyUrl;
-      this.corpBizEmailVerifyUrl = config.corpBizEmailVerifyUrl;
+      this.corpbizEmailVerifyUrl = config.corpBizEmailVerifyUrl;
     });
   }
 
@@ -92,7 +92,7 @@ export class SignUpApiService {
         accountCreationType: getAccountInfo.accountCreationType,
         organisationCode: getAccountInfo.organisationCode,
         enrolmentId: getAccountInfo.enrolmentId,
-        isCorpBizEnrollUser:getAccountInfo.isCorpBizEnrollUser
+        isCorpBizEnrollUser: getAccountInfo.isCorpBizEnrollUser
       };
     } else {
       return {
@@ -116,7 +116,7 @@ export class SignUpApiService {
         accountCreationType: getAccountInfo.accountCreationType,
         organisationCode: getAccountInfo.organisationCode,
         enrolmentId: getAccountInfo.enrolmentId,
-        isCorpBizEnrollUser:getAccountInfo.isCorpBizEnrollUser
+        isCorpBizEnrollUser: getAccountInfo.isCorpBizEnrollUser
       };
     }
   }
@@ -321,15 +321,26 @@ export class SignUpApiService {
   }
 
   resendEmailVerification(value: any, isEmail: boolean, organisationCode = null) {
+    let isCorpbiz = this.checkIfCorpBizEmail();
+    
     const payload = {
       mobileNumber: isEmail ? '' : value,
       emailAddress: isEmail ? value : '',
-      callbackUrl: `${environment.apiBaseUrl}${organisationCode == appConstants.USERTYPE.FACEBOOK ? this.corpEmailVerifyUrl : this.emailVerifyUrl}`, 
+      callbackUrl: `${environment.apiBaseUrl}${organisationCode == appConstants.USERTYPE.FACEBOOK ? this.corpEmailVerifyUrl : (isCorpbiz ? this.corpbizEmailVerifyUrl : this.emailVerifyUrl)}`,
       hostedServerName: window.location.hostname,
       organisationCode: organisationCode
     } as IResendEmail;
     return this.apiService.resendEmailVerification(payload);
   }
+
+  checkIfCorpBizEmail() {
+    if (this.appService.getCorpBizData() && typeof this.appService.getCorpBizData().isCorpBiz == 'boolean' && this.appService.getCorpBizData().isCorpBiz) {
+      return true;
+    } else {
+      return this.authService.isCorpBiz;
+    }
+  }
+
   sendWelcomeEmail(value: any, isEmail: boolean) {
     const payload = {
       mobileNumber: isEmail ? '' : value,
@@ -375,7 +386,7 @@ export class SignUpApiService {
  * Getting organisation(name) by passing organisation code(UUID)
  * @param orgID - query parameter.
  */
-   getOrganisationCode(orgID) {
+  getOrganisationCode(orgID) {
     return this.apiService.getOrganisationCode(orgID);
   }
 
