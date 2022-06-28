@@ -14,16 +14,16 @@
     <div class="navbar-group space-between">
       <div class="navbar-brand">
         <!-- Back Button -->
-        <li *ngIf="showNavBackBtn" [ngClass]="{'is-hidden': (navbarService.displayingWelcomeFlowContent$ | async) === true || (navbarService.hideBackBtn$ | async) === true }" class="nav-item">
+        <li *ngIf="showNavBackBtn" [ngClass]="{'is-hidden': (navbarService.hideBackBtn$ | async) === true }" class="nav-item">
           <span class="navbar__back-btn--web hidden-sm-md" (click)="goBack()"></span>
           <!-- <span class="navbar__back-btn--mobile hidden-lg" (click)="goBack()"></span>-->
         </li>
         <!-- Logo -->
-        <ng-container *ngIf="!authService.isUserTypeCorporate || (corpBizData && !corpBizData.isCorpBiz)">
+        <ng-container *ngIf="(authService.displayCorporateLogo$ | async) === false">
           <li class="navbar__logo--primary hidden-sm-md" (click)="goToExternal('/')"></li>
           <li class="navbar__logo--secondary hidden-lg" (click)="goToExternal('/')"></li> 
         </ng-container>
-        <ng-container *ngIf="authService.isUserTypeCorporate || (corpBizData && corpBizData.isCorpBiz)">
+        <ng-container *ngIf="(authService.displayCorporateLogo$ | async) === true">
           <li class="navbar__corp--logo--primary" (click)="goToExternal('/')"></li>
         </ng-container>
         <li *ngIf="showLabel" class="navbar__separator hidden-sm-md">

@@ -15,7 +15,7 @@
         </div>
       </div>
       <div class="col-lg-5 col-md-6">
-        <div class="corpbiz-success-box mb20" *ngIf="isCorpBiz">
+        <div class="corpbiz-success-box mb20" (click)="goToPrevious()" *ngIf="isCorpBizMyInfoEnabled">
           <div class="mr10">
             <img src="assets/images/green-tick-icon.svg">
           </div>
@@ -190,8 +190,9 @@
             <div class="flex-col-7 stretch">
               <div class="form-group-floating-label"
                 [ngClass]="{'inline-error': submitted && account.mobileNumber.errors, 'disabled': isCorpBiz}">
-                <input type="number" maxlength="15" id="crtAccInpt1" #mobileNumber formControlName="mobileNumber"
+                <input *ngIf="!isCorpBiz" type="number" maxlength="15" id="crtAccInpt1" #mobileNumber formControlName="mobileNumber"
                   class="form-control" (keyup)="onlyNumber(mobileNumber)" required>
+                <input *ngIf="isCorpBiz" formControlName="mobileNumber" class="form-control">
                 <label class="form-control-placeholder" for="name">{{ 'CREATE_ACCOUNT.FORM.MOBILE_NUMBER.LABEL' |
                   translate}}</label>
               </div>

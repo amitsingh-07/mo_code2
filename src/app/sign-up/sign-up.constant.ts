@@ -118,29 +118,101 @@ export let SIGN_UP_CONFIG = {
       VALUE: 'F'
     }
   },
+  LIFE_STATUS: {
+    ALIVE: {
+      VALUE: 'A',
+      DESC: 'Alive'
+    },
+    DISEASED: {
+      VALUE: 'D',
+      DESC: 'Deceased'
+    }
+  },
+  MARITAL_STATUS: {
+    SINGLE: {
+      VALUE: 1,
+      DESC: 'Single'
+    },
+    MARRIED: {
+      VALUE: 2,
+      DESC: 'Married'
+    },
+    WIDOWED: {
+      VALUE: 3,
+      DESC: 'Widowed'
+    },
+    DIVORCED: {
+      VALUE: 5,
+      DESC: 'Divorced'
+    }
+  },
+  CPF_ACC_TYPE: {
+    MA: 'ma',
+    SA: 'sa',
+    RA: 'ra',
+    OA: 'oa'
+  },
+  RESIDENTIAL_STATUS: {
+    CITIZEN: {
+      DESC: 'Citizen',
+      VALUE: 'CITIZEN'
+    },
+    PR: {
+      DESC: 'PR',
+      VALUE: 'PR'
+    }
+  },
+  TAX_CLEARANCE: {
+    YES: {
+      VALUE: 'Y',
+      DESC: '(Clearance)'
+    }
+  },
+  VEHICLE_STATUS: {
+    LIVE: {
+      VALUE: '1',
+      DESC: 'Live'
+    },
+    DEREGISTERED: {
+      VALUE: '2',
+      DESC: 'Deregistered'
+    }
+  },
   CUSTOMER_PORTFOLIOS: {
     JOINT_ACCOUNT: {
       SATUS: 'ACTIVE'
     }
   },
   CORP_BIZ_MY_INFO_ATTRIBUTES: [
+    'uin',
     'name',
-    'email',
-    'mobileno',
-    'dob',
+    'birthcountry',
     'sex',
-    'race',
-    'marital',
-    'childrenbirthrecords',
+    'dob',
     'regadd',
-    'assessableincome',
-    'assessyear',
-    'occupation',
-    'vehno',
-    'cpfbalances'
+    'residentialstatus',
+    'cpfbalances',
+    'cpfhousingwithdrawal',
+    'noahistory',
+    'hdbOwnerships',
+    'vehicles',
+    'childrenbirthrecords.name',
+    'childrenbirthrecords.sex',
+    'childrenbirthrecords.dob',
+    'childrenbirthrecords.lifestatus',
+    'childrenbirthrecords.residentialstatus',
+    'sponsoredchildrenrecords.name',
+    'sponsoredchildrenrecords.sex',
+    'sponsoredchildrenrecords.dob',
+    'sponsoredchildrenrecords.lifestatus',
+    'sponsoredchildrenrecords.residentialstatus'
   ],
+  EXCLUDABLE_CORP_BIZ_MY_INFO_ATTRIBUTES: {
+    CPF_BALANCES: 'cpfbalances',
+    VEHICLES: 'vehicles'
+  },
   ACC_TYPE_CORPBIZ: 'corpbiz',
-  CORP_BIZ_ACTIVATIONLINK:{
+  CORP_BIZ_ACTIVATIONLINK: {
     INVALID_USER: 'invalid-user',
     LINK_EXPIRED: 'link-expired',
     ACC_EXIST: 'account-exists'

@@ -8,6 +8,8 @@ export interface ISignUp {
     userType: string;
     accountCreationType:string;
     organisationCode?: string;
+    enrolmentId?: number;
+    isCorpBizEnrollUser?: boolean;
 }
 
 export interface IEnquiryUpdate {
@@ -86,4 +88,12 @@ export interface CustomerJointAccountInfo {
     customerPortfolioId: number;
     accountType: string;
     customerPortfolioName: string;
+}
+
+export interface ICorpBizData {
+    isCorpBiz: boolean;
+    email: string;
+    maskedMobileNumber: string;
+    enrollmentId: number;
+    mobileNumber: number;
 }
