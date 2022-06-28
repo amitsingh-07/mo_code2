@@ -74,6 +74,7 @@ export class SignUpFormData {
   birthCountry: any;
   hdbProperty: any;
   vehicles: any;
+  ownershipStatus: string;
 }
 
 export class CPFBalances {
@@ -99,6 +100,7 @@ export class CPFWithdrawal {
   installmentAmount: number | null;
   acruedInterest: number | null;
   totalCPFAmount: number | null;
+  withdrawalAddress: string;
 }
 
 export class Child {

@@ -19,6 +19,7 @@ import { Child, CPFWithdrawal, SignUpFormData } from './sign-up-form-data';
 import { SIGN_UP_CONFIG } from './sign-up.constant';
 import { InvestmentAccountService } from '../investment/investment-account/investment-account-service';
 import { appConstants } from '../app.constants';
+import { Util } from '../shared/utils/util';
 
 const SIGNUP_SESSION_STORAGE_KEY = 'app_signup_session_storage_key';
 const CUSTOMER_REF_SESSION_STORAGE_KEY = 'app_customer_ref_session_storage_key';
@@ -781,6 +782,8 @@ export class SignUpService {
     this.setCorpBizMyInfoData(data);
     this.setPropertyData(data?.hdbOwnerships);
     this.setVehicleData(data?.vehicles);
+    this.setMaritalStatus(data);
+    this.setOwnershipStatus(data?.ownerprivate);
 
     this.signUpFormData.isMyInfoEnabled = true;
     this.signUpFormData.disableAttributes = this.disableAttributes;
@@ -798,6 +801,28 @@ export class SignUpService {
       disable = false;
     }
     return disable;
+  }
+
+  setMaritalStatus(data) {
+    if (data.marital) {
+      if (data.marital.desc === SIGN_UP_CONFIG.MARITAL_STATUS.SINGLE.DESC.toUpperCase()) {
+        this.signUpFormData.marital = SIGN_UP_CONFIG.MARITAL_STATUS.SINGLE.DESC
+      } else if (data.marital.desc === SIGN_UP_CONFIG.MARITAL_STATUS.MARRIED.DESC.toUpperCase()) {
+        this.signUpFormData.marital = SIGN_UP_CONFIG.MARITAL_STATUS.MARRIED.DESC
+      } else if (data.marital.desc === SIGN_UP_CONFIG.MARITAL_STATUS.WIDOWED.DESC.toUpperCase()) {
+        this.signUpFormData.marital = SIGN_UP_CONFIG.MARITAL_STATUS.WIDOWED.DESC
+      } else if (data.marital.desc === SIGN_UP_CONFIG.MARITAL_STATUS.DIVORCED.DESC.toUpperCase()) {
+        this.signUpFormData.marital = SIGN_UP_CONFIG.MARITAL_STATUS.DIVORCED.DESC
+      } else {
+        this.signUpFormData.marital = null;
+      }
+    }
+  }
+
+  setOwnershipStatus(data) {
+    if (data && !Util.isEmptyOrNull(data.value)) {
+      this.signUpFormData.ownershipStatus = data.value == 'true' ? SIGN_UP_CONFIG.OWNERSHIP_STATUS.YES.VALUE : SIGN_UP_CONFIG.OWNERSHIP_STATUS.NO.VALUE;
+    }
   }
 
   setVehicleData(vehicles) {
@@ -854,7 +879,8 @@ export class SignUpService {
           withdrawalAmount: element.principalwithdrawalamt,
           installmentAmount: element.monthlyinstalmentamt,
           acruedInterest: element.accruedinterestamt,
-          totalCPFAmount: element.totalamountofcpfallowedforproperty
+          totalCPFAmount: element.totalamountofcpfallowedforproperty,
+          withdrawalAddress: element.address?.formattedSingleLineAddress
         });
       });
       this.signUpFormData.cpfhousingwithdrawal = cpfHousingData;
