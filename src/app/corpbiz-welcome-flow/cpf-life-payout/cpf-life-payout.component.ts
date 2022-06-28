@@ -1,9 +1,11 @@
 import { Component, OnInit, ViewChild, ViewEncapsulation } from '@angular/core';
+import { Router } from '@angular/router';
 import { TranslateService } from '@ngx-translate/core';
 import { Subscription } from 'rxjs';
 import { ComprehensiveService } from '../../comprehensive/comprehensive.service';
 import { FooterService } from '../../shared/footer/footer.service';
 import { NavbarService } from '../../shared/navbar/navbar.service';
+import { CORPBIZ_ROUTES_PATHS } from '../corpbiz-welcome-flow.routes.constants';
 
 @Component({
   selector: 'app-cpf-life-payout',
@@ -19,6 +21,7 @@ export class CpfLifePayoutComponent implements OnInit {
     private footerService: FooterService,
     private navbarService: NavbarService,
     private translate: TranslateService,
+    private router: Router,
     public comprehensiveService: ComprehensiveService) {
       this.translate.use('en');
      }
@@ -33,5 +36,8 @@ export class CpfLifePayoutComponent implements OnInit {
     this.subscription.unsubscribe();
   }
 
+  goNext() {
+    this.router.navigate([CORPBIZ_ROUTES_PATHS.DOWNLOAD_REPORT]);
+  }
 }
 

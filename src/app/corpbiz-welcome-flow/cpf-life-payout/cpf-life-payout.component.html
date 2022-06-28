@@ -15,6 +15,6 @@
         </div>
         <div>{{'LIFE_PAYOUT.DESC' | translate}} </div>
             <button type="button" class="flex btn btn__footer--fixed btn-primary"
-            id="intro-continue"  routerLink="/welcome-journey/download-report">{{'LIFE_PAYOUT.CONT_BTN' | translate}}</button>
+            id="intro-continue" (click)="goNext()">{{'LIFE_PAYOUT.CONT_BTN' | translate}}</button>
     </div>
   </div>  

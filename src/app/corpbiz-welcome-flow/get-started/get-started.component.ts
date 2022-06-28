@@ -1,8 +1,10 @@
 import { Component, OnInit, ViewChild, ViewEncapsulation } from '@angular/core';
+import { Router } from '@angular/router';
 import { TranslateService } from '@ngx-translate/core';
 import { Subscription } from 'rxjs';
 import { FooterService } from '../../shared/footer/footer.service';
 import { NavbarService } from '../../shared/navbar/navbar.service';
+import { CORPBIZ_ROUTES_PATHS } from '../corpbiz-welcome-flow.routes.constants';
 
 @Component({
   selector: 'app-get-started',
@@ -16,6 +18,7 @@ export class GetStartedComponent implements OnInit {
   constructor(
     private footerService: FooterService,
     private navbarService: NavbarService,
+    private router: Router,
     private readonly translate: TranslateService
   ) { 
     this.translate.use('en');
@@ -31,4 +34,7 @@ export class GetStartedComponent implements OnInit {
     this.subscription.unsubscribe();
   }
 
+  goNext() {
+    this.router.navigate([CORPBIZ_ROUTES_PATHS.TELL_ABOUT_YOU]);
+  }
 }
