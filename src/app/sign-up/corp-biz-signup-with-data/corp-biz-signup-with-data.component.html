@@ -7,7 +7,8 @@
                     <h2 class="corpbiz-data-wrapper__title order1 sm-order2 hidden-sm">{{ 'CREATE_ACCOUNT_MY_INFO.TITLE'
                         |translate}}
                     </h2>
-                    <div class="desc order2 hidden-sm corpbiz-data-wrapper__sub-title">{{ 'CREATE_ACCOUNT_MY_INFO.DESCRIPTION_THREE' | translate}}</div>
+                    <div class="desc order2 hidden-sm corpbiz-data-wrapper__sub-title">{{
+                        'CREATE_ACCOUNT_MY_INFO.DESCRIPTION_THREE' | translate}}</div>
                     <img class="create_account__header-icon order3 sm-order1" src="assets/images/sign-up-myinfo.svg" />
                 </div>
             </div>
@@ -60,15 +61,6 @@
                                             </div>
                                             <div>
                                                 <div>
-                                                    {{'CORP_BIZ_SIGN_UP.MY_INFO_MODAL.MODAL_ATTR.PERSONAL.BIRTH_COUNTRY_TEXT'
-                                                    | translate}}</div>
-                                                <div class="data_lbl text-capitalise">{{
-                                                    corpBizMyInfoData?.birthCountry?.name.toLowerCase() ||
-                                                    '-'}}&nbsp;
-                                                </div>
-                                            </div>
-                                            <div>
-                                                <div>
                                                     {{'CORP_BIZ_SIGN_UP.MY_INFO_MODAL.MODAL_ATTR.PERSONAL.RESIDENCE_TEXT'
                                                     | translate}}</div>
                                                 <div class="data_lbl">{{ corpBizMyInfoData.residentialstatus || '-'}}
@@ -105,6 +97,11 @@
                                     </ng-template>
                                     <ng-template ngbPanelContent>
                                         <div class="myinfo-data-content">
+                                            <div class="mb10">
+                                                <div>{{'CORP_BIZ_SIGN_UP.MY_INFO_MODAL.MODAL_ATTR.FAMILY.MARITAL_TEXT' |
+                                                    translate}}</div>
+                                                <div class="data_lbl">{{ corpBizMyInfoData.marital || '-'}}</div>
+                                            </div>
                                             <!-- Child Data -->
                                             <ng-container
                                                 *ngIf="childrenRecords && childrenRecords.length > 0; else childBlankRecord">
@@ -134,13 +131,6 @@
                                                             translate}}</div>
                                                         <div class="data_lbl text-capitalise">{{child.gender || '-'}}
                                                         </div>
-                                                    </div>
-                                                    <div>
-                                                        <div>
-                                                            {{'CORP_BIZ_SIGN_UP.MY_INFO_MODAL.MODAL_ATTR.FAMILY.CHILD.RESIDENTIAL_TEXT'
-                                                            |
-                                                            translate}}</div>
-                                                        <div class="data_lbl">{{ child.residentialStatus || '-'}}</div>
                                                     </div>
                                                     <div>
                                                         <div>
@@ -286,96 +276,104 @@
                                             <div><i class='arrow'></i></div>
                                         </div>
                                     </ng-template>
-                                    <ng-template ngbPanelContent
-                                        *ngIf="hdbProperty && hdbProperty.length > 0; else showHDBBlankGroup">
-                                        <div class="myinfo-data-content"
-                                            *ngFor="let house of hdbProperty; let i = index">
-                                            <div class="iterable-key-text mb10" [ngClass]="{'mt10': i > 0}"
-                                                *ngIf="hdbProperty.length > 1">
-                                                {{'CORP_BIZ_SIGN_UP.MY_INFO_MODAL.ITERATABLE_KEYS.HDB_OWNERSHIP' |
-                                                translate}} {{i + 1}}</div>
-                                            <div>
-                                                <div>
-                                                    {{'CORP_BIZ_SIGN_UP.MY_INFO_MODAL.MODAL_ATTR.PROPERTY.HDB_TEXT.PURCHASE_DATE_TEXT'
+                                    <ng-template ngbPanelContent>
+                                        <div class="myinfo-data-content mb10">
+                                            <div>{{'CORP_BIZ_SIGN_UP.MY_INFO_MODAL.MODAL_ATTR.PROPERTY.OWNERSHIP_STATUS' |
+                                                translate}}</div>
+                                            <div class="data_lbl">{{ corpBizMyInfoData.ownershipStatus || '-'}}</div>
+                                        </div>
+                                        <ng-container
+                                            *ngIf="hdbProperty && hdbProperty.length > 0; else showHDBBlankGroup">
+                                            <div class="myinfo-data-content"
+                                                *ngFor="let house of hdbProperty; let i = index">
+                                                <div class="iterable-key-text mb10" [ngClass]="{'mt10': i > 0}"
+                                                    *ngIf="hdbProperty.length > 1">
+                                                    {{'CORP_BIZ_SIGN_UP.MY_INFO_MODAL.ITERATABLE_KEYS.HDB_OWNERSHIP'
                                                     |
-                                                    translate}}</div>
-                                                <div class="data_lbl">{{ house.dateOfPurchase || '-'}}</div>
-                                            </div>
-                                            <div>
+                                                    translate}} {{i + 1}}</div>
                                                 <div>
-                                                    {{'CORP_BIZ_SIGN_UP.MY_INFO_MODAL.MODAL_ATTR.PROPERTY.HDB_TEXT.LOAN_TEXT'
-                                                    |
-                                                    translate}}</div>
-                                                <div class="data_lbl">{{ (house?.loanGranted |
-                                                    currencyEditor:'USD':'':'symbol-narrow') || '-'}}</div>
-                                            </div>
-                                            <div>
+                                                    <div>
+                                                        {{'CORP_BIZ_SIGN_UP.MY_INFO_MODAL.MODAL_ATTR.PROPERTY.HDB_TEXT.PURCHASE_DATE_TEXT'
+                                                        |
+                                                        translate}}</div>
+                                                    <div class="data_lbl">{{ house.dateOfPurchase || '-'}}</div>
+                                                </div>
                                                 <div>
-                                                    {{'CORP_BIZ_SIGN_UP.MY_INFO_MODAL.MODAL_ATTR.PROPERTY.HDB_TEXT.OUTSTANDING_LOAN_TEXT'
-                                                    |
-                                                    translate}}</div>
-                                                <div class="data_lbl">{{ (house.outstandingLoanBalance |
-                                                    currencyEditor:'USD':'':'symbol-narrow')
-                                                    || '-'}}
+                                                    <div>
+                                                        {{'CORP_BIZ_SIGN_UP.MY_INFO_MODAL.MODAL_ATTR.PROPERTY.HDB_TEXT.LOAN_TEXT'
+                                                        |
+                                                        translate}}</div>
+                                                    <div class="data_lbl">{{ (house?.loanGranted |
+                                                        currencyEditor:'USD':'':'symbol-narrow') || '-'}}</div>
+                                                </div>
+                                                <div>
+                                                    <div>
+                                                        {{'CORP_BIZ_SIGN_UP.MY_INFO_MODAL.MODAL_ATTR.PROPERTY.HDB_TEXT.OUTSTANDING_LOAN_TEXT'
+                                                        |
+                                                        translate}}</div>
+                                                    <div class="data_lbl">{{ (house.outstandingLoanBalance |
+                                                        currencyEditor:'USD':'':'symbol-narrow')
+                                                        || '-'}}
+                                                    </div>
+                                                </div>
+                                                <div>
+                                                    <div>
+                                                        {{'CORP_BIZ_SIGN_UP.MY_INFO_MODAL.MODAL_ATTR.PROPERTY.HDB_TEXT.MONTHLY_LOAN_TEXT'
+                                                        |
+                                                        translate}}</div>
+                                                    <div class="data_lbl">{{ (house.monthlyLoanInstalment |
+                                                        currencyEditor:'USD':'':'symbol-narrow')
+                                                        || '-'}}
+                                                    </div>
+                                                </div>
+                                                <div>
+                                                    <div>
+                                                        {{'CORP_BIZ_SIGN_UP.MY_INFO_MODAL.MODAL_ATTR.PROPERTY.HDB_TEXT.LEASE_TEXT'
+                                                        |
+                                                        translate}}</div>
+                                                    <div class="data_lbl">{{ house.leaseCommenceDate || '-'}}</div>
                                                 </div>
                                             </div>
-                                            <div>
+                                        </ng-container>
+                                        <ng-template ngbPanelContent #showHDBBlankGroup>
+                                            <div class="myinfo-data-content">
                                                 <div>
-                                                    {{'CORP_BIZ_SIGN_UP.MY_INFO_MODAL.MODAL_ATTR.PROPERTY.HDB_TEXT.MONTHLY_LOAN_TEXT'
-                                                    |
-                                                    translate}}</div>
-                                                <div class="data_lbl">{{ (house.monthlyLoanInstalment |
-                                                    currencyEditor:'USD':'':'symbol-narrow')
-                                                    || '-'}}
+                                                    <div>
+                                                        {{'CORP_BIZ_SIGN_UP.MY_INFO_MODAL.MODAL_ATTR.PROPERTY.HDB_TEXT.PURCHASE_DATE_TEXT'
+                                                        |
+                                                        translate}}</div>
+                                                    <div class="data_lbl">-</div>
+                                                </div>
+                                                <div>
+                                                    <div>
+                                                        {{'CORP_BIZ_SIGN_UP.MY_INFO_MODAL.MODAL_ATTR.PROPERTY.HDB_TEXT.LOAN_TEXT'
+                                                        |
+                                                        translate}}</div>
+                                                    <div class="data_lbl">-</div>
+                                                </div>
+                                                <div>
+                                                    <div>
+                                                        {{'CORP_BIZ_SIGN_UP.MY_INFO_MODAL.MODAL_ATTR.PROPERTY.HDB_TEXT.OUTSTANDING_LOAN_TEXT'
+                                                        |
+                                                        translate}}</div>
+                                                    <div class="data_lbl">-</div>
+                                                </div>
+                                                <div>
+                                                    <div>
+                                                        {{'CORP_BIZ_SIGN_UP.MY_INFO_MODAL.MODAL_ATTR.PROPERTY.HDB_TEXT.MONTHLY_LOAN_TEXT'
+                                                        |
+                                                        translate}}</div>
+                                                    <div class="data_lbl">-</div>
+                                                </div>
+                                                <div>
+                                                    <div>
+                                                        {{'CORP_BIZ_SIGN_UP.MY_INFO_MODAL.MODAL_ATTR.PROPERTY.HDB_TEXT.LEASE_TEXT'
+                                                        |
+                                                        translate}}</div>
+                                                    <div class="data_lbl">-</div>
                                                 </div>
                                             </div>
-                                            <div>
-                                                <div>
-                                                    {{'CORP_BIZ_SIGN_UP.MY_INFO_MODAL.MODAL_ATTR.PROPERTY.HDB_TEXT.LEASE_TEXT'
-                                                    |
-                                                    translate}}</div>
-                                                <div class="data_lbl">{{ house.leaseCommenceDate || '-'}}</div>
-                                            </div>
-                                        </div>
-                                    </ng-template>
-                                    <ng-template ngbPanelContent #showHDBBlankGroup>
-                                        <div class="myinfo-data-content">
-                                            <div>
-                                                <div>
-                                                    {{'CORP_BIZ_SIGN_UP.MY_INFO_MODAL.MODAL_ATTR.PROPERTY.HDB_TEXT.PURCHASE_DATE_TEXT'
-                                                    |
-                                                    translate}}</div>
-                                                <div class="data_lbl">-</div>
-                                            </div>
-                                            <div>
-                                                <div>
-                                                    {{'CORP_BIZ_SIGN_UP.MY_INFO_MODAL.MODAL_ATTR.PROPERTY.HDB_TEXT.LOAN_TEXT'
-                                                    |
-                                                    translate}}</div>
-                                                <div class="data_lbl">-</div>
-                                            </div>
-                                            <div>
-                                                <div>
-                                                    {{'CORP_BIZ_SIGN_UP.MY_INFO_MODAL.MODAL_ATTR.PROPERTY.HDB_TEXT.OUTSTANDING_LOAN_TEXT'
-                                                    |
-                                                    translate}}</div>
-                                                <div class="data_lbl">-</div>
-                                            </div>
-                                            <div>
-                                                <div>
-                                                    {{'CORP_BIZ_SIGN_UP.MY_INFO_MODAL.MODAL_ATTR.PROPERTY.HDB_TEXT.MONTHLY_LOAN_TEXT'
-                                                    |
-                                                    translate}}</div>
-                                                <div class="data_lbl">-</div>
-                                            </div>
-                                            <div>
-                                                <div>
-                                                    {{'CORP_BIZ_SIGN_UP.MY_INFO_MODAL.MODAL_ATTR.PROPERTY.HDB_TEXT.LEASE_TEXT'
-                                                    |
-                                                    translate}}</div>
-                                                <div class="data_lbl">-</div>
-                                            </div>
-                                        </div>
+                                        </ng-template>
                                     </ng-template>
                                 </ngb-panel>
                                 <ngb-panel>
@@ -481,28 +479,32 @@
                                                     {{'CORP_BIZ_SIGN_UP.MY_INFO_MODAL.MODAL_ATTR.CPF_ACC_BAL.ORDINARY_ACC_TEXT'
                                                     |
                                                     translate}}</div>
-                                                <div class="data_lbl">{{ (cpfBalances.oa | currencyEditor:'USD':'':'symbol-narrow') || '-'}}</div>
+                                                <div class="data_lbl">{{ (cpfBalances.oa |
+                                                    currencyEditor:'USD':'':'symbol-narrow') || '-'}}</div>
                                             </div>
                                             <div>
                                                 <div>
                                                     {{'CORP_BIZ_SIGN_UP.MY_INFO_MODAL.MODAL_ATTR.CPF_ACC_BAL.SPECIAL_ACC_TEXT'
                                                     |
                                                     translate}}</div>
-                                                <div class="data_lbl">{{ (cpfBalances.sa | currencyEditor:'USD':'':'symbol-narrow') || '-'}}&nbsp;</div>
+                                                <div class="data_lbl">{{ (cpfBalances.sa |
+                                                    currencyEditor:'USD':'':'symbol-narrow') || '-'}}&nbsp;</div>
                                             </div>
                                             <div>
                                                 <div>
                                                     {{'CORP_BIZ_SIGN_UP.MY_INFO_MODAL.MODAL_ATTR.CPF_ACC_BAL.MEDISAFE_ACC_TEXT'
                                                     |
                                                     translate}}</div>
-                                                <div class="data_lbl">{{ (cpfBalances.ma | currencyEditor:'USD':'':'symbol-narrow') || '-'}}</div>
+                                                <div class="data_lbl">{{ (cpfBalances.ma |
+                                                    currencyEditor:'USD':'':'symbol-narrow') || '-'}}</div>
                                             </div>
                                             <div>
                                                 <div>
                                                     {{'CORP_BIZ_SIGN_UP.MY_INFO_MODAL.MODAL_ATTR.CPF_ACC_BAL.RETIREMENT_ACC_TEXT'
                                                     |
                                                     translate}}</div>
-                                                <div class="data_lbl">{{ (cpfBalances.ra | currencyEditor:'USD':'':'symbol-narrow') || '-' }}</div>
+                                                <div class="data_lbl">{{ (cpfBalances.ra |
+                                                    currencyEditor:'USD':'':'symbol-narrow') || '-' }}</div>
                                             </div>
                                         </div>
                                     </ng-template>
@@ -554,6 +556,13 @@
                                                         translate}}</div>
                                                     <div class="data_lbl">{{ (housingData.totalCPFAmount |
                                                         currencyEditor:'USD':'':'symbol-narrow') || '-'}}</div>
+                                                </div>
+                                                <div>
+                                                    <div>
+                                                        {{'CORP_BIZ_SIGN_UP.MY_INFO_MODAL.MODAL_ATTR.CPF_HOUSING.WITHDRAWAL_ADDRESS'
+                                                        |
+                                                        translate}}</div>
+                                                    <div class="data_lbl">{{ housingData.withdrawalAddress || '-'}}</div>
                                                 </div>
                                             </div>
                                         </div>

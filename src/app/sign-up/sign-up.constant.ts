@@ -183,9 +183,19 @@ export let SIGN_UP_CONFIG = {
       SATUS: 'ACTIVE'
     }
   },
+  OWNERSHIP_STATUS: {
+    YES: {
+      VALUE: 'Yes'
+    },
+    NO: {
+      VALUE: 'No'
+    }
+  },
   CORP_BIZ_MY_INFO_ATTRIBUTES: [
     'uin',
     'name',
+    // 'marital',
+    // 'ownerprivate',
     'birthcountry',
     'sex',
     'dob',
@@ -200,7 +210,6 @@ export let SIGN_UP_CONFIG = {
     'childrenbirthrecords.sex',
     'childrenbirthrecords.dob',
     'childrenbirthrecords.lifestatus',
-    'childrenbirthrecords.residentialstatus',
     'sponsoredchildrenrecords.name',
     'sponsoredchildrenrecords.sex',
     'sponsoredchildrenrecords.dob',

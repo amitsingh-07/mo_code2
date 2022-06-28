@@ -99,6 +99,7 @@
         },
         "PROPERTY": {
           "TITLE": "Property",
+          "OWNERSHIP_STATUS": "Ownership of Private Residential Property",
           "HDB_TEXT": {
             "PURCHASE_DATE_TEXT": "HDB Ownership - Date of Purchase",
             "LOAN_TEXT": "HDB Ownership - Loan Granted",
@@ -132,7 +133,8 @@
           "WITHDRAWAL_ACC_TEXT": "Principal withdrawal amount",
           "MONTHLY_EMI_TEXT": "Monthly Installment Amount",
           "INTEREST_TEXT": "Acrued Interest Amount",
-          "CPF_AMOUNT_TEXT": "Total Amount of CPF Used for Property"
+          "CPF_AMOUNT_TEXT": "Total Amount of CPF Used for Property",
+          "WITHDRAWAL_ADDRESS": "CPF Housing Withdrawal Address"
         },
         "VEHICLES": {
           "TITLE": "Vehicles & Driving",

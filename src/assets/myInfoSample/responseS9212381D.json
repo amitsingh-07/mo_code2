@@ -103,13 +103,24 @@
             "lastupdated": "2022-06-14T16:00:00.000+0000",
             "desc": null
          },
-         "marital": null,
+         "marital": {
+            "lastupdated": "2022-06-02",
+            "code": "2",
+            "source": "1",
+            "classification": "C",
+            "desc": "MARRIED"
+         },
          "edulevel": null,
          "occupation": null,
          "employment": null,
          "assessableincome": null,
          "householdincome": null,
-         "ownerprivate": null,
+         "ownerprivate": {
+            "lastupdated": "2022-06-02",
+            "source": "1",
+            "classification": "C",
+            "value": "true"
+         },
          "assessyear": null,
          "cpfbalances": {
             "oa": 58839.75,
