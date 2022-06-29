@@ -5,12 +5,12 @@ import { GetStartedComponent } from './get-started/get-started.component';
 import { TellAboutYouComponent } from './tell-about-you/tell-about-you.component';
 import { CpfLifePayoutComponent } from './cpf-life-payout/cpf-life-payout.component';
 import { DownloadReportComponent } from './download-report/download-report.component';
-import { AuthGuardService as AuthGuard  } from '../sign-up/auth-guard.service';
+import { CorpbizAuthGuardService as CorpbizAuthGuard } from '../sign-up/auth-guard.service';
 
 const routes: Routes = [
   {
     path: '',
-    canActivate: [AuthGuard],
+    canActivate: [CorpbizAuthGuard],
     children: [
       { path: CORPBIZ_ROUTES.TELL_ABOUT_YOU, component: TellAboutYouComponent },
       { path: CORPBIZ_ROUTES.LIFE_PAYOUT , component: CpfLifePayoutComponent },
