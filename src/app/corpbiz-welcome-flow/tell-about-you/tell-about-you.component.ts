@@ -125,7 +125,7 @@ export class TellAboutYouComponent implements OnInit {
   if (this.sliderValid.minAge && this.sliderValid.userAge) {
       let payload = this.formObject.value;
       payload.retirementAge = payload.retirementAge.toString();
-      payload.cashInBank = (payload.cashInBank).toFixed(2);
+      payload.cashInBank = parseFloat((payload.cashInBank).toFixed(2));
       this.comprehensiveApiService.generateReport(payload).subscribe(res => {
         if (res.responseMessage && res.responseMessage.responseCode == 6000) {
           this.comprehensiveService.cpfPayoutAmount = res.objectList.monthlyPayout;
