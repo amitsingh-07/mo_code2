@@ -95,7 +95,10 @@ export class TellAboutYouComponent implements OnInit {
     this.sliderValid = { minAge: true, userAge: true };
     this.sliderValue = value;
     if (this.sliderValue >= COMPREHENSIVE_CONST.RETIREMENT_PLAN.MIN_AGE && this.sliderValue < this.userAge) {
-      this.sliderValue = this.userAge;
+      this.sliderValid.userAge = false;
+    } else if (this.sliderValue >= COMPREHENSIVE_CONST.RETIREMENT_PLAN.MIN_AGE
+      && this.sliderValue <= COMPREHENSIVE_CONST.RETIREMENT_PLAN.MAX_AGE && this.sliderValue >= this.userAge) {
+      this.sliderValue = this.sliderValue;
       this.ciMultiplierSlider.writeValue(this.sliderValue);
       this.formObject.get('retirementAge').patchValue(this.sliderValue);
     }
@@ -119,12 +122,13 @@ export class TellAboutYouComponent implements OnInit {
   }
 
   generateReport() {
-    if (this.sliderValid.minAge && this.sliderValid.userAge) {
+  if (this.sliderValid.minAge && this.sliderValid.userAge) {
       let payload = this.formObject.value;
       payload.retirementAge = payload.retirementAge.toString();
+      payload.cashInBank = parseFloat((payload.cashInBank).toFixed(2));
       this.comprehensiveApiService.generateReport(payload).subscribe(res => {
         if (res.responseMessage && res.responseMessage.responseCode == 6000) {
-          this.comprehensiveService.cpfPayoutAmount = res.objectList.showMe;
+          this.comprehensiveService.cpfPayoutAmount = res.objectList.monthlyPayout;
           this.router.navigate([CORPBIZ_ROUTES_PATHS.LIFE_PAYOUT]);
         }
       })

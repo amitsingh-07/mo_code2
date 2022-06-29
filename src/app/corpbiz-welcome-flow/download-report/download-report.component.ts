@@ -84,5 +84,4 @@ export class DownloadReportComponent implements OnInit {
   ngOnDestroy() {
     this.subscription.unsubscribe();
   }
-  
 }

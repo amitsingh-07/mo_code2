@@ -27,7 +27,7 @@ export class CorpBizSignupWithDataComponent implements OnInit {
   hdbProperty = [];
   vehicles = [];
   cpfBalances: CPFBalances;
-  taxClearanceConsts = SIGN_UP_CONFIG.TAX_CLEARANCE
+  taxClearanceConsts = SIGN_UP_CONFIG.TAX_CLEARANCE;
   constructor(
     private router: Router,
     public navbarService: NavbarService,
