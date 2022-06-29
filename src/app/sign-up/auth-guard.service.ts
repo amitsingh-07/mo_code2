@@ -179,3 +179,27 @@ export class CorpbizAuthGuardService implements CanActivate {
     return true;
   }
 }
+
+@Injectable({
+  providedIn: 'root'
+})
+
+export class CorpbizWelcomeFlowAuthGuardService implements CanActivate {
+  constructor(private route: Router,
+    private authService: AuthenticationService,
+    private appService: AppService
+  ) {
+  }
+  canActivate(): boolean {
+    if (!this.authService.isSignedUser()) {
+      if (this.appService.getCorporateDetails() && this.appService.getCorporateDetails().organisationEnabled) {
+        this.route.navigate([SIGN_UP_ROUTE_PATHS.CORPORATE_LOGIN], { queryParams: { orgID: this.appService.getCorporateDetails().uuid } });
+      } else {
+        this.route.navigate([SIGN_UP_ROUTE_PATHS.LOGIN]);
+      }
+      return false;
+    }
+    this.authService.displayCorporateLogo$.next(true);
+    return true;
+  }
+}
