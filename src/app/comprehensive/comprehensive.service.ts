@@ -62,6 +62,7 @@ export class ComprehensiveService {
   private progressWrapper: IProgressTrackerWrapper;
   private getStartedStyle = 'get-started';
   cpfPayoutAmount: number = 0;
+  welcomeFlowRetirementAge: number = 0;
 
   constructor(
     private http: HttpClient,
