@@ -171,7 +171,7 @@ export class CorpbizAuthGuardService implements CanActivate {
   ) {
   }
   canActivate(): boolean {
-    if(!this.appService.getCorpBizData() && !this.authService.isShowWelcomeFlow) {
+    if(!this.appService.getCorpBizData()) {
       this.route.navigate([SIGN_UP_ROUTE_PATHS.CORP_BIZ_ACTIVATIONLINK]);
       return false;
     }
