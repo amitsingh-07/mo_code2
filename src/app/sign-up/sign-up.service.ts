@@ -15,7 +15,7 @@ import {
 import { RegexConstants } from '../shared/utils/api.regex.constants';
 import { CryptoService } from '../shared/utils/crypto';
 import { CreateAccountFormError } from './create-account/create-account-form-error';
-import { Child, CPFWithdrawal, SignUpFormData } from './sign-up-form-data';
+import { Child, CorpBizUserMyInfoData, CPFWithdrawal, SignUpFormData } from './sign-up-form-data';
 import { SIGN_UP_CONFIG } from './sign-up.constant';
 import { InvestmentAccountService } from '../investment/investment-account/investment-account-service';
 import { appConstants } from '../app.constants';
@@ -35,6 +35,7 @@ const EMAIL = 'email';
 const FINLITENABLED = 'finlitenabled';
 const USER_MOBILE_COUNTRY_CODE = 'user_mobile_country_code';
 const NEW_UPDATES_MODAL_SHOWN = 'new_updates_modal_shown';
+const CORP_BIZ_USER_MYINFO_SESSION_STORAGE_KEY = 'app_corpbiz_myinfo_storage_key';
 
 @Injectable({
   providedIn: 'root'
@@ -45,6 +46,7 @@ export class SignUpService {
   private userSubject = new Subject();
   userObservable$ = this.userSubject.asObservable();
   private signUpFormData: SignUpFormData = new SignUpFormData();
+  private corpBizUserMyInfoData: CorpBizUserMyInfoData = new CorpBizUserMyInfoData();
   private createAccountFormError: any = new CreateAccountFormError();
   private resetPasswordUrl: string;
   private resetPasswordCorpUrl: string;
@@ -77,6 +79,22 @@ export class SignUpService {
     if (window.sessionStorage) {
       sessionStorage.setItem(SIGNUP_SESSION_STORAGE_KEY, JSON.stringify(this.signUpFormData));
     }
+  }
+
+  /**
+   * save corpbiz user MyInfo data in session storage.
+   */
+   commitCorpBizUserInfo() {
+    if (window.sessionStorage) {
+      sessionStorage.setItem(CORP_BIZ_USER_MYINFO_SESSION_STORAGE_KEY, JSON.stringify(this.corpBizUserMyInfoData));
+    }
+  }
+
+  getCorpBizUserMyInfoData(): CorpBizUserMyInfoData {
+    if (window.sessionStorage && sessionStorage.getItem(CORP_BIZ_USER_MYINFO_SESSION_STORAGE_KEY)) {
+      this.corpBizUserMyInfoData = JSON.parse(sessionStorage.getItem(CORP_BIZ_USER_MYINFO_SESSION_STORAGE_KEY));
+    }
+    return this.corpBizUserMyInfoData;
   }
 
   /**
@@ -776,14 +794,6 @@ export class SignUpService {
       this.signUpFormData.gender = SIGN_UP_CONFIG.GENDER.FEMALE.DESC;
       this.disableAttributes.push('gender');
     }
-    if (data.birthcountry && data.birthcountry.countryDetails) {
-      this.signUpFormData.birthCountry = this.investmentAccountService.getCountryObject(data.birthcountry.countryDetails);
-    }
-    this.setCorpBizMyInfoData(data);
-    this.setPropertyData(data?.hdbOwnerships);
-    this.setVehicleData(data?.vehicles);
-    this.setMaritalStatus(data);
-    this.setOwnershipStatus(data?.ownerprivate);
 
     this.signUpFormData.isMyInfoEnabled = true;
     this.signUpFormData.disableAttributes = this.disableAttributes;
@@ -803,25 +813,34 @@ export class SignUpService {
     return disable;
   }
 
+  loadCorpBizUserMyInfoData(data) {
+    this.setCorpBizMyInfoData(data);
+    this.setPropertyData(data?.hdbOwnerships);
+    this.setVehicleData(data?.vehicles);
+    this.setMaritalStatus(data);
+    this.setOwnershipStatus(data?.ownerprivate);
+    this.commitCorpBizUserInfo();
+  }
+
   setMaritalStatus(data) {
     if (data.marital) {
       if (data.marital.desc === SIGN_UP_CONFIG.MARITAL_STATUS.SINGLE.DESC.toUpperCase()) {
-        this.signUpFormData.marital = SIGN_UP_CONFIG.MARITAL_STATUS.SINGLE.DESC
+        this.corpBizUserMyInfoData.marital = SIGN_UP_CONFIG.MARITAL_STATUS.SINGLE.DESC
       } else if (data.marital.desc === SIGN_UP_CONFIG.MARITAL_STATUS.MARRIED.DESC.toUpperCase()) {
-        this.signUpFormData.marital = SIGN_UP_CONFIG.MARITAL_STATUS.MARRIED.DESC
+        this.corpBizUserMyInfoData.marital = SIGN_UP_CONFIG.MARITAL_STATUS.MARRIED.DESC
       } else if (data.marital.desc === SIGN_UP_CONFIG.MARITAL_STATUS.WIDOWED.DESC.toUpperCase()) {
-        this.signUpFormData.marital = SIGN_UP_CONFIG.MARITAL_STATUS.WIDOWED.DESC
+        this.corpBizUserMyInfoData.marital = SIGN_UP_CONFIG.MARITAL_STATUS.WIDOWED.DESC
       } else if (data.marital.desc === SIGN_UP_CONFIG.MARITAL_STATUS.DIVORCED.DESC.toUpperCase()) {
-        this.signUpFormData.marital = SIGN_UP_CONFIG.MARITAL_STATUS.DIVORCED.DESC
+        this.corpBizUserMyInfoData.marital = SIGN_UP_CONFIG.MARITAL_STATUS.DIVORCED.DESC
       } else {
-        this.signUpFormData.marital = null;
+        this.corpBizUserMyInfoData.marital = null;
       }
     }
   }
 
   setOwnershipStatus(data) {
     if (data && !Util.isEmptyOrNull(data.value)) {
-      this.signUpFormData.ownershipStatus = data.value == 'true' ? SIGN_UP_CONFIG.OWNERSHIP_STATUS.YES.VALUE : SIGN_UP_CONFIG.OWNERSHIP_STATUS.NO.VALUE;
+      this.corpBizUserMyInfoData.ownershipStatus = data.value == 'true' ? SIGN_UP_CONFIG.OWNERSHIP_STATUS.YES.VALUE : SIGN_UP_CONFIG.OWNERSHIP_STATUS.NO.VALUE;
     }
   }
 
@@ -840,7 +859,7 @@ export class SignUpService {
           });
         }
       });
-      this.signUpFormData.vehicles = vehicleData;
+      this.corpBizUserMyInfoData.vehicles = vehicleData;
     }
   }
 
@@ -854,12 +873,16 @@ export class SignUpService {
   }
 
   setCorpBizMyInfoData(data) {
+    if (data.birthcountry && data.birthcountry.countryDetails) {
+      this.corpBizUserMyInfoData.birthCountry = this.investmentAccountService.getCountryObject(data.birthcountry.countryDetails);
+    }
+
     if (data.residentialstatus) { // Set Residential Status
-      this.signUpFormData.residentialstatus = this.setResidentialStatus(data.residentialstatus);
+      this.corpBizUserMyInfoData.residentialstatus = this.setResidentialStatus(data.residentialstatus);
     }
     // Set Income breakdown and Notice of Assessment Data
     if (data.noa) {
-      this.signUpFormData.noa = {
+      this.corpBizUserMyInfoData.noa = {
         assessableIncome: data.noa.amount > 0 ? data.noa.amount : null,
         trade: data.noa.trade > 0 ? data.noa.trade : null,
         interest: data.noa.interest > 0 ? data.noa.interest : null,
@@ -883,21 +906,21 @@ export class SignUpService {
           withdrawalAddress: element.address?.formattedSingleLineAddress
         });
       });
-      this.signUpFormData.cpfhousingwithdrawal = cpfHousingData;
+      this.corpBizUserMyInfoData.cpfhousingwithdrawal = cpfHousingData;
     }
     // Set Children Birth Records
     if (data.childrenRecords && data.childrenRecords.length > 0) {
-      this.signUpFormData.childrenRecords = this.setChildRecords(data.childrenRecords);
+      this.corpBizUserMyInfoData.childrenRecords = this.setChildRecords(data.childrenRecords);
     }
     // Set Sponsored Children Birth Records
     if (data.sponsoredChildrenRecords && data.sponsoredChildrenRecords.length > 0) {
-      this.signUpFormData.sponsoredChildrenRecords = this.setChildRecords(data.sponsoredChildrenRecords);
+      this.corpBizUserMyInfoData.sponsoredChildrenRecords = this.setChildRecords(data.sponsoredChildrenRecords);
     }
 
     // Set CPF Account Balances data - RA, OA, MA, SA
     if (data.cpfbalances) {
       const cpfAccBal = data.cpfbalances;
-      this.signUpFormData.cpfBalances = {
+      this.corpBizUserMyInfoData.cpfBalances = {
         ma: cpfAccBal?.ma,
         sa: cpfAccBal?.sa,
         oa: cpfAccBal?.oa,
@@ -906,9 +929,9 @@ export class SignUpService {
     }
 
     // Set Residential Address
-    this.signUpFormData.regadd = data?.regadd?.formattedSingleLineAddress;
+    this.corpBizUserMyInfoData.regadd = data?.regadd?.formattedSingleLineAddress;
     // Set Race
-    this.signUpFormData.race = data?.race;
+    this.corpBizUserMyInfoData.race = data?.race;
   }
 
   setChildRecords(children) {
@@ -943,7 +966,7 @@ export class SignUpService {
         })
       });
     }
-    this.signUpFormData.hdbProperty = hdbOwnerships;
+    this.corpBizUserMyInfoData.hdbProperty = hdbOwnerships;
   }
 
   setMyInfoStatus(status) {

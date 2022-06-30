@@ -104,6 +104,7 @@ export class CorpBizSignupComponent implements OnInit {
           data.objectList[0].mobileno.nbr = mobile;
           this.signUpService.setCorpBizMyInfoStatus(true);
           this.signUpService.setCreateAccountMyInfoFormData(data.objectList[0]);
+          this.signUpService.loadCorpBizUserMyInfoData(data.objectList[0]);
           this.router.navigate([SIGN_UP_ROUTE_PATHS.CORP_BIZ_SIGNUP_DATA]);
         } else if (data.responseMessage.responseCode === 6014) {
           this.closeMyInfoPopup(false);
@@ -137,6 +138,7 @@ export class CorpBizSignupComponent implements OnInit {
       resp.objectList[0].mobileno.nbr = mobile;
       this.signUpService.setCorpBizMyInfoStatus(true);
       this.signUpService.setCreateAccountMyInfoFormData(resp.objectList[0])
+      this.signUpService.loadCorpBizUserMyInfoData(resp.objectList[0])
       this.router.navigate([SIGN_UP_ROUTE_PATHS.CORP_BIZ_SIGNUP_DATA]);
     })
   }

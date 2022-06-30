@@ -60,24 +60,25 @@ export class SignUpFormData {
   // payload details for corpbiz
   enrolmentId: number;
   isCorpBizEnrollUser: boolean;
-
-  // CorpBiz user data from MyInfo
-  marital: string;
-  regadd: string;
-  uinfin: string;
-  childrenRecords: Child[];
-  sponsoredChildrenRecords: Child[];
-  residentialstatus: string;
-  cpfhousingwithdrawal: CPFWithdrawal[];
-  noa: Noa;
-  cpfBalances: CPFBalances;
-  race: any;
-  birthCountry: any;
-  hdbProperty: any;
-  vehicles: any;
-  ownershipStatus: string;
 }
 
+export class CorpBizUserMyInfoData {
+   // CorpBiz user data from MyInfo
+   marital: string;
+   regadd: string;
+   uinfin: string;
+   childrenRecords: Child[];
+   sponsoredChildrenRecords: Child[];
+   residentialstatus: string;
+   cpfhousingwithdrawal: CPFWithdrawal[];
+   noa: Noa;
+   cpfBalances: CPFBalances;
+   race: any;
+   birthCountry: any;
+   hdbProperty: any;
+   vehicles: any;
+   ownershipStatus: string;
+}
 export class CPFBalances {
   sa: number;
   ma: number;
