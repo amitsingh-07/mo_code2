@@ -38,25 +38,25 @@
                                             <div>
                                                 <div>{{'CORP_BIZ_SIGN_UP.MY_INFO_MODAL.MODAL_ATTR.PERSONAL.NAME_TEXT' |
                                                     translate}}</div>
-                                                <div class="data_lbl">{{ corpBizMyInfoData.fullName || '-'}}</div>
+                                                <div class="data_lbl">{{ corpBizMyInfoPersonalData.fullName || '-'}}</div>
                                             </div>
                                             <div>
                                                 <div>{{'CORP_BIZ_SIGN_UP.MY_INFO_MODAL.MODAL_ATTR.PERSONAL.SEX_TEXT' |
                                                     translate}}</div>
-                                                <div class="data_lbl text-capitalise">{{ corpBizMyInfoData.gender ||
+                                                <div class="data_lbl text-capitalise">{{ corpBizMyInfoPersonalData.gender ||
                                                     '-'}}&nbsp;</div>
                                             </div>
                                             <div>
                                                 <div>{{'CORP_BIZ_SIGN_UP.MY_INFO_MODAL.MODAL_ATTR.PERSONAL.DOB_TEXT' |
                                                     translate}}</div>
-                                                <div class="data_lbl">{{corpBizMyInfoData.dob ?
-                                                    (corpBizMyInfoData.dob?.day + '/' + corpBizMyInfoData.dob?.month +
-                                                    '/' + corpBizMyInfoData.dob?.year) : '-'}}&nbsp;</div>
+                                                <div class="data_lbl">{{corpBizMyInfoPersonalData.dob ?
+                                                    (corpBizMyInfoPersonalData.dob?.day + '/' + corpBizMyInfoPersonalData.dob?.month +
+                                                    '/' + corpBizMyInfoPersonalData.dob?.year) : '-'}}&nbsp;</div>
                                             </div>
                                             <div>
                                                 <div>{{'CORP_BIZ_SIGN_UP.MY_INFO_MODAL.MODAL_ATTR.PERSONAL.NRIC_TEXT' |
                                                     translate}}</div>
-                                                <div class="data_lbl">{{ corpBizMyInfoData.nricNumber || '-'}}&nbsp;
+                                                <div class="data_lbl">{{ corpBizMyInfoPersonalData.nricNumber || '-'}}&nbsp;
                                                 </div>
                                             </div>
                                             <div>
@@ -76,12 +76,12 @@
                                             <div>
                                                 <div>{{'CORP_BIZ_SIGN_UP.MY_INFO_MODAL.MODAL_ATTR.PERSONAL.EMAIL_TEXT' |
                                                     translate}}</div>
-                                                <div class="data_lbl">{{ corpBizMyInfoData.email || '-'}}</div>
+                                                <div class="data_lbl">{{ corpBizMyInfoPersonalData.email || '-'}}</div>
                                             </div>
                                             <div>
                                                 <div>{{'CORP_BIZ_SIGN_UP.MY_INFO_MODAL.MODAL_ATTR.PERSONAL.MOBILE_TEXT'
                                                     | translate}}</div>
-                                                <div class="data_lbl">{{ corpBizMyInfoData.mobileNumber || '-'}}&nbsp;
+                                                <div class="data_lbl">{{ corpBizMyInfoPersonalData.mobileNumber || '-'}}&nbsp;
                                                 </div>
                                             </div>
                                         </div>
