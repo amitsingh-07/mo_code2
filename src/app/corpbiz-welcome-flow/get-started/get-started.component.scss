@@ -28,7 +28,7 @@ app-get-started{
               padding: 56px 0px 140px 0px;
               @include allmobiles{
                 background-color: $white-color;
-                min-height: calc(100vh - 46px);
+                min-height: 100vh;
                 width: 100%;
               }
             }

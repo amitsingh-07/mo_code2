@@ -14,7 +14,12 @@ app-tell-about-you{
     }
 }
 .form-group-with-bg--content-label{
-    color: $dark-lochinvar-color;
+    display: flex;
+    span {
+        font-family: $muli-italic;
+        color: $mango-tango-color;
+        font-size: 14px;
+    }
 }
 
 .mobile-back-btn{
@@ -54,10 +59,10 @@ app-tell-about-you{
         margin-top: 6px;
         cursor: pointer;
         background-repeat: no-repeat;
-        background-image: url("/assets/images/back-web.svg");
+        background-image: url('/assets/images/back-btn-no-shadow.svg');
         background-size: 100% 100%;
         &:hover{
-            background-image: url("/assets/images/back-web-hover.svg");
+            background-image: url('/assets/images/back-web-hover.svg');
         }
     }
     .btn{
@@ -71,9 +76,6 @@ app-tell-about-you{
             line-height: 1.5;
         }
     }
-}
-.form-control{
-    font-size: 14px;
 }
 .slidecontainer {
     width: 100%;
@@ -106,10 +108,13 @@ app-tell-about-you{
 }
 .form-control i.right {
     top: 52%;
-    font-family: "muli regular";
+    font-family: $muli-regular;
+    font-size: 14px !important;
   }
 .form-control-right input {
 text-align: left !important;
+font-family: $muli-regular;
+font-size: 14px !important;
 }
 .form-control.retireTxt.view-mode {
     background: $white-color !important;
@@ -120,6 +125,13 @@ text-align: left !important;
     font-size: 18px;
     line-height: 23px;
     letter-spacing: -0.166667px;
+    font-family: $muli-semi-bold;
+}
+.slider-dark {
+    margin-top: 14px;
+    .noUi-target {
+        height: 16px !important;
+    }
 }
 .slider-dark [disabled].noUi-target .noUi-connects {
     opacity: .8 !important;
@@ -155,6 +167,7 @@ text-align: left !important;
     display: flex;
     justify-content: center;
     align-items: center;
+    font-family: $muli-semi-bold;
 }
 
 
