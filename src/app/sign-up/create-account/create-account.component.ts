@@ -76,7 +76,7 @@ export class CreateAccountComponent implements OnInit, AfterViewInit {
   organisationEnabled = false;
   isCorpBiz = false;
   corpBizData: ICorpBizData;
-  isCorpBizMyInfoEnabled:boolean;
+  isCorpBizMyInfoEnabled: boolean;
 
   constructor(
     private formBuilder: FormBuilder,
@@ -119,7 +119,7 @@ export class CreateAccountComponent implements OnInit, AfterViewInit {
       this.appService.clearJourneys();
       this.appService.clearPromoCode();
     }
-    this.appService.setCorporateDetails({organisationEnabled: this.organisationEnabled, uuid: this.route.snapshot.queryParams.orgID || (this.appService.getCorporateDetails() && this.appService.getCorporateDetails().uuid) || null});
+    this.appService.setCorporateDetails({ organisationEnabled: this.organisationEnabled, uuid: this.route.snapshot.queryParams.orgID || (this.appService.getCorporateDetails() && this.appService.getCorporateDetails().uuid) || null });
 
     // Set referral code base on the query param
     this.route.queryParams.subscribe((params) => {
@@ -175,7 +175,7 @@ export class CreateAccountComponent implements OnInit, AfterViewInit {
       this.refreshCaptcha();
       this.loaderService.hideLoader();
       if (this.organisationEnabled && this.route.snapshot.queryParams.orgID) {
-        this.getOrganisationCode();      
+        this.getOrganisationCode();
       }
     }
     this.createAccountForm.statusChanges.subscribe((data) => {
@@ -226,11 +226,11 @@ export class CreateAccountComponent implements OnInit, AfterViewInit {
         organisationCode: [null, this.organisationEnabled ? Validators.required : []],
         gender: [{
           value: myInfoGender,
-          disabled: this.signUpService.isDisabled('gender')
+          disabled: this.formValue && this.formValue.isMyInfoEnabled
         }, [Validators.required]],
         dob: [{
           value: myInfoDob,
-          disabled: this.signUpService.isDisabled('dob')
+          disabled: this.formValue && this.formValue.isMyInfoEnabled
         }, [Validators.required]]
       }, { validator: this.validateMatchPasswordEmail() })
       this.buildFormSingPass();
@@ -258,11 +258,11 @@ export class CreateAccountComponent implements OnInit, AfterViewInit {
       organisationCode: [null, this.organisationEnabled ? Validators.required : []],
       gender: [{
         value: myInfoGender,
-        disabled: this.signUpService.isDisabled('gender')
+        disabled: this.formValue && this.formValue.isMyInfoEnabled
       }, [Validators.required]],
       dob: [{
         value: myInfoDob,
-        disabled: this.signUpService.isDisabled('dob')
+        disabled: this.formValue && this.formValue.isMyInfoEnabled
       }, [Validators.required]]
     }, { validator: this.validateMatchPasswordEmail() })
 
@@ -282,10 +282,12 @@ export class CreateAccountComponent implements OnInit, AfterViewInit {
       this.createAccountForm.addControl('nricNumber', new FormControl(this.formValue.nricNumber, Validators.required));
       this.createAccountForm.removeControl('firstName');
       this.createAccountForm.removeControl('lastName');
+      this.createAccountForm.addControl('singleLineDOB', new FormControl(this.dobObjToSingleLine()))
     } else {
       this.showSingPassDetails = false;
       this.createAccountForm.removeControl('fullName');
       this.createAccountForm.removeControl('nricNumber');
+      this.createAccountForm.removeControl('singleLineDOB');
       this.createAccountForm.addControl('firstName', new FormControl('',
         [Validators.required, Validators.minLength(2),
         Validators.maxLength(40), Validators.pattern(RegexConstants.NameWithSymbol)]));
@@ -295,6 +297,11 @@ export class CreateAccountComponent implements OnInit, AfterViewInit {
     }
   }
 
+  dobObjToSingleLine() {
+    if (this.formValue.dob && typeof this.formValue.dob === 'object') {
+      return `${this.formValue.dob.day}/${this.formValue.dob.month}/${this.formValue.dob.year}`;
+    }
+  }
   /**
    * validate createAccountForm.
    * @param form - user account form detail.
@@ -311,10 +318,7 @@ export class CreateAccountComponent implements OnInit, AfterViewInit {
         form.value.dob = (this.formValue && this.formValue.isMyInfoEnabled && this.formValue.dob) ? this.formValue.dob : '';
         form.value.gender = (this.formValue && this.formValue.isMyInfoEnabled && this.formValue.gender) ? this.formValue.gender : '';
       }
-      if (form.value && form.value.dob && typeof form.value.dob === 'object') {
-        form.value.dob = `${form.value.dob.day}/${form.value.dob.month}/${form.value.dob.year}`;
-      }
-      if(this.isCorpBiz && form.value) {
+      if (this.isCorpBiz && form.value) {
         form.value.mobileNumber = this.corpBizData?.mobileNumber;
         form.value.email = this.corpBizData?.email;
         form.value.enrolmentId = this.corpBizData?.enrollmentId;
@@ -425,20 +429,20 @@ export class CreateAccountComponent implements OnInit, AfterViewInit {
 
   callErrorModal(data: any) {
     let redirectUrl = this.organisationEnabled ? SIGN_UP_ROUTE_PATHS.CORPORATE_LOGIN :
-                      SIGN_UP_ROUTE_PATHS.LOGIN;
+      SIGN_UP_ROUTE_PATHS.LOGIN;
     if (data.responseMessage.responseCode === 6008) {
       this.signUpService.setUserMobileNo(this.createAccountForm.controls['mobileNumber'].value);
       this.showErrorModal(this.translate.instant('SIGNUP_ERRORS.TITLE'),
         this.translate.instant('SIGNUP_ERRORS.VERIFY_EMAIL_OTP'),
         this.translate.instant('COMMON.VERIFY_NOW'),
-        SIGN_UP_ROUTE_PATHS.VERIFY_MOBILE, 
+        SIGN_UP_ROUTE_PATHS.VERIFY_MOBILE,
         false);
     } else if (data.objectList[0].accountAlreadyCreated) {
       this.showErrorModal(
         this.translate.instant('SIGNUP_ERRORS.TITLE'),
         this.translate.instant('SIGNUP_ERRORS.ACCOUNT_EXIST_MESSAGE'),
         this.translate.instant('COMMON.LOG_IN'),
-        redirectUrl, 
+        redirectUrl,
         false);
     } else if (!data.objectList[0].emailVerified) {
       this.signUpService.setUserMobileNo(this.createAccountForm.controls['mobileNumber'].value);
@@ -624,14 +628,14 @@ export class CreateAccountComponent implements OnInit, AfterViewInit {
   }
   onPaste(event: ClipboardEvent, key) {
     const pastedEmailText = event.clipboardData.getData('text').replace(/\s/g, '').toUpperCase();
-    const pastedText = (key == 'organisationCode'? event.clipboardData.getData('text').replace(/\s/g, '').toUpperCase() : event.clipboardData.getData('text').replace(/\s/g, ''));
+    const pastedText = (key == 'organisationCode' ? event.clipboardData.getData('text').replace(/\s/g, '').toUpperCase() : event.clipboardData.getData('text').replace(/\s/g, ''));
     this.createAccountForm.controls[key].setValue(pastedText);
     event.preventDefault();
   }
   onKeyupEvent(event, key) {
     if (event.target.value) {
-        const enterEmail = event.target.value.replace(/\s/g, '');
-        this.createAccountForm.controls[key].setValue(enterEmail);
+      const enterEmail = event.target.value.replace(/\s/g, '');
+      this.createAccountForm.controls[key].setValue(enterEmail);
       if (key === 'referralCode' && !this.showSpinner) {
         this.showClearBtn = true;
       } else {

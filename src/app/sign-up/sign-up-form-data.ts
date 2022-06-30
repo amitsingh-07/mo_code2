@@ -9,6 +9,7 @@ export class SignUpFormData {
   fullName: string;
   nricNumber: any;
   dob: any;
+  singleLineDOB: string; // for API payload
   gender: string;
   disableAttributes: any;
   isMyInfoEnabled: boolean;
