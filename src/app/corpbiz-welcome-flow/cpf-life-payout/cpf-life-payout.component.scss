@@ -52,10 +52,10 @@ app-cpf-life-payout{
             padding: 15px;
           }
           @include iphone12{
-            padding: 25px;
+            padding: 20px;
           }
           @include iphone6plus{
-            padding: 25px;
+            padding: 20px;
           }
         .btn-orange{
           font-family: $muli-bold;
@@ -67,9 +67,11 @@ app-cpf-life-payout{
           padding: 14px 0;
           @include min350max375{
             width: 100%;
+            margin: 0;
           }
           @include allmobiles{
             width: 300px;
+            margin: 0 5px;
           }
           .btn-icon{
             height: 12px;
@@ -88,11 +90,8 @@ app-cpf-life-payout{
           margin: 0 auto;
           line-height: 17px;
           letter-spacing: -0.2625px;
-          @include min350max375{
-            width: 100%;
-          }
           @include allmobiles{
-            width: 300px;
+            width: 100%;
           }
           .data-content{
             color: $orange-color;
@@ -109,6 +108,11 @@ app-cpf-life-payout{
         min-width: 315px;
         padding: 13px 0 12px;
         justify-content: center;
+        line-height: 23px;
+        @include allmobiles{
+          line-height: 28px;
+          padding: 16px 0;
+        }
       }
   }
   
