@@ -25,17 +25,17 @@
   "ACTIVATION_ERROR": {   
     "LINK_EXP": {
     "TITLE": "The link has expired",
-    "SUB-TITLE": "You have attempted to reach a page for which is no longer available. Click <a href='https://www.moneyowl.com.sg/contact-us/'>here</a> to contact us if you require any assistance.<br/><br/> This page will automatically redirect to MoneyOwl’s home page in 10 seconds,<br/><br/> or click <a href='https://www.moneyowl.com.sg/'>here</a> to immediately redirect.",
+    "SUB-TITLE": "You have attempted to reach a page for which is no longer available. Click <a href='https://www.moneyowl.com.sg/contact-us/'>here</a> to contact us if you require any assistance.<br/><br/> This page will automatically redirect to MoneyOwl’s home page in 10 seconds,<br/><br/> or click <a href='./home'>here</a> to immediately redirect.",
     "IMG": "assets/images/corpbiz-activationlink/activation-link-expired.svg"
     },
     "USER_NOT_FOUND":{
     "TITLE": "User not found",
-    "SUB-TITLE": "We are unable to find you as a MoneyOwl user. Check the URL or click <a href='https://www.moneyowl.com.sg/contact-us/'>here</a> to contact us if you require any assistance.<br/><br/>This page will automatically redirect to MoneyOwl’s home page in 10 seconds,<br/><br/> or click <a href='https://www.moneyowl.com.sg/'>here</a> to immediately redirect.",
+    "SUB-TITLE": "We are unable to find you as a MoneyOwl user. Check the URL or click <a href='https://www.moneyowl.com.sg/contact-us/'>here</a> to contact us if you require any assistance.<br/><br/>This page will automatically redirect to MoneyOwl’s home page in 10 seconds,<br/><br/> or click <a href='./home'>here</a> to immediately redirect.",
     "IMG": "assets/images/corpbiz-activationlink/activation-link-notfound.svg"
     },
     "ACCOUNT_EXIST":{
     "TITLE": "Account already exist",
-    "SUB-TITLE": "This link is no longer available as your account has been created. Click <a href='https://www.moneyowl.com.sg/app/accounts/login'>here</a> to log in to your MoneyOwl account.<br/><br/>This page will automatically redirect to MoneyOwl’s home page in 10 seconds,<br/><br/>or click <a href='https://www.moneyowl.com.sg/'>here</a> to immediately redirect.",
+    "SUB-TITLE": "This link is no longer available as your account has been created. Click <a href='./accounts/login'>here</a> to log in to your MoneyOwl account.<br/><br/>This page will automatically redirect to MoneyOwl’s home page in 10 seconds,<br/><br/>or click <a href='./home'>here</a> to immediately redirect.",
     "IMG": "assets/images/corpbiz-activationlink/activation-link-account-exists.svg"
     }
   }
