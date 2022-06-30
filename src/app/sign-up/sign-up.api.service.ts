@@ -102,7 +102,7 @@ export class SignUpApiService {
           firstName: getAccountInfo.firstName,
           lastName: getAccountInfo.lastName,
           emailAddress: getAccountInfo.email,
-          dob: getAccountInfo.dob,
+          dob: getAccountInfo.dob && typeof getAccountInfo.dob === 'object' ? `${getAccountInfo.dob.day}/${getAccountInfo.dob.month}/${getAccountInfo.dob.year}` : '',
           gender: getAccountInfo.gender,
           password: this.cryptoService.encrypt(pwd),
           acceptMarketingNotifications: getAccountInfo.marketingAcceptance
