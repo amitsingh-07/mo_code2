@@ -29,12 +29,9 @@ app-download-report {
         max-width: 600px;
         color: $intro-block-content-desc-color;
         box-sizing: border-box;
+        margin-top: 40px;
         @include allmobiles {
-          margin-top: 40px;
           text-align: center;
-        }
-        @include tablet {
-          margin-top: 30px;
         }
         .btn-orange{
             font-family: $muli-semi-bold;
@@ -42,17 +39,12 @@ app-download-report {
             width: 310px;
             background-color: $orange-color !important;
             border-radius: 6px;
-            padding: 15px 23px;
-            @include min350max375{
-              width: 100%;
-            }
+            padding: 11px 23px 14px;
+            line-height: 23px;
             @include allmobiles{
-              width: 300px;
-            }
-            .btn-icon{
-              height: 12px;
-              width: 21px;
-              margin-left: 12px;
+              width: 100%;
+              padding: 17px 23px 15px;
+              line-height: 28px;
             }
           }
         .intro-block__content__heading {
@@ -109,6 +101,11 @@ app-download-report {
           }
         }
       }
+    }
+    .btn-primary{
+      max-width: 335px;
+      padding: 16px 0px;
+      line-height: 28px;
     }
   }
   .btn-primary{
