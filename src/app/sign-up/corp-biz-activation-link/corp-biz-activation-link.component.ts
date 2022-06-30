@@ -73,7 +73,7 @@ export class CorpBizActivationLinkComponent implements OnInit, OnDestroy {
        // redirect to home page after 10 seconds if activation link not valid
         if(this.screenToShow) {
           setTimeout(() => {
-            window.location.replace("./home");
+            window.location.replace('https://www.moneyowl.com.sg/');
           }, 10000);
         }
       }, err => {
