@@ -11,6 +11,7 @@ const FINANCE_API_BASE_URL = 'svc/finance/finhealth/api/customer/comprehensive/'
 const COMPREHENSIVE_REPORT_API_BASE_URL = 'svc/comp/comprehensive-microservice/api/';
 const PAYMENT_API_BASE_URL = 'svc/pymtgw/';
 const INVEST_API_BASE_URL = 'svc/invest/investment-microservice/api/';
+const SINGPASS_API_BASE_URL = 'svc/singpass/singpass-microservice/api/';
 
 export let apiConstants = {
     endpoint: {
@@ -66,6 +67,8 @@ export let apiConstants = {
         getReferralCode: ACCOUNT_API_BASE_URL + '/referralcode/welcomeRewards',
         getRefereeList: ACCOUNT_API_BASE_URL + '/referralcode/getRefereeList',   
         getCustOrgPromoCode: ACCOUNT_API_BASE_URL + '/promocode/getCustOrgPromoCode',
+        directContactMeForm: ACCOUNT_API_BASE_URL + '/contactMe?handleError=true',
+        getInterestedInList: ACCOUNT_API_BASE_URL + '/getInstestedInsruanceList',
         customer: {
             validateUIN: ACCOUNT_API_BASE_URL + '/customer/validateUin',
         },
@@ -139,6 +142,10 @@ export let apiConstants = {
         },
         organisation: {
             getOrganisationCodeByUUID: ACCOUNT_API_BASE_URL+ '/getOrganisationCodeByUUID'
+        },
+        singpass: {
+            getStateNonce: SINGPASS_API_BASE_URL+ 'getStateNonce',
+            loginSingpass: SINGPASS_API_BASE_URL+ 'loginSingpass'
         }
     }
 };

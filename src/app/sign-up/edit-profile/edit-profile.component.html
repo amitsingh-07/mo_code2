@@ -444,7 +444,7 @@
                 </div>
                 <div class="flex-col-6">
                   <div class="icon-block">
-                    <span (click)="editBankDetails()">
+                    <span [ngClass]="{'disabled':disableBankAcctEdit}" (click)="editBankDetails()">
                       <span *ngIf="is2faAuthorized"><img src="assets/images/button-edit.svg"></span>
                       <span *ngIf="!is2faAuthorized"><img src="assets/images/accounts/edit-locked.svg"></span>
                     </span>
@@ -482,7 +482,7 @@
                   <div class="no-bank-account">{{'EDIT_PROFILE.NO_BANK' | translate}}</div>
                 </div>
                 <button type="button" class="edit-button" id="editEmployeButton" (click)="addBankDetails()"
-                  [disabled]="disableBankSrsEdit">
+                  [disabled]="disableBankAcctEdit">
                   {{'EDIT_PROFILE.ADD_BANK' | translate}}
                   <img *ngIf="!is2faAuthorized" class="lock" src="assets/images/accounts/lock-outline.svg" />
                 </button>
@@ -519,7 +519,7 @@
                 </div>
                 <div class="flex-col-6">
                   <div class="icon-block">
-                    <span *ngIf="isEditable(jaBankDetail)">
+                    <span [ngClass]="{'disabled':disableBankAcctEdit}" *ngIf="isEditable(jaBankDetail)">
                       <img (click)="editJABankDetails(jaBankDetail)"
                         [src]="is2faAuthorized ? 'assets/images/button-edit.svg' : 'assets/images/accounts/edit-locked.svg'">
                     </span>
@@ -595,11 +595,7 @@
                 </div>
                 <div class="flex-col-6">
                   <div class="icon-block">
-                    <span
-                      (click)="updateSrsDetails(srsDetails?.srsAccountNumber?.conformedValue, {name: srsDetails?.srsOperator}, srsDetails?.customerId, false)">
-                      <span *ngIf="is2faAuthorized"><img src="assets/images/button-edit.svg"></span>
-                      <span *ngIf="!is2faAuthorized"><img src="assets/images/accounts/edit-locked.svg"></span>
-                    </span>
+                    <span (click)="openSRSLockModal()"><img src="assets/images/accounts/lock-outline.svg"></span>
                   </div>
                 </div>
               </div>
@@ -651,10 +647,7 @@
                 </div>
                 <div class="flex-col-6">
                   <div class="icon-block">
-                    <span (click)="updateCpfDetails(cpfBankDetails?.cpfiaAccountNumber?.conformedValue, cpfBankDetails?.cpfiaOperator, cpfBankDetails?.customerId, false)">
-                      <span *ngIf="is2faAuthorized"><img src="assets/images/button-edit.svg"></span>
-                      <span *ngIf="!is2faAuthorized"><img src="assets/images/accounts/edit-locked.svg"></span>
-                    </span>
+                    <span (click)="openCPFLockModal()"><img src="assets/images/accounts/lock-outline.svg"></span>
                   </div>
                 </div>
               </div>

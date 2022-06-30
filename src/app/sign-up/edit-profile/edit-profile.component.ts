@@ -74,7 +74,7 @@ export class EditProfileComponent implements OnInit, OnDestroy {
   srsDetails;
   formatedAccountNumber;
   is2faAuthorized: boolean;
-  disableBankSrsEdit = false;
+  disableBankAcctEdit = false;
   linkCatagories;
   CKA_STATUS_CONSTANTS;
   // singpass
@@ -194,7 +194,7 @@ export class EditProfileComponent implements OnInit, OnDestroy {
     // Check if iFast is in maintenance
     this.configService.getConfig().subscribe((config) => {
       if (config.iFastMaintenance && this.configService.checkIFastStatus(config.maintenanceStartTime, config.maintenanceEndTime)) {
-        this.disableBankSrsEdit = true;
+        this.disableBankAcctEdit = true;
       }
     });
 
@@ -429,14 +429,6 @@ export class EditProfileComponent implements OnInit, OnDestroy {
       }
     }
   }
-
-  updateSrsDetails(srsAccountNumber, srsBankOperator, customerId, srsBankFlag) {
-    this.signUpService.setOldContactDetails(this.personalData.countryCode, this.personalData.mobileNumber, this.personalData.email);
-    this.signUpService.setEditProfileSrsDetails(srsAccountNumber, srsBankOperator, customerId);
-    this.authService.set2faVerifyAllowed(true);
-    this.router.navigate([SIGN_UP_ROUTE_PATHS.UPDATE_SRS], { queryParams: { srsBank: srsBankFlag }, fragment: 'bank' });
-  }
-
   getSrsDetails() {
     this.manageInvestmentsService.getProfileSrsAccountDetails()
       .pipe(takeUntil(this.ngUnsubscribe))
@@ -646,6 +638,18 @@ export class EditProfileComponent implements OnInit, OnDestroy {
     ref.componentInstance.errorMessage = this.translate.instant('EDIT_PROFILE.SECONDARY_USER_LOCK_MODAL.DESC');
   }
 
+  openSRSLockModal() {
+    const ref = this.modal.open(ErrorModalComponent, { centered: true });
+    ref.componentInstance.errorTitle = this.translate.instant('EDIT_PROFILE.LOCK_MODAL.TITLE');
+    ref.componentInstance.errorMessage = this.translate.instant('EDIT_PROFILE.LOCK_MODAL.SRS_DESC');
+  }
+
+  openCPFLockModal() {
+    const ref = this.modal.open(ErrorModalComponent, { centered: true });
+    ref.componentInstance.errorTitle = this.translate.instant('EDIT_PROFILE.LOCK_MODAL.TITLE');
+    ref.componentInstance.errorMessage = this.translate.instant('EDIT_PROFILE.LOCK_MODAL.CPF_DESC');
+  }
+
   isEditable(jaBankDetail) {
     return jaBankDetail.jaStatus === SIGN_UP_CONFIG.CUSTOMER_PORTFOLIOS.JOINT_ACCOUNT.SATUS && jaBankDetail.primaryCustomer;
   }
@@ -678,14 +682,6 @@ export class EditProfileComponent implements OnInit, OnDestroy {
     this.investmentCommonService.setCKARedirectFromLocation(SIGN_UP_ROUTE_PATHS.EDIT_PROFILE);
     const url = INVESTMENT_ENGAGEMENT_JOURNEY_ROUTE_PATHS.CKA_UPLOAD_DOCUMENT;
     this.router.navigate([url]);
-  }
-  
-  // cpf 
-  updateCpfDetails(cpfAccountNumber, cpfBankOperator, customerId, cpfBankFlag) {
-    this.signUpService.setOldContactDetails(this.personalData.countryCode, this.personalData.mobileNumber, this.personalData.email);
-    this.signUpService.setEditProfileCpfDetails(cpfAccountNumber, cpfBankOperator, customerId);
-    this.authService.set2faVerifyAllowed(true);
-    this.router.navigate([SIGN_UP_ROUTE_PATHS.UPDATE_CPFIA], { queryParams: { cpfBank: cpfBankFlag }, fragment: 'bank' });
   }
 
   setCPFIABankDetails(){

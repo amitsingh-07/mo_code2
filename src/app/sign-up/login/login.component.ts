@@ -8,7 +8,7 @@ import { FormBuilder, FormGroup, Validators, FormControl } from '@angular/forms'
 import { ActivatedRoute, Router } from '@angular/router';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { TranslateService } from '@ngx-translate/core';
-import { flatMap } from 'rxjs/operators';
+import { flatMap, mergeMap } from 'rxjs/operators';
 
 import { SessionsService } from './../../shared/Services/sessions/sessions.service';
 import { appConstants } from '../../app.constants';
@@ -43,6 +43,7 @@ import { LoginFormError } from './login-form-error';
 import { HubspotService } from './../../shared/analytics/hubspot.service';
 import { SIGN_UP_CONFIG } from './../sign-up.constant';
 import { TermsModalComponent } from './../../shared/modal/terms-modal/terms-modal.component';
+import { SingpassApiService } from '../../singpass/singpass.api.service';
 
 @Component({
   selector: 'app-login',
@@ -105,7 +106,8 @@ export class LoginComponent implements OnInit, AfterViewInit, OnDestroy {
     private loaderService: LoaderService,
     private investmentCommonService: InvestmentCommonService,
     private hubspotService: HubspotService,
-    private helper: HelperService) {
+    private helper: HelperService,
+    private singpassService: SingpassApiService) {
     this.translate.use('en');
     this.translate.get('COMMON').subscribe((result: string) => {
       this.duplicateError = this.translate.instant('COMMON.DUPLICATE_ERROR');
@@ -122,7 +124,7 @@ export class LoginComponent implements OnInit, AfterViewInit, OnDestroy {
       this.singpassEnabled = route.snapshot.data[0]['singpassEnabled'];
       this.appService.clearJourneys();
       this.appService.clearPromoCode();
-    }   
+    }
     this.appService.setCorporateDetails({organisationEnabled: this.organisationEnabled, uuid: this.route.snapshot.queryParams.orgID || null});
     this.signUpService.removeUserType();
     if(this.authService.isSignedUserWithRole(SIGN_UP_CONFIG.ROLE_2FA)) {
@@ -130,6 +132,8 @@ export class LoginComponent implements OnInit, AfterViewInit, OnDestroy {
       this.signUpService.removeFromLoginPage();
       this.signUpService.removeFromMobileNumber();
     }
+    // Check if mobile device and set last login type
+    this.getSetLoginPref();
   }
   /**
     * Initialize tasks.
@@ -186,30 +190,17 @@ export class LoginComponent implements OnInit, AfterViewInit, OnDestroy {
     }
   }
 
-  initSingpassQR() {
-    const authParamsSupplier = async () => {
-      // Replace the below with an `await`ed call to initiate an auth session on your backend
-      // which will generate state+nonce values, e.g
-      return { state: "" + (Math.random() * 1000000000000000 + '').slice(0, 15), nonce: "" + (Math.random() * 1000000000000000 + '').slice(0, 15) };
-    };
-
-    const onError = (errorId, message) => {
-      console.log(`onError. errorId:${errorId} message:${message}`);
-    };
-
-    const initAuthSessionResponse = window['NDI'].initAuthSession(
-      'qr_wrapper',
-      {
-        clientId: 'iROTlv1CU9Cz3GlYiNosMsZDGIYwWSB3', // Replace with your client ID
-        redirectUri: 'https://newmouat1.ntucbfa.com/app/singpass/callback',        // Replace with a registered redirect URI
-        scope: 'openid',
-        responseType: 'code'
-      },
-      authParamsSupplier,
-      onError
-    );
-
-    console.log('initAuthSession: ', initAuthSessionResponse);
+  async initSingpassQR() {
+      const authParamsSupplier = async () => {
+        const promise = await this.singpassService.getStateNonce().toPromise()
+        .catch(() => {
+          // Error handling when app api fail
+          console.log("Implement a nervous system check for this.");
+        });
+        return promise['objectList'][0];
+      }
+      this.loginForm.reset();
+      this.singpassService.initSingpassAuthSession(authParamsSupplier);
   }
 
   setCaptchaValidator() {
@@ -402,8 +393,7 @@ export class LoginComponent implements OnInit, AfterViewInit, OnDestroy {
                     value: userInfo.lastName
                   }];
                 this.hubspotService.submitLogin(hsPayload);
-              });
-  
+              });  
               this.investmentCommonService.clearAccountCreationActions();
               try {
                 if (data.objectList[0].customerId) {
@@ -538,7 +528,7 @@ export class LoginComponent implements OnInit, AfterViewInit, OnDestroy {
     if (emailResend) {
       ref.componentInstance.enableResendEmail = true;
       ref.componentInstance.resendEmail.pipe(
-        flatMap(($e) =>
+        mergeMap(($e) =>
           this.resendEmailVerification()))
         .subscribe((data) => {
           if (data.responseMessage.responseCode === 6007) {
@@ -546,13 +536,12 @@ export class LoginComponent implements OnInit, AfterViewInit, OnDestroy {
           }
         });
     }
-
   }
-
 
   resendEmailVerification() {
     const organisationCode = this.organisationEnabled && this.loginForm.get('organisationCode').value || null;
     const isEmail = this.authService.isUserNameEmail(this.loginForm.value.loginUsername);
+    console.log("organisationCode = " + organisationCode)
     return this.signUpApiService.resendEmailVerification(this.loginForm.value.loginUsername, isEmail, organisationCode);
   }
   openErrorModal(error) {
@@ -658,24 +647,24 @@ export class LoginComponent implements OnInit, AfterViewInit, OnDestroy {
     }
   }
 
-  openModal(event) {
+  openSingpassModal(event, type?) {
     const ref = this.modal.open(ModelWithButtonComponent, { centered: true });
-    ref.componentInstance.errorTitle = this.translate.instant('LOGIN.SINGPASS_ACTIVATE_MODAL.TITLE');
-    ref.componentInstance.errorMessageHTML = this.translate.instant('LOGIN.SINGPASS_ACTIVATE_MODAL.MESSAGE');
+    if (type) {
+      ref.componentInstance.errorTitle = this.translate.instant('LOGIN.SINGPASS_LOGIN_FAIL_MODAL.TITLE');
+      ref.componentInstance.errorMessageHTML = this.translate.instant('LOGIN.SINGPASS_LOGIN_FAIL_MODAL.MESSAGE');
+      ref.componentInstance.primaryActionLabel = this.translate.instant('LOGIN.SINGPASS_LOGIN_FAIL_MODAL.BACK_BTN');
+      ref.componentInstance.primaryAction.subscribe(() => {
+        this.modal.dismissAll();
+      });
+    } else {
+      ref.componentInstance.errorTitle = this.translate.instant('LOGIN.SINGPASS_ACTIVATE_MODAL.TITLE');
+      ref.componentInstance.errorMessageHTML = this.translate.instant('LOGIN.SINGPASS_ACTIVATE_MODAL.MESSAGE');
+    }
     event.stopPropagation();
     event.preventDefault();
   }
-
-  openSingpassLoginFail(event) {
-    const ref = this.modal.open(ModelWithButtonComponent, { centered: true });
-    ref.componentInstance.errorTitle = this.translate.instant('LOGIN.SINGPASS_LOGIN_FAIL_MODAL.TITLE');
-    ref.componentInstance.errorMessageHTML = this.translate.instant('LOGIN.SINGPASS_LOGIN_FAIL_MODAL.TITLE');
-    ref.componentInstance.myInfo = true;
-    event.stopPropagation();
-    event.preventDefault();
-  }
-  
-  toggleSingpass(type) {
+  // Toggle UI for showing Singpass/Password Login
+  toggleSingpass(type, event?) {
     if (type === SIGN_UP_CONFIG.SINGPASS) {
       this.showSingpassLogin = true;
       this.showPasswordLogin = false;
@@ -683,5 +672,27 @@ export class LoginComponent implements OnInit, AfterViewInit, OnDestroy {
       this.showPasswordLogin = true;
       this.showSingpassLogin = false;
     }
+    this.getSetLoginPref(type);
+    if(event) {
+      event.stopPropagation();
+      event.preventDefault();
+    }
   }
+  // Get or set the login pref for mobile view
+  getSetLoginPref(type?) {
+    if (window.localStorage && /Mobi|Android/i.test(navigator.userAgent)) {
+      if (type) {
+        if (type !== window.localStorage.getItem("LOGIN_PREFERENCE")) {
+          console.log("SETTING LOGIN TYPE " + type)
+          window.localStorage.setItem('LOGIN_PREFERENCE', type);
+        }
+      } else {
+        if (window.localStorage.getItem("LOGIN_PREFERENCE")) {
+          console.log("GETTING LOGIN TYPE " + window.localStorage.getItem("LOGIN_PREFERENCE"))
+          this.toggleSingpass(window.localStorage.getItem("LOGIN_PREFERENCE"));
+        }
+      }
+    }
+  }
+
 }

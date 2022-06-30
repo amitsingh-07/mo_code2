@@ -327,4 +327,9 @@ export class ProductInfoComponent implements OnInit, OnDestroy {
     this.modalRef.componentInstance.tooltipMessage = data.message;
     this.directService.showToolTipModal('', '');
   }
+
+  openContactForm() {
+    this.directService.openContactFormManual$.next(true);   
+  }
+
 }

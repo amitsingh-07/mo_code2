@@ -10,7 +10,8 @@
   },
   "COVERAGE": {
     "TITLE": "Pick A Coverage Type",
-    "MOBILE_TITLE": "Protection Type"
+    "MOBILE_TITLE": "Protection Type",
+    "MANUAL_CONTACT_BTN" : "Don’t Miss Out"
   },
   "PROFILE": {
     "TITLE": "Your Profile",
@@ -201,6 +202,69 @@
         "CI_DESCRIPTION":"The recommended amount is 4 times your annual salary including bonuses, minus your existing critical illness coverage.",
         "EARLY_TITLE": "Early/MultiPay CI",
         "EARLY_DESCRIPTION": "The product recommendations in our database are for MultiPay CI riders. If you wish to also have Early CI rider, please do not hesitate to still send a request for quotation and our advisors will follow up with you."
+      },
+      "CONTACT_MODAL":{
+        "TITLE": "Don’t Miss Out.",
+        "DESC": "Leave your contact to let us help you find something that fits or to get a quote.",
+        "SUB_TITLE": "I Want Better Recommendations",
+        "INFO": "These additional information will let us provide you with more accurate quotes!",
+        "BTN_LBL": "Contact Me",
+        "FORM": {
+          "FULLNAME": {
+            "LABEL": "Name",
+            "ERROR": {
+              "REQUIRED": "Enter a Name"
+            }
+          },
+          "EMAIL": {
+            "LABEL": "Email Address",
+            "ERROR": {
+              "REQUIRED": "Enter an email address",
+              "INVALID": "Enter a valid email address",
+              "INVALID_DOMAIN": "Invalid Email domain"
+            }
+          },
+          "MOBILE_NUMBER": {
+            "LABEL": "Mobile Number",
+            "ERROR": {
+              "REQUIRED": "Enter a mobile number",
+              "INVALID": "Enter a valid mobile number"
+            }
+          },
+          "DOB": {
+            "PLACEHOLDER_LBL": "Date of Birth (DD/MM/YYYY)",
+            "ERROR": {
+              "REQUIRED": "Select Date of Birth",
+              "INVALID": "Select valid Date of Birth"
+            }
+          },
+          "GENDER":{
+            "LABEL": "Gender",
+            "MALE": "Male",
+            "FEMALE": "Female",
+            "ERROR": {
+              "REQUIRED": "Select Gender"
+            }
+          },
+          "INTERESTED_INSURANCE":{
+            "LABEL": "Type of insurance interested in",
+            "PLACEHOLDER_LBL": "Insurance Type",
+            "ERROR":{
+              "REQUIRED": "Select Interested Insurance"
+            }
+          },
+          "SMOKER": {
+            "LABEL": "Smoker",
+            "YES": "Yes",
+            "NO": "No",
+            "ERROR": {
+              "REQUIRED": "Select is Smoker or not"
+            }
+          },
+          "ENQUIRY": {
+            "LABEL": "Any other enquiries"
+          }
+        }
       }
    
 

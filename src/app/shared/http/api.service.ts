@@ -461,6 +461,20 @@ export class ApiService {
       );
   }
 
+  directContactMeForm(payload) {
+    return this.http.post(apiConstants.endpoint.directContactMeForm, payload)
+      .pipe(
+        catchError((error: HttpErrorResponse) => this.handleError(error))
+      );
+  }
+
+  getInterestedInList() {
+    return this.http.get(apiConstants.endpoint.getInterestedInList)
+      .pipe(
+        catchError((error: HttpErrorResponse) => this.handleError(error))
+      );
+  }
+
   getUserProfileInfo() {
     return this.http.get(apiConstants.endpoint.userProfileInfo)
       .pipe(
@@ -781,6 +795,20 @@ export class ApiService {
 
   getOrganisationCode(organisationUUID) {
     return this.http.get(`${apiConstants.endpoint.organisation.getOrganisationCodeByUUID}?uuid=${organisationUUID}`)
+      .pipe(
+        catchError((error: HttpErrorResponse) => this.handleError(error))
+      );
+  }
+
+  getStateNonce(payload) {
+    return this.http.post(apiConstants.endpoint.singpass.getStateNonce, payload)
+      .pipe(
+        catchError((error: HttpErrorResponse) => this.handleError(error))
+      );
+  }
+
+  loginSingpass(payload) {
+    return this.http.post(apiConstants.endpoint.singpass.loginSingpass, payload)
       .pipe(
         catchError((error: HttpErrorResponse) => this.handleError(error))
       );

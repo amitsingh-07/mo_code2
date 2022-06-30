@@ -78,12 +78,12 @@ export class ResetPasswordComponent implements OnInit {
     this.footerService.setFooterVisibility(false);
     this.queryParams = this.route.snapshot.queryParams;
     this.buildResetPasswordForm();
-    this.token = encodeURIComponent(this.queryParams.key);
+    this.token = encodeURIComponent(this.queryParams.token);
     if (!this.token) {
       this.gotoHomePage(null);
     } else {
       this.authService.authenticate().subscribe(() => {
-        this.signUpApiService.checkEmailValidity({ resetKey: `${this.token}` }).subscribe((data) => {
+        this.signUpApiService.checkEmailValidity({ token: `${this.token}` }).subscribe((data) => {
           if (data.responseMessage.responseCode < 6000) {
             this.gotoHomePage(data);
           }
@@ -93,7 +93,7 @@ export class ResetPasswordComponent implements OnInit {
   }
 
   gotoHomePage(data) {
-    this.router.navigate([APP_ROUTES.HOME]);
+    this.router.navigate([this.organisationEnabled ? SIGN_UP_ROUTE_PATHS.CORPORATE_LOGIN : SIGN_UP_ROUTE_PATHS.LOGIN]);
     if (data !== null) {
       this.errorHandler.handleCustomError(data);
     }

@@ -139,11 +139,16 @@ export class DependantEducationListComponent implements OnInit, OnDestroy {
       const dependantArray = [];
       if (this.endowmentSkipEnable) {
         form.value.endowmentPlan.forEach((preferenceDetails: any, index) => {
-
           if (preferenceDetails.endowmentPlanShow === false) {
             this.endowmentArrayPlan[index].endowmentMaturityAmount = 0.0;
             this.endowmentArrayPlan[index].endowmentMaturityYears = '';
-          }
+          } 
+          dependantArray.push({
+          userName: preferenceDetails.name,
+          userAge: preferenceDetails.age,
+          userEstimatedCost: this.comprehensiveService.setDependantExpense(preferenceDetails.location, preferenceDetails.course,
+          preferenceDetails.age, preferenceDetails.nation)
+          });
         });
         this.loaderService.showLoader({ title: this.saveData });
         this.comprehensiveApiService.saveChildEndowment({
@@ -154,11 +159,11 @@ export class DependantEducationListComponent implements OnInit, OnDestroy {
             && this.comprehensiveService.getMySubSteps() < 5) {
             this.comprehensiveService.setStepCompletion(0, 5).subscribe((data1: any) => {
               this.loaderService.hideLoader();
-              this.showDependantSummary(this.endowmentArrayPlan);
+              this.showDependantSummary(dependantArray);
             });
           } else {
             this.loaderService.hideLoader();
-            this.showDependantSummary(this.endowmentArrayPlan);
+            this.showDependantSummary(dependantArray);
           }
         });
       } else {
@@ -172,12 +177,6 @@ export class DependantEducationListComponent implements OnInit, OnDestroy {
             otherPropertyControl['endowmentMaturityYears'].updateValueAndValidity();
             this.endowmentArrayPlan[index].endowmentMaturityAmount = Util.toInteger(preferenceDetails.endowmentMaturityAmount);
             this.endowmentArrayPlan[index].endowmentMaturityYears = preferenceDetails.endowmentMaturityYears;
-            dependantArray.push({
-              userName: preferenceDetails.name,
-              userAge: preferenceDetails.age,
-              userEstimatedCost: this.comprehensiveService.setDependantExpense(preferenceDetails.location, preferenceDetails.course,
-                preferenceDetails.age, preferenceDetails.nation)
-            });
           } else {
             otherPropertyControl['endowmentMaturityAmount'].setValidators([]);
             otherPropertyControl['endowmentMaturityYears'].setValidators([]);
@@ -186,6 +185,12 @@ export class DependantEducationListComponent implements OnInit, OnDestroy {
             this.endowmentArrayPlan[index].endowmentMaturityAmount = 0.0;
             this.endowmentArrayPlan[index].endowmentMaturityYears = '';
           }
+          dependantArray.push({
+            userName: preferenceDetails.name,
+            userAge: preferenceDetails.age,
+            userEstimatedCost: this.comprehensiveService.setDependantExpense(preferenceDetails.location, preferenceDetails.course,
+            preferenceDetails.age, preferenceDetails.nation)
+          });
         });
         if (this.validateDependantList(form)) {
           this.comprehensiveService.setChildEndowment(this.endowmentDetail);
