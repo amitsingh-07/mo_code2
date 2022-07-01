@@ -49,6 +49,7 @@ export class AccountCreatedComponent implements OnInit, OnDestroy {
     if (this.routeSubscription instanceof Subscription) {
       this.routeSubscription.unsubscribe();
     }
+    this.appService.clearCorpBizUserData();
   }
 
   ngOnInit() {
@@ -69,6 +70,9 @@ export class AccountCreatedComponent implements OnInit, OnDestroy {
    * redirect to login page.
    */
    redirectToLogin() {
+    if (this.appService.getCorpBizData() && this.appService.getCorpBizData().isCorpBiz) {
+      this.authService.displayCorporateLogo$.next(false);
+    }
     if (this.finlitEnabled) {
       this.router.navigate([SIGN_UP_ROUTE_PATHS.FINLIT_LOGIN]);
     } else if (this.organisationEnabled) {
@@ -83,7 +87,6 @@ export class AccountCreatedComponent implements OnInit, OnDestroy {
       this.emailTriggered = true;
       const mobile = this.signUpService.getUserMobileNo();
       this.signUpApiService.resendEmailVerification(mobile, false).subscribe((data) => {
-        this.appService.clearCorpBizUserData();
         if (data.responseMessage.responseCode === 6007) {
           this.emailTriggered = false;
           this.emailSent = true;
