@@ -85,6 +85,9 @@ app-product-info {
         height:18px;
         display: flex;
       }
+      &:focus{
+        background: $lochinvar-color !important;
+      }
     }
   }
 }

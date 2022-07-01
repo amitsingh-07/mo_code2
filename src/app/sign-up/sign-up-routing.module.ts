@@ -164,6 +164,7 @@ const routes: Routes = [
   {
     path: SIGN_UP_ROUTES.CORPORATE_RESET_PASSWORD,
     component: ResetPasswordComponent,
+    canActivate: [FacebookLoggedUserGuard],
     data: [{ organisationEnabled: SIGN_UP_CONFIG.LOGIN.CORPORATE_LOGIN }]
   },
   {
