@@ -47,6 +47,10 @@ app-download-report {
               line-height: 28px;
             }
           }
+          .btn-size {
+            font-size: 22px;
+            font-family: $muli-bold;
+          }
         .intro-block__content__heading {
           max-width: 310px;
           font-family: $muli-semi-bold;
@@ -99,6 +103,9 @@ app-download-report {
             letter-spacing: -0.17px;
             text-align: center;
           }
+        }
+        .shadow {
+          box-shadow: 0px 14px 10px rgba(0, 0, 0, 0.2) !important;
         }
       }
     }
