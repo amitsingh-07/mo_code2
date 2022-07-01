@@ -23,7 +23,6 @@ export class AccountCreatedComponent implements OnInit, OnDestroy {
   finlitEnabled = false;
   routeSubscription: Subscription;
   organisationEnabled = false;
-
   constructor(
     private translate: TranslateService,
     private googleAnalyticsService: GoogleAnalyticsService,
@@ -64,13 +63,12 @@ export class AccountCreatedComponent implements OnInit, OnDestroy {
       this.appService.clearJourneys();
       this.appService.clearPromoCode();
     }
-
   }
 
   /**
    * redirect to login page.
    */
-  redirectToLogin() {
+   redirectToLogin() {
     if (this.finlitEnabled) {
       this.router.navigate([SIGN_UP_ROUTE_PATHS.FINLIT_LOGIN]);
     } else if (this.organisationEnabled) {
@@ -78,7 +76,6 @@ export class AccountCreatedComponent implements OnInit, OnDestroy {
     } else {
       this.router.navigate([SIGN_UP_ROUTE_PATHS.LOGIN]);
     }
-
   }
 
   resendEmailVerification() {
@@ -86,6 +83,7 @@ export class AccountCreatedComponent implements OnInit, OnDestroy {
       this.emailTriggered = true;
       const mobile = this.signUpService.getUserMobileNo();
       this.signUpApiService.resendEmailVerification(mobile, false).subscribe((data) => {
+        this.appService.clearCorpBizUserData();
         if (data.responseMessage.responseCode === 6007) {
           this.emailTriggered = false;
           this.emailSent = true;

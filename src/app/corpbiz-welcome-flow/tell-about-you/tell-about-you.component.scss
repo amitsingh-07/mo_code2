@@ -1,0 +1,177 @@
+@import '../../../variables';
+@import '../../../mixins';
+
+
+app-tell-about-you{
+
+.container-fluid{
+    &.max-width--1024{
+        max-width: 600px !important;
+    }
+    padding-top: 40px;
+    @include allmobiles{
+        padding-top: 30px;  
+    }
+}
+.form-group-with-bg--content-label{
+    display: flex;
+    span {
+        font-family: $muli-italic;
+        color: $mango-tango-color;
+        font-size: 14px;
+    }
+}
+
+.mobile-back-btn{
+    @include allmobiles{
+        position: absolute;
+        left: 10px;
+        z-index: 100;
+    }
+    @include max360{
+        left:3px;
+    }
+}
+
+.main-desc{
+    padding: 0px 20px;
+    @include allmobiles{
+        max-width: 290px;
+        margin: 0 auto;
+        padding-left: 8px;
+        padding-right: 0;
+    }
+}
+.btn-container{
+    display: flex;
+    margin-top: 30px;
+    padding: 0px 33px;
+    justify-content: center;
+    align-items: center;
+    @include allmobiles{
+        margin-top: 16px;
+    }
+    .back-btn{
+        display: flex;
+        width: 48px;
+        height: 48px;
+        margin-right: 20px;
+        cursor: pointer;
+        background-repeat: no-repeat;
+        background-image: url('/assets/images/back-btn-no-shadow.svg');
+        background-size: 100% 100%;
+        &:hover{
+            background-image: url('/assets/images/back-btn-no-shadow-hover.svg');
+        }
+    }
+    .btn{
+        margin: 0 !important;
+        padding: 13px 0 12px;
+        width: 315px;
+        line-height: 23px;
+        @include allmobiles{
+            width: 100%;
+            padding: 0.9rem;
+            line-height: 1.5;
+        }
+    }
+}
+.slidecontainer {
+    width: 100%;
+  }
+  
+.intro_sub-title{
+    font-size: 16px;
+    line-height: 20.08px;
+    text-align: center;
+    letter-spacing: -0.25px;
+}
+.form-container{
+    margin-top: -1px;
+    padding: 30px 70px;
+    background-color: $black-squeeze-grey-color;
+    border-radius: 0px 0px 6px 6px;
+    @include allmobiles{
+        padding: 20px;
+    }
+}
+.page-banner{
+    text-align: center;
+    width: 180px;
+    height: 145px;
+    display: flex;
+    margin: 30px auto 0;
+    @include allmobiles{
+        margin-top: 20px;
+    }
+}
+.form-control i.right {
+    top: 52%;
+    font-family: $muli-regular;
+    font-size: 14px !important;
+    color: $blue-stone-color;
+  }
+.form-control-right input {
+text-align: left !important;
+font-family: $muli-regular;
+font-size: 14px !important;
+}
+.form-control.retireTxt.view-mode {
+    background: $white-color !important;
+    opacity: .6;
+  }
+.sub-title{
+    color: $dark-lochinvar-color;
+    font-size: 18px;
+    line-height: 23px;
+    letter-spacing: -0.166667px;
+    font-family: $muli-semi-bold;
+}
+.slider-dark {
+    margin-top: 14px;
+    .noUi-target {
+        height: 16px !important;
+    }
+}
+.slider-dark [disabled].noUi-target .noUi-connects {
+    opacity: .8 !important;
+  }
+  .min-max-val {
+    display: flex;
+    justify-content: space-between;
+        @include allmobiles{
+        margin-bottom: 10px;
+        }
+    }
+    .min-val, .max-val {
+      color: $dark-lochinvar-color;
+      font-family: $muli-regular;
+      font-size: 14px;
+     }
+    .max-val {
+       text-align: right;
+     }
+     .min-text, .max-text {
+       color: $dark-lochinvar-color;
+       font-family: $muli-regular;
+       font-size: 14px;
+       display: block;
+     }
+
+.retirement-card-title{
+    color: $black-color;
+    font-size: 16px;
+    border-radius: 6px 6px 0px 0px;
+    background-color: $white-color;
+    margin-top: 30px;
+    text-align: center;
+    padding: 25px 20px 24px;
+    line-height: normal;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-family: $muli-semi-bold;
+}
+
+
+}

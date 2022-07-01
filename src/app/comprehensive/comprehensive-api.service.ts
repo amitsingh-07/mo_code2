@@ -1,7 +1,7 @@
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { catchError } from 'rxjs/operators';
-import { Observable, throwError } from 'rxjs';
+import { Observable, of, throwError } from 'rxjs';
 
 import { apiConstants } from '../shared/http/api.constants';
 import { ApiService } from '../shared/http/api.service';
@@ -193,5 +193,17 @@ export class ComprehensiveApiService {
     getPreloadPromocode(payload) { 
         return this.apiService.getCustOrgPromoCode(payload);
     }
+
+    generateReport(payload) {
+        return this.http
+            .post(apiConstants.endpoint.comprehensive.generateReport, payload)
+            .pipe(catchError((error: HttpErrorResponse) => this.helperService.handleError(error)));
+    }
+
+    getUserDob() {
+        return this.http.get(apiConstants.endpoint.comprehensive.getUserDob)
+        .pipe(catchError((error: HttpErrorResponse) => this.helperService.handleError(error)));
+    }
+    
 
 }

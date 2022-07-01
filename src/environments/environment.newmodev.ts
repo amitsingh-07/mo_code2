@@ -9,8 +9,8 @@ export const environment: IEnvironment = {
   production: false,
   isDebugMode: true,
   apiBaseUrl: 'https://bfa-dev.ntucbfa.cloud',
-  myInfoClientId: 'STG2-MYINFO-SELF-TEST',
-  myInfoCallbackBaseUrl: 'https://bfa-dev.ntucbfa.cloud/myinfo',
+  myInfoClientId: 'STG-201820691C-MONEYOWL-BFA',
+  myInfoCallbackBaseUrl: 'https://bfa-dev.ntucbfa.cloud/app/myinfo',
   myInfoAuthorizeUrl: 'https://test.api.myinfo.gov.sg/com/v3/authorise',
   gAdPropertyId: 'AW-782920447',
   gaPropertyId: 'UA-125256446-1',
@@ -23,6 +23,8 @@ export const environment: IEnvironment = {
   configJsonUrl:'https://mo-static-assets.s3.ap-southeast-1.amazonaws.com/promo/KS098130_newmodev_config.json',
   hsPortalId: '6411917',
   hsUrlTrack: '9f0ad9ef-ba87-4059-9ee9-60d46880dc5f',
+  singpassClientId: 'iROTlv1CU9Cz3GlYiNosMsZDGIYwWSB3',
+  singpassAuthJs: 'https://stg-id.singpass.gov.sg/static/ndi_embedded_auth.js'
 };
 
 /*

@@ -4,10 +4,11 @@ import { RouterModule, Routes } from '@angular/router';
 import { AccountCreatedComponent } from './account-created/account-created.component';
 import { AccountUpdatedComponent } from './account-updated/account-updated.component';
 import { AddUpdateBankComponent } from './add-update-bank/add-update-bank.component';
-import { AuthGuardService as AuthGuard } from './auth-guard.service';
+import { AuthGuardService as AuthGuard, SingpassLoginGuard } from './auth-guard.service';
 import { FinlitLoggedUserService as FinlitLoggedUserGuard } from './auth-guard.service';
 import { LoggedUserService as LoggedUserGuard } from './auth-guard.service';
 import { FacebookLoggedUserService as FacebookLoggedUserGuard } from './auth-guard.service';
+import { CorpbizAuthGuardService as CorpbizAuthGuard } from './auth-guard.service';
 import { CreateAccountComponent } from './create-account/create-account.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { EditPasswordComponent } from './edit-password/edit-password.component';
@@ -41,6 +42,9 @@ import { ReferAFriendComponent } from './refer-a-friend/refer-a-friend.component
 import { ReferalRedirectingPartComponent } from './referal-redirecting-part/referal-redirecting-part.component';
 import { ManageProfileComponent } from './manage-profile/manage-profile.component';
 import { AddUpdateCpfiaComponent } from './add-update-cpfia/add-update-cpfia.component';
+import { CorpBizSignupComponent } from './corp-biz-signup/corp-biz-signup.component';
+import { CorpBizSignupWithDataComponent } from './corp-biz-signup-with-data/corp-biz-signup-with-data.component';
+import { CorpBizActivationLinkComponent } from './corp-biz-activation-link/corp-biz-activation-link.component';
 
 const routes: Routes = [
   {
@@ -75,6 +79,11 @@ const routes: Routes = [
     data: [{ organisationEnabled: SIGN_UP_CONFIG.LOGIN.CORPORATE_LOGIN }]
   },
   {
+    path: SIGN_UP_ROUTES.CORPBIZ_VERIFY_MOBILE,
+    component: VerifyMobileComponent,
+    canActivate: [CorpbizAuthGuard]
+  },
+  {
     path: SIGN_UP_ROUTES.TWOFA_MOBILE,
     component: VerifyMobileComponent,
     canActivate: [TwoFactorScreenGuardService],
@@ -93,6 +102,10 @@ const routes: Routes = [
     data: [{ organisationEnabled: SIGN_UP_CONFIG.LOGIN.CORPORATE_LOGIN }]
   },
   {
+    path: SIGN_UP_ROUTES.ACCOUNT_CREATED_CORPBIZ,
+    component: AccountCreatedComponent
+  },
+  {
     path: SIGN_UP_ROUTES.ACCOUNT_CREATED,
     component: AccountCreatedComponent
   },
@@ -106,9 +119,13 @@ const routes: Routes = [
     canActivate: [FacebookLoggedUserGuard],
   },
   {
+    path: SIGN_UP_ROUTES.CORPBIZ_EMAIL_VERIFIED,
+    component: EmailVerificationComponent,
+  },
+  {
     path: SIGN_UP_ROUTES.LOGIN,
     component: LoginComponent,
-    canActivate: [LoggedUserGuard]
+    canActivate: [SingpassLoginGuard]
   },
   {
     path: SIGN_UP_ROUTES.CORPORATE_LOGIN,
@@ -216,11 +233,6 @@ const routes: Routes = [
     data: [{ finlitEnabled: SIGN_UP_CONFIG.LOGIN.FINLIT_LOGIN }]
   },
   {
-    path: SIGN_UP_ROUTES.SINGPASS_LOGIN,
-    component: LoginComponent,
-    data: [{ singpassEnabled: true }]
-  },
-  {
     path: SIGN_UP_ROUTES.FINLIT_CREATE_ACCOUNT,
     component: CreateAccountComponent,
     canActivate: [FinlitLoggedUserGuard],
@@ -282,6 +294,24 @@ const routes: Routes = [
     path: SIGN_UP_ROUTES.UPDATE_CPFIA,
     component: AddUpdateCpfiaComponent,
     canActivate: [AuthGuard, TwoFactorAuthGuardService]
+  },
+  {
+    path: SIGN_UP_ROUTES.CORP_BIZ_SIGNUP,
+    component: CorpBizSignupComponent,
+    canActivate: [CorpbizAuthGuard]
+  },
+  {
+    path: SIGN_UP_ROUTES.CORP_BIZ_SIGNUP_DATA,
+    component: CorpBizSignupWithDataComponent
+  },
+  {
+    path: SIGN_UP_ROUTES.CORPBIZ_CREATE_ACCOUNT,
+    component: CreateAccountComponent,
+    canActivate: [CorpbizAuthGuard]
+  },
+  {
+    path: SIGN_UP_ROUTES.CORP_BIZ_ACTIVATIONLINK,
+    component: CorpBizActivationLinkComponent
   },
   { path: '**', redirectTo: '/page-not-found' }
 ];
