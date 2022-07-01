@@ -156,6 +156,8 @@ font-size: 14px !important;
        font-family: $muli-regular;
        font-size: 14px;
        display: block;
+       letter-spacing: -0.2625px;
+       line-height: 16px;
      }
 
 .retirement-card-title{
@@ -166,7 +168,8 @@ font-size: 14px !important;
     margin-top: 30px;
     text-align: center;
     padding: 25px 20px 24px;
-    line-height: normal;
+    line-height: 20px;
+    letter-spacing: -0.3px;
     display: flex;
     justify-content: center;
     align-items: center;
