@@ -68,6 +68,7 @@ export class CorpBizSignupComponent implements OnInit {
 
   ngOnInit(): void {
     this.navbarService.setNavbarVisibility(true);
+    this.navbarService.hideBackBtn$.next(true);
     this.navbarService.setNavbarMode(101);
     this.footerService.setFooterVisibility(false);
 
