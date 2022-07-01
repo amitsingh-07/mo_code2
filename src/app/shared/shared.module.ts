@@ -90,6 +90,7 @@ import { WiseIncomeFundComponent } from './components/wise-income-fund/wise-inco
 import { ReferralRewardDetailsComponent } from './components/referral-reward-details/referral-reward-details.component';
 import { BankDetailsComponent } from './components/bank-details/bank-details.component';
 import { UploadDocComponent } from './components/upload-document/upload-document.component';
+import { CurrencyEditorPipe } from './Pipes/currency-editor.pipe';
 
 export function createTranslateLoader(http: HttpClient) {
   return new MultiTranslateHttpLoader(
@@ -158,7 +159,9 @@ export function createTranslateLoader(http: HttpClient) {
     WiseIncomeFundComponent,
     ReferralRewardDetailsComponent,
     BankDetailsComponent,    
-    UploadDocComponent],
+    UploadDocComponent,
+    CurrencyEditorPipe
+  ],
   declarations: [
     CurrencyInputDirective,
     PlanWidgetComponent,
@@ -218,7 +221,7 @@ export function createTranslateLoader(http: HttpClient) {
     WiseIncomeFundComponent,
     ReferralRewardDetailsComponent,
     BankDetailsComponent,    
-    UploadDocComponent
+    UploadDocComponent, CurrencyEditorPipe
   ],
   entryComponents: [
     EditInvestmentModalComponent,

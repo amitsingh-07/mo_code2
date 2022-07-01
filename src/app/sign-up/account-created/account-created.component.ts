@@ -23,7 +23,6 @@ export class AccountCreatedComponent implements OnInit, OnDestroy {
   finlitEnabled = false;
   routeSubscription: Subscription;
   organisationEnabled = false;
-
   constructor(
     private translate: TranslateService,
     private googleAnalyticsService: GoogleAnalyticsService,
@@ -50,6 +49,7 @@ export class AccountCreatedComponent implements OnInit, OnDestroy {
     if (this.routeSubscription instanceof Subscription) {
       this.routeSubscription.unsubscribe();
     }
+    this.appService.clearCorpBizUserData();
   }
 
   ngOnInit() {
@@ -64,13 +64,15 @@ export class AccountCreatedComponent implements OnInit, OnDestroy {
       this.appService.clearJourneys();
       this.appService.clearPromoCode();
     }
-
   }
 
   /**
    * redirect to login page.
    */
-  redirectToLogin() {
+   redirectToLogin() {
+    if (this.appService.getCorpBizData() && this.appService.getCorpBizData().isCorpBiz) {
+      this.authService.displayCorporateLogo$.next(false);
+    }
     if (this.finlitEnabled) {
       this.router.navigate([SIGN_UP_ROUTE_PATHS.FINLIT_LOGIN]);
     } else if (this.organisationEnabled) {
@@ -78,7 +80,6 @@ export class AccountCreatedComponent implements OnInit, OnDestroy {
     } else {
       this.router.navigate([SIGN_UP_ROUTE_PATHS.LOGIN]);
     }
-
   }
 
   resendEmailVerification() {
