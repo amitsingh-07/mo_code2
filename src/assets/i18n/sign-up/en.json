@@ -103,7 +103,7 @@
           "HDB_TEXT": {
             "PURCHASE_DATE_TEXT": "HDB Ownership - Date of Purchase",
             "LOAN_TEXT": "HDB Ownership - Loan Granted",
-            "OUTSTANDING_LOAN_TEXT": "HDB Ownership -Outstanding HDB Loan Balance",
+            "OUTSTANDING_LOAN_TEXT": "HDB Ownership - Outstanding HDB Loan Balance",
             "MONTHLY_LOAN_TEXT": "HDB Ownership - Monthly Loan Instalment",
             "LEASE_TEXT": "HDB Ownership – Lease Commencement Date"
           }

@@ -55,8 +55,8 @@ export class DownloadReportComponent implements OnInit {
       newWindow = window.open();
     }
     const payload = { 
-      reportId: this.getComprehensiveSummaryDashboardInfo.reportId, 
-      enquiryId: this.getComprehensiveSummaryDashboardInfo.enquiryId 
+      reportId: this.comprehensiveService.welcomeFlowMyInfoData.reportId, 
+      enquiryId: this.comprehensiveService.welcomeFlowMyInfoData.enquiryId 
     };
     this.comprehensiveApiService.downloadComprehensiveReport(payload).subscribe((data: any) => {
       const pdfUrl = window.URL.createObjectURL(data.body);
