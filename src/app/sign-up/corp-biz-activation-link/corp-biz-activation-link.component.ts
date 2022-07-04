@@ -37,7 +37,6 @@ export class CorpBizActivationLinkComponent implements OnInit {
 
   ngOnInit(): void {
     this.navbarService.setNavbarMode(106);
-    // this.navbarService.hideBackBtn$.next(true);
     this.footerService.setFooterVisibility(false);
     this.queryParams = this.route.snapshot.queryParams;
     this.token = encodeURIComponent(this.queryParams.token);
