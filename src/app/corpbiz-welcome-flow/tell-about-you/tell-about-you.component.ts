@@ -130,6 +130,7 @@ export class TellAboutYouComponent implements OnInit {
         if (res.responseMessage && res.responseMessage.responseCode == 6000) {
           this.comprehensiveService.cpfPayoutAmount = res.objectList.monthlyPayout;
           this.comprehensiveService.welcomeFlowRetirementAge = payload.retirementAge;
+          this.comprehensiveService.welcomeFlowMyInfoData = res.objectList;
           this.router.navigate([CORPBIZ_ROUTES_PATHS.LIFE_PAYOUT]);
         }
       })
