@@ -99,7 +99,10 @@ app-create-account-myinfo-modal {
     }
 
     span.lock {
-      padding-left: 10px;
+      margin-left: 10px;
+      width: 14px;
+      height: 18px;
+      display: inline-flex;
 
       img {
         vertical-align: initial !important;

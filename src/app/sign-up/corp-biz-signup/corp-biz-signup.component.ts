@@ -88,6 +88,7 @@ export class CorpBizSignupComponent implements OnInit {
   }
 
   ngOnDestroy(): void {
+    this.navbarService.hideBackBtn$.next(false);
     if (this.myinfoChangeListener) {
       this.myinfoChangeListener.unsubscribe();
     }
@@ -129,19 +130,7 @@ export class CorpBizSignupComponent implements OnInit {
       attributes = this.removeMyInfoAttributes(attributesFlags.vehicleFlag, SIGN_UP_CONFIG.EXCLUDABLE_CORP_BIZ_MY_INFO_ATTRIBUTES.VEHICLES, attributes);
     }
     this.myInfoService.setMyInfoAttributes(attributes);
-    // Need to uncomment when deploying to UAT
-    // this.myInfoService.goToMyInfo();
-
-    let email = this.appService.getCorpBizData()?.email;
-    let mobile = this.appService.getCorpBizData()?.mobileNumber;
-    this.signUpApiService.getSampleMyInfoResponse().subscribe((resp: any) => {
-      resp.objectList[0].email.value = email;
-      resp.objectList[0].mobileno.nbr = mobile;
-      this.signUpService.setCorpBizMyInfoStatus(true);
-      this.signUpService.setCreateAccountMyInfoFormData(resp.objectList[0])
-      this.signUpService.loadCorpBizUserMyInfoData(resp.objectList[0])
-      this.router.navigate([SIGN_UP_ROUTE_PATHS.CORP_BIZ_SIGNUP_DATA]);
-    })
+    this.myInfoService.goToMyInfo(); // Method to call MyInfo
   }
 
   removeMyInfoAttributes(flag: any, attribute: any, attributes: any) {

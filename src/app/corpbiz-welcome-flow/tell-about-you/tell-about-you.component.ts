@@ -131,6 +131,7 @@ export class TellAboutYouComponent implements OnInit {
           this.comprehensiveService.cpfPayoutAmount = res.objectList.monthlyPayout;
           this.comprehensiveService.welcomeFlowRetirementAge = payload.retirementAge;
           this.comprehensiveService.welcomeFlowMyInfoData = res.objectList;
+          this.authService.clearWelcomeFlowFlag();
           this.router.navigate([CORPBIZ_ROUTES_PATHS.LIFE_PAYOUT]);
         }
       })
