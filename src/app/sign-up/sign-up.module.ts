@@ -1,5 +1,4 @@
 import { MultiTranslateHttpLoader } from 'ngx-translate-multi-http-loader';
-
 import { CommonModule } from '@angular/common';
 import { HttpClient } from '@angular/common/http';
 import { NgModule } from '@angular/core';
@@ -14,7 +13,7 @@ import { ComprehensiveModule } from './../comprehensive/comprehensive.module';
 import { AccountCreatedComponent } from './account-created/account-created.component';
 import { AccountUpdatedComponent } from './account-updated/account-updated.component';
 import { AddUpdateBankComponent } from './add-update-bank/add-update-bank.component';
-import { AuthGuardService } from './auth-guard.service';
+import { AuthGuardService, SingpassLoginGuard } from './auth-guard.service';
 import { CreateAccountComponent } from './create-account/create-account.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { EditPasswordComponent } from './edit-password/edit-password.component';
@@ -54,6 +53,13 @@ import { ReferalRedirectingPartComponent } from './referal-redirecting-part/refe
 import { ManageProfileComponent } from './manage-profile/manage-profile.component';
 import { AddUpdateCpfiaComponent } from './add-update-cpfia/add-update-cpfia.component';
 import { CpfiaSuccessModalComponent } from './add-update-cpfia/cpfia-success-modal/cpfia-success-modal.component';
+import { SingPassModule } from '../singpass/singpass.module';
+import { CreateAccountMyinfoModalComponent } from './create-account-myinfo-modal/create-account-myinfo-modal.component';
+import { CorpBizSignupComponent } from './corp-biz-signup/corp-biz-signup.component';
+import { CorpBizSignupWithDataComponent } from './corp-biz-signup-with-data/corp-biz-signup-with-data.component';
+import { CorpBizActivationLinkComponent } from './corp-biz-activation-link/corp-biz-activation-link.component';
+import { LoginService } from './login.service';
+import { InvestModalComponent } from './invest-modal/invest-modal.component';
 
 export function createTranslateLoader(http: HttpClient) {
   return new MultiTranslateHttpLoader(
@@ -81,7 +87,8 @@ export function createTranslateLoader(http: HttpClient) {
         deps: [HttpClient]
       }
     }),
-    NgOtpInputModule
+    NgOtpInputModule,
+    SingPassModule
   ],
   declarations: [
     AccountCreatedComponent,
@@ -113,9 +120,14 @@ export function createTranslateLoader(http: HttpClient) {
     ReferalRedirectingPartComponent,
     ManageProfileComponent,
     AddUpdateCpfiaComponent,
-    CpfiaSuccessModalComponent
+    CpfiaSuccessModalComponent,
+    CreateAccountMyinfoModalComponent,
+    CorpBizSignupComponent,
+    CorpBizSignupWithDataComponent,
+    CorpBizActivationLinkComponent,
+    InvestModalComponent
   ],
-  providers: [SignUpAccessGuard, SignUpCorporateAccessGuard, AuthGuardService, TwoFactorAuthGuardService],
-  entryComponents: [EditMobileNumberComponent, SrsSuccessModalComponent]
+  providers: [SignUpAccessGuard, SignUpCorporateAccessGuard, AuthGuardService, TwoFactorAuthGuardService, SingpassLoginGuard, LoginService],
+  entryComponents: [EditMobileNumberComponent, SrsSuccessModalComponent, CreateAccountMyinfoModalComponent]
 })
 export class SignUpModule { }

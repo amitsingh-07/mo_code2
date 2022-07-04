@@ -373,6 +373,10 @@ export class ApiService {
     return this.http.post(apiConstants.endpoint.emailValidityCheck + this.handleErrorFlag, payload);
   }
 
+  corporateEmailValidityCheck(payload) {
+    return this.http.post(apiConstants.endpoint.corporateEmailValidityCheck + this.handleErrorFlag, payload);
+  }
+
   verifyEmail(payload) {
     return this.http.post(apiConstants.endpoint.verifyEmail + '?handleError=true', payload)
       .pipe(
@@ -812,5 +816,11 @@ export class ApiService {
       .pipe(
         catchError((error: HttpErrorResponse) => this.handleError(error))
       );
+  }
+
+  // Sample MyInfoData
+  getCorpBizMyInfoSampleData() {
+    const url = 'assets/myInfoSample/responseS9212381D.json';
+    return this.httpClient.get(url);
   }
 }

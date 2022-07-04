@@ -143,8 +143,10 @@ export class NavbarComponent implements OnInit, AfterViewInit {
   private ngUnsubscribe = new Subject();
   accessReferrelProgramOnRoles:boolean = true;
 
+  corpBizData: any;
+
   constructor(
-    private navbarService: NavbarService,
+    public navbarService: NavbarService,
     private config: NgbDropdownConfig, private renderer: Renderer2,
     private cdr: ChangeDetectorRef, private router: Router, private configService: ConfigService,
     private signUpService: SignUpService, public authService: AuthenticationService,
@@ -187,6 +189,7 @@ export class NavbarComponent implements OnInit, AfterViewInit {
         if (this.authService.isSignedUser()) {
           this.isLoggedIn = true;
           this.authService.isUserTypeCorporate = this.authService.isSignedUserWithRole(SIGN_UP_CONFIG.ROLE_CORP_FB_USER);    
+          this.authService.displayCorporateLogo$.next(this.authService.isUserTypeCorporate);
           this.accessReferrelProgramOnRoles = this.authService.accessCorporateUserFeature('REFERREL_PROGRAM');
         }
       }
@@ -216,6 +219,8 @@ export class NavbarComponent implements OnInit, AfterViewInit {
     if (this.hideHomepage) {
       this.setMenuDisplay();
     }
+
+    this.corpBizData = appService.getCorpBizData();
   }
 
   @HostListener('window:scroll', ['$event'])

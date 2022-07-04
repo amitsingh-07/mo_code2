@@ -59,6 +59,11 @@ $desktop-width: 1024px;
     @content;
   }
 }
+@mixin min475max568 {
+	@media (min-width: #{$mobile475-width}) and (max-width: #{$mobile568-width - 1px}) {
+	  @content;
+	}
+  }
 @mixin min568max767 {
   @media (min-width: #{$mobile568-width}) and (max-width: #{$mobile767-width}) {
     @content;

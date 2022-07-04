@@ -21,6 +21,7 @@ import { SIGN_UP_CONFIG } from './sign-up.constant';
 export class SignUpApiService {
   private emailVerifyUrl: String;
   private corpEmailVerifyUrl: String;
+  private corpbizEmailVerifyUrl: String;
 
   constructor(
     private configService: ConfigService, private hubspotService: HubspotService,
@@ -32,6 +33,7 @@ export class SignUpApiService {
     this.configService.getConfig().subscribe((config: IConfig) => {
       this.emailVerifyUrl = config.verifyEmailUrl;
       this.corpEmailVerifyUrl = config.corpEmailVerifyUrl;
+      this.corpbizEmailVerifyUrl = config.corpBizEmailVerifyUrl;
     });
   }
 
@@ -51,7 +53,6 @@ export class SignUpApiService {
     const insuranceEnquiry = this.selectedPlansService.getSelectedPlan();
     let journeyType = this.appService.getJourneyType();
     let enquiryId = -1;
-
     if ((this.appService.getJourneyType() === appConstants.JOURNEY_TYPE_DIRECT ||
       this.appService.getJourneyType() === appConstants.JOURNEY_TYPE_GUIDED) && ((insuranceEnquiry.plans && insuranceEnquiry.plans.length > 0)
         || (insuranceEnquiry.enquiryProtectionTypeData && insuranceEnquiry.enquiryProtectionTypeData.length > 0))) {
@@ -77,7 +78,7 @@ export class SignUpApiService {
           uin: getAccountInfo.nricNumber,
           fullName: getAccountInfo.fullName,
           emailAddress: getAccountInfo.email,
-          dob: getAccountInfo.dob,
+          dob: getAccountInfo.singleLineDOB,
           gender: getAccountInfo.gender,
           password: this.cryptoService.encrypt(pwd),
           acceptMarketingNotifications: getAccountInfo.marketingAcceptance
@@ -89,7 +90,9 @@ export class SignUpApiService {
         referralCode: getAccountInfo.referralCode,
         userType: getAccountInfo.userType,
         accountCreationType: getAccountInfo.accountCreationType,
-        organisationCode: getAccountInfo.organisationCode
+        organisationCode: getAccountInfo.organisationCode,
+        enrolmentId: getAccountInfo.enrolmentId,
+        isCorpBizEnrollUser: getAccountInfo.isCorpBizEnrollUser
       };
     } else {
       return {
@@ -99,7 +102,7 @@ export class SignUpApiService {
           firstName: getAccountInfo.firstName,
           lastName: getAccountInfo.lastName,
           emailAddress: getAccountInfo.email,
-          dob: getAccountInfo.dob,
+          dob: getAccountInfo.dob && typeof getAccountInfo.dob === 'object' ? `${getAccountInfo.dob.day}/${getAccountInfo.dob.month}/${getAccountInfo.dob.year}` : '',
           gender: getAccountInfo.gender,
           password: this.cryptoService.encrypt(pwd),
           acceptMarketingNotifications: getAccountInfo.marketingAcceptance
@@ -111,7 +114,9 @@ export class SignUpApiService {
         referralCode: getAccountInfo.referralCode,
         userType: getAccountInfo.userType,
         accountCreationType: getAccountInfo.accountCreationType,
-        organisationCode: getAccountInfo.organisationCode
+        organisationCode: getAccountInfo.organisationCode,
+        enrolmentId: getAccountInfo.enrolmentId,
+        isCorpBizEnrollUser: getAccountInfo.isCorpBizEnrollUser
       };
     }
   }
@@ -311,16 +316,31 @@ export class SignUpApiService {
     return this.apiService.emailValidityCheck(payload);
   }
 
+  checkCorporateEmailValidity(payload) {
+    return this.apiService.corporateEmailValidityCheck(payload);
+  }
+
   resendEmailVerification(value: any, isEmail: boolean, organisationCode = null) {
+    let isCorpbiz = this.checkIfCorpBizEmail();
+    
     const payload = {
       mobileNumber: isEmail ? '' : value,
       emailAddress: isEmail ? value : '',
-      callbackUrl: `${environment.apiBaseUrl}${organisationCode == appConstants.USERTYPE.FACEBOOK ? this.corpEmailVerifyUrl : this.emailVerifyUrl}`, 
+      callbackUrl: `${environment.apiBaseUrl}${organisationCode == appConstants.USERTYPE.FACEBOOK ? this.corpEmailVerifyUrl : (isCorpbiz ? this.corpbizEmailVerifyUrl : this.emailVerifyUrl)}`,
       hostedServerName: window.location.hostname,
       organisationCode: organisationCode
     } as IResendEmail;
     return this.apiService.resendEmailVerification(payload);
   }
+
+  checkIfCorpBizEmail() {
+    if (this.appService.getCorpBizData() && typeof this.appService.getCorpBizData().isCorpBiz == 'boolean' && this.appService.getCorpBizData().isCorpBiz) {
+      return true;
+    } else {
+      return this.authService.isCorpBiz;
+    }
+  }
+
   sendWelcomeEmail(value: any, isEmail: boolean) {
     const payload = {
       mobileNumber: isEmail ? '' : value,
@@ -366,7 +386,11 @@ export class SignUpApiService {
  * Getting organisation(name) by passing organisation code(UUID)
  * @param orgID - query parameter.
  */
-   getOrganisationCode(orgID) {
+  getOrganisationCode(orgID) {
     return this.apiService.getOrganisationCode(orgID);
+  }
+
+  getSampleMyInfoResponse() {
+    return this.apiService.getCorpBizMyInfoSampleData();
   }
 }
