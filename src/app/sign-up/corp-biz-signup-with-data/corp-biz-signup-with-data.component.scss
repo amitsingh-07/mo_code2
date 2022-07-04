@@ -26,7 +26,6 @@ app-corp-biz-signup-with-data {
     .corpbiz-data-wrapper__title {
         font-family: $muli-semi-bold;
         letter-spacing: -0.18px;
-        text-align: center;
         text-align: left;
 
         @include allmobiles {
@@ -72,7 +71,7 @@ app-corp-biz-signup-with-data {
         color: $white-color;
 
         .myinfo-accordian-block {
-            padding: 22px 20px 20px 20px;
+            padding: 20px;
             background: $white-color;
             border-radius: 6px;
 
@@ -148,7 +147,7 @@ app-corp-biz-signup-with-data {
                     padding: 10px 0 0 0;
 
                     .myinfo-data-content {
-                        font-family: $muli-regular;
+                        font-family: $muli-semi-bold;
                         font-size: 14px;
                         line-height: 22px;
                         color: $dark-dusty-grey-color;
