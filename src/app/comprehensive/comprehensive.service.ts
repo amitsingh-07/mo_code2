@@ -63,6 +63,7 @@ export class ComprehensiveService {
   private getStartedStyle = 'get-started';
   cpfPayoutAmount: number = 0;
   welcomeFlowRetirementAge: number = 0;
+  welcomeFlowMyInfoData: {enquiryId: number, reportId: number};
 
   constructor(
     private http: HttpClient,

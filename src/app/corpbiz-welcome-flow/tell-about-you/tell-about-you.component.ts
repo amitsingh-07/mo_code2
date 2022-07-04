@@ -58,7 +58,7 @@ export class TellAboutYouComponent implements OnInit {
                  }
 
   ngOnInit(): void {
-    this.navbarService.setNavbarMode(101);
+    this.navbarService.setNavbarMode(106);
     this.footerService.setFooterVisibility(false);
     this.buildForm();
     this.getUserDob();
@@ -130,6 +130,8 @@ export class TellAboutYouComponent implements OnInit {
         if (res.responseMessage && res.responseMessage.responseCode == 6000) {
           this.comprehensiveService.cpfPayoutAmount = res.objectList.monthlyPayout;
           this.comprehensiveService.welcomeFlowRetirementAge = payload.retirementAge;
+          this.comprehensiveService.welcomeFlowMyInfoData = res.objectList;
+          this.authService.clearWelcomeFlowFlag();
           this.router.navigate([CORPBIZ_ROUTES_PATHS.LIFE_PAYOUT]);
         }
       })

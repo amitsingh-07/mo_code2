@@ -35,8 +35,7 @@ export class DownloadReportComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    // this.getComprehensiveSummaryDashboard()
-    this.navbarService.setNavbarMode(101);
+    this.navbarService.setNavbarMode(106);
     this.footerService.setFooterVisibility(false);
     this.subscription = this.navbarService.preventBackButton().subscribe();
   }
@@ -56,8 +55,8 @@ export class DownloadReportComponent implements OnInit {
       newWindow = window.open();
     }
     const payload = { 
-      reportId: this.getComprehensiveSummaryDashboardInfo.reportId, 
-      enquiryId: this.getComprehensiveSummaryDashboardInfo.enquiryId 
+      reportId: this.comprehensiveService.welcomeFlowMyInfoData.reportId, 
+      enquiryId: this.comprehensiveService.welcomeFlowMyInfoData.enquiryId 
     };
     this.comprehensiveApiService.downloadComprehensiveReport(payload).subscribe((data: any) => {
       const pdfUrl = window.URL.createObjectURL(data.body);
@@ -77,7 +76,6 @@ export class DownloadReportComponent implements OnInit {
 
   redirectToDashboard() {
     this.navbarService.displayingWelcomeFlowContent$.next(false);
-    this.navbarService.hideBackBtn$.next(false);
     this.router.navigate([SIGN_UP_ROUTE_PATHS.DASHBOARD]);
   }
 
