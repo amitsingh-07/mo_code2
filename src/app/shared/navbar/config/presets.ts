@@ -38,6 +38,18 @@ export class NavbarConfig {
     showExitCheck: true,
   };
 
+  // CorpBiz Sign Up Journey
+  '106': object = {
+    showNavBackBtn: false,
+    showHeaderBackBtn: false,
+    showMenu: false,
+    showLogin: false,
+    showSearchBar: false,
+    showNotifications: false,
+    showHeaderNavbar: false,
+    showExitCheck: true,
+  };
+
   // Edit Profile
   '102': object = {
     showNavBackBtn: true,
