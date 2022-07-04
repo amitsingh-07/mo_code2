@@ -70,7 +70,7 @@ export class AccountCreatedComponent implements OnInit, OnDestroy {
    * redirect to login page.
    */
    redirectToLogin() {
-    if (this.appService.getCorpBizData() && this.appService.getCorpBizData().isCorpBiz) {
+    if (!this.organisationEnabled) {
       this.authService.displayCorporateLogo$.next(false);
     }
     if (this.finlitEnabled) {
