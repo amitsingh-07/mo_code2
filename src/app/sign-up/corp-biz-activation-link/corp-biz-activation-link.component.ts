@@ -1,4 +1,4 @@
-import { Component, OnDestroy, OnInit, ViewEncapsulation } from '@angular/core';
+import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { TranslateService } from '@ngx-translate/core';
 import { ActivatedRoute, Params, Router } from '@angular/router';
 import { FooterService } from '../../shared/footer/footer.service';
@@ -15,7 +15,7 @@ import { AppService } from '../../app.service';
   styleUrls: ['./corp-biz-activation-link.component.scss'],
   encapsulation: ViewEncapsulation.None
 })
-export class CorpBizActivationLinkComponent implements OnInit, OnDestroy {
+export class CorpBizActivationLinkComponent implements OnInit {
   screenToShow: string;
   queryParams: Params;
   token: string;
@@ -36,8 +36,8 @@ export class CorpBizActivationLinkComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit(): void {
-    this.navbarService.setNavbarMode(101);
-    this.navbarService.hideBackBtn$.next(true);
+    this.navbarService.setNavbarMode(106);
+    // this.navbarService.hideBackBtn$.next(true);
     this.footerService.setFooterVisibility(false);
     this.queryParams = this.route.snapshot.queryParams;
     this.token = encodeURIComponent(this.queryParams.token);
@@ -80,9 +80,6 @@ export class CorpBizActivationLinkComponent implements OnInit, OnDestroy {
         this.router.navigate(['/page-not-found']);
       });
     });
-  }
-  ngOnDestroy() {
-    this.navbarService.hideBackBtn$.next(false);
   }
 }
 

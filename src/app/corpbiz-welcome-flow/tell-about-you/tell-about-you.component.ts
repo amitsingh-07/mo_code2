@@ -58,7 +58,7 @@ export class TellAboutYouComponent implements OnInit {
                  }
 
   ngOnInit(): void {
-    this.navbarService.setNavbarMode(101);
+    this.navbarService.setNavbarMode(106);
     this.footerService.setFooterVisibility(false);
     this.buildForm();
     this.getUserDob();

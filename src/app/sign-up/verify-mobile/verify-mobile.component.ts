@@ -596,7 +596,6 @@ export class VerifyMobileComponent implements OnInit, OnDestroy {
       if (this.authService.isShowWelcomeFlow) {
         this.redirectAfterLogin = CORPBIZ_ROUTES_PATHS.GET_STARTED;
         this.navbarService.displayingWelcomeFlowContent$.next(true);
-        this.navbarService.hideBackBtn$.next(true);
       } else {
         this.redirectAfterLogin = SIGN_UP_ROUTE_PATHS.DASHBOARD;
       }

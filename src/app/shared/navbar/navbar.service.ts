@@ -86,7 +86,6 @@ export class NavbarService {
   logoutObservable$ = this.logoutSubject.asObservable();
   wiseIncomeDropDownShow = new BehaviorSubject(false);
   displayingWelcomeFlowContent$: BehaviorSubject<boolean> = new BehaviorSubject(false);
-  hideBackBtn$: BehaviorSubject<boolean> = new BehaviorSubject(false);
 
   constructor(private router: Router, private _location: Location) {
     this.router.events.pipe(

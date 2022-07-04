@@ -68,8 +68,7 @@ export class CorpBizSignupComponent implements OnInit {
 
   ngOnInit(): void {
     this.navbarService.setNavbarVisibility(true);
-    this.navbarService.hideBackBtn$.next(true);
-    this.navbarService.setNavbarMode(101);
+    this.navbarService.setNavbarMode(106);
     this.footerService.setFooterVisibility(false);
 
     this.myinfoChangeListener = this.myInfoService.changeListener.subscribe((myinfoObj: any) => {
@@ -88,7 +87,6 @@ export class CorpBizSignupComponent implements OnInit {
   }
 
   ngOnDestroy(): void {
-    this.navbarService.hideBackBtn$.next(false);
     if (this.myinfoChangeListener) {
       this.myinfoChangeListener.unsubscribe();
     }
