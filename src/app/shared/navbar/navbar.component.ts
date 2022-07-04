@@ -135,13 +135,13 @@ export class NavbarComponent implements OnInit, AfterViewInit {
   wiseIncomeDropDownItem: any;
   tab;
   currentActive;
-  corpFaq = appConstants.CORPORATE_FAQ; 
+  corpFaq = appConstants.CORPORATE_FAQ;
 
   @ViewChild('navbar') NavBar: ElementRef;
   @ViewChild('navbarDropshadow') NavBarDropShadow: ElementRef;
 
   private ngUnsubscribe = new Subject();
-  accessReferrelProgramOnRoles:boolean = true;
+  accessReferrelProgramOnRoles: boolean = true;
 
   corpBizData: any;
 
@@ -188,7 +188,7 @@ export class NavbarComponent implements OnInit, AfterViewInit {
         this.userInfo = data;
         if (this.authService.isSignedUser()) {
           this.isLoggedIn = true;
-          this.authService.isUserTypeCorporate = this.authService.isSignedUserWithRole(SIGN_UP_CONFIG.ROLE_CORP_FB_USER);    
+          this.authService.isUserTypeCorporate = this.authService.isSignedUserWithRole(SIGN_UP_CONFIG.ROLE_CORP_FB_USER);
           this.authService.displayCorporateLogo$.next(this.authService.isUserTypeCorporate);
           this.accessReferrelProgramOnRoles = this.authService.accessCorporateUserFeature('REFERREL_PROGRAM');
         }
@@ -206,7 +206,7 @@ export class NavbarComponent implements OnInit, AfterViewInit {
     // Log Out
     this.navbarService.logoutObservable$.subscribe((data) => {
       if (data === 'LOGGED_OUT') {
-        if(this.appService.getCorporateDetails() && this.appService.getCorporateDetails().organisationEnabled) {
+        if (this.appService.getCorporateDetails() && this.appService.getCorporateDetails().organisationEnabled) {
           this.clearLoginDetails(true, appConstants.USERTYPE.CORPORATE);
         } else {
           this.clearLoginDetails();
@@ -298,7 +298,7 @@ export class NavbarComponent implements OnInit, AfterViewInit {
     this.navbarService.currentActiveObserv.pipe(takeUntil(this.ngUnsubscribe))
       .subscribe((currentActive) => {
         this.currentActive = currentActive;
-      });    
+      });
   }
 
   ngAfterViewInit() {
@@ -396,8 +396,11 @@ export class NavbarComponent implements OnInit, AfterViewInit {
 
   goToExternal(url) {
     if (this.authService.isSignedUser()) {
-      this.isLoggedIn = true;
-      this.checkCurrentRouteAndNavigate(DASHBOARD_PATH);
+      let welcomeFlowFlag = this.authService.getWelcomeFlowFlag();
+      if (typeof welcomeFlowFlag == 'boolean' && !welcomeFlowFlag) {
+        this.isLoggedIn = true;
+        this.checkCurrentRouteAndNavigate(DASHBOARD_PATH);
+      }
     }
     else {
       window.open(url, '_blank');
@@ -508,7 +511,7 @@ export class NavbarComponent implements OnInit, AfterViewInit {
       this.authService.logout().subscribe((data) => {
         this.clearLoginDetails(true, this.signUpService.getUserType());
       });
-    } else if(this.appService.getCorporateDetails() && this.appService.getCorporateDetails().organisationEnabled) {
+    } else if (this.appService.getCorporateDetails() && this.appService.getCorporateDetails().organisationEnabled) {
       this.clearLoginDetails(true, appConstants.USERTYPE.CORPORATE);
     } else {
       this.clearLoginDetails();
@@ -529,8 +532,8 @@ export class NavbarComponent implements OnInit, AfterViewInit {
     this.appService.startAppSession();
     this.selectedPlansService.clearData();
     if (isRedirect) {
-      if (userType ===  appConstants.USERTYPE.CORPORATE) {
-        this.router.navigate([SIGN_UP_ROUTE_PATHS.CORPORATE_LOGIN], { queryParams: {orgID: this.appService.getCorporateDetails().uuid}});
+      if (userType === appConstants.USERTYPE.CORPORATE) {
+        this.router.navigate([SIGN_UP_ROUTE_PATHS.CORPORATE_LOGIN], { queryParams: { orgID: this.appService.getCorporateDetails().uuid } });
       } else if (this.showHome) {
         this.router.navigate([appConstants.homePageUrl]);
       } else {
@@ -545,7 +548,7 @@ export class NavbarComponent implements OnInit, AfterViewInit {
       this.clearLoginDetails();
       this.errorHandler.handleAuthError();
       if (this.appService.getCorporateDetails() && this.appService.getCorporateDetails().organisationEnabled) {
-        this.router.navigate([SIGN_UP_ROUTE_PATHS.CORPORATE_LOGIN], { queryParams: {orgID: this.appService.getCorporateDetails().uuid}});
+        this.router.navigate([SIGN_UP_ROUTE_PATHS.CORPORATE_LOGIN], { queryParams: { orgID: this.appService.getCorporateDetails().uuid } });
       } else {
         this.router.navigate([SIGN_UP_ROUTE_PATHS.LOGIN]);
       }
@@ -627,7 +630,7 @@ export class NavbarComponent implements OnInit, AfterViewInit {
       this.currentActive = 0;
     }
   }
-  
+
   ngOnDestroy() {
     this.ngUnsubscribe.next(true);
     this.ngUnsubscribe.unsubscribe();

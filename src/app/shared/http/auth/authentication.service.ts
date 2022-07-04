@@ -21,6 +21,7 @@ const APP_ENQUIRY_ID = 'app-enquiry-id';
 const FROM_JOURNEY_HM = 'from_journey';
 const EMAIL = 'email';
 const CORPORATE_DETAILS = 'app_corporate_details';
+const APP_WELCOME_FLOW = 'app_welcome_flow';
 
 @Injectable({ providedIn: 'root' })
 export class AuthenticationService {
@@ -102,6 +103,7 @@ export class AuthenticationService {
         }
         if (response && response.objectList[1] && typeof response.objectList[1].showWelcomeFlow === 'boolean') {
           this.isShowWelcomeFlow = response.objectList[1].showWelcomeFlow;
+          this.setWelcomeFlowFlag(this.isShowWelcomeFlow);
         }
         this.isCorpBiz = response?.objectList[1]?.isCorpBizUser;
         return response;
@@ -465,4 +467,23 @@ export class AuthenticationService {
     sessionStorage.removeItem(appConstants.FINLIT_ACCESS_CODE);
   }
 
+  setWelcomeFlowFlag(welcomeFlowFlag) {
+    if (window.sessionStorage) {
+      sessionStorage.setItem(APP_WELCOME_FLOW, JSON.stringify(welcomeFlowFlag));
+    }
+  }
+
+  clearWelcomeFlowFlag() {
+    if (window.sessionStorage) {
+      sessionStorage.removeItem(APP_WELCOME_FLOW);
+    }
+  }
+
+  getWelcomeFlowFlag() {
+    let welcomeFlowFlag = false;
+    if (window.sessionStorage && sessionStorage.getItem(APP_WELCOME_FLOW)) {
+      welcomeFlowFlag = JSON.parse(sessionStorage.getItem(APP_WELCOME_FLOW));
+    }
+    return welcomeFlowFlag;
+  }
 }

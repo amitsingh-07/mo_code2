@@ -817,10 +817,4 @@ export class ApiService {
         catchError((error: HttpErrorResponse) => this.handleError(error))
       );
   }
-
-  // Sample MyInfoData
-  getCorpBizMyInfoSampleData() {
-    const url = 'assets/myInfoSample/responseS9212381D.json';
-    return this.httpClient.get(url);
-  }
 }
