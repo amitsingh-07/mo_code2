@@ -88,6 +88,7 @@ export class CorpBizSignupComponent implements OnInit {
   }
 
   ngOnDestroy(): void {
+    this.navbarService.hideBackBtn$.next(false);
     if (this.myinfoChangeListener) {
       this.myinfoChangeListener.unsubscribe();
     }
