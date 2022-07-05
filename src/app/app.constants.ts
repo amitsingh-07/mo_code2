@@ -33,7 +33,8 @@ export let appConstants = {
         SINGPASS: "SINGPASS",
         PUBLIC: 'PUBLIC',
         CORPORATE: 'CORPORATE',
-        FACEBOOK: "FACEBOOK"
+        FACEBOOK: "FACEBOOK",
+        CORPBIZ: "CORPBIZ"
     },
     ORGANISATION_ROLES: {
         ALLOWED_DOMAIN_CORP: ['@fb.com', '@facebook.com', '@yopmail.com', '@moneyowl.com'],

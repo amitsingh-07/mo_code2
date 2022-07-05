@@ -41,6 +41,7 @@ import {
 import { InvestmentCommonService } from '../../investment/investment-common/investment-common.service';
 import { HubspotService } from './../../shared/analytics/hubspot.service';
 import { INVESTMENT_COMMON_ROUTES } from '../../investment/investment-common/investment-common-routes.constants';
+import { CORPBIZ_ROUTES_PATHS } from '../../corpbiz-welcome-flow/corpbiz-welcome-flow.routes.constants';
 
 @Component({
   selector: 'app-verify-mobile',
@@ -81,6 +82,7 @@ export class VerifyMobileComponent implements OnInit, OnDestroy {
   showOtpComponent = false;
   protected ngUnsubscribe: Subject<void> = new Subject<void>();
   organisationEnabled = false;
+  isCorpBiz = false;
 
   constructor(
     private formBuilder: FormBuilder,
@@ -151,10 +153,11 @@ export class VerifyMobileComponent implements OnInit, OnDestroy {
     this.footerService.setFooterVisibility(false);
     this.buildVerifyMobileForm();
     this.fromLoginPage = this.signUpService.getFromLoginPage();
-    if (this.fromLoginPage) {
+    this.isCorpBiz = this.appService.getCorpBizData()?.isCorpBiz;
+    if (this.fromLoginPage || this.isCorpBiz) {
       this.mobileNumber = {
         code: (this.signUpService.getUserMobileCountryCode()) ? this.signUpService.getUserMobileCountryCode() : appConstants.SINGAPORE_COUNTRY_CODE,
-        number: this.signUpService.getUserMobileNo()
+        number: this.isCorpBiz ? this.appService.getCorpBizData().maskedMobileNumber : this.signUpService.getUserMobileNo()
       };
     } else {
       this.mobileNumber = this.signUpService.getMobileNumber();
@@ -354,13 +357,13 @@ export class VerifyMobileComponent implements OnInit, OnDestroy {
   }
 
   sendWelcomeEmail() {
-    const mobileNo = this.mobileNumber.number.toString();
+    const mobileNo = this.isCorpBiz? this.appService.getCorpBizData().mobileNumber.toString() : this.mobileNumber.number.toString();
     this.signUpApiService.sendWelcomeEmail(mobileNo, false).subscribe((data) => { });
   }
 
   resendEmailVerification() {
     let organisationCode = (this.organisationEnabled && appConstants.USERTYPE.FACEBOOK) || null;
-    const mobileNo = this.mobileNumber.number.toString();
+    const mobileNo = this.isCorpBiz? this.appService.getCorpBizData().mobileNumber.toString() : this.mobileNumber.number.toString();
     this.signUpApiService.resendEmailVerification(mobileNo, false, organisationCode).subscribe((data) => {
       if (data.responseMessage.responseCode === 6007) {
         this.navbarService.logoutUser();
@@ -376,6 +379,8 @@ export class VerifyMobileComponent implements OnInit, OnDestroy {
           this.router.navigate([SIGN_UP_ROUTE_PATHS.ACCOUNT_CREATED_FINLIT]);
         } else if (this.organisationEnabled) {
           this.router.navigate([SIGN_UP_ROUTE_PATHS.ACCOUNT_CREATED_CORPORATE]);
+        } else if (this.isCorpBiz) {
+          this.router.navigate([SIGN_UP_ROUTE_PATHS.ACCOUNT_CREATED_CORPBIZ]);
         } else {
           this.router.navigate([SIGN_UP_ROUTE_PATHS.ACCOUNT_CREATED]);
         }
@@ -588,7 +593,12 @@ export class VerifyMobileComponent implements OnInit, OnDestroy {
     } else if (journeyType === appConstants.JOURNEY_TYPE_WILL_WRITING && this.willWritingService.getWillCreatedPrelogin()) {
       this.getUserProfileAndNavigate(appConstants.JOURNEY_TYPE_WILL_WRITING);
     } else {
-      this.redirectAfterLogin = SIGN_UP_ROUTE_PATHS.DASHBOARD;
+      if (this.authService.isShowWelcomeFlow) {
+        this.redirectAfterLogin = CORPBIZ_ROUTES_PATHS.GET_STARTED;
+        this.navbarService.displayingWelcomeFlowContent$.next(true);
+      } else {
+        this.redirectAfterLogin = SIGN_UP_ROUTE_PATHS.DASHBOARD;
+      }
       this.progressModal = true;
       this.loaderService.hideLoader();
       this.router.navigate([this.redirectAfterLogin]);

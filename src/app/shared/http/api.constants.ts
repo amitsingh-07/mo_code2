@@ -51,6 +51,7 @@ export let apiConstants = {
         editProfile: ACCOUNT_API_BASE_URL + '/customer/customerProfile?handleError=true',
         editEmployerAddress: ACCOUNT_API_BASE_URL + '/updateEmployment',
         emailValidityCheck: ACCOUNT_API_BASE_URL + '/emailValidityCheck',
+        corporateEmailValidityCheck: ACCOUNT_API_BASE_URL + '/corporateEmailValidityCheck',
         detailCustomerSummary: ACCOUNT_API_BASE_URL + '/getDetailedCustomerSummary',
         getCustomerInsuranceDetails: INSURANCE_RECOMMEND_API_BASE_URL + '/customer/getDetailedInsuranceSummary?handleError=true',
         resendEmailVerification: ACCOUNT_API_BASE_URL + '/resendEmailVerification',
@@ -124,6 +125,8 @@ export let apiConstants = {
             updateComprehensiveStatus: COMPREHENSIVE_API_BASE_URL +'updateComprehensiveReportStatus',
             insuranceData: 'assets/comprehensive/insurancePlan.json',
             generateComprehensiveCashflow: FINANCE_API_BASE_URL + 'generateComprehensiveCashflow',
+            generateReport: INSURANCE_RECOMMEND_API_BASE_URL + '/customer/comprehensive/myinfo',
+            getUserDob: ACCOUNT_API_BASE_URL+ '/customer/dateOfBirth'
         },
         payment: {
             getRequestSignature: PAYMENT_API_BASE_URL + 'getRequestSignature',
@@ -144,8 +147,8 @@ export let apiConstants = {
             getOrganisationCodeByUUID: ACCOUNT_API_BASE_URL+ '/getOrganisationCodeByUUID'
         },
         singpass: {
-            getStateNonce: SINGPASS_API_BASE_URL+ 'getStateNonce',
-            loginSingpass: SINGPASS_API_BASE_URL+ 'loginSingpass'
+            getStateNonce: SINGPASS_API_BASE_URL+ 'getStateNonce?handleError=true',
+            loginSingpass: SINGPASS_API_BASE_URL+ 'loginSingpass?handleError=true'
         }
     }
 };

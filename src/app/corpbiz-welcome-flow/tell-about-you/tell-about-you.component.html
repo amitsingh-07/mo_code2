@@ -1,0 +1,80 @@
+
+<div class="container-fluid max-width--1024">
+    <div class="row">
+        <div class="intro_sub-title flex-col-12">
+          <div class="back-btn mobile-back-btn hidden-lg" (click)="goBack()">
+            <img src="assets/images/back-web.svg">
+          </div>
+            <div class="main-desc" [innerHtml]="'TELL_ABOUT_YOU.RETIREMENT_MAIN_TITLE'|translate" ></div>
+        </div>
+    </div>
+
+    <div class="page-banner"><img src="assets/images/welcome-journey/corpbiz-chilling.svg"></div>
+    
+    <div class="retirement-card-title">{{'TELL_ABOUT_YOU.RETIREMENT_TITLE' | translate}}</div>
+    <div class="form-container">
+      <form [formGroup]="formObject">
+        <div class="flex-row">
+            <div class="flex-col-7 align-center">
+              <div class="form-group-with-bg--content-label sub-title">
+                {{ 'CMP.RETIREMENT_PLAN.ABOUT' | translate}}</div>
+            </div>
+            <div class="flex-col-5">
+              <div class="form-control form-control-right retireTxt"
+              [ngClass]="{'inline-error': !(sliderValid.minAge && sliderValid.userAge)}">
+                <input id="retireUserAge" type="text"
+                  mode=1 [readonly]="false" (keyup)="changeSlide($event)"
+                  class="input-control" appCurrencyInput maxLength="2" name="retireUserAge" [value]="sliderValue" />
+                <i class="right percent-fix">{{'CMP.RETIREMENT_PLAN.YEARS_OLD'|translate}}</i>
+              </div>
+            </div>
+          </div>
+            <div class="slider-dark">
+                <nouislider (slide)="onSliderChange($event)" id="retirementSlider" #ciMultiplierSlider [config]="ciSliderConfig"></nouislider>
+                <div class="min-max-val"> 
+                  <div class="min-val">{{'CMP.RETIREMENT_PLAN.MIN_AGE'|translate}}<span
+                      class="min-text">{{'CMP.RETIREMENT_PLAN.MIN_LABEL'|translate}}</span></div>
+                  <div class="max-val">{{'CMP.RETIREMENT_PLAN.MAX_AGE'|translate}}<span
+                      class="max-text">{{'CMP.RETIREMENT_PLAN.MAX_LABEL'|translate}}</span>
+                  </div>
+                </div>
+              </div>
+              <div class="flex-row retirementAgeValid" *ngIf="!(sliderValid.minAge && sliderValid.userAge)">
+                <div class="flex-col-12">
+                  <div class="form-group-with-bg--content-label" *ngIf="!sliderValid.userAge">
+                    <img src="assets/images/comprehensive/age-warn.svg" />
+                    <span class="ml10">{{ 'CMP.RETIREMENT_PLAN.RETIREMENT_USER_AGE_VALIDATION' | translate}}</span>
+                  </div>
+                  <div class="form-group-with-bg--content-label mb20" *ngIf="!sliderValid.minAge">
+                    <img src="assets/images/comprehensive/age-warn.svg" />
+                    <span class="ml10">{{ 'CMP.RETIREMENT_PLAN.RETIREMENT_MIN_AGE_VALIDATION' | translate}}</span>
+                  </div>
+                </div>
+              </div>
+
+            <div class="flex-row mt20">
+                <div class="flex-col-7 align-center">
+                  <div class="form-group-with-bg--content-label sub-title" for="name">{{'TELL_ABOUT_YOU.RETIREMENT_CASH_TITLE' | translate}}<div
+                      class="form-group-with-bg--content-sub-label"></div>
+                  </div>
+                </div>
+                <div class="flex-col-5">
+                  <div class="form-control">
+                    <i>$</i>
+                    <input type="number" maxLength="7" class="input-control" appCurrencyInput #cashInBank
+                    formControlName="cashInBank">
+                  </div>
+                </div>
+              </div>
+        <div>
+            <div class="min-text mt20">{{'TELL_ABOUT_YOU.RETIREMENT_MIN_TEXT' | translate}}</div>
+        </div>
+      </form>
+    </div>
+    <div class="row btn-container">
+        <div class="back-btn hidden-sm" (click)="goBack()"></div>
+        <button (click)="generateReport()" type="button" class="btn btn__footer--fixed btn-primary width100" id="myFinancialGoNextBtn">{{'TELL_ABOUT_YOU.CONT_BTN' | translate}}</button>
+    </div>
+    
+</div>
+
