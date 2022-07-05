@@ -202,6 +202,8 @@ export let SIGN_UP_CONFIG = {
     'residentialstatus',
     'cpfbalances',
     'cpfhousingwithdrawal',
+    'email',
+    'mobileno',
     // 'noahistory',
     // 'hdbownership',
     // 'vehicles',
