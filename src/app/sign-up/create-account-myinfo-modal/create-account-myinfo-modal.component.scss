@@ -80,13 +80,6 @@ app-create-account-myinfo-modal {
 
   .modal-body {
     padding: 20px;
-
-    &.my-info {
-      @include desktop {
-        width: 375px !important;
-        margin: 0 auto !important;
-      }
-    }
   }
 
   .modal-body-title {

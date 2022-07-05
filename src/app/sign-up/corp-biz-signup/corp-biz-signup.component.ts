@@ -32,6 +32,7 @@ export class CorpBizSignupComponent implements OnInit {
   myInfoSubscription: any;
   modalBtnTxt: string;
   myinfoChangeListener: Subscription;
+  disabledAttributes: any;
 
   constructor(
     private modal: NgbModal,
@@ -72,13 +73,21 @@ export class CorpBizSignupComponent implements OnInit {
     this.footerService.setFooterVisibility(false);
 
     this.myinfoChangeListener = this.myInfoService.changeListener.subscribe((myinfoObj: any) => {
+      let attributeList = this.signUpService.corpBizMyInfoAttributes;
+      if (this.disabledAttributes) {
+        attributeList = this.removeMyInfoAttributes(this.disabledAttributes.cpfHousingFlag, SIGN_UP_CONFIG.EXCLUDABLE_CORP_BIZ_MY_INFO_ATTRIBUTES.CPF_HOUSING_WITHDRAWAL, attributeList);
+        attributeList = this.removeMyInfoAttributes(this.disabledAttributes.vehicleFlag, SIGN_UP_CONFIG.EXCLUDABLE_CORP_BIZ_MY_INFO_ATTRIBUTES.VEHICLES, attributeList);
+      }
       if (myinfoObj && myinfoObj !== '' &&
-        this.myInfoService.getMyInfoAttributes() === this.signUpService.myInfoAttributes.join()) {
+        (this.myInfoService.getMyInfoAttributes() === this.signUpService.corpBizMyInfoAttributes.join() ||
+          (this.disabledAttributes &&
+            (attributeList.join() === this.myInfoService.getMyInfoAttributes())
+          ))) {
         if (myinfoObj.status && myinfoObj.status === SIGN_UP_CONFIG.CREATE_ACCOUNT_STATIC.SUCCESS && this.myInfoService.isMyInfoEnabled) {
           this.getMyInfoAccountCreateData();
         } else if (myinfoObj.status && myinfoObj.status === SIGN_UP_CONFIG.CREATE_ACCOUNT_STATIC.CANCELLED) {
           this.cancelMyInfo();
-          this.router.navigate([SIGN_UP_ROUTES.CORPBIZ_CREATE_ACCOUNT]);
+          this.router.navigate([SIGN_UP_ROUTE_PATHS.CORP_BIZ_SIGNUP]);
         } else {
           this.closeMyInfoPopup(false);
         }
@@ -124,7 +133,7 @@ export class CorpBizSignupComponent implements OnInit {
   getMyInfo(attributesFlags: any) {
     let attributes = this.signUpService.corpBizMyInfoAttributes;
     if (attributesFlags) {
-      attributes = this.removeMyInfoAttributes(attributesFlags.cpfHousingFlag, SIGN_UP_CONFIG.EXCLUDABLE_CORP_BIZ_MY_INFO_ATTRIBUTES.CPF_BALANCES, attributes);
+      attributes = this.removeMyInfoAttributes(attributesFlags.cpfHousingFlag, SIGN_UP_CONFIG.EXCLUDABLE_CORP_BIZ_MY_INFO_ATTRIBUTES.CPF_HOUSING_WITHDRAWAL, attributes);
       attributes = this.removeMyInfoAttributes(attributesFlags.vehicleFlag, SIGN_UP_CONFIG.EXCLUDABLE_CORP_BIZ_MY_INFO_ATTRIBUTES.VEHICLES, attributes);
     }
     this.myInfoService.setMyInfoAttributes(attributes);
@@ -146,6 +155,7 @@ export class CorpBizSignupComponent implements OnInit {
     ref.componentInstance.myInfoEnableFlags.subscribe((value: any) => {
       ref.result
         .then(() => {
+          this.disabledAttributes = value;
           this.getMyInfo(value);
         })
         .catch((e) => { });
