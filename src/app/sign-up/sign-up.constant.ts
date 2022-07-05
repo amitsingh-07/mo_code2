@@ -193,8 +193,8 @@ export let SIGN_UP_CONFIG = {
   },
   CORP_BIZ_MY_INFO_ATTRIBUTES: [
     'name',
-    'marital', // Will include in payload once approved from Singpass
-    'ownerprivate',
+    // 'marital', // Will include in payload once approved from Singpass
+    // 'ownerprivate',
     'birthcountry',
     'sex',
     'dob',
@@ -202,11 +202,18 @@ export let SIGN_UP_CONFIG = {
     'residentialstatus',
     'cpfbalances',
     'cpfhousingwithdrawal',
-    'noahistory',
-    'hdbownership',
-    'vehicles',
-    'childrenbirthrecords',
-    'sponsoredchildrenrecords'
+    // 'noahistory',
+    // 'hdbownership',
+    // 'vehicles',
+    'childrenbirthrecords.name',
+    'childrenbirthrecords.sex',
+    'childrenbirthrecords.dob',
+    'childrenbirthrecords.lifestatus',
+    'sponsoredchildrenrecords.name',
+    'sponsoredchildrenrecords.sex',
+    'sponsoredchildrenrecords.dob',
+    'sponsoredchildrenrecords.lifestatus',
+    'sponsoredchildrenrecords.residentialstatus'
   ],
   EXCLUDABLE_CORP_BIZ_MY_INFO_ATTRIBUTES: {
     CPF_HOUSING_WITHDRAWAL: 'cpfhousingwithdrawal',
