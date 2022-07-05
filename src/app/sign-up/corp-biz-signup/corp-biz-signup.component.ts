@@ -87,7 +87,6 @@ export class CorpBizSignupComponent implements OnInit {
           this.getMyInfoAccountCreateData();
         } else if (myinfoObj.status && myinfoObj.status === SIGN_UP_CONFIG.CREATE_ACCOUNT_STATIC.CANCELLED) {
           this.cancelMyInfo();
-          this.router.navigate([SIGN_UP_ROUTE_PATHS.CORP_BIZ_SIGNUP]);
         } else {
           this.closeMyInfoPopup(false);
         }
