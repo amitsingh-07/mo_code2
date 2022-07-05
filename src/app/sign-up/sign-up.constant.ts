@@ -217,7 +217,7 @@ export let SIGN_UP_CONFIG = {
     'sponsoredchildrenrecords.residentialstatus'
   ],
   EXCLUDABLE_CORP_BIZ_MY_INFO_ATTRIBUTES: {
-    CPF_BALANCES: 'cpfbalances',
+    CPF_HOUSING_WITHDRAWAL: 'cpfhousingwithdrawal',
     VEHICLES: 'vehicles'
   },
   ACC_TYPE_CORPBIZ: 'corpbiz',
