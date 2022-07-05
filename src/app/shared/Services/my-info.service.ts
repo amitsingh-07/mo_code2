@@ -246,8 +246,8 @@ export class MyInfoService {
       personAttributes: this.getMyInfoAttributes(),
       isCorpBizUser: true,
       organisationCode: organisationCode,
-      emailId: email,
-      mobileNo: mobile
+      email: email,
+      mobileNumber: mobile
     };
     return this.apiService.getCreateAccountMyInfoData(payload);
   }
