@@ -203,17 +203,10 @@ export let SIGN_UP_CONFIG = {
     'cpfbalances',
     'cpfhousingwithdrawal',
     'noahistory',
-    // 'hdbOwnerships',
-    // 'vehicles',
-    'childrenbirthrecords.name',
-    'childrenbirthrecords.sex',
-    'childrenbirthrecords.dob',
-    'childrenbirthrecords.lifestatus',
-    'sponsoredchildrenrecords.name',
-    'sponsoredchildrenrecords.sex',
-    'sponsoredchildrenrecords.dob',
-    'sponsoredchildrenrecords.lifestatus',
-    'sponsoredchildrenrecords.residentialstatus'
+    'hdbownership',
+    'vehicles',
+    'childrenbirthrecords',
+    'sponsoredchildrenrecords'
   ],
   EXCLUDABLE_CORP_BIZ_MY_INFO_ATTRIBUTES: {
     CPF_HOUSING_WITHDRAWAL: 'cpfhousingwithdrawal',
