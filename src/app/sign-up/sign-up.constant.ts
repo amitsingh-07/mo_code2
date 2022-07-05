@@ -192,7 +192,7 @@ export let SIGN_UP_CONFIG = {
     }
   },
   CORP_BIZ_MY_INFO_ATTRIBUTES: [
-    'uin',
+    // 'uin',
     'name',
     // 'marital', // Will include in payload once approved from Singpass
     // 'ownerprivate',
