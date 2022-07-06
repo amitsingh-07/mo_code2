@@ -868,6 +868,8 @@ export class SignUpService {
       return SIGN_UP_CONFIG.RESIDENTIAL_STATUS.CITIZEN.DESC;
     } else if (residentialStatus.desc && residentialStatus.desc.toUpperCase() == SIGN_UP_CONFIG.RESIDENTIAL_STATUS.PR.VALUE) {
       return SIGN_UP_CONFIG.RESIDENTIAL_STATUS.PR.DESC;
+    } else if (residentialStatus.desc && residentialStatus.desc.toUpperCase() == SIGN_UP_CONFIG.RESIDENTIAL_STATUS.ALIEN.VALUE) {
+      return SIGN_UP_CONFIG.RESIDENTIAL_STATUS.ALIEN.DESC;
     }
     return null;
   }
@@ -878,7 +880,7 @@ export class SignUpService {
     }
 
     if (data.residentialstatus) { // Set Residential Status
-      this.corpBizUserMyInfoData.residentialstatus = this.setResidentialStatus(data.residentialstatus);
+      this.corpBizUserMyInfoData.residentialstatus = this.setResidentialStatus(data?.residentialstatus);
     }
     // Set Income breakdown and Notice of Assessment Data
     if (data.noa) {
