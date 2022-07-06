@@ -1012,11 +1012,11 @@ export class SignUpService {
 
   // Corp Biz changes
   setCorpBizMyInfoStatus(status) {
-    this.signUpFormData.isCorpBizMyInfoEnabled = status;
-    this.commit();
+    this.corpBizUserMyInfoData.isCorpBizMyInfoEnabled = status;
+    this.commitCorpBizUserInfo();
   }
 
   getCorpBizMyInfoStatus() {
-    return this.signUpFormData.isCorpBizMyInfoEnabled;
+    return this.corpBizUserMyInfoData.isCorpBizMyInfoEnabled;
   }
 }
