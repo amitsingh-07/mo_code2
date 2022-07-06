@@ -54,15 +54,15 @@ export class SignUpFormData {
   cpfAccountNumber: number;
   cpfOperatorBank: any;
 
-  // Corp Biz Status My info flag
-  isCorpBizMyInfoEnabled: boolean
-
   // payload details for corpbiz
   enrolmentId: number;
   isCorpBizEnrollUser: boolean;
 }
 
 export class CorpBizUserMyInfoData {
+  // Corp Biz Status My info flag
+  isCorpBizMyInfoEnabled: boolean
+  
    // CorpBiz user data from MyInfo
    marital: string;
    regadd: string;
