@@ -140,10 +140,9 @@ export class CorpBizSignupComponent implements OnInit {
   }
 
   removeMyInfoAttributes(flag: any, attribute: any, attributes: any) {
-    const attributeList = JSON.parse(JSON.stringify(attributes))
-    if (!flag && attributeList.indexOf(attribute) >= 0) {
-      const attributeIndex = attributeList.indexOf(attribute);
-      attributeList.splice(attributeIndex, 1);
+    let attributeList = JSON.parse(JSON.stringify(attributes));
+    if (!flag) {
+      attributeList = attributeList.filter(attr => !attr.includes(attribute));
     }
     return attributeList;
   }

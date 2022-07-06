@@ -509,7 +509,7 @@
                                         </div>
                                     </ng-template>
                                 </ngb-panel>
-                                <ngb-panel>
+                                <ngb-panel *ngIf="isCPFHousingWithdrawal">
                                     <ng-template ngbPanelTitle>
                                         <div class="flex space-between">
                                             <div>{{'CORP_BIZ_SIGN_UP.MY_INFO_MODAL.MODAL_ATTR.CPF_HOUSING.TITLE' |
@@ -605,7 +605,7 @@
                                     </ng-template>
                                 </ngb-panel>
                                 <!-- Vehicle Data -->
-                                <ngb-panel>
+                                <ngb-panel *ngIf="isVehicleData">
                                     <ng-template ngbPanelTitle>
                                         <div class="flex space-between">
                                             <div>{{'CORP_BIZ_SIGN_UP.MY_INFO_MODAL.MODAL_ATTR.VEHICLES.TITLE' |
