@@ -160,6 +160,10 @@ export let SIGN_UP_CONFIG = {
     PR: {
       DESC: 'PR',
       VALUE: 'PR'
+    },
+    ALIEN: {
+      DESC: 'Alien',
+      VALUE: 'ALIEN'
     }
   },
   TAX_CLEARANCE: {
