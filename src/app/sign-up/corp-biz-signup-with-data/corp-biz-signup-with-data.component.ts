@@ -9,6 +9,7 @@ import { SIGN_UP_ROUTE_PATHS } from '../sign-up.routes.constants';
 import { SignUpService } from '../sign-up.service';
 import { SIGN_UP_CONFIG } from '../sign-up.constant';
 import { Child, CPFBalances, CPFWithdrawal, Noa } from '../sign-up-form-data';
+import { MyInfoService } from '../../shared/Services/my-info.service';
 
 @Component({
   selector: 'app-corp-biz-signup-with-data',
@@ -28,6 +29,9 @@ export class CorpBizSignupWithDataComponent implements OnInit {
   hdbProperty = [];
   vehicles = [];
   cpfBalances: CPFBalances;
+  myInfoAttriutes: any;
+  isVehicleData = true;
+  isCPFHousingWithdrawal = true;
   taxClearanceConsts = SIGN_UP_CONFIG.TAX_CLEARANCE;
   constructor(
     private router: Router,
@@ -37,10 +41,14 @@ export class CorpBizSignupWithDataComponent implements OnInit {
     private _location: Location,
     private signUpService: SignUpService,
     private appService: AppService,
+    private myInfoService: MyInfoService
   ) {
     this.translate.use('en');
     this.translate.get('COMMON').subscribe((result: string) => {
     });
+    this.myInfoAttriutes = myInfoService.getMyInfoAttributes();
+    this.isVehicleData = this.myInfoAttriutes.includes(SIGN_UP_CONFIG.EXCLUDABLE_CORP_BIZ_MY_INFO_ATTRIBUTES.VEHICLES);
+    this.isCPFHousingWithdrawal = this.myInfoAttriutes.includes(SIGN_UP_CONFIG.EXCLUDABLE_CORP_BIZ_MY_INFO_ATTRIBUTES.CPF_HOUSING_WITHDRAWAL);
     this.corpBizMyInfoPersonalData = signUpService.getAccountInfo();
     this.corpBizMyInfoData = signUpService.getCorpBizUserMyInfoData();
     this.noaData = this.corpBizMyInfoData && this.corpBizMyInfoData.noa ? this.corpBizMyInfoData.noa : null;

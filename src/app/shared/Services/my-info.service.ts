@@ -239,15 +239,15 @@ export class MyInfoService {
     return this.apiService.getCreateAccountMyInfoData(code);
   }
 
-  // CREATE ACCOUNT
+  // CREATE ACCOUNT FOR CORPBIZ USERS
   getCorpBizMyInfoAccountCreateData(email, mobile, organisationCode) {
     const payload = {
       authorizationCode: this.myInfoValue,
       personAttributes: this.getMyInfoAttributes(),
       isCorpBizUser: true,
       organisationCode: organisationCode,
-      emailId: email,
-      mobileNo: mobile
+      email: email,
+      mobileNumber: mobile
     };
     return this.apiService.getCreateAccountMyInfoData(payload);
   }
