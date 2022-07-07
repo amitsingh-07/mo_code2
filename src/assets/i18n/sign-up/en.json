@@ -32,7 +32,7 @@
   },
   "CORP_BIZ_SIGN_UP": {
     "SIGN_UP_DESC": "Choose how you want to activate your Corporate Account",
-    "SIGN_UP_MY_INFO_DESC": "Retrieve Myinfo with Singpass is a fast and secured way to activate your account.<span class='text-bold'>Applicable to Singapore Citizens and Singapore Permanent Citizens (PRs) only.</span>",
+    "SIGN_UP_MY_INFO_DESC": "Retrieve Myinfo with Singpass is a fast and secured way to activate your account.<span class='text-bold'>Applicable to Singapore Citizens and Singapore Permanent Residents (PRs) only.</span>",
     "SIGN_UP_MANUAL_BTN_TXT": "Complete Form Manually",
     "MANUAL_ESTIMATED_TIME_TXT": "Estimated 3 minutes",
     "CORP_BIZ_SUCCESS_MSG": "Use these details from Myinfo to create account and financial planning with MoneyOwl.",
