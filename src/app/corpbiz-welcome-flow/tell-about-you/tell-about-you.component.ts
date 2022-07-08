@@ -13,6 +13,7 @@ import { AuthenticationService } from '../../shared/http/auth/authentication.ser
 import { ComprehensiveService } from '../../comprehensive/comprehensive.service';
 
 const DEFAULT_RETIRE_AGE = 55;
+const DEFAULT_USER_AGE_REDIRECT_DOWNLOAD_REPORT = 65;
 @Component({
   selector: 'app-tell-about-you',
   templateUrl: './tell-about-you.component.html',
@@ -132,7 +133,11 @@ export class TellAboutYouComponent implements OnInit {
           this.comprehensiveService.welcomeFlowRetirementAge = payload.retirementAge;
           this.comprehensiveService.welcomeFlowMyInfoData = res.objectList;
           this.authService.clearWelcomeFlowFlag();
-          this.router.navigate([CORPBIZ_ROUTES_PATHS.LIFE_PAYOUT]);
+          if (this.userAge >= DEFAULT_USER_AGE_REDIRECT_DOWNLOAD_REPORT) {
+            this.router.navigate([CORPBIZ_ROUTES_PATHS.DOWNLOAD_REPORT]);
+          } else {
+            this.router.navigate([CORPBIZ_ROUTES_PATHS.LIFE_PAYOUT]);
+          }
         }
       })
     }

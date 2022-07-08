@@ -35,6 +35,9 @@ export class DownloadReportComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    if (this.navbarService.welcomeJourneyCompleted) {
+      this.router.navigate([SIGN_UP_ROUTE_PATHS.DASHBOARD]);
+    }
     this.navbarService.setNavbarMode(106);
     this.footerService.setFooterVisibility(false);
     this.subscription = this.navbarService.preventBackButton().subscribe();
@@ -75,6 +78,7 @@ export class DownloadReportComponent implements OnInit {
   }
 
   redirectToDashboard() {
+    this.navbarService.welcomeJourneyCompleted = true;
     this.navbarService.displayingWelcomeFlowContent$.next(false);
     this.router.navigate([SIGN_UP_ROUTE_PATHS.DASHBOARD]);
   }
