@@ -498,7 +498,7 @@ export class LoginComponent implements OnInit, AfterViewInit, OnDestroy {
   // Get or set the login pref for mobile view
   getSetLoginPref(type?: string) {
     if (this.singpassEnabled) {
-      if (window.localStorage && /Mobi|Android/i.test(navigator.userAgent)) {
+      if (window.localStorage && screen.width < 500 && /Mobi|Android/i.test(navigator.userAgent)) {
         if (type) {
           if (type !== window.localStorage.getItem("LOGIN_PREFERENCE")) {
             window.localStorage.setItem('LOGIN_PREFERENCE', type);
