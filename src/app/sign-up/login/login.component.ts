@@ -67,10 +67,12 @@ export class LoginComponent implements OnInit, AfterViewInit, OnDestroy {
   @HostListener('window:resize', ['$event'])
   onResize(event) {
     if (/Android|Windows/.test(navigator.userAgent)) {
-      this.showPasswordLogin = true;
-      this.showSingpassLogin = false;
       this.welcomeTitle.nativeElement.scrollIntoView(true);
     }
+    if (window.matchMedia("(orientation: landscape)").matches && screen.width > 500) {
+      this.showPasswordLogin = true;
+      this.showSingpassLogin = false;
+   }
   }
 
   constructor(
