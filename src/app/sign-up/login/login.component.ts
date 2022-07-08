@@ -167,6 +167,7 @@ export class LoginComponent implements OnInit, AfterViewInit, OnDestroy {
     if (this.organisationEnabled) {
         this.openTermsOfConditions();
     }
+    this.navbarService.welcomeJourneyCompleted = false;
   }
 
   ngAfterViewInit() {

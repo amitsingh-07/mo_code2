@@ -331,7 +331,7 @@ app-create-account {
 
         .form-control:focus+.form-control-placeholder,
         .form-control:valid+.form-control-placeholder {
-          top: 14px
+          top: 14px;
         }
 
         input:disabled+.form-control-placeholder {
