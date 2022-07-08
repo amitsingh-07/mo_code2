@@ -25,7 +25,7 @@ import { SignUpApiService } from '../sign-up.api.service';
 import { SIGN_UP_ROUTE_PATHS } from '../sign-up.routes.constants';
 import { LoaderService } from './../../shared/components/loader/loader.service';
 import { SignUpService } from '../sign-up.service';
-import { IEnquiryUpdate } from '../signup-types';
+import { ICorpBizData, IEnquiryUpdate } from '../signup-types';
 import { ValidatePassword } from './password.validator';
 import { ValidateRange } from './range.validator';
 import { ANIMATION_DATA } from '../../../assets/animation/animationData';
@@ -74,6 +74,9 @@ export class CreateAccountComponent implements OnInit, AfterViewInit {
   maxDate: any;
   minDate: any;
   organisationEnabled = false;
+  isCorpBiz = false;
+  corpBizData: ICorpBizData;
+  isCorpBizMyInfoEnabled: boolean;
 
   constructor(
     private formBuilder: FormBuilder,
@@ -95,8 +98,6 @@ export class CreateAccountComponent implements OnInit, AfterViewInit {
     private changeDetectorRef: ChangeDetectorRef,
     private affiliateService: AffiliateService,
     private investmentAccountService: InvestmentAccountService
-
-
   ) {
     const today: Date = new Date();
     this.minDate = {
@@ -118,7 +119,7 @@ export class CreateAccountComponent implements OnInit, AfterViewInit {
       this.appService.clearJourneys();
       this.appService.clearPromoCode();
     }
-    this.appService.setCorporateDetails({organisationEnabled: this.organisationEnabled, uuid: this.route.snapshot.queryParams.orgID || (this.appService.getCorporateDetails() && this.appService.getCorporateDetails().uuid) || null});
+    this.appService.setCorporateDetails({ organisationEnabled: this.organisationEnabled, uuid: this.route.snapshot.queryParams.orgID || (this.appService.getCorporateDetails() && this.appService.getCorporateDetails().uuid) || null });
 
     // Set referral code base on the query param
     this.route.queryParams.subscribe((params) => {
@@ -131,6 +132,9 @@ export class CreateAccountComponent implements OnInit, AfterViewInit {
 
       }
     });
+    this.isCorpBizMyInfoEnabled = this.signUpService.getCorpBizMyInfoStatus();
+    this.corpBizData = this.appService.getCorpBizData();
+    this.isCorpBiz = this.corpBizData?.isCorpBiz;
   }
 
   /**
@@ -154,7 +158,7 @@ export class CreateAccountComponent implements OnInit, AfterViewInit {
       this.createAccountForm.controls['referralCode'].setValue(this.route.snapshot.paramMap.get('referralCode'));
       this.showClearBtn = true;
     }
-    this.createAnimation();      
+    this.createAnimation();
   }
 
   ngAfterViewInit() {
@@ -171,7 +175,7 @@ export class CreateAccountComponent implements OnInit, AfterViewInit {
       this.refreshCaptcha();
       this.loaderService.hideLoader();
       if (this.organisationEnabled && this.route.snapshot.queryParams.orgID) {
-        this.getOrganisationCode();      
+        this.getOrganisationCode();
       }
     }
     this.createAccountForm.statusChanges.subscribe((data) => {
@@ -204,8 +208,14 @@ export class CreateAccountComponent implements OnInit, AfterViewInit {
     if (this.distribution && this.distribution.login) {
       this.createAccountForm = this.formBuilder.group({
         countryCode: ['', [Validators.required]],
-        mobileNumber: [myInfoMobile, [Validators.required]],
-        email: [myInfoEmail, [Validators.required, Validators.pattern(this.distribution.login.regex)]],
+        mobileNumber: [{
+          value: this.corpBizData?.maskedMobileNumber || myInfoMobile,
+          disabled: this.isCorpBiz
+        }, [Validators.required]],
+        email: [{
+          value: this.corpBizData?.email || myInfoEmail,
+          disabled: this.isCorpBiz
+        }, [Validators.required, Validators.pattern(this.distribution.login.regex)]],
         confirmEmail: [''],
         password: ['', [Validators.required, ValidatePassword]],
         confirmPassword: [''],
@@ -216,11 +226,11 @@ export class CreateAccountComponent implements OnInit, AfterViewInit {
         organisationCode: [null, this.organisationEnabled ? Validators.required : []],
         gender: [{
           value: myInfoGender,
-          disabled: this.signUpService.isDisabled('gender')
+          disabled: this.formValue && this.formValue.isMyInfoEnabled
         }, [Validators.required]],
         dob: [{
           value: myInfoDob,
-          disabled: this.signUpService.isDisabled('dob')
+          disabled: this.formValue && this.formValue.isMyInfoEnabled
         }, [Validators.required]]
       }, { validator: this.validateMatchPasswordEmail() })
       this.buildFormSingPass();
@@ -230,8 +240,14 @@ export class CreateAccountComponent implements OnInit, AfterViewInit {
 
     this.createAccountForm = this.formBuilder.group({
       countryCode: ['', [Validators.required]],
-      mobileNumber: [myInfoMobile, [Validators.required]],
-      email: [myInfoEmail, emailValidators],
+      mobileNumber: [{
+        value: this.corpBizData?.maskedMobileNumber || myInfoMobile,
+        disabled: this.isCorpBiz
+      }, [Validators.required]],
+      email: [{
+        value: this.corpBizData?.email || myInfoEmail,
+        disabled: this.isCorpBiz
+      }, emailValidators],
       confirmEmail: [''],
       password: ['', [Validators.required, ValidatePassword]],
       confirmPassword: [''],
@@ -242,11 +258,11 @@ export class CreateAccountComponent implements OnInit, AfterViewInit {
       organisationCode: [null, this.organisationEnabled ? Validators.required : []],
       gender: [{
         value: myInfoGender,
-        disabled: this.signUpService.isDisabled('gender')
+        disabled: this.formValue && this.formValue.isMyInfoEnabled
       }, [Validators.required]],
       dob: [{
         value: myInfoDob,
-        disabled: this.signUpService.isDisabled('dob')
+        disabled: this.formValue && this.formValue.isMyInfoEnabled
       }, [Validators.required]]
     }, { validator: this.validateMatchPasswordEmail() })
 
@@ -266,10 +282,12 @@ export class CreateAccountComponent implements OnInit, AfterViewInit {
       this.createAccountForm.addControl('nricNumber', new FormControl(this.formValue.nricNumber, Validators.required));
       this.createAccountForm.removeControl('firstName');
       this.createAccountForm.removeControl('lastName');
+      this.createAccountForm.addControl('singleLineDOB', new FormControl(this.dobObjToSingleLine()))
     } else {
       this.showSingPassDetails = false;
       this.createAccountForm.removeControl('fullName');
       this.createAccountForm.removeControl('nricNumber');
+      this.createAccountForm.removeControl('singleLineDOB');
       this.createAccountForm.addControl('firstName', new FormControl('',
         [Validators.required, Validators.minLength(2),
         Validators.maxLength(40), Validators.pattern(RegexConstants.NameWithSymbol)]));
@@ -279,6 +297,11 @@ export class CreateAccountComponent implements OnInit, AfterViewInit {
     }
   }
 
+  dobObjToSingleLine() {
+    if (this.formValue.dob && typeof this.formValue.dob === 'object') {
+      return `${this.formValue.dob.day}/${this.formValue.dob.month}/${this.formValue.dob.year}`;
+    }
+  }
   /**
    * validate createAccountForm.
    * @param form - user account form detail.
@@ -295,8 +318,11 @@ export class CreateAccountComponent implements OnInit, AfterViewInit {
         form.value.dob = (this.formValue && this.formValue.isMyInfoEnabled && this.formValue.dob) ? this.formValue.dob : '';
         form.value.gender = (this.formValue && this.formValue.isMyInfoEnabled && this.formValue.gender) ? this.formValue.gender : '';
       }
-      if (form.value && form.value.dob && typeof form.value.dob === 'object') {
-        form.value.dob = `${form.value.dob.day}/${form.value.dob.month}/${form.value.dob.year}`;
+      if (this.isCorpBiz && form.value) {
+        form.value.mobileNumber = this.corpBizData?.mobileNumber;
+        form.value.email = this.corpBizData?.email;
+        form.value.enrolmentId = this.corpBizData?.enrollmentId;
+        form.value.isCorpBizEnrollUser = this.corpBizData?.isCorpBiz;
       }
       this.signUpService.setAccountInfo(form.value);
       this.openTermsOfConditions();
@@ -370,6 +396,8 @@ export class CreateAccountComponent implements OnInit, AfterViewInit {
                 this.router.navigate([SIGN_UP_ROUTE_PATHS.FINLIT_VERIFY_MOBILE]);
               } else if (this.organisationEnabled) {
                 this.router.navigate([SIGN_UP_ROUTE_PATHS.CORPORATE_VERIFY_MOBILE]);
+              } else if (this.isCorpBiz) {
+                this.router.navigate([SIGN_UP_ROUTE_PATHS.CORPBIZ_VERIFY_MOBILE]);
               } else {
                 this.router.navigate([SIGN_UP_ROUTE_PATHS.VERIFY_MOBILE]);
               }
@@ -385,6 +413,8 @@ export class CreateAccountComponent implements OnInit, AfterViewInit {
             this.createAccountForm.controls['confirmPassword'].reset();
           } else if (data.responseMessage.responseCode === 5024) {
             this.createAccountForm.controls['referralCode'].setErrors({ invalidRefCode: true });
+          } else if (data.responseMessage.responseCode === 5135) {
+            this.openCorpBizErrorModal();
           } else {
             this.showErrorModal('', data.responseMessage.responseDescription, '', '', false);
           }
@@ -398,24 +428,36 @@ export class CreateAccountComponent implements OnInit, AfterViewInit {
   }
 
   callErrorModal(data: any) {
+    let redirectUrl = this.organisationEnabled ? SIGN_UP_ROUTE_PATHS.CORPORATE_LOGIN :
+      SIGN_UP_ROUTE_PATHS.LOGIN;
     if (data.responseMessage.responseCode === 6008) {
       this.signUpService.setUserMobileNo(this.createAccountForm.controls['mobileNumber'].value);
       this.showErrorModal(this.translate.instant('SIGNUP_ERRORS.TITLE'),
         this.translate.instant('SIGNUP_ERRORS.VERIFY_EMAIL_OTP'),
         this.translate.instant('COMMON.VERIFY_NOW'),
-        SIGN_UP_ROUTE_PATHS.VERIFY_MOBILE, false);
+        SIGN_UP_ROUTE_PATHS.VERIFY_MOBILE,
+        false);
     } else if (data.objectList[0].accountAlreadyCreated) {
-      this.showErrorModal(this.translate.instant('SIGNUP_ERRORS.TITLE'),
+      this.showErrorModal(
+        this.translate.instant('SIGNUP_ERRORS.TITLE'),
         this.translate.instant('SIGNUP_ERRORS.ACCOUNT_EXIST_MESSAGE'),
         this.translate.instant('COMMON.LOG_IN'),
-        (this.organisationEnabled && SIGN_UP_ROUTE_PATHS.CORPORATE_LOGIN) || SIGN_UP_ROUTE_PATHS.LOGIN, false);
+        redirectUrl,
+        false);
     } else if (!data.objectList[0].emailVerified) {
       this.signUpService.setUserMobileNo(this.createAccountForm.controls['mobileNumber'].value);
       this.showErrorModal(this.translate.instant('SIGNUP_ERRORS.TITLE'),
         this.translate.instant('SIGNUP_ERRORS.VERIFY_EMAIL_MESSAGE'),
         this.translate.instant('COMMON.LOG_IN'),
-        (this.organisationEnabled && SIGN_UP_ROUTE_PATHS.CORPORATE_LOGIN) || SIGN_UP_ROUTE_PATHS.LOGIN, true);
+        redirectUrl,
+        true);
     }
+  }
+
+  openCorpBizErrorModal() {
+    const ref = this.modal.open(ErrorModalComponent, { centered: true });
+    ref.componentInstance.errorTitle = this.translate.instant('CORP_BIZ_ERROR_MODAL.TITLE');
+    ref.componentInstance.errorMessage = this.translate.instant('CORP_BIZ_ERROR_MODAL.SUB_TITLE');
   }
 
   showErrorModal(title: string, message: string, buttonLabel: string, redirect: string, emailResend: boolean) {
@@ -431,6 +473,7 @@ export class CreateAccountComponent implements OnInit, AfterViewInit {
       ref.componentInstance.buttonLabel = buttonLabel;
     }
     if (emailResend) {
+      ref.componentInstance.isCorpBiz = this.isCorpBiz;
       ref.componentInstance.enableResendEmail = true;
       ref.componentInstance.resendEmail.pipe(
         flatMap(($e) =>
@@ -549,18 +592,18 @@ export class CreateAccountComponent implements OnInit, AfterViewInit {
       }
 
       // Confirm E-mail
-      if (!emailConfirmationInput.value) {
+      if (!this.isCorpBiz && !emailConfirmationInput.value) {
         emailConfirmationInput.setErrors({ required: true });
-      } else if (emailInput.value && emailInput.value.toLowerCase() !== emailConfirmationInput.value.toLowerCase()) {
+      } else if (!this.isCorpBiz && emailInput.value && emailInput.value.toLowerCase() !== emailConfirmationInput.value.toLowerCase()) {
         emailConfirmationInput.setErrors({ notEquivalent: true });
       } else {
         emailConfirmationInput.setErrors(null);
       }
 
       // Mobile Number
-      if (!mobileNumberInput.value) {
+      if (!this.isCorpBiz && !mobileNumberInput.value) {
         mobileNumberInput.setErrors({ required: true });
-      } else if (!SINGAPORE_MOBILE_REGEXP.test(mobileNumberInput.value)) {
+      } else if (!this.isCorpBiz && !SINGAPORE_MOBILE_REGEXP.test(mobileNumberInput.value)) {
         mobileNumberInput.setErrors({ mobileRange: true });
       } else {
         mobileNumberInput.setErrors(null);
@@ -585,14 +628,14 @@ export class CreateAccountComponent implements OnInit, AfterViewInit {
   }
   onPaste(event: ClipboardEvent, key) {
     const pastedEmailText = event.clipboardData.getData('text').replace(/\s/g, '').toUpperCase();
-    const pastedText = (key == 'organisationCode'? event.clipboardData.getData('text').replace(/\s/g, '').toUpperCase() : event.clipboardData.getData('text').replace(/\s/g, ''));
+    const pastedText = (key == 'organisationCode' ? event.clipboardData.getData('text').replace(/\s/g, '').toUpperCase() : event.clipboardData.getData('text').replace(/\s/g, ''));
     this.createAccountForm.controls[key].setValue(pastedText);
     event.preventDefault();
   }
   onKeyupEvent(event, key) {
     if (event.target.value) {
-        const enterEmail = event.target.value.replace(/\s/g, '');
-        this.createAccountForm.controls[key].setValue(enterEmail);
+      const enterEmail = event.target.value.replace(/\s/g, '');
+      this.createAccountForm.controls[key].setValue(enterEmail);
       if (key === 'referralCode' && !this.showSpinner) {
         this.showClearBtn = true;
       } else {
@@ -652,5 +695,9 @@ export class CreateAccountComponent implements OnInit, AfterViewInit {
     })
   }
 
+  // Go to Corp biz signup with data page 
+  goToPrevious() {
+    this.router.navigate([SIGN_UP_ROUTE_PATHS.CORP_BIZ_SIGNUP_DATA]);
+  }
 }
 

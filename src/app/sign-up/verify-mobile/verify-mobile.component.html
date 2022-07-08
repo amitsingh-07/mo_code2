@@ -47,7 +47,7 @@
               <div class="verify-mobile-block__phone-number">
                 {{mobileNumber.code}} {{mobileNumber.number}}
               </div>
-              <ng-container *ngIf="!two2faAuth">
+              <ng-container *ngIf="!isCorpBiz && !two2faAuth">
                 <div class="verify-mobile-block__edit-link link-white" (click)="editNumber()">{{
                   'VERIFY_MOBILE.FORM.EDIT_NUMBER' | translate }}</div>
               </ng-container>
