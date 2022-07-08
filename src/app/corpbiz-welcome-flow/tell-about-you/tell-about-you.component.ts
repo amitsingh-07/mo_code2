@@ -11,6 +11,7 @@ import { ComprehensiveApiService } from '../../comprehensive/comprehensive-api.s
 import { AboutAge } from '../../shared/utils/about-age.util';
 import { AuthenticationService } from '../../shared/http/auth/authentication.service';
 import { ComprehensiveService } from '../../comprehensive/comprehensive.service';
+import { LoaderService } from '../../shared/components/loader/loader.service';
 
 const DEFAULT_RETIRE_AGE = 55;
 const DEFAULT_USER_AGE_REDIRECT_DOWNLOAD_REPORT = 65;
@@ -53,10 +54,11 @@ export class TellAboutYouComponent implements OnInit {
                 private fb: FormBuilder,
                 private comprehensiveApiService: ComprehensiveApiService,
                 private authService: AuthenticationService,
-                private comprehensiveService: ComprehensiveService) {
-
-                  this.translate.use('en');
-                 }
+                private comprehensiveService: ComprehensiveService,
+                private loaderService: LoaderService
+                ) {
+                    this.translate.use('en');
+                  }
 
   ngOnInit(): void {
     this.navbarService.setNavbarMode(106);
@@ -121,13 +123,21 @@ export class TellAboutYouComponent implements OnInit {
       this.formObject.get('retirementAge').patchValue(this.sliderValue);
     }
   }
-
+  showLoader() {
+    this.loaderService.showLoader({
+      title: this.translate.instant('LOADER_MESSAGES.LOADING.TITLE'),
+      desc: this.translate.instant('LOADER_MESSAGES.LOADING.MESSAGE'),
+      autoHide: false
+    });
+  }
   generateReport() {
   if (this.sliderValid.minAge && this.sliderValid.userAge) {
       let payload = this.formObject.value;
       payload.retirementAge = payload.retirementAge.toString();
       payload.cashInBank = parseFloat((payload.cashInBank).toFixed(2));
+      this.showLoader();
       this.comprehensiveApiService.generateReport(payload).subscribe(res => {
+        this.loaderService.hideLoaderForced();
         if (res.responseMessage && res.responseMessage.responseCode == 6000) {
           this.comprehensiveService.cpfPayoutAmount = res.objectList.monthlyPayout;
           this.comprehensiveService.welcomeFlowRetirementAge = payload.retirementAge;
@@ -139,7 +149,9 @@ export class TellAboutYouComponent implements OnInit {
             this.router.navigate([CORPBIZ_ROUTES_PATHS.LIFE_PAYOUT]);
           }
         }
-      })
+      }, () => {
+        this.loaderService.hideLoaderForced();
+      });
     }
   }
 

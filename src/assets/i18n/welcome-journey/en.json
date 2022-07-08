@@ -43,5 +43,11 @@
     "SUB_TXT4": "Contact us for a one-on-one advice should you need any customised planning.",
     "BTN_TXT": "Start Now",
     "MESSAGE": "Corporate partner plans for Free!"
+  },
+  "LOADER_MESSAGES": {
+    "LOADING": {
+      "TITLE": "Loading.",
+      "MESSAGE": "Please wait."
+    }
   }
 }
