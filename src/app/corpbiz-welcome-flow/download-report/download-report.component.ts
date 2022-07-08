@@ -10,6 +10,7 @@ import { COMPREHENSIVE_CONST } from '../../comprehensive/comprehensive-config.co
 import { FooterService } from '../../shared/footer/footer.service';
 import { NavbarService } from '../../shared/navbar/navbar.service';
 import { SIGN_UP_ROUTE_PATHS } from '../../sign-up/sign-up.routes.constants';
+import { LoaderService } from '../../shared/components/loader/loader.service';
 
 @Component({
   selector: 'app-download-report',
@@ -29,10 +30,11 @@ export class DownloadReportComponent implements OnInit {
               private comprehensiveApiService: ComprehensiveApiService,
               private footerService: FooterService,
               private navbarService: NavbarService,
-              private router: Router
-    ) {
-    this.translate.use('en');
-  }
+              private router: Router,
+              private loaderService: LoaderService
+              ) {
+                this.translate.use('en');
+              }
 
   ngOnInit(): void {
     if (this.navbarService.welcomeJourneyCompleted) {
@@ -51,6 +53,14 @@ export class DownloadReportComponent implements OnInit {
     });
   }
 
+  showLoader() {
+    this.loaderService.showLoader({
+      title: this.translate.instant('LOADER_MESSAGES.LOADING.TITLE'),
+      desc: this.translate.instant('LOADER_MESSAGES.LOADING.MESSAGE'),
+      autoHide: false
+    });
+  }
+
   downloadComprehensiveReport() {
     const iOS = /iPad|iPhone|iPod/.test(navigator.userAgent);
     let newWindow;
@@ -61,7 +71,9 @@ export class DownloadReportComponent implements OnInit {
       reportId: this.comprehensiveService.welcomeFlowMyInfoData.reportId, 
       enquiryId: this.comprehensiveService.welcomeFlowMyInfoData.enquiryId 
     };
+    this.showLoader();
     this.comprehensiveApiService.downloadComprehensiveReport(payload).subscribe((data: any) => {
+      this.loaderService.hideLoaderForced();
       const pdfUrl = window.URL.createObjectURL(data.body);
       if (iOS) {
         if (newWindow.document.readyState === CORPBIZ_WELCOME_FLOW.CONDITION_CONST.COMPLETE) {
@@ -74,6 +86,8 @@ export class DownloadReportComponent implements OnInit {
       } else {
         this.downloadfile.saveAs(data.body, COMPREHENSIVE_CONST.REPORT_PDF_NAME);
       }
+    }, () => {
+      this.loaderService.hideLoaderForced();
     });
   }
 
