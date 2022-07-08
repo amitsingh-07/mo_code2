@@ -404,6 +404,7 @@ export class CreateAccountComponent implements OnInit, AfterViewInit {
 
             } else if (data.responseMessage.responseCode === 6008 ||
               data.responseMessage.responseCode === 5006) {
+              this.isCorpBiz = data.objectList[0].isCorpBiz;
               this.callErrorModal(data);
             }
           } else if (data.responseMessage.responseCode === 5016) {
