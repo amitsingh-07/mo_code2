@@ -502,6 +502,7 @@ app-dashboard {
               }
               .widget-portfolio-body {
                 padding:0px 18px 11px;
+                z-index: 99;
               }
               @-moz-document url-prefix() {
                 .widget-portfolio-body {
