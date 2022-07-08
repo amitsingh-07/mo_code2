@@ -31,7 +31,7 @@ app-singpass {
       display: flex;
       align-items: flex-start;
       @include allmobiles {
-        padding: 4.348vmin 0 0 4.831vmin;
+        padding: 4.348vmin 4.831vmin 4.831vmin 4.831vmin;
       }
       img {
         margin-right: 10px;
