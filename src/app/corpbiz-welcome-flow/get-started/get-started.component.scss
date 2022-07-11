@@ -4,10 +4,8 @@
 app-get-started{
 
     .txt-desc{
-        @include allmobiles{
-            display: flex;
-            margin-top: 20px;
-        }
+        display: flex;
+        margin-top: 20px;
     }
     .owl-start{
         width: 300px;
