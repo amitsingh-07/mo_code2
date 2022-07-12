@@ -488,6 +488,9 @@ app-dashboard {
                 @include allmobiles {  
                     margin-top: -37px !important;
                 }
+                @include iPhone13ProMax{
+                    margin-top: -11px !important;
+                }
                 @include min450max475 {  
                     margin-top: -15px !important;
                 }
