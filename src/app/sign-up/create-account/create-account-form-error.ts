@@ -105,6 +105,10 @@ export class CreateAccountFormError {
       notChanged: {
         errorTitle: 'Not Changed',
         errorMessage: 'Update Mobile Number / Email address'
+      },
+      invalidDomain: {
+        errorTitle: 'Invalid E-mail',
+        errorMessage: 'Invalid Email domain'
       }
     },
     confirmEmail: {
