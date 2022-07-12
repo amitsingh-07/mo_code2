@@ -211,7 +211,12 @@ export class LoginComponent implements OnInit, AfterViewInit, OnDestroy {
         return false;
       }
     }
-    let emailValidators = [Validators.required, Validators.pattern(RegexConstants.EmailOrMobile), this.signUpService.emailDomainValidator(this.organisationEnabled)];
+    let emailValidators = [];
+    if (this.organisationEnabled) {
+      emailValidators = [Validators.required, Validators.pattern(RegexConstants.EmailOrMobile), this.signUpService.emailDomainValidator(this.organisationEnabled)];
+    } else {
+      emailValidators = [Validators.required, Validators.pattern(RegexConstants.EmailOrMobile)];
+    }
     this.loginForm = this.formBuilder.group({
       loginUsername: [this.formValues.loginUsername, emailValidators],
       loginPassword: [this.formValues.loginPassword, [Validators.required]],
