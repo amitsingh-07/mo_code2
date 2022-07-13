@@ -12,6 +12,7 @@ import { AboutAge } from '../../shared/utils/about-age.util';
 import { AuthenticationService } from '../../shared/http/auth/authentication.service';
 import { ComprehensiveService } from '../../comprehensive/comprehensive.service';
 import { LoaderService } from '../../shared/components/loader/loader.service';
+import { SIGN_UP_ROUTE_PATHS } from '../../sign-up/sign-up.routes.constants';
 
 const DEFAULT_RETIRE_AGE = 55;
 const DEFAULT_USER_AGE_REDIRECT_DOWNLOAD_REPORT = 65;
@@ -143,7 +144,10 @@ export class TellAboutYouComponent implements OnInit {
           this.comprehensiveService.welcomeFlowRetirementAge = payload.retirementAge;
           this.comprehensiveService.welcomeFlowMyInfoData = res.objectList;
           this.authService.clearWelcomeFlowFlag();
-          if (this.userAge >= DEFAULT_USER_AGE_REDIRECT_DOWNLOAD_REPORT) {
+          if (!res.objectList.reportId) {
+            this.navbarService.welcomeJourneyCompleted = true;
+            this.router.navigate([SIGN_UP_ROUTE_PATHS.DASHBOARD]);
+          } else if (this.userAge >= DEFAULT_USER_AGE_REDIRECT_DOWNLOAD_REPORT) {
             this.router.navigate([CORPBIZ_ROUTES_PATHS.DOWNLOAD_REPORT]);
           } else {
             this.router.navigate([CORPBIZ_ROUTES_PATHS.LIFE_PAYOUT]);

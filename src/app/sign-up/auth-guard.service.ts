@@ -10,6 +10,7 @@ import { AppService } from '../app.service';
 import { LoginService } from './login.service';
 import { LoaderService } from '../shared/components/loader/loader.service';
 import { SingpassService } from '../singpass/singpass.service';
+import { NavbarService } from '../shared/navbar/navbar.service';
 
 @Injectable({
   providedIn: 'root'
@@ -187,7 +188,9 @@ export class CorpbizAuthGuardService implements CanActivate {
 export class CorpbizWelcomeFlowAuthGuardService implements CanActivate {
   constructor(private route: Router,
     private authService: AuthenticationService,
-    private appService: AppService
+    private appService: AppService,
+    private navbarService: NavbarService,
+    private router: Router
   ) {
   }
   canActivate(): boolean {
@@ -199,7 +202,11 @@ export class CorpbizWelcomeFlowAuthGuardService implements CanActivate {
       }
       return false;
     }
-    this.authService.displayCorporateLogo$.next(true);
+    this.authService.displayCorporateLogo$.next(true);    
+    if (this.navbarService.welcomeJourneyCompleted) {
+      this.router.navigate([SIGN_UP_ROUTE_PATHS.DASHBOARD]);
+      return false;
+    }
     return true;
   }
 }
