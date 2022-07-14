@@ -768,6 +768,15 @@ export class InvestmentAccountService {
     };
   }
 
+  corpBizDateFormat(date: string) {
+    const dateArr: any = date.split('-');
+    return {
+      year: dateArr[0],
+      month: dateArr[1],
+      day: dateArr[2]
+    };
+  }
+
   dateFormatFromApi(date: string, separator: string) {
     const dateArr: any = date ? date.split(' ')[0].split(separator) : [];
     if (separator === '-') {
@@ -782,6 +791,17 @@ export class InvestmentAccountService {
         month: Number(dateArr[0]),
         day: Number(dateArr[1])
       };
+    }
+  }
+
+  stringToDateObj(date: string) {
+    const dateObj = new Date(date);
+    if (dateObj) {
+      return {
+        year: dateObj.getFullYear(),
+        month: dateObj.getMonth() + 1,
+        day: dateObj.getDate()
+      }
     }
   }
 
