@@ -66,6 +66,7 @@ export class CorpBizUserMyInfoData {
    // CorpBiz user data from MyInfo
    marital: string;
    regadd: string;
+   dateOfBirth: any;
    uinfin: string;
    childrenRecords: Child[];
    sponsoredChildrenRecords: Child[];

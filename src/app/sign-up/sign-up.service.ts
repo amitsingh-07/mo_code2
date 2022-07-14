@@ -849,8 +849,8 @@ export class SignUpService {
       let vehicleData = [];
       vehicles.forEach(vehicle => {
         if (vehicle.status === SIGN_UP_CONFIG.VEHICLE_STATUS.LIVE.VALUE) {
-          const expiryDate = vehicle.coeExpiryDate ? this.investmentAccountService.dateFormat(vehicle.coeExpiryDate) : null;
-          const registerDate = vehicle.firstRegistrationDate ? this.investmentAccountService.dateFormat(vehicle.firstRegistrationDate) : null;
+          const expiryDate = vehicle.coeExpiryDate ? this.investmentAccountService.corpBizDateFormat(vehicle.coeExpiryDate) : null;
+          const registerDate = vehicle.firstRegistrationDate ? this.investmentAccountService.corpBizDateFormat(vehicle.firstRegistrationDate) : null;
           vehicleData.push({
             coeExpiryDate: expiryDate ? `${expiryDate.day}/${expiryDate.month}/${expiryDate.year}` : null,
             registrationDate: registerDate ? `${registerDate.day}/${registerDate.month}/${registerDate.year}` : null,
@@ -875,6 +875,10 @@ export class SignUpService {
   }
 
   setCorpBizMyInfoData(data) {
+    if (data.dob.value) {
+      this.corpBizUserMyInfoData.dateOfBirth = this.investmentAccountService.corpBizDateFormat(data.dob.value);
+    }
+
     if (data.birthcountry && data.birthcountry.countryDetails) {
       this.corpBizUserMyInfoData.birthCountry = this.investmentAccountService.getCountryObject(data.birthcountry.countryDetails);
     }
@@ -939,7 +943,7 @@ export class SignUpService {
   setChildRecords(children) {
     let childrenData: Child[] = [];
     children.forEach(child => {
-      const childDOB = child.dob.value ? this.investmentAccountService.dateFormat(child.dob.value) : null;
+      const childDOB = child.dob.value ? this.investmentAccountService.corpBizDateFormat(child.dob.value) : null;
       if (child.lifeStatus && child.lifeStatus.value == SIGN_UP_CONFIG.LIFE_STATUS.ALIVE.VALUE) {
         childrenData.push({
           name: child.name ? child.name.value : null,
@@ -957,8 +961,8 @@ export class SignUpService {
     let hdbOwnerships = [];
     if (data && data.length > 0) {
       data.forEach(house => {
-        const purchaseDate = house.dateOfPurchase ? this.investmentAccountService.dateFormat(house.dateOfPurchase) : null;
-        const leaseDate = house.leasecommencementdate ? this.investmentAccountService.dateFormat(house.leasecommencementdate) : null;
+        const purchaseDate = house.dateOfPurchase ? this.investmentAccountService.corpBizDateFormat(house.dateOfPurchase) : null;
+        const leaseDate = house.leasecommencementdate ? this.investmentAccountService.corpBizDateFormat(house.leasecommencementdate) : null;
         hdbOwnerships.push({
           dateOfPurchase: purchaseDate ? `${purchaseDate.day}/${purchaseDate.month}/${purchaseDate.year}` : null,
           monthlyLoanInstalment: house.monthlyLoanInstalment,
