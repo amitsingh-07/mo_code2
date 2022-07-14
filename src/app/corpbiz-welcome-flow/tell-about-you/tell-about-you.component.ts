@@ -16,6 +16,8 @@ import { SIGN_UP_ROUTE_PATHS } from '../../sign-up/sign-up.routes.constants';
 
 const DEFAULT_RETIRE_AGE = 55;
 const DEFAULT_USER_AGE_REDIRECT_DOWNLOAD_REPORT = 65;
+const DEFAULT_RETIREMENT_AGE_CPF_LIFE = 65;
+
 @Component({
   selector: 'app-tell-about-you',
   templateUrl: './tell-about-you.component.html',
@@ -75,7 +77,7 @@ export class TellAboutYouComponent implements OnInit {
           res['objectList'][0].dateOfBirth,
           new Date()
         )
-        const sliderValue = this.userAge > DEFAULT_RETIRE_AGE ? this.userAge: DEFAULT_RETIRE_AGE;
+        let sliderValue = this.userAge >= DEFAULT_RETIRE_AGE ? this.userAge + 1 : DEFAULT_RETIRE_AGE;
         this.ciMultiplierSlider.writeValue(sliderValue);
         this.sliderValue = sliderValue;
         this.formObject.get('retirementAge').patchValue(sliderValue);
@@ -141,15 +143,15 @@ export class TellAboutYouComponent implements OnInit {
         this.loaderService.hideLoaderForced();
         if (res.responseMessage && res.responseMessage.responseCode == 6000) {
           this.comprehensiveService.cpfPayoutAmount = res.objectList.monthlyPayout;
-          this.comprehensiveService.welcomeFlowRetirementAge = payload.retirementAge;
           this.comprehensiveService.welcomeFlowMyInfoData = res.objectList;
           this.authService.clearWelcomeFlowFlag();
           if (!res.objectList.reportId) {
             this.navbarService.welcomeJourneyCompleted = true;
             this.router.navigate([SIGN_UP_ROUTE_PATHS.DASHBOARD]);
-          } else if (this.userAge >= DEFAULT_USER_AGE_REDIRECT_DOWNLOAD_REPORT) {
+          } else if (this.userAge >= DEFAULT_USER_AGE_REDIRECT_DOWNLOAD_REPORT || res.objectList.nationality == 'OTH') {
             this.router.navigate([CORPBIZ_ROUTES_PATHS.DOWNLOAD_REPORT]);
           } else {
+            this.comprehensiveService.welcomeFlowRetirementAge = payload.retirementAge > DEFAULT_RETIREMENT_AGE_CPF_LIFE ? payload.retirementAge : DEFAULT_RETIREMENT_AGE_CPF_LIFE;
             this.router.navigate([CORPBIZ_ROUTES_PATHS.LIFE_PAYOUT]);
           }
         }
