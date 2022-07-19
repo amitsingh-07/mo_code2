@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { Router } from '@angular/router';
 import { TranslateService } from '@ngx-translate/core';
+import { Subject } from 'rxjs/internal/Subject';
 
 import { ConfigService } from '../config/config.service';
 import { ApiService } from '../shared/http/api.service';
@@ -16,6 +17,7 @@ import { IEnquiryUpdate } from './signup-types';
 import { InvestmentAccountService } from '../investment/investment-account/investment-account-service';
 import { InvestmentCommonService } from '../investment/investment-common/investment-common.service';
 import { INVESTMENT_ACCOUNT_ROUTE_PATHS } from '../investment/investment-account/investment-account-routes.constants';
+import { INVESTMENT_COMMON_ROUTES } from '../investment/investment-common/investment-common-routes.constants';
 import { LoaderService } from '../shared/components/loader/loader.service';
 import { SelectedPlansService } from '../shared/Services/selected-plans.service';
 import { SignUpApiService } from './sign-up.api.service';
@@ -25,7 +27,8 @@ import { StateStoreService } from '../shared/Services/state-store.service';
 import { WillWritingService } from '../will-writing/will-writing.service';
 import { WILL_WRITING_ROUTE_PATHS } from '../will-writing/will-writing-routes.constants';
 import { ModelWithButtonComponent } from '../shared/modal/model-with-button/model-with-button.component';
-import { Subject } from 'rxjs/internal/Subject';
+import { CORPBIZ_ROUTES_PATHS } from '../corpbiz-welcome-flow/corpbiz-welcome-flow.routes.constants';
+import { NavbarService } from '../shared/navbar/navbar.service';
 
 @Injectable({
   providedIn: 'root'
@@ -36,6 +39,8 @@ export class LoginService {
   private toogleLoginType = new Subject<string>();
   toogleLoginType$ = this.toogleLoginType.asObservable();
   private modalText;
+  redirectAfterLogin = '';
+  progressModal: boolean;
 
   constructor(
     private apiService: ApiService,
@@ -53,7 +58,8 @@ export class LoginService {
     private signUpApiService: SignUpApiService,
     private signUpService: SignUpService,
     private stateStoreService: StateStoreService,
-    private willWritingService: WillWritingService
+    private willWritingService: WillWritingService,
+    private navbarService: NavbarService
   ) {
     this.translate.use('en');
     this.translate.get('LOGIN').subscribe((result) => {
@@ -105,21 +111,33 @@ export class LoginService {
   }
 
   goToNext() {
-    this.loaderService.hideLoader;
     const investmentRoutes = [INVESTMENT_ACCOUNT_ROUTE_PATHS.ROOT, INVESTMENT_ACCOUNT_ROUTE_PATHS.START];
+    const jointAccountRoutes = [INVESTMENT_COMMON_ROUTES.ACCEPT_JA_HOLDER];
     const redirect_url = this.signUpService.getRedirectUrl();
+    const routeIndex = jointAccountRoutes.findIndex(x => (redirect_url && redirect_url.indexOf(x) >= 0));
     const journeyType = this.appService.getJourneyType();
     if (this.appService.getJourneyType() === appConstants.JOURNEY_TYPE_COMPREHENSIVE) {
       this.getUserProfileAndNavigate(appConstants.JOURNEY_TYPE_COMPREHENSIVE);
     } else if (redirect_url && investmentRoutes.indexOf(redirect_url) >= 0) {
       this.signUpService.clearRedirectUrl();
       this.getUserProfileAndNavigate(appConstants.JOURNEY_TYPE_INVESTMENT);
+    } else if (redirect_url && routeIndex >= 0) {
+      this.getUserProfileAndNavigate(appConstants.JOURNEY_TYPE_INVESTMENT);
     } else if (journeyType === appConstants.JOURNEY_TYPE_WILL_WRITING && this.willWritingService.getWillCreatedPrelogin()) {
       this.getUserProfileAndNavigate(appConstants.JOURNEY_TYPE_WILL_WRITING);
     } else {
-      this.router.navigate([SIGN_UP_ROUTE_PATHS.DASHBOARD]);
+      if (this.authService.isShowWelcomeFlow) {
+        this.redirectAfterLogin = CORPBIZ_ROUTES_PATHS.GET_STARTED;
+        this.navbarService.displayingWelcomeFlowContent$.next(true);
+      } else {
+        this.redirectAfterLogin = SIGN_UP_ROUTE_PATHS.DASHBOARD;
+      }
+      this.progressModal = true;
+      this.loaderService.hideLoader();
+      this.router.navigate([this.redirectAfterLogin]);
     }
   }
+
 
   checkInsuranceEnquiry(insuranceEnquiry): boolean {
     return ((this.appService.getJourneyType() === appConstants.JOURNEY_TYPE_DIRECT ||

@@ -35,13 +35,9 @@ import { LoaderService } from './../../shared/components/loader/loader.service';
 import { StateStoreService } from './../../shared/Services/state-store.service';
 import { ApiService } from '../../shared/http/api.service';
 import { Formatter } from '../../shared/utils/formatter.util';
-import {
-  INVESTMENT_ACCOUNT_ROUTE_PATHS
-} from '../../investment/investment-account/investment-account-routes.constants';
 import { InvestmentCommonService } from '../../investment/investment-common/investment-common.service';
 import { HubspotService } from './../../shared/analytics/hubspot.service';
-import { INVESTMENT_COMMON_ROUTES } from '../../investment/investment-common/investment-common-routes.constants';
-import { CORPBIZ_ROUTES_PATHS } from '../../corpbiz-welcome-flow/corpbiz-welcome-flow.routes.constants';
+import { LoginService } from '../login.service';
 
 @Component({
   selector: 'app-verify-mobile',
@@ -107,6 +103,7 @@ export class VerifyMobileComponent implements OnInit, OnDestroy {
     private stateStoreService: StateStoreService,
     private apiService: ApiService,
     private hubspotService: HubspotService,
+    private loginService: LoginService,
     private renderer: Renderer2, ) {
     this.roleTwoFAEnabled = this.authService.isSignedUserWithRole(SIGN_UP_CONFIG.ROLE_2FA);
     this.translate.use('en');
@@ -535,7 +532,7 @@ export class VerifyMobileComponent implements OnInit, OnDestroy {
         if (this.checkInsuranceEnquiry(insuranceEnquiry)) {
           this.updateInsuranceEnquiry(insuranceEnquiry, data);
         } else {
-          this.goToNext();
+          this.loginService.goToNext();
         }
 
       } else if (data.responseMessage.responseCode === 5123 || data.responseMessage.responseCode === 5009) {
@@ -575,34 +572,6 @@ export class VerifyMobileComponent implements OnInit, OnDestroy {
       this.loaderService.hideLoader();
       this.router.navigate([this.redirectAfterLogin]);
     });
-  }
-
-  goToNext() {
-    const investmentRoutes = [INVESTMENT_ACCOUNT_ROUTE_PATHS.ROOT, INVESTMENT_ACCOUNT_ROUTE_PATHS.START];
-    const jointAccountRoutes = [INVESTMENT_COMMON_ROUTES.ACCEPT_JA_HOLDER];
-    const redirect_url = this.signUpService.getRedirectUrl();
-    const routeIndex = jointAccountRoutes.findIndex(x => (redirect_url && redirect_url.indexOf(x) >= 0));
-    const journeyType = this.appService.getJourneyType();
-    if (this.appService.getJourneyType() === appConstants.JOURNEY_TYPE_COMPREHENSIVE) {
-      this.getUserProfileAndNavigate(appConstants.JOURNEY_TYPE_COMPREHENSIVE);
-    } else if (redirect_url && investmentRoutes.indexOf(redirect_url) >= 0) {
-      this.signUpService.clearRedirectUrl();
-      this.getUserProfileAndNavigate(appConstants.JOURNEY_TYPE_INVESTMENT);
-    } else if (redirect_url && routeIndex >= 0) {
-      this.getUserProfileAndNavigate(appConstants.JOURNEY_TYPE_INVESTMENT);
-    } else if (journeyType === appConstants.JOURNEY_TYPE_WILL_WRITING && this.willWritingService.getWillCreatedPrelogin()) {
-      this.getUserProfileAndNavigate(appConstants.JOURNEY_TYPE_WILL_WRITING);
-    } else {
-      if (this.authService.isShowWelcomeFlow) {
-        this.redirectAfterLogin = CORPBIZ_ROUTES_PATHS.GET_STARTED;
-        this.navbarService.displayingWelcomeFlowContent$.next(true);
-      } else {
-        this.redirectAfterLogin = SIGN_UP_ROUTE_PATHS.DASHBOARD;
-      }
-      this.progressModal = true;
-      this.loaderService.hideLoader();
-      this.router.navigate([this.redirectAfterLogin]);
-    }
   }
 
   getUserProfileAndNavigate(journeyType) {
