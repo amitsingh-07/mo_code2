@@ -138,6 +138,7 @@ export class SingpassLoginGuard implements CanActivate {
       return this.singpassService.loginSingpass(queryParams['code'], queryParams['state']).pipe(map((data) => {
         if (data.responseMessage.responseCode >= 6000 && data.objectList[0] && data.objectList[0].securityToken) {
           this.authService.saveAuthDetails(data.objectList[0]);
+          this.authService.checkAndSetFlag(data);
           this.loginService.onSuccessLogin(data);
           return false;
         } else {
