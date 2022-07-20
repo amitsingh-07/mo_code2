@@ -123,7 +123,7 @@ export let SIGN_UP_CONFIG = {
       VALUE: 'A',
       DESC: 'Alive'
     },
-    DISEASED: {
+    DECEASED: {
       VALUE: 'D',
       DESC: 'Deceased'
     }
