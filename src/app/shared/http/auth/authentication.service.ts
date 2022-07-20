@@ -101,13 +101,17 @@ export class AuthenticationService {
           // store user details and jwt token in local storage to keep user logged in between page refreshes
           this.saveAuthDetails(response.objectList[0]);
         }
-        if (response && response.objectList[1] && typeof response.objectList[1].showWelcomeFlow === 'boolean') {
-          this.isShowWelcomeFlow = response.objectList[1].showWelcomeFlow;
-          this.setWelcomeFlowFlag(this.isShowWelcomeFlow);
-        }
-        this.isCorpBiz = response?.objectList[1]?.isCorpBizUser;
+        this.checkAndSetFlag(response);
         return response;
       }));
+  }
+
+  checkAndSetFlag(response) {
+    if (response && response.objectList[1] && typeof response.objectList[1]['showWelcomeFlow'] === 'boolean') {
+      this.isShowWelcomeFlow = response.objectList[1].showWelcomeFlow;
+      this.setWelcomeFlowFlag(this.isShowWelcomeFlow);
+    }
+    this.isCorpBiz = response?.objectList[1]?.isCorpBizUser;
   }
 
   saveAuthDetails(auth: any) {

@@ -317,6 +317,7 @@ app-login {
     .login-title {
       font-size: 32px;
       margin-bottom: 40px;
+      font-family: $muli-semi-bold;
       @include allmobiles {
         font-size: 24px;
         margin-bottom: 20px;
