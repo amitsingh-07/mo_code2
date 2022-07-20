@@ -944,7 +944,7 @@ export class SignUpService {
     let childrenData: Child[] = [];
     children.forEach(child => {
       const childDOB = child.dob.value ? this.investmentAccountService.corpBizDateFormat(child.dob.value) : null;
-      if (child.lifeStatus && (child.lifeStatus.value == SIGN_UP_CONFIG.LIFE_STATUS.ALIVE.VALUE || child.lifeStatus.value == '')) {
+      if (child.lifeStatus && child.lifeStatus.value !== SIGN_UP_CONFIG.LIFE_STATUS.DISEASED.VALUE) {
         childrenData.push({
           name: child.name ? child.name.value : null,
           gender: child.sex ? (child.sex.value == SIGN_UP_CONFIG.GENDER.FEMALE.VALUE ? SIGN_UP_CONFIG.GENDER.FEMALE.DESC : SIGN_UP_CONFIG.GENDER.MALE.DESC) : null,
