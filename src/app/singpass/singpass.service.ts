@@ -39,8 +39,14 @@ export class SingpassService {
   }
 
   // Get state & nonce using session id
-  loginSingpass(code, state) {
-    const payload = { code: code, state: state, redirect_uri: environment.apiBaseUrl + SIGN_UP_ROUTE_PATHS.SINGPASS_REDIRECT_URL };
+  loginSingpass(code, state, enquiryId, journeyType) {
+    const payload = {
+      enquiryId: enquiryId,
+      journeyType: journeyType,
+      code: code, 
+      state: state, 
+      redirect_uri: environment.apiBaseUrl + SIGN_UP_ROUTE_PATHS.SINGPASS_REDIRECT_URL
+    };
     return this.apiService.loginSingpass(payload);
   }
 

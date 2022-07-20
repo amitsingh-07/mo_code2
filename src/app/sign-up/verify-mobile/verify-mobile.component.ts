@@ -458,30 +458,7 @@ export class VerifyMobileComponent implements OnInit, OnDestroy {
   }
 
   validate2faLogin(otp) {
-    let enqId = -1;
-    let journeyType = this.appService.getJourneyType();
-    if (this.appService.getJourneyType() === appConstants.JOURNEY_TYPE_WILL_WRITING &&
-      this.willWritingService.getWillCreatedPrelogin()) {
-      enqId = this.willWritingService.getEnquiryId();
-    } else if (this.authService.getEnquiryId()) {
-      enqId = Number(this.authService.getEnquiryId());
-    } else if (this.appService.getJourneyType() === appConstants.JOURNEY_TYPE_DIRECT ||
-      this.appService.getJourneyType() === appConstants.JOURNEY_TYPE_GUIDED) {
-      const insuranceEnquiry = this.selectedPlansService.getSelectedPlan();
-      if (insuranceEnquiry && ((insuranceEnquiry.plans && insuranceEnquiry.plans.length > 0) || (insuranceEnquiry.enquiryProtectionTypeData && insuranceEnquiry.enquiryProtectionTypeData.length > 0))) {
-        journeyType = (this.appService.getJourneyType() === appConstants.JOURNEY_TYPE_DIRECT) ?
-          appConstants.INSURANCE_JOURNEY_TYPE.DIRECT : appConstants.INSURANCE_JOURNEY_TYPE.GUIDED;
-        enqId = insuranceEnquiry.enquiryId;
-      }
-    }
-
-    // If the journeyType is not set, default it to 'direct'
-    if (Util.isEmptyOrNull(journeyType)) {
-      journeyType = appConstants.JOURNEY_TYPE_DIRECT;
-    }
-
-    journeyType = journeyType.toLowerCase();
-
+    this.loginService.setEnquiryIdAndJourneyType();
     var userEmail = '';
     this.progressModal = true;
     this.mobileNumberVerifiedMessage = this.loading['verifying'];
@@ -489,7 +466,7 @@ export class VerifyMobileComponent implements OnInit, OnDestroy {
       userEmail = sessionStorage.getItem('email');
     }
     const isCorporateUserType = this.signUpService.getUserType() === appConstants.USERTYPE.CORPORATE;
-    this.authService.doValidate2faLogin(otp, userEmail, journeyType, enqId, null, isCorporateUserType).subscribe((data: any) => {
+    this.authService.doValidate2faLogin(otp, userEmail, this.loginService.journeyType, this.loginService.enqId, null, isCorporateUserType).subscribe((data: any) => {
       if (data.responseMessage.responseCode >= 6000) {
         this.mobileNumberVerified = true;
         this.mobileNumberVerifiedMessage = this.loading['verified2fa'];
