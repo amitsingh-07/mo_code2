@@ -1,10 +1,16 @@
 import { Injectable } from '@angular/core';
-import { CanActivate, Router } from '@angular/router';
+import { CanActivate, Router, ActivatedRouteSnapshot } from '@angular/router';
+import { map } from 'rxjs/internal/operators/map';
+import { Observable } from 'rxjs/internal/Observable';
 
 import { AuthenticationService } from '../shared/http/auth/authentication.service';
 import { SIGN_UP_ROUTE_PATHS } from './sign-up.routes.constants';
 import { SIGN_UP_CONFIG } from './sign-up.constant';
 import { AppService } from '../app.service';
+import { LoginService } from './login.service';
+import { LoaderService } from '../shared/components/loader/loader.service';
+import { SingpassService } from '../singpass/singpass.service';
+import { NavbarService } from '../shared/navbar/navbar.service';
 
 @Injectable({
   providedIn: 'root'
@@ -107,6 +113,102 @@ export class FacebookLoggedUserService implements CanActivate {
       return false;
     }
     this.authService.isUserTypeCorporate = true;
+    this.authService.displayCorporateLogo$.next(true);
+    return true;
+  }
+}
+
+@Injectable({
+  providedIn: 'root'
+})
+
+// tslint:disable-next-line:max-classes-per-file
+export class SingpassLoginGuard implements CanActivate {
+  constructor(private route: Router,
+    private authService: AuthenticationService,
+    private loginService: LoginService,
+    private loaderService: LoaderService,
+    private singpassService: SingpassService
+  ) {
+  }
+  canActivate(activatedRoute: ActivatedRouteSnapshot): Observable<boolean> | boolean {
+    const queryParams = activatedRoute.queryParams;
+    this.loginService.setEnquiryIdAndJourneyType();
+    if (queryParams['code'] && queryParams['state']) {
+      this.loaderService.showLoader({ title: 'Logging in' });
+      return this.singpassService.loginSingpass(queryParams['code'], queryParams['state'], this.loginService.enqId, this.loginService.journeyType).pipe(map((data) => {
+        if (data.responseMessage.responseCode >= 6000 && data.objectList[0] && data.objectList[0].securityToken) {
+          this.authService.saveAuthDetails(data.objectList[0]);
+          this.authService.checkAndSetFlag(data);
+          this.loginService.onSuccessLogin(data);
+          return false;
+        } else {
+          this.loaderService.hideLoader;
+          this.route.navigate([SIGN_UP_ROUTE_PATHS.LOGIN], { queryParams: { 'code': null, 'state': null, }, queryParamsHandling: 'merge' });
+          this.loginService.displaySingpassLoginError(data);
+          return false;
+        }
+      }, (err) => {
+        this.loaderService.hideLoader;
+        return true;
+      }));
+    } else {
+      if (this.authService.isSignedUser()) {
+        this.route.navigate([SIGN_UP_ROUTE_PATHS.DASHBOARD]);
+        return false;
+      }
+      return true;
+    }
+  }
+}
+
+@Injectable({
+  providedIn: 'root'
+})
+
+// tslint:disable-next-line:max-classes-per-file
+export class CorpbizAuthGuardService implements CanActivate {
+  constructor(private route: Router,
+    private authService: AuthenticationService,
+    private appService: AppService
+  ) {
+  }
+  canActivate(): boolean {
+    if(!this.appService.getCorpBizData()) {
+      this.route.navigate([SIGN_UP_ROUTE_PATHS.CORP_BIZ_ACTIVATIONLINK]);
+      return false;
+    }
+    this.authService.displayCorporateLogo$.next(true);
+    return true;
+  }
+}
+
+@Injectable({
+  providedIn: 'root'
+})
+
+export class CorpbizWelcomeFlowAuthGuardService implements CanActivate {
+  constructor(private route: Router,
+    private authService: AuthenticationService,
+    private appService: AppService,
+    private navbarService: NavbarService,
+    private router: Router
+  ) {
+  }
+  canActivate(): boolean {
+    if (!this.authService.isSignedUser()) {
+      if (this.appService.getCorporateDetails() && this.appService.getCorporateDetails().organisationEnabled) {
+        this.route.navigate([SIGN_UP_ROUTE_PATHS.CORPORATE_LOGIN], { queryParams: { orgID: this.appService.getCorporateDetails().uuid } });
+      } else {
+        this.route.navigate([SIGN_UP_ROUTE_PATHS.LOGIN]);
+      }
+      return false;
+    }
+    this.authService.displayCorporateLogo$.next(true);    
+    if (this.navbarService.welcomeJourneyCompleted) {
+      this.router.navigate([SIGN_UP_ROUTE_PATHS.DASHBOARD]);
+      return false;
+    }
     return true;
   }
 }

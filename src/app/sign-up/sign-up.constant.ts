@@ -118,9 +118,127 @@ export let SIGN_UP_CONFIG = {
       VALUE: 'F'
     }
   },
+  LIFE_STATUS: {
+    ALIVE: {
+      VALUE: 'A',
+      DESC: 'Alive'
+    },
+    DECEASED: {
+      VALUE: 'D',
+      DESC: 'Deceased'
+    }
+  },
+  MARITAL_STATUS: {
+    SINGLE: {
+      VALUE: 1,
+      DESC: 'Single'
+    },
+    MARRIED: {
+      VALUE: 2,
+      DESC: 'Married'
+    },
+    WIDOWED: {
+      VALUE: 3,
+      DESC: 'Widowed'
+    },
+    DIVORCED: {
+      VALUE: 5,
+      DESC: 'Divorced'
+    }
+  },
+  CPF_ACC_TYPE: {
+    MA: 'ma',
+    SA: 'sa',
+    RA: 'ra',
+    OA: 'oa'
+  },
+  RESIDENTIAL_STATUS: {
+    CITIZEN: {
+      DESC: 'Citizen',
+      VALUE: 'CITIZEN'
+    },
+    PR: {
+      DESC: 'PR',
+      VALUE: 'PR'
+    },
+    ALIEN: {
+      DESC: 'Alien',
+      VALUE: 'ALIEN'
+    }
+  },
+  TAX_CLEARANCE: {
+    YES: {
+      VALUE: 'Y',
+      DESC: '(Clearance)'
+    }
+  },
+  VEHICLE_STATUS: {
+    LIVE: {
+      VALUE: '1',
+      DESC: 'Live'
+    },
+    DEREGISTERED: {
+      VALUE: '2',
+      DESC: 'Deregistered'
+    }
+  },
   CUSTOMER_PORTFOLIOS: {
     JOINT_ACCOUNT: {
       SATUS: 'ACTIVE'
     }
+  },
+  OWNERSHIP_STATUS: {
+    YES: {
+      VALUE: 'Yes'
+    },
+    NO: {
+      VALUE: 'No'
+    }
+  },
+  CORP_BIZ_MY_INFO_ATTRIBUTES: [
+    'name',
+    // 'marital', // Will include in payload once approved from Singpass
+    // 'ownerprivate',
+    'birthcountry',
+    'sex',
+    'dob',
+    'regadd',
+    'residentialstatus',
+    'cpfbalances',
+    'cpfhousingwithdrawal',
+    'email',
+    'mobileno',
+    // 'noahistory',
+    'noa',
+    // 'hdbownership',
+    'hdbownership.dateofpurchase',
+    'hdbownership.monthlyloaninstalment',
+    'hdbownership.loangranted',
+    'hdbownership.outstandingloanbalance',
+    'hdbownership.leasecommencementdate',
+    // 'vehicles',
+    'vehicles.coeexpirydate',
+    'vehicles.openmarketvalue',
+    'vehicles.firstregistrationdate',
+    'vehicles.status',
+    'childrenbirthrecords.name',
+    'childrenbirthrecords.sex',
+    'childrenbirthrecords.dob',
+    'childrenbirthrecords.lifestatus',
+    'sponsoredchildrenrecords.name',
+    'sponsoredchildrenrecords.sex',
+    'sponsoredchildrenrecords.dob',
+    'sponsoredchildrenrecords.lifestatus',
+    'sponsoredchildrenrecords.residentialstatus'
+  ],
+  EXCLUDABLE_CORP_BIZ_MY_INFO_ATTRIBUTES: {
+    CPF_HOUSING_WITHDRAWAL: 'cpfhousingwithdrawal',
+    VEHICLES: 'vehicles'
+  },
+  ACC_TYPE_CORPBIZ: 'corpbiz',
+  CORP_BIZ_ACTIVATIONLINK: {
+    INVALID_USER: 'invalid-user',
+    LINK_EXPIRED: 'link-expired',
+    ACC_EXIST: 'account-exists'
   }
 };

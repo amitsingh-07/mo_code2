@@ -15,12 +15,11 @@ import {
 import { RegexConstants } from '../shared/utils/api.regex.constants';
 import { CryptoService } from '../shared/utils/crypto';
 import { CreateAccountFormError } from './create-account/create-account-form-error';
-import { SignUpFormData } from './sign-up-form-data';
+import { Child, CorpBizUserMyInfoData, CPFWithdrawal, SignUpFormData } from './sign-up-form-data';
 import { SIGN_UP_CONFIG } from './sign-up.constant';
 import { InvestmentAccountService } from '../investment/investment-account/investment-account-service';
 import { appConstants } from '../app.constants';
-import { ManageInvestmentsService } from '../investment/manage-investments/manage-investments.service';
-import { map } from 'rxjs/operators';
+import { Util } from '../shared/utils/util';
 
 const SIGNUP_SESSION_STORAGE_KEY = 'app_signup_session_storage_key';
 const CUSTOMER_REF_SESSION_STORAGE_KEY = 'app_customer_ref_session_storage_key';
@@ -36,6 +35,7 @@ const EMAIL = 'email';
 const FINLITENABLED = 'finlitenabled';
 const USER_MOBILE_COUNTRY_CODE = 'user_mobile_country_code';
 const NEW_UPDATES_MODAL_SHOWN = 'new_updates_modal_shown';
+const CORP_BIZ_USER_MYINFO_SESSION_STORAGE_KEY = 'app_corpbiz_myinfo_storage_key';
 
 @Injectable({
   providedIn: 'root'
@@ -46,12 +46,14 @@ export class SignUpService {
   private userSubject = new Subject();
   userObservable$ = this.userSubject.asObservable();
   private signUpFormData: SignUpFormData = new SignUpFormData();
+  private corpBizUserMyInfoData: CorpBizUserMyInfoData = new CorpBizUserMyInfoData();
   private createAccountFormError: any = new CreateAccountFormError();
   private resetPasswordUrl: string;
   private resetPasswordCorpUrl: string;
   private mobileOptimized = new BehaviorSubject(false);
   mobileOptimizedObservable$ = this.mobileOptimized.asObservable();
   myInfoAttributes = SIGN_UP_CONFIG.MY_INFO_ATTRIBUTES;
+  corpBizMyInfoAttributes = SIGN_UP_CONFIG.CORP_BIZ_MY_INFO_ATTRIBUTES; // Corp Biz attributes
   organisationName: string = '';
   constructor(
     private apiService: ApiService,
@@ -61,8 +63,7 @@ export class SignUpService {
     private datePipe: DatePipe,
     public modal: NgbModal,
     private translate: TranslateService,
-    private investmentAccountService: InvestmentAccountService,
-    private manageInvestmentsService: ManageInvestmentsService
+    private investmentAccountService: InvestmentAccountService
   ) {
     this.getAccountInfo();
     this.configService.getConfig().subscribe((config: IConfig) => {
@@ -78,6 +79,22 @@ export class SignUpService {
     if (window.sessionStorage) {
       sessionStorage.setItem(SIGNUP_SESSION_STORAGE_KEY, JSON.stringify(this.signUpFormData));
     }
+  }
+
+  /**
+   * save corpbiz user MyInfo data in session storage.
+   */
+   commitCorpBizUserInfo() {
+    if (window.sessionStorage) {
+      sessionStorage.setItem(CORP_BIZ_USER_MYINFO_SESSION_STORAGE_KEY, JSON.stringify(this.corpBizUserMyInfoData));
+    }
+  }
+
+  getCorpBizUserMyInfoData(): CorpBizUserMyInfoData {
+    if (window.sessionStorage && sessionStorage.getItem(CORP_BIZ_USER_MYINFO_SESSION_STORAGE_KEY)) {
+      this.corpBizUserMyInfoData = JSON.parse(sessionStorage.getItem(CORP_BIZ_USER_MYINFO_SESSION_STORAGE_KEY));
+    }
+    return this.corpBizUserMyInfoData;
   }
 
   /**
@@ -765,7 +782,8 @@ export class SignUpService {
     }
     if (data.mobileno && data.mobileno.nbr) {
       this.signUpFormData.mobileNumber = data.mobileno.nbr;
-    }if (data.dob.value) {
+    }
+    if (data.dob.value) {
       this.signUpFormData.dob = this.investmentAccountService.dateFormat(data.dob.value);
       this.disableAttributes.push('dob');
     }
@@ -776,10 +794,12 @@ export class SignUpService {
       this.signUpFormData.gender = SIGN_UP_CONFIG.GENDER.FEMALE.DESC;
       this.disableAttributes.push('gender');
     }
+
     this.signUpFormData.isMyInfoEnabled = true;
     this.signUpFormData.disableAttributes = this.disableAttributes;
     this.commit();
   }
+
   isDisabled(fieldName): boolean {
     let disable: boolean;
     if (this.signUpFormData &&
@@ -791,6 +811,168 @@ export class SignUpService {
       disable = false;
     }
     return disable;
+  }
+
+  loadCorpBizUserMyInfoData(data) {
+    this.setCorpBizMyInfoData(data);
+    this.setPropertyData(data?.hdbOwnerships);
+    this.setVehicleData(data?.vehicles);
+    this.setMaritalStatus(data);
+    this.setOwnershipStatus(data?.ownerprivate);
+    this.commitCorpBizUserInfo();
+  }
+
+  setMaritalStatus(data) {
+    if (data.marital) {
+      if (data.marital.desc === SIGN_UP_CONFIG.MARITAL_STATUS.SINGLE.DESC.toUpperCase()) {
+        this.corpBizUserMyInfoData.marital = SIGN_UP_CONFIG.MARITAL_STATUS.SINGLE.DESC
+      } else if (data.marital.desc === SIGN_UP_CONFIG.MARITAL_STATUS.MARRIED.DESC.toUpperCase()) {
+        this.corpBizUserMyInfoData.marital = SIGN_UP_CONFIG.MARITAL_STATUS.MARRIED.DESC
+      } else if (data.marital.desc === SIGN_UP_CONFIG.MARITAL_STATUS.WIDOWED.DESC.toUpperCase()) {
+        this.corpBizUserMyInfoData.marital = SIGN_UP_CONFIG.MARITAL_STATUS.WIDOWED.DESC
+      } else if (data.marital.desc === SIGN_UP_CONFIG.MARITAL_STATUS.DIVORCED.DESC.toUpperCase()) {
+        this.corpBizUserMyInfoData.marital = SIGN_UP_CONFIG.MARITAL_STATUS.DIVORCED.DESC
+      } else {
+        this.corpBizUserMyInfoData.marital = null;
+      }
+    }
+  }
+
+  setOwnershipStatus(data) {
+    if (data && !Util.isEmptyOrNull(data.value)) {
+      this.corpBizUserMyInfoData.ownershipStatus = data.value == 'true' ? SIGN_UP_CONFIG.OWNERSHIP_STATUS.YES.VALUE : SIGN_UP_CONFIG.OWNERSHIP_STATUS.NO.VALUE;
+    }
+  }
+
+  setVehicleData(vehicles) {
+    if (vehicles && vehicles.length > 0) {
+      let vehicleData = [];
+      vehicles.forEach(vehicle => {
+        if (vehicle.status === SIGN_UP_CONFIG.VEHICLE_STATUS.LIVE.VALUE) {
+          const expiryDate = vehicle.coeExpiryDate ? this.investmentAccountService.corpBizDateFormat(vehicle.coeExpiryDate) : null;
+          const registerDate = vehicle.firstRegistrationDate ? this.investmentAccountService.corpBizDateFormat(vehicle.firstRegistrationDate) : null;
+          vehicleData.push({
+            coeExpiryDate: expiryDate ? `${expiryDate.day}/${expiryDate.month}/${expiryDate.year}` : null,
+            registrationDate: registerDate ? `${registerDate.day}/${registerDate.month}/${registerDate.year}` : null,
+            openMarketValue: vehicle.openMarketValue,
+            status: SIGN_UP_CONFIG.VEHICLE_STATUS.LIVE.DESC
+          });
+        }
+      });
+      this.corpBizUserMyInfoData.vehicles = vehicleData;
+    }
+  }
+
+  setResidentialStatus(residentialStatus) {
+    if (residentialStatus.desc && residentialStatus.desc.toUpperCase() == SIGN_UP_CONFIG.RESIDENTIAL_STATUS.CITIZEN.VALUE) {
+      return SIGN_UP_CONFIG.RESIDENTIAL_STATUS.CITIZEN.DESC;
+    } else if (residentialStatus.desc && residentialStatus.desc.toUpperCase() == SIGN_UP_CONFIG.RESIDENTIAL_STATUS.PR.VALUE) {
+      return SIGN_UP_CONFIG.RESIDENTIAL_STATUS.PR.DESC;
+    } else if (residentialStatus.desc && residentialStatus.desc.toUpperCase() == SIGN_UP_CONFIG.RESIDENTIAL_STATUS.ALIEN.VALUE) {
+      return SIGN_UP_CONFIG.RESIDENTIAL_STATUS.ALIEN.DESC;
+    }
+    return null;
+  }
+
+  setCorpBizMyInfoData(data) {
+    if (data.dob.value) {
+      this.corpBizUserMyInfoData.dateOfBirth = this.investmentAccountService.corpBizDateFormat(data.dob.value);
+    }
+
+    if (data.birthcountry && data.birthcountry.countryDetails) {
+      this.corpBizUserMyInfoData.birthCountry = this.investmentAccountService.getCountryObject(data.birthcountry.countryDetails);
+    }
+
+    if (data.residentialstatus) { // Set Residential Status
+      this.corpBizUserMyInfoData.residentialstatus = this.setResidentialStatus(data?.residentialstatus);
+    }
+    // Set Income breakdown and Notice of Assessment Data
+    if (data.noa) {
+      this.corpBizUserMyInfoData.noa = {
+        assessableIncome: data.noa.amount > 0 ? data.noa.amount : null,
+        trade: data.noa.trade > 0 ? data.noa.trade : null,
+        interest: data.noa.interest > 0 ? data.noa.interest : null,
+        yearOfAssessment: data.noa.yearofassessment,
+        employment: data.noa.employment > 0 ? data.noa.employment : null,
+        rent: data.noa.rent > 0 ? data.noa.rent : null,
+        taxClearance: data.noa.taxclearance,
+        type: data.noa.category
+      };
+    }
+    // Set CPF Housing Withdrawal Data
+    if (data.cpfhousingwithdrawal && data.cpfhousingwithdrawal.withdrawaldetails && data.cpfhousingwithdrawal.withdrawaldetails.length > 0) {
+      const withdrawalData = data.cpfhousingwithdrawal.withdrawaldetails;
+      let cpfHousingData: CPFWithdrawal[] = [];
+      withdrawalData.forEach(element => {
+        cpfHousingData.push({
+          withdrawalAmount: element.principalwithdrawalamt,
+          installmentAmount: element.monthlyinstalmentamt,
+          acruedInterest: element.accruedinterestamt,
+          totalCPFAmount: element.totalamountofcpfallowedforproperty,
+          withdrawalAddress: element.address?.formattedSingleLineAddress
+        });
+      });
+      this.corpBizUserMyInfoData.cpfhousingwithdrawal = cpfHousingData;
+    }
+    // Set Children Birth Records
+    if (data.childrenRecords && data.childrenRecords.length > 0) {
+      this.corpBizUserMyInfoData.childrenRecords = this.setChildRecords(data.childrenRecords);
+    }
+    // Set Sponsored Children Birth Records
+    if (data.sponsoredChildrenRecords && data.sponsoredChildrenRecords.length > 0) {
+      this.corpBizUserMyInfoData.sponsoredChildrenRecords = this.setChildRecords(data.sponsoredChildrenRecords);
+    }
+
+    // Set CPF Account Balances data - RA, OA, MA, SA
+    if (data.cpfbalances) {
+      const cpfAccBal = data.cpfbalances;
+      this.corpBizUserMyInfoData.cpfBalances = {
+        ma: cpfAccBal?.ma,
+        sa: cpfAccBal?.sa,
+        oa: cpfAccBal?.oa,
+        ra: cpfAccBal?.ra,
+      };
+    }
+
+    // Set Residential Address
+    this.corpBizUserMyInfoData.regadd = data?.regadd?.formattedSingleLineAddress;
+    // Set Race
+    this.corpBizUserMyInfoData.race = data?.race;
+  }
+
+  setChildRecords(children) {
+    let childrenData: Child[] = [];
+    children.forEach(child => {
+      const childDOB = child.dob.value ? this.investmentAccountService.corpBizDateFormat(child.dob.value) : null;
+      if (child.lifeStatus && child.lifeStatus.value !== SIGN_UP_CONFIG.LIFE_STATUS.DECEASED.VALUE) {
+        childrenData.push({
+          name: child.name ? child.name.value : null,
+          gender: child.sex ? (child.sex.value == SIGN_UP_CONFIG.GENDER.FEMALE.VALUE ? SIGN_UP_CONFIG.GENDER.FEMALE.DESC : SIGN_UP_CONFIG.GENDER.MALE.DESC) : null,
+          lifeStatus: SIGN_UP_CONFIG.LIFE_STATUS.ALIVE.DESC,
+          dob: childDOB ? `${childDOB.day}/${childDOB.month}/${childDOB.year}` : null,
+          residentialStatus: child.residentialStatus ? this.setResidentialStatus(child.residentialStatus) : null
+        })
+      }
+    });
+    return childrenData;
+  }
+
+  setPropertyData(data) {
+    let hdbOwnerships = [];
+    if (data && data.length > 0) {
+      data.forEach(house => {
+        const purchaseDate = house.dateOfPurchase ? this.investmentAccountService.corpBizDateFormat(house.dateOfPurchase) : null;
+        const leaseDate = house.leasecommencementdate ? this.investmentAccountService.corpBizDateFormat(house.leasecommencementdate) : null;
+        hdbOwnerships.push({
+          dateOfPurchase: purchaseDate ? `${purchaseDate.day}/${purchaseDate.month}/${purchaseDate.year}` : null,
+          monthlyLoanInstalment: house.monthlyLoanInstalment,
+          outstandingLoanBalance: house.outstandingLoanBalance,
+          loanGranted: house.loanGranted,
+          leaseCommenceDate: leaseDate ? `${leaseDate.day}/${leaseDate.month}/${leaseDate.year}` : null
+        })
+      });
+    }
+    this.corpBizUserMyInfoData.hdbProperty = hdbOwnerships;
   }
 
   setMyInfoStatus(status) {
@@ -809,17 +991,17 @@ export class SignUpService {
   emailDomainValidator(organisationEnabled = false): ValidatorFn {
     return (control: AbstractControl): ValidationErrors | null => {
       const isEnteredEmailId = isNaN(parseInt(control.value));
-        if (organisationEnabled && isEnteredEmailId && appConstants.ORGANISATION_ROLES.ALLOWED_DOMAIN_CORP.filter(ele => control.value?.includes(ele)).length === 0) {
-          return { invalidDomain: true };
-        } else if (!organisationEnabled && isEnteredEmailId && appConstants.RESTRICTED_DOMAIN_PUBLIC.filter(ele => control.value?.includes(ele)).length > 0) {
-          return { invalidDomain: true };
-        }
+      if (organisationEnabled && isEnteredEmailId && appConstants.ORGANISATION_ROLES.ALLOWED_DOMAIN_CORP.filter(ele => control.value?.includes(ele)).length === 0) {
+        return { invalidDomain: true };
+      } else if (!organisationEnabled && isEnteredEmailId && appConstants.RESTRICTED_DOMAIN_PUBLIC.filter(ele => control.value?.includes(ele)).length > 0) {
+        return { invalidDomain: true };
+      }
       return null;
     }
   }
-  
+
   // cpf
-   setEditProfileCpfDetails(accountNumber, cpfBankOperator, customerId) {
+  setEditProfileCpfDetails(accountNumber, cpfBankOperator, customerId) {
     this.signUpFormData.cpfAccountNumber = accountNumber;
     this.signUpFormData.cpfOperatorBank = cpfBankOperator;
     this.signUpFormData.customerId = customerId;
@@ -832,5 +1014,15 @@ export class SignUpService {
       cpfOperatorBank: this.signUpFormData.cpfOperatorBank,
       customerId: this.signUpFormData.customerId
     };
+  }
+
+  // Corp Biz changes
+  setCorpBizMyInfoStatus(status) {
+    this.corpBizUserMyInfoData.isCorpBizMyInfoEnabled = status;
+    this.commitCorpBizUserInfo();
+  }
+
+  getCorpBizMyInfoStatus() {
+    return this.corpBizUserMyInfoData.isCorpBizMyInfoEnabled;
   }
 }

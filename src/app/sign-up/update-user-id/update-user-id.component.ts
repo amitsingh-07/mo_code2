@@ -23,6 +23,7 @@ import { Util } from '../../shared/utils/util';
 import { CryptoService } from '../../shared/utils/crypto';
 import { LoaderService } from '../../shared/components/loader/loader.service';
 import { SIGN_UP_CONFIG } from '../sign-up.constant';
+import { AuthenticationService } from '../../shared/http/auth/authentication.service';
 
 @Component({
   selector: 'app-update-user-id',
@@ -67,6 +68,7 @@ export class UpdateUserIdComponent implements OnInit, OnDestroy {
     private configService: ConfigService,
     public cryptoService: CryptoService,
     private loaderService: LoaderService,
+    private authService: AuthenticationService
   ) {
     this.translate.use('en');
     this.translate.get('COMMON').subscribe((result: string) => {
@@ -167,7 +169,7 @@ export class UpdateUserIdComponent implements OnInit, OnDestroy {
     if (this.checkEditType()) {
       this.updateUserIdForm = this.formBuilder.group({
         email: [this.formValues.email],
-        newEmail: ['', [Validators.required, Validators.email, Validators.pattern(RegexConstants.Email)]],
+        newEmail: ['', [Validators.required, Validators.email, Validators.pattern(RegexConstants.Email), this.signUpService.emailDomainValidator(this.authService.isUserTypeCorporate)]],
         confirmEmail: ['', Validators.required],
         password: ['', Validators.required],
         encryptedPassword: ['']

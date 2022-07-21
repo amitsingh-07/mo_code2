@@ -110,6 +110,7 @@ app-dashboard {
                 border-radius: 6px;
                 box-shadow: 0 8px 12px 0 rgba(0, 0, 0, 0.25);
                 .widget-title {
+                    position: relative;
                     font-family: $muli-bold;
                     font-size: 22px;
                     letter-spacing: -0.2px;
@@ -331,63 +332,104 @@ app-dashboard {
                 margin-left: 10px;
                 background-image: linear-gradient(8deg, #98dfdf 50%, transparent 50%), linear-gradient(-90deg, #98dfdf 50%, transparent 50%);
             }
+            .dropdown-toggle{
+                &.btn-with-icon {
+                    &::after{
+                        display: none;
+                    }
+                }
+            }
             .btn-with-icon {
-                border-radius: 6px;
-                box-shadow: 0 4px 5px 0 rgba(0, 0, 0, 0.21) !important;
-                background-color: $btn-primary-backgrnd-color;
+                border-radius: 25px;
+                box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.3) !important;
+                background-color: $blue-stone-color;
+                border: none;
                 font-family: $muli-bold;
-                font-size: 21px;
-                line-height: normal;
+                font-size: 14px;
+                line-height: 16px;
                 letter-spacing: -0.3px;
                 text-align: center;
                 color: $white-color;
-                width: 135px;
-                height: 45px;
-                padding: 10px 0px;
+                width: 101px;
+                height: 32px;
+                padding: 0;
+                display: flex;
+                justify-content: center;
+                align-items: center;
                 cursor: pointer;
-                &.top_up_btn {
-                    font-size: 15px;
-                    line-height: 23px;
-                    background-color: $white-color;
-                    color: $secondary-action-color;
-                    border: 1px solid #f1f1f1;
+                &.disabled{
+                    cursor: not-allowed;
+                }
+                .invest-btn-img {
+                    height: 9.3px;
+                    width: 9.3px;
+                    margin-left: 13px;
                     display: flex;
-                    justify-content: center;
-                    &:active, &:focus {
-                        outline: none;
-                        background-color: $white-color;
+                    img {
+                        width: 100%;
+                        height: auto;
+                        margin: 0;
                     }
-                    &.disabled{
-                      cursor: not-allowed;
+                }
+                &:hover{
+                    outline: none;
+                    background-color: $btn-primary-backgrnd-color;
+                }
+                &:active{
+                    outline: none;
+                    background-color: $btn-primary-backgrnd-color;
+                }
+            }
+    
+                .dropdown-menu{
+                    padding: 8px 16px;
+                    font-size: 16px;
+                    font-family: $muli-bold;
+                    line-height: 24px;
+                    color: $black-color;
+                    box-shadow: 0px 4px 8px -2px rgba(16, 24, 40, 0.1), 0px 2px 4px -2px rgba(16, 24, 40, 0.06);
+                    border-radius: 6px;
+                    min-width: 375px;
+                    cursor: pointer;
+                    &.show{
+                        top: 14px !important;
                     }
-                    .topup-btn-img {
-                        height: 25px;
-                        width: 35px;
-                        margin-right: 5px;
+                    .dropdown-item{
+                        padding: 0;
+                        color: $black-color !important;
+                        &:hover, &:focus, &:active, &:focus-within, &:focus-visible{
+                            outline: none;
+                            background: $white-color !important;
+                            color: $black-color !important;
+                        }
+                    }
+                    .btn-menu-item{
+                        width: 100%;
+                        padding: 16px 0;
+                    }
+                    .menu-icon{
+                        width: 48px;
+                        height: 48px;
                         display: flex;
-                        img {
-                            width: 100%;
-                            height: auto;
+                        margin-right: 20px;
+                        img{
                             margin: 0;
                         }
                     }
+                    .dropdown-divider{
+                        margin: 0;
+                        border-color: $mercury-smoke-color;
+                    }
+                    .sub-text{
+                        font-family: $muli-regular;
+                        font-size: 14px;
+                        color: $silver-grey-color;
+                    }
+                    @include allmobiles{
+                        display: none !important;
+                    }
                 }
-                &:active {
-                    outline: none;
-                    background-color: $btn-primary-backgrnd-color;
-                }
-                &:hover {
-                    outline: none;
-                }
-                &:focus {
-                    outline: none;
-                    background-color: $btn-primary-backgrnd-color;
-                }
-                img {
-                    margin-left: 8px;
-                    margin-top: -1px;
-                }
-            }
+            
             .total-portfolio-title {
                 height: 16px;
                 font-family: $muli-regular;
@@ -435,15 +477,25 @@ app-dashboard {
                 padding:20px 18px 5px;
                 align-items: self-start!important;
                 line-height: 1.25;
+                position: relative;
               }
               div.reward-points + .widget-portfolio-title {
                 @include allmobiles {
                     width: 68%;
                 }
               }
-              div.reward-points ~ .topup-btn {
+              div.reward-points ~ .invest-btn {
                 @include allmobiles {  
                     margin-top: -37px !important;
+                }
+                @include iPhone13ProMax{
+                    margin-top: -11px !important;
+                }
+                @include min450max475 {  
+                    margin-top: -15px !important;
+                }
+                @include min475max568 {  
+                    margin-top: -15px !important;
                 }
               }
               .reward-points ~ .investment-card {
@@ -453,6 +505,7 @@ app-dashboard {
               }
               .widget-portfolio-body {
                 padding:0px 18px 11px;
+                z-index: 99;
               }
               @-moz-document url-prefix() {
                 .widget-portfolio-body {
@@ -678,7 +731,7 @@ app-dashboard {
         border-bottom-left-radius: 20px;
         color: $dusty-grey-color;
     }
-    .topup-btn {
+    .invest-btn {
         display: flex;
         justify-content: flex-end;
         padding-right: 20px;

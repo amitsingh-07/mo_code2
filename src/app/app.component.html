@@ -3,7 +3,7 @@
 </div>
 
 <div>
-  <app-navbar></app-navbar>
+  <app-navbar [ngClass]="{'hidden-sm-md': (navbarService.displayingWelcomeFlowContent$ | async) === true}"></app-navbar>
   <!-- <app-header></app-header> -->
 </div>
 <div>

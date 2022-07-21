@@ -8,6 +8,7 @@ import { appConstants } from './../../app.constants';
 import { HelperService } from './helper.service';
 import { IError } from './interfaces/error.interface';
 import { IServerResponse } from './interfaces/server-response.interface';
+import { NavbarService } from '../navbar/navbar.service';
 
 const errorCodes = new Set([5007, 5009]);
 const CORPORATE_DETAILS = 'app_corporate_details';
@@ -18,6 +19,7 @@ const CORPORATE_DETAILS = 'app_corporate_details';
 export class CustomErrorHandlerService {
   constructor(
     private helper: HelperService,
+    public navbarService: NavbarService,
     private router: Router) { }
 
   public handleCustomError(data: IServerResponse, showError?: boolean) {
@@ -45,6 +47,7 @@ export class CustomErrorHandlerService {
         error.error.message : 'Your session has unexpectedly expired. Please login again'
     };
     this.helper.showCustomErrorModal(customError);
+    this.navbarService.displayingWelcomeFlowContent$.next(false);
     // navigate back to the login page
     const corporate_details = JSON.parse(sessionStorage.getItem(CORPORATE_DETAILS));
     if (corporate_details && corporate_details.organisationEnabled) {

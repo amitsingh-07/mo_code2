@@ -197,7 +197,7 @@ export class MyInfoService {
     this.isMyInfoEnabled = false;
     this.closeFetchPopup();
     if (error) {
-      const ref = this.modal.open(ErrorModalComponent, { centered: true, windowClass: 'my-info'});
+      const ref = this.modal.open(ErrorModalComponent, { centered: true, windowClass: 'my-info' });
       ref.componentInstance.errorTitle = 'Oops, Unable to Connect';
       ref.componentInstance.errorMessage = 'We are unable to connect to Myinfo temporarily. You may choose to fill in your information manually or try again later.';
       ref.componentInstance.isMyinfoError = true;
@@ -231,12 +231,25 @@ export class MyInfoService {
   }
 
   // CREATE ACCOUNT
-  getMyInfoAccountCreateData(){
+  getMyInfoAccountCreateData() {
     const code = {
       authorizationCode: this.myInfoValue,
       personAttributes: this.getMyInfoAttributes()
     };
     return this.apiService.getCreateAccountMyInfoData(code);
+  }
+
+  // CREATE ACCOUNT FOR CORPBIZ USERS
+  getCorpBizMyInfoAccountCreateData(email, mobile, organisationCode) {
+    const payload = {
+      authorizationCode: this.myInfoValue,
+      personAttributes: this.getMyInfoAttributes(),
+      isCorpBizUser: true,
+      organisationCode: organisationCode,
+      email: email,
+      mobileNumber: mobile
+    };
+    return this.apiService.getCreateAccountMyInfoData(payload);
   }
 
   // Check if the source page matches with the session stored one

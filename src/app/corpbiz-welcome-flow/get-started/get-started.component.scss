@@ -1,0 +1,94 @@
+@import '../../../variables';
+@import '../../../mixins';
+
+app-get-started{
+
+    .txt-desc{
+        display: flex;
+        margin-top: 20px;
+    }
+    .owl-start{
+        width: 300px;
+        height: 300px;
+        display: flex;
+        margin: 0 auto;
+    }
+    .container-fluid{
+        &.max-width--1024{
+            max-width: 600px !important;
+        }
+        padding-top: 40px;
+    }
+    .container-fluid{
+            &.welcome-screen{
+              text-align: center;
+              max-width: 450px;
+              padding: 56px 0px 140px 0px;
+              @include allmobiles{
+                background-color: $white-color;
+                min-height: 100vh;
+                width: 100%;
+              }
+            }
+    }
+
+    .form-container{
+        padding: 50px 56px 30px;
+        @include allmobiles{
+            padding: 0;
+        }
+        background-color: $white-color;
+        border-radius: 6px;
+    }
+    .welcome-img-title {
+        font-family: $muli-bold;
+        font-size: 24px;
+        color: $teal-color;
+        line-height: 32px;
+        letter-spacing: -0.18px;;
+        text-align: center;
+    }
+    .sub-title-txt {
+        font-family: $muli-regular;
+        font-size: 16px;
+        line-height: 24px;
+        color: $black-color;
+        letter-spacing: -0.18px;;
+        margin-top: 20px;
+        text-align: center;
+        @include allmobiles{
+           max-width: 320px;
+           margin:20px auto 0;
+        }
+    }
+    .sub-text-black{
+        color: $black-color;
+        font-size: 14px;
+        line-height: 16px;
+        max-width: 125px;
+        letter-spacing: -0.18px;
+    }
+    .page-btn-block{
+        display: flex;
+        margin: 40px 10px 0px;
+        justify-content: space-between;
+        align-items: center;
+        bottom: 50px;
+        right: 0px;
+        left: 0px;
+        justify-content: center;
+        @include allmobiles{
+            position: absolute;
+        }
+        .btn-orange{
+            font-size: 20px !important;
+            width: 160px;
+            text-align: center;
+            letter-spacing: -0.15px;
+            line-height: 25px;
+            font-family: $muli-bold;
+            background-color: $orange-color !important;
+            padding: 0.75rem;
+        }
+    }
+}

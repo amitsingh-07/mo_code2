@@ -21,6 +21,7 @@ const APP_ENQUIRY_ID = 'app-enquiry-id';
 const FROM_JOURNEY_HM = 'from_journey';
 const EMAIL = 'email';
 const CORPORATE_DETAILS = 'app_corporate_details';
+const APP_WELCOME_FLOW = 'app_welcome_flow';
 
 @Injectable({ providedIn: 'root' })
 export class AuthenticationService {
@@ -36,6 +37,9 @@ export class AuthenticationService {
   private timer2fa: any;
   private is2faVerifyAllowed: boolean = false;
   isUserTypeCorporate = false;
+  displayCorporateLogo$ = new BehaviorSubject<boolean>(false);
+  isShowWelcomeFlow: boolean = false;
+  isCorpBiz: boolean = false;
 
   constructor(
     private httpClient: HttpClient, public jwtHelper: JwtHelperService,
@@ -97,8 +101,17 @@ export class AuthenticationService {
           // store user details and jwt token in local storage to keep user logged in between page refreshes
           this.saveAuthDetails(response.objectList[0]);
         }
+        this.checkAndSetFlag(response);
         return response;
       }));
+  }
+
+  checkAndSetFlag(response) {
+    if (response && response.objectList[1] && typeof response.objectList[1]['showWelcomeFlow'] === 'boolean') {
+      this.isShowWelcomeFlow = response.objectList[1].showWelcomeFlow;
+      this.setWelcomeFlowFlag(this.isShowWelcomeFlow);
+    }
+    this.isCorpBiz = response?.objectList[1]?.isCorpBizUser;
   }
 
   saveAuthDetails(auth: any) {
@@ -458,4 +471,23 @@ export class AuthenticationService {
     sessionStorage.removeItem(appConstants.FINLIT_ACCESS_CODE);
   }
 
+  setWelcomeFlowFlag(welcomeFlowFlag) {
+    if (window.sessionStorage) {
+      sessionStorage.setItem(APP_WELCOME_FLOW, JSON.stringify(welcomeFlowFlag));
+    }
+  }
+
+  clearWelcomeFlowFlag() {
+    if (window.sessionStorage) {
+      sessionStorage.removeItem(APP_WELCOME_FLOW);
+    }
+  }
+
+  getWelcomeFlowFlag() {
+    let welcomeFlowFlag = false;
+    if (window.sessionStorage && sessionStorage.getItem(APP_WELCOME_FLOW)) {
+      welcomeFlowFlag = JSON.parse(sessionStorage.getItem(APP_WELCOME_FLOW));
+    }
+    return welcomeFlowFlag;
+  }
 }

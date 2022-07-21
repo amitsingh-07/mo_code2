@@ -47,6 +47,9 @@ import { INVESTMENT_COMMON_CONSTANTS } from '../../investment/investment-common/
 import { ComprehensiveService } from '../../comprehensive/comprehensive.service';
 import { Util } from '../../shared/utils/util';
 import { appConstants } from '../../app.constants';
+import { InvestmentEngagementJourneyService} from '../../investment/investment-engagement-journey/investment-engagement-journey.service';
+import { INVESTMENT_ENGAGEMENT_JOURNEY_CONSTANTS } from '../../investment/investment-engagement-journey/investment-engagement-journey.constants';
+import { InvestModalComponent } from '../invest-modal/invest-modal.component';
 
 @Component({
   selector: 'app-dashboard',
@@ -116,7 +119,8 @@ export class DashboardComponent implements OnInit {
     public errorHandler: CustomErrorHandlerService,
     private guideMeService: GuideMeService,
     private selectedPlansService: SelectedPlansService,
-    private comprehensiveService: ComprehensiveService
+    private comprehensiveService: ComprehensiveService,
+    private investmentEngagementService: InvestmentEngagementJourneyService
   ) {
     this.translate.use('en');
     this.translate.get('COMMON').subscribe((result: string) => {
@@ -133,9 +137,7 @@ export class DashboardComponent implements OnInit {
       this.isComprehensiveEnabled = config.comprehensiveEnabled;
     });
     this.portfolioCategory = INVESTMENT_COMMON_CONSTANTS.PORTFOLIO_CATEGORY;
-    if (!this.authService.isUserTypeCorporate) {
       this.getReferralCodeData();
-    }
   }
 
   ngOnInit() {
@@ -524,7 +526,7 @@ export class DashboardComponent implements OnInit {
     if (customerId) {
       this.signUpApiService.getPopupStatus(customerId, 'CPF_POP').subscribe((status) => {
         // Check if track_status is available or false
-        if (!status.objectList || !status.objectList['trackStatus']) {
+        if ((!status.objectList || !status.objectList['trackStatus']) && !this.authService.isShowWelcomeFlow) {
           setTimeout(() => {
             // displays new updates modal only during first time login
             this.openNewUpdatesModal();
@@ -532,7 +534,7 @@ export class DashboardComponent implements OnInit {
           });
           this.signUpApiService.setPopupStatus(customerId, 'CPF_POP').subscribe((result) => {
           }, (error) => console.log('ERROR: ', error));
-        } else if (this.showModalCheck(this.showModalStartDate,this.showModalEndDate) && !this.signUpService.getModalShownStatus()) {
+        } else if (this.showModalCheck(this.showModalStartDate,this.showModalEndDate) && !this.signUpService.getModalShownStatus() && !this.authService.isShowWelcomeFlow) {
           // displays new updates modal whenever user lands on dashboard page, even on subsequent logins
           this.openNewUpdatesModal();
           this.signUpService.setModalShownStatus(true);
@@ -540,7 +542,7 @@ export class DashboardComponent implements OnInit {
       }, (error) => console.log('ERROR: ', error));
     }
   }
-  gotoTopUp() {
+  existingPortfolio() {
     this.manageInvestmentsService.setSelectedCustomerPortfolioId(null);
     this.manageInvestmentsService.setSelectedCustomerPortfolio(null);
     this.manageInvestmentsService.getInvestmentOverview().subscribe((data) => {
@@ -552,6 +554,19 @@ export class DashboardComponent implements OnInit {
       }
     });
   }
+
+  newPortfolio() {
+    this.authService.removeEnquiryId();
+    this.investmentCommonService.clearFundingDetails();  
+    this.investmentCommonService.clearJourneyData();
+    if (this.authService.accessCorporateUserFeature('CREATE_JOINT_ACCOUNT')) {
+      this.router.navigate([INVESTMENT_ENGAGEMENT_JOURNEY_ROUTE_PATHS.SELECT_PORTFOLIO_TYPE]);
+    } else {
+      this.investmentEngagementService.setUserPortfolioType(INVESTMENT_ENGAGEMENT_JOURNEY_CONSTANTS.PORTFOLIO_TYPE.PERSONAL_ACCOUNT_ID);
+      this.router.navigate([INVESTMENT_ENGAGEMENT_JOURNEY_ROUTE_PATHS.SELECT_PORTFOLIO]);
+    }
+  }
+  
   showCashAccountPopUp() {
     const ref = this.modal.open(ErrorModalComponent, { centered: true });
     ref.componentInstance.errorTitle = this.translate.instant(
@@ -583,6 +598,10 @@ export class DashboardComponent implements OnInit {
     && Util.isEmptyOrNull(this.investmentsSummary.portfolioSummary.cpfPortfolio)
     && Util.isEmptyOrNull(this.investmentsSummary.portfolioSummary.wiseIncomePortfolio)
     && Util.isEmptyOrNull(this.investmentsSummary.portfolioSummary.wiseSaverPortfolio)
+  }
+
+  openInvestMenuModal() {
+    this.modal.open(InvestModalComponent, { centered: true });
   }
 }
 

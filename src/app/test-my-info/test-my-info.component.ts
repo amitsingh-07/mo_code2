@@ -1,20 +1,21 @@
-import { Component, HostListener, OnInit } from '@angular/core';
-import { FormControl, FormGroup } from '@angular/forms';
+import { Component, OnInit, ViewEncapsulation } from '@angular/core';
+import { FormGroup } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
-import { NgbActiveModal, NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { TranslateService } from '@ngx-translate/core';
 
-import { GuideMeApiService } from '../guide-me/guide-me.api.service';
-import { GuideMeService } from '../guide-me/guide-me.service';
 import { AuthenticationService } from '../shared/http/auth/authentication.service';
 import { ErrorModalComponent } from '../shared/modal/error-modal/error-modal.component';
 import { NavbarService } from '../shared/navbar/navbar.service';
 import { MyInfoService } from './../shared/Services/my-info.service';
+import { INVESTMENT_ACCOUNT_CONSTANTS } from './../investment/investment-account/investment-account.constant';
+import { myInfoResponseMapping } from './test-myinfo-mapping';
 
 @Component({
   selector: 'app-test-my-info',
   templateUrl: './test-my-info.component.html',
-  styleUrls: ['./test-my-info.component.scss']
+  styleUrls: ['./test-my-info.component.scss'],
+  encapsulation: ViewEncapsulation.None
 })
 export class TestMyInfoComponent implements OnInit {
   testMyInfoForm: FormGroup;
@@ -23,12 +24,16 @@ export class TestMyInfoComponent implements OnInit {
   pageTitle: string;
   project: string;
   robo2Results: any;
+  myInfoAttributes = [];
+  robo2Attributes = INVESTMENT_ACCOUNT_CONSTANTS.MY_INFO_ATTRIBUTES;
+  corpBizAttributes = Object.keys(myInfoResponseMapping);
+  myInfoResponse: any;
+
   constructor(
-    private guideMeService: GuideMeService, private guideMeApiService: GuideMeApiService,
     public navbarService: NavbarService,
     private modal: NgbModal, private myInfoService: MyInfoService,
     public authService: AuthenticationService,
-    private translate: TranslateService, private activeModal: NgbActiveModal,
+    private translate: TranslateService,
     private route: ActivatedRoute) {
     this.translate.use('en');
     this.translate.get('COMMON').subscribe((result: string) => {
@@ -39,9 +44,13 @@ export class TestMyInfoComponent implements OnInit {
   ngOnInit() {
     // Robo2 changes
     this.project = this.route.snapshot.queryParams.project;
-    this.testMyInfoForm = new FormGroup({
-      cpf: new FormControl('')
-    });
+    if (this.project === 'robo2') {
+      this.myInfoAttributes = this.robo2Attributes;
+    } else if (this.project === 'corpbiz') {
+      this.myInfoAttributes = this.corpBizAttributes;
+    } else {
+      this.myInfoAttributes.push(this.corpBizAttributes[0]); // Get CPF Balances
+    }
     this.authService.authenticate().subscribe((token) => {
     });
     this.myInfoService.changeListener.subscribe((myinfoObj: any) => {
@@ -51,18 +60,12 @@ export class TestMyInfoComponent implements OnInit {
           if (this.project === 'robo') {
             this.closeMyInfoPopup();
             window.opener.postMessage(myinfoObj.authorizeCode, '*');
-            // tslint:disable-next-line:max-line-length
-            // window.location.href = 'https://bfa-uat2.ntucbfa.com/myinfo?code=' + myinfoObj.authorizeCode + '&scope=occupation%20mailadd%20passportnumber%20nationality%20dob%20name%20regadd%20passportexpirydate%20householdincome%20sex%20employment&iss=https%3A%2F%2Fstg-home.singpass.gov.sg%2Fconsent%2Foauth2%2Fconsent%2Fmyinfo-com&state=149&client_id=myinfo';
           } else {
             this.myInfoService.getMyInfoData().subscribe((data) => {
-              if (this.project === 'robo2') {
-                this.robo2Results = data['objectList'];
-                console.log(data);
-              } else if (data && data['objectList']) {
-                this.cpfValue = Math.floor(data['objectList'][0].cpfbalances.total);
-                this.testMyInfoForm.controls['cpf'].setValue(this.cpfValue);
+              console.log("MY INFO RESPONSE = " + data);
+              if (data && data['objectList']) {
+                this.myInfoResponse =data['objectList'][0];
                 this.myInfoService.isMyInfoEnabled = false;
-                this.setFormTotalValue();
                 this.closeMyInfoPopup();
                 } else {
                   this.closeMyInfoPopup();
@@ -76,16 +79,14 @@ export class TestMyInfoComponent implements OnInit {
         }
       }
     });
-    // Todo - Robo2 MyInfo changes
-    // if (this.project === 'robo2') {
-    //   const myInfoAttributes1 = ['nationality', 'name', 'passportnumber', 'passportexpirydate',
-    //   'dob', 'sex', 'regadd', 'mailadd', 'employment', 'occupation', 'householdincome'];
-    //   this.myInfoService.setMyInfoAttributes(myInfoAttributes1);
-    //   this.myInfoService.goToMyInfo();
-    // }
   }
-  setFormTotalValue() {
-    this.assetsTotal = this.guideMeService.additionOfCurrency(this.testMyInfoForm.value);
+
+  getAttributeVal(attribute) {
+    if (this.myInfoResponse && attribute) {
+      return this.deepGet(myInfoResponseMapping[attribute]);
+    } else {
+      return 'MyInfo Value';
+    }
   }
 
   closeMyInfoPopup() {
@@ -111,26 +112,19 @@ export class TestMyInfoComponent implements OnInit {
     ref.componentInstance.errorMessage = this.translate.instant('You will be redirected to Singpass MyInfo page to begin fetching your data.');
     ref.componentInstance.isButtonEnabled = true;
     ref.result.then(() => {
-      // tslint:disable-next-line:max-line-length
-      //const myInfoAttributes = 'name,sex,race,nationality,dob,email,mobileno,regadd,housingtype,hdbtype,marital,edulevel,assessableincome,ownerprivate,assessyear,cpfcontributions,cpfbalances,passportnumber,passportexpirydate,mailadd,occupation,employment,householdincome';
-      const myInfoAttributes = 'cpfbalances';
-      if (this.project === 'robo2') {
-        const myInfoAttributes1 = ['nationality', 'name', 'passportnumber', 'passportexpirydate',
-        'dob', 'sex', 'regadd', 'mailadd', 'employment', 'occupation', 'householdincome'];
-        this.myInfoService.setMyInfoAttributes(myInfoAttributes1);
-      } else {
-        this.myInfoService.setMyInfoAttributes(myInfoAttributes);
-      }
+      this.myInfoService.setMyInfoAttributes(this.myInfoAttributes);
       this.myInfoService.goToMyInfo();
     }).catch((e) => {
     });
-
   }
 
-  /* Onchange Currency Addition */
-  @HostListener('input', ['$event'])
-  onChange() {
-    this.setFormTotalValue();
+  deepGet(keys) {
+    if (this.myInfoResponse) {
+      return keys.reduce(
+        (xs, x) => (xs && xs[x] !== null && xs[x] !== undefined ? xs[x] : "null"),
+        this.myInfoResponse
+      );
+    }
   }
 
   setPageTitle(title: string) {

@@ -35,12 +35,9 @@ import { LoaderService } from './../../shared/components/loader/loader.service';
 import { StateStoreService } from './../../shared/Services/state-store.service';
 import { ApiService } from '../../shared/http/api.service';
 import { Formatter } from '../../shared/utils/formatter.util';
-import {
-  INVESTMENT_ACCOUNT_ROUTE_PATHS
-} from '../../investment/investment-account/investment-account-routes.constants';
 import { InvestmentCommonService } from '../../investment/investment-common/investment-common.service';
 import { HubspotService } from './../../shared/analytics/hubspot.service';
-import { INVESTMENT_COMMON_ROUTES } from '../../investment/investment-common/investment-common-routes.constants';
+import { LoginService } from '../login.service';
 
 @Component({
   selector: 'app-verify-mobile',
@@ -81,6 +78,7 @@ export class VerifyMobileComponent implements OnInit, OnDestroy {
   showOtpComponent = false;
   protected ngUnsubscribe: Subject<void> = new Subject<void>();
   organisationEnabled = false;
+  isCorpBiz = false;
 
   constructor(
     private formBuilder: FormBuilder,
@@ -105,6 +103,7 @@ export class VerifyMobileComponent implements OnInit, OnDestroy {
     private stateStoreService: StateStoreService,
     private apiService: ApiService,
     private hubspotService: HubspotService,
+    private loginService: LoginService,
     private renderer: Renderer2, ) {
     this.roleTwoFAEnabled = this.authService.isSignedUserWithRole(SIGN_UP_CONFIG.ROLE_2FA);
     this.translate.use('en');
@@ -151,10 +150,11 @@ export class VerifyMobileComponent implements OnInit, OnDestroy {
     this.footerService.setFooterVisibility(false);
     this.buildVerifyMobileForm();
     this.fromLoginPage = this.signUpService.getFromLoginPage();
-    if (this.fromLoginPage) {
+    this.isCorpBiz = this.appService.getCorpBizData()?.isCorpBiz;
+    if (this.fromLoginPage || this.isCorpBiz) {
       this.mobileNumber = {
         code: (this.signUpService.getUserMobileCountryCode()) ? this.signUpService.getUserMobileCountryCode() : appConstants.SINGAPORE_COUNTRY_CODE,
-        number: this.signUpService.getUserMobileNo()
+        number: this.isCorpBiz ? this.appService.getCorpBizData().maskedMobileNumber : this.signUpService.getUserMobileNo()
       };
     } else {
       this.mobileNumber = this.signUpService.getMobileNumber();
@@ -354,13 +354,13 @@ export class VerifyMobileComponent implements OnInit, OnDestroy {
   }
 
   sendWelcomeEmail() {
-    const mobileNo = this.mobileNumber.number.toString();
+    const mobileNo = this.isCorpBiz? this.appService.getCorpBizData().mobileNumber.toString() : this.mobileNumber.number.toString();
     this.signUpApiService.sendWelcomeEmail(mobileNo, false).subscribe((data) => { });
   }
 
   resendEmailVerification() {
     let organisationCode = (this.organisationEnabled && appConstants.USERTYPE.FACEBOOK) || null;
-    const mobileNo = this.mobileNumber.number.toString();
+    const mobileNo = this.isCorpBiz? this.appService.getCorpBizData().mobileNumber.toString() : this.mobileNumber.number.toString();
     this.signUpApiService.resendEmailVerification(mobileNo, false, organisationCode).subscribe((data) => {
       if (data.responseMessage.responseCode === 6007) {
         this.navbarService.logoutUser();
@@ -376,6 +376,8 @@ export class VerifyMobileComponent implements OnInit, OnDestroy {
           this.router.navigate([SIGN_UP_ROUTE_PATHS.ACCOUNT_CREATED_FINLIT]);
         } else if (this.organisationEnabled) {
           this.router.navigate([SIGN_UP_ROUTE_PATHS.ACCOUNT_CREATED_CORPORATE]);
+        } else if (this.isCorpBiz) {
+          this.router.navigate([SIGN_UP_ROUTE_PATHS.ACCOUNT_CREATED_CORPBIZ]);
         } else {
           this.router.navigate([SIGN_UP_ROUTE_PATHS.ACCOUNT_CREATED]);
         }
@@ -456,30 +458,7 @@ export class VerifyMobileComponent implements OnInit, OnDestroy {
   }
 
   validate2faLogin(otp) {
-    let enqId = -1;
-    let journeyType = this.appService.getJourneyType();
-    if (this.appService.getJourneyType() === appConstants.JOURNEY_TYPE_WILL_WRITING &&
-      this.willWritingService.getWillCreatedPrelogin()) {
-      enqId = this.willWritingService.getEnquiryId();
-    } else if (this.authService.getEnquiryId()) {
-      enqId = Number(this.authService.getEnquiryId());
-    } else if (this.appService.getJourneyType() === appConstants.JOURNEY_TYPE_DIRECT ||
-      this.appService.getJourneyType() === appConstants.JOURNEY_TYPE_GUIDED) {
-      const insuranceEnquiry = this.selectedPlansService.getSelectedPlan();
-      if (insuranceEnquiry && ((insuranceEnquiry.plans && insuranceEnquiry.plans.length > 0) || (insuranceEnquiry.enquiryProtectionTypeData && insuranceEnquiry.enquiryProtectionTypeData.length > 0))) {
-        journeyType = (this.appService.getJourneyType() === appConstants.JOURNEY_TYPE_DIRECT) ?
-          appConstants.INSURANCE_JOURNEY_TYPE.DIRECT : appConstants.INSURANCE_JOURNEY_TYPE.GUIDED;
-        enqId = insuranceEnquiry.enquiryId;
-      }
-    }
-
-    // If the journeyType is not set, default it to 'direct'
-    if (Util.isEmptyOrNull(journeyType)) {
-      journeyType = appConstants.JOURNEY_TYPE_DIRECT;
-    }
-
-    journeyType = journeyType.toLowerCase();
-
+    this.loginService.setEnquiryIdAndJourneyType();
     var userEmail = '';
     this.progressModal = true;
     this.mobileNumberVerifiedMessage = this.loading['verifying'];
@@ -487,7 +466,7 @@ export class VerifyMobileComponent implements OnInit, OnDestroy {
       userEmail = sessionStorage.getItem('email');
     }
     const isCorporateUserType = this.signUpService.getUserType() === appConstants.USERTYPE.CORPORATE;
-    this.authService.doValidate2faLogin(otp, userEmail, journeyType, enqId, null, isCorporateUserType).subscribe((data: any) => {
+    this.authService.doValidate2faLogin(otp, userEmail, this.loginService.journeyType, this.loginService.enqId, null, isCorporateUserType).subscribe((data: any) => {
       if (data.responseMessage.responseCode >= 6000) {
         this.mobileNumberVerified = true;
         this.mobileNumberVerifiedMessage = this.loading['verified2fa'];
@@ -530,7 +509,7 @@ export class VerifyMobileComponent implements OnInit, OnDestroy {
         if (this.checkInsuranceEnquiry(insuranceEnquiry)) {
           this.updateInsuranceEnquiry(insuranceEnquiry, data);
         } else {
-          this.goToNext();
+          this.loginService.goToNext();
         }
 
       } else if (data.responseMessage.responseCode === 5123 || data.responseMessage.responseCode === 5009) {
@@ -570,29 +549,6 @@ export class VerifyMobileComponent implements OnInit, OnDestroy {
       this.loaderService.hideLoader();
       this.router.navigate([this.redirectAfterLogin]);
     });
-  }
-
-  goToNext() {
-    const investmentRoutes = [INVESTMENT_ACCOUNT_ROUTE_PATHS.ROOT, INVESTMENT_ACCOUNT_ROUTE_PATHS.START];
-    const jointAccountRoutes = [INVESTMENT_COMMON_ROUTES.ACCEPT_JA_HOLDER];
-    const redirect_url = this.signUpService.getRedirectUrl();
-    const routeIndex = jointAccountRoutes.findIndex(x => (redirect_url && redirect_url.indexOf(x) >= 0));
-    const journeyType = this.appService.getJourneyType();
-    if (this.appService.getJourneyType() === appConstants.JOURNEY_TYPE_COMPREHENSIVE) {
-      this.getUserProfileAndNavigate(appConstants.JOURNEY_TYPE_COMPREHENSIVE);
-    } else if (redirect_url && investmentRoutes.indexOf(redirect_url) >= 0) {
-      this.signUpService.clearRedirectUrl();
-      this.getUserProfileAndNavigate(appConstants.JOURNEY_TYPE_INVESTMENT);
-    } else if (redirect_url && routeIndex >= 0) {
-      this.getUserProfileAndNavigate(appConstants.JOURNEY_TYPE_INVESTMENT);
-    } else if (journeyType === appConstants.JOURNEY_TYPE_WILL_WRITING && this.willWritingService.getWillCreatedPrelogin()) {
-      this.getUserProfileAndNavigate(appConstants.JOURNEY_TYPE_WILL_WRITING);
-    } else {
-      this.redirectAfterLogin = SIGN_UP_ROUTE_PATHS.DASHBOARD;
-      this.progressModal = true;
-      this.loaderService.hideLoader();
-      this.router.navigate([this.redirectAfterLogin]);
-    }
   }
 
   getUserProfileAndNavigate(journeyType) {
