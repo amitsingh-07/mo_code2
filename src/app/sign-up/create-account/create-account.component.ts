@@ -133,7 +133,9 @@ export class CreateAccountComponent implements OnInit, AfterViewInit {
       }
     });
     this.isCorpBizMyInfoEnabled = this.signUpService.getCorpBizMyInfoStatus();
-    this.corpBizData = this.appService.getCorpBizData();
+    if (this.router.url.indexOf('corpbiz') > -1) {
+      this.corpBizData = this.appService.getCorpBizData();
+    }
     this.isCorpBiz = this.corpBizData?.isCorpBiz;
   }
 
