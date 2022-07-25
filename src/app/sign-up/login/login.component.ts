@@ -411,6 +411,9 @@ export class LoginComponent implements OnInit, AfterViewInit, OnDestroy {
     }
     if (emailResend) {
       ref.componentInstance.enableResendEmail = true;
+      if(!this.isCorpBiz && !this.organisationEnabled) {
+        ref.componentInstance.enableChangeEmail = true;
+      }
       ref.componentInstance.resendEmail.pipe(
         mergeMap(($e) =>
           this.resendEmailVerification()))
