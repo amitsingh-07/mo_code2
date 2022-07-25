@@ -29,6 +29,7 @@ export class ErrorModalComponent implements OnInit {
   @Input() email: string;
   @Input() buttonLabel: string;
   @Input() enableResendEmail: boolean;
+  @Input() enableChangeEmail: boolean;
   @Output() selected: EventEmitter<any> = new EventEmitter();
   @Output() retry: EventEmitter<any> = new EventEmitter();
   @Output() resendEmail: EventEmitter<any> = new EventEmitter();

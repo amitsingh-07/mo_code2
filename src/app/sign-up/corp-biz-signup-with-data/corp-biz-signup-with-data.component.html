@@ -67,23 +67,6 @@
                                                     &nbsp;
                                                 </div>
                                             </div>
-                                            <div>
-                                                <div>{{'CORP_BIZ_SIGN_UP.MY_INFO_MODAL.MODAL_ATTR.PERSONAL.ADDRESS_TEXT'
-                                                    | translate}}</div>
-                                                <div class="data_lbl">{{corpBizMyInfoData.regadd || '-'}}
-                                                </div>
-                                            </div>
-                                            <div>
-                                                <div>{{'CORP_BIZ_SIGN_UP.MY_INFO_MODAL.MODAL_ATTR.PERSONAL.EMAIL_TEXT' |
-                                                    translate}}</div>
-                                                <div class="data_lbl">{{ corpBizMyInfoPersonalData.email || '-'}}</div>
-                                            </div>
-                                            <div>
-                                                <div>{{'CORP_BIZ_SIGN_UP.MY_INFO_MODAL.MODAL_ATTR.PERSONAL.MOBILE_TEXT'
-                                                    | translate}}</div>
-                                                <div class="data_lbl">{{ corpBizMyInfoPersonalData.mobileNumber || '-'}}&nbsp;
-                                                </div>
-                                            </div>
                                         </div>
                                     </ng-template>
                                 </ngb-panel>
@@ -97,11 +80,6 @@
                                     </ng-template>
                                     <ng-template ngbPanelContent>
                                         <div class="myinfo-data-content">
-                                            <div class="mb10">
-                                                <div>{{'CORP_BIZ_SIGN_UP.MY_INFO_MODAL.MODAL_ATTR.FAMILY.MARITAL_TEXT' |
-                                                    translate}}</div>
-                                                <div class="data_lbl">{{ corpBizMyInfoData.marital || '-'}}</div>
-                                            </div>
                                             <!-- Child Data -->
                                             <ng-container
                                                 *ngIf="childrenRecords && childrenRecords.length > 0; else childBlankRecord">
@@ -159,13 +137,6 @@
                                                 <div>
                                                     <div>
                                                         {{'CORP_BIZ_SIGN_UP.MY_INFO_MODAL.MODAL_ATTR.FAMILY.CHILD.GENDER_TEXT'
-                                                        |
-                                                        translate}}</div>
-                                                    <div class="data_lbl">-</div>
-                                                </div>
-                                                <div>
-                                                    <div>
-                                                        {{'CORP_BIZ_SIGN_UP.MY_INFO_MODAL.MODAL_ATTR.FAMILY.CHILD.RESIDENTIAL_TEXT'
                                                         |
                                                         translate}}</div>
                                                     <div class="data_lbl">-</div>
@@ -277,11 +248,6 @@
                                         </div>
                                     </ng-template>
                                     <ng-template ngbPanelContent>
-                                        <div class="myinfo-data-content mb10">
-                                            <div>{{'CORP_BIZ_SIGN_UP.MY_INFO_MODAL.MODAL_ATTR.PROPERTY.OWNERSHIP_STATUS' |
-                                                translate}}</div>
-                                            <div class="data_lbl">{{ corpBizMyInfoData.ownershipStatus || '-'}}</div>
-                                        </div>
                                         <ng-container
                                             *ngIf="hdbProperty && hdbProperty.length > 0; else showHDBBlankGroup">
                                             <div class="myinfo-data-content"
@@ -326,13 +292,6 @@
                                                         || '-'}}
                                                     </div>
                                                 </div>
-                                                <div>
-                                                    <div>
-                                                        {{'CORP_BIZ_SIGN_UP.MY_INFO_MODAL.MODAL_ATTR.PROPERTY.HDB_TEXT.LEASE_TEXT'
-                                                        |
-                                                        translate}}</div>
-                                                    <div class="data_lbl">{{ house.leaseCommenceDate || '-'}}</div>
-                                                </div>
                                             </div>
                                         </ng-container>
                                         <ng-template ngbPanelContent #showHDBBlankGroup>
@@ -361,13 +320,6 @@
                                                 <div>
                                                     <div>
                                                         {{'CORP_BIZ_SIGN_UP.MY_INFO_MODAL.MODAL_ATTR.PROPERTY.HDB_TEXT.MONTHLY_LOAN_TEXT'
-                                                        |
-                                                        translate}}</div>
-                                                    <div class="data_lbl">-</div>
-                                                </div>
-                                                <div>
-                                                    <div>
-                                                        {{'CORP_BIZ_SIGN_UP.MY_INFO_MODAL.MODAL_ATTR.PROPERTY.HDB_TEXT.LEASE_TEXT'
                                                         |
                                                         translate}}</div>
                                                     <div class="data_lbl">-</div>
@@ -596,6 +548,13 @@
                                                 <div>
                                                     <div>
                                                         {{'CORP_BIZ_SIGN_UP.MY_INFO_MODAL.MODAL_ATTR.CPF_HOUSING.CPF_AMOUNT_TEXT'
+                                                        |
+                                                        translate}}</div>
+                                                    <div class="data_lbl">-</div>
+                                                </div>
+                                                <div>
+                                                    <div>
+                                                        {{'CORP_BIZ_SIGN_UP.MY_INFO_MODAL.MODAL_ATTR.CPF_HOUSING.WITHDRAWAL_ADDRESS'
                                                         |
                                                         translate}}</div>
                                                     <div class="data_lbl">-</div>

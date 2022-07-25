@@ -11,7 +11,7 @@
     <div class="modal-body-message " id="errorModelMessage">
         <div class="text-bold">{{'CORP_BIZ_SIGN_UP.MY_INFO_MODAL.DESC' | translate}}</div>
         <div class="text-bold  mb30">{{'CORP_BIZ_SIGN_UP.MY_INFO_MODAL.OWN_ACC_TEXT' | translate}}</div>
-        <div class="mb30">{{'CORP_BIZ_SIGN_UP.MY_INFO_MODAL.MY_INFO_DESC' | translate}}</div>
+        <div class="myinfo-txt mb30">{{'CORP_BIZ_SIGN_UP.MY_INFO_MODAL.MY_INFO_DESC' | translate}}</div>
         <div class="myinfo-data-block">
             <form [formGroup]="myInfoEnableForm">
                 <ngb-accordion #acc="ngbAccordion">
@@ -30,16 +30,7 @@
                                 <div>{{'CORP_BIZ_SIGN_UP.MY_INFO_MODAL.MODAL_ATTR.PERSONAL.DOB_TEXT' | translate}}</div>
                                 <div>{{'CORP_BIZ_SIGN_UP.MY_INFO_MODAL.MODAL_ATTR.PERSONAL.NRIC_TEXT' | translate}}
                                 </div>
-                                <div>{{'CORP_BIZ_SIGN_UP.MY_INFO_MODAL.MODAL_ATTR.PERSONAL.BIRTH_COUNTRY_TEXT' |
-                                    translate}}
-                                </div>
                                 <div>{{'CORP_BIZ_SIGN_UP.MY_INFO_MODAL.MODAL_ATTR.PERSONAL.RESIDENCE_TEXT' | translate}}
-                                </div>
-                                <div>{{'CORP_BIZ_SIGN_UP.MY_INFO_MODAL.MODAL_ATTR.PERSONAL.ADDRESS_TEXT' | translate}}
-                                </div>
-                                <div>{{'CORP_BIZ_SIGN_UP.MY_INFO_MODAL.MODAL_ATTR.PERSONAL.EMAIL_TEXT' | translate}}
-                                </div>
-                                <div>{{'CORP_BIZ_SIGN_UP.MY_INFO_MODAL.MODAL_ATTR.PERSONAL.MOBILE_TEXT' | translate}}
                                 </div>
                             </div>
                         </ng-template>
@@ -59,8 +50,6 @@
                                 <div>{{'CORP_BIZ_SIGN_UP.MY_INFO_MODAL.MODAL_ATTR.FAMILY.CHILD.GENDER_TEXT' |
                                     translate}}
                                 </div>
-                                <div>{{'CORP_BIZ_SIGN_UP.MY_INFO_MODAL.MODAL_ATTR.FAMILY.CHILD.RESIDENTIAL_TEXT' |
-                                    translate}}</div>
                                 <div>{{'CORP_BIZ_SIGN_UP.MY_INFO_MODAL.MODAL_ATTR.FAMILY.CHILD.LIFE_STATUS_TEXT' |
                                     translate}}</div>
                                 <div>{{'CORP_BIZ_SIGN_UP.MY_INFO_MODAL.MODAL_ATTR.FAMILY.SPONSORED_CHILD.NAME' |
@@ -101,8 +90,6 @@
                                     |
                                     translate}}</div>
                                 <div>{{'CORP_BIZ_SIGN_UP.MY_INFO_MODAL.MODAL_ATTR.PROPERTY.HDB_TEXT.MONTHLY_LOAN_TEXT' |
-                                    translate}}</div>
-                                <div>{{'CORP_BIZ_SIGN_UP.MY_INFO_MODAL.MODAL_ATTR.PROPERTY.HDB_TEXT.LEASE_TEXT' |
                                     translate}}</div>
                             </div>
                         </ng-template>
@@ -161,7 +148,7 @@
                         </ng-template>
                         <ng-template ngbPanelContent>
                             <div class="myinfo-data-content">
-                                <div>{{'CORP_BIZ_SIGN_UP.MY_INFO_MODAL.MODAL_ATTR.CPF_ACC_BAL.TITLE' | translate}}</div>
+                                <div>{{'CORP_BIZ_SIGN_UP.MY_INFO_MODAL.MODAL_ATTR.CPF_ACC_BAL.ORDINARY_ACC_TEXT' | translate}}</div>
                                 <div>{{'CORP_BIZ_SIGN_UP.MY_INFO_MODAL.MODAL_ATTR.CPF_ACC_BAL.SPECIAL_ACC_TEXT' |
                                     translate}}</div>
                                 <div>{{'CORP_BIZ_SIGN_UP.MY_INFO_MODAL.MODAL_ATTR.CPF_ACC_BAL.MEDISAFE_ACC_TEXT' |
@@ -193,6 +180,9 @@
                                     translate}}
                                 </div>
                                 <div>{{'CORP_BIZ_SIGN_UP.MY_INFO_MODAL.MODAL_ATTR.CPF_HOUSING.CPF_AMOUNT_TEXT' |
+                                    translate}}
+                                </div>
+                                <div>{{'CORP_BIZ_SIGN_UP.MY_INFO_MODAL.MODAL_ATTR.CPF_HOUSING.WITHDRAWAL_ADDRESS' |
                                     translate}}
                                 </div>
                             </div>

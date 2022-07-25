@@ -133,7 +133,9 @@ export class CreateAccountComponent implements OnInit, AfterViewInit {
       }
     });
     this.isCorpBizMyInfoEnabled = this.signUpService.getCorpBizMyInfoStatus();
-    this.corpBizData = this.appService.getCorpBizData();
+    if (this.router.url.indexOf('corpbiz') > -1) {
+      this.corpBizData = this.appService.getCorpBizData();
+    }
     this.isCorpBiz = this.corpBizData?.isCorpBiz;
   }
 
@@ -464,6 +466,7 @@ export class CreateAccountComponent implements OnInit, AfterViewInit {
   showErrorModal(title: string, message: string, buttonLabel: string, redirect: string, emailResend: boolean) {
     const ref = this.modal.open(ErrorModalComponent, { centered: true });
     ref.componentInstance.errorMessage = message;
+    ref.componentInstance.redirect_url = SIGN_UP_ROUTE_PATHS.VERIFY_EMAIL;
     ref.result.then((data) => {
       if (!data && redirect) {
         this.router.navigate([redirect]);
@@ -476,6 +479,9 @@ export class CreateAccountComponent implements OnInit, AfterViewInit {
     if (emailResend) {
       ref.componentInstance.isCorpBiz = this.isCorpBiz;
       ref.componentInstance.enableResendEmail = true;
+      if(!this.isCorpBiz && !this.organisationEnabled) {
+        ref.componentInstance.enableChangeEmail = true;
+      }
       ref.componentInstance.resendEmail.pipe(
         flatMap(($e) =>
           this.resendEmailVerification()))
