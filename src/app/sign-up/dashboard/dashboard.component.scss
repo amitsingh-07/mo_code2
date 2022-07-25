@@ -41,7 +41,7 @@ app-dashboard {
             }
         }
         .user-profile-bg {
-            padding-left: 20px;
+            padding-left: 4px;
             @include desktop {
                 padding-left: 0;
                 padding-bottom: 10px;
@@ -740,5 +740,86 @@ app-dashboard {
     strong.text-bold-black {
         font-family: $muli-bold;
         color: $black-color;
+    }
+    // card
+    .recommended-card-container{
+        .recommended-card-title{
+            font-family: $muli-bold;
+            font-size: 16px;
+            line-height: 20px;
+            letter-spacing: -0.16px;
+            color: #FFFFFF;
+            padding-bottom: 16px;
+            padding-top: 15px;
+            @include allmobiles{
+                padding-top: 25px;
+            }
+            .circle{
+                width: 20px;
+                height: 20px;
+                background: rgba(0, 0, 0, 0.2);
+                border-radius: 50%;
+                margin-left: 10px;
+                padding: 6px;
+                display: flex;
+            }
+        }
+        .recommended-card-block{
+            font-family: $muli-regular;
+            font-size: 14px;
+            line-height: 18px;
+            letter-spacing: -0.2px;
+            color: rgba(0, 0, 0, 0.7);
+            .card-container{
+                padding: 0;
+                overflow-x: auto;
+                &::-webkit-scrollbar {
+                    display: none;
+                }
+                .card{
+                    padding: 17px 16px;
+                    margin-right: 10px;
+                    flex-direction: row;
+                    border-radius: 6px;
+                    max-width: 335px;
+                    min-height: 120px;
+                    &:last-child{
+                        margin-right: 0;
+                    }
+                    .logo-container{
+                        width: 80px;
+                        height: 80px;
+                        margin-right: 16px;
+                    }
+                    .card-title{
+                        font-size: 16px;
+                        line-height: 20px;
+                        letter-spacing: -0.2px;
+                        color: #000000;
+                        font-family: $muli-bold;
+                    }
+                    .circle{
+                        width: 6px;
+                        height: 6px;
+                        background: #FF7900;
+                        border-radius: 50%;
+                    }
+                }
+            }
+            .no-card-container{
+                background: $white-color;
+                border-radius: 6px;
+                padding: 30px 15px;
+                text-align: center;
+                .logo-container{
+                    width: 60px;
+                    height: 60px;
+                    margin-right: 8px;
+                }
+                strong{
+                    font-family: $muli-bold;
+                }
+            }
+        }
     }
 }
