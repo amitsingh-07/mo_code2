@@ -6,6 +6,7 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
 import { NgOtpInputModule } from 'ng-otp-input';
+import { SlickCarouselModule } from 'ngx-slick-carousel';
 
 import { InputFocusDirective } from '../shared/directives/input-focus.directive';
 import { SharedModule } from '../shared/shared.module';
@@ -89,7 +90,8 @@ export function createTranslateLoader(http: HttpClient) {
       }
     }),
     NgOtpInputModule,
-    SingPassModule
+    SingPassModule,
+    SlickCarouselModule
   ],
   declarations: [
     AccountCreatedComponent,
