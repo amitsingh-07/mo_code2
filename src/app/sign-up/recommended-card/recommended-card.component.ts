@@ -1,5 +1,7 @@
 import { Component, OnInit, ViewChild, ViewEncapsulation } from '@angular/core';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { SlickCarouselComponent } from 'ngx-slick-carousel';
+import { RecommendedCardModalComponent } from '../recommended-card-modal/recommended-card-modal.component';
 import { SignUpService } from '../sign-up.service';
 
 @Component({
@@ -69,6 +71,7 @@ export class RecommendedCardComponent implements OnInit {
   @ViewChild('carousel') carousel: SlickCarouselComponent;
   iconSrcPath = 'assets/images/recommended-card/'
   constructor(
+    public modal: NgbModal,
     private signUpService: SignUpService
   ) { }
 
@@ -83,6 +86,10 @@ export class RecommendedCardComponent implements OnInit {
 
   openCard(cardId) {
     console.log('card id', cardId);
+    const ref = this.modal.open(RecommendedCardModalComponent, { centered: true });
+    ref.componentInstance.closeAction.subscribe((value: any) => {
+      // Dismiss API call goes here
+    });
   }
 
   getIcon(iconId) {
