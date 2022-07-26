@@ -2,38 +2,50 @@
 @import "../../../_mixins.scss";
 
 app-recommended-card {
+    .slick-slide{
+        max-width: 335px;
+        &:last-child{
+            .card{
+                margin-right: 0px !important;
+            }
+        }
+    }
+    .circle{
+        width: 40px;
+        height: 40px;
+        background: #FFFFFF;
+        box-shadow: 0px 12px 16px -4px rgba(16, 24, 40, 0.08), 0px 4px 6px -2px rgba(16, 24, 40, 0.03);
+        border-radius: 50%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        img{
+            width: 16px;
+            height: 16px;
+        }
+    }
   .next-arrow {
     position: absolute;
-    right: 0;
+    z-index: 1;
+    right: -26px;
+    top: 40px;
+    cursor: pointer;
+    @include allmobiles{
+        display: none !important;
+    }
   }
 
   .prev-arrow {
     position: absolute;
     z-index: 1;
+    top: 40px;
+    left: -26px;
+    cursor: pointer;
+    @include allmobiles{
+        display: none !important;
+    }
   }
 
-  .recommended-card-container{
-    .recommended-card-title{
-        font-family: $muli-bold;
-        font-size: 16px;
-        line-height: 20px;
-        letter-spacing: -0.16px;
-        color: #FFFFFF;
-        padding-bottom: 16px;
-        padding-top: 15px;
-        @include allmobiles{
-            padding-top: 25px;
-        }
-        .circle{
-            width: 20px;
-            height: 20px;
-            background: rgba(0, 0, 0, 0.2);
-            border-radius: 50%;
-            margin-left: 10px;
-            padding: 6px;
-            display: flex;
-        }
-    }
     .recommended-card-block{
         font-family: $muli-regular;
         font-size: 14px;
@@ -53,9 +65,7 @@ app-recommended-card {
                 max-width: 335px;
                 min-height: 120px;
                 cursor: pointer;
-                &:last-child{
-                    margin-right: 0;
-                }
+                
                 .logo-container{
                     width: 80px;
                     height: 80px;
@@ -91,5 +101,4 @@ app-recommended-card {
             }
         }
     }
-}
 }
