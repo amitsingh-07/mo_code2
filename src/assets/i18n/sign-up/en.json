@@ -371,7 +371,7 @@
       "MESSAGE": "If you <span class='bold-txt'>do not have</span> a MoneyOwl investment account, please do a Password Login and activate Singpass Login in your Profile page.<br><br>If you <span class='bold-txt'>have</span> a MoneyOwl investment account, simply scan the QR code with your Singpass Mobile App to log in!<br><br>Please note that this feature is available to all Singpass Registered Users.<br><br><a class='anchor-txt' target='_blank' href='https://www.singpass.gov.sg/main/html/faq.html'>Learn more about Singpass</a>"
     },
     "SINGPASS_LOGIN_FAIL_MODAL": {
-      "TITLE": "Singpass login unsuccessful",
+      "TITLE": "Unable to proceed",
       "MESSAGE": "If you <span class='bold-txt'>have</span> a MoneyOwl account, please do a Password Login and activate Singpass Login in your Profile page.<br><br>If you <span class='bold-txt'>do not have</span> a MoneyOwl account, <a class='anchor-txt' target='_self' href='./accounts/sign-up'>click here</a> to create an account.",
       "BACK_BTN": "Back to Login"
     },
