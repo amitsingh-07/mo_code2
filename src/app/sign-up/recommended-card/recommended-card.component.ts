@@ -55,12 +55,13 @@ export class RecommendedCardComponent implements OnInit {
     autoplay: false,
     dots: false,
     infinite: false,
+    variableWidth: true,
     responsive: [
       {
         breakpoint: 567,
         settings: {
-          slidesToShow: 1,
-          slidesToScroll: 1,
+          slidesToShow: 1.2,
+          slidesToScroll: 1
         }
       },
     ]
