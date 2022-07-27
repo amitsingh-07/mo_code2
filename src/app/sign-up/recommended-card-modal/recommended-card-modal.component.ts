@@ -1,4 +1,4 @@
-import { Component, EventEmitter, OnInit, Output } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
@@ -8,6 +8,7 @@ import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 })
 export class RecommendedCardModalComponent implements OnInit {
 
+  @Input() cardContent: JSON;
   @Output() closeAction = new EventEmitter<any>();
   constructor(
     public activeModal: NgbActiveModal
@@ -21,5 +22,9 @@ export class RecommendedCardModalComponent implements OnInit {
       this.closeAction.emit();
     }
     this.activeModal.dismiss();
+  }
+
+  nextStep() {
+    
   }
 }
