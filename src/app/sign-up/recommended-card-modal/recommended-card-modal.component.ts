@@ -1,10 +1,11 @@
-import { Component, EventEmitter, OnInit, Output } from '@angular/core';
+import { Component, EventEmitter, OnInit, Output, ViewEncapsulation } from '@angular/core';
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
   selector: 'app-recommended-card-modal',
   templateUrl: './recommended-card-modal.component.html',
-  styleUrls: ['./recommended-card-modal.component.scss']
+  styleUrls: ['./recommended-card-modal.component.scss'],
+  encapsulation: ViewEncapsulation.None
 })
 export class RecommendedCardModalComponent implements OnInit {
 
@@ -21,5 +22,10 @@ export class RecommendedCardModalComponent implements OnInit {
       this.closeAction.emit();
     }
     this.activeModal.dismiss();
+  }
+
+  closeIconAction() {
+    this.closeAction.emit();
+    this.activeModal.dismiss('Cross click');    
   }
 }
