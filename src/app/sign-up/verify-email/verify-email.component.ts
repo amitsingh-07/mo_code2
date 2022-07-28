@@ -96,7 +96,7 @@ export class VerifyEmailComponent implements OnInit, AfterViewInit {
       }
     }
     this.forgotPasswordForm = this.formBuilder.group({
-      email: [this.formValues.email, [Validators.required, Validators.email]],
+      email: [this.formValues.email, [Validators.required, Validators.email, this.signUpService.emailDomainValidator(this.authService.isUserTypeCorporate)]],
       captcha: ['', [Validators.required]]
     });
     return true;
