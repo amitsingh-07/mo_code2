@@ -77,6 +77,7 @@ export class CreateAccountComponent implements OnInit, AfterViewInit {
   isCorpBiz = false;
   corpBizData: ICorpBizData;
   isCorpBizMyInfoEnabled: boolean;
+  isCorpBizUser: boolean;
 
   constructor(
     private formBuilder: FormBuilder,
@@ -406,7 +407,7 @@ export class CreateAccountComponent implements OnInit, AfterViewInit {
 
             } else if (data.responseMessage.responseCode === 6008 ||
               data.responseMessage.responseCode === 5006) {
-              this.isCorpBiz = data.objectList[0].isCorpBiz;
+              this.isCorpBizUser = data.objectList[0].isCorpBiz;
               this.callErrorModal(data);
             }
           } else if (data.responseMessage.responseCode === 5016) {
@@ -477,9 +478,8 @@ export class CreateAccountComponent implements OnInit, AfterViewInit {
       ref.componentInstance.buttonLabel = buttonLabel;
     }
     if (emailResend) {
-      ref.componentInstance.isCorpBiz = this.isCorpBiz;
       ref.componentInstance.enableResendEmail = true;
-      if(!this.isCorpBiz && !this.organisationEnabled) {
+      if(!this.isCorpBizUser && !this.organisationEnabled) {
         ref.componentInstance.enableChangeEmail = true;
       }
       ref.componentInstance.resendEmail.pipe(
