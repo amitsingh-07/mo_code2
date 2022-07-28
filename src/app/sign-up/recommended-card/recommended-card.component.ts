@@ -2,6 +2,7 @@ import { Component, OnInit, ViewChild, ViewEncapsulation } from '@angular/core';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { SlickCarouselComponent } from 'ngx-slick-carousel';
 import { RecommendedCardModalComponent } from '../recommended-card-modal/recommended-card-modal.component';
+import { SignUpApiService } from '../sign-up.api.service';
 import { SignUpService } from '../sign-up.service';
 
 @Component({
@@ -14,39 +15,39 @@ export class RecommendedCardComponent implements OnInit {
 
   cards = [
     {
-      id: 1,
-      healdine: 'This is Headline',
-      subtitle: 'This is Subtitle after headline',
-      iconKey: '5',
-      is_read: false
+      cardId: 1,
+      headLine: 'This is Headline',
+      subTitle: 'This is subTitle after headline',
+      coverImageKey: '5',
+      isCardRead: false
     },
     {
-      id: 2,
-      healdine: 'This is Headline',
-      subtitle: 'This is Subtitle after headline',
-      iconKey: '9',
-      is_read: false
+      cardId: 2,
+      headLine: 'This is Headline',
+      subTitle: 'This is subTitle after headline',
+      coverImageKey: '9',
+      isCardRead: false
     },
     {
-      id: 3,
-      healdine: 'This is Headline',
-      subtitle: 'This is Subtitle after headline',
-      iconKey: '2',
-      is_read: true
+      cardId: 3,
+      headLine: 'This is Headline',
+      subTitle: 'This is subTitle after headline',
+      coverImageKey: '2',
+      isCardRead: true
     },
     {
-      id: 4,
-      healdine: 'This is Headline',
-      subtitle: 'This is Subtitle after headline',
-      iconKey: '11',
-      is_read: true
+      cardId: 4,
+      headLine: 'This is Headline',
+      subTitle: 'This is subTitle after headline',
+      coverImageKey: '11',
+      isCardRead: true
     },
     {
-      id: 5,
-      healdine: 'This is Headline',
-      subtitle: 'This is Subtitle after headline',
-      iconKey: '7',
-      is_read: true
+      cardId: 5,
+      headLine: 'This is Headline',
+      subTitle: 'This is subTitle after headline',
+      coverImageKey: '7',
+      isCardRead: true
     }
   ];
   slideConfig = {
@@ -72,7 +73,8 @@ export class RecommendedCardComponent implements OnInit {
   iconSrcPath = 'assets/images/recommended-card/'
   constructor(
     public modal: NgbModal,
-    private signUpService: SignUpService
+    private signUpService: SignUpService,
+    private signUpApiService: SignUpApiService
   ) { }
 
   ngOnInit(): void {
@@ -86,14 +88,23 @@ export class RecommendedCardComponent implements OnInit {
 
   openCard(cardId) {
     console.log('card id', cardId);
-    const ref = this.modal.open(RecommendedCardModalComponent, { centered: true });
-    ref.componentInstance.closeAction.subscribe((value: any) => {
-      // Dismiss API call goes here
-    });
+    // Based on card id, make API call to get Card Content
+    this.signUpApiService.getCardById(cardId).subscribe((resp: any) => {
+      const ref = this.modal.open(RecommendedCardModalComponent, { centered: true });
+      ref.componentInstance.cardContent = resp.objectList; // Pass card content here
+      ref.componentInstance.closeAction.subscribe((value: any) => {
+        // Dismiss API call goes here
+        this.signUpApiService.dismissCard(cardId).subscribe(dismissResp => {
+
+        })
+      });
+    }, err => {
+      
+    })
   }
 
-  getIcon(iconId) {
-    return `${this.iconSrcPath}list-icon-${iconId}.svg`;
+  getIcon(iconKey) {
+    return `${this.iconSrcPath}list-icon-${iconKey}.svg`;
   }
 
   getRecommendedCards() {

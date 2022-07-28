@@ -3,16 +3,16 @@
         <ngx-slick-carousel class="flex carousel" #carousel [config]="slideConfig"
             (beforeChange)="beforeSlideChange($event)">
             <div class="" ngxSlickItem *ngFor="let card of cards">
-                <div class="card" (click)="openCard(card.id)">
+                <div class="card" (click)="openCard(card.cardId)">
                     <div class="logo-container">
-                        <img src="{{getIcon(card.iconKey)}}" alt="" />
+                        <img src="{{getIcon(card.coverImageKey)}}" alt="" />
                     </div>
                     <div>
                         <div class="flex space-between align-flex-start">
-                            <span class="card-title">{{card.healdine}}</span>
-                            <span class="" [ngClass]="{'circle': !card.is_read}"></span>
+                            <span class="card-title">{{card.headLine}}</span>
+                            <span class="" [ngClass]="{'circle': !card.isCardRead}"></span>
                         </div>
-                        <div>{{card.subtitle}}</div>
+                        <div>{{card.subTitle}}</div>
                     </div>
                 </div>
             </div>
