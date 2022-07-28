@@ -1,35 +1,39 @@
 <div class="modal-header">
+</div>
+<div class="modal-body white-bg">
+  <div class="modal-body-title">
+    <div id="errorModeltitle">{{cardContent?.startDate}}</div>
   </div>
-  <div class="modal-body white-bg">
-    <div class="modal-body-title">
-      <div id="errorModeltitle">25 February 2022</div>
+  <button type="button" class="close" aria-label="Close" (click)="dismissCard(false)">
+    <span aria-hidden="true" id="errorModelCloseIcon"></span>
+  </button>
+  <div class="modal-body-message " id="errorModelMessage">
+    <div class="card-details">
+      <div class="card-title">{{cardContent?.headLine}}</div>
+      <div class="card-desc">{{cardContent?.subTitle}}</div>
+      <div class="top-image-container">
+        <img src="assets/images/recommended-card/model-card-top-img.svg" alt="" />
+      </div>
+      <div [innerHtml]="cardContent?.content">
+        <!-- <div [innerHtml]="{{cardContent?.content}}">-->
+        <!-- <p>Simply log in to MoneyOwl, refer your friend using your unique referral link. Your friend joins using your
+          referral link and uses any/all these eligible services. You both will receive the same amount of rewards!</p>
+        <strong>Here’s how it works</strong>
+        <p>John invites two friends, Mark and Jane, using his referral link. Mark purchase an insurance policy, whereas
+          Jane invests in a portfolio and implements her Comprehensive Financial Planning. Mark gets $20 credits, and
+          Jane receives $40 credits. John receives $60 credits in total.</p> -->
+      </div>
     </div>
-    <button type="button" class="close" aria-label="Close" (click)="closeIconAction()">
-      <span aria-hidden="true" id="errorModelCloseIcon"></span>
-    </button>
-    <div class="modal-body-message "  id="errorModelMessage" >
-        <div class="card-details">
-            <div class="card-title">Why Invest?</div>
-            <div class="card-desc">Recently opened an account and don’t know how to start investing?</div>
-            <div class="top-image-container">
-                <img src="assets/images/recommended-card/model-card-top-img.svg" alt="" />
-            </div>
-            <div>
-                <p>Simply log in to MoneyOwl, refer your friend using your unique referral link. Your friend joins using your referral link and uses any/all these eligible services. You both will receive the same amount of rewards!</p>
-                <strong>Here’s how it works</strong>
-                <p>John invites two friends, Mark and Jane, using his referral link. Mark purchase an insurance policy, whereas Jane invests in a portfolio and implements her Comprehensive Financial Planning. Mark gets $20 credits, and Jane receives $40 credits. John receives $60 credits in total.</p>
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-12" >
-              <button type="button" class="btn-orange" id="errorModeButton">
-                  Refer Friend
-              </button>
-            </div>
-            <div class="col-12" >
-              Don’t show this again
-            </div>
-          </div>
+    <div class="row">
+      <div class="col-12">
+        <button type="button" class="btn-orange" id="errorModeButton" (click)="nextStep()">
+          {{cardContent?.interactionButtonName}}
+        </button>
+      </div>
+      <div class="col-12" (click)="dismissCard(true)">
+        Don’t show this again
+      </div>
     </div>
-    
   </div>
+
+</div>
