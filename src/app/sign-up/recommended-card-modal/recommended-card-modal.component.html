@@ -11,8 +11,8 @@
     <div class="card-details">
       <div class="card-title">{{cardContent?.headLine}}</div>
       <div class="card-desc">{{cardContent?.subTitle}}</div>
-      <div class="top-image-container">
-        <img src="assets/images/recommended-card/model-card-top-img.svg" alt="" />
+      <div class="top-image-container" *ngIf="cardContent.topImageLink">
+        <img src="{{cardContent?.topImageLink}}" alt="" />
       </div>
       <div [innerHtml]="cardContent?.content">
         <!-- <p>Simply log in to MoneyOwl, refer your friend using your unique referral link. Your friend joins using your
@@ -24,7 +24,7 @@
       </div>
     </div>
     <div class="row">
-      <div class="flex-col-12 text-center">
+      <div class="flex-col-12 text-center" *ngIf="cardContent.interactionButtonName">
         <button type="button" class="btn-orange" id="errorModeButton" (click)="nextStep()">
           {{cardContent?.interactionButtonName}}
         </button>
