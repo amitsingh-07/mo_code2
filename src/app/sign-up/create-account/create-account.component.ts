@@ -375,6 +375,7 @@ export class CreateAccountComponent implements OnInit, AfterViewInit {
   createAccount() {
     if (!this.createAccBtnDisabled) {
       this.createAccBtnDisabled = true;
+      this.signUpService.setEmail(this.createAccountForm.get('email').value);
       this.signUpApiService.createAccount(this.createAccountForm.value.captcha, this.createAccountForm.value.password)
         .subscribe((data: any) => {
           this.createAccBtnDisabled = false;
@@ -535,7 +536,8 @@ export class CreateAccountComponent implements OnInit, AfterViewInit {
   }
 
   resendEmailVerification() {
-    return this.signUpApiService.resendEmailVerification(this.createAccountForm.controls['email'].value, true);
+    const organisationCode = this.organisationEnabled && this.createAccountForm.get('organisationCode').value || null;
+    return this.signUpApiService.resendEmailVerification(this.createAccountForm.controls['email'].value, true, organisationCode);
   }
 
   onlyNumber(el) {
