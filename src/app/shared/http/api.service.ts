@@ -817,4 +817,18 @@ export class ApiService {
         catchError((error: HttpErrorResponse) => this.handleError(error))
       );
   }
+
+  dismissCard(cardId) {
+    const api = apiConstants.endpoint.recommendedCards.dismissCard.replace('$CARD_ID$', cardId);
+    return this.http.put(api, null).pipe(
+      catchError((error: HttpErrorResponse) => this.handleError(error))
+    );
+  }
+
+  getCardById(cardId) {
+    return this.http.get(`${apiConstants.endpoint.recommendedCards.getCardById}${cardId}`)
+      .pipe(
+        catchError((error: HttpErrorResponse) => this.handleError(error))
+      );
+  }
 }

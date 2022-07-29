@@ -33,28 +33,13 @@
                 </div>
               </div>
             </div>
-            <div class="announce-reward-wrapper">
-              <!--Announcement section-->
-              <div class="announcement-div" (click)="openNewUpdatesModal()">
-                <img class="announcement-img" src="assets/images/srs-joint-account/speaker.svg">
-                <div class="announcement-txt">{{'DASHBOARD.SRS_JOINT_ACCOUNT.FIND_OUT_MORE' | translate}}
-                </div>
+            <div class="recommended-card-container">
+              <div class="recommended-card-title flex">Recommended Actions<span class="circle"><img src="assets/images/arrow-right-white.svg" alt="" /></span></div>
+              <!--Recommended Card section-->
+              <div >
+                <app-recommended-card></app-recommended-card>
               </div>
-              <!--Announcement section /-->
-              <!--Refree Welcome Reward Box-->
-              <div class="welcome-reward-box" (click)="openRefereeModal()" *ngIf="getReferralInfo && getReferralInfo.isWelcomeRewardsValid && getReferralInfo.refereeExists">
-                <div class="welcome-reward-box__left">
-                  <p>{{'REFER_FRIEND.WELCOME_REWARDS' | translate}}</p>
-                  <p>{{'REFER_FRIEND.VALIDITY' | translate}}{{getReferralInfo.rewardsValidityDate}}</p>
-                </div>
-                <div class="welcome-reward-box__right">
-                  <img src="assets/images/refer-friend/chevron-next-circle.svg">
-                </div>
-                <div class="welcome-reward-box__gift-box">
-                  <img src="assets/images/refer-friend/gift-box-small.svg">
-                </div>
-              </div>
-              <!--Refree Welcome Reward Box /-->
+              <!--Recommended Card section /-->
             </div>
           </div>
           <div class="widgets">
