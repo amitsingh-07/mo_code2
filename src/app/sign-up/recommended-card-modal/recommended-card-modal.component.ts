@@ -1,6 +1,7 @@
 import { Component, EventEmitter, Input, OnInit, Output, ViewEncapsulation } from '@angular/core';
 import { Router } from '@angular/router';
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
+import { TranslateService } from '@ngx-translate/core';
 import { Util } from '../../shared/utils/util';
 
 @Component({
@@ -15,9 +16,12 @@ export class RecommendedCardModalComponent implements OnInit {
   @Output() closeAction = new EventEmitter<any>();
   environments = ['https://bfa-uat3.ntucbfa.com/app', 'https://newmouat1.ntucbfa.com/app', 'https://bfa-dev2.ntucbfa.cloud/app', 'https://bfa-dev.ntucbfa.cloud/app', 'https://bfa-fb-newdev.ntucbfa.cloud/app', 'http://localhost:4300/app']
   constructor(
+    private readonly translate: TranslateService,
     public activeModal: NgbActiveModal,
     private router: Router
-  ) { }
+  ) {
+    this.translate.use('en');
+   }
 
   ngOnInit(): void {
   }
@@ -45,7 +49,6 @@ export class RecommendedCardModalComponent implements OnInit {
       this.router.navigate([route]);
       this.activeModal.dismiss();
     } else {
-      // this.router.navigate([redirectURL]);
       window.open(redirectURL, "_blank");
       this.activeModal.dismiss();
     }
