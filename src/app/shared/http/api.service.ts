@@ -817,4 +817,12 @@ export class ApiService {
         catchError((error: HttpErrorResponse) => this.handleError(error))
       );
   }
+
+  // Recommended Card API Calls
+  getCardsByPageSizeAndNo() {
+    return this.http.get(apiConstants.endpoint.recommendedCards.getDashboardCards)
+      .pipe(
+        catchError((error: HttpErrorResponse) => this.handleError(error))
+      );
+  }
 }

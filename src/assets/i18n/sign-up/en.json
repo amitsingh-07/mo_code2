@@ -153,6 +153,11 @@
       }
     }
   },
+  "RECOMMENDED_CARD": {
+    "BLANK_CARD": {
+      "DESCRIPTION": "<strong>Great job!</strong> We’ll continue to help you navigate your finances."
+    }
+  },
   "CORP_BIZ_ERROR_MODAL": {
     "TITLE": "You are already enrolled with us!",
     "SUB_TITLE": "<strong>Seems like your Email Address and Mobile Number are different from the enrolled record. Enter the correct Email Address and Mobile Number to proceed.</strong>"
