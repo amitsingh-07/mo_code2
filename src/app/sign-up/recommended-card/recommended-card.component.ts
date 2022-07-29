@@ -90,7 +90,7 @@ export class RecommendedCardComponent implements OnInit {
     console.log('card id', cardId);
     // Based on card id, make API call to get Card Content
     this.signUpApiService.getCardById(cardId).subscribe((resp: any) => {
-      const ref = this.modal.open(RecommendedCardModalComponent, { centered: true });
+      const ref = this.modal.open(RecommendedCardModalComponent, { centered: true, windowClass: 'recommended-card-modal' });
       ref.componentInstance.cardContent = resp.objectList; // Pass card content here
       ref.componentInstance.closeAction.subscribe((value: any) => {
         // Dismiss API call goes here
