@@ -26,20 +26,20 @@ app-recommended-card-modal{
                 color: $black-color;
                 margin-bottom: 10px;
             }
-            .card-desc{
+            .card-subtitle{
                 font-family: $muli-bold;
                 font-size: 16px;
                 line-height: 20px;
                 letter-spacing: 0.00045px;
                 color: $black-color;
-                margin-bottom: 20px;
+                margin-bottom: 40px;
             }
             .top-image-container{
                 width: 375px;
                 height: 250px;
                 display: flex;
                 margin: 0 auto;
-                padding-top: 20px;
+                padding-bottom: 20px;
                 @include allmobiles{
                     max-width: 100%;
                 }
@@ -49,9 +49,22 @@ app-recommended-card-modal{
                     }
                 }
             }
-            p{
-                margin: 0;
-                padding: 20px 0;
+            .card-desc{
+                p{
+                    margin: 0;
+                    padding-bottom: 20px;
+                }
+                i{
+                    font-family: $muli-italic;
+                }
+                b{
+                    font-family: $muli-bold;
+                }
+                ul{
+                    li{
+                        list-style: disc;
+                    }
+                }
             }
         }
         .btn-orange{

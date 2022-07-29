@@ -10,11 +10,11 @@
   <div class="modal-body-message " id="errorModelMessage">
     <div class="card-details">
       <div class="card-title">{{cardContent?.headLine}}</div>
-      <div class="card-desc">{{cardContent?.subTitle}}</div>
+      <div class="card-subtitle">{{cardContent?.subTitle}}</div>
       <div class="top-image-container">
         <img src="assets/images/recommended-card/model-card-top-img.svg" alt="" />
       </div>
-      <div [innerHtml]="cardContent?.content">
+      <div class="card-desc" [innerHtml]="cardContent?.content">
         <!-- <p>Simply log in to MoneyOwl, refer your friend using your unique referral link. Your friend joins using your
           referral link and uses any/all these eligible services. You both will receive the same amount of rewards!</p>
         <strong>Here’s how it works</strong>
