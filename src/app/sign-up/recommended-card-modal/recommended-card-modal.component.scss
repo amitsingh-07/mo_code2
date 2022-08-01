@@ -1,0 +1,100 @@
+@import "../../../_variables.scss";
+@import "../../../_mixins.scss";
+
+app-recommended-card-modal{
+    .modal-body{
+        padding-left: 20px !important;
+    }
+    .modal-body-title{
+        font-size: 12px;
+        font-family: $muli-regular;
+        line-height: 15px;
+        color: $silver-grey-color;
+        margin-bottom: 20px;
+    }
+    .modal-body-message{
+        .card-details{
+            font-family: $muli-regular;
+            font-size: 16px;
+            line-height: 22px;
+            color: $silver-grey-color;
+            .card-title{
+                font-family: $muli-bold;
+                font-size: 22px;
+                line-height: 28px;
+                letter-spacing: -0.196875px;
+                color: $black-color;
+                margin-bottom: 10px;
+            }
+            .card-subtitle{
+                font-family: $muli-bold;
+                font-size: 16px;
+                line-height: 20px;
+                letter-spacing: 0.00045px;
+                color: $black-color;
+                margin-bottom: 40px;
+            }
+            .top-image-container{
+                width: 375px;
+                height: 250px;
+                display: flex;
+                margin: 0 auto;
+                padding-bottom: 20px;
+                @include allmobiles{
+                    max-width: 100%;
+                }
+                img {
+                    @include allmobiles{
+                        width: 100%;
+                    }
+                }
+            }
+            .card-desc{
+                p{
+                    margin: 0;
+                    padding-bottom: 20px;
+                }
+                i{
+                    font-family: $muli-italic;
+                }
+                b{
+                    font-family: $muli-bold;
+                }
+                ul{
+                    li{
+                        list-style: disc;
+                    }
+                }
+            }
+        }
+        .btn-orange{
+            font-family: $muli-bold;
+            font-size: 18px;
+            color: $white-color;
+            width: 335px;
+            background-color: $crusta-orange-color !important;
+            box-shadow: 0px 12px 14px rgba(0, 0, 0, 0.21) !important;
+            border-radius: 6px;
+            padding: 14px 0;
+            border: none;
+            cursor: pointer;
+            @include allmobiles{
+              width: 100%;
+              max-width: 335px;
+              margin: 0;
+            }
+            &:hover , &:active{
+                background-color: $atomic-tangerine-color !important;
+            }
+        }
+        .remove-modal{
+            font-family: $muli-regular;
+            font-size: 18px;
+            line-height: 23px;
+            text-align: center;
+            letter-spacing: -0.165px;
+            margin: 40px auto 20px;
+            cursor: pointer;
+        }
+    }
+}

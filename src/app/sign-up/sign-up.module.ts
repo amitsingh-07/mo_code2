@@ -62,6 +62,7 @@ import { CorpBizActivationLinkComponent } from './corp-biz-activation-link/corp-
 import { LoginService } from './login.service';
 import { InvestModalComponent } from './invest-modal/invest-modal.component';
 import { RecommendedCardComponent } from './recommended-card/recommended-card.component';
+import { RecommendedCardModalComponent } from './recommended-card-modal/recommended-card-modal.component';
 
 export function createTranslateLoader(http: HttpClient) {
   return new MultiTranslateHttpLoader(
@@ -129,7 +130,8 @@ export function createTranslateLoader(http: HttpClient) {
     CorpBizSignupWithDataComponent,
     CorpBizActivationLinkComponent,
     InvestModalComponent,
-    RecommendedCardComponent
+    RecommendedCardComponent,
+    RecommendedCardModalComponent
   ],
   providers: [SignUpAccessGuard, SignUpCorporateAccessGuard, AuthGuardService, TwoFactorAuthGuardService, SingpassLoginGuard, LoginService],
   entryComponents: [EditMobileNumberComponent, SrsSuccessModalComponent, CreateAccountMyinfoModalComponent]

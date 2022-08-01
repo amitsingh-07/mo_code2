@@ -1,6 +1,8 @@
 import { Component, OnInit, ViewChild, ViewEncapsulation } from '@angular/core';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { TranslateService } from '@ngx-translate/core';
 import { SlickCarouselComponent } from 'ngx-slick-carousel';
+import { RecommendedCardModalComponent } from '../recommended-card-modal/recommended-card-modal.component';
 import { SignUpApiService } from '../sign-up.api.service';
 import { SIGN_UP_CONFIG } from '../sign-up.constant';
 
@@ -36,11 +38,12 @@ export class RecommendedCardComponent implements OnInit {
   @ViewChild('carousel') carousel: SlickCarouselComponent;
   iconSrcPath = SIGN_UP_CONFIG.RECOMMENDED_CARD.ICONS_PATH;
   constructor(
+    public modal: NgbModal,
+    private signUpApiService: SignUpApiService,
     private readonly translate: TranslateService,
-    private signupApiService: SignUpApiService
-  ) { 
+  ) {
     this.translate.use('en');
-  }
+   }
 
   ngOnInit(): void {
     this.getRecommendedCards();
@@ -52,7 +55,19 @@ export class RecommendedCardComponent implements OnInit {
   }
 
   openCard(cardId) {
-    console.log('card id', cardId);
+    // Based on card id, make API call to get Card Content
+    this.signUpApiService.getCardById(cardId).subscribe((resp: any) => {
+      const ref = this.modal.open(RecommendedCardModalComponent, { centered: true, windowClass: 'recommended-card-modal' });
+      ref.componentInstance.cardContent = resp.objectList; // Pass card content here
+      ref.componentInstance.closeAction.subscribe((value: any) => {
+        // Dismiss API call goes here
+        this.signUpApiService.dismissCard(cardId).subscribe(dismissResp => {
+
+        })
+      });
+    }, err => {
+      
+    })
   }
 
   getIcon(iconId) {
@@ -61,7 +76,7 @@ export class RecommendedCardComponent implements OnInit {
 
   getRecommendedCards() {
     // API CALL GOES HERE
-    this.signupApiService.getCardsByPageSizeAndNo(0, 5).subscribe((resp: any) => {
+    this.signUpApiService.getCardsByPageSizeAndNo(0, 5).subscribe((resp: any) => {
       const responseCode = resp && resp.responseMessage && resp.responseMessage.responseCode ? resp.responseMessage.responseCode : 0;
       if (responseCode >= 6000) {
         this.cards = resp.objectList.pageList;

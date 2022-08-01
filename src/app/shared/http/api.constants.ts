@@ -151,7 +151,9 @@ export let apiConstants = {
             loginSingpass: SINGPASS_API_BASE_URL+ 'loginSingpass?handleError=true'
         },
         recommendedCards: {
-            getDashboardCards: INSURANCE_RECOMMEND_API_BASE_URL + '/customer/recommended/card?pageNo=$PAGE_NO$&size=$SIZE$'
+            getDashboardCards: INSURANCE_RECOMMEND_API_BASE_URL + '/customer/recommended/card?pageNo=$PAGE_NO$&size=$SIZE$',
+            dismissCard: INSURANCE_RECOMMEND_API_BASE_URL + '/customer/recommended/card/$CARD_ID$/dismiss',
+            getCardById: INSURANCE_RECOMMEND_API_BASE_URL + '/customer/recommended/card/'
         }
     }
 };

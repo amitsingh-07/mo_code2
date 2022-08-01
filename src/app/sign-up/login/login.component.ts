@@ -399,7 +399,6 @@ export class LoginComponent implements OnInit, AfterViewInit, OnDestroy {
     const ref = this.modal.open(ErrorModalComponent, { centered: true });
     ref.componentInstance.errorMessage = message;
     ref.componentInstance.redirect_url = SIGN_UP_ROUTE_PATHS.VERIFY_EMAIL;
-    ref.componentInstance.isCorpBiz = this.isCorpBiz;
     ref.result.then((data) => {
       if (!data && redirect) {
         this.router.navigate([redirect]);
@@ -411,6 +410,9 @@ export class LoginComponent implements OnInit, AfterViewInit, OnDestroy {
     }
     if (emailResend) {
       ref.componentInstance.enableResendEmail = true;
+      if(!this.isCorpBiz && !this.organisationEnabled) {
+        ref.componentInstance.enableChangeEmail = true;
+      }
       ref.componentInstance.resendEmail.pipe(
         mergeMap(($e) =>
           this.resendEmailVerification()))
