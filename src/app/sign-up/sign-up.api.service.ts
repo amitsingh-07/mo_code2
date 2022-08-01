@@ -391,7 +391,7 @@ export class SignUpApiService {
   }
 
   // Recommended API Calls
-  getCardsByPageSizeAndNo() {
-    return this.apiService.getCardsByPageSizeAndNo();
+  getCardsByPageSizeAndNo(pageNo, size) {
+    return this.apiService.getCardsByPageSizeAndNo(pageNo, size);
   }
 }

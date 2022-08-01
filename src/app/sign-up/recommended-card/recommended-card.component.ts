@@ -1,6 +1,8 @@
 import { Component, OnInit, ViewChild, ViewEncapsulation } from '@angular/core';
+import { TranslateService } from '@ngx-translate/core';
 import { SlickCarouselComponent } from 'ngx-slick-carousel';
-import { SignUpService } from '../sign-up.service';
+import { SignUpApiService } from '../sign-up.api.service';
+import { SIGN_UP_CONFIG } from '../sign-up.constant';
 
 @Component({
   selector: 'app-recommended-card',
@@ -10,43 +12,7 @@ import { SignUpService } from '../sign-up.service';
 })
 export class RecommendedCardComponent implements OnInit {
 
-  cards = [
-    {
-      id: 1,
-      healdine: 'This is Headline',
-      subtitle: 'This is Subtitle after headline',
-      iconKey: '5',
-      is_read: false
-    },
-    {
-      id: 2,
-      healdine: 'This is Headline',
-      subtitle: 'This is Subtitle after headline',
-      iconKey: '9',
-      is_read: false
-    },
-    {
-      id: 3,
-      healdine: 'This is Headline',
-      subtitle: 'This is Subtitle after headline',
-      iconKey: '2',
-      is_read: true
-    },
-    {
-      id: 4,
-      healdine: 'This is Headline',
-      subtitle: 'This is Subtitle after headline',
-      iconKey: '11',
-      is_read: true
-    },
-    {
-      id: 5,
-      healdine: 'This is Headline',
-      subtitle: 'This is Subtitle after headline',
-      iconKey: '7',
-      is_read: true
-    }
-  ];
+  cards = [];
   slideConfig = {
     slidesToShow: 2.5,
     slidesToScroll: 1,
@@ -68,10 +34,13 @@ export class RecommendedCardComponent implements OnInit {
   };
   currentSlide = 0;
   @ViewChild('carousel') carousel: SlickCarouselComponent;
-  iconSrcPath = 'assets/images/recommended-card/'
+  iconSrcPath = SIGN_UP_CONFIG.RECOMMENDED_CARD.ICONS_PATH;
   constructor(
-    private signUpService: SignUpService
-  ) { }
+    private readonly translate: TranslateService,
+    private signupApiService: SignUpApiService
+  ) { 
+    this.translate.use('en');
+  }
 
   ngOnInit(): void {
     this.getRecommendedCards();
@@ -87,10 +56,18 @@ export class RecommendedCardComponent implements OnInit {
   }
 
   getIcon(iconId) {
-    return `${this.iconSrcPath}list-icon-${iconId}.svg`;
+    return `${this.iconSrcPath}${iconId}`;
   }
 
   getRecommendedCards() {
     // API CALL GOES HERE
+    this.signupApiService.getCardsByPageSizeAndNo(0, 5).subscribe((resp: any) => {
+      const responseCode = resp && resp.responseMessage && resp.responseMessage.responseCode ? resp.responseMessage.responseCode : 0;
+      if (responseCode >= 6000) {
+        this.cards = resp.objectList.pageList;
+      }
+    }, err => {
+
+    });
   }
 }
