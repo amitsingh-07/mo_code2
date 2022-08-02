@@ -154,6 +154,10 @@
     }
   },
   "RECOMMENDED_CARD": {
+    "TITLE": "Recommended Actions",
+    "BLANK_CARD": {
+      "DESCRIPTION": "<strong>Great job!</strong> We’ll continue to help you navigate your finances."
+    },
     "MODAL": {
       "DONT_SHOW_BTN": "Don’t show this again"
     }

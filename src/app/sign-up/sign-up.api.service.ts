@@ -390,6 +390,10 @@ export class SignUpApiService {
     return this.apiService.getOrganisationCode(orgID);
   }
 
+  // Recommended API Calls
+  getCardsByPageSizeAndNo(pageNo, size) {
+    return this.apiService.getCardsByPageSizeAndNo(pageNo, size);
+  }
   
   dismissCard(cardId) {
     return this.apiService.dismissCard(cardId);

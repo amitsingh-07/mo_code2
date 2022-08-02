@@ -232,5 +232,8 @@ export let SIGN_UP_CONFIG = {
     INVALID_USER: 'invalid-user',
     LINK_EXPIRED: 'link-expired',
     ACC_EXIST: 'account-exists'
+  },
+  RECOMMENDED_CARD: {
+    ICONS_PATH: 'assets/images/recommended-card/'
   }
 };

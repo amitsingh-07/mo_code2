@@ -1,9 +1,10 @@
 import { Component, OnInit, ViewChild, ViewEncapsulation } from '@angular/core';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { TranslateService } from '@ngx-translate/core';
 import { SlickCarouselComponent } from 'ngx-slick-carousel';
 import { RecommendedCardModalComponent } from '../recommended-card-modal/recommended-card-modal.component';
 import { SignUpApiService } from '../sign-up.api.service';
-import { SignUpService } from '../sign-up.service';
+import { SIGN_UP_CONFIG } from '../sign-up.constant';
 
 @Component({
   selector: 'app-recommended-card',
@@ -13,69 +14,37 @@ import { SignUpService } from '../sign-up.service';
 })
 export class RecommendedCardComponent implements OnInit {
 
-  cards = [
-    {
-      cardId: 1,
-      headLine: 'This is Headline',
-      subTitle: 'This is subTitle after headline',
-      coverImageKey: '5',
-      isCardRead: false
-    },
-    {
-      cardId: 2,
-      headLine: 'This is Headline',
-      subTitle: 'This is subTitle after headline',
-      coverImageKey: '9',
-      isCardRead: false
-    },
-    {
-      cardId: 3,
-      headLine: 'This is Headline',
-      subTitle: 'This is subTitle after headline',
-      coverImageKey: '2',
-      isCardRead: true
-    },
-    {
-      cardId: 4,
-      headLine: 'This is Headline',
-      subTitle: 'This is subTitle after headline',
-      coverImageKey: '11',
-      isCardRead: true
-    },
-    {
-      cardId: 5,
-      headLine: 'This is Headline',
-      subTitle: 'This is subTitle after headline',
-      coverImageKey: '7',
-      isCardRead: true
-    }
-  ];
+  cards = [];
   slideConfig = {
     slidesToShow: 2.5,
     slidesToScroll: 1,
-    nextArrow: '<div class="next-arrow"><span style="font-size: 60px;" class="fa fa-angle-right"></span></div>',
-    prevArrow: '<div class="prev-arrow"><span style="font-size: 60px;" class="fa fa-angle-left"></span></div>',
+    nextArrow: '<div class="next-arrow circle"><img src="assets/images/arrow-right.svg" alt="" /></div>',
+    prevArrow: '<div class="prev-arrow circle"><img src="assets/images/arrow-left.svg" alt="" /></div>',
     autoplay: false,
     dots: false,
     infinite: false,
+    variableWidth: true,
     responsive: [
       {
         breakpoint: 567,
         settings: {
-          slidesToShow: 1,
-          slidesToScroll: 1,
+          slidesToShow: 1.2,
+          slidesToScroll: 1
         }
       },
     ]
   };
   currentSlide = 0;
   @ViewChild('carousel') carousel: SlickCarouselComponent;
-  iconSrcPath = 'assets/images/recommended-card/'
+  iconSrcPath = SIGN_UP_CONFIG.RECOMMENDED_CARD.ICONS_PATH;
+  isLoadComplete = false;
   constructor(
     public modal: NgbModal,
-    private signUpService: SignUpService,
-    private signUpApiService: SignUpApiService
-  ) { }
+    private signUpApiService: SignUpApiService,
+    private readonly translate: TranslateService,
+  ) {
+    this.translate.use('en');
+  }
 
   ngOnInit(): void {
     this.getRecommendedCards();
@@ -98,15 +67,24 @@ export class RecommendedCardComponent implements OnInit {
         })
       });
     }, err => {
-      
+
     })
   }
 
-  getIcon(iconKey) {
-    return `${this.iconSrcPath}list-icon-${iconKey}.svg`;
+  getIcon(iconId) {
+    return `${this.iconSrcPath}${iconId}`;
   }
 
   getRecommendedCards() {
     // API CALL GOES HERE
+    this.signUpApiService.getCardsByPageSizeAndNo(0, 5).subscribe((resp: any) => {
+      this.isLoadComplete = true;
+      const responseCode = resp && resp.responseMessage && resp.responseMessage.responseCode ? resp.responseMessage.responseCode : 0;
+      if (responseCode >= 6000) {
+        this.cards = resp.objectList.pageList;
+      }
+    }, err => {
+      this.isLoadComplete = true;
+    });
   }
 }
