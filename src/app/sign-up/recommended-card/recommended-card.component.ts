@@ -61,10 +61,16 @@ export class RecommendedCardComponent implements OnInit {
       const ref = this.modal.open(RecommendedCardModalComponent, { centered: true, windowClass: 'recommended-card-modal' });
       ref.componentInstance.cardContent = resp.objectList; // Pass card content here
       ref.componentInstance.closeAction.subscribe((value: any) => {
-        // Dismiss API call goes here
-        this.signUpApiService.dismissCard(cardId).subscribe(dismissResp => {
-
-        })
+        this.isLoadComplete = false;
+        this.cards = [];
+        if (value) {
+          // Dismiss API call goes here
+          this.signUpApiService.dismissCard(cardId).subscribe(dismissResp => {
+            this.getRecommendedCards();
+          });
+        } else {
+          this.getRecommendedCards();
+        }
       });
     }, err => {
 

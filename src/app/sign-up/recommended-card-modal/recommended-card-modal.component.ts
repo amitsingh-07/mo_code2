@@ -21,15 +21,13 @@ export class RecommendedCardModalComponent implements OnInit {
     private router: Router
   ) {
     this.translate.use('en');
-   }
+  }
 
   ngOnInit(): void {
   }
 
   dismissCard(isDismiss) {
-    if (isDismiss) {
-      this.closeAction.emit();
-    }
+    this.closeAction.emit(isDismiss);
     this.activeModal.dismiss();
   }
 
@@ -40,7 +38,7 @@ export class RecommendedCardModalComponent implements OnInit {
       if (redirectURL.includes(element)) {
         containingValue = element;
         return true;
-      }    
+      }
       return false;
     });
     if (!Util.isEmptyOrNull(redirectURL) && contains) {

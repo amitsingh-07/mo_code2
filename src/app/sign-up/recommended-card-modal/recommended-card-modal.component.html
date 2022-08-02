@@ -23,7 +23,7 @@
           {{cardContent?.interactionButtonName}}
         </button>
       </div>
-      <div class="remove-modal">
+      <div class="remove-modal" (click)="dismissCard(true)">
         {{'RECOMMENDED_CARD.MODAL.DONT_SHOW_BTN' | translate}}
       </div>
     </div>
