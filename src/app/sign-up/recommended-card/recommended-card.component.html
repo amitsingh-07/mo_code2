@@ -1,32 +1,35 @@
-<div class="recommended-card-block">
-    <div class="card-container col-12" *ngIf="cards.length > 0; else noCard">
-        <ngx-slick-carousel class="flex carousel" #carousel [config]="slideConfig"
-            (beforeChange)="beforeSlideChange($event)">
-            <div class="" ngxSlickItem *ngFor="let card of cards">
-                <div class="card" (click)="openCard(card.cardId)">
-                    <div class="logo-container">
-                        <img src="{{getIcon(card.coverImageKey)}}" alt="" />
-                    </div>
-                    <div class="width100">
-                        <div class="flex space-between align-flex-start">
-                            <span class="card-title text-wrap text-wrap-headline">{{card.headLine}}</span>
-                            <span class="" [ngClass]="{'circle': !card.cardRead}"></span>
-                        </div>
-                        <div class="text-wrap text-wrap-subtitle">{{card.subTitle}}</div>
-                    </div>
-                </div>
+<div class="recommended-card-block" [ngClass]="{'hidden': !isLoadComplete}">
+  <div class="card-container col-12" *ngIf="cards && cards.length > 0; else noCard">
+    <ngx-slick-carousel class="flex carousel" #carousel [config]="slideConfig"
+      (beforeChange)="beforeSlideChange($event)">
+      <div class="" ngxSlickItem *ngFor="let card of cards">
+        <div class="card" (click)="openCard(card.cardId)">
+          <div class="logo-container">
+            <img src="{{getIcon(card.coverImageKey)}}" alt="" />
+          </div>
+          <div class="width100">
+            <div class="flex space-between align-flex-start">
+              <span class="card-title text-wrap text-wrap-headline">{{card.headLine}}</span>
+              <span class="" [ngClass]="{'circle': !card.cardRead}"></span>
             </div>
-        </ngx-slick-carousel>
-    </div>
-    <ng-template #noCard>
-        <div class="no-card-container flex col-12 justify-center">
-            <div class="flex col-11 col-sm-6 align-center">
-                <div class="logo-container">
-                    <img src="assets/images/recommended-card/list-icon-12.svg" alt="" />
-                </div>
-                <div innerHtml="{{'RECOMMENDED_CARD.BLANK_CARD.DESCRIPTION' | translate}}">
-                </div>
-            </div>
+            <div class="text-wrap text-wrap-subtitle">{{card.subTitle}}</div>
+          </div>
         </div>
-    </ng-template>
+      </div>
+    </ngx-slick-carousel>
+  </div>
+  <ng-template #noCard>
+    <div class="no-card-container flex col-12 justify-center">
+      <div class="flex col-11 col-sm-6 align-center">
+        <div class="logo-container">
+          <img src="assets/images/recommended-card/list-icon-12.svg" alt="" />
+        </div>
+        <div innerHtml="{{'RECOMMENDED_CARD.BLANK_CARD.DESCRIPTION' | translate}}">
+        </div>
+      </div>
+    </div>
+  </ng-template>
+</div>
+<div [ngClass]="{'hidden': isLoadComplete}" class="loader-card-container flex col-12 justify-center">
+  <img alt="loader" src="assets/styles/ajax-loader.gif" />
 </div>

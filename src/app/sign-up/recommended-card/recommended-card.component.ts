@@ -37,13 +37,14 @@ export class RecommendedCardComponent implements OnInit {
   currentSlide = 0;
   @ViewChild('carousel') carousel: SlickCarouselComponent;
   iconSrcPath = SIGN_UP_CONFIG.RECOMMENDED_CARD.ICONS_PATH;
+  isLoadComplete = false;
   constructor(
     public modal: NgbModal,
     private signUpApiService: SignUpApiService,
     private readonly translate: TranslateService,
   ) {
     this.translate.use('en');
-   }
+  }
 
   ngOnInit(): void {
     this.getRecommendedCards();
@@ -66,7 +67,7 @@ export class RecommendedCardComponent implements OnInit {
         })
       });
     }, err => {
-      
+
     })
   }
 
@@ -77,12 +78,13 @@ export class RecommendedCardComponent implements OnInit {
   getRecommendedCards() {
     // API CALL GOES HERE
     this.signUpApiService.getCardsByPageSizeAndNo(0, 5).subscribe((resp: any) => {
+      this.isLoadComplete = true;
       const responseCode = resp && resp.responseMessage && resp.responseMessage.responseCode ? resp.responseMessage.responseCode : 0;
       if (responseCode >= 6000) {
         this.cards = resp.objectList.pageList;
       }
     }, err => {
-
+      this.isLoadComplete = true;
     });
   }
 }
