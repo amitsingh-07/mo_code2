@@ -14,7 +14,7 @@ export class RecommendedCardModalComponent implements OnInit {
 
   @Input() cardContent: any;
   @Output() closeAction = new EventEmitter<any>();
-  environments = ['https://bfa-uat3.ntucbfa.com/app', 'https://newmouat1.ntucbfa.com/app', 'https://bfa-dev2.ntucbfa.cloud/app', 'https://bfa-dev.ntucbfa.cloud/app', 'https://bfa-fb-newdev.ntucbfa.cloud/app', 'http://localhost:4300/app']
+  environments = Util.getMOEnvironments();
   constructor(
     private readonly translate: TranslateService,
     public activeModal: NgbActiveModal,

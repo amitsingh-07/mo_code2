@@ -23,4 +23,5 @@ export interface IEnvironment {
     hsUrlTrack?: string; // Hubspot Tracking of HUKT Code
     singpassClientId: string; // Singpass Login Client Id
     singpassAuthJs: string; // Singpass NDI embedded JS
+    moEnvironments: string[]; // Array of all environments in MO
 }
