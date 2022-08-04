@@ -438,8 +438,10 @@ export class CreateAccountComponent implements OnInit, AfterViewInit {
     if (data.responseMessage.responseCode === 6008) {
       this.signUpService.setUserMobileNo(this.createAccountForm.controls['mobileNumber'].value);
       this.showErrorModal(this.translate.instant('SIGNUP_ERRORS.TITLE'),
-        this.translate.instant('SIGNUP_ERRORS.VERIFY_EMAIL_OTP'),
+        this.translate.instant('SIGNUP_ERRORS.VERIFY_MOBILE_OTP'),
         this.translate.instant('COMMON.VERIFY_NOW'),
+        (this.finlitEnabled && SIGN_UP_ROUTE_PATHS.FINLIT_VERIFY_MOBILE) || 
+        (this.organisationEnabled && SIGN_UP_ROUTE_PATHS.CORPORATE_VERIFY_MOBILE) ||
         SIGN_UP_ROUTE_PATHS.VERIFY_MOBILE,
         false);
     } else if (data.objectList[0].accountAlreadyCreated) {

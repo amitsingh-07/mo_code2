@@ -38,6 +38,7 @@ export class ForgotPasswordComponent implements OnInit, AfterViewInit {
   buttonTitle;
   captchaSrc = '';
   emailResend: string;
+  finlitEnabled = false;
   organisationEnabled = false;
 
   constructor(
@@ -74,6 +75,7 @@ export class ForgotPasswordComponent implements OnInit, AfterViewInit {
       this.distribution = config.distribution;
     });
     if (this.route.snapshot.data[0]) {
+      this.finlitEnabled = this.route.snapshot.data[0]['finlitEnabled'];
       this.organisationEnabled = this.route.snapshot.data[0]['organisationEnabled'];
     }
   }
@@ -144,6 +146,14 @@ export class ForgotPasswordComponent implements OnInit, AfterViewInit {
               this.refreshCaptcha();
             }
           });
+        } else if (data.responseMessage.responseCode === 5014) {
+          this.showErrorModal(this.translate.instant('SIGNUP_ERRORS.TITLE'),
+            this.translate.instant('SIGNUP_ERRORS.VERIFY_MOBILE_OTP'),
+            this.translate.instant('COMMON.VERIFY_NOW'),
+            (this.finlitEnabled && SIGN_UP_ROUTE_PATHS.FINLIT_VERIFY_MOBILE) || 
+            (this.organisationEnabled && SIGN_UP_ROUTE_PATHS.CORPORATE_VERIFY_MOBILE) ||
+            SIGN_UP_ROUTE_PATHS.VERIFY_MOBILE,
+            false);
         } else {
           const ref = this.modal.open(ErrorModalComponent, { centered: true });
           ref.componentInstance.errorMessage = data.responseMessage.responseDescription;
@@ -160,5 +170,18 @@ export class ForgotPasswordComponent implements OnInit, AfterViewInit {
     this.forgotPasswordForm.controls['captcha'].reset();
     this.captchaSrc = this.authService.getCaptchaUrl();
     this.changeDetectorRef.detectChanges();
+  }
+
+  showErrorModal(title: string, message: string, buttonLabel: string, redirect: string, emailResend: boolean) {
+    this.refreshCaptcha();
+    const ref = this.modal.open(ErrorModalComponent, { centered: true });
+    ref.componentInstance.errorMessage = message;
+    ref.componentInstance.errorTitle = title;
+    ref.componentInstance.buttonLabel = buttonLabel;
+    ref.result.then((data) => {
+      if (!data && redirect) {
+        this.router.navigate([redirect]);
+      }
+    });
   }
 }
