@@ -58,7 +58,7 @@ export class LoginComponent implements OnInit, AfterViewInit, OnDestroy {
   capslockFocus: boolean;
   showPasswordLogin = true;
   showSingpassLogin = false;
-  singpassEnabled = false;
+  singpassEnabled = true;
   subscription: Subscription;
   isCorpBiz: boolean = false;
 

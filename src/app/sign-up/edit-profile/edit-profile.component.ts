@@ -229,9 +229,8 @@ export class EditProfileComponent implements OnInit, OnDestroy {
         }
       }
     });
-    // this.displaySingpassLink = this.signUpService.getUserType() === appConstants.USERTYPE.FINLIT ||
-    //   this.signUpService.getUserType() === appConstants.USERTYPE.CORPORATE ? false : true;
-    this.displaySingpassLink = false;
+    this.displaySingpassLink = this.signUpService.getUserType() === appConstants.USERTYPE.FINLIT ||
+      this.signUpService.getUserType() === appConstants.USERTYPE.CORPORATE ? false : true;
   }
 
   ngOnDestroy() {
