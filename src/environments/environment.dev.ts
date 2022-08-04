@@ -9,7 +9,12 @@ export const environment: IEnvironment = {
   production: false,
   isDebugMode: true,
   apiBaseUrl: 'https://newmouat1.ntucbfa.com',
-  myInfoClientId: 'STG2-MYINFO-SELF-TEST',
+  myInfoClientId: {
+    robo2:'STG2-MYINFO-SELF-TEST',
+    signup: 'STG2-MYINFO-SELF-TEST',
+    cpf: 'STG2-MYINFO-SELF-TEST',
+    corpbiz:'STG2-MYINFO-SELF-TEST'
+  },
   myInfoCallbackBaseUrl: 'https://newmouat1.ntucbfa.com/app/myinfo',
   myInfoAuthorizeUrl: 'https://test.api.myinfo.gov.sg/com/v3/authorise',
   gAdPropertyId: 'AW-782920447',

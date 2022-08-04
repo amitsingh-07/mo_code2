@@ -136,6 +136,7 @@ export class CorpBizSignupComponent implements OnInit {
       attributes = this.removeMyInfoAttributes(attributesFlags.vehicleFlag, SIGN_UP_CONFIG.EXCLUDABLE_CORP_BIZ_MY_INFO_ATTRIBUTES.VEHICLES, attributes);
     }
     this.myInfoService.setMyInfoAttributes(attributes);
+    this.myInfoService.setMyInfoAppId(this.signUpService.corpBizMyInfoFlow);
     this.myInfoService.goToMyInfo(); // Method to call MyInfo
   }
 

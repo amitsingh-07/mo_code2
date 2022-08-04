@@ -198,6 +198,9 @@ export class CreateAccountMyinfoComponent implements OnInit {
     this.myInfoService.setMyInfoAttributes(
       this.signUpService.myInfoAttributes
     );
+    this.myInfoService.setMyInfoAppId(
+      this.signUpService.myInfoFlow
+    );
     this.myInfoService.goToMyInfo();
   }
 

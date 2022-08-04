@@ -63,6 +63,7 @@ export class MyAssetsComponent implements OnInit, OnDestroy {
   fundTypeList: any;
   fundType = [];
   showEditIcon: boolean = false;
+  myInfoFlow = 'cpf'
 
   // tslint:disable-next-line:cognitive-complexity
   constructor(
@@ -188,6 +189,7 @@ export class MyAssetsComponent implements OnInit, OnDestroy {
       ref.componentInstance.myInfo = true;
       ref.result.then(() => {
         this.myInfoService.setMyInfoAttributes('cpfbalances');
+        this.myInfoService.setMyInfoAppId(this.myInfoFlow);
         this.myInfoService.goToMyInfo();
       }).catch((e) => {
       });

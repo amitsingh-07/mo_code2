@@ -33,6 +33,7 @@ export class MyAssetsComponent implements IPageComponent, OnInit, OnDestroy, Aft
   cpfValue: number;
   useMyInfo: boolean;
   cpfFromMyInfo = false;
+  myInfoFlow = 'cpf';
 
   constructor(
     private router: Router, public navbarService: NavbarService,
@@ -147,7 +148,7 @@ export class MyAssetsComponent implements IPageComponent, OnInit, OnDestroy, Aft
     ref.componentInstance.primaryActionLabel = this.translate.instant('MYINFO.OPEN_MODAL_DATA.BTN-TEXT');
     ref.result.then(() => {
       this.myInfoService.setMyInfoAttributes('cpfbalances');
-      this.myInfoService.goToMyInfo();
+      this.myInfoService.setMyInfoAppId(this.myInfoFlow);
     }).catch((e) => {
     });
 

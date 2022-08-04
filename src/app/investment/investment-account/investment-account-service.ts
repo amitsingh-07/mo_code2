@@ -34,6 +34,7 @@ export class InvestmentAccountService {
   disableAttributes = [];
   myInfoAttributes = INVESTMENT_ACCOUNT_CONSTANTS.MY_INFO_ATTRIBUTES;
   myInfoLinkAttributes = INVESTMENT_ACCOUNT_CONSTANTS.MY_INFO_LINK_ATTRIBUTES;
+  myInfoFlow = 'robo2'
 
   private investmentAccountFormData: InvestmentAccountFormData = new InvestmentAccountFormData();
   private investmentAccountFormError: any = new InvestmentAccountFormError();

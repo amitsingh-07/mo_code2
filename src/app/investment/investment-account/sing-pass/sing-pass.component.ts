@@ -226,6 +226,7 @@ export class SingPassComponent implements OnInit, OnDestroy {
     this.myInfoService.setMyInfoAttributes(
       this.investmentAccountService.myInfoAttributes
     );
+    this.myInfoService.setMyInfoAppId(this.investmentAccountService.myInfoFlow);
     this.myInfoService.goToMyInfo();
   }
 
