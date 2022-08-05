@@ -149,6 +149,7 @@ export class MyAssetsComponent implements IPageComponent, OnInit, OnDestroy, Aft
     ref.result.then(() => {
       this.myInfoService.setMyInfoAttributes('cpfbalances');
       this.myInfoService.setMyInfoAppId(appConstants.MYINFO_CPF);
+      this.myInfoService.goToMyInfo();
     }).catch((e) => {
     });
 
