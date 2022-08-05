@@ -54,8 +54,6 @@ export class SignUpService {
   mobileOptimizedObservable$ = this.mobileOptimized.asObservable();
   myInfoAttributes = SIGN_UP_CONFIG.MY_INFO_ATTRIBUTES;
   corpBizMyInfoAttributes = SIGN_UP_CONFIG.CORP_BIZ_MY_INFO_ATTRIBUTES; // Corp Biz attributes
-  myInfoFlow = 'signup';
-  corpBizMyInfoFlow = 'corpbiz';
   organisationName: string = '';
   constructor(
     private apiService: ApiService,

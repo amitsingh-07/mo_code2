@@ -14,6 +14,7 @@ import { SIGN_UP_ROUTES, SIGN_UP_ROUTE_PATHS } from '../sign-up.routes.constants
 import { SIGN_UP_CONFIG } from '../sign-up.constant';
 import { AppService } from '../../app.service';
 import { SignUpApiService } from '../sign-up.api.service';
+import { appConstants } from 'src/app/app.constants';
 
 @Component({
   selector: 'app-corp-biz-signup',
@@ -136,7 +137,7 @@ export class CorpBizSignupComponent implements OnInit {
       attributes = this.removeMyInfoAttributes(attributesFlags.vehicleFlag, SIGN_UP_CONFIG.EXCLUDABLE_CORP_BIZ_MY_INFO_ATTRIBUTES.VEHICLES, attributes);
     }
     this.myInfoService.setMyInfoAttributes(attributes);
-    this.myInfoService.setMyInfoAppId(this.signUpService.corpBizMyInfoFlow);
+    this.myInfoService.setMyInfoAppId(appConstants.MYINFO_CORPBIZ_SIGNUP);
     this.myInfoService.goToMyInfo(); // Method to call MyInfo
   }
 

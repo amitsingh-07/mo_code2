@@ -21,6 +21,7 @@ import { ComprehensiveApiService } from './../comprehensive-api.service';
 import { ComprehensiveService } from './../comprehensive.service';
 import { ModelWithButtonComponent } from '../../shared/modal/model-with-button/model-with-button.component';
 import { SIGN_UP_ROUTE_PATHS } from './../../sign-up/sign-up.routes.constants';
+import { appConstants} from './../../app.constants';
 
 
 @Component({
@@ -63,7 +64,6 @@ export class MyAssetsComponent implements OnInit, OnDestroy {
   fundTypeList: any;
   fundType = [];
   showEditIcon: boolean = false;
-  myInfoFlow = 'cpf'
 
   // tslint:disable-next-line:cognitive-complexity
   constructor(
@@ -189,7 +189,7 @@ export class MyAssetsComponent implements OnInit, OnDestroy {
       ref.componentInstance.myInfo = true;
       ref.result.then(() => {
         this.myInfoService.setMyInfoAttributes('cpfbalances');
-        this.myInfoService.setMyInfoAppId(this.myInfoFlow);
+        this.myInfoService.setMyInfoAppId(appConstants.MYINFO_CPF);
         this.myInfoService.goToMyInfo();
       }).catch((e) => {
       });
