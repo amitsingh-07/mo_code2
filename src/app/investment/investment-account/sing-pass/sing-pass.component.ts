@@ -16,6 +16,7 @@ import {
 import { InvestmentAccountService } from '../investment-account-service';
 import { INVESTMENT_ACCOUNT_CONSTANTS } from '../investment-account.constant';
 import { InvestmentCommonService } from '../../investment-common/investment-common.service';
+import { appConstants } from 'src/app/app.constants';
 
 @Component({
   selector: 'app-sing-pass',
@@ -226,6 +227,7 @@ export class SingPassComponent implements OnInit, OnDestroy {
     this.myInfoService.setMyInfoAttributes(
       this.investmentAccountService.myInfoAttributes
     );
+    this.myInfoService.setMyInfoAppId(appConstants.MYINFO_ROBO2);
     this.myInfoService.goToMyInfo();
   }
 
