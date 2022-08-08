@@ -18,6 +18,7 @@ import { APP_ROUTES } from './../../app-routes.constants';
 import { ConfigService, IConfig } from './../../config/config.service';
 import { IMyAssets } from './my-assets.interface';
 import { SIGN_UP_ROUTE_PATHS } from './../../sign-up/sign-up.routes.constants';
+import { appConstants } from 'src/app/app.constants';
 
 @Component({
   selector: 'app-my-assets',
@@ -147,6 +148,7 @@ export class MyAssetsComponent implements IPageComponent, OnInit, OnDestroy, Aft
     ref.componentInstance.primaryActionLabel = this.translate.instant('MYINFO.OPEN_MODAL_DATA.BTN-TEXT');
     ref.result.then(() => {
       this.myInfoService.setMyInfoAttributes('cpfbalances');
+      this.myInfoService.setMyInfoAppId(appConstants.MYINFO_CPF);
       this.myInfoService.goToMyInfo();
     }).catch((e) => {
     });
