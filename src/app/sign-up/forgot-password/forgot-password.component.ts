@@ -147,6 +147,11 @@ export class ForgotPasswordComponent implements OnInit, AfterViewInit {
             }
           });
         } else if (data.responseMessage.responseCode === 5014) {
+          this.signUpService.setCustomerRef(data.objectList[0].customerRef);
+          this.signUpService.setUserMobileNo(data.objectList[0].mobileNumber);
+          // setting from_login_page flag as true to enable verify mobile OTP flow
+          // While navigating from forgot password page
+          this.signUpService.setFromLoginPage();
           this.showErrorModal(this.translate.instant('SIGNUP_ERRORS.TITLE'),
             this.translate.instant('SIGNUP_ERRORS.VERIFY_MOBILE_OTP'),
             this.translate.instant('COMMON.VERIFY_NOW'),
