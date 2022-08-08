@@ -45,15 +45,15 @@ app-recommended-card-modal {
         display: flex;
         margin: 0 auto;
         padding-bottom: 20px;
+        justify-content: center;
 
         @include allmobiles {
           max-width: 100%;
         }
 
         img {
-          @include allmobiles {
-            width: 100%;
-          }
+          width: 100%;
+          height: auto;
         }
       }
 
