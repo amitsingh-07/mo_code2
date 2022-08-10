@@ -1,7 +1,7 @@
 <div class="recommended-card-block" [ngClass]="{'hidden': !isLoadComplete}">
   <div class="card-container col-12" *ngIf="cards && cards.length > 0; else noCard">
     <ngx-slick-carousel class="flex carousel" #carousel [config]="slideConfig"
-      (beforeChange)="beforeSlideChange($event)">
+      (beforeChange)="beforeSlideChange($event)" (init)="slickInit($event)" (afterChange)="afterSlideChange($event)">
       <div class="" ngxSlickItem *ngFor="let card of cards">
         <div class="card" (click)="openCard(card.cardId)">
           <div class="logo-container">
