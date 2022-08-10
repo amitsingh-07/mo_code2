@@ -93,4 +93,25 @@ export class RecommendedCardComponent implements OnInit {
       this.isLoadComplete = true;
     });
   }
+
+  afterSlideChange(event) {
+    const nextArrow: any = document.getElementsByClassName('next-arrow');
+    const prevArrow: any = document.getElementsByClassName('prev-arrow');
+    if (event.currentSlide + 2 == this.cards.length) {
+      nextArrow[0].style.display = 'none';
+    } else {
+      nextArrow[0].style.display = 'inherit';
+    }
+
+    if (event.first) {
+      prevArrow[0].style.display = 'none';
+    } else {
+      prevArrow[0].style.display = 'inherit';
+    }
+  }
+
+  slickInit(e) {
+    const prevArrow: any = document.getElementsByClassName('prev-arrow');
+    prevArrow[0].style.display = 'none';
+  }
 }
