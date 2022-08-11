@@ -55,7 +55,6 @@ export class MyInfoService {
     var clientIdObj , x;
     clientIdObj = this.clientId;
     x = clientIdObj[myInfoServices];
-    console.log("MyInfo Flow: " + myInfoServices + "appId: " + x);
     window.sessionStorage.setItem('myinfo_app_id', x);
   }
 
