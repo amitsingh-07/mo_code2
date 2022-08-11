@@ -16,7 +16,7 @@ import {
 import { InvestmentAccountService } from '../investment-account-service';
 import { INVESTMENT_ACCOUNT_CONSTANTS } from '../investment-account.constant';
 import { InvestmentCommonService } from '../../investment-common/investment-common.service';
-import { appConstants } from 'src/app/app.constants';
+import { appConstants } from '../../../app.constants';
 
 @Component({
   selector: 'app-sing-pass',
