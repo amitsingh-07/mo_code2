@@ -22,8 +22,7 @@ export const environment: IEnvironment = {
   fbPropertyId: '',
   brand: 'g',
   singpassClientId: '',
-  singpassAuthJs: '',
-  moEnvironments: []
+  singpassAuthJs: ''
 };
 
 /*

@@ -25,10 +25,7 @@ export const environment: IEnvironment = {
   expire2faMaxCheck: 5,
   promoCodeJsonUrl: 'https://mo-static-assets.s3-ap-southeast-1.amazonaws.com/promo/non-prod/promo-details.json',
   singpassClientId: 'iROTlv1CU9Cz3GlYiNosMsZDGIYwWSB3',
-  singpassAuthJs: 'https://stg-id.singpass.gov.sg/static/ndi_embedded_auth.js',
-  moEnvironments: [
-    'https://moneyowl.com.sg/app', 'https://bfa-uat3.ntucbfa.com/app', 'https://newmouat1.ntucbfa.com/app', 'https://bfa-dev2.ntucbfa.cloud/app', 'https://bfa-dev.ntucbfa.cloud/app', 'https://bfa-fb-newdev.ntucbfa.cloud/app'
-  ]
+  singpassAuthJs: 'https://stg-id.singpass.gov.sg/static/ndi_embedded_auth.js'
 };
 /*
  * In development mode, to ignore zone related error stack frames such as

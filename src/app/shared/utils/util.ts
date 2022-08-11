@@ -125,8 +125,4 @@ export class Util {
         }
         return result;
       }
-
-      public static getMOEnvironments() {
-        return environment.moEnvironments;
-      }
 }
