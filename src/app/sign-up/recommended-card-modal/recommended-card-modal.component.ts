@@ -42,8 +42,7 @@ export class RecommendedCardModalComponent implements OnInit {
       return false;
     });
     if (!Util.isEmptyOrNull(redirectURL) && contains) {
-      const route = redirectURL.replace(containingValue, '..')
-      console.log(route)
+      const route = redirectURL.replace(containingValue, '..');
       this.router.navigate([route]);
       this.activeModal.dismiss();
     } else {
