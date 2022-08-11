@@ -14,7 +14,6 @@ export class RecommendedCardModalComponent implements OnInit {
 
   @Input() cardContent: any;
   @Output() closeAction = new EventEmitter<any>();
-  environments = Util.getMOEnvironments();
   constructor(
     private readonly translate: TranslateService,
     public activeModal: NgbActiveModal,
@@ -33,16 +32,10 @@ export class RecommendedCardModalComponent implements OnInit {
 
   nextStep() {
     const redirectURL = this.cardContent ? this.cardContent.interactionButtonLink : '';
-    let containingValue = '';
-    const contains = this.environments.some(element => {
-      if (redirectURL.includes(element)) {
-        containingValue = element;
-        return true;
-      }
-      return false;
-    });
-    if (!Util.isEmptyOrNull(redirectURL) && contains) {
-      const route = redirectURL.replace(containingValue, '..');
+    const domainBase = document.getElementsByTagName('base')[0].href;
+    const domainContains = redirectURL.includes(domainBase);
+    if (!Util.isEmptyOrNull(redirectURL) && domainContains) {
+      const route = redirectURL.replace(domainBase, '/');
       this.router.navigate([route]);
       this.activeModal.dismiss();
     } else {
