@@ -9,7 +9,12 @@ export const environment: IEnvironment = {
   production: false,
   isDebugMode: true,
   apiBaseUrl: 'https://newmouat1.ntucbfa.com',
-  myInfoClientId: 'STG2-MYINFO-SELF-TEST',
+  myInfoClientId: {
+    robo2:'STG2-MYINFO-SELF-TEST',
+    signup: 'STG2-MYINFO-SELF-TEST',
+    cpf: 'STG2-MYINFO-SELF-TEST',
+    corpbiz:'STG2-MYINFO-SELF-TEST'
+  },
   myInfoCallbackBaseUrl: 'https://newmouat1.ntucbfa.com/app/myinfo',
   myInfoAuthorizeUrl: 'https://test.api.myinfo.gov.sg/com/v3/authorise',
   gAdPropertyId: 'AW-782920447',
@@ -20,7 +25,7 @@ export const environment: IEnvironment = {
   expire2faPollRate: 2,
   expire2faMaxCheck: 5,
   promoCodeJsonUrl: 'https://mo-static-assets.s3-ap-southeast-1.amazonaws.com/promo/non-prod/promo-details.json',
-  configJsonUrl:'https://mo-static-assets.s3.ap-southeast-1.amazonaws.com/promo/KS098130_newmodev_config.json',
+  configJsonUrl: 'https://mo-static-assets.s3.ap-southeast-1.amazonaws.com/promo/KS098130_newmodev_config.json',
   hsPortalId: '6411917',
   hsUrlTrack: '9f0ad9ef-ba87-4059-9ee9-60d46880dc5f',
   singpassClientId: 'iROTlv1CU9Cz3GlYiNosMsZDGIYwWSB3',

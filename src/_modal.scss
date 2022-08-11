@@ -1433,4 +1433,12 @@ body.modal-open::-webkit-scrollbar {
     border-radius: 8px !important;
   }
 }
+
+.recommended-card-modal{
+  .close{
+    width: 16px;
+    height: 16px;
+    background-size: cover !important;
+  }
+}
  
