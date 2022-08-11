@@ -16,8 +16,8 @@ export class RecommendedCardComponent implements OnInit {
 
   cards = [];
   slideConfig = {
-    slidesToShow: 2.5,
-    slidesToScroll: 1,
+    slidesToShow: SIGN_UP_CONFIG.RECOMMENDED_CARD.CAROUSEL_CONFIG.SLIDES_TO_SHOW_DESKTOP,
+    slidesToScroll: SIGN_UP_CONFIG.RECOMMENDED_CARD.CAROUSEL_CONFIG.SLIDES_TO_SCROLL,
     nextArrow: '<div class="next-arrow circle"><img src="assets/images/arrow-right.svg" alt="" /></div>',
     prevArrow: '<div class="prev-arrow circle"><img src="assets/images/arrow-left.svg" alt="" /></div>',
     autoplay: false,
@@ -26,10 +26,10 @@ export class RecommendedCardComponent implements OnInit {
     variableWidth: true,
     responsive: [
       {
-        breakpoint: 567,
+        breakpoint: SIGN_UP_CONFIG.RECOMMENDED_CARD.CAROUSEL_CONFIG.SCREEN_SIZE,
         settings: {
-          slidesToShow: 1.2,
-          slidesToScroll: 1
+          slidesToShow: SIGN_UP_CONFIG.RECOMMENDED_CARD.CAROUSEL_CONFIG.SLIDES_TO_SHOW_MOB,
+          slidesToScroll: SIGN_UP_CONFIG.RECOMMENDED_CARD.CAROUSEL_CONFIG.SLIDES_TO_SCROLL
         }
       },
     ]
@@ -83,7 +83,7 @@ export class RecommendedCardComponent implements OnInit {
 
   getRecommendedCards() {
     // API CALL GOES HERE
-    this.signUpApiService.getCardsByPageSizeAndNo(0, 5).subscribe((resp: any) => {
+    this.signUpApiService.getCardsByPageSizeAndNo(SIGN_UP_CONFIG.RECOMMENDED_CARD.PAGE_SIZE, SIGN_UP_CONFIG.RECOMMENDED_CARD.PAGE_COUNT).subscribe((resp: any) => {
       this.isLoadComplete = true;
       const responseCode = resp && resp.responseMessage && resp.responseMessage.responseCode ? resp.responseMessage.responseCode : 0;
       if (responseCode >= 6000) {

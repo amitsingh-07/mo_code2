@@ -234,6 +234,14 @@ export let SIGN_UP_CONFIG = {
     ACC_EXIST: 'account-exists'
   },
   RECOMMENDED_CARD: {
-    ICONS_PATH: 'assets/images/recommended-card/'
+    ICONS_PATH: 'assets/images/recommended-card/',
+    PAGE_COUNT: 5,
+    PAGE_SIZE: 0,
+    CAROUSEL_CONFIG: {
+      SCREEN_SIZE: 567,
+      SLIDES_TO_SCROLL: 1,
+      SLIDES_TO_SHOW_DESKTOP: 2.5,
+      SLIDES_TO_SHOW_MOB: 1.2
+    }
   }
 };
