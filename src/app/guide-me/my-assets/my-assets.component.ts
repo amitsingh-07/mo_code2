@@ -18,7 +18,7 @@ import { APP_ROUTES } from './../../app-routes.constants';
 import { ConfigService, IConfig } from './../../config/config.service';
 import { IMyAssets } from './my-assets.interface';
 import { SIGN_UP_ROUTE_PATHS } from './../../sign-up/sign-up.routes.constants';
-import { appConstants } from 'src/app/app.constants';
+import { appConstants } from './../../app.constants';
 
 @Component({
   selector: 'app-my-assets',
