@@ -8,7 +8,8 @@ export const environment: IEnvironment = {
     robo2:'PROD-201820691C-MONEYOWL-BFA',
     signup: 'PROD-201820691C-MONEYOWL-BFA',
     cpf: 'PROD-201820691C-MONEYOWL-BFA',
-    corpbiz:'STG-201820691C-MONEYOWL-BFA'
+    corpbiz:'STG-201820691C-MONEYOWL-BFA',
+    editprofile: 'STG-201820691C-MONEYOWL-BFA'
   },
   myInfoCallbackBaseUrl: 'https://www.moneyowl.com.sg/app/myinfo',
   myInfoAuthorizeUrl: 'https://api.myinfo.gov.sg/com/v3/authorise',
