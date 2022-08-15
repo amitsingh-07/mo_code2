@@ -60,5 +60,6 @@ export let appConstants = {
    MYINFO_CORPBIZ_SIGNUP: 'corpbiz',
    MYINFO_ROBO2: 'robo2',
    MYINFO_SIGNUP: 'signup',
-   MYINFO_CPF: 'cpf'
+   MYINFO_CPF: 'cpf',
+   MYINFO_LINK_SINGPASS: 'linkSingpass'
 };
