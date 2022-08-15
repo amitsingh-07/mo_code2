@@ -7,6 +7,7 @@ export interface IEnvironment {
         signup: string,
         cpf:string,
         corpbiz:string;
+        linkSingpass:string;
     };
     myInfoCallbackBaseUrl: string;
     myInfoAuthorizeUrl: string;
