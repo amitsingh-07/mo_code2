@@ -47,12 +47,8 @@ app-recommended-card-modal {
         padding-bottom: 20px;
         justify-content: center;
 
-        @include allmobiles {
-          max-width: 100%;
-        }
-
         img {
-          width: 100%;
+          max-width: 100%;
           height: auto;
         }
       }
