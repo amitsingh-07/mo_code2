@@ -63,6 +63,7 @@ app-recommended-card {
     z-index: 1;
     top: 40px;
     left: -26px;
+    transform: matrix(-1, 0, 0, 1, 0, 0);
     cursor: pointer;
 
     @include allmobiles {
@@ -91,6 +92,7 @@ app-recommended-card {
         border-radius: 6px;
         max-width: 335px;
         height: 120px;
+        border: none;
         cursor: pointer;
 
         .logo-container {

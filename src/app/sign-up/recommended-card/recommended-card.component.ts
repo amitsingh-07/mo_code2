@@ -18,8 +18,8 @@ export class RecommendedCardComponent implements OnInit {
   slideConfig = {
     slidesToShow: SIGN_UP_CONFIG.RECOMMENDED_CARD.CAROUSEL_CONFIG.SLIDES_TO_SHOW_DESKTOP,
     slidesToScroll: SIGN_UP_CONFIG.RECOMMENDED_CARD.CAROUSEL_CONFIG.SLIDES_TO_SCROLL,
-    nextArrow: '<div class="next-arrow circle"><img src="assets/images/arrow-right.svg" alt="" /></div>',
-    prevArrow: '<div class="prev-arrow circle"><img src="assets/images/arrow-left.svg" alt="" /></div>',
+    nextArrow: '<div class="next-arrow circle"><img src="assets/images/carousel-arrow-icon.svg" alt="" /></div>',
+    prevArrow: '<div class="prev-arrow circle"><img src="assets/images/carousel-arrow-icon.svg" alt="" /></div>',
     autoplay: false,
     dots: false,
     infinite: false,
