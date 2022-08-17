@@ -47,12 +47,8 @@ app-recommended-card-modal {
         padding-bottom: 20px;
         justify-content: center;
 
-        @include allmobiles {
-          max-width: 100%;
-        }
-
         img {
-          width: 100%;
+          max-width: 100%;
           height: auto;
         }
       }
@@ -76,6 +72,12 @@ app-recommended-card-modal {
             list-style: disc;
           }
         }
+        & > {
+          :last-child{
+            padding-bottom: 0;
+            margin-bottom: 0;
+          }
+        }
       }
     }
 
@@ -85,7 +87,7 @@ app-recommended-card-modal {
       color: $white-color;
       width: 335px;
       background-color: $crusta-orange-color !important;
-      box-shadow: 0px 12px 14px rgba(0, 0, 0, 0.21) !important;
+      box-shadow: none !important;
       border-radius: 6px;
       padding: 14px 0;
       border: none;
