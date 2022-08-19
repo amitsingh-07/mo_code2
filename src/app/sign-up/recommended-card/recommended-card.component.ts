@@ -17,19 +17,20 @@ export class RecommendedCardComponent implements OnInit {
   cards = [];
   slideConfig = {
     slidesToShow: SIGN_UP_CONFIG.RECOMMENDED_CARD.CAROUSEL_CONFIG.SLIDES_TO_SHOW_DESKTOP,
-    slidesToScroll: SIGN_UP_CONFIG.RECOMMENDED_CARD.CAROUSEL_CONFIG.SLIDES_TO_SCROLL,
+    slidesToScroll: SIGN_UP_CONFIG.RECOMMENDED_CARD.CAROUSEL_CONFIG.DESKTOP_SLIDES_TO_SCROLL,
     nextArrow: '<div class="next-arrow circle"><img src="assets/images/carousel-arrow-icon.svg" alt="" /></div>',
     prevArrow: '<div class="prev-arrow circle"><img src="assets/images/carousel-arrow-icon.svg" alt="" /></div>',
     autoplay: false,
     dots: false,
     infinite: false,
     variableWidth: true,
+    draggable: false,
     responsive: [
       {
         breakpoint: SIGN_UP_CONFIG.RECOMMENDED_CARD.CAROUSEL_CONFIG.SCREEN_SIZE,
         settings: {
           slidesToShow: SIGN_UP_CONFIG.RECOMMENDED_CARD.CAROUSEL_CONFIG.SLIDES_TO_SHOW_MOB,
-          slidesToScroll: SIGN_UP_CONFIG.RECOMMENDED_CARD.CAROUSEL_CONFIG.SLIDES_TO_SCROLL
+          slidesToScroll: SIGN_UP_CONFIG.RECOMMENDED_CARD.CAROUSEL_CONFIG.MOBILE_SLIDES_TO_SCROLL
         }
       },
     ]
@@ -97,7 +98,7 @@ export class RecommendedCardComponent implements OnInit {
   afterSlideChange(event) {
     const nextArrow: any = document.getElementsByClassName('next-arrow');
     const prevArrow: any = document.getElementsByClassName('prev-arrow');
-    if (event.currentSlide + 2 == this.cards.length) {
+    if (event.currentSlide + 1 == this.cards.length) {
       nextArrow[0].style.display = 'none';
     } else {
       nextArrow[0].style.display = 'inherit';
