@@ -24,6 +24,7 @@ export class RecommendedCardComponent implements OnInit {
     dots: false,
     infinite: false,
     variableWidth: true,
+    draggable: false,
     responsive: [
       {
         breakpoint: SIGN_UP_CONFIG.RECOMMENDED_CARD.CAROUSEL_CONFIG.SCREEN_SIZE,
