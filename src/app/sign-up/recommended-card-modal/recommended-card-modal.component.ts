@@ -37,10 +37,10 @@ export class RecommendedCardModalComponent implements OnInit {
     if (!Util.isEmptyOrNull(redirectURL) && domainContains) {
       const route = redirectURL.replace(domainBase, '/');
       this.router.navigate([route]);
+      this.closeAction.emit(false);
+      this.activeModal.dismiss();
     } else {
       window.open(redirectURL, '_blank');
-      this.closeAction.emit(false);
     }
-    this.activeModal.dismiss();
   }
 }
