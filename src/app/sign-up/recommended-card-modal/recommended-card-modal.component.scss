@@ -64,9 +64,7 @@ app-recommended-card-modal {
 
         b {
           font-family: $muli-bold;
-          @include allmobiles{
-            color: $black-color
-          }
+          color: $black-color
         }
 
         ul {
