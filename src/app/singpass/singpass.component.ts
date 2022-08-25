@@ -33,12 +33,12 @@ export class SingPassComponent implements OnInit, AfterViewInit, OnDestroy {
       if (data[0]['loaded']) {
         this.singpassService.initSingPassQR();
       }
-    }).catch(error => console.error(error));
+    }).catch(error => {});
   }
 
   ngOnDestroy() {
     this.dynamicScriptLoaderService.unload('singpass-ndi').then(data => {
-    }).catch(error => console.error(error));
+    }).catch(error => {});
   }
 
   openSingpassModal(event) {
