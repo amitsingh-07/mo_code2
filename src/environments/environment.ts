@@ -1,3 +1,4 @@
+import { isDebugMode } from '../app/shared/logger/console-logger.service';
 import { IEnvironment } from './environment.interface';
 
 // This file can be replaced during build by using the `fileReplacements` array.
@@ -7,21 +8,21 @@ import { IEnvironment } from './environment.interface';
 export const environment: IEnvironment = {
   production: false,
   isDebugMode: true,
-  apiBaseUrl: 'https://newmouat1.ntucbfa.com',
-  myInfoClientId: { 
-    robo2:'STG2-MYINFO-SELF-TEST',
-    signup: 'STG2-MYINFO-SELF-TEST',
-    cpf: 'STG2-MYINFO-SELF-TEST',
-    corpbiz:'STG2-MYINFO-SELF-TEST',
-    linkSingpass: 'STG2-MYINFO-SELF-TEST'
+  apiBaseUrl: 'https://bfa-dev.ntucbfa.cloud',
+  myInfoClientId: {
+    robo2:'STG-201820691C-MONEYOWL-BFA',
+    signup: 'STG-201820691C-MONEYOWL-BFA',
+    cpf: 'STG-201820691C-MONEYOWL-BFA',
+    corpbiz:'STG-201820691C-MONEYOWL-BFA',
+    linkSingpass: 'STG-201820691C-MONEYOWL-BFA'
   },
-  myInfoCallbackBaseUrl: 'https://localhost:3001',
+  myInfoCallbackBaseUrl: 'https://bfa-dev.ntucbfa.cloud/app/myinfo',
   myInfoAuthorizeUrl: 'https://test.api.myinfo.gov.sg/com/v3/authorise',
   gAdPropertyId: 'AW-782920447',
   gaPropertyId: 'UA-125256446-1',
   hideHomepage: false,
   mockInvestAccount: true,
-  expire2faTime: 298,
+  expire2faTime: 178,
   expire2faPollRate: 2,
   expire2faMaxCheck: 5,
   promoCodeJsonUrl: 'https://mo-static-assets.s3-ap-southeast-1.amazonaws.com/promo/non-prod/promo-details.json',
