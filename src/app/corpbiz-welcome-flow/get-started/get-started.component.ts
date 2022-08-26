@@ -42,10 +42,7 @@ export class GetStartedComponent implements OnInit {
   goNext() {
     this.comprehensiveApiService.getComprehensiveSummaryDashboard().subscribe((resp: any) => {
       if (resp && resp.objectList[0]) {
-        const data = resp.objectList[0];
-        if (data.enquiryId && !Util.isEmptyOrNull(data.enquiryId) && typeof data.enquiryId !== 'undefined') {
-          this.router.navigate([CORPBIZ_ROUTES_PATHS.TELL_ABOUT_YOU]);
-        }
+        this.router.navigate([CORPBIZ_ROUTES_PATHS.TELL_ABOUT_YOU]);
       } else {
         const promoCode = {
           sessionId: this.authService.getSessionId()
