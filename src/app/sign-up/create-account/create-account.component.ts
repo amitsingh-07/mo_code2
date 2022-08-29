@@ -384,6 +384,7 @@ export class CreateAccountComponent implements OnInit, AfterViewInit {
             if (data.responseMessage.responseCode === 6000 ||
               data.responseMessage.responseCode === 6008) {
               this.signUpService.setCustomerRef(data.objectList[0].customerRef);
+              this.appService.setCorpBizViaPublicData([{isCorpBiz: data.objectList[1].isCorpBiz}]);
             }
             const insuranceEnquiry = this.selectedPlansService.getSelectedPlan();
             if ((this.appService.getJourneyType() === appConstants.JOURNEY_TYPE_DIRECT ||

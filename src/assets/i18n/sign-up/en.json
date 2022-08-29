@@ -299,7 +299,8 @@
     },
     "ERROR_MODAL": {
       "ERROR_TITLE": "Incorrect OTP Code",
-      "ERROR_MESSAGE": "You have keyed in an invalid OTP Code"
+      "ERROR_MESSAGE": "You have keyed in an invalid OTP Code",
+      "ERROR_CONTENT": "Sorry, can't edit verification number for Corporate account. Later if you wish to update your contact details, you can update in My Profile page."
     },
     "EXPIRED_ERROR_MODAL": {
       "ERROR_TITLE": "Expired OTP Code",
