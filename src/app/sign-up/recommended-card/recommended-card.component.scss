@@ -14,10 +14,12 @@ app-recommended-card {
 
   .text-wrap-headline {
     -webkit-line-clamp: 1;
+    max-width: 191px;
   }
 
   .text-wrap-subtitle {
     -webkit-line-clamp: 3;
+    max-width: 197px;
   }
 
   .slick-slide {
