@@ -3,7 +3,6 @@ import { Router } from '@angular/router';
 import { TranslateService } from '@ngx-translate/core';
 import { Subscription } from 'rxjs';
 import { AuthenticationService } from '../../shared/http/auth/authentication.service';
-import { Util } from '../../shared/utils/util';
 import { ComprehensiveApiService } from '../../comprehensive/comprehensive-api.service';
 import { FooterService } from '../../shared/footer/footer.service';
 import { NavbarService } from '../../shared/navbar/navbar.service';
