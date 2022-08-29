@@ -817,4 +817,27 @@ export class ApiService {
         catchError((error: HttpErrorResponse) => this.handleError(error))
       );
   }
+
+  // Recommended Card API Calls
+  getCardsByPageSizeAndNo(pageNo, size) {
+    const URL = apiConstants.endpoint.recommendedCards.getDashboardCards.replace('$PAGE_NO$', pageNo).replace('$SIZE$', size);
+    return this.http.get(URL)
+      .pipe(
+        catchError((error: HttpErrorResponse) => this.handleError(error))
+      );
+  }
+  
+  dismissCard(cardId) {
+    const api = apiConstants.endpoint.recommendedCards.dismissCard.replace('$CARD_ID$', cardId);
+    return this.http.put(api, null).pipe(
+      catchError((error: HttpErrorResponse) => this.handleError(error))
+    );
+  }
+
+  getCardById(cardId) {
+    return this.http.get(`${apiConstants.endpoint.recommendedCards.getCardById}${cardId}`)
+      .pipe(
+        catchError((error: HttpErrorResponse) => this.handleError(error))
+      );
+  }
 }

@@ -6,6 +6,7 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
 import { NgOtpInputModule } from 'ng-otp-input';
+import { SlickCarouselModule } from 'ngx-slick-carousel';
 
 import { InputFocusDirective } from '../shared/directives/input-focus.directive';
 import { SharedModule } from '../shared/shared.module';
@@ -60,6 +61,8 @@ import { CorpBizSignupWithDataComponent } from './corp-biz-signup-with-data/corp
 import { CorpBizActivationLinkComponent } from './corp-biz-activation-link/corp-biz-activation-link.component';
 import { LoginService } from './login.service';
 import { InvestModalComponent } from './invest-modal/invest-modal.component';
+import { RecommendedCardComponent } from './recommended-card/recommended-card.component';
+import { RecommendedCardModalComponent } from './recommended-card-modal/recommended-card-modal.component';
 
 export function createTranslateLoader(http: HttpClient) {
   return new MultiTranslateHttpLoader(
@@ -88,7 +91,8 @@ export function createTranslateLoader(http: HttpClient) {
       }
     }),
     NgOtpInputModule,
-    SingPassModule
+    SingPassModule,
+    SlickCarouselModule
   ],
   declarations: [
     AccountCreatedComponent,
@@ -125,7 +129,9 @@ export function createTranslateLoader(http: HttpClient) {
     CorpBizSignupComponent,
     CorpBizSignupWithDataComponent,
     CorpBizActivationLinkComponent,
-    InvestModalComponent
+    InvestModalComponent,
+    RecommendedCardComponent,
+    RecommendedCardModalComponent
   ],
   providers: [SignUpAccessGuard, SignUpCorporateAccessGuard, AuthGuardService, TwoFactorAuthGuardService, SingpassLoginGuard, LoginService],
   entryComponents: [EditMobileNumberComponent, SrsSuccessModalComponent, CreateAccountMyinfoModalComponent]

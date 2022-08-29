@@ -149,6 +149,11 @@ export let apiConstants = {
         singpass: {
             getStateNonce: SINGPASS_API_BASE_URL+ 'getStateNonce?handleError=true',
             loginSingpass: SINGPASS_API_BASE_URL+ 'loginSingpass?handleError=true'
+        },
+        recommendedCards: {
+            getDashboardCards: INSURANCE_RECOMMEND_API_BASE_URL + '/customer/recommended/card?pageNo=$PAGE_NO$&pageSize=$SIZE$',
+            dismissCard: INSURANCE_RECOMMEND_API_BASE_URL + '/customer/recommended/card/$CARD_ID$/dismiss',
+            getCardById: INSURANCE_RECOMMEND_API_BASE_URL + '/customer/recommended/card/'
         }
     }
 };

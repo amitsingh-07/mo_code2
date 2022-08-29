@@ -52,9 +52,7 @@ export class SingpassService {
 
   // Init Singpass QR
   initSingpassAuthSession(authParamsSupplier) {
-    const onError = (errorId, message) => {
-      console.error(`onError. errorId:${errorId} message:${message}`);
-    }
+    const onError = (errorId, message) => {}
     try {
       window['NDI'].initAuthSession(
         'qr_wrapper',
@@ -67,9 +65,7 @@ export class SingpassService {
         authParamsSupplier,
         onError
       );
-    } catch {
-      console.error('error initAuthSession: ');
-    }
+    } catch {}
   }
 
   // Method to invoke when user abort login

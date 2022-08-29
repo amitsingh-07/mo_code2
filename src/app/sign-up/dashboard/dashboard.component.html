@@ -29,32 +29,23 @@
                   <div class="user_name">{{userProfileInfo.firstName | titlecase}}</div>
                 </div>
                 <div (click)="goToEditProfile()">
-                  <img src="/app/assets/images/profile-icon.svg" />
+                  <img src="assets/images/profile-icon.svg" />
                 </div>
               </div>
             </div>
-            <div class="announce-reward-wrapper">
-              <!--Announcement section-->
-              <div class="announcement-div" (click)="openNewUpdatesModal()">
-                <img class="announcement-img" src="assets/images/srs-joint-account/speaker.svg">
-                <div class="announcement-txt">{{'DASHBOARD.SRS_JOINT_ACCOUNT.FIND_OUT_MORE' | translate}}
-                </div>
+            <div class="recommended-card-container">
+              <div class="recommended-card-title flex">{{'RECOMMENDED_CARD.TITLE' | translate}}
+                <!-- 
+                  TO BE UNCOMMENTED IN RELEASE 10.4
+                  <span class="circle">
+                  <img src="assets/images/arrow-right-white.svg" alt="" />
+                </span> -->
               </div>
-              <!--Announcement section /-->
-              <!--Refree Welcome Reward Box-->
-              <div class="welcome-reward-box" (click)="openRefereeModal()" *ngIf="getReferralInfo && getReferralInfo.isWelcomeRewardsValid && getReferralInfo.refereeExists">
-                <div class="welcome-reward-box__left">
-                  <p>{{'REFER_FRIEND.WELCOME_REWARDS' | translate}}</p>
-                  <p>{{'REFER_FRIEND.VALIDITY' | translate}}{{getReferralInfo.rewardsValidityDate}}</p>
-                </div>
-                <div class="welcome-reward-box__right">
-                  <img src="assets/images/refer-friend/chevron-next-circle.svg">
-                </div>
-                <div class="welcome-reward-box__gift-box">
-                  <img src="assets/images/refer-friend/gift-box-small.svg">
-                </div>
+              <!--Recommended Card section-->
+              <div >
+                <app-recommended-card></app-recommended-card>
               </div>
-              <!--Refree Welcome Reward Box /-->
+              <!--Recommended Card section /-->
             </div>
           </div>
           <div class="widgets">

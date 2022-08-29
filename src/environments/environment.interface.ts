@@ -2,7 +2,13 @@ export interface IEnvironment {
     production: boolean;
     isDebugMode: boolean;
     apiBaseUrl: string;
-    myInfoClientId: string;
+    myInfoClientId: {
+        robo2: string,
+        signup: string,
+        cpf:string,
+        corpbiz:string;
+        linkSingpass:string;
+    };
     myInfoCallbackBaseUrl: string;
     myInfoAuthorizeUrl: string;
     gaPropertyId: string; // Google Analytics

@@ -27,6 +27,7 @@ export class MyInfoService {
   authApiUrl = environment.myInfoAuthorizeUrl;
   clientId = environment.myInfoClientId;
   private attributes = '';
+  private myInfoServices = '';
   purpose = 'financial planning and advisory.';
   redirectUrl = environment.myInfoCallbackBaseUrl;
   state = Math.floor(100 + Math.random() * 90);
@@ -49,12 +50,24 @@ export class MyInfoService {
     return window.sessionStorage.getItem(MYINFO_ATTRIBUTE_KEY);
   }
 
+  setMyInfoAppId(myInfoServices) {
+    this.myInfoServices = myInfoServices;
+    var clientIdObj , x;
+    clientIdObj = this.clientId;
+    x = clientIdObj[myInfoServices];
+    window.sessionStorage.setItem('myinfo_app_id', x);
+  }
+
+  getMyInfoAppId() {
+    return window.sessionStorage.getItem('myinfo_app_id');
+  }
+
   goToMyInfo(linkAccount?) {
     let currentUrl = window.location.toString();
     let endPoint = currentUrl.split(currentUrl.split('/')[2])[currentUrl.split(currentUrl.split('/')[2]).length - 1].substr(1);
     window.sessionStorage.setItem('currentUrl', endPoint);
     const authoriseUrl = this.authApiUrl +
-      '?client_id=' + this.clientId +
+      '?client_id=' + this.getMyInfoAppId() +
       '&attributes=' + this.getMyInfoAttributes() +
       '&purpose=' + this.purpose +
       '&state=' + this.state +
@@ -215,6 +228,7 @@ export class MyInfoService {
 
   getMyInfoData() {
     const code = {
+      appId:this.getMyInfoAppId(),
       authorizationCode: this.myInfoValue,
       personAttributes: this.getMyInfoAttributes()
     };
@@ -224,6 +238,7 @@ export class MyInfoService {
   // singpass account link
   getSingpassAccountData() {
     const code = {
+      appId:this.getMyInfoAppId(),
       authorizationCode: this.myInfoValue,
       personAttributes: this.getMyInfoAttributes()
     };
@@ -233,6 +248,7 @@ export class MyInfoService {
   // CREATE ACCOUNT
   getMyInfoAccountCreateData() {
     const code = {
+      appId: this.getMyInfoAppId(),
       authorizationCode: this.myInfoValue,
       personAttributes: this.getMyInfoAttributes()
     };

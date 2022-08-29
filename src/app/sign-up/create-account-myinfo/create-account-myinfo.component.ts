@@ -15,6 +15,7 @@ import { SIGN_UP_CONFIG } from '../sign-up.constant';
 import { Util } from '../../shared/utils/util';
 import { AuthenticationService } from '../../shared/http/auth/authentication.service';
 import { AppService } from './../../app.service';
+import { appConstants } from 'src/app/app.constants';
 
 @Component({
   selector: 'app-create-account-myinfo',
@@ -198,6 +199,7 @@ export class CreateAccountMyinfoComponent implements OnInit {
     this.myInfoService.setMyInfoAttributes(
       this.signUpService.myInfoAttributes
     );
+    this.myInfoService.setMyInfoAppId(appConstants.MYINFO_SIGNUP);
     this.myInfoService.goToMyInfo();
   }
 

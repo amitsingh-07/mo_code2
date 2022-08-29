@@ -1,0 +1,157 @@
+@import '../../../_variables.scss';
+@import '../../../_mixins.scss';
+
+app-recommended-card {
+  .text-wrap {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    max-width: 100%;
+    word-break: break-word;
+    letter-spacing: -0.16px;
+  }
+
+  .text-wrap-headline {
+    -webkit-line-clamp: 1 !important;
+    max-width: 191px !important;
+  }
+
+  .text-wrap-subtitle {
+    -webkit-line-clamp: 3 !important;
+    max-width: 197px !important;
+  }
+
+  .slick-slide {
+    width: 335px;
+
+    &:last-child {
+      .card {
+        margin-right: 0px !important;
+      }
+    }
+  }
+
+  .circle {
+    width: 40px;
+    height: 40px;
+    background: $white-color;
+    box-shadow: 0px 12px 16px -4px rgba(16, 24, 40, 0.08), 0px 4px 6px -2px rgba(16, 24, 40, 0.03);
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    img {
+      width: 16px;
+      height: 16px;
+    }
+  }
+
+  .next-arrow {
+    position: absolute;
+    z-index: 1;
+    right: -26px;
+    top: 40px;
+    cursor: pointer;
+
+    @include allmobiles {
+      display: none !important;
+    }
+  }
+
+  .prev-arrow {
+    position: absolute;
+    z-index: 1;
+    top: 40px;
+    left: -26px;
+    transform: matrix(-1, 0, 0, 1, 0, 0);
+    cursor: pointer;
+
+    @include allmobiles {
+      display: none !important;
+    }
+  }
+
+  .recommended-card-block {
+    font-family: $muli-regular;
+    font-size: 14px;
+    line-height: 18px;
+    letter-spacing: -0.2px;
+    color: rgba(0, 0, 0, 0.7);
+
+    .card-container {
+      padding: 0;
+
+      &::-webkit-scrollbar {
+        display: none;
+      }
+
+      .card {
+        padding: 17px 16px;
+        margin-right: 10px;
+        flex-direction: row;
+        border-radius: 6px;
+        max-width: 335px;
+        height: 120px;
+        border: none;
+        cursor: pointer;
+
+        .logo-container {
+          width: 80px;
+          height: 80px;
+          margin-right: 16px;
+
+          img {
+            border-radius: 16px;
+          }
+        }
+
+        .card-title {
+          font-size: 16px;
+          line-height: 20px;
+          letter-spacing: -0.2px;
+          color: $black-color;
+          font-family: $muli-bold;
+          width: calc(100% - 6px);
+          margin-bottom: 8px;
+        }
+
+        .circle {
+          width: 6px;
+          height: 6px;
+          background: $dark-orange-color;
+          border-radius: 50%;
+        }
+      }
+    }
+
+    .no-card-container {
+      background: $white-color;
+      border-radius: 6px;
+      padding: 30px 15px;
+      text-align: center;
+
+      .logo-container {
+        width: 60px;
+        height: 60px;
+        margin-right: 8px;
+      }
+
+      strong {
+        font-family: $muli-bold;
+      }
+    }
+  }
+
+  .hidden {
+    display: none;
+  }
+
+  .loader-card-container {
+    background: $white-color;
+    border-radius: 6px;
+    padding: 30px 15px;
+    text-align: center;
+  }
+}
