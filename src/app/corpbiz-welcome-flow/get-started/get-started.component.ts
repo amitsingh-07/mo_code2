@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild, ViewEncapsulation } from '@angular/core';
+import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { Router } from '@angular/router';
 import { TranslateService } from '@ngx-translate/core';
 import { Subscription } from 'rxjs';
@@ -7,6 +7,7 @@ import { ComprehensiveApiService } from '../../comprehensive/comprehensive-api.s
 import { FooterService } from '../../shared/footer/footer.service';
 import { NavbarService } from '../../shared/navbar/navbar.service';
 import { CORPBIZ_ROUTES_PATHS } from '../corpbiz-welcome-flow.routes.constants';
+import { LoaderService } from '../../shared/components/loader/loader.service';
 
 @Component({
   selector: 'app-get-started',
@@ -23,7 +24,8 @@ export class GetStartedComponent implements OnInit {
     private router: Router,
     private readonly translate: TranslateService,
     private comprehensiveApiService: ComprehensiveApiService,
-    private authService: AuthenticationService
+    private authService: AuthenticationService,
+    private loaderService: LoaderService
   ) {
     this.translate.use('en');
   }
@@ -38,18 +40,33 @@ export class GetStartedComponent implements OnInit {
     this.subscription.unsubscribe();
   }
 
+  showLoader() {
+    this.loaderService.showLoader({
+      title: this.translate.instant('LOADER_MESSAGES.LOADING.TITLE'),
+      desc: this.translate.instant('LOADER_MESSAGES.LOADING.MESSAGE'),
+      autoHide: false
+    });
+  }
+
   goNext() {
+    this.showLoader();
     this.comprehensiveApiService.getComprehensiveSummaryDashboard().subscribe((resp: any) => {
       if (resp && resp.objectList[0]) {
+        this.loaderService.hideLoaderForced();
         this.router.navigate([CORPBIZ_ROUTES_PATHS.TELL_ABOUT_YOU]);
       } else {
         const promoCode = {
           sessionId: this.authService.getSessionId()
         };
         this.comprehensiveApiService.generateComprehensiveEnquiry(promoCode).subscribe((data: any) => {
+          this.loaderService.hideLoaderForced();
           this.router.navigate([CORPBIZ_ROUTES_PATHS.TELL_ABOUT_YOU]);
+        }, () => {
+          this.loaderService.hideLoaderForced();
         });
       }
+    }, () => {
+      this.loaderService.hideLoaderForced();
     })
   }
 }
