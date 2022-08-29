@@ -79,7 +79,7 @@ export class VerifyMobileComponent implements OnInit, OnDestroy {
   protected ngUnsubscribe: Subject<void> = new Subject<void>();
   organisationEnabled = false;
   isCorpBiz = false;
-
+  corpBizViaPublic = false;
   constructor(
     private formBuilder: FormBuilder,
     public navbarService: NavbarService,
@@ -151,6 +151,7 @@ export class VerifyMobileComponent implements OnInit, OnDestroy {
     this.buildVerifyMobileForm();
     this.fromLoginPage = this.signUpService.getFromLoginPage();
     this.isCorpBiz = this.appService.getCorpBizData()?.isCorpBiz;
+    this.corpBizViaPublic = this.appService.getCorpBizViaPublicData()?.isCorpBiz;
     if (this.fromLoginPage || this.isCorpBiz) {
       this.mobileNumber = {
         code: (this.signUpService.getUserMobileCountryCode()) ? this.signUpService.getUserMobileCountryCode() : appConstants.SINGAPORE_COUNTRY_CODE,
@@ -393,27 +394,34 @@ export class VerifyMobileComponent implements OnInit, OnDestroy {
     if (this.editProfile) {
       this.router.navigate([SIGN_UP_ROUTE_PATHS.UPDATE_USER_DETAILS + '/' + SIGN_UP_CONFIG.EDIT_ROUTE_TYPE.MOBILE]);
     } else {
-      const ref = this.modal.open(EditMobileNumberComponent, {
-        centered: true, backdrop: 'static',
-        keyboard: false
-      });
-      ref.componentInstance.existingMobile = this.mobileNumber.number.toString();
-      ref.componentInstance.updateMobileNumber.subscribe((mobileNo) => {
-        this.signUpApiService.editMobileNumber(mobileNo).subscribe((data) => {
-          ref.close();
-          if (data.responseMessage.responseCode === 6000) {
-            this.mobileNumber.number = mobileNo.toString();
-            this.signUpService.updateMobileNumber(this.mobileNumber.code,
-              mobileNo.toString());
-            if (data.objectList[0] && data.objectList[0].customerRef) {
-              this.signUpService.setCustomerRef(data.objectList[0].customerRef);
-            }
-          } else {
-            const Modalref = this.modal.open(ErrorModalComponent, { centered: true });
-            Modalref.componentInstance.errorMessage = data.responseMessage.responseDescription;
-          }
+      if (this.corpBizViaPublic) {
+        const Modalref = this.modal.open(ErrorModalComponent, { centered: true });
+        Modalref.componentInstance.errorMessage = this.translate.instant('VERIFY_MOBILE.ERROR_MODAL.ERROR_CONTENT');
+      } else {
+        const ref = this.modal.open(EditMobileNumberComponent, {
+          centered: true, backdrop: 'static',
+          keyboard: false
         });
-      });
+        ref.componentInstance.existingMobile = this.mobileNumber.number.toString();
+        ref.componentInstance.updateMobileNumber.subscribe((mobileNo) => {
+          this.signUpApiService.editMobileNumber(mobileNo).subscribe((data) => {
+            ref.close();
+            if (data.responseMessage.responseCode === 6000) {
+              this.mobileNumber.number = mobileNo.toString();
+              this.signUpService.updateMobileNumber(this.mobileNumber.code,
+                mobileNo.toString());
+              if (data.objectList[0] && data.objectList[0].customerRef) {
+                this.signUpService.setCustomerRef(data.objectList[0].customerRef);
+              }
+            } else {
+              const Modalref = this.modal.open(ErrorModalComponent, { centered: true });
+              Modalref.componentInstance.errorMessage = data.responseMessage.responseDescription;
+            }
+          });
+        });
+      }
+
+
     }
   }
 
