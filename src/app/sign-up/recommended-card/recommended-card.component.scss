@@ -13,7 +13,9 @@ app-recommended-card {
   }
 
   .text-wrap-headline {
-    -webkit-line-clamp: 1 !important;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
     max-width: 191px !important;
   }
 
