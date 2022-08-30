@@ -17,9 +17,7 @@ app-recommended-card {
     white-space: nowrap;
     text-overflow: ellipsis;
     max-width: 191px !important;
-    display: -webkit-box;
-   -webkit-box-orient: vertical;  
-  }
+    }
 
   .text-wrap-subtitle {
     -webkit-line-clamp: 3 !important;
@@ -27,6 +25,11 @@ app-recommended-card {
     display: -webkit-box;
    -webkit-box-orient: vertical;  
     overflow: hidden;
+    word-wrap:break-word;
+    visibility: visible;
+    text-overflow: ellipsis;
+    line-clamp: 3;
+    -webkit-box-pack: end;
   }
 
   .slick-slide {
