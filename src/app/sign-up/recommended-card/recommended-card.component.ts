@@ -107,7 +107,8 @@ export class RecommendedCardComponent implements OnInit {
   afterSlideChange(event) {
     const nextArrow: any = document.getElementsByClassName('next-arrow');
     const prevArrow: any = document.getElementsByClassName('prev-arrow');
-    if (event.currentSlide + 1 == this.cards.length) {
+    if ((this.cards.length % 2 > 0 && event.currentSlide + 1 == this.cards.length) || 
+    (this.cards.length % 2 <= 0 && !event.first)) {
       nextArrow[0].style.display = 'none';
     } else {
       nextArrow[0].style.display = 'inherit';
