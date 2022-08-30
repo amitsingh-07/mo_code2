@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild, ViewEncapsulation } from '@angular/core';
+import { Component, NgZone, OnInit, ViewChild, ViewEncapsulation } from '@angular/core';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { TranslateService } from '@ngx-translate/core';
 import { SlickCarouselComponent } from 'ngx-slick-carousel';
@@ -42,6 +42,7 @@ export class RecommendedCardComponent implements OnInit {
   constructor(
     public modal: NgbModal,
     private signUpApiService: SignUpApiService,
+    private ngZone: NgZone,
     private readonly translate: TranslateService,
   ) {
     this.translate.use('en');
@@ -93,7 +94,10 @@ export class RecommendedCardComponent implements OnInit {
       this.isLoadComplete = true;
       const responseCode = resp && resp.responseMessage && resp.responseMessage.responseCode ? resp.responseMessage.responseCode : 0;
       if (responseCode >= 6000) {
-        this.cards = resp.objectList.pageList;
+        this.ngZone.run(() => {
+          this.cards = resp.objectList.pageList;
+        });
+        
       }
     }, err => {
       this.isLoadComplete = true;
