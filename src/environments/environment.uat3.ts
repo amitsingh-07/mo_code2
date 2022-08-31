@@ -26,8 +26,7 @@ export const environment: IEnvironment = {
   expire2faMaxCheck: 5,
   promoCodeJsonUrl: 'https://mo-static-assets.s3-ap-southeast-1.amazonaws.com/promo/prod/promo-details.json',
   singpassClientId: 'iROTlv1CU9Cz3GlYiNosMsZDGIYwWSB3',
-  singpassAuthJs: 'https://stg-id.singpass.gov.sg/static/ndi_embedded_auth.js',
-  singpassBaseUrl: 'https://bfa-uat3.ntucbfa.com'
+  singpassAuthJs: 'https://stg-id.singpass.gov.sg/static/ndi_embedded_auth.js'
 };
 /*
  * In development mode, to ignore zone related error stack frames such as
