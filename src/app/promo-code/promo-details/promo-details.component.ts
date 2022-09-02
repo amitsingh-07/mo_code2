@@ -31,7 +31,8 @@ export class PromoDetailsComponent implements OnInit {
   promoCodeStatus: any;
   selectedPromoDetails: any;
   loading: any;
-  compreTypePromo: any;
+  appConstants: any;
+  promoCode: string;
 
   constructor(
     public activeModal: NgbActiveModal,
@@ -49,7 +50,7 @@ export class PromoDetailsComponent implements OnInit {
 
   ngOnInit() {
     this.promoCodeStatus = PROMO_CODE_STATUS;
-    this.compreTypePromo = appConstants.COMPREHENSIVE_PROMO_CODE_TYPE
+    this.appConstants = appConstants;
     this.selectedPromo = this.promoSvc.getSelectedPromo();
     this.selectedPromoDetails = this.promoSvc.getPromoDetails();
     this.usedPromo = this.promoSvc.usedPromo;
@@ -57,14 +58,20 @@ export class PromoDetailsComponent implements OnInit {
     this.promoSvc.fetchPromoListJSON().then((data) => {
       this.details = data.promoList.find(element => {
         // If campaignCode exist, use campaignCode to match the promo detail json
-        if (this.selectedPromo['campaignCode']) {
-          if (element['promoType'] === promoCategory && element['promoCode'] === this.selectedPromo['campaignCode']) {
+        if (this.selectedPromo['campaignCode'] || this.selectedPromo['promoCampaign']) {
+          if (promoCategory === appConstants.COMPREHENSIVE_PROMO_CODE_TYPE && element['promoType'] === promoCategory && element['promoCode'] === this.selectedPromo['campaignCode']) {
+            this.promoCode = this.selectedPromo['promoCode'];
+            return element;
+          } else if (promoCategory === appConstants.INVESTMENT_PROMO_CODE_TYPE && element['promoType'] === promoCategory &&  element['promoCode'] === this.selectedPromo['promoCampaign']['code']) {
+            this.promoCode = this.selectedPromo['code'];
             return element;
           }
         } else {
           if (this.selectedPromo['promoCode']) {
+            this.promoCode = this.selectedPromo['promoCode'];
             return element['promoType'] === promoCategory && element['promoCode'] === this.selectedPromo['promoCode'];
           } else {
+            this.promoCode = this.selectedPromo['code'];
             return element['promoType'] === promoCategory && element['promoCode'] === this.selectedPromo['code'];
           }
         }
