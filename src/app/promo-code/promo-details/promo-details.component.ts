@@ -2,7 +2,6 @@ import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { NgbActiveModal, NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { TranslateService } from '@ngx-translate/core';
 import { Router } from '@angular/router';
-import { DatePipe } from '@angular/common';
 
 import { PromoCodeService } from '../promo-code.service';
 import { PAYMENT_CHECKOUT, PROMO_CODE_STATUS, PROMO_ROUTE } from '../promo-code.constants';
@@ -31,7 +30,6 @@ export class PromoDetailsComponent implements OnInit {
   promoCodeStatus: any;
   selectedPromoDetails: any;
   loading: any;
-  appConstants: any;
   promoCode: string;
 
   constructor(
@@ -39,7 +37,6 @@ export class PromoDetailsComponent implements OnInit {
     public allModal: NgbModal,
     private translate: TranslateService,
     private router: Router,
-    private datePipe: DatePipe,
     private promoSvc: PromoCodeService,
     private manageInvestmentsService: ManageInvestmentsService,
     private loaderService: LoaderService,
@@ -50,7 +47,6 @@ export class PromoDetailsComponent implements OnInit {
 
   ngOnInit() {
     this.promoCodeStatus = PROMO_CODE_STATUS;
-    this.appConstants = appConstants;
     this.selectedPromo = this.promoSvc.getSelectedPromo();
     this.selectedPromoDetails = this.promoSvc.getPromoDetails();
     this.usedPromo = this.promoSvc.usedPromo;
