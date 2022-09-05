@@ -53,15 +53,13 @@ export class PromoDetailsComponent implements OnInit {
     const promoCategory = (this.router.url === PAYMENT_CHECKOUT) ? appConstants.COMPREHENSIVE_PROMO_CODE_TYPE : appConstants.INVESTMENT_PROMO_CODE_TYPE;
     this.promoSvc.fetchPromoListJSON().then((data) => {
       this.details = data.promoList.find(element => {
-        // If campaignCode exist, use campaignCode to match the promo detail json
-        if (this.selectedPromo['campaignCode'] || this.selectedPromo['promoCampaign']) {
-          if (promoCategory === appConstants.COMPREHENSIVE_PROMO_CODE_TYPE && element['promoType'] === promoCategory && element['promoCode'] === this.selectedPromo['campaignCode']) {
-            this.promoCode = this.selectedPromo['promoCode'];
-            return element;
-          } else if (promoCategory === appConstants.INVESTMENT_PROMO_CODE_TYPE && element['promoType'] === promoCategory &&  element['promoCode'] === this.selectedPromo['promoCampaign']['code']) {
-            this.promoCode = this.selectedPromo['code'];
-            return element;
-          }
+        // If promoCampaign or campaignCode exist, use them to match the promo detail json
+        if (this.selectedPromo['promoCampaign']) {
+          this.promoCode = this.selectedPromo['code'];
+          return element['promoType'] === promoCategory && element['promoCode'] === this.selectedPromo['promoCampaign']['code'];
+        } else if (this.selectedPromo['campaignCode']) {
+          this.promoCode = this.selectedPromo['promoCode'];
+          return element['promoType'] === promoCategory && element['promoCode'] === this.selectedPromo['campaignCode'];
         } else {
           if (this.selectedPromo['promoCode']) {
             this.promoCode = this.selectedPromo['promoCode'];
