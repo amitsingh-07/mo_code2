@@ -31,4 +31,55 @@ app-cmp-my-profile {
     .fixed-btn--sm-comprehensive.inline-error {
       background: #fff3e9 !important;
       }
+
+  .myinfo-block{
+    background: $black-squeeze-grey-color;
+    border-radius: 6px;
+    padding: 28px 50px;
+    font-family: $muli-bold;
+    font-size: 16px;
+    line-height: 19px;
+    color: $black-color;
+    text-align: center;
+    @include allmobiles{
+      padding: 24px 10px 30px;
+      text-align: left;
+    }
+    .myinfo-desc{
+      max-width: 450px;
+      margin: 0 auto;
+      @include allmobiles{
+        padding: 0 10px;
+      }
+    }
+    .retrieval-date{
+      font-family: $muli-regular;
+      margin: 10px 0 15px;
+      font-size: 14px;
+      line-height: 17px;
+      @include allmobiles{
+        padding: 0 10px;
+      }
+    }
+    .auto-fill-cpf {
+      height: 47px;
+      width: 315px;
+      display: flex;
+      margin: 0 auto;
+      @include allmobiles {
+        height: auto;
+        width: 100%;
+      }
+    }
+    
+    .auto-fill-logo {
+      height: auto;
+      object-fit: contain;
+      cursor: pointer;
+      width: 100%;
+      @include allmobiles {
+       width: 100%;
+      }
+    }
+  }
 }
