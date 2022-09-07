@@ -54,7 +54,7 @@ app-cmp-my-profile {
     }
     .retrieval-date{
       font-family: $muli-regular;
-      margin: 10px 0 15px;
+      margin: 10px 0 0;
       font-size: 14px;
       line-height: 17px;
       @include allmobiles{
@@ -65,7 +65,7 @@ app-cmp-my-profile {
       height: 47px;
       width: 315px;
       display: flex;
-      margin: 0 auto;
+      margin: 15px auto 0;
       @include allmobiles {
         height: auto;
         width: 100%;
