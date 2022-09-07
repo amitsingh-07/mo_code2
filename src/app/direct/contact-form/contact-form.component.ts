@@ -60,7 +60,9 @@ export class ContactFormComponent implements OnInit {
       validateCaptchaBean: this.fb.group({
         captcha: '',
         sessionId: this.authService.getSessionId()
-      })
+      }),
+      acceptMarketingEmails: [false],
+      contactViaMobile: [true],
     })
 
     this.formObject.get('mobileNumber').valueChanges.subscribe(val => {
