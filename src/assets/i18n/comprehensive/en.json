@@ -389,8 +389,10 @@
           "btn": "Okay, Got It!"
         },
         "DISCLAIMER_MODAL": {
+          "TITLE": "Retrieve Myinfo with Singpass",
           "PROCEED_BTN": "Proceed",
-          "TITLE": "Retrieve Myinfo with Singpass"
+          "DESC": "<p>By auto-filling the application with myInfo, you can save 20 minutes.</p><p>Applicable to Singapore Citizens and Singapore Permanent Residents (PRs) only.</p><p>All previously entered details will be overwritten.</p>",
+          "DISCLAIMER_TEXT": "<div class=\"text-bold\">Disclaimer:</div><div>Some fields will be pre-filled with various assumptions based on Myinfo details, which can be edited at any point during the journey</div>"
         },
         "MY_INFO_MODAL": {
           "BTN": "Let’s go!",
