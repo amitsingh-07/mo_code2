@@ -55,6 +55,7 @@ export class MyProfileComponent implements IPageComponent, OnInit, OnDestroy {
     saveData: string;
     getCurrentVersionType: any;
     fetchData: string;
+    myinfoRetrievelDate: any;
 
     @HostListener('window:popstate', ['$event'])
     onPopState(event) {
@@ -160,6 +161,7 @@ export class MyProfileComponent implements IPageComponent, OnInit, OnDestroy {
             this.router.navigate([redirectUrl]);
         } else {
             this.getUserProfileData();
+            this.myinfoRetrievelDate = this.comprehensiveService.getMyinfoRetrievelDate();
         }
     }
 
