@@ -1,9 +1,8 @@
-import { Component, ElementRef, HostListener, OnInit, ViewChild, ViewEncapsulation} from '@angular/core';
+import { Component, ElementRef, HostListener, OnInit, ViewChild, ViewEncapsulation } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { TranslateService } from '@ngx-translate/core';
-
 import { MailchimpApiService } from './../../shared/Services/mailchimp.api.service';
 import { FormError } from './../../shared/Services/mailChimpError';
 import { WillDisclaimerComponent } from '../../shared/components/will-disclaimer/will-disclaimer.component';
@@ -11,11 +10,9 @@ import { FooterService } from '../../shared/footer/footer.service';
 import { AuthenticationService } from '../../shared/http/auth/authentication.service';
 import { NavbarService } from '../../shared/navbar/navbar.service';
 import { RegexConstants } from '../../shared/utils/api.regex.constants';
-import { WILL_WRITING_ROUTE_PATHS, WP_WILL_WRITING_ROUTE } from '../will-writing-routes.constants';
+import { WILL_WRITING_ROUTE_PATHS } from '../will-writing-routes.constants';
 import { WillWritingApiService } from '../will-writing.api.service';
 import { WillWritingService } from '../will-writing.service';
-import { environment } from './../../../environments/environment';
-import { APP_ROUTES } from './../../app-routes.constants';
 import { SeoServiceService } from './../../shared/Services/seo-service.service';
 import { SubscribeMember } from './../../shared/Services/subscribeMember';
 
@@ -117,7 +114,7 @@ export class IntroductionComponent implements OnInit {
       this.subscribeMessage = '';
       this.subscribeSuccess = false;
     });
-    if(this.authService.isSignedUser() && this.authService.isUserTypeCorporate) {
+    if (this.authService.isSignedUser()) {
       this.getCustOrgPromoCode();
     }
   }
@@ -127,7 +124,7 @@ export class IntroductionComponent implements OnInit {
     this.promoCodeRef.nativeElement.value = this.promoCodeRef.nativeElement.value.toUpperCase();
   }
 
-  getCustOrgPromoCode(){
+  getCustOrgPromoCode() {
     this.willWritingApiService.getCustOrgPromoCode().subscribe((data) => {
       this.promoCodeForm.get('promoCode').patchValue(data.objectList[0].promoCode);
     })
@@ -163,7 +160,7 @@ export class IntroductionComponent implements OnInit {
   }
 
   openFAQ() {
-    this.router.navigate(['faq'], {fragment:'will-writing'});
+    this.router.navigate(['faq'], { fragment: 'will-writing' });
   }
 
   openTermsOfConditions() {
@@ -178,7 +175,7 @@ export class IntroductionComponent implements OnInit {
   }
 
   goToSubcribeForm() {
-      this.SubscribeSection.nativeElement.scrollIntoView({ block: 'center', inline: 'center', behavior: 'smooth' });
+    this.SubscribeSection.nativeElement.scrollIntoView({ block: 'center', inline: 'center', behavior: 'smooth' });
   }
 
   subscribeMember() {
@@ -187,14 +184,6 @@ export class IntroductionComponent implements OnInit {
     } else {
       this.subscribeSuccess = false;
       this.subscribeMessage = this.formError.subscribeFormErrors.INVALID.errorMessage;
-    }
-  }
-
-  getPromoCode() {
-    if (environment.hideHomepage) {
-      window.open(WP_WILL_WRITING_ROUTE.MAILING_LIST, '_blank');
-    } else {
-      this.router.navigate([APP_ROUTES.HOME], {fragment: 'subscribe'});
     }
   }
 }
