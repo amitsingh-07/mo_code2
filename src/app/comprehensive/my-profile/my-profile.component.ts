@@ -370,12 +370,14 @@ export class MyProfileComponent implements IPageComponent, OnInit, OnDestroy {
 
     /* RELEASE 10.4 MYINFO INTEGRATION */
     openDisclaimerModal() {
-        const ref = this.modal.open(ModelWithButtonComponent, { centered: true, windowClass: 'retrieve-myinfo-modal' });
+        const ref = this.modal.open(ModelWithButtonComponent, { centered: true, windowClass: 'myinfo-disclaimer-modal' });
         ref.componentInstance.errorTitle = this.translate.instant('CMP.GETTING_STARTED.CFP_AUTOFILL.DISCLAIMER_MODAL.TITLE');
+        ref.componentInstance.errorMessage = this.translate.instant('CMP.GETTING_STARTED.CFP_AUTOFILL.DISCLAIMER_MODAL.DESC');
         ref.componentInstance.primaryActionLabel = this.translate.instant('CMP.GETTING_STARTED.CFP_AUTOFILL.DISCLAIMER_MODAL.PROCEED_BTN');
         ref.componentInstance.primaryAction.subscribe(() => {
             this.openModal();
         });
+        ref.componentInstance.disclaimerMessage = this.translate.instant('CMP.GETTING_STARTED.CFP_AUTOFILL.DISCLAIMER_MODAL.DISCLAIMER_TEXT');
     }
     openModal() {
         if (!this.viewMode) {
