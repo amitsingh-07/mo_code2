@@ -39,8 +39,6 @@ export class RecommendedCardComponent implements OnInit {
   @ViewChild('carousel') carousel: SlickCarouselComponent;
   iconSrcPath = SIGN_UP_CONFIG.RECOMMENDED_CARD.ICONS_PATH;
   isLoadComplete = false;
-  selectedCardId = -1;
-  slideToShow = -1;
   constructor(
     public modal: NgbModal,
     private signUpApiService: SignUpApiService,
@@ -60,7 +58,6 @@ export class RecommendedCardComponent implements OnInit {
 
   openCard(cardId) {
     // Based on card id, make API call to get Card Content
-    this.selectedCardId = cardId;
     this.signUpApiService.getCardById(cardId).subscribe((resp: any) => {
       const ref = this.modal.open(RecommendedCardModalComponent, {
         centered: true,
@@ -75,7 +72,6 @@ export class RecommendedCardComponent implements OnInit {
         if (value) {
           // Dismiss API call goes here
           this.signUpApiService.dismissCard(cardId).subscribe(dismissResp => {
-            this.selectedCardId = -1;
             this.getRecommendedCards();
           });
         } else {
@@ -98,14 +94,6 @@ export class RecommendedCardComponent implements OnInit {
       const responseCode = resp && resp.responseMessage && resp.responseMessage.responseCode ? resp.responseMessage.responseCode : 0;
       if (responseCode >= 6000) {
         this.cards = resp.objectList.pageList;
-        if (this.selectedCardId >= 0) {
-          this.slideToShow = this.cards.findIndex(card => card.cardId === this.selectedCardId);
-          setTimeout(() => {
-            if (this.carousel && this.slideToShow >= 0) {
-              this.carousel.slickGoTo(this.slideToShow);
-            }
-          });
-        }
       }
     }, err => {
       this.isLoadComplete = true;
