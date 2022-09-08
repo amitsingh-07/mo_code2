@@ -495,7 +495,8 @@
         "DESCRIPTION_THREE": "Please fill in your details below.",
         "CORP_BIZ_SUCCESS_MSG": "Use these details from Myinfo to get started on financial planning with MoneyOwl.",
         "CORP_BIZ_STEP_CONTINUE_TXT": "This step is required to continue.",
-        "CORP_BIZ_ENSURE_TXT": "We will ensure that your information is safe with us. "
+        "CORP_BIZ_ENSURE_TXT": "We will ensure that your information is safe with us. ",
+        "CONTINUE": "Continue"
     }
     },
     "FORM_LABEL": {

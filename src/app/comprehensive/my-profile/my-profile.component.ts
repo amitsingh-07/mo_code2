@@ -131,45 +131,44 @@ export class MyProfileComponent implements IPageComponent, OnInit, OnDestroy {
                 attributeList = this.removeMyInfoAttributes(this.disabledAttributes.cpfHousingFlag, COMPREHENSIVE_CONST.EXCLUDABLE_CORP_BIZ_MY_INFO_ATTRIBUTES.CPF_HOUSING_WITHDRAWAL, attributeList);
                 attributeList = this.removeMyInfoAttributes(this.disabledAttributes.vehicleFlag, COMPREHENSIVE_CONST.EXCLUDABLE_CORP_BIZ_MY_INFO_ATTRIBUTES.VEHICLES, attributeList);
             }
-            if (myinfoObj && myinfoObj !== '') {
-                if (myinfoObj && myinfoObj !== '' &&
-                    (this.myInfoService.getMyInfoAttributes() === this.signUpService.corpBizMyInfoAttributes.join() ||
-                        (this.disabledAttributes &&
-                            (attributeList.join() === this.myInfoService.getMyInfoAttributes())
-                        )
-                    )) {
-                    this.myInfoService.getMyInfoAccountCreateData().subscribe((data) => {
-                        if (data.responseMessage.responseCode === 6000 && data && data['objectList'] && data['objectList'][0]) {
-                            signUpService.loadCorpBizUserMyInfoData(data['objectList'][0]);
-                            this.myInfoService.isMyInfoEnabled = false;
-                            this.closeMyInfoPopup();
-                            comprehensiveApiService.getComprehensiveAutoFillCFPData().subscribe((compreData) => {
-                                if (data && data.objectList[0]) {
-                                    this.comprehensiveService.setComprehensiveSummary(data.objectList[0]);
-                                    this.getComprehensiveEnquiry = this.comprehensiveService.getComprehensiveEnquiry();
-                                    this.getComprehensiveData = this.comprehensiveService.getComprehensiveEnquiry().type;
-                                    this.loaderService.hideLoaderForced();
-                                    router.navigate([COMPREHENSIVE_ROUTE_PATHS.CFP_AUTOFILL]);
-                                }
-                            }, err => {
-                                this.loaderService.hideLoaderForced();
-                            })
-                        } else if (data.responseMessage.responseCode === 6014) {
-                            this.closeMyInfoPopup();
-                            const ref = this.modal.open(ModelWithButtonComponent, { centered: true });
-                            ref.componentInstance.errorTitle = this.loader1Modal.title;
-                            ref.componentInstance.errorMessageHTML = this.loader1Modal.message;
-                            ref.componentInstance.primaryActionLabel = this.loader1Modal.btn;
-                        } else {
-                            this.closeMyInfoPopup();
-                        }
-                    }, (error) => {
+            if (myinfoObj && myinfoObj !== '' && myinfoObj.status && myinfoObj.status === 'SUCCESS' &&
+                (this.myInfoService.getMyInfoAttributes() === this.signUpService.corpBizMyInfoAttributes.join() ||
+                    (this.disabledAttributes &&
+                        (attributeList.join() === this.myInfoService.getMyInfoAttributes())
+                    )
+                )) {
+                this.myInfoService.getMyInfoAccountCreateData().subscribe((data) => {
+                    if (data.responseMessage.responseCode === 6000 && data && data['objectList'] && data['objectList'][0]) {
+                        comprehensiveService.isCFPAutofillMyInfoEnabled = true;
+                        signUpService.loadCorpBizUserMyInfoData(data['objectList'][0]);
+                        this.myInfoService.isMyInfoEnabled = false;
                         this.closeMyInfoPopup();
-                    });
-                } else {
-                    this.myInfoService.isMyInfoEnabled = false;
+                        comprehensiveApiService.getComprehensiveAutoFillCFPData().subscribe((compreData) => {
+                            if (data && data.objectList[0]) {
+                                this.comprehensiveService.setComprehensiveSummary(data.objectList[0]);
+                                this.getComprehensiveEnquiry = this.comprehensiveService.getComprehensiveEnquiry();
+                                this.getComprehensiveData = this.comprehensiveService.getComprehensiveEnquiry().type;
+                                this.loaderService.hideLoaderForced();
+                                router.navigate([COMPREHENSIVE_ROUTE_PATHS.CFP_AUTOFILL]);
+                            }
+                        }, err => {
+                            this.loaderService.hideLoaderForced();
+                        })
+                    } else if (data.responseMessage.responseCode === 6014) {
+                        this.closeMyInfoPopup();
+                        const ref = this.modal.open(ModelWithButtonComponent, { centered: true });
+                        ref.componentInstance.errorTitle = this.loader1Modal.title;
+                        ref.componentInstance.errorMessageHTML = this.loader1Modal.message;
+                        ref.componentInstance.primaryActionLabel = this.loader1Modal.btn;
+                    } else {
+                        this.closeMyInfoPopup();
+                    }
+                }, (error) => {
                     this.closeMyInfoPopup();
-                }
+                });
+            } else {
+                this.myInfoService.isMyInfoEnabled = false;
+                this.closeMyInfoPopup();
             }
         });
     }
@@ -393,6 +392,7 @@ export class MyProfileComponent implements IPageComponent, OnInit, OnDestroy {
                     this.myInfoService.setMyInfoAttributes(attributes);
                     this.myInfoService.setMyInfoAppId(appConstants.MYINFO_CPF);
                     // this.myInfoService.goToMyInfo();
+                    this.comprehensiveService.isCFPAutofillMyInfoEnabled = true; // TO BE REMOVED LATER
                     this.router.navigate([COMPREHENSIVE_ROUTE_PATHS.CFP_AUTOFILL]);
                 }).catch((e) => {
                 });

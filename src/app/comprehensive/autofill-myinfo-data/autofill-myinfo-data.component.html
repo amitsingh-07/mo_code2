@@ -1,20 +1,8 @@
-<div class="container-fluid max-width--1024">
+<div class="container-fluid max-width--1024 comprehensive">
   <div class="back-btn hidden-lg" (click)="goBack()"></div>
   <div class="content">
     <div class="row">
-      <div class="col-lg-7 col-md-6 hidden-sm">
-        <div class="corpbiz-data-wrapper">
-          <h2 class="corpbiz-data-wrapper__title order1 sm-order2 hidden-sm">{{ 'CMP.GETTING_STARTED.CFP_AUTOFILL.TITLE'
-                        |translate}}
-          </h2>
-          <div class="desc order2 hidden-sm corpbiz-data-wrapper__sub-title">{{
-                        'CMP.GETTING_STARTED.CFP_AUTOFILL.DESCRIPTION_THREE' | translate}}</div>
-          <img class="create_account__header-icon order3 sm-order1" src="assets/images/sign-up-myinfo.svg" />
-        </div>
-      </div>
-      <div class="col-lg-5 col-md-6 corpbiz-max-width">
-        <h2 class="corpbiz-data-wrapper__title hidden-lg">{{ 'CMP.GETTING_STARTED.CFP_AUTOFILL.TITLE' | translate}}
-        </h2>
+      <div class="col-md-10">
         <div class="corpbiz-data-wrapper__description order2">
           <div class="myinfo-accordian-block">
             <div class="flex align-center">
@@ -634,7 +622,7 @@
           </div>
           <button id="nextDependentBtn" type="button" (click)="goToNext()"
             class="btn btn__footer--fixed btn-primary width100 mt20">{{
-                        'COMMON.LABEL.CONTINUE' | translate }}</button>
+                        'CMP.GETTING_STARTED.CFP_AUTOFILL.CONTINUE' | translate }}</button>
         </div>
       </div>
     </div>

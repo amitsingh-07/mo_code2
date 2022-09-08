@@ -4,7 +4,6 @@ import { Router } from '@angular/router';
 import { TranslateService } from '@ngx-translate/core';
 import { Child, CPFBalances, CPFWithdrawal, Noa } from '../../sign-up/sign-up-form-data';
 import { SignUpService } from '../../sign-up/sign-up.service';
-import { FooterService } from '../../shared/footer/footer.service';
 import { NavbarService } from '../../shared/navbar/navbar.service';
 import { COMPREHENSIVE_ROUTE_PATHS } from '../comprehensive-routes.constants';
 import { COMPREHENSIVE_CONST } from '../comprehensive-config.constants';
@@ -36,12 +35,11 @@ export class AutofillMyinfoDataComponent implements OnInit {
   constructor(
     private router: Router,
     private navbarService: NavbarService,
-    private footerService: FooterService,
     private readonly translate: TranslateService,
     private _location: Location,
     private signUpService: SignUpService,
     private myInfoService: MyInfoService
-  ) { 
+  ) {
     this.translate.use('en');
     this.translate.get('COMMON').subscribe((result: string) => {
     });
@@ -61,10 +59,7 @@ export class AutofillMyinfoDataComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    console.log('into data page')
-    this.navbarService.setNavbarVisibility(true);
-    this.navbarService.setNavbarMode(101);
-    this.footerService.setFooterVisibility(false);
+    this.navbarService.setNavbarComprehensive(true);
   }
 
   goToNext() {

@@ -64,6 +64,7 @@ export class ComprehensiveService {
   cpfPayoutAmount: number = 0;
   welcomeFlowRetirementAge: number = 0;
   welcomeFlowMyInfoData: {enquiryId: number, reportId: number};
+  isCFPAutofillMyInfoEnabled = false;
 
   constructor(
     private http: HttpClient,
@@ -1157,13 +1158,10 @@ export class ComprehensiveService {
               accessibleUrl = urlList[index];
             }
             break;
-             // 'getting-started'
+             // 'myinfo-autofill'
           case 27:
-            if (
-              !cmpSummary.comprehensiveEnquiry.enquiryId ||
-              !cmpSummary.comprehensiveEnquiry.isCFPGetStarted
-            ) {
-              accessibleUrl = COMPREHENSIVE_BASE_ROUTE;
+            if (isEditAccess && accessPage && this.isCFPAutofillMyInfoEnabled) {
+              accessibleUrl = urlList[index];
             }
             break;
         }
