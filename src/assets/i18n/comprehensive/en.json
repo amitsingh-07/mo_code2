@@ -381,7 +381,122 @@
       "DESC": "Let’s kickstart your financial plan by helping us to get to know you better.",
       "TOOL_TIP_TITLE": "Progress Tracker",
       "TOOL_TIP_DESC": "Check your progress here!",
-      "TOOL_TIP_CLOSE": "X"
+      "TOOL_TIP_CLOSE": "X",
+      "CFP_AUTOFILL": {
+        "LOADER1": {
+          "title": "Unable to proceed with the NRIC/FIN",
+          "message": "We have detected that the NRIC/FIN is already in use by another account.<strong class=\"text-bold\"> Please use your own account only.</strong><br></br>Contact us at <span class=\"email_txt\"><a target='_blank' href='mailto:enquiries@moneyowl.com.sg'>enquiries@moneyowl.com.sg</a></span> if you require any assistance.",
+          "btn": "Okay, Got It!"
+        },
+        "DISCLAIMER_MODAL": {
+          "PROCEED_BTN": "Proceed",
+          "TITLE": "Retrieve Myinfo with Singpass"
+        },
+        "MY_INFO_MODAL": {
+          "BTN": "Let’s go!",
+          "TITLE": "Retrieve Myinfo with Singpass",
+          "DESC": "Applicable to all Singpass Registered users.",
+          "OWN_ACC_TEXT": "Please use your own account only.",
+          "MY_INFO_DESC": "You will now proceed to login via MyInfo and retrieve your following details which will be used in creating your account and your financial planning with MoneyOwl.",
+          "PROCEED_QUEST": "Would you like to proceed?",
+          "MODAL_ATTR": {
+            "PERSONAL": {
+              "TITLE": "Personal",
+              "NAME_TEXT": "Principal Name",
+              "SEX_TEXT": "Sex",
+              "RACE_TEXT": "Race",
+              "DOB_TEXT": "Date of Birth",
+              "NRIC_TEXT": "NRIC/FIN",
+              "BIRTH_COUNTRY_TEXT": "Country of Birth",
+              "RESIDENCE_TEXT": "Residential Status",
+              "ADDRESS_TEXT": "Registered Address",
+              "EMAIL_TEXT": "Email Address",
+              "MOBILE_TEXT": "Mobile Number"
+            },
+            "FAMILY": {
+              "TITLE": "Family",
+              "MARITAL_TEXT": "Marital Status",
+              "SPONSORED_CHILD": {
+                "NAME": "Sponsored Children Birth records - Name",
+                "DOB_TEXT": "Sponsored Children Records - Date of Birth",
+                "GENDER_TEXT": "Sponsored Children Records - Sex",
+                "RESIDENTIAL_TEXT": "Sponsored Children Records - Residential Status",
+                "LIFE_STATUS_TEXT": "Sponsored Children Records - Life Status"
+              },
+              "CHILD": {
+                "NAME": "Children Birth records - Name",
+                "DOB_TEXT": "Children Birth records - Date of Birth",
+                "GENDER_TEXT": "Children Birth Records: Sex",
+                "RESIDENTIAL_TEXT": "Children Records - Residential Status",
+                "LIFE_STATUS_TEXT": "Children Birth Records - Life Status"
+              }
+            },
+            "EMPLOYMENT_AND_EDU": {
+              "TITLE": "Employment & Education",
+              "OCCUPATION_TEXT": "Occupation",
+              "EMPLOYER_NAME_TEXT": "Name of Employer"
+            },
+            "PROPERTY": {
+              "TITLE": "Property",
+              "OWNERSHIP_STATUS": "Ownership of Private Residential Property",
+              "HDB_TEXT": {
+                "PURCHASE_DATE_TEXT": "HDB Ownership - Date of Purchase",
+                "LOAN_TEXT": "HDB Ownership - Loan Granted",
+                "OUTSTANDING_LOAN_TEXT": "HDB Ownership - Outstanding HDB Loan Balance",
+                "MONTHLY_LOAN_TEXT": "HDB Ownership - Monthly Loan Instalment",
+                "LEASE_TEXT": "HDB Ownership – Lease Commencement Date"
+              }
+            },
+            "INCOME_BREAKDOWN": {
+              "TITLE": "Income Breakdown",
+              "EMPLOYMENT_TEXT": "Employment",
+              "TRADE_TEXT": "Trade",
+              "RENT_TEXT": "Rent",
+              "INTEREST_TEXT": "Interest"
+            },
+            "ASSESSMENT_NOTICE": {
+              "TITLE": "Notice of Assessment",
+              "ASSESSMENT_YEAR_TEXT": "Year of Assessment",
+              "TYPE_TEXT": "Type",
+              "INCOME_TEXT": "Assessable Income"
+            },
+            "CPF_ACC_BAL": {
+              "TITLE": "CPF Account Balance",
+              "ORDINARY_ACC_TEXT": "Ordinary Account (OA)",
+              "SPECIAL_ACC_TEXT": "Special Account (SA)",
+              "MEDISAFE_ACC_TEXT": "Medisave Account (MA)",
+              "RETIREMENT_ACC_TEXT": "Retirement Account (RA)"
+            },
+            "CPF_HOUSING": {
+              "TITLE": "CPF Housing Withdrawal",
+              "WITHDRAWAL_ACC_TEXT": "Principal withdrawal amount",
+              "MONTHLY_EMI_TEXT": "Monthly Installment Amount",
+              "INTEREST_TEXT": "Acrued Interest Amount",
+              "CPF_AMOUNT_TEXT": "Total Amount of CPF Used for Property",
+              "WITHDRAWAL_ADDRESS": "CPF Housing Withdrawal Address"
+            },
+            "VEHICLES": {
+              "TITLE": "Vehicles & Driving",
+              "REGISTRATION_DATE_TEXT": "First Registration Date (LTA)",
+              "EXPIRY_DATE_TEXT": "COE expiry date",
+              "MARKET_VALUE_TEXT": "Open Market Value (LTA)",
+              "VEHICLE_STATUS_TEXT": "Vehicle Status"
+            }
+          },
+          "ITERATABLE_KEYS": {
+            "CHILD": "Child",
+            "SPONSORED_CHILD": "Sponsored Child",
+            "HDB_OWNERSHIP": "HDB Ownership",
+            "WITHDRAWAL": "Withdrawal",
+            "VEHICLE": "Vehicle"
+          }
+        },
+        "TITLE": "Create Your Account",
+        "DESCRIPTION_THREE": "Please fill in your details below.",
+        "CORP_BIZ_SUCCESS_MSG": "Use these details from Myinfo to get started on financial planning with MoneyOwl.",
+        "CORP_BIZ_STEP_CONTINUE_TXT": "This step is required to continue.",
+        "CORP_BIZ_ENSURE_TXT": "We will ensure that your information is safe with us. "
+    }
     },
     "FORM_LABEL": {
       "NAME": "Name",

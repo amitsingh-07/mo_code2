@@ -316,5 +316,38 @@ export const COMPREHENSIVE_CONST = {
             }
         }
     },
-    JOURNEY_TYPE: 'journeyType'
+    JOURNEY_TYPE: 'journeyType',
+    TAX_CLEARANCE: {
+        YES: {
+            VALUE: 'Y',
+            DESC: '(Clearance)'
+        }
+    },
+    EXCLUDABLE_CORP_BIZ_MY_INFO_ATTRIBUTES: {
+        CPF_HOUSING_WITHDRAWAL: 'cpfhousingwithdrawal',
+        VEHICLES: 'vehicles'
+    },
+    MY_INFO_ATTRIBUTES: [
+        'residentialstatus',
+        'cpfbalances',
+        'cpfhousingwithdrawal',
+        'noa',
+        'hdbownership.dateofpurchase',
+        'hdbownership.monthlyloaninstalment',
+        'hdbownership.loangranted',
+        'hdbownership.outstandingloanbalance',
+        'vehicles.coeexpirydate',
+        'vehicles.openmarketvalue',
+        'vehicles.firstregistrationdate',
+        'vehicles.status',
+        'childrenbirthrecords.name',
+        'childrenbirthrecords.sex',
+        'childrenbirthrecords.dob',
+        'childrenbirthrecords.lifestatus',
+        'sponsoredchildrenrecords.name',
+        'sponsoredchildrenrecords.sex',
+        'sponsoredchildrenrecords.dob',
+        'sponsoredchildrenrecords.lifestatus',
+        'sponsoredchildrenrecords.residentialstatus'
+    ]
 };

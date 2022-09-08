@@ -205,5 +205,11 @@ export class ComprehensiveApiService {
         .pipe(catchError((error: HttpErrorResponse) => this.helperService.handleError(error)));
     }
     
+    // RELEASE 10.4 API INTEGRATION
+    getComprehensiveAutoFillCFPData() {
+        return this.http
+            .get(apiConstants.endpoint.comprehensive.autofillCFPData)
+            .pipe(catchError((error: HttpErrorResponse) => this.helperService.handleError(error)));
+    }
 
 }

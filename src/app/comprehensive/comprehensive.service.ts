@@ -2581,5 +2581,4 @@ export class ComprehensiveService {
   getSpecialPromoCodeStatus() {
     return this.comprehensiveFormData.comprehensiveDetails.comprehensiveEnquiry.specialPromoCode;
   }
-
 }
