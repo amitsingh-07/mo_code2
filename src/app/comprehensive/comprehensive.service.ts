@@ -1149,6 +1149,15 @@ export class ComprehensiveService {
               accessibleUrl = urlList[index];
             }
             break;
+             // 'getting-started'
+          case 27:
+            if (
+              !cmpSummary.comprehensiveEnquiry.enquiryId ||
+              !cmpSummary.comprehensiveEnquiry.isCFPGetStarted
+            ) {
+              accessibleUrl = COMPREHENSIVE_BASE_ROUTE;
+            }
+            break;
         }
       }
     }
