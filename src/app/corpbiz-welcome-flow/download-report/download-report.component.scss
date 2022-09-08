@@ -59,6 +59,17 @@ app-download-report {
           color: $white-color;
           margin: 0px auto 20px;
         }
+        .myinfo_assumption_desc{
+          margin-top: 20px;
+          span{
+            font-family: $muli-bold;
+            text-decoration: underline;
+            cursor: pointer;
+          }
+          @include allmobiles{
+            text-align: left;
+          }
+        }
         .title-box {
           max-width: 410px;
           border-radius: 6px;
@@ -67,6 +78,9 @@ app-download-report {
           color: $black-color;
           margin: 30px auto 16px;
           box-shadow: 0px 14px 10px rgba(0, 0, 0, 0.2) !important;
+          @include allmobiles{
+            margin-top: 20px;
+          }
           .content-desc{
             display: flex;
             align-items: center;

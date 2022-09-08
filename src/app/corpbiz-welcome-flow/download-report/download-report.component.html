@@ -10,13 +10,14 @@
           <div class="col-12 intro-block__content__desc">
             <div class="intro-block__content__heading" id="introHeading">{{'DOWNLOAD_REPORT.DESC' | translate}}</div>
             <button type="button" class="btn btn-orange" (click)="downloadComprehensiveReport()" id="intro-continue"><span>{{'DOWNLOAD_REPORT.BTN_TEXT' | translate}}</span></button>
+            <div class="myinfo_assumption_desc">{{'DOWNLOAD_REPORT.MYINFO_TEXT_1'| translate}}<span (click)="openAssumptionsModal()">{{'DOWNLOAD_REPORT.MYINFO_TEXT_ASSUMPTIONS'| translate}}</span>{{'DOWNLOAD_REPORT.MYINFO_TEXT_2'| translate}}</div>
             <div class="title-box">
               <div class="content-desc">
                 <div><img src="assets/images/welcome-journey/owl-talk-header.svg"></div>
                 <div class="title" id="introTitle">{{'DOWNLOAD_REPORT.TITLE' | translate}}</div>
               </div>
               <hr>
-              <div class="sub-title" id="introSubTitle">{{'DOWNLOAD_REPORT.MESSAGE' | translate}}</div>
+              <div class="sub-title" id="introSubTitle" [innerHtml]="'DOWNLOAD_REPORT.MESSAGE' | translate"></div>
             </div>
           </div>
         </div>
