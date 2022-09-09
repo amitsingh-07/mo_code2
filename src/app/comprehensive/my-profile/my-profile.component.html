@@ -140,7 +140,7 @@
         <div class="myinfo-desc">{{ 'CMP.MY_PROFILE.MYINFO_DESC' |translate }}</div>
         <div *ngIf="myinfoRetrievelDate" class="retrieval-date">{{ 'CMP.MY_PROFILE.RETRIEVAL_DATE' |translate }}<span>{{myinfoRetrievelDate}}</span></div>
       <div class="auto-fill-cpf">
-        <img class="auto-fill-logo" src="assets/images/retrieve-singpass-logo.svg">
+        <img class="auto-fill-logo" src="assets/images/retrieve-singpass-logo.svg" (click)="openDisclaimerModal()">
       </div>
     </div>
     <!--Footer CTA-->

@@ -91,6 +91,7 @@ import { ReferralRewardDetailsComponent } from './components/referral-reward-det
 import { BankDetailsComponent } from './components/bank-details/bank-details.component';
 import { UploadDocComponent } from './components/upload-document/upload-document.component';
 import { CurrencyEditorPipe } from './Pipes/currency-editor.pipe';
+import { MyinfoModalComponent } from './modal/myinfo-modal/myinfo-modal.component';
 
 export function createTranslateLoader(http: HttpClient) {
   return new MultiTranslateHttpLoader(
@@ -160,7 +161,8 @@ export function createTranslateLoader(http: HttpClient) {
     ReferralRewardDetailsComponent,
     BankDetailsComponent,    
     UploadDocComponent,
-    CurrencyEditorPipe
+    CurrencyEditorPipe,
+    MyinfoModalComponent
   ],
   declarations: [
     CurrencyInputDirective,
@@ -221,7 +223,8 @@ export function createTranslateLoader(http: HttpClient) {
     WiseIncomeFundComponent,
     ReferralRewardDetailsComponent,
     BankDetailsComponent,    
-    UploadDocComponent, CurrencyEditorPipe
+    UploadDocComponent, CurrencyEditorPipe,
+    MyinfoModalComponent
   ],
   entryComponents: [
     EditInvestmentModalComponent,
