@@ -1,223 +1,203 @@
 @import '../../../variables';
 @import '../../../mixins';
-app-introduction{
-.container-fluid {
-  background-color: $white-color;
-  padding: 87px 105px 65px;
-  max-width: 550px;
-  min-height: calc(100vh - 84px);
 
-  @include allmobiles {
-    padding: 27px 18px 56px !important;
-    border-radius: 0;
+app-introduction {
+  .container-fluid {
+    background-color: $white-color;
+    padding: 87px 105px 65px;
+    max-width: 550px;
+    min-height: calc(100vh - 84px);
+
+    @include allmobiles {
+      padding: 27px 18px 56px !important;
+      border-radius: 0;
+    }
   }
-}
 
-.content {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
+  .content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
 
-.will-instructions {
-  font-family: $muli-regular;
-  font-size: 16px;
-  font-weight: normal;
-  font-stretch: normal;
-  font-style: normal;
-  line-height: 1.31;
-  letter-spacing: -0.16px;
-  color: $dark-grey-color;
-}
+  .will-instructions {
+    font-family: $muli-regular;
+    font-size: 16px;
+    font-weight: normal;
+    font-stretch: normal;
+    font-style: normal;
+    line-height: 1.31;
+    letter-spacing: -0.16px;
+    color: $dark-grey-color;
+  }
 
-.mt-25 {
-  margin-top: 25px;
-}
+  .mt-25 {
+    margin-top: 25px;
+  }
 
-.owl-icon {
-  width: 115px;
-  height: 116px;
-}
+  .owl-icon {
+    width: 115px;
+    height: 116px;
+  }
 
-.will-writing-txt {
-  font-family: $muli-bold;
-  font-size: 18px;
-  font-stretch: normal;
-  font-style: normal;
-  line-height: normal;
-  letter-spacing: -0.18px;
-  color: $black-color;
-  margin-top: 38px;
-}
+  .will-writing-txt {
+    font-family: $muli-bold;
+    font-size: 18px;
+    font-stretch: normal;
+    font-style: normal;
+    line-height: normal;
+    letter-spacing: -0.18px;
+    color: $black-color;
+    margin-top: 38px;
+  }
 
-.limited-time {
-  font-family: $muli-regular;
-  font-size: 16px;
-  font-weight: normal;
-  font-stretch: normal;
-  font-style: normal;
-  line-height: 1.25;
-  letter-spacing: -0.16px;
-  color: $limited-text;
-  margin-top: 5px;
-}
+  .limited-time {
+    font-family: $muli-regular;
+    font-size: 16px;
+    font-weight: normal;
+    font-stretch: normal;
+    font-style: normal;
+    line-height: 1.25;
+    letter-spacing: -0.16px;
+    color: $limited-text;
+    margin-top: 5px;
+  }
 
-.full-width {
-  width: 100%;
-}
+  .full-width {
+    width: 100%;
+  }
 
-.free-tag {
-  display: flex;
-  padding-top: 6px;
+  .free-tag {
+    display: flex;
+    padding-top: 6px;
 
-  span {
+    span {
+      font-family: $muli-bold;
+      font-size: 16px;
+      font-stretch: normal;
+      font-style: normal;
+      line-height: normal;
+      letter-spacing: -0.25px;
+      color: $black-color;
+      text-decoration: line-through;
+      padding-left: 8px;
+    }
+
+    @include max360 {
+      font-size: 13px;
+    }
+
+    @include iphoneX {
+      font-size: 13px;
+    }
+
+    @include iphone6 {
+      font-size: 13px;
+    }
+  }
+
+  .promocode-entry {
+    position: relative;
+    text-align: center;
+    width: 280px;
+    margin-top: 40px;
+  }
+
+  .promocode-entry:before {
+    content: "";
+    display: block;
+    border-top: solid 1px $teal-color;
+    width: 100%;
+    height: 1px;
+    position: absolute;
+    top: 50%;
+    z-index: 0;
+  }
+
+  .promocode-entry span {
     font-family: $muli-bold;
     font-size: 16px;
     font-stretch: normal;
     font-style: normal;
     line-height: normal;
-    letter-spacing: -0.25px;
-    color: $black-color;
-    text-decoration: line-through;
-    padding-left: 8px;
-  }
-
-  @include max360 {
-    font-size: 13px;
-  }
-
-  @include iphoneX {
-    font-size: 13px;
-  }
-
-  @include iphone6 {
-    font-size: 13px;
-  }
-}
-
-.promocode-entry {
-  position: relative;
-  text-align: center;
-  width: 280px;
-  margin-top: 40px;
-}
-
-.promocode-entry:before {
-  content: "";
-  display: block;
-  border-top: solid 1px $teal-color;
-  width: 100%;
-  height: 1px;
-  position: absolute;
-  top: 50%;
-  z-index: 0;
-}
-
-.promocode-entry span {
-  font-family: $muli-bold;
-  font-size: 16px;
-  font-stretch: normal;
-  font-style: normal;
-  line-height: normal;
-  letter-spacing: -0.15px;
-  text-align: center;
-  color: $teal-color;
-  background: $white-color;
-  padding: 0 22px;
-  position: relative;
-  z-index: 1;
-}
-
-.no-promo {
-    font-family: $muli-regular;
-    font-size: 14px;
-    font-weight: normal;
-    font-stretch: normal;
-    font-style: normal;
-    line-height: 1.71;
-    letter-spacing: -0.26px;
+    letter-spacing: -0.15px;
     text-align: center;
-    color: #005960;
-    margin-top: 10px;
-
-    span {
-        font-family: $muli-bold;
-        letter-spacing: -0.25px;
-    }
-}
-
-.promocode {
-  margin-top: 18px;
-  padding: 0 30px;
-
-  @include allmobiles {
-    margin-top: 16px;
-    padding: 0;
-    margin-bottom: 70px;
+    color: $teal-color;
+    background: $white-color;
+    padding: 0 22px;
+    position: relative;
+    z-index: 1;
   }
 
-  .offer-code {
-    input {
-      border-radius: 6px;
-      font-family: $muli-bold;
-      font-size: 16px;
-      letter-spacing: -0.2px;
-      text-align: center;
-      color: $dark-teal-color;
-      border: solid 1px $spindle-color;
-      padding: 18px 35px;
-      width: 247px;
-      height: 54px;
+  .promocode {
+    margin-top: 18px;
+    padding: 0 30px;
+
+    @include allmobiles {
+      margin-top: 16px;
+      padding: 0;
+      margin-bottom: 70px;
     }
 
-    input::placeholder {
-      font-family: $muli-light;
-      font-size: 16px;
-      font-weight: 300;
-      font-style: italic;
-      color: $silver-chalice-color !important;
-    }
-
-    #intro-no-promocode {
-      padding-top: 22px;
-      line-height: normal;
-      padding-bottom: 10px;
-    }
-
-    .getOneNow {
+    .offer-code {
+      input {
+        border-radius: 6px;
         font-family: $muli-bold;
-        cursor: pointer;
-        text-decoration: underline;
-    }
-  }
+        font-size: 16px;
+        letter-spacing: -0.2px;
+        text-align: center;
+        color: $dark-teal-color;
+        border: solid 1px $spindle-color;
+        padding: 18px 35px;
+        width: 247px;
+        height: 54px;
+      }
 
-  .btn {
+      input::placeholder {
+        font-family: $muli-light;
+        font-size: 16px;
+        font-weight: 300;
+        font-style: italic;
+        color: $silver-chalice-color  !important;
+      }
+
+      #intro-no-promocode {
+        padding-top: 22px;
+        line-height: normal;
+        padding-bottom: 10px;
+      }
+
+    }
+
+    .btn {
       margin-top: 30px !important;
+    }
+
+    .btn:disabled {
+      box-shadow: none !important;
+      background-color: $btn-disabled;
+      color: $white-color;
+    }
   }
 
-  .btn:disabled {
-    box-shadow: none !important;
-    background-color: $btn-disabled;
-    color: $white-color;
+  ul {
+    width: 100%;
+    padding: 0;
   }
-}
 
-ul {
-  width: 100%;
-  padding: 0;
-}
-li{
-  list-style: none;
-}
-li::before {
-  content: '';
-  background-color: $teal-color;
-  border-radius: 50%;
-  display: inline-block;
-  width: 6px;
-  height: 6px;
-  padding: 0 ;
-  vertical-align: middle;
-  margin-right: 15px;
-}
+  li {
+    list-style: none;
+  }
+
+  li::before {
+    content: '';
+    background-color: $teal-color;
+    border-radius: 50%;
+    display: inline-block;
+    width: 6px;
+    height: 6px;
+    padding: 0;
+    vertical-align: middle;
+    margin-right: 15px;
+  }
 }
