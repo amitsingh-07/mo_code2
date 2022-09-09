@@ -66,6 +66,7 @@ export class MyProfileComponent implements IPageComponent, OnInit, OnDestroy {
     disabledAttributes: any;
     loader1Modal: any
     myinfoRetrievelDate: any;
+    myInfoModalBtn: string;
 
     @HostListener('window:popstate', ['$event'])
     onPopState(event) {
@@ -119,6 +120,9 @@ export class MyProfileComponent implements IPageComponent, OnInit, OnDestroy {
                 this.loader1Modal = this.translate.instant(
                     'CMP.GETTING_STARTED.CFP_AUTOFILL.LOADER1'
                 );
+                this.myInfoModalBtn = this.translate.instant(
+                    'CMP.GETTING_STARTED.CFP_AUTOFILL.MY_INFO_MODAL.MODAL_ATTR.MODAL_BTN'
+                );
                 this.setPageTitle(this.pageTitle);
             });
         });
@@ -144,8 +148,8 @@ export class MyProfileComponent implements IPageComponent, OnInit, OnDestroy {
                         this.myInfoService.isMyInfoEnabled = false;
                         this.closeMyInfoPopup();
                         comprehensiveApiService.getComprehensiveAutoFillCFPData().subscribe((compreData) => {
-                            if (data && data.objectList[0]) {
-                                this.comprehensiveService.setComprehensiveSummary(data.objectList[0]);
+                            if (compreData && compreData.objectList[0]) {
+                                this.comprehensiveService.setComprehensiveSummary(compreData.objectList[0]);
                                 this.getComprehensiveEnquiry = this.comprehensiveService.getComprehensiveEnquiry();
                                 this.getComprehensiveData = this.comprehensiveService.getComprehensiveEnquiry().type;
                                 this.loaderService.hideLoaderForced();
@@ -374,14 +378,15 @@ export class MyProfileComponent implements IPageComponent, OnInit, OnDestroy {
         ref.componentInstance.errorMessage = this.translate.instant('CMP.GETTING_STARTED.CFP_AUTOFILL.DISCLAIMER_MODAL.DESC');
         ref.componentInstance.primaryActionLabel = this.translate.instant('CMP.GETTING_STARTED.CFP_AUTOFILL.DISCLAIMER_MODAL.PROCEED_BTN');
         ref.componentInstance.primaryAction.subscribe(() => {
-            this.openModal();
+            this.openMyInfoModal();
         });
         ref.componentInstance.disclaimerMessage = this.translate.instant('CMP.GETTING_STARTED.CFP_AUTOFILL.DISCLAIMER_MODAL.DISCLAIMER_TEXT');
     }
-    openModal() {
+    openMyInfoModal() {
         if (!this.viewMode) {
             const ref = this.modal.open(MyinfoModalComponent, { centered: true });
-            ref.componentInstance.primaryActionLabel = `Let's go`;
+            ref.componentInstance.primaryActionLabel = this.myInfoModalBtn;
+            ref.componentInstance.unAccessedAttributes = COMPREHENSIVE_CONST.UNACCESSED_ATTRIBUTES;
             ref.componentInstance.myInfo = true;
             ref.componentInstance.myInfoEnableFlags.subscribe((attributesFlags: any) => {
                 ref.result.then(() => {
@@ -393,9 +398,7 @@ export class MyProfileComponent implements IPageComponent, OnInit, OnDestroy {
                     }
                     this.myInfoService.setMyInfoAttributes(attributes);
                     this.myInfoService.setMyInfoAppId(appConstants.MYINFO_CPF);
-                    // this.myInfoService.goToMyInfo();
-                    this.comprehensiveService.isCFPAutofillMyInfoEnabled = true; // TO BE REMOVED LATER
-                    this.router.navigate([COMPREHENSIVE_ROUTE_PATHS.CFP_AUTOFILL]);
+                    this.myInfoService.goToMyInfo();
                 }).catch((e) => {
                 });
             });

@@ -327,6 +327,7 @@ export const COMPREHENSIVE_CONST = {
         CPF_HOUSING_WITHDRAWAL: 'cpfhousingwithdrawal',
         VEHICLES: 'vehicles'
     },
+    UNACCESSED_ATTRIBUTES: ['name', 'sex', 'dob'],
     MY_INFO_ATTRIBUTES: [
         'residentialstatus',
         'cpfbalances',

@@ -207,8 +207,9 @@ export class ComprehensiveApiService {
     
     // RELEASE 10.4 API INTEGRATION
     getComprehensiveAutoFillCFPData() {
+        const sessionId = { sessionId: this.authService.getSessionId() };
         return this.http
-            .get(apiConstants.endpoint.comprehensive.autofillCFPData)
+            .post(apiConstants.endpoint.comprehensive.autofillCFPData, sessionId)
             .pipe(catchError((error: HttpErrorResponse) => this.helperService.handleError(error)));
     }
 

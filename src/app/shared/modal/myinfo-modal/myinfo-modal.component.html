@@ -24,10 +24,13 @@
             </ng-template>
             <ng-template ngbPanelContent>
               <div class="myinfo-data-content">
-                <div>{{'MY_INFO_FIELDS.MY_INFO_MODAL.MODAL_ATTR.PERSONAL.NAME_TEXT' | translate}}
+                <div *ngIf="!(unAccessedAttributes.length > 0 && unAccessedAttributes.includes('name'))">
+                  {{'MY_INFO_FIELDS.MY_INFO_MODAL.MODAL_ATTR.PERSONAL.NAME_TEXT' | translate}}
                 </div>
-                <div>{{'MY_INFO_FIELDS.MY_INFO_MODAL.MODAL_ATTR.PERSONAL.SEX_TEXT' | translate}}</div>
-                <div>{{'MY_INFO_FIELDS.MY_INFO_MODAL.MODAL_ATTR.PERSONAL.DOB_TEXT' | translate}}</div>
+                <div *ngIf="!(unAccessedAttributes.length > 0 && unAccessedAttributes.includes('sex'))">
+                  {{'MY_INFO_FIELDS.MY_INFO_MODAL.MODAL_ATTR.PERSONAL.SEX_TEXT' | translate}}</div>
+                <div *ngIf="!(unAccessedAttributes.length > 0 && unAccessedAttributes.includes('dob'))">
+                  {{'MY_INFO_FIELDS.MY_INFO_MODAL.MODAL_ATTR.PERSONAL.DOB_TEXT' | translate}}</div>
                 <div>{{'MY_INFO_FIELDS.MY_INFO_MODAL.MODAL_ATTR.PERSONAL.NRIC_TEXT' | translate}}
                 </div>
                 <div>{{'MY_INFO_FIELDS.MY_INFO_MODAL.MODAL_ATTR.PERSONAL.RESIDENCE_TEXT' | translate}}

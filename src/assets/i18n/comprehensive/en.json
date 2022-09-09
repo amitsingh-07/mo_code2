@@ -402,6 +402,7 @@
           "MY_INFO_DESC": "You will now proceed to login via MyInfo and retrieve your following details which will be used in creating your account and your financial planning with MoneyOwl.",
           "PROCEED_QUEST": "Would you like to proceed?",
           "MODAL_ATTR": {
+            "MODAL_BTN": "Let's go",
             "PERSONAL": {
               "TITLE": "Personal",
               "NAME_TEXT": "Principal Name",
