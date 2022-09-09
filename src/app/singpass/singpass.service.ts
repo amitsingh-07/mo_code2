@@ -45,7 +45,7 @@ export class SingpassService {
       journeyType: journeyType,
       code: code, 
       state: state, 
-      redirect_uri: environment.apiBaseUrl + SIGN_UP_ROUTE_PATHS.SINGPASS_REDIRECT_URL
+      redirect_uri: environment.singpassBaseUrl + SIGN_UP_ROUTE_PATHS.SINGPASS_REDIRECT_URL
     };
     return this.apiService.loginSingpass(payload);
   }
@@ -58,7 +58,7 @@ export class SingpassService {
         'qr_wrapper',
         {
           clientId: environment.singpassClientId,
-          redirectUri: environment.apiBaseUrl + SIGN_UP_ROUTE_PATHS.SINGPASS_REDIRECT_URL,
+          redirectUri: environment.singpassBaseUrl + SIGN_UP_ROUTE_PATHS.SINGPASS_REDIRECT_URL,
           scope: 'openid',
           responseType: 'code'
         },
