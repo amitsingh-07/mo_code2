@@ -1,4 +1,3 @@
-import { Location } from '@angular/common';
 import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { Router } from '@angular/router';
 import { TranslateService } from '@ngx-translate/core';
@@ -36,7 +35,6 @@ export class AutofillMyinfoDataComponent implements OnInit {
     private router: Router,
     private navbarService: NavbarService,
     private readonly translate: TranslateService,
-    private _location: Location,
     private signUpService: SignUpService,
     private myInfoService: MyInfoService
   ) {
@@ -64,9 +62,5 @@ export class AutofillMyinfoDataComponent implements OnInit {
 
   goToNext() {
     this.router.navigate([COMPREHENSIVE_ROUTE_PATHS.GETTING_STARTED]);
-  }
-
-  goBack() {
-    this._location.back();
   }
 }
