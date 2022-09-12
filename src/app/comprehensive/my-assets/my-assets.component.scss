@@ -146,28 +146,6 @@ $grey-color-notes: #9f9f9f;
 .mb-10 {
   padding-bottom: 100px;
 }
-
-.auto-fill-cpf {
-  text-align: center;
-  display: flex;
-  height: 48px;
-  display: flex;
-  justify-content: flex-end;
-  @include allmobiles {
-    margin: 35px 0 30px;
-    height: auto;
-    width: 100%;
-  }
-}
-
-.auto-fill-logo {
-  height: auto;
-  object-fit: contain;
-  cursor: pointer;
-  @include allmobiles {
-   width: 100%;
-  }
-}
 .retirement-sum {
   position: relative;
   padding-right: 20px;

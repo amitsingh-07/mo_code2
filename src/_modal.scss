@@ -1466,3 +1466,39 @@ body.modal-open::-webkit-scrollbar {
   }
 }
  
+ 
+.myinfo-disclaimer-modal{
+  .modal-body{
+    width: 450px;
+    margin: 0 auto !important;
+    @include allmobiles{
+      width: 100%;
+    }
+    .modal-body-title{
+      margin-bottom: 20px;
+      @include allmobiles{
+        margin-bottom: 14px;
+      }
+    }
+    .modal-body-message{
+      p{
+        &:last-child{
+          margin-bottom: 0;
+        }
+      }
+    }
+    .action-button{
+      width: 335px;
+      margin: 13px 40px 0;
+      @include allmobiles{
+        width: 100%;
+        margin: 5px 0 0;
+      }
+    }
+    .modal-disclaimer{
+      font-size: 14px;
+      margin-top: 20px;
+      line-height: 22px;
+    }
+  }
+}

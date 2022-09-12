@@ -73,7 +73,8 @@
                     <input id="tncCheckboxFlag" name="tncCheckboxFlag" formControlName="tncCheckboxFlag" type="checkbox"
                         class="field checkbox" #tncChkBox>
                     <label for="tncCheckboxFlag">
-                        <div class="title">{{ 'PORTFOLIO_RECOMMENDATION.I_AGREE' | translate}} <a (click)="showTncModal()">{{ 'PORTFOLIO_RECOMMENDATION.TNC' | translate}}</a></div>
+                       <span id="iAgree" class="title">{{ 'PORTFOLIO_RECOMMENDATION.I_AGREE' | translate}}</span>
+                       <span id="tAndC" class="show-terms" (click)="showTncModal()">{{ 'PORTFOLIO_RECOMMENDATION.TNC' | translate}}</span>
                     </label>
                 </div>
             </form>

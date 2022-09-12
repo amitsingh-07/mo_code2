@@ -1,41 +1,40 @@
 <app-page-title [pageTitle]="pageTitle"></app-page-title>
 <div class="container-fluid">
-    <form id="promoCodeForm" name="promoCodeForm" [formGroup]="promoCodeForm" id="promoCodeFrm">
-      <div class="content">
-          <img class="owl-icon" src="assets/images/createAccount-icon.svg">
-          <div class="will-instructions mt-25" innerHTML="{{'WILL_WRITING.INTRODUCTION.INSTRUCTIONS_1' | translate}}"></div>
-          <ul class="will-instructions">
-            <li>{{'WILL_WRITING.INTRODUCTION.REQUIREMENT_1' | translate}}</li>
-            <li>{{'WILL_WRITING.INTRODUCTION.REQUIREMENT_2' | translate}}</li>
-          </ul>
-          <div class="will-instructions"><p innerHTML="{{'WILL_WRITING.INTRODUCTION.INSTRUCTIONS_2' | translate}}"></p></div>
-          <div class="will-instructions">{{'WILL_WRITING.INTRODUCTION.INSTRUCTIONS_3' | translate}}</div>
-          <div class="full-width">
-            <div class="will-writing-txt">{{'WILL_WRITING.INTRODUCTION.WILL_WRITING' | translate}}</div>
-            <div class="free-tag">
-              <img src="assets/images/comprehensive/free-tag.svg">
-              <span>{{'WILL_WRITING.INTRODUCTION.WILL_PRICE' | translate}}</span>
-            </div>
-            <div class="limited-time">{{'WILL_WRITING.INTRODUCTION.LIMITED_TIME' | translate}}</div>
-          </div>
-          <div class="promocode-entry"><span>{{'WILL_WRITING.INTRODUCTION.ENTER_PROMO_CODE' | translate}}</span></div>
-          <div class="promocode">
-            <div name="promocodeForm">
-              <div class="offer-code">
-                <div>
-                  <input type="text" #promoCode formControlName="promoCode" placeholder="{{'WILL_WRITING.INTRODUCTION.INPUT_PLACEHOLDER' | translate}}"
-                    id="intro-promo-text-field" />
-                </div>
-                <div class="no-promo">
-                  {{ 'WILL_WRITING.INTRODUCTION.NO_PROMOCODE' | translate}}
-                  <span id="intro-get-now" (click)="getPromoCode()" class='getOneNow'>{{ 'WILL_WRITING.INTRODUCTION.GET_NOW' | translate}}</span>
-                </div>
-              </div>
-              <button type="button" [disabled]="!promoCodeForm.valid || isDisabled" (click)="save(promoCodeForm)"
-                class="btn btn__footer--fixed btn-primary with-white-bg width100"
-                id="intro-continue">{{ 'WILL_WRITING.INTRODUCTION.GET_STARTED' | translate}}</button>
-            </div>
-          </div>
+  <form id="promoCodeForm" name="promoCodeForm" [formGroup]="promoCodeForm" id="promoCodeFrm">
+    <div class="content">
+      <img class="owl-icon" src="assets/images/createAccount-icon.svg">
+      <div class="will-instructions mt-25" innerHTML="{{'WILL_WRITING.INTRODUCTION.INSTRUCTIONS_1' | translate}}"></div>
+      <ul class="will-instructions">
+        <li>{{'WILL_WRITING.INTRODUCTION.REQUIREMENT_1' | translate}}</li>
+        <li>{{'WILL_WRITING.INTRODUCTION.REQUIREMENT_2' | translate}}</li>
+      </ul>
+      <div class="will-instructions">
+        <p innerHTML="{{'WILL_WRITING.INTRODUCTION.INSTRUCTIONS_2' | translate}}"></p>
       </div>
-    </form>
+      <div class="will-instructions">{{'WILL_WRITING.INTRODUCTION.INSTRUCTIONS_3' | translate}}</div>
+      <div class="full-width">
+        <div class="will-writing-txt">{{'WILL_WRITING.INTRODUCTION.WILL_WRITING' | translate}}</div>
+        <div class="free-tag">
+          <img src="assets/images/comprehensive/free-tag.svg">
+          <span>{{'WILL_WRITING.INTRODUCTION.WILL_PRICE' | translate}}</span>
+        </div>
+        <div class="limited-time">{{'WILL_WRITING.INTRODUCTION.LIMITED_TIME' | translate}}</div>
+      </div>
+      <div class="promocode-entry"><span>{{'WILL_WRITING.INTRODUCTION.ENTER_PROMO_CODE' | translate}}</span></div>
+      <div class="promocode">
+        <div name="promocodeForm">
+          <div class="offer-code">
+            <div>
+              <input type="text" #promoCode formControlName="promoCode"
+                placeholder="{{'WILL_WRITING.INTRODUCTION.INPUT_PLACEHOLDER' | translate}}"
+                id="intro-promo-text-field" />
+            </div>
+          </div>
+          <button type="button" [disabled]="!promoCodeForm.valid || isDisabled" (click)="save(promoCodeForm)"
+            class="btn btn__footer--fixed btn-primary with-white-bg width100" id="intro-continue">{{
+            'WILL_WRITING.INTRODUCTION.GET_STARTED' | translate}}</button>
+        </div>
+      </div>
+    </div>
+  </form>
 </div>
