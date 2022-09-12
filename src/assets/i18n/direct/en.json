@@ -263,8 +263,12 @@
           },
           "ENQUIRY": {
             "LABEL": "Any other enquiries"
+          },
+          "CONSENT_CHECKBOX": {
+            "LABEL": "I consent to receive marketing materials from MoneyOwl and partners of MoneyOwl"
           }
-        }
+        },
+        "CONSENT_INFO": "By submitting this form, I give my consent for MoneyOwl to contact me with regard to this enquiry"
       }
    
 
