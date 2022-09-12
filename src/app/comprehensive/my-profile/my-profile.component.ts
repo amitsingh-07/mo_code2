@@ -130,7 +130,7 @@ export class MyProfileComponent implements IPageComponent, OnInit, OnDestroy {
         this.viewMode = this.comprehensiveService.getViewableMode();
 
         this.myinfoChangeListener = this.myInfoService.changeListener.subscribe((myinfoObj: any) => {
-            let attributeList = this.signUpService.corpBizMyInfoAttributes;
+            let attributeList = comprehensiveService.cfpAutofillMyInfoAttributes;
             if (this.disabledAttributes) {
                 attributeList = this.removeMyInfoAttributes(this.disabledAttributes.cpfHousingFlag, COMPREHENSIVE_CONST.EXCLUDABLE_CORP_BIZ_MY_INFO_ATTRIBUTES.CPF_HOUSING_WITHDRAWAL, attributeList);
                 attributeList = this.removeMyInfoAttributes(this.disabledAttributes.vehicleFlag, COMPREHENSIVE_CONST.EXCLUDABLE_CORP_BIZ_MY_INFO_ATTRIBUTES.VEHICLES, attributeList);

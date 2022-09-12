@@ -65,6 +65,7 @@ export class ComprehensiveService {
   welcomeFlowRetirementAge: number = 0;
   welcomeFlowMyInfoData: {enquiryId: number, reportId: number};
   isCFPAutofillMyInfoEnabled = false;
+  cfpAutofillMyInfoAttributes = COMPREHENSIVE_CONST.MY_INFO_ATTRIBUTES;
 
   constructor(
     private http: HttpClient,
