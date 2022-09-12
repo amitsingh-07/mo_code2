@@ -59,6 +59,8 @@ export interface IMyProfile {
     ngbDob: any;
     dobUpdateable: boolean;
     enquiryId: number;
+    email: string;
+    mobileNumber: string;
 }
 
 export interface IDependantDetail {
