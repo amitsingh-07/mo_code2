@@ -1441,6 +1441,31 @@ body.modal-open::-webkit-scrollbar {
     background-size: cover !important;
   }
 }
+
+.assumptions-modal{
+  .modal-header{
+    display: none;
+  }
+  .modal-body-title{
+    margin-bottom: 20px;
+  }
+  .modal-body-message{
+    letter-spacing: -0.15px;
+    line-height: 24px;
+    div{
+      font-size: 18px;
+      font-family: $muli-semi-bold;
+      margin-bottom: 5px;
+      color: $teal-color;
+    }
+    p{
+      &:last-child{
+        margin-bottom: 0;
+      }
+    }
+  }
+}
+ 
  
 .myinfo-disclaimer-modal{
   .modal-body{
