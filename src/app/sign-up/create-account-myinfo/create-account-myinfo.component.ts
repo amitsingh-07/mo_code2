@@ -15,7 +15,7 @@ import { SIGN_UP_CONFIG } from '../sign-up.constant';
 import { Util } from '../../shared/utils/util';
 import { AuthenticationService } from '../../shared/http/auth/authentication.service';
 import { AppService } from './../../app.service';
-import { appConstants } from 'src/app/app.constants';
+import { appConstants } from './../../app.constants';
 
 @Component({
   selector: 'app-create-account-myinfo',
