@@ -249,8 +249,9 @@ app-confirm-portfolio {
         font-size: 14px;
         line-height: normal;
         letter-spacing: -0.26px;
-        .title a {
+        .show-terms{
             text-decoration: underline !important;
+            cursor: pointer;
         }
         input[type=checkbox] + label{
             padding: 0px 0 0px 42px;

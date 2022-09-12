@@ -814,6 +814,9 @@ export class SignUpService {
   }
 
   loadCorpBizUserMyInfoData(data) {
+    if (data.uin) {
+      this.corpBizUserMyInfoData.uinfin = data.uin;
+    }
     this.setCorpBizMyInfoData(data);
     this.setPropertyData(data?.hdbOwnerships);
     this.setVehicleData(data?.vehicles);

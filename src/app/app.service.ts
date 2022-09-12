@@ -19,6 +19,7 @@ const PROMO_CODE = 'app_promo_code';
 const SESSION_CUSTOMER = 'app_customer_id';
 const CORPORATE_DETAILS = 'app_corporate_details';
 const CORP_BIZ_DATA = 'app_corpbiz_data';
+const CORPBIZ_VIA_PUBLIC = 'app_corpbiz_via_public';
 
 @Injectable({
   providedIn: 'root'
@@ -192,6 +193,14 @@ export class AppService {
 
   getCorpBizData() {
     return JSON.parse(sessionStorage.getItem(CORP_BIZ_DATA));
+  }
+
+  setCorpBizViaPublicData(corpBizViaPublic) {
+    sessionStorage.setItem(CORPBIZ_VIA_PUBLIC, JSON.stringify(corpBizViaPublic))
+  }
+
+  getCorpBizViaPublicData() {
+    return JSON.parse(sessionStorage.getItem(CORPBIZ_VIA_PUBLIC));
   }
 
   clearCorpBizUserData() {

@@ -79,7 +79,7 @@ export class VerifyMobileComponent implements OnInit, OnDestroy {
   protected ngUnsubscribe: Subject<void> = new Subject<void>();
   organisationEnabled = false;
   isCorpBiz = false;
-
+  corpBizViaPublic = false;
   constructor(
     private formBuilder: FormBuilder,
     public navbarService: NavbarService,
@@ -151,6 +151,7 @@ export class VerifyMobileComponent implements OnInit, OnDestroy {
     this.buildVerifyMobileForm();
     this.fromLoginPage = this.signUpService.getFromLoginPage();
     this.isCorpBiz = this.appService.getCorpBizData()?.isCorpBiz;
+    this.corpBizViaPublic = this.appService.getCorpBizViaPublicData()?.isCorpBiz;
     if (this.fromLoginPage || this.isCorpBiz) {
       this.mobileNumber = {
         code: (this.signUpService.getUserMobileCountryCode()) ? this.signUpService.getUserMobileCountryCode() : appConstants.SINGAPORE_COUNTRY_CODE,
@@ -393,27 +394,34 @@ export class VerifyMobileComponent implements OnInit, OnDestroy {
     if (this.editProfile) {
       this.router.navigate([SIGN_UP_ROUTE_PATHS.UPDATE_USER_DETAILS + '/' + SIGN_UP_CONFIG.EDIT_ROUTE_TYPE.MOBILE]);
     } else {
-      const ref = this.modal.open(EditMobileNumberComponent, {
-        centered: true, backdrop: 'static',
-        keyboard: false
-      });
-      ref.componentInstance.existingMobile = this.mobileNumber.number.toString();
-      ref.componentInstance.updateMobileNumber.subscribe((mobileNo) => {
-        this.signUpApiService.editMobileNumber(mobileNo).subscribe((data) => {
-          ref.close();
-          if (data.responseMessage.responseCode === 6000) {
-            this.mobileNumber.number = mobileNo.toString();
-            this.signUpService.updateMobileNumber(this.mobileNumber.code,
-              mobileNo.toString());
-            if (data.objectList[0] && data.objectList[0].customerRef) {
-              this.signUpService.setCustomerRef(data.objectList[0].customerRef);
-            }
-          } else {
-            const Modalref = this.modal.open(ErrorModalComponent, { centered: true });
-            Modalref.componentInstance.errorMessage = data.responseMessage.responseDescription;
-          }
+      if (this.corpBizViaPublic) {
+        const Modalref = this.modal.open(ErrorModalComponent, { centered: true });
+        Modalref.componentInstance.errorMessage = this.translate.instant('VERIFY_MOBILE.ERROR_MODAL.ERROR_CONTENT');
+      } else {
+        const ref = this.modal.open(EditMobileNumberComponent, {
+          centered: true, backdrop: 'static',
+          keyboard: false
         });
-      });
+        ref.componentInstance.existingMobile = this.mobileNumber.number.toString();
+        ref.componentInstance.updateMobileNumber.subscribe((mobileNo) => {
+          this.signUpApiService.editMobileNumber(mobileNo).subscribe((data) => {
+            ref.close();
+            if (data.responseMessage.responseCode === 6000) {
+              this.mobileNumber.number = mobileNo.toString();
+              this.signUpService.updateMobileNumber(this.mobileNumber.code,
+                mobileNo.toString());
+              if (data.objectList[0] && data.objectList[0].customerRef) {
+                this.signUpService.setCustomerRef(data.objectList[0].customerRef);
+              }
+            } else {
+              const Modalref = this.modal.open(ErrorModalComponent, { centered: true });
+              Modalref.componentInstance.errorMessage = data.responseMessage.responseDescription;
+            }
+          });
+        });
+      }
+
+
     }
   }
 
@@ -458,30 +466,7 @@ export class VerifyMobileComponent implements OnInit, OnDestroy {
   }
 
   validate2faLogin(otp) {
-    let enqId = -1;
-    let journeyType = this.appService.getJourneyType();
-    if (this.appService.getJourneyType() === appConstants.JOURNEY_TYPE_WILL_WRITING &&
-      this.willWritingService.getWillCreatedPrelogin()) {
-      enqId = this.willWritingService.getEnquiryId();
-    } else if (this.authService.getEnquiryId()) {
-      enqId = Number(this.authService.getEnquiryId());
-    } else if (this.appService.getJourneyType() === appConstants.JOURNEY_TYPE_DIRECT ||
-      this.appService.getJourneyType() === appConstants.JOURNEY_TYPE_GUIDED) {
-      const insuranceEnquiry = this.selectedPlansService.getSelectedPlan();
-      if (insuranceEnquiry && ((insuranceEnquiry.plans && insuranceEnquiry.plans.length > 0) || (insuranceEnquiry.enquiryProtectionTypeData && insuranceEnquiry.enquiryProtectionTypeData.length > 0))) {
-        journeyType = (this.appService.getJourneyType() === appConstants.JOURNEY_TYPE_DIRECT) ?
-          appConstants.INSURANCE_JOURNEY_TYPE.DIRECT : appConstants.INSURANCE_JOURNEY_TYPE.GUIDED;
-        enqId = insuranceEnquiry.enquiryId;
-      }
-    }
-
-    // If the journeyType is not set, default it to 'direct'
-    if (Util.isEmptyOrNull(journeyType)) {
-      journeyType = appConstants.JOURNEY_TYPE_DIRECT;
-    }
-
-    journeyType = journeyType.toLowerCase();
-
+    this.loginService.setEnquiryIdAndJourneyType();
     var userEmail = '';
     this.progressModal = true;
     this.mobileNumberVerifiedMessage = this.loading['verifying'];
@@ -489,7 +474,7 @@ export class VerifyMobileComponent implements OnInit, OnDestroy {
       userEmail = sessionStorage.getItem('email');
     }
     const isCorporateUserType = this.signUpService.getUserType() === appConstants.USERTYPE.CORPORATE;
-    this.authService.doValidate2faLogin(otp, userEmail, journeyType, enqId, null, isCorporateUserType).subscribe((data: any) => {
+    this.authService.doValidate2faLogin(otp, userEmail, this.loginService.journeyType, this.loginService.enqId, null, isCorporateUserType).subscribe((data: any) => {
       if (data.responseMessage.responseCode >= 6000) {
         this.mobileNumberVerified = true;
         this.mobileNumberVerifiedMessage = this.loading['verified2fa'];

@@ -29,6 +29,7 @@ import { WILL_WRITING_ROUTE_PATHS } from '../will-writing/will-writing-routes.co
 import { ModelWithButtonComponent } from '../shared/modal/model-with-button/model-with-button.component';
 import { CORPBIZ_ROUTES_PATHS } from '../corpbiz-welcome-flow/corpbiz-welcome-flow.routes.constants';
 import { NavbarService } from '../shared/navbar/navbar.service';
+import { Util } from '../shared/utils/util';
 
 @Injectable({
   providedIn: 'root'
@@ -41,6 +42,8 @@ export class LoginService {
   private modalText;
   redirectAfterLogin = '';
   progressModal: boolean;
+  enqId = -1;
+  journeyType = '';
 
   constructor(
     private apiService: ApiService,
@@ -232,5 +235,28 @@ export class LoginService {
         this.modal.dismissAll();
       });
     }
+  }
+
+  setEnquiryIdAndJourneyType() {
+    this.journeyType = this.appService.getJourneyType();
+    if (this.appService.getJourneyType() === appConstants.JOURNEY_TYPE_WILL_WRITING &&
+      this.willWritingService.getWillCreatedPrelogin()) {
+      this.enqId = this.willWritingService.getEnquiryId();
+    } else if (this.authService.getEnquiryId()) {
+      this.enqId = Number(this.authService.getEnquiryId());
+    } else if (this.appService.getJourneyType() === appConstants.JOURNEY_TYPE_DIRECT ||
+      this.appService.getJourneyType() === appConstants.JOURNEY_TYPE_GUIDED) {
+      const insuranceEnquiry = this.selectedPlansService.getSelectedPlan();
+      if (insuranceEnquiry && ((insuranceEnquiry.plans && insuranceEnquiry.plans.length > 0) || (insuranceEnquiry.enquiryProtectionTypeData && insuranceEnquiry.enquiryProtectionTypeData.length > 0))) {
+        this.journeyType = (this.appService.getJourneyType() === appConstants.JOURNEY_TYPE_DIRECT) ?
+          appConstants.INSURANCE_JOURNEY_TYPE.DIRECT : appConstants.INSURANCE_JOURNEY_TYPE.GUIDED;
+        this.enqId = insuranceEnquiry.enquiryId;
+      }
+    }
+    // If the journeyType is not set, default it to 'direct'
+    if (Util.isEmptyOrNull(this.journeyType)) {
+      this.journeyType = appConstants.JOURNEY_TYPE_DIRECT;
+    }
+    this.journeyType = this.journeyType.toLowerCase();
   }
 }

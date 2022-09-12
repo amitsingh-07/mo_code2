@@ -39,31 +39,33 @@ export class SingpassService {
   }
 
   // Get state & nonce using session id
-  loginSingpass(code, state) {
-    const payload = { code: code, state: state, redirect_uri: environment.apiBaseUrl + SIGN_UP_ROUTE_PATHS.SINGPASS_REDIRECT_URL };
+  loginSingpass(code, state, enquiryId, journeyType) {
+    const payload = {
+      enquiryId: enquiryId,
+      journeyType: journeyType,
+      code: code, 
+      state: state, 
+      redirect_uri: environment.singpassBaseUrl + SIGN_UP_ROUTE_PATHS.SINGPASS_REDIRECT_URL
+    };
     return this.apiService.loginSingpass(payload);
   }
 
   // Init Singpass QR
   initSingpassAuthSession(authParamsSupplier) {
-    const onError = (errorId, message) => {
-      console.error(`onError. errorId:${errorId} message:${message}`);
-    }
+    const onError = (errorId, message) => {}
     try {
       window['NDI'].initAuthSession(
         'qr_wrapper',
         {
           clientId: environment.singpassClientId,
-          redirectUri: environment.apiBaseUrl + SIGN_UP_ROUTE_PATHS.SINGPASS_REDIRECT_URL,
+          redirectUri: environment.singpassBaseUrl + SIGN_UP_ROUTE_PATHS.SINGPASS_REDIRECT_URL,
           scope: 'openid',
           responseType: 'code'
         },
         authParamsSupplier,
         onError
       );
-    } catch {
-      console.error('error initAuthSession: ');
-    }
+    } catch {}
   }
 
   // Method to invoke when user abort login

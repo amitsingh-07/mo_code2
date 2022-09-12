@@ -2,7 +2,13 @@ export interface IEnvironment {
     production: boolean;
     isDebugMode: boolean;
     apiBaseUrl: string;
-    myInfoClientId: string;
+    myInfoClientId: {
+        robo2: string,
+        signup: string,
+        cpf:string,
+        corpbiz:string;
+        linkSingpass:string;
+    };
     myInfoCallbackBaseUrl: string;
     myInfoAuthorizeUrl: string;
     gaPropertyId: string; // Google Analytics
@@ -22,5 +28,6 @@ export interface IEnvironment {
     hsPortalId?: string; // Hubspot Portal Id
     hsUrlTrack?: string; // Hubspot Tracking of HUKT Code
     singpassClientId: string; // Singpass Login Client Id
-    singpassAuthJs: string; // Singpass NDI embedded JS
+    singpassAuthJs: string; // Singpass NDI embedded JS,
+    singpassBaseUrl?: string // Singpass Base Url
 }

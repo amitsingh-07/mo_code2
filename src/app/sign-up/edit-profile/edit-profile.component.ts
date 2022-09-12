@@ -607,6 +607,7 @@ export class EditProfileComponent implements OnInit, OnDestroy {
     this.myInfoService.setMyInfoAttributes(
       this.investmentAccountService.myInfoLinkAttributes
     );
+    this.myInfoService.setMyInfoAppId(appConstants.MYINFO_LINK_SINGPASS);
     this.myInfoService.goToMyInfo(true);
   }
 

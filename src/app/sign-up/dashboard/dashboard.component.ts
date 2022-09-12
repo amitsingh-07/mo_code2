@@ -173,7 +173,6 @@ export class DashboardComponent implements OnInit {
       } else {
         this.signUpService.setUserProfileInfo(userInfo.objectList);
         this.userProfileInfo = this.signUpService.getUserProfileInfo();
-        this.checkFirstTimeLoginStatus(userInfo.objectList.id);
       }
     },
       (err) => {
@@ -521,27 +520,7 @@ export class DashboardComponent implements OnInit {
       return false;
     }
   }
-  // Check if first time login and show new updates modal
-  checkFirstTimeLoginStatus(customerId) {
-    if (customerId) {
-      this.signUpApiService.getPopupStatus(customerId, 'CPF_POP').subscribe((status) => {
-        // Check if track_status is available or false
-        if ((!status.objectList || !status.objectList['trackStatus']) && !this.authService.isShowWelcomeFlow) {
-          setTimeout(() => {
-            // displays new updates modal only during first time login
-            this.openNewUpdatesModal();
-            this.signUpService.setModalShownStatus(true);
-          });
-          this.signUpApiService.setPopupStatus(customerId, 'CPF_POP').subscribe((result) => {
-          }, (error) => console.log('ERROR: ', error));
-        } else if (this.showModalCheck(this.showModalStartDate,this.showModalEndDate) && !this.signUpService.getModalShownStatus() && !this.authService.isShowWelcomeFlow) {
-          // displays new updates modal whenever user lands on dashboard page, even on subsequent logins
-          this.openNewUpdatesModal();
-          this.signUpService.setModalShownStatus(true);
-        }
-      }, (error) => console.log('ERROR: ', error));
-    }
-  }
+  
   existingPortfolio() {
     this.manageInvestmentsService.setSelectedCustomerPortfolioId(null);
     this.manageInvestmentsService.setSelectedCustomerPortfolio(null);

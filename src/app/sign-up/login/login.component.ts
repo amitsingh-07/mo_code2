@@ -386,9 +386,12 @@ export class LoginComponent implements OnInit, AfterViewInit, OnDestroy {
         '', true);
     } else if (data.responseMessage.responseCode === 5014) {
       this.showErrorModal(this.translate.instant('SIGNUP_ERRORS.TITLE'),
-        this.translate.instant('SIGNUP_ERRORS.VERIFY_EMAIL_OTP'),
+        this.translate.instant('SIGNUP_ERRORS.VERIFY_MOBILE_OTP'),
         this.translate.instant('COMMON.VERIFY_NOW'),
-        (this.organisationEnabled && SIGN_UP_ROUTE_PATHS.CORPORATE_VERIFY_MOBILE) || SIGN_UP_ROUTE_PATHS.VERIFY_MOBILE, false);
+        (this.finlitEnabled && SIGN_UP_ROUTE_PATHS.FINLIT_VERIFY_MOBILE) || 
+        (this.organisationEnabled && SIGN_UP_ROUTE_PATHS.CORPORATE_VERIFY_MOBILE) ||
+        SIGN_UP_ROUTE_PATHS.VERIFY_MOBILE,
+        false);
     }
   }
 
@@ -399,7 +402,6 @@ export class LoginComponent implements OnInit, AfterViewInit, OnDestroy {
     const ref = this.modal.open(ErrorModalComponent, { centered: true });
     ref.componentInstance.errorMessage = message;
     ref.componentInstance.redirect_url = SIGN_UP_ROUTE_PATHS.VERIFY_EMAIL;
-    ref.componentInstance.isCorpBiz = this.isCorpBiz;
     ref.result.then((data) => {
       if (!data && redirect) {
         this.router.navigate([redirect]);
@@ -411,6 +413,9 @@ export class LoginComponent implements OnInit, AfterViewInit, OnDestroy {
     }
     if (emailResend) {
       ref.componentInstance.enableResendEmail = true;
+      if(!this.isCorpBiz && !this.organisationEnabled) {
+        ref.componentInstance.enableChangeEmail = true;
+      }
       ref.componentInstance.resendEmail.pipe(
         mergeMap(($e) =>
           this.resendEmailVerification()))

@@ -102,6 +102,7 @@ export let apiConstants = {
         },
         comprehensive: {
             getComprehensiveSummary: COMPREHENSIVE_API_BASE_URL + 'getComprehensiveUserSummary',
+            autofillCFPData: COMPREHENSIVE_API_BASE_URL + 'autofill',
             addPersonalDetails: ACCOUNT_API_BASE_URL + '/customer/comprehensive/addPersonalDetails',
             addDependents: ACCOUNT_API_BASE_URL + '/customer/comprehensive/saveDependents',
             saveEndowmentPlan: ACCOUNT_API_BASE_URL + '/customer/comprehensive/saveChildEndowmentPlans',
@@ -149,6 +150,11 @@ export let apiConstants = {
         singpass: {
             getStateNonce: SINGPASS_API_BASE_URL+ 'getStateNonce?handleError=true',
             loginSingpass: SINGPASS_API_BASE_URL+ 'loginSingpass?handleError=true'
+        },
+        recommendedCards: {
+            getDashboardCards: INSURANCE_RECOMMEND_API_BASE_URL + '/customer/recommended/card?pageNo=$PAGE_NO$&pageSize=$SIZE$',
+            dismissCard: INSURANCE_RECOMMEND_API_BASE_URL + '/customer/recommended/card/$CARD_ID$/dismiss',
+            getCardById: INSURANCE_RECOMMEND_API_BASE_URL + '/customer/recommended/card/'
         }
     }
 };

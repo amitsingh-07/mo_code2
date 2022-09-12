@@ -41,29 +41,6 @@
             "scripts": []
           },
           "configurations": {
-            "dev": {
-              "budgets": [
-                {
-                  "type": "anyComponentStyle",
-                  "maximumWarning": "6kb"
-                }
-              ],
-              "fileReplacements": [
-                {
-                  "replace": "src/environments/environment.ts",
-                  "with": "src/environments/environment.dev.ts"
-                }
-              ],
-              "optimization": false,
-              "outputHashing": "all",
-              "sourceMap": true,
-              "extractCss": false,
-              "namedChunks": false,
-              "aot": true,
-              "extractLicenses": true,
-              "vendorChunk": false,
-              "buildOptimizer": false
-            },
             "production": {
               "budgets": [
                 {
@@ -110,29 +87,6 @@
               "vendorChunk": false,
               "buildOptimizer": true
             },
-            "uat": {
-              "budgets": [
-                {
-                  "type": "anyComponentStyle",
-                  "maximumWarning": "6kb"
-                }
-              ],
-              "fileReplacements": [
-                {
-                  "replace": "src/environments/environment.ts",
-                  "with": "src/environments/environment.uat.ts"
-                }
-              ],
-              "optimization": true,
-              "outputHashing": "all",
-              "sourceMap": false,
-              "extractCss": true,
-              "namedChunks": false,
-              "aot": true,
-              "extractLicenses": true,
-              "vendorChunk": false,
-              "buildOptimizer": true
-            },
             "newmo": {
               "budgets": [
                 {
@@ -146,15 +100,15 @@
                   "with": "src/environments/environment.newmo.ts"
                 }
               ],
-              "optimization": true,
+              "optimization": false,
               "outputHashing": "all",
-              "sourceMap": false,
-              "extractCss": true,
+              "sourceMap": true,
+              "extractCss": false,
               "namedChunks": false,
               "aot": true,
               "extractLicenses": true,
               "vendorChunk": false,
-              "buildOptimizer": true
+              "buildOptimizer": false
             },
             "newmodev": {
               "budgets": [
@@ -279,20 +233,11 @@
             "browserTarget": "bfa-frontend:build"
           },
           "configurations": {
-            "dev": {
-              "browserTarget": "bfa-frontend:build"
-            },
             "production": {
               "browserTarget": "bfa-frontend:build:production"
             },
             "prod": {
               "browserTarget": "bfa-frontend:build:prod"
-            },
-            "uat": {
-              "browserTarget": "bfa-frontend:build:uat"
-            },
-            "uat3": {
-              "browserTarget": "bfa-frontend:build:uat3"
             },
             "newmo": {
               "browserTarget": "bfa-frontend:build:newmo"

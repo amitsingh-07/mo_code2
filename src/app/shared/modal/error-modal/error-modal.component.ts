@@ -29,6 +29,7 @@ export class ErrorModalComponent implements OnInit {
   @Input() email: string;
   @Input() buttonLabel: string;
   @Input() enableResendEmail: boolean;
+  @Input() enableChangeEmail: boolean;
   @Output() selected: EventEmitter<any> = new EventEmitter();
   @Output() retry: EventEmitter<any> = new EventEmitter();
   @Output() resendEmail: EventEmitter<any> = new EventEmitter();
@@ -36,7 +37,6 @@ export class ErrorModalComponent implements OnInit {
   @Input() closeBtn: boolean;
   @Input() tooltipButtonLabel: string;
   @Input() redirect_url:string;
-  @Input() isCorpBiz:boolean;
 
   public closeBtnToggle = true;
 

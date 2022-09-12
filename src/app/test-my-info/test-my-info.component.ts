@@ -10,6 +10,7 @@ import { NavbarService } from '../shared/navbar/navbar.service';
 import { MyInfoService } from './../shared/Services/my-info.service';
 import { INVESTMENT_ACCOUNT_CONSTANTS } from './../investment/investment-account/investment-account.constant';
 import { myInfoResponseMapping } from './test-myinfo-mapping';
+import { appConstants } from '../app.constants';
 
 @Component({
   selector: 'app-test-my-info',
@@ -24,6 +25,7 @@ export class TestMyInfoComponent implements OnInit {
   pageTitle: string;
   project: string;
   robo2Results: any;
+  myInfoFlow: string;
   myInfoAttributes = [];
   robo2Attributes = INVESTMENT_ACCOUNT_CONSTANTS.MY_INFO_ATTRIBUTES;
   corpBizAttributes = Object.keys(myInfoResponseMapping);
@@ -46,10 +48,13 @@ export class TestMyInfoComponent implements OnInit {
     this.project = this.route.snapshot.queryParams.project;
     if (this.project === 'robo2') {
       this.myInfoAttributes = this.robo2Attributes;
+      this.myInfoFlow = appConstants.MYINFO_ROBO2;
     } else if (this.project === 'corpbiz') {
       this.myInfoAttributes = this.corpBizAttributes;
+      this.myInfoFlow = appConstants.MYINFO_CORPBIZ_SIGNUP;
     } else {
       this.myInfoAttributes.push(this.corpBizAttributes[0]); // Get CPF Balances
+      this.myInfoFlow = appConstants.MYINFO_CPF;
     }
     this.authService.authenticate().subscribe((token) => {
     });
@@ -113,6 +118,7 @@ export class TestMyInfoComponent implements OnInit {
     ref.componentInstance.isButtonEnabled = true;
     ref.result.then(() => {
       this.myInfoService.setMyInfoAttributes(this.myInfoAttributes);
+      this.myInfoService.setMyInfoAppId(this.myInfoFlow);
       this.myInfoService.goToMyInfo();
     }).catch((e) => {
     });

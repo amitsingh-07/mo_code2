@@ -389,4 +389,17 @@ export class SignUpApiService {
   getOrganisationCode(orgID) {
     return this.apiService.getOrganisationCode(orgID);
   }
+
+  // Recommended API Calls
+  getCardsByPageSizeAndNo(pageNo, size) {
+    return this.apiService.getCardsByPageSizeAndNo(pageNo, size);
+  }
+  
+  dismissCard(cardId) {
+    return this.apiService.dismissCard(cardId);
+  }
+
+  getCardById(cardId) {
+    return this.apiService.getCardById(cardId);
+  }
 }

@@ -77,6 +77,7 @@ export class CreateAccountComponent implements OnInit, AfterViewInit {
   isCorpBiz = false;
   corpBizData: ICorpBizData;
   isCorpBizMyInfoEnabled: boolean;
+  isCorpBizUser: boolean;
 
   constructor(
     private formBuilder: FormBuilder,
@@ -374,6 +375,7 @@ export class CreateAccountComponent implements OnInit, AfterViewInit {
   createAccount() {
     if (!this.createAccBtnDisabled) {
       this.createAccBtnDisabled = true;
+      this.signUpService.setEmail(this.createAccountForm.get('email').value);
       this.signUpApiService.createAccount(this.createAccountForm.value.captcha, this.createAccountForm.value.password)
         .subscribe((data: any) => {
           this.createAccBtnDisabled = false;
@@ -382,6 +384,7 @@ export class CreateAccountComponent implements OnInit, AfterViewInit {
             if (data.responseMessage.responseCode === 6000 ||
               data.responseMessage.responseCode === 6008) {
               this.signUpService.setCustomerRef(data.objectList[0].customerRef);
+              this.appService.setCorpBizViaPublicData({ isCorpBiz: data.objectList[1].isCorpBiz });
             }
             const insuranceEnquiry = this.selectedPlansService.getSelectedPlan();
             if ((this.appService.getJourneyType() === appConstants.JOURNEY_TYPE_DIRECT ||
@@ -406,7 +409,7 @@ export class CreateAccountComponent implements OnInit, AfterViewInit {
 
             } else if (data.responseMessage.responseCode === 6008 ||
               data.responseMessage.responseCode === 5006) {
-              this.isCorpBiz = data.objectList[0].isCorpBiz;
+              this.isCorpBizUser = data.objectList[0].isCorpBiz;
               this.callErrorModal(data);
             }
           } else if (data.responseMessage.responseCode === 5016) {
@@ -436,8 +439,10 @@ export class CreateAccountComponent implements OnInit, AfterViewInit {
     if (data.responseMessage.responseCode === 6008) {
       this.signUpService.setUserMobileNo(this.createAccountForm.controls['mobileNumber'].value);
       this.showErrorModal(this.translate.instant('SIGNUP_ERRORS.TITLE'),
-        this.translate.instant('SIGNUP_ERRORS.VERIFY_EMAIL_OTP'),
+        this.translate.instant('SIGNUP_ERRORS.VERIFY_MOBILE_OTP'),
         this.translate.instant('COMMON.VERIFY_NOW'),
+        (this.finlitEnabled && SIGN_UP_ROUTE_PATHS.FINLIT_VERIFY_MOBILE) ||
+        (this.organisationEnabled && SIGN_UP_ROUTE_PATHS.CORPORATE_VERIFY_MOBILE) ||
         SIGN_UP_ROUTE_PATHS.VERIFY_MOBILE,
         false);
     } else if (data.objectList[0].accountAlreadyCreated) {
@@ -466,6 +471,7 @@ export class CreateAccountComponent implements OnInit, AfterViewInit {
   showErrorModal(title: string, message: string, buttonLabel: string, redirect: string, emailResend: boolean) {
     const ref = this.modal.open(ErrorModalComponent, { centered: true });
     ref.componentInstance.errorMessage = message;
+    ref.componentInstance.redirect_url = SIGN_UP_ROUTE_PATHS.VERIFY_EMAIL;
     ref.result.then((data) => {
       if (!data && redirect) {
         this.router.navigate([redirect]);
@@ -476,8 +482,10 @@ export class CreateAccountComponent implements OnInit, AfterViewInit {
       ref.componentInstance.buttonLabel = buttonLabel;
     }
     if (emailResend) {
-      ref.componentInstance.isCorpBiz = this.isCorpBiz;
       ref.componentInstance.enableResendEmail = true;
+      if (!this.isCorpBizUser && !this.organisationEnabled) {
+        ref.componentInstance.enableChangeEmail = true;
+      }
       ref.componentInstance.resendEmail.pipe(
         flatMap(($e) =>
           this.resendEmailVerification()))
@@ -531,7 +539,8 @@ export class CreateAccountComponent implements OnInit, AfterViewInit {
   }
 
   resendEmailVerification() {
-    return this.signUpApiService.resendEmailVerification(this.createAccountForm.controls['email'].value, true);
+    const organisationCode = this.organisationEnabled && this.createAccountForm.get('organisationCode').value || null;
+    return this.signUpApiService.resendEmailVerification(this.createAccountForm.controls['email'].value, true, organisationCode);
   }
 
   onlyNumber(el) {

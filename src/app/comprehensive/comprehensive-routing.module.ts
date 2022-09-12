@@ -25,10 +25,12 @@ import { ResultComponent } from './result/result.component';
 import { RetirementPlanComponent } from './retirement-plan/retirement-plan.component';
 import { ValidateResultComponent } from './validate-result/validate-result.component';
 import { RiskProfileComponent } from './risk-profile/risk-profile.component';
+import { AutofillMyinfoDataComponent } from './autofill-myinfo-data/autofill-myinfo-data.component';
 
 const routes: Routes = [
     {
-        path: '', canActivate: [ComprehensiveEnableGuard],
+        path: '', 
+        canActivate: [ComprehensiveEnableGuard],
         children: [
             { path: COMPREHENSIVE_ROUTES.ROOT, component: ComprehensiveComponent },
             { path: COMPREHENSIVE_ROUTES.GETTING_STARTED, component: MyProfileComponent },
@@ -66,7 +68,8 @@ const routes: Routes = [
             { path: COMPREHENSIVE_ROUTES.RISK_PROFILE + '/3', component: RiskProfileComponent, data: [{ param: 3 }] },
             { path: COMPREHENSIVE_ROUTES.RISK_PROFILE + '/4', component: RiskProfileComponent, data: [{ param: 4 }] },
             { path: COMPREHENSIVE_ROUTES.REVIEW, component: ComprehensiveReviewComponent },
-            { path: COMPREHENSIVE_ROUTES.SPEAK_TO_ADVISOR, component: ComprehensiveReviewComponent }
+            { path: COMPREHENSIVE_ROUTES.SPEAK_TO_ADVISOR, component: ComprehensiveReviewComponent },
+            { path: COMPREHENSIVE_ROUTES.CFP_AUTOFILL, component: AutofillMyinfoDataComponent }
         ]
     }
 ];

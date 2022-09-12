@@ -28,7 +28,7 @@
     "LOGIN_EMAIL_MESSAGE": "Okay, Got it",
     "ACCOUNT_EXIST_MESSAGE": "Seems like you may have an existing account with Moneyowl. Login now!",
     "VERIFY_EMAIL_MESSAGE": "You are almost there! An email verification is sent. We need you to verify your email to complete your account creation!",
-    "VERIFY_EMAIL_OTP": "Seems like you have previously created an account but has yet to complete the account verification. Let us guide you through it."
+    "VERIFY_MOBILE_OTP": "Seems like you have previously created an account but has yet to complete the account verification. Let us guide you through it."
   },
   "CORP_BIZ_SIGN_UP": {
     "SIGN_UP_DESC": "Choose how you want to activate your Corporate Account",
@@ -151,6 +151,15 @@
         "WITHDRAWAL": "Withdrawal",
         "VEHICLE": "Vehicle"
       }
+    }
+  },
+  "RECOMMENDED_CARD": {
+    "TITLE": "Discover",
+    "BLANK_CARD": {
+      "DESCRIPTION": "<strong>Great job!</strong> We’ll continue to help you navigate your finances."
+    },
+    "MODAL": {
+      "DONT_SHOW_BTN": "Don’t show this again"
     }
   },
   "CORP_BIZ_ERROR_MODAL": {
@@ -290,7 +299,8 @@
     },
     "ERROR_MODAL": {
       "ERROR_TITLE": "Incorrect OTP Code",
-      "ERROR_MESSAGE": "You have keyed in an invalid OTP Code"
+      "ERROR_MESSAGE": "You have keyed in an invalid OTP Code",
+      "ERROR_CONTENT": "Sorry, can't edit verification number for Corporate account. Later if you wish to update your contact details, you can update in My Profile page."
     },
     "EXPIRED_ERROR_MODAL": {
       "ERROR_TITLE": "Expired OTP Code",
@@ -371,7 +381,7 @@
       "MESSAGE": "If you <span class='bold-txt'>do not have</span> a MoneyOwl investment account, please do a Password Login and activate Singpass Login in your Profile page.<br><br>If you <span class='bold-txt'>have</span> a MoneyOwl investment account, simply scan the QR code with your Singpass Mobile App to log in!<br><br>Please note that this feature is available to all Singpass Registered Users.<br><br><a class='anchor-txt' target='_blank' href='https://www.singpass.gov.sg/main/html/faq.html'>Learn more about Singpass</a>"
     },
     "SINGPASS_LOGIN_FAIL_MODAL": {
-      "TITLE": "Singpass login unsuccessful",
+      "TITLE": "Unable to Proceed",
       "MESSAGE": "If you <span class='bold-txt'>have</span> a MoneyOwl account, please do a Password Login and activate Singpass Login in your Profile page.<br><br>If you <span class='bold-txt'>do not have</span> a MoneyOwl account, <a class='anchor-txt' target='_self' href='./accounts/sign-up'>click here</a> to create an account.",
       "BACK_BTN": "Back to Login"
     },

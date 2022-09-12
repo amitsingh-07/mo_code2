@@ -2,7 +2,6 @@ import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { NgbActiveModal, NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { TranslateService } from '@ngx-translate/core';
 import { Router } from '@angular/router';
-import { DatePipe } from '@angular/common';
 
 import { PromoCodeService } from '../promo-code.service';
 import { PAYMENT_CHECKOUT, PROMO_CODE_STATUS, PROMO_ROUTE } from '../promo-code.constants';
@@ -31,14 +30,13 @@ export class PromoDetailsComponent implements OnInit {
   promoCodeStatus: any;
   selectedPromoDetails: any;
   loading: any;
-  compreTypePromo: any;
+  promoCode: string;
 
   constructor(
     public activeModal: NgbActiveModal,
     public allModal: NgbModal,
     private translate: TranslateService,
     private router: Router,
-    private datePipe: DatePipe,
     private promoSvc: PromoCodeService,
     private manageInvestmentsService: ManageInvestmentsService,
     private loaderService: LoaderService,
@@ -49,22 +47,25 @@ export class PromoDetailsComponent implements OnInit {
 
   ngOnInit() {
     this.promoCodeStatus = PROMO_CODE_STATUS;
-    this.compreTypePromo = appConstants.COMPREHENSIVE_PROMO_CODE_TYPE
     this.selectedPromo = this.promoSvc.getSelectedPromo();
     this.selectedPromoDetails = this.promoSvc.getPromoDetails();
     this.usedPromo = this.promoSvc.usedPromo;
     const promoCategory = (this.router.url === PAYMENT_CHECKOUT) ? appConstants.COMPREHENSIVE_PROMO_CODE_TYPE : appConstants.INVESTMENT_PROMO_CODE_TYPE;
     this.promoSvc.fetchPromoListJSON().then((data) => {
       this.details = data.promoList.find(element => {
-        // If campaignCode exist, use campaignCode to match the promo detail json
-        if (this.selectedPromo['campaignCode']) {
-          if (element['promoType'] === promoCategory && element['promoCode'] === this.selectedPromo['campaignCode']) {
-            return element;
-          }
+        // If promoCampaign or campaignCode exist, use them to match the promo detail json
+        if (this.selectedPromo['promoCampaign']) {
+          this.promoCode = this.selectedPromo['code'];
+          return element['promoType'] === promoCategory && element['promoCode'] === this.selectedPromo['promoCampaign']['code'];
+        } else if (this.selectedPromo['campaignCode']) {
+          this.promoCode = this.selectedPromo['promoCode'];
+          return element['promoType'] === promoCategory && element['promoCode'] === this.selectedPromo['campaignCode'];
         } else {
           if (this.selectedPromo['promoCode']) {
+            this.promoCode = this.selectedPromo['promoCode'];
             return element['promoType'] === promoCategory && element['promoCode'] === this.selectedPromo['promoCode'];
           } else {
+            this.promoCode = this.selectedPromo['code'];
             return element['promoType'] === promoCategory && element['promoCode'] === this.selectedPromo['code'];
           }
         }

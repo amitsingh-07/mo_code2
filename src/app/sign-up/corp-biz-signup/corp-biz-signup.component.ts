@@ -7,13 +7,14 @@ import { ConfigService, IConfig } from '../../config/config.service';
 import { MyInfoService } from '../../shared/Services/my-info.service';
 import { FooterService } from '../../shared/footer/footer.service';
 import { NavbarService } from '../../shared/navbar/navbar.service';
-import { CreateAccountMyinfoModalComponent } from '../create-account-myinfo-modal/create-account-myinfo-modal.component';
 import { SignUpService } from '../sign-up.service';
 import { ModelWithButtonComponent } from '../../shared/modal/model-with-button/model-with-button.component';
-import { SIGN_UP_ROUTES, SIGN_UP_ROUTE_PATHS } from '../sign-up.routes.constants';
+import { SIGN_UP_ROUTE_PATHS } from '../sign-up.routes.constants';
 import { SIGN_UP_CONFIG } from '../sign-up.constant';
 import { AppService } from '../../app.service';
 import { SignUpApiService } from '../sign-up.api.service';
+import { appConstants } from 'src/app/app.constants';
+import { MyinfoModalComponent } from '../../shared/modal/myinfo-modal/myinfo-modal.component';
 
 @Component({
   selector: 'app-corp-biz-signup',
@@ -136,6 +137,7 @@ export class CorpBizSignupComponent implements OnInit {
       attributes = this.removeMyInfoAttributes(attributesFlags.vehicleFlag, SIGN_UP_CONFIG.EXCLUDABLE_CORP_BIZ_MY_INFO_ATTRIBUTES.VEHICLES, attributes);
     }
     this.myInfoService.setMyInfoAttributes(attributes);
+    this.myInfoService.setMyInfoAppId(appConstants.MYINFO_CORPBIZ_SIGNUP);
     this.myInfoService.goToMyInfo(); // Method to call MyInfo
   }
 
@@ -148,7 +150,7 @@ export class CorpBizSignupComponent implements OnInit {
   }
 
   proceedToMyInfo() {
-    const ref = this.modal.open(CreateAccountMyinfoModalComponent, { centered: true });
+    const ref = this.modal.open(MyinfoModalComponent, { centered: true });
     ref.componentInstance.primaryActionLabel = this.modalBtnTxt;
     ref.componentInstance.myInfoEnableFlags.subscribe((value: any) => {
       ref.result

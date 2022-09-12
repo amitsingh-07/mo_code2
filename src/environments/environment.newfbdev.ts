@@ -9,7 +9,13 @@ export const environment: IEnvironment = {
   production: false,
   isDebugMode: true,
   apiBaseUrl: 'https://bfa-fb-newdev.ntucbfa.cloud',
-  myInfoClientId: 'STG-201820691C-MONEYOWL-BFA',
+  myInfoClientId: {
+    robo2:'STG-201820691C-MONEYOWL-BFA',
+    signup: 'STG-201820691C-MONEYOWL-BFA',
+    cpf: 'STG-201820691C-MONEYOWL-BFA',
+    corpbiz:'STG-201820691C-MONEYOWL-BFA',
+    linkSingpass: 'STG-201820691C-MONEYOWL-BFA'
+  },
   myInfoCallbackBaseUrl: 'https://bfa-fb-newdev.ntucbfa.cloud/app/myinfo',
   myInfoAuthorizeUrl: 'https://test.api.myinfo.gov.sg/com/v3/authorise',
   gAdPropertyId: 'AW-782920447',
@@ -24,7 +30,8 @@ export const environment: IEnvironment = {
   hsPortalId: '6411917',
   hsUrlTrack: '9f0ad9ef-ba87-4059-9ee9-60d46880dc5f',
   singpassClientId: 'iROTlv1CU9Cz3GlYiNosMsZDGIYwWSB3',
-  singpassAuthJs: 'https://stg-id.singpass.gov.sg/static/ndi_embedded_auth.js'
+  singpassAuthJs: 'https://stg-id.singpass.gov.sg/static/ndi_embedded_auth.js',
+  singpassBaseUrl: 'https://bfa-fb-newdev.ntucbfa.cloud'
 };
 
 /*
