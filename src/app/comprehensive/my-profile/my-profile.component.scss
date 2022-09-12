@@ -35,15 +35,16 @@ app-cmp-my-profile {
   .myinfo-block{
     background: $black-squeeze-grey-color;
     border-radius: 6px;
-    padding: 28px 50px;
+    padding: 24px 50px;
     font-family: $muli-bold;
     font-size: 16px;
     line-height: 19px;
     color: $black-color;
     text-align: center;
     @include allmobiles{
-      padding: 24px 10px 30px;
+      padding: 22px 10px 20px;
       text-align: left;
+      margin-bottom: 10px;
     }
     .myinfo-desc{
       max-width: 450px;
