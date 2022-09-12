@@ -137,7 +137,7 @@ export class MyProfileComponent implements IPageComponent, OnInit, OnDestroy {
             }
             if (myinfoObj && myinfoObj !== '') {
                 if (myinfoObj.status && myinfoObj.status === 'SUCCESS' &&
-                    (this.myInfoService.getMyInfoAttributes() === this.signUpService.corpBizMyInfoAttributes.join() ||
+                    (this.myInfoService.getMyInfoAttributes() === comprehensiveService.cfpAutofillMyInfoAttributes.join() ||
                         (this.disabledAttributes &&
                             (attributeList.join() === this.myInfoService.getMyInfoAttributes())
                         )
