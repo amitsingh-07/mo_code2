@@ -878,7 +878,7 @@ export class SignUpService {
   }
 
   setCorpBizMyInfoData(data) {
-    if (data.dob.value) {
+    if (data.dob && data.dob.value) {
       this.corpBizUserMyInfoData.dateOfBirth = this.investmentAccountService.corpBizDateFormat(data.dob.value);
     }
 
