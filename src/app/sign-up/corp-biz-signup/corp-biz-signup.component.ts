@@ -105,7 +105,7 @@ export class CorpBizSignupComponent implements OnInit {
     this.showFetchPopUp();
     let email = this.appService.getCorpBizData()?.email;
     let mobile = this.appService.getCorpBizData()?.mobileNumber;
-    this.myInfoSubscription = this.myInfoService.getCorpBizMyInfoAccountCreateData(email, mobile, null)
+    this.myInfoSubscription = this.myInfoService.getCorpBizMyInfoAccountCreateData(email, mobile, null, false)
       .subscribe((data) => {
         if (data.responseMessage.responseCode === 6000 && data && data.objectList[0]) {
           this.closeMyInfoPopup(false);
