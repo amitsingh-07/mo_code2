@@ -133,7 +133,6 @@ export class MyProfileComponent implements IPageComponent, OnInit, OnDestroy {
         this.viewMode = this.comprehensiveService.getViewableMode();
 
         this.isOrganisationEnabled = appService.getCorporateDetails() ? appService.getCorporateDetails().organisationEnabled : false;
-        console.log('flag', this.isOrganisationEnabled);
 
         this.myinfoChangeListener = this.myInfoService.changeListener.subscribe((myinfoObj: any) => {
             let attributeList = comprehensiveService.cfpAutofillMyInfoAttributes;
