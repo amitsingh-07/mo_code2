@@ -256,14 +256,15 @@ export class MyInfoService {
   }
 
   // CREATE ACCOUNT FOR CORPBIZ USERS
-  getCorpBizMyInfoAccountCreateData(email, mobile, organisationCode) {
+  getCorpBizMyInfoAccountCreateData(email, mobile, organisationCode, linkNric) {
     const payload = {
       authorizationCode: this.myInfoValue,
       personAttributes: this.getMyInfoAttributes(),
       isCorpBizUser: true,
       organisationCode: organisationCode,
       email: email,
-      mobileNumber: mobile
+      mobileNumber: mobile,
+      linkNric: linkNric
     };
     return this.apiService.getCreateAccountMyInfoData(payload);
   }
