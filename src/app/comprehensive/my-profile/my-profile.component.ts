@@ -187,6 +187,7 @@ export class MyProfileComponent implements IPageComponent, OnInit, OnDestroy {
             if (data && data.objectList[0]) {
                 this.comprehensiveService.setComprehensiveSummary(data.objectList[0]);
                 this.getComprehensiveEnquiry = this.comprehensiveService.getComprehensiveEnquiry();
+                this.myinfoRetrievelDate = this.getComprehensiveEnquiry.myInfoLastRetrievedOn;
                 this.getComprehensiveData = this.comprehensiveService.getComprehensiveEnquiry().type;
                 if (this.comprehensiveService.getComprehensiveSummary().comprehensiveEnquiry.reportStatus
                     === COMPREHENSIVE_CONST.REPORT_STATUS.ERROR || (!this.comprehensiveService.getComprehensiveSummary().comprehensiveEnquiry
@@ -229,7 +230,6 @@ export class MyProfileComponent implements IPageComponent, OnInit, OnDestroy {
             this.router.navigate([redirectUrl]);
         } else {
             this.getUserProfileData();
-            this.myinfoRetrievelDate = this.comprehensiveService.getMyinfoRetrievelDate();
         }
     }
 

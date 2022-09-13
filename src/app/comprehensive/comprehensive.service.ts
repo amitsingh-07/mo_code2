@@ -182,13 +182,6 @@ export class ComprehensiveService {
     return this.comprehensiveFormData.comprehensiveDetails.baseProfile;
   }
 
-  getMyinfoRetrievelDate()  {
-    if (!this.comprehensiveFormData.comprehensiveDetails.myInfoLastRetrievedOn) {
-      return this.comprehensiveFormData.comprehensiveDetails.myInfoLastRetrievedOn;
-    }
-    return this.comprehensiveFormData.comprehensiveDetails.myInfoLastRetrievedOn;
-  }
-
   getMyDependant() {
     if (!this.comprehensiveFormData.comprehensiveDetails.dependentsSummaryList) {
       this.comprehensiveFormData.comprehensiveDetails.dependentsSummaryList.dependentsList = [] as IDependantDetail[];
