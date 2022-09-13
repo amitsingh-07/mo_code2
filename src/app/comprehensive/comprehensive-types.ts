@@ -18,7 +18,6 @@ export interface IComprehensiveDetails {
     comprehensiveJourneyMode: boolean;
     riskAssessmentAnswer?: IRiskAssesmentAnswers;
     riskQuestionList?: any;
-    myInfoLastRetrievedOn?: string | null;
 }
 export interface IComprehensiveEnquiry {
     customerId: number;
@@ -45,6 +44,7 @@ export interface IComprehensiveEnquiry {
     advisorPaymentStatus: string;
     promoWaivedSpeakToAdvisor?: boolean;
     specialPromoCode?: boolean;
+    myInfoLastRetrievedOn?: string | null;
 }
 export interface IPromoCode {
     comprehensivePromoCodeToken: string;
