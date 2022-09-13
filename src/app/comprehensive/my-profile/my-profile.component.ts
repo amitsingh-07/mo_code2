@@ -25,6 +25,7 @@ import { ProgressTrackerService } from './../../shared/modal/progress-tracker/pr
 import { AboutAge } from './../../shared/utils/about-age.util';
 import { ComprehensiveApiService } from './../comprehensive-api.service';
 import { ComprehensiveService } from './../comprehensive.service';
+import { AppService } from '../../app.service';
 
 @Component({
     selector: 'app-cmp-my-profile',
@@ -67,6 +68,7 @@ export class MyProfileComponent implements IPageComponent, OnInit, OnDestroy {
     loader1Modal: any
     myinfoRetrievelDate: any;
     myInfoModalBtn: string;
+    isOrganisationEnabled: boolean;
 
     @HostListener('window:popstate', ['$event'])
     onPopState(event) {
@@ -95,7 +97,8 @@ export class MyProfileComponent implements IPageComponent, OnInit, OnDestroy {
         private progressService: ProgressTrackerService,
         private aboutAge: AboutAge,
         private myInfoService: MyInfoService,
-        private modal: NgbModal
+        private modal: NgbModal,
+        private appService: AppService
     ) {
         const today: Date = new Date();
         this.minDate = {
@@ -121,13 +124,15 @@ export class MyProfileComponent implements IPageComponent, OnInit, OnDestroy {
                     'CMP.GETTING_STARTED.CFP_AUTOFILL.LOADER1'
                 );
                 this.myInfoModalBtn = this.translate.instant(
-                    'CMP.GETTING_STARTED.CFP_AUTOFILL.MY_INFO_MODAL.MODAL_ATTR.MODAL_BTN'
+                    'CMP.GETTING_STARTED.CFP_AUTOFILL.MY_INFO_MODAL.BTN'
                 );
                 this.setPageTitle(this.pageTitle);
             });
         });
 
         this.viewMode = this.comprehensiveService.getViewableMode();
+
+        this.isOrganisationEnabled = appService.getCorporateDetails() ? appService.getCorporateDetails().organisationEnabled : false;
 
         this.myinfoChangeListener = this.myInfoService.changeListener.subscribe((myinfoObj: any) => {
             let attributeList = comprehensiveService.cfpAutofillMyInfoAttributes;
@@ -142,35 +147,26 @@ export class MyProfileComponent implements IPageComponent, OnInit, OnDestroy {
                             (attributeList.join() === this.myInfoService.getMyInfoAttributes())
                         )
                     )) {
-                    this.myInfoService.getCorpBizMyInfoAccountCreateData(this.userDetails.email, this.userDetails.mobileNumber, null).subscribe((data) => {
-                        if (data.responseMessage.responseCode === 6000 && data && data['objectList'] && data['objectList'][0]) {
-                            comprehensiveService.isCFPAutofillMyInfoEnabled = true;
-                            signUpService.loadCorpBizUserMyInfoData(data['objectList'][0]);
-                            this.myInfoService.isMyInfoEnabled = false;
+                    this.myInfoService.getCorpBizMyInfoAccountCreateData(this.userDetails.email, this.userDetails.mobileNumber, this.isOrganisationEnabled ? appConstants.USERTYPE.FACEBOOK : null)
+                        .subscribe((data) => {
+                            if (data.responseMessage.responseCode === 6000 && data && data['objectList'] && data['objectList'][0]) {
+                                comprehensiveService.isCFPAutofillMyInfoEnabled = true;
+                                signUpService.loadCorpBizUserMyInfoData(data['objectList'][0]);
+                                this.myInfoService.isMyInfoEnabled = false;
+                                this.closeMyInfoPopup();
+                                router.navigate([COMPREHENSIVE_ROUTE_PATHS.CFP_AUTOFILL]);
+                            } else if (data.responseMessage.responseCode === 6014) {
+                                this.closeMyInfoPopup();
+                                const ref = this.modal.open(ModelWithButtonComponent, { centered: true });
+                                ref.componentInstance.errorTitle = this.loader1Modal.title;
+                                ref.componentInstance.errorMessageHTML = this.loader1Modal.message;
+                                ref.componentInstance.primaryActionLabel = this.loader1Modal.btn;
+                            } else {
+                                this.closeMyInfoPopup();
+                            }
+                        }, (error) => {
                             this.closeMyInfoPopup();
-                            comprehensiveApiService.getComprehensiveAutoFillCFPData().subscribe((compreData) => {
-                                if (compreData && compreData.objectList[0]) {
-                                    this.comprehensiveService.setComprehensiveSummary(compreData.objectList[0]);
-                                    this.getComprehensiveEnquiry = this.comprehensiveService.getComprehensiveEnquiry();
-                                    this.getComprehensiveData = this.comprehensiveService.getComprehensiveEnquiry().type;
-                                    this.loaderService.hideLoaderForced();
-                                    router.navigate([COMPREHENSIVE_ROUTE_PATHS.CFP_AUTOFILL]);
-                                }
-                            }, err => {
-                                this.loaderService.hideLoaderForced();
-                            })
-                        } else if (data.responseMessage.responseCode === 6014) {
-                            this.closeMyInfoPopup();
-                            const ref = this.modal.open(ModelWithButtonComponent, { centered: true });
-                            ref.componentInstance.errorTitle = this.loader1Modal.title;
-                            ref.componentInstance.errorMessageHTML = this.loader1Modal.message;
-                            ref.componentInstance.primaryActionLabel = this.loader1Modal.btn;
-                        } else {
-                            this.closeMyInfoPopup();
-                        }
-                    }, (error) => {
-                        this.closeMyInfoPopup();
-                    });
+                        });
                 } else {
                     this.myInfoService.isMyInfoEnabled = false;
                     this.closeMyInfoPopup();
