@@ -114,9 +114,9 @@ export class IntroductionComponent implements OnInit {
       this.subscribeMessage = '';
       this.subscribeSuccess = false;
     });
-    if (this.authService.isSignedUser()) {
-      this.getCustOrgPromoCode();
-    }
+    // Auto-populate Wills promo code 
+    //for both public(pre and post login) and corp users
+       this.getCustOrgPromoCode();
   }
 
   @HostListener('input', ['$event'])
