@@ -163,4 +163,10 @@ app-autofill-myinfo-data {
       font-size: 13px;
     }
   }
+
+  .btn-container {
+    @include allmobiles {
+      padding: 0 15px;
+    }
+  }
 }
