@@ -31,7 +31,19 @@ app-cmp-my-profile {
     .fixed-btn--sm-comprehensive.inline-error {
       background: #fff3e9 !important;
       }
-
+  .datepicker-control{
+    .input-group{
+      &.view-mode{
+        &.inline-error{
+          .form-control{
+            color: $mango-tango-color;
+            -webkit-text-fill-color: $mango-tango-color;
+            pointer-events: visible;
+          }
+        }
+      }
+    }
+  }
   .myinfo-block{
     background: $black-squeeze-grey-color;
     border-radius: 6px;
