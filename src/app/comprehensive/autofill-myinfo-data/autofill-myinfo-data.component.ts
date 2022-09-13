@@ -7,6 +7,9 @@ import { NavbarService } from '../../shared/navbar/navbar.service';
 import { COMPREHENSIVE_ROUTE_PATHS } from '../comprehensive-routes.constants';
 import { COMPREHENSIVE_CONST } from '../comprehensive-config.constants';
 import { MyInfoService } from '../../shared/Services/my-info.service';
+import { ComprehensiveService } from '../comprehensive.service';
+import { ComprehensiveApiService } from '../comprehensive-api.service';
+import { LoaderService } from '../../shared/components/loader/loader.service';
 
 @Component({
   selector: 'app-autofill-myinfo-data',
@@ -31,15 +34,21 @@ export class AutofillMyinfoDataComponent implements OnInit {
 
   myInfoAttriutes: any;
 
+  saveData: string;
+
   constructor(
     private router: Router,
     private navbarService: NavbarService,
     private readonly translate: TranslateService,
     private signUpService: SignUpService,
-    private myInfoService: MyInfoService
+    private myInfoService: MyInfoService,
+    private comprehensiveApiService: ComprehensiveApiService,
+    private comprehensiveService: ComprehensiveService,
+    private loaderService: LoaderService
   ) {
     this.translate.use('en');
     this.translate.get('COMMON').subscribe((result: string) => {
+      this.saveData = this.translate.instant('COMMON_LOADER.SAVE_DATA');
     });
     this.myInfoAttriutes = myInfoService.getMyInfoAttributes();
     this.isVehicleData = this.myInfoAttriutes.includes(COMPREHENSIVE_CONST.EXCLUDABLE_CORP_BIZ_MY_INFO_ATTRIBUTES.VEHICLES);
@@ -61,6 +70,17 @@ export class AutofillMyinfoDataComponent implements OnInit {
   }
 
   goToNext() {
-    this.router.navigate([COMPREHENSIVE_ROUTE_PATHS.GETTING_STARTED]);
+    this.loaderService.showLoader({ title: this.saveData });
+    this.comprehensiveApiService.getComprehensiveAutoFillCFPData().subscribe((compreData) => {
+      if (compreData && compreData.objectList[0]) {
+        this.comprehensiveService.setComprehensiveSummary(compreData.objectList[0]);
+        this.loaderService.hideLoaderForced();
+        this.router.navigate([COMPREHENSIVE_ROUTE_PATHS.GETTING_STARTED]);
+      } else {
+        this.loaderService.hideLoaderForced();
+      }
+    }, err => {
+      this.loaderService.hideLoaderForced();
+    })
   }
 }
