@@ -156,7 +156,8 @@ export class MyProfileComponent implements IPageComponent, OnInit, OnDestroy {
                                 this.closeMyInfoPopup();
                                 router.navigate([COMPREHENSIVE_ROUTE_PATHS.CFP_AUTOFILL]);
                             } else if (data.responseMessage.responseCode === 6014) {
-                                this.myInfoService.closeFetchPopup();
+                                this.myInfoService.isMyInfoEnabled = false;
+                                this.closeMyInfoPopup();
                                 const ref = this.modal.open(ModelWithButtonComponent, { centered: true });
                                 ref.componentInstance.errorTitle = this.loader1Modal.title;
                                 ref.componentInstance.errorMessageHTML = this.loader1Modal.message;
