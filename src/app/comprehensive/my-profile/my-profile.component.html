@@ -136,7 +136,7 @@
       <!--Form Content-->
     </div>
     <!--Form group-->
-    <div class="myinfo-block" *ngIf="!viewMode" appComprehensiveViewMode="{{viewMode}}" mode=1>
+    <div class="myinfo-block" *ngIf="!viewMode && !DOBAlert" appComprehensiveViewMode="{{viewMode}}" mode=1>
         <div class="myinfo-desc">{{ 'CMP.MY_PROFILE.MYINFO_DESC' |translate }}</div>
         <div *ngIf="myinfoRetrievelDate" class="retrieval-date">{{ 'CMP.MY_PROFILE.RETRIEVAL_DATE' |translate }}<span>{{myinfoRetrievelDate}}</span></div>
       <div class="auto-fill-cpf">
