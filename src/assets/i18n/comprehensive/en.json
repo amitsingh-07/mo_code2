@@ -391,7 +391,7 @@
         "DISCLAIMER_MODAL": {
           "TITLE": "Retrieve Myinfo with Singpass<span class='lock'><img src='assets/images/lock.svg'></span>",
           "PROCEED_BTN": "Proceed",
-          "DESC": "<p>By auto-filling the application with myInfo, you can save 20 minutes.</p><p>Applicable to Singapore Citizens and Singapore Permanent Residents (PRs) only.</p><p>All previously entered details will be overwritten.</p>",
+          "DESC": "<p>By auto-filling the application with Myinfo, you can save 20 minutes.</p><p>Applicable to Singapore Citizens and Singapore Permanent Residents (PRs) only.</p><p>Previously entered details will be overwritten.</p>",
           "DISCLAIMER_TEXT": "<div class=\"text-bold\">Disclaimer:</div><div>Some fields will be pre-filled with various assumptions based on Myinfo details, which can be edited at any point during the journey</div>"
         },
         "MY_INFO_MODAL": {
@@ -399,7 +399,7 @@
           "TITLE": "Retrieve Myinfo with Singpass",
           "DESC": "Applicable to all Singpass Registered users.",
           "OWN_ACC_TEXT": "Please use your own account only.",
-          "MY_INFO_DESC": "You will now proceed to login via MyInfo and retrieve your following details which will be used in creating your account and your financial planning with MoneyOwl.",
+          "MY_INFO_DESC": "You will now proceed to login via Myinfo and retrieve your following details which will be used in creating your account and your financial planning with MoneyOwl.",
           "PROCEED_QUEST": "Would you like to proceed?",
           "MODAL_ATTR": {
             "MODAL_BTN": "Let’s go!",
@@ -499,7 +499,8 @@
         "CORP_BIZ_SUCCESS_MSG": "Use these details from Myinfo to get started on financial planning with MoneyOwl.",
         "CORP_BIZ_STEP_CONTINUE_TXT": "This step is required to continue.",
         "CORP_BIZ_ENSURE_TXT": "We will ensure that your information is safe with us. ",
-        "CONTINUE": "Continue"
+        "CONTINUE": "Continue",
+        "SAVE_AND_CONTINUE":"Save and Continue"
     }
     },
     "FORM_LABEL": {
