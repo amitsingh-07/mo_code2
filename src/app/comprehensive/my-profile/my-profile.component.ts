@@ -137,8 +137,8 @@ export class MyProfileComponent implements IPageComponent, OnInit, OnDestroy {
         this.myinfoChangeListener = this.myInfoService.changeListener.subscribe((myinfoObj: any) => {
             let attributeList = comprehensiveService.cfpAutofillMyInfoAttributes;
             if (this.disabledAttributes) {
-                attributeList = this.removeMyInfoAttributes(this.disabledAttributes.cpfHousingFlag, COMPREHENSIVE_CONST.EXCLUDABLE_CORP_BIZ_MY_INFO_ATTRIBUTES.CPF_HOUSING_WITHDRAWAL, attributeList);
-                attributeList = this.removeMyInfoAttributes(this.disabledAttributes.vehicleFlag, COMPREHENSIVE_CONST.EXCLUDABLE_CORP_BIZ_MY_INFO_ATTRIBUTES.VEHICLES, attributeList);
+                attributeList = this.removeMyInfoAttributes(this.disabledAttributes.cpfHousingFlag, COMPREHENSIVE_CONST.EXCLUDABLE_CFP_AUTOFILL_MY_INFO_ATTRIBUTES.CPF_HOUSING_WITHDRAWAL, attributeList);
+                attributeList = this.removeMyInfoAttributes(this.disabledAttributes.vehicleFlag, COMPREHENSIVE_CONST.EXCLUDABLE_CFP_AUTOFILL_MY_INFO_ATTRIBUTES.VEHICLES, attributeList);
             }
             if (myinfoObj && myinfoObj !== '') {
                 if (myinfoObj.status && myinfoObj.status === 'SUCCESS' &&
@@ -184,7 +184,7 @@ export class MyProfileComponent implements IPageComponent, OnInit, OnDestroy {
             if (data && data.objectList[0]) {
                 this.comprehensiveService.setComprehensiveSummary(data.objectList[0]);
                 this.getComprehensiveEnquiry = this.comprehensiveService.getComprehensiveEnquiry();
-                this.myinfoRetrievelDate = this.getComprehensiveEnquiry.myInfoLastRetrievedOn;
+                this.myinfoRetrievelDate = this.getComprehensiveEnquiry.myInfoRetrievedTimestamp;
                 this.getComprehensiveData = this.comprehensiveService.getComprehensiveEnquiry().type;
                 if (this.comprehensiveService.getComprehensiveSummary().comprehensiveEnquiry.reportStatus
                     === COMPREHENSIVE_CONST.REPORT_STATUS.ERROR || (!this.comprehensiveService.getComprehensiveSummary().comprehensiveEnquiry
@@ -392,8 +392,8 @@ export class MyProfileComponent implements IPageComponent, OnInit, OnDestroy {
                     this.disabledAttributes = attributesFlags
                     let attributes = COMPREHENSIVE_CONST.MY_INFO_ATTRIBUTES;
                     if (attributesFlags) {
-                        attributes = this.removeMyInfoAttributes(attributesFlags.cpfHousingFlag, COMPREHENSIVE_CONST.EXCLUDABLE_CORP_BIZ_MY_INFO_ATTRIBUTES.CPF_HOUSING_WITHDRAWAL, attributes);
-                        attributes = this.removeMyInfoAttributes(attributesFlags.vehicleFlag, COMPREHENSIVE_CONST.EXCLUDABLE_CORP_BIZ_MY_INFO_ATTRIBUTES.VEHICLES, attributes);
+                        attributes = this.removeMyInfoAttributes(attributesFlags.cpfHousingFlag, COMPREHENSIVE_CONST.EXCLUDABLE_CFP_AUTOFILL_MY_INFO_ATTRIBUTES.CPF_HOUSING_WITHDRAWAL, attributes);
+                        attributes = this.removeMyInfoAttributes(attributesFlags.vehicleFlag, COMPREHENSIVE_CONST.EXCLUDABLE_CFP_AUTOFILL_MY_INFO_ATTRIBUTES.VEHICLES, attributes);
                     }
                     this.myInfoService.setMyInfoAttributes(attributes);
                     this.myInfoService.setMyInfoAppId(appConstants.MYINFO_CPF);
