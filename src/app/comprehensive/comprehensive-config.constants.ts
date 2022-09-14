@@ -323,7 +323,7 @@ export const COMPREHENSIVE_CONST = {
             DESC: '(Clearance)'
         }
     },
-    EXCLUDABLE_CORP_BIZ_MY_INFO_ATTRIBUTES: {
+    EXCLUDABLE_CFP_AUTOFILL_MY_INFO_ATTRIBUTES: {
         CPF_HOUSING_WITHDRAWAL: 'cpfhousingwithdrawal',
         VEHICLES: 'vehicles'
     },
