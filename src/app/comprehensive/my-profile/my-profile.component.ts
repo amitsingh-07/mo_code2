@@ -147,7 +147,7 @@ export class MyProfileComponent implements IPageComponent, OnInit, OnDestroy {
                             (attributeList.join() === this.myInfoService.getMyInfoAttributes())
                         )
                     )) {
-                    this.myInfoService.getCorpBizMyInfoAccountCreateData(this.userDetails.email, this.userDetails.mobileNumber, this.isOrganisationEnabled ? appConstants.USERTYPE.FACEBOOK : null, true)
+                    this.myInfoService.getCorpBizMyInfoAccountCreateData(this.userDetails.email, this.userDetails.mobileNumber, this.isOrganisationEnabled, true)
                         .subscribe((data) => {
                             if (data.responseMessage.responseCode === 6000 && data && data['objectList'] && data['objectList'][0]) {
                                 comprehensiveService.isCFPAutofillMyInfoEnabled = true;
@@ -431,23 +431,6 @@ export class MyProfileComponent implements IPageComponent, OnInit, OnDestroy {
             ref.componentInstance.closeBtn = false;
             ref.result.then(() => {
                 this.router.navigate([SIGN_UP_ROUTE_PATHS.DASHBOARD]);
-            }).catch((e) => {
-            });
-        }
-    }
-
-    // NRIC used error modal
-    openNricErrorModal() {
-        if (!this.viewMode) {
-            const ref = this.modal.open(ModelWithButtonComponent, { centered: true, windowClass: 'nric-used-modal' });
-            ref.componentInstance.errorTitle = this.translate.instant('MYINFO.NRIC_USED_ERROR.TITLE');
-            ref.componentInstance.errorMessageHTML = this.translate.instant('MYINFO.NRIC_USED_ERROR.DESCRIPTION');
-            ref.componentInstance.primaryActionLabel = this.translate.instant('MYINFO.NRIC_USED_ERROR.BTN-TEXT');
-            ref.componentInstance.closeAction.subscribe(() => {
-                this.modal.dismissAll();
-            });
-            ref.result.then((data) => {
-                this.modal.dismissAll();
             }).catch((e) => {
             });
         }
