@@ -34,6 +34,7 @@ import { OcpDisabilityComponent } from './ocp-disability/ocp-disability.componen
 import { ProfileComponent } from './profile/profile.component';
 import { ProtectionNeedsComponent } from './protection-needs/protection-needs.component';
 import { RecommendationsComponent } from './recommendations/recommendations.component';
+import { InsuranceMyinfoRetrievalComponent } from './insurance-myinfo-retrieval/insurance-myinfo-retrieval.component';
 
 export function createTranslateLoader(http: HttpClient) {
   return new MultiTranslateHttpLoader(
@@ -79,7 +80,8 @@ export function createTranslateLoader(http: HttpClient) {
     InsuranceResultsComponent,
     InsuranceResultComponent,
     RecommendationsComponent,
-    CustomCurrencyPipe
+    CustomCurrencyPipe,
+    InsuranceMyinfoRetrievalComponent
   ],
   providers: [CurrencyPipe, CustomCurrencyPipe, LoggedUserService, GuideMeAccessGuard],
   entryComponents: [ProductDetailComponent]

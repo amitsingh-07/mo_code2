@@ -19,6 +19,7 @@ import { OcpDisabilityComponent } from './ocp-disability/ocp-disability.componen
 import { ProfileComponent } from './profile/profile.component';
 import { ProtectionNeedsComponent } from './protection-needs/protection-needs.component';
 import { RecommendationsComponent } from './recommendations/recommendations.component';
+import { InsuranceMyinfoRetrievalComponent } from './insurance-myinfo-retrieval/insurance-myinfo-retrieval.component';
 
 const routes: Routes = [
   { path: GUIDE_ME_ROUTES.ROOT, component: ProfileComponent, canActivate: [GuideMeAccessGuard] },
@@ -38,6 +39,7 @@ const routes: Routes = [
   { path: GUIDE_ME_ROUTES.HOSPITAL_PLAN, component: HospitalPlanComponent, canActivate: [GuideMeAccessGuard] },
   { path: GUIDE_ME_ROUTES.INSURANCE_RESULTS, component: InsuranceResultsComponent, canActivate: [GuideMeAccessGuard] },
   { path: GUIDE_ME_ROUTES.RECOMMENDATIONS, component: RecommendationsComponent, canActivate: [GuideMeAccessGuard] },
+  { path: GUIDE_ME_ROUTES.MYINFO_RETRIEVAL, component: InsuranceMyinfoRetrievalComponent, canActivate: [GuideMeAccessGuard] },
   { path: '**', redirectTo: '/page-not-found' }
 ];
 

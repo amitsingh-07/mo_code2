@@ -1,0 +1,101 @@
+<div class="container-fluid max-width--1024">
+    <div class="content">
+        <div class="row">
+            <div class="col-lg-7 col-md-6 hidden-sm">
+                <div class="insurance-data-wrapper">
+                    <h2 class="insurance-data-wrapper__title order1 sm-order2 hidden-sm">{{ 'MYINFO_RETRIEVAL.TITLE'
+                        |translate}}
+                    </h2>
+                    <img class="insurance__header-icon order3 sm-order1" src="assets/images/assets.svg" />
+                </div>
+            </div>
+            <div class="col-lg-5 col-md-6 insurance-max-width">
+                <h2 class="insurance-data-wrapper__title hidden-lg">{{ 'MYINFO_RETRIEVAL.TITLE' | translate}}
+                </h2>
+                <div class="insurance-data-wrapper__description order2">
+                    <div class="myinfo-header-block">
+                        <div class="flex align-center">
+                            <span class="check-icon mr10"><img src="assets/images/check-icon-green.svg" alt="" /></span>
+                            <span class="title">{{'MYINFO_RETRIEVAL.SUCCESS_MSG' |
+                                translate}} </span>
+                        </div>
+                        <hr>
+                        <div class="myinfo-data-block">
+                            <div class="flex space-between">
+                                <div class="title">{{'MYINFO_RETRIEVAL.PERSONAL.TITLE' |
+                                    translate}}</div>
+                            </div>
+                            <div class="myinfo-data-content">
+                                <div>
+                                    <div>{{'MYINFO_RETRIEVAL.PERSONAL.NRIC_TEXT' |
+                                        translate}}</div>
+                                    <div class="data_lbl">S1234567M</div>
+                                    <!-- <div class="data_lbl">{{ insurance.nricNumber || '-'}}&nbsp; 
+                                                </div-->
+                                </div>
+                            </div>
+                            <div class="flex space-between">
+                                <div class="title">{{'MYINFO_RETRIEVAL.CPF_ACC_BAL.TITLE' |
+                                    translate}}</div>
+                            </div>
+                            <div class="myinfo-data-content">
+                                <div>
+                                    <div>
+                                        {{'MYINFO_RETRIEVAL.CPF_ACC_BAL.ORDINARY_ACC_TEXT'
+                                        |
+                                        translate}}</div>
+                                    <div class="data_lbl">$2000
+                                        <!-- {{ (cpfBalances.oa |
+                                                    currencyEditor:'USD':'':'symbol-narrow') || '-'}} -->
+                                    </div>
+                                </div>
+                                <div>
+                                    <div>
+                                        {{'MYINFO_RETRIEVAL.CPF_ACC_BAL.SPECIAL_ACC_TEXT'
+                                        |
+                                        translate}}</div>
+                                    <div class="data_lbl">$5000
+                                        <!-- {{ (cpfBalances.sa |
+                                                    currencyEditor:'USD':'':'symbol-narrow') || '-'}}&nbsp; -->
+                                    </div>
+                                </div>
+                                <div>
+                                    <div>
+                                        {{'MYINFO_RETRIEVAL.CPF_ACC_BAL.MEDISAFE_ACC_TEXT'
+                                        |
+                                        translate}}</div>
+                                    <div class="data_lbl">$9000
+                                        <!-- {{ (cpfBalances.ma |
+                                                    currencyEditor:'USD':'':'symbol-narrow') || '-'}} -->
+                                    </div>
+                                </div>
+                                <div>
+                                    <div>
+                                        {{'MYINFO_RETRIEVAL.CPF_ACC_BAL.RETIREMENT_ACC_TEXT'
+                                        |
+                                        translate}}</div>
+                                    <div class="data_lbl">$5000
+                                        <!-- {{ (cpfBalances.ra |
+                                                    currencyEditor:'USD':'':'symbol-narrow') || '-' }} -->
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="flex note">
+                        <span class="lock-icon mr10"><img src="assets/images/check-lock-icon.svg" alt="" /></span>
+                        <div>
+                            <span class="text-bold">{{'MYINFO_RETRIEVAL.ENSURE_TXT' |
+                                translate}}</span>
+                            <span class="text-regular">{{'MYINFO_RETRIEVAL.STEP_CONTINUE_TXT' |
+                                translate}}</span>
+                        </div>
+                    </div>
+                    <button id="nextDependentBtn" type="button" (click)="goToNext()"
+                        class="btn btn__footer--fixed btn-primary width100 mt20">{{
+                        'MYINFO_RETRIEVAL.CONTINUE' | translate }}</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
