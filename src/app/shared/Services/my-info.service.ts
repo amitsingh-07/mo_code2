@@ -3,6 +3,7 @@ import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import { NgbModal, NgbModalOptions, NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
 import { Subject } from 'rxjs';
+import { appConstants } from '../../app.constants';
 
 import { environment } from '../../../environments/environment';
 import { ApiService } from '../http/api.service';
@@ -256,15 +257,16 @@ export class MyInfoService {
   }
 
   // CREATE ACCOUNT FOR CORPBIZ USERS
-  getCorpBizMyInfoAccountCreateData(email, mobile, organisationCode, linkNric) {
+  getCorpBizMyInfoAccountCreateData(email, mobile, isOrganisationEnabled, linkNric) {
     const payload = {
       authorizationCode: this.myInfoValue,
       personAttributes: this.getMyInfoAttributes(),
       isCorpBizUser: true,
-      organisationCode: organisationCode,
+      organisationCode: isOrganisationEnabled ? appConstants.USERTYPE.FACEBOOK : null,
       email: email,
       mobileNumber: mobile,
-      linkNric: linkNric
+      linkNric: linkNric,
+      profileType: isOrganisationEnabled ? appConstants.USERTYPE.CORPORATE : appConstants.USERTYPE.PUBLIC
     };
     return this.apiService.getCreateAccountMyInfoData(payload);
   }
