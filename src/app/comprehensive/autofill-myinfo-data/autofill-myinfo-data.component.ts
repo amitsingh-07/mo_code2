@@ -51,8 +51,8 @@ export class AutofillMyinfoDataComponent implements OnInit {
       this.saveData = this.translate.instant('COMMON_LOADER.SAVE_DATA');
     });
     this.myInfoAttriutes = myInfoService.getMyInfoAttributes();
-    this.isVehicleData = this.myInfoAttriutes.includes(COMPREHENSIVE_CONST.EXCLUDABLE_CORP_BIZ_MY_INFO_ATTRIBUTES.VEHICLES);
-    this.isCPFHousingWithdrawal = this.myInfoAttriutes.includes(COMPREHENSIVE_CONST.EXCLUDABLE_CORP_BIZ_MY_INFO_ATTRIBUTES.CPF_HOUSING_WITHDRAWAL);
+    this.isVehicleData = this.myInfoAttriutes.includes(COMPREHENSIVE_CONST.EXCLUDABLE_CFP_AUTOFILL_MY_INFO_ATTRIBUTES.VEHICLES);
+    this.isCPFHousingWithdrawal = this.myInfoAttriutes.includes(COMPREHENSIVE_CONST.EXCLUDABLE_CFP_AUTOFILL_MY_INFO_ATTRIBUTES.CPF_HOUSING_WITHDRAWAL);
 
     this.cfpAutoFillMyinfoData = signUpService.getCorpBizUserMyInfoData();
 
