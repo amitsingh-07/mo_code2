@@ -435,21 +435,4 @@ export class MyProfileComponent implements IPageComponent, OnInit, OnDestroy {
             });
         }
     }
-
-    // NRIC used error modal
-    openNricErrorModal() {
-        if (!this.viewMode) {
-            const ref = this.modal.open(ModelWithButtonComponent, { centered: true, windowClass: 'nric-used-modal' });
-            ref.componentInstance.errorTitle = this.translate.instant('MYINFO.NRIC_USED_ERROR.TITLE');
-            ref.componentInstance.errorMessageHTML = this.translate.instant('MYINFO.NRIC_USED_ERROR.DESCRIPTION');
-            ref.componentInstance.primaryActionLabel = this.translate.instant('MYINFO.NRIC_USED_ERROR.BTN-TEXT');
-            ref.componentInstance.closeAction.subscribe(() => {
-                this.modal.dismissAll();
-            });
-            ref.result.then((data) => {
-                this.modal.dismissAll();
-            }).catch((e) => {
-            });
-        }
-    }
 }
