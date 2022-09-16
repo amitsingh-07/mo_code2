@@ -17,6 +17,7 @@ import { GUIDE_ME_ROUTE_PATHS } from '../guide-me-routes.constants';
 export class InsuranceMyinfoRetrievalComponent implements OnInit {
   myInfoAttriutes: any;
   insuranceMyInfoData: any;
+  pageTitle: string;
 
   constructor(
     private router: Router,
@@ -32,13 +33,22 @@ export class InsuranceMyinfoRetrievalComponent implements OnInit {
     this.translate.get('COMMON').subscribe((result: string) => {
     });
     this.myInfoAttriutes = myInfoService.getMyInfoAttributes();
-    this.insuranceMyInfoData = guideMeService
+    this.insuranceMyInfoData = guideMeService;
+    this.translate.get('COMMON').subscribe((result: string) => {
+      this.pageTitle = this.translate.instant('MY_ASSETS.TITLE');
+      this.setPageTitle(this.pageTitle);
+    });
   }
 
   ngOnInit(): void {
     this.navbarService.setNavbarVisibility(true);
     this.footerService.setFooterVisibility(false);
     this.navbarService.setNavbarDirectGuided(true);
+  }
+
+
+  setPageTitle(title: string) {
+    this.navbarService.setPageTitle(title);
   }
 
   goToNext() {

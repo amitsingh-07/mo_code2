@@ -5,7 +5,10 @@ app-insurance-myinfo-retrieval {
     .container-fluid {
         &.max-width--1024 {
             @include allmobiles {
-                padding-top: 30px;
+                padding-top: 100px;
+            }
+            @include phablet{
+                padding-top: 100px;
             }
         }
     }
@@ -30,26 +33,22 @@ app-insurance-myinfo-retrieval {
 
     .insurance-max-width {
         padding: 0;
-        max-width: 335px;
-        margin-right: 15px;
+        max-width: 100%;
         margin-left: auto;
-
+        @include desktop{
+            max-width: 335px;
+        }
         @include allmobiles {
-            padding: 0 20px;
+            padding: 0 15px;
             max-width: 100%;
             margin: 0 auto;
         }
     }
 
-    .insurance__header-icon {
-        width: 100% !important;
-        height: auto !important;
-        margin-top: 109px;
-
-        @include allmobiles {
-            width: 170px !important;
-            height: 155px !important;
-            margin-bottom: 36px;
+    .banner-image{
+        margin-top: 108px;
+        img {
+            padding-top: 0;
         }
     }
 
@@ -111,7 +110,7 @@ app-insurance-myinfo-retrieval {
     }
 
     .note {
-        padding: 20px 10px 10px 0;
+        padding: 30px 10px 15px 0;
         font-family: $muli-regular;
         font-size: 13px;
         line-height: 16px;
