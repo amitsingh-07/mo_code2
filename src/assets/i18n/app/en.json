@@ -623,7 +623,7 @@
           "TITLE": "Retrieve Myinfo with Singpass",
           "DESC": "Applicable to all Singpass Registered users.",
           "OWN_ACC_TEXT": "Please use your own account only.",
-          "MY_INFO_DESC": "You will now proceed to login via MyInfo and retrieve your following details which will be used in creating your account and your financial planning with MoneyOwl.",
+          "MY_INFO_DESC": "You will now proceed to login via Myinfo and retrieve your following details which will be used in creating your account and your financial planning with MoneyOwl.",
           "PROCEED_QUEST": "Would you like to proceed?",
           "MODAL_ATTR": {
             "PERSONAL": {
