@@ -388,6 +388,11 @@
           "message": "We have detected that the NRIC/FIN is already in use by another account.<strong class=\"text-bold\"> Please use your own account only.</strong><br></br>Contact us at <span class=\"email_txt\"><a target='_blank' href='mailto:enquiries@moneyowl.com.sg'>enquiries@moneyowl.com.sg</a></span> if you require any assistance.",
           "btn": "Okay, Got It!"
         },
+        "DIFFERENT_USER": {
+          "title": "Unable to proceed with the NRIC/FIN",
+          "message": "We have detected that the NRIC/FIN used is different from your account. <strong>Please use your own account only.</strong><br><br>Contact us at <a class=\"hyperlink_color\" target='_blank' href='mailto:enquiries@moneyowl.com.sg'>enquiries@moneyowl.com.sg</a> if you require any assistance.",
+          "btn": "Okay, Got It!"
+        },
         "DISCLAIMER_MODAL": {
           "TITLE": "Retrieve Myinfo with Singpass<span class='lock'><img src='assets/images/lock.svg'></span>",
           "PROCEED_BTN": "Proceed",
