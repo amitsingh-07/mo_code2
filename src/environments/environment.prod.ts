@@ -14,7 +14,7 @@ export const environment: IEnvironment = {
   myInfoCallbackBaseUrl: 'https://www.moneyowl.com.sg/app/myinfo',
   myInfoAuthorizeUrl: 'https://api.myinfo.gov.sg/com/v3/authorise',
   gAdPropertyId: 'AW-782920447',
-  gtagPropertyId: 'GTM-5JVF8LT',
+  gtagPropertyId: 'GTM-59QTMNZ',
   gaPropertyId: 'UA-125256446-3',
   fbPropertyId: '1436376216665984',
   adRollPropertyId: 'IJWYLBK7MZGF7JMIJ2CP3K',
