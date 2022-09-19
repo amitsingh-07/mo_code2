@@ -151,7 +151,7 @@ export class MyProfileComponent implements IPageComponent, OnInit, OnDestroy {
                             (attributeList.join() === this.myInfoService.getMyInfoAttributes())
                         )
                     )) {
-                    this.myInfoService.getCorpBizMyInfoAccountCreateData(this.userDetails.email, this.userDetails.mobileNumber, this.isOrganisationEnabled, true)
+                    this.myInfoService.getCorpBizMyInfoAccountCreateData(this.userDetails.email, this.userDetails.mobileNumber, this.isOrganisationEnabled)
                         .subscribe((data) => {
                             if (data.responseMessage.responseCode === 6000 && data && data['objectList'] && data['objectList'][0]) {
                                 comprehensiveService.isCFPAutofillMyInfoEnabled = true;
