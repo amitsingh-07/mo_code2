@@ -69,6 +69,7 @@ export class MyProfileComponent implements IPageComponent, OnInit, OnDestroy {
     myinfoRetrievelDate: any;
     myInfoModalBtn: string;
     isOrganisationEnabled: boolean;
+    differentNricError: any;
 
     @HostListener('window:popstate', ['$event'])
     onPopState(event) {
@@ -123,6 +124,9 @@ export class MyProfileComponent implements IPageComponent, OnInit, OnDestroy {
                 this.loader1Modal = this.translate.instant(
                     'CMP.GETTING_STARTED.CFP_AUTOFILL.LOADER1'
                 );
+                this.differentNricError = this.translate.instant(
+                    'CMP.GETTING_STARTED.CFP_AUTOFILL.DIFFERENT_USER'
+                );
                 this.myInfoModalBtn = this.translate.instant(
                     'CMP.GETTING_STARTED.CFP_AUTOFILL.MY_INFO_MODAL.BTN'
                 );
@@ -147,7 +151,7 @@ export class MyProfileComponent implements IPageComponent, OnInit, OnDestroy {
                             (attributeList.join() === this.myInfoService.getMyInfoAttributes())
                         )
                     )) {
-                    this.myInfoService.getCorpBizMyInfoAccountCreateData(this.userDetails.email, this.userDetails.mobileNumber, this.isOrganisationEnabled, true)
+                    this.myInfoService.getCorpBizMyInfoAccountCreateData(this.userDetails.email, this.userDetails.mobileNumber, this.isOrganisationEnabled)
                         .subscribe((data) => {
                             if (data.responseMessage.responseCode === 6000 && data && data['objectList'] && data['objectList'][0]) {
                                 comprehensiveService.isCFPAutofillMyInfoEnabled = true;
@@ -162,6 +166,13 @@ export class MyProfileComponent implements IPageComponent, OnInit, OnDestroy {
                                 ref.componentInstance.errorTitle = this.loader1Modal.title;
                                 ref.componentInstance.errorMessageHTML = this.loader1Modal.message;
                                 ref.componentInstance.primaryActionLabel = this.loader1Modal.btn;
+                            } else if (data.responseMessage.responseCode === 6015) {
+                                this.myInfoService.isMyInfoEnabled = false;
+                                this.closeMyInfoPopup();
+                                const ref = this.modal.open(ModelWithButtonComponent, { centered: true });
+                                ref.componentInstance.errorTitle = this.differentNricError.title;
+                                ref.componentInstance.errorMessageHTML = this.differentNricError.message;
+                                ref.componentInstance.primaryActionLabel = this.differentNricError.btn;
                             } else {
                                 this.closeMyInfoPopup();
                             }

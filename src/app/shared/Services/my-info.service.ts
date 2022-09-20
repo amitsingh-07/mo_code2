@@ -257,7 +257,7 @@ export class MyInfoService {
   }
 
   // CREATE ACCOUNT FOR CORPBIZ USERS
-  getCorpBizMyInfoAccountCreateData(email, mobile, isOrganisationEnabled, linkNric) {
+  getCorpBizMyInfoAccountCreateData(email, mobile, isOrganisationEnabled) {
     const payload = {
       authorizationCode: this.myInfoValue,
       personAttributes: this.getMyInfoAttributes(),
@@ -265,7 +265,6 @@ export class MyInfoService {
       organisationCode: isOrganisationEnabled ? appConstants.USERTYPE.FACEBOOK : null,
       email: email,
       mobileNumber: mobile,
-      linkNric: linkNric,
       profileType: isOrganisationEnabled ? appConstants.USERTYPE.CORPORATE : appConstants.USERTYPE.PUBLIC
     };
     return this.apiService.getCreateAccountMyInfoData(payload);
