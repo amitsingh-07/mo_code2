@@ -11,7 +11,7 @@ import { IPageComponent } from '../../shared/interfaces/page-component.interface
 import { ErrorModalComponent } from '../../shared/modal/error-modal/error-modal.component';
 import { NavbarService } from '../../shared/navbar/navbar.service';
 import { MyInfoService } from '../../shared/Services/my-info.service';
-import { GUIDE_ME_ROUTE_PATHS, GUIDE_ME_ROUTES } from '../guide-me-routes.constants';
+import { GUIDE_ME_ROUTE_PATHS} from '../guide-me-routes.constants';
 import { GuideMeApiService } from '../guide-me.api.service';
 import { GuideMeService } from '../guide-me.service';
 import { ConfigService, IConfig } from './../../config/config.service';
@@ -80,7 +80,7 @@ export class MyAssetsComponent implements IPageComponent, OnInit, OnDestroy, Aft
               // has to happen after coming from new page
               //this.setFormTotalValue();
               this.closeMyInfoPopup();
-              this.router.navigate([GUIDE_ME_ROUTES.MYINFO_RETRIEVAL]);
+              this.router.navigate([GUIDE_ME_ROUTE_PATHS.MYINFO_RETRIEVAL]);
             } else {
               this.closeMyInfoPopup();
             }
