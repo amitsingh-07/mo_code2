@@ -14,7 +14,6 @@ import { MyInfoService } from '../../shared/Services/my-info.service';
 import { GUIDE_ME_ROUTE_PATHS, GUIDE_ME_ROUTES } from '../guide-me-routes.constants';
 import { GuideMeApiService } from '../guide-me.api.service';
 import { GuideMeService } from '../guide-me.service';
-import { APP_ROUTES } from './../../app-routes.constants';
 import { ConfigService, IConfig } from './../../config/config.service';
 import { IMyAssets } from './my-assets.interface';
 import { SIGN_UP_ROUTE_PATHS } from './../../sign-up/sign-up.routes.constants';
@@ -71,13 +70,17 @@ export class MyAssetsComponent implements IPageComponent, OnInit, OnDestroy, Aft
         if (myinfoObj.status && myinfoObj.status === 'SUCCESS' && this.myInfoService.isMyInfoEnabled) {
           this.myInfoService.getMyInfoData().subscribe((data) => {
             if (data && data['objectList']) {
-              this.cpfValue = Math.floor(data['objectList'][0].cpfbalances.total);
-              this.assetsForm.controls['cpf'].setValue(this.cpfValue);
+              this.myInfoService.setMyInfoCpfbalances(data['objectList'][0]);
+              // below 2 lines have to happen on coming from new page
+              //this.cpfValue = Math.floor(data['objectList'][0].cpfbalances.total);
+              //this.assetsForm.controls['cpf'].setValue(this.cpfValue);
               this.myInfoService.isMyInfoEnabled = false;
               this.cpfFromMyInfo = true;
               this.assetsForm.controls['cpfFromMyInfo'].setValue(this.cpfFromMyInfo);
-              this.setFormTotalValue();
+              // has to happen after coming from new page
+              //this.setFormTotalValue();
               this.closeMyInfoPopup();
+              this.router.navigate([GUIDE_ME_ROUTES.MYINFO_RETRIEVAL]);
             } else {
               this.closeMyInfoPopup();
             }

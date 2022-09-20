@@ -12,6 +12,7 @@ import { ModelWithButtonComponent } from '../modal/model-with-button/model-with-
 import { SIGN_UP_ROUTE_PATHS } from './../../sign-up/sign-up.routes.constants';
 
 const MYINFO_ATTRIBUTE_KEY = 'myinfo_person_attributes';
+const MYINFO_CPF_BALANCES = 'myinfo_cpf_balances';
 declare var window: Window;
 
 const CANCELLED = -2;
@@ -49,6 +50,14 @@ export class MyInfoService {
 
   getMyInfoAttributes() {
     return window.sessionStorage.getItem(MYINFO_ATTRIBUTE_KEY);
+  }
+
+  setMyInfoCpfbalances(value) {
+    window.sessionStorage.setItem(MYINFO_CPF_BALANCES, value)
+  }
+
+  getMyInfoCpfbalances() {
+    window.sessionStorage.getItem(MYINFO_CPF_BALANCES)
   }
 
   setMyInfoAppId(myInfoServices) {

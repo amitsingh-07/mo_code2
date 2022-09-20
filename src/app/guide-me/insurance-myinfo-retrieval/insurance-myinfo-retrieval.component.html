@@ -31,9 +31,7 @@
                                 <div>
                                     <div>{{'MYINFO_RETRIEVAL.PERSONAL.NRIC_TEXT' |
                                         translate}}</div>
-                                    <div class="data_lbl">S1234567M</div>
-                                    <!-- <div class="data_lbl">{{ insurance.nricNumber || '-'}}&nbsp; 
-                                                </div-->
+                                    <div class="data_lbl">{{ nric || '-'}}&nbsp; </div>
                                 </div>
                             </div>
                             <div class="flex space-between">
@@ -46,9 +44,7 @@
                                         {{'MYINFO_RETRIEVAL.CPF_ACC_BAL.ORDINARY_ACC_TEXT'
                                         |
                                         translate}}</div>
-                                    <div class="data_lbl">$2000
-                                        <!-- {{ (cpfBalances.oa |
-                                                    currencyEditor:'USD':'':'symbol-narrow') || '-'}} -->
+                                    <div class="data_lbl"> {{ (cpfOa | currencyEditor:'USD':'':'symbol-narrow') || '-'}}
                                     </div>
                                 </div>
                                 <div>
@@ -56,9 +52,8 @@
                                         {{'MYINFO_RETRIEVAL.CPF_ACC_BAL.SPECIAL_ACC_TEXT'
                                         |
                                         translate}}</div>
-                                    <div class="data_lbl">$5000
-                                        <!-- {{ (cpfBalances.sa |
-                                                    currencyEditor:'USD':'':'symbol-narrow') || '-'}}&nbsp; -->
+                                    <div class="data_lbl">{{ (cpfSa |
+                                        currencyEditor:'USD':'':'symbol-narrow') || '-'}}&nbsp;
                                     </div>
                                 </div>
                                 <div>
@@ -66,9 +61,8 @@
                                         {{'MYINFO_RETRIEVAL.CPF_ACC_BAL.MEDISAFE_ACC_TEXT'
                                         |
                                         translate}}</div>
-                                    <div class="data_lbl">$9000
-                                        <!-- {{ (cpfBalances.ma |
-                                                    currencyEditor:'USD':'':'symbol-narrow') || '-'}} -->
+                                    <div class="data_lbl">{{ (cpfMa |
+                                        currencyEditor:'USD':'':'symbol-narrow') || '-'}}
                                     </div>
                                 </div>
                                 <div>
@@ -76,9 +70,8 @@
                                         {{'MYINFO_RETRIEVAL.CPF_ACC_BAL.RETIREMENT_ACC_TEXT'
                                         |
                                         translate}}</div>
-                                    <div class="data_lbl">$5000
-                                        <!-- {{ (cpfBalances.ra |
-                                                    currencyEditor:'USD':'':'symbol-narrow') || '-' }} -->
+                                    <div class="data_lbl">{{ (cpfRa |
+                                        currencyEditor:'USD':'':'symbol-narrow') || '-' }}
                                     </div>
                                 </div>
                             </div>

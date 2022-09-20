@@ -18,6 +18,12 @@ export class InsuranceMyinfoRetrievalComponent implements OnInit {
   myInfoAttriutes: any;
   insuranceMyInfoData: any;
   pageTitle: string;
+  myInfoCpfBalances: any;
+  nric: string;
+  cpfMa: number;
+  cpfOa: number;
+  cpfRa: number;
+  cpfSa: number;
 
   constructor(
     private router: Router,
@@ -33,6 +39,8 @@ export class InsuranceMyinfoRetrievalComponent implements OnInit {
     this.translate.get('COMMON').subscribe((result: string) => {
     });
     this.myInfoAttriutes = myInfoService.getMyInfoAttributes();
+    // get from session storage
+    this.myInfoCpfBalances = myInfoService.getMyInfoCpfbalances
     this.insuranceMyInfoData = guideMeService;
     this.translate.get('COMMON').subscribe((result: string) => {
       this.pageTitle = this.translate.instant('MY_ASSETS.TITLE');
@@ -44,8 +52,15 @@ export class InsuranceMyinfoRetrievalComponent implements OnInit {
     this.navbarService.setNavbarVisibility(true);
     this.footerService.setFooterVisibility(false);
     this.navbarService.setNavbarDirectGuided(true);
-  }
+    this.nric = this.myInfoCpfBalances && this.myInfoCpfBalances.nric;
+    if (this.myInfoCpfBalances && this.myInfoCpfBalances.cpfbalances) {
+      this.cpfMa = this.myInfoCpfBalances.cpfbalances.ma;
+      this.cpfOa = this.myInfoCpfBalances.cpfbalances.oa;
+      this.cpfRa = this.myInfoCpfBalances.cpfbalances.ra;
+      this.cpfSa = this.myInfoCpfBalances.cpfbalances.sa;
+    }
 
+  }
 
   setPageTitle(title: string) {
     this.navbarService.setPageTitle(title);
