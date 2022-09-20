@@ -356,7 +356,7 @@
     "IFAST_ERROR_TITLE": "Error !",
     "FACEBOOK_IN_APP_BROWSER_WARNING": {
         "TITLE": "Note !",
-        "DESC": "You may experience issues while using Facebook In-App Browser to serve our website. Kindly switch to your local browser to have a smoother experience. Click on the \"3 dots\" icon > Choose \"Open in browser\" from the options."
+        "DESC": "You may experience issues while using Facebook In-App Browser to surf our website. For a better & optimized experience, switch to web browser by selecting the '...' icon and choose 'Open in browser' from the list of options."
     },
     "UNSUPPORTED_DEVICE_MODAL": {
         "TITLE": "Note !",
