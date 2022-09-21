@@ -11,7 +11,7 @@
   <div class="modal-body-message " id="errorModelMessage">
     <div class="text-bold">{{'MY_INFO_FIELDS.MY_INFO_MODAL.DESC' | translate}}</div>
     <div class="text-bold  mb30">{{'MY_INFO_FIELDS.MY_INFO_MODAL.OWN_ACC_TEXT' | translate}}</div>
-    <div class="myinfo-txt mb30">{{'MY_INFO_FIELDS.MY_INFO_MODAL.MY_INFO_DESC' | translate}}</div>
+    <div class="myinfo-txt mb30">{{modalDesc}}</div>
     <div class="myinfo-data-block">
       <form [formGroup]="myInfoEnableForm">
         <ngb-accordion #acc="ngbAccordion">

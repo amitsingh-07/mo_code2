@@ -34,6 +34,7 @@ export class CorpBizSignupComponent implements OnInit {
   modalBtnTxt: string;
   myinfoChangeListener: Subscription;
   disabledAttributes: any;
+  myinfoModalDesc: string;
 
   constructor(
     private modal: NgbModal,
@@ -57,6 +58,9 @@ export class CorpBizSignupComponent implements OnInit {
       );
       this.modalBtnTxt = this.translate.instant(
         'CORP_BIZ_SIGN_UP.MY_INFO_MODAL.BTN'
+      );
+      this.myinfoModalDesc = this.translate.instant(
+        'CORP_BIZ_SIGN_UP.MY_INFO_MODAL.MY_INFO_DESC'
       );
       this.loader1Modal = this.translate.instant(
         'CORP_BIZ_SIGN_UP.LOADER1'
@@ -152,6 +156,7 @@ export class CorpBizSignupComponent implements OnInit {
   proceedToMyInfo() {
     const ref = this.modal.open(MyinfoModalComponent, { centered: true });
     ref.componentInstance.primaryActionLabel = this.modalBtnTxt;
+    ref.componentInstance.modalDesc = this.myinfoModalDesc;
     ref.componentInstance.myInfoEnableFlags.subscribe((value: any) => {
       ref.result
         .then(() => {
