@@ -39,6 +39,8 @@ export class RecommendedCardComponent implements OnInit {
   @ViewChild('carousel') carousel: SlickCarouselComponent;
   iconSrcPath = SIGN_UP_CONFIG.RECOMMENDED_CARD.ICONS_PATH;
   isLoadComplete = false;
+  isCardDsmissed = false;
+  cardEvent: any;
   constructor(
     public modal: NgbModal,
     private signUpApiService: SignUpApiService,
@@ -68,10 +70,10 @@ export class RecommendedCardComponent implements OnInit {
       ref.componentInstance.cardContent = resp.objectList; // Pass card content here      
       ref.componentInstance.closeAction.subscribe((value: any) => {
         this.isLoadComplete = false;
-        this.cards = [];
         if (value) {
           // Dismiss API call goes here
           this.signUpApiService.dismissCard(cardId).subscribe(dismissResp => {
+            this.isCardDsmissed = true;
             this.getRecommendedCards();
           });
         } else {
@@ -94,6 +96,14 @@ export class RecommendedCardComponent implements OnInit {
       const responseCode = resp && resp.responseMessage && resp.responseMessage.responseCode ? resp.responseMessage.responseCode : 0;
       if (responseCode >= 6000) {
         this.cards = resp.objectList.pageList;
+        if (this.isCardDsmissed && this.cardEvent) {
+          setTimeout(() => {
+            const getCurrentSlideIndex = (document.getElementsByClassName('slick-current') as any)[0].getAttribute('data-slick-index');
+            this.cardEvent.currentSlide = parseInt(getCurrentSlideIndex);
+            this.afterSlideChange(this.cardEvent);
+            this.isCardDsmissed = false;
+          });
+        }
       }
     }, err => {
       this.isLoadComplete = true;
@@ -101,6 +111,7 @@ export class RecommendedCardComponent implements OnInit {
   }
 
   afterSlideChange(event) {
+    this.cardEvent = event;
     const nextArrow: any = document.getElementsByClassName('next-arrow');
     const prevArrow: any = document.getElementsByClassName('prev-arrow');
     if ((this.cards.length % 2 > 0 && event.currentSlide + 1 == this.cards.length) ||
@@ -119,6 +130,12 @@ export class RecommendedCardComponent implements OnInit {
 
   slickInit(e) {
     const prevArrow: any = document.getElementsByClassName('prev-arrow');
-    prevArrow[0].style.display = 'none';
+    if (prevArrow) {
+      prevArrow[0].style.display = 'none';
+    }
+  }
+
+  trackCards(index, item) {
+    return index;
   }
 }
