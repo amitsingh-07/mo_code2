@@ -17,7 +17,13 @@ app-recommended-card {
     white-space: nowrap;
     text-overflow: ellipsis;
     max-width: 191px !important;
+    @include max360{
+      max-width: 166px !important;
     }
+    @include min300max350{
+      max-width: 158px !important;
+    }
+  }
 
   .text-wrap-subtitle {
     -webkit-line-clamp: 3 !important;
@@ -30,14 +36,34 @@ app-recommended-card {
     text-overflow: ellipsis;
     line-clamp: 3;
     -webkit-box-pack: end;
+    @include max360{
+      max-width: 182px !important;
+    }
+    @include min300max350{
+      max-width: 164px !important;
+    }
+  }
+
+  .slick-track{
+    @include allmobiles{
+      margin-left: 15px;
+    }
   }
 
   .slick-slide {
     width: 335px;
-
+    @include min300max350{
+      width: 290px !important;
+    }
+    @include max360{
+      width: 310px;
+    }
     &:last-child {
       .card {
         margin-right: 0px !important;
+      }
+      @include allmobiles{
+        margin-right: 10px !important;
       }
     }
   }
@@ -89,7 +115,9 @@ app-recommended-card {
     line-height: 18px;
     letter-spacing: -0.2px;
     color: rgba(0, 0, 0, 0.7);
-
+    @include allmobiles{
+      margin: 0 -15px;
+    }
     .card-container {
       padding: 0;
 
@@ -111,6 +139,9 @@ app-recommended-card {
           width: 80px;
           height: 80px;
           margin-right: 16px;
+          @include min300max350{
+            margin-right: 8px;
+          }
 
           img {
             border-radius: 16px;
