@@ -39,8 +39,8 @@ export class InsuranceMyinfoRetrievalComponent implements OnInit {
     this.translate.get('COMMON').subscribe((result: string) => {
     });
     this.myInfoAttriutes = myInfoService.getMyInfoAttributes();
-    // get from session storage
-    this.myInfoCpfBalances = myInfoService.getMyInfoCpfbalances
+    // get cpfbalances from session storage
+    this.myInfoCpfBalances = myInfoService.getMyInfoCpfbalances();
     this.insuranceMyInfoData = guideMeService;
     this.translate.get('COMMON').subscribe((result: string) => {
       this.pageTitle = this.translate.instant('MY_ASSETS.TITLE');
@@ -52,7 +52,7 @@ export class InsuranceMyinfoRetrievalComponent implements OnInit {
     this.navbarService.setNavbarVisibility(true);
     this.footerService.setFooterVisibility(false);
     this.navbarService.setNavbarDirectGuided(true);
-    this.nric = this.myInfoCpfBalances && this.myInfoCpfBalances.nric;
+    this.nric = this.myInfoCpfBalances && this.myInfoCpfBalances.uin;
     if (this.myInfoCpfBalances && this.myInfoCpfBalances.cpfbalances) {
       this.cpfMa = this.myInfoCpfBalances.cpfbalances.ma;
       this.cpfOa = this.myInfoCpfBalances.cpfbalances.oa;
