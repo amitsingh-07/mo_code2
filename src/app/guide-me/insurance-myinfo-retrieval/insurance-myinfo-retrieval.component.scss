@@ -35,7 +35,7 @@ app-insurance-myinfo-retrieval {
         max-width: 100%;
         margin-left: auto;
         @include desktop{
-            max-width: 335px;
+            max-width: 365px;
         }
         @include allmobiles {
             padding: 0 15px;
@@ -109,13 +109,15 @@ app-insurance-myinfo-retrieval {
     }
 
     .note {
-        padding: 30px 10px 15px 0;
+        padding: 30px 15px 15px 0;
         font-family: $muli-regular;
         font-size: 13px;
         line-height: 16px;
         letter-spacing: -0.16px;
         color: $white-color;
-
+        @include max360{
+            padding-right: 10px;
+        }
         .lock-icon {
             width: 48px;
             height: 48px;
