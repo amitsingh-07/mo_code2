@@ -53,11 +53,11 @@ export class MyInfoService {
   }
 
   setMyInfoCpfbalances(value) {
-    window.sessionStorage.setItem(MYINFO_CPF_BALANCES, value)
+    window.sessionStorage.setItem(MYINFO_CPF_BALANCES, JSON.stringify(value))
   }
 
   getMyInfoCpfbalances() {
-    window.sessionStorage.getItem(MYINFO_CPF_BALANCES)
+   return JSON.parse(window.sessionStorage.getItem(MYINFO_CPF_BALANCES))
   }
 
   setMyInfoAppId(myInfoServices) {
