@@ -71,14 +71,12 @@ export class MyAssetsComponent implements IPageComponent, OnInit, OnDestroy, Aft
           this.myInfoService.getMyInfoData().subscribe((data) => {
             if (data && data['objectList']) {
               this.myInfoService.setMyInfoCpfbalances(data['objectList'][0]);
-              // below 2 lines have to happen on coming from new page
-              //this.cpfValue = Math.floor(data['objectList'][0].cpfbalances.total);
-              //this.assetsForm.controls['cpf'].setValue(this.cpfValue);
+              this.cpfValue = data['objectList'][0].cpfbalances.total;
+              this.assetsForm.controls['cpf'].setValue(this.cpfValue);
               this.myInfoService.isMyInfoEnabled = false;
               this.cpfFromMyInfo = true;
               this.assetsForm.controls['cpfFromMyInfo'].setValue(this.cpfFromMyInfo);
-              // has to happen after coming from new page
-              //this.setFormTotalValue();
+              this.setFormTotalValue();
               this.closeMyInfoPopup();
               this.router.navigate([GUIDE_ME_ROUTE_PATHS.MYINFO_RETRIEVAL]);
             } else {
