@@ -70,6 +70,7 @@ export class MyProfileComponent implements IPageComponent, OnInit, OnDestroy {
     myInfoModalBtn: string;
     isOrganisationEnabled: boolean;
     differentNricError: any;
+    myinfoModalDesc: string;
 
     @HostListener('window:popstate', ['$event'])
     onPopState(event) {
@@ -129,6 +130,9 @@ export class MyProfileComponent implements IPageComponent, OnInit, OnDestroy {
                 );
                 this.myInfoModalBtn = this.translate.instant(
                     'CMP.GETTING_STARTED.CFP_AUTOFILL.MY_INFO_MODAL.BTN'
+                );
+                this.myinfoModalDesc = this.translate.instant(
+                    'CMP.GETTING_STARTED.CFP_AUTOFILL.MY_INFO_MODAL.MY_INFO_DESC'
                 );
                 this.setPageTitle(this.pageTitle);
             });
@@ -394,10 +398,11 @@ export class MyProfileComponent implements IPageComponent, OnInit, OnDestroy {
     }
     openMyInfoModal() {
         if (!this.viewMode) {
-            const ref = this.modal.open(MyinfoModalComponent, { centered: true });
+            const ref = this.modal.open(MyinfoModalComponent, { centered: true, windowClass: 'cfp-myinfo-modal' });
             ref.componentInstance.primaryActionLabel = this.myInfoModalBtn;
             ref.componentInstance.unAccessedAttributes = COMPREHENSIVE_CONST.UNACCESSED_ATTRIBUTES;
             ref.componentInstance.myInfo = true;
+            ref.componentInstance.modalDesc = this.myinfoModalDesc;
             ref.componentInstance.myInfoEnableFlags.subscribe((attributesFlags: any) => {
                 ref.result.then(() => {
                     this.disabledAttributes = attributesFlags

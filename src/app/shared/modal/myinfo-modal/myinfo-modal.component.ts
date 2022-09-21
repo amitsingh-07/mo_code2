@@ -18,6 +18,7 @@ export class MyinfoModalComponent implements OnInit {
   @Output() closeAction = new EventEmitter<any>();
   @Output() myInfoEnableFlags = new EventEmitter<any>();
   @Input() unAccessedAttributes: string[] = [];
+  @Input() modalDesc: string;
   myInfoEnableForm: FormGroup;
 
   constructor(
