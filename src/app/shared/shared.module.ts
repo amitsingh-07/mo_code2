@@ -3,8 +3,7 @@ import { MultiTranslateHttpLoader } from 'ngx-translate-multi-http-loader';
 
 import { CommonModule, UpperCasePipe, LowerCasePipe, TitleCasePipe } from '@angular/common';
 import { HttpClient } from '@angular/common/http';
-import { ModuleWithProviders } from '@angular/compiler/src/core';
-import { NgModule } from '@angular/core';
+import { ModuleWithProviders, NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
@@ -238,7 +237,7 @@ export function createTranslateLoader(http: HttpClient) {
   providers: [ProgressTrackerService, RoundPipe, UpperCasePipe, LowerCasePipe, TitleCasePipe]
 })
 export class SharedModule {
-  static forRoot(): ModuleWithProviders {
+  static forRoot(): ModuleWithProviders<SharedModule> {
     return {
       ngModule: SharedModule,
       providers: [ProgressTrackerService]
