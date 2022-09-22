@@ -54,7 +54,7 @@ export class MyAssetsComponent implements IPageComponent, OnInit, OnDestroy, Aft
 
   ngOnInit() {
     this.navbarService.setNavbarDirectGuided(true);
-    this.assetsFormValues = this.guideMeService.getMyAssets();
+    this.assetsFormValues = this.guideMeService.getMyAssetsTempData() ? this.guideMeService.getMyAssetsTempData() : this.guideMeService.getMyAssets();
     this.cpfFromMyInfo = this.assetsFormValues.cpfFromMyInfo;
     this.assetsForm = new FormGroup({
       cash: new FormControl(this.assetsFormValues.cash),
@@ -65,6 +65,7 @@ export class MyAssetsComponent implements IPageComponent, OnInit, OnDestroy, Aft
       otherInvestments: new FormControl(this.assetsFormValues.otherInvestments),
       otherAssets: new FormControl(this.assetsFormValues.otherAssets)
     });
+    this.guideMeService.setMyAssetsTempData(null);
     this.myinfoChangeListener = this.myInfoService.changeListener.subscribe((myinfoObj: any) => {
       if (myinfoObj && myinfoObj !== '' && this.myInfoService.checkMyInfoSourcePage()) {
         if (myinfoObj.status && myinfoObj.status === 'SUCCESS' && this.myInfoService.isMyInfoEnabled) {
@@ -77,7 +78,8 @@ export class MyAssetsComponent implements IPageComponent, OnInit, OnDestroy, Aft
               this.cpfFromMyInfo = true;
               this.assetsForm.controls['cpfFromMyInfo'].setValue(this.cpfFromMyInfo);
               this.setFormTotalValue();
-              this.guideMeService.setMyAssets(this.assetsForm.value);
+              // this.guideMeService.setMyAssets(this.assetsForm.value);
+              this.guideMeService.setMyAssetsTempData(this.assetsForm.value);
               this.closeMyInfoPopup();
               this.router.navigate([GUIDE_ME_ROUTE_PATHS.MYINFO_RETRIEVAL]);
             } else {
