@@ -57,8 +57,9 @@ export class ValidateYourWillComponent implements OnInit, OnDestroy {
     const otherBrowsers = /Android|Windows/.test(navigator.userAgent);
 
     const blob = new Blob([data], { type: 'application/pdf' });
-    if (window.navigator && window.navigator.msSaveOrOpenBlob) {
-      window.navigator.msSaveOrOpenBlob(blob, 'MoneyOwl Will writing.pdf');
+    const nav = (window.navigator as any);
+    if (nav && nav.msSaveOrOpenBlob) {
+      nav.msSaveOrOpenBlob(blob, 'MoneyOwl Will writing.pdf');
     } else {
       this.downloadFile(data);
     }

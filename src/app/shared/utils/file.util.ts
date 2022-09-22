@@ -10,8 +10,9 @@ export class FileUtil {
     const otherBrowsers = /Android|Windows/.test(navigator.userAgent);
 
     const blob = new Blob([data], { type: FILE_TYPE });
-    if (window.navigator && window.navigator.msSaveOrOpenBlob) {
-      window.navigator.msSaveOrOpenBlob(blob, fileName);
+    const nav = (window.navigator as any);
+    if (nav && nav.msSaveOrOpenBlob) {
+      nav.msSaveOrOpenBlob(blob, fileName);
     } else if ((isSafari && iOS) || otherBrowsers || isSafari) {
       setTimeout(() => {
         this.downloadFile(data, fileName);
