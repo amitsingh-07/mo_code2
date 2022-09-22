@@ -54,7 +54,7 @@ export class MyAssetsComponent implements IPageComponent, OnInit, OnDestroy, Aft
 
   ngOnInit() {
     this.navbarService.setNavbarDirectGuided(true);
-    this.assetsFormValues = this.guideMeService.getMyAssetsTempData() ? this.guideMeService.getMyAssetsTempData() : this.guideMeService.getMyAssets();
+    this.assetsFormValues = Object.keys(this.guideMeService.getMyAssetsTempData()).length > 0 ? this.guideMeService.getMyAssetsTempData() : this.guideMeService.getMyAssets();
     this.cpfFromMyInfo = this.assetsFormValues.cpfFromMyInfo;
     this.assetsForm = new FormGroup({
       cash: new FormControl(this.assetsFormValues.cash),
@@ -78,7 +78,6 @@ export class MyAssetsComponent implements IPageComponent, OnInit, OnDestroy, Aft
               this.cpfFromMyInfo = true;
               this.assetsForm.controls['cpfFromMyInfo'].setValue(this.cpfFromMyInfo);
               this.setFormTotalValue();
-              // this.guideMeService.setMyAssets(this.assetsForm.value);
               this.guideMeService.setMyAssetsTempData(this.assetsForm.value);
               this.closeMyInfoPopup();
               this.router.navigate([GUIDE_ME_ROUTE_PATHS.MYINFO_RETRIEVAL]);
