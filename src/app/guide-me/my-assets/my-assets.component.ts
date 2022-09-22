@@ -33,7 +33,7 @@ export class MyAssetsComponent implements IPageComponent, OnInit, OnDestroy, Aft
   cpfValue: number;
   useMyInfo: boolean;
   cpfFromMyInfo = false;
-  myinfoRetrieved = this.guideMeService.myinfoValueRetrieved$.value;
+  myinfoRetrieved = this.myInfoService.myinfoValueRetrieved$.value;
 
   constructor(
     private router: Router, public navbarService: NavbarService,
@@ -58,8 +58,11 @@ export class MyAssetsComponent implements IPageComponent, OnInit, OnDestroy, Aft
     this.assetsFormValues = Object.keys(this.guideMeService.getMyAssetsTempData()).length > 0 ? this.guideMeService.getMyAssetsTempData() : this.guideMeService.getMyAssets();
     this.cpfFromMyInfo = this.assetsFormValues.cpfFromMyInfo;
     if(this.myinfoRetrieved) {
-      this.cpfValue = this.guideMeService.myinfoCpfValue$.value;
+      this.cpfValue = this.myInfoService.myinfoCpfValue$.value;
       this.assetsForm.controls['cpf'].setValue(this.cpfValue);
+      this.cpfFromMyInfo = true;
+      this.assetsForm.controls['cpfFromMyInfo'].setValue(this.cpfFromMyInfo);
+      this.setFormTotalValue();
     }
     this.assetsForm = new FormGroup({
       cash: new FormControl(this.assetsFormValues.cash),
@@ -78,9 +81,6 @@ export class MyAssetsComponent implements IPageComponent, OnInit, OnDestroy, Aft
             if (data && data['objectList']) {
               this.myInfoService.setMyInfoCpfbalances(data['objectList'][0]);
               this.myInfoService.isMyInfoEnabled = false;
-              this.cpfFromMyInfo = true;
-              this.assetsForm.controls['cpfFromMyInfo'].setValue(this.cpfFromMyInfo);
-              this.setFormTotalValue();
               this.guideMeService.setMyAssetsTempData(this.assetsForm.value);
               this.closeMyInfoPopup();
               this.router.navigate([GUIDE_ME_ROUTE_PATHS.MYINFO_RETRIEVAL]);
