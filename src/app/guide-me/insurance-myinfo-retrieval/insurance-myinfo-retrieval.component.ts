@@ -67,6 +67,7 @@ export class InsuranceMyinfoRetrievalComponent implements OnInit {
   }
 
   goToNext() {
+    this.guideMeService.myinfoValueRetrieved$.next(true);
     this.router.navigate([GUIDE_ME_ROUTE_PATHS.ASSETS]);
   }
 

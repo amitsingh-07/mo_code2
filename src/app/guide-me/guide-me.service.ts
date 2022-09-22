@@ -3,8 +3,10 @@ import { Injectable } from '@angular/core';
 
 import { NgbModal, NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
 import { TranslateService } from '@ngx-translate/core';
+import { BehaviorSubject } from 'rxjs';
 import { AuthenticationService } from '../shared/http/auth/authentication.service';
 import { ErrorModalComponent } from '../shared/modal/error-modal/error-modal.component';
+import { MyInfoService } from '../shared/Services/my-info.service';
 import { CriticalIllnessData } from './ci-assessment/ci-assessment';
 import { IMyExpenses } from './expenses/expenses.interface';
 import { FormError } from './get-started/get-started-form/form-error';
@@ -53,7 +55,9 @@ export class GuideMeService {
   myInfoValue: any;
   loadingModalRef: NgbModalRef;
   isMyInfoEnabled = false;
-
+  myInfoCpfValue = this.myinfoService.getMyInfoCpfbalances()?.cpfbalances?.total;
+  myinfoValueRetrieved$ = new BehaviorSubject<boolean>(false);
+  myinfoCpfValue$ = new BehaviorSubject<number>(this.myInfoCpfValue);
   // Variables for Insurance Results Generation
   private result_title: string;
   private result_icon: string;
@@ -61,7 +65,9 @@ export class GuideMeService {
 
   constructor(
     private http: HttpClient, private modal: NgbModal,
-    private authService: AuthenticationService, private translate: TranslateService) {
+    private authService: AuthenticationService,
+    private translate: TranslateService,
+    private myinfoService: MyInfoService) {
     this.getGuideMeFormData();
     this.protectionNeedsPageIndex = this.guideMeFormData.protectionNeedsPageIndex;
     if (this.guideMeFormData.existingCoverageValues) {
