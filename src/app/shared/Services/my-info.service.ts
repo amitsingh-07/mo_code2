@@ -2,7 +2,7 @@ import { HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import { NgbModal, NgbModalOptions, NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
-import { Subject } from 'rxjs';
+import { BehaviorSubject, Subject } from 'rxjs';
 import { appConstants } from '../../app.constants';
 
 import { environment } from '../../../environments/environment';
@@ -25,6 +25,8 @@ const SUCCESS = 1;
 export class MyInfoService {
 
   changeListener = new Subject();
+  myinfoValueRetrieved$ = new BehaviorSubject<boolean>(false);
+  myinfoCpfValue$ = new BehaviorSubject<number>(this.getMyInfoCpfbalances()?.cpfbalances?.total);
 
   authApiUrl = environment.myInfoAuthorizeUrl;
   clientId = environment.myInfoClientId;
