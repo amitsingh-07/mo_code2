@@ -33,6 +33,7 @@ export class MyAssetsComponent implements IPageComponent, OnInit, OnDestroy, Aft
   cpfValue: number;
   useMyInfo: boolean;
   cpfFromMyInfo = false;
+  myinfoRetrieved = this.guideMeService.myinfoValueRetrieved$.value;
 
   constructor(
     private router: Router, public navbarService: NavbarService,
@@ -56,6 +57,10 @@ export class MyAssetsComponent implements IPageComponent, OnInit, OnDestroy, Aft
     this.navbarService.setNavbarDirectGuided(true);
     this.assetsFormValues = Object.keys(this.guideMeService.getMyAssetsTempData()).length > 0 ? this.guideMeService.getMyAssetsTempData() : this.guideMeService.getMyAssets();
     this.cpfFromMyInfo = this.assetsFormValues.cpfFromMyInfo;
+    if(this.myinfoRetrieved) {
+      this.cpfValue = this.guideMeService.myinfoCpfValue$.value;
+      this.assetsForm.controls['cpf'].setValue(this.cpfValue);
+    }
     this.assetsForm = new FormGroup({
       cash: new FormControl(this.assetsFormValues.cash),
       cpf: new FormControl(this.assetsFormValues.cpf),
@@ -72,8 +77,6 @@ export class MyAssetsComponent implements IPageComponent, OnInit, OnDestroy, Aft
           this.myInfoService.getMyInfoData().subscribe((data) => {
             if (data && data['objectList']) {
               this.myInfoService.setMyInfoCpfbalances(data['objectList'][0]);
-              this.cpfValue = data['objectList'][0].cpfbalances.total;
-              this.assetsForm.controls['cpf'].setValue(this.cpfValue);
               this.myInfoService.isMyInfoEnabled = false;
               this.cpfFromMyInfo = true;
               this.assetsForm.controls['cpfFromMyInfo'].setValue(this.cpfFromMyInfo);
@@ -132,6 +135,14 @@ export class MyAssetsComponent implements IPageComponent, OnInit, OnDestroy, Aft
   @HostListener('input', ['$event'])
   onChange() {
     this.setFormTotalValue();
+  }
+
+  @HostListener('window:popstate', ['$event'])
+  onPopState(event) {
+    if(this.myinfoRetrieved) {
+      // Testing this approach
+      history.go(-1);
+    }
   }
 
   save(form: any) {
