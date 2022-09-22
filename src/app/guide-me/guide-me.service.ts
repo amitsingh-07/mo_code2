@@ -640,4 +640,16 @@ export class GuideMeService {
       return true;
     }
   }
+
+  getMyAssetsTempData(): IMyAssets {
+    if (!this.guideMeFormData.assetsTemmp) {
+      this.guideMeFormData.assetsTemmp = {} as IMyAssets;
+    }
+    return this.guideMeFormData.assetsTemmp;
+  }
+
+  setMyAssetsTempData(data: IMyAssets) {
+    this.guideMeFormData.assetsTemmp = data;
+    this.commit();
+  }
 }
