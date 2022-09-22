@@ -56,14 +56,12 @@ export class GuideMeService {
   loadingModalRef: NgbModalRef;
   isMyInfoEnabled = false;
   myInfoCpfValue = this.myinfoService.getMyInfoCpfbalances()?.cpfbalances?.total;
-
+  myinfoValueRetrieved$ = new BehaviorSubject<boolean>(false);
+  myinfoCpfValue$ = new BehaviorSubject<number>(this.myInfoCpfValue);
   // Variables for Insurance Results Generation
   private result_title: string;
   private result_icon: string;
   private result_value;
-  myinfoValueRetrieved$ = new BehaviorSubject<boolean>(false);
-  myinfoCpfValue$ = new BehaviorSubject<number>(this.myInfoCpfValue);
-  // here instead of one get from setmyi
 
   constructor(
     private http: HttpClient, private modal: NgbModal,
