@@ -72,7 +72,7 @@ export class MyAssetsComponent implements IPageComponent, OnInit, OnDestroy, Aft
       this.assetsForm.controls['cpfFromMyInfo'].setValue(this.cpfFromMyInfo);
       this.setFormTotalValue();
     }
-    this.myinfoRetrieved = false;
+    this.myInfoService.myinfoValueRetrieved$.next(false);
     this.guideMeService.setMyAssetsTempData(null);
     this.myinfoChangeListener = this.myInfoService.changeListener.subscribe((myinfoObj: any) => {
       if (myinfoObj && myinfoObj !== '' && this.myInfoService.checkMyInfoSourcePage()) {
