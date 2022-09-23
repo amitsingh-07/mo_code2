@@ -26,8 +26,6 @@ export class MyInfoService {
 
   changeListener = new Subject();
   myinfoValueRetrieved$ = new BehaviorSubject<boolean>(false);
-  myinfoCpfValue$ = new BehaviorSubject<number>(this.getMyInfoCpfbalances()?.cpfbalances?.total);
-
   authApiUrl = environment.myInfoAuthorizeUrl;
   clientId = environment.myInfoClientId;
   private attributes = '';

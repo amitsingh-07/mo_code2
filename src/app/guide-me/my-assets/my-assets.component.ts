@@ -58,7 +58,7 @@ export class MyAssetsComponent implements IPageComponent, OnInit, OnDestroy, Aft
     this.assetsFormValues = Object.keys(this.guideMeService.getMyAssetsTempData()).length > 0 ? this.guideMeService.getMyAssetsTempData() : this.guideMeService.getMyAssets();
     this.cpfFromMyInfo = this.assetsFormValues.cpfFromMyInfo;
     if(this.myinfoRetrieved) {
-      this.cpfValue = this.myInfoService.myinfoCpfValue$.value;
+      this.cpfValue = this.myInfoService.getMyInfoCpfbalances()?.cpfbalances?.total;
       this.assetsForm.controls['cpf'].setValue(this.cpfValue);
       this.cpfFromMyInfo = true;
       this.assetsForm.controls['cpfFromMyInfo'].setValue(this.cpfFromMyInfo);
