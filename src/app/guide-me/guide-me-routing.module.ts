@@ -5,7 +5,7 @@ import { CiAssessmentComponent } from './ci-assessment/ci-assessment.component';
 import { ExpensesComponent } from './expenses/expenses.component';
 import { FinAssessmentComponent } from './fin-assessment/fin-assessment.component';
 import { GetStartedComponent } from './get-started/get-started.component';
-import { GuideMeAccessGuard } from './guide-me-access-guard';
+import { GuideMeAccessGuard, MyinfoAssetsAccessGuard } from './guide-me-access-guard';
 import { GUIDE_ME_ROUTES } from './guide-me-routes.constants';
 import { HospitalPlanComponent } from './hospital-plan/hospital-plan.component';
 import { IncomeComponent } from './income/income.component';
@@ -39,7 +39,7 @@ const routes: Routes = [
   { path: GUIDE_ME_ROUTES.HOSPITAL_PLAN, component: HospitalPlanComponent, canActivate: [GuideMeAccessGuard] },
   { path: GUIDE_ME_ROUTES.INSURANCE_RESULTS, component: InsuranceResultsComponent, canActivate: [GuideMeAccessGuard] },
   { path: GUIDE_ME_ROUTES.RECOMMENDATIONS, component: RecommendationsComponent, canActivate: [GuideMeAccessGuard] },
-  { path: GUIDE_ME_ROUTES.MYINFO_RETRIEVAL, component: InsuranceMyinfoRetrievalComponent, canActivate: [GuideMeAccessGuard] },
+  { path: GUIDE_ME_ROUTES.MYINFO_RETRIEVAL, component: InsuranceMyinfoRetrievalComponent, canActivate: [GuideMeAccessGuard, MyinfoAssetsAccessGuard] },
   { path: '**', redirectTo: '/page-not-found' }
 ];
 

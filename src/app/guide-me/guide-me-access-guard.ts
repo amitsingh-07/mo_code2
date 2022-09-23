@@ -7,6 +7,7 @@ import { AppService } from '../app.service';
 import { AuthenticationService } from '../shared/http/auth/authentication.service';
 import { SIGN_UP_ROUTE_PATHS } from '../sign-up/sign-up.routes.constants';
 import { GUIDE_ME_ROUTE_PATHS } from './guide-me-routes.constants';
+import { GuideMeService } from './guide-me.service';
 
 @Injectable()
 export class GuideMeAccessGuard implements CanActivate {
@@ -29,5 +30,21 @@ export class GuideMeAccessGuard implements CanActivate {
     } else {
       return true;
     }
+  }
+}
+
+@Injectable()
+export class MyinfoAssetsAccessGuard implements CanActivate {
+  constructor(
+    private router: Router,
+    private guideMeService: GuideMeService
+  ) {
+  }
+  canActivate(): boolean {
+    if(!this.guideMeService.myinfoValueRetrieved$) {
+      this.router.navigate([GUIDE_ME_ROUTE_PATHS.EXPENSES]);
+      return false;
+    }
+    return true;
   }
 }
