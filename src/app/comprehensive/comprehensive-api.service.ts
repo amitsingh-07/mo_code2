@@ -206,8 +206,12 @@ export class ComprehensiveApiService {
     }
     
     // RELEASE 10.4 API INTEGRATION
-    getComprehensiveAutoFillCFPData() {
-        const sessionId = { sessionId: this.authService.getSessionId() };
+    getComprehensiveAutoFillCFPData(gender, dob) {
+        const sessionId = { 
+            sessionId: this.authService.getSessionId(),
+            gender: gender,
+            dateOfBirth: dob
+        };
         return this.http
             .post(apiConstants.endpoint.comprehensive.autofillCFPData, sessionId)
             .pipe(catchError((error: HttpErrorResponse) => this.helperService.handleError(error)));
