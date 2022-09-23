@@ -41,10 +41,11 @@ export class MyinfoAssetsAccessGuard implements CanActivate {
   ) {
   }
   canActivate(): boolean {
-    if(!this.guideMeService.myinfoValueRetrieved$) {
+    if(!this.guideMeService.myinfoValueRetrieved$.value) {
       this.router.navigate([GUIDE_ME_ROUTE_PATHS.EXPENSES]);
       return false;
+    } else {
+      return true;
     }
-    return true;
   }
 }
