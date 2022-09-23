@@ -72,6 +72,7 @@ export class MyAssetsComponent implements IPageComponent, OnInit, OnDestroy, Aft
       this.assetsForm.controls['cpfFromMyInfo'].setValue(this.cpfFromMyInfo);
       this.setFormTotalValue();
     }
+    this.myinfoRetrieved = false;
     this.guideMeService.setMyAssetsTempData(null);
     this.myinfoChangeListener = this.myInfoService.changeListener.subscribe((myinfoObj: any) => {
       if (myinfoObj && myinfoObj !== '' && this.myInfoService.checkMyInfoSourcePage()) {
@@ -136,13 +137,6 @@ export class MyAssetsComponent implements IPageComponent, OnInit, OnDestroy, Aft
     this.setFormTotalValue();
   }
 
-  @HostListener('window:popstate', ['$event'])
-  onPopState(event) {
-    if(this.myinfoRetrieved) {
-      // Testing this approach
-      history.go(-1);
-    }
-  }
 
   save(form: any) {
     Object.keys(form.value).forEach((key) => {
