@@ -3,6 +3,7 @@ import { Injectable } from '@angular/core';
 
 import { NgbModal, NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
 import { TranslateService } from '@ngx-translate/core';
+import { BehaviorSubject } from 'rxjs';
 import { AuthenticationService } from '../shared/http/auth/authentication.service';
 import { ErrorModalComponent } from '../shared/modal/error-modal/error-modal.component';
 import { CriticalIllnessData } from './ci-assessment/ci-assessment';
@@ -38,6 +39,7 @@ const PROTECTION_NEEDS_LIFE_LONG_TERM_CARE_ID = 5;
 export class GuideMeService {
 
   private guideMeFormData: GuideMeFormData = new GuideMeFormData();
+  myinfoValueRetrieved$ = new BehaviorSubject<boolean>(false);
   private formError: any = new FormError();
   private isProfileFormValid = false;
   private isProtectionNeedFormValid = false;

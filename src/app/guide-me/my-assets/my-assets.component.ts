@@ -73,6 +73,7 @@ export class MyAssetsComponent implements IPageComponent, OnInit, OnDestroy, Aft
       this.setFormTotalValue();
     }
     this.myInfoService.myinfoValueRetrieved$.next(false);
+    this.guideMeService.myinfoValueRetrieved$.next(false);
     this.guideMeService.setMyAssetsTempData(null);
     this.myinfoChangeListener = this.myInfoService.changeListener.subscribe((myinfoObj: any) => {
       if (myinfoObj && myinfoObj !== '' && this.myInfoService.checkMyInfoSourcePage()) {
@@ -83,6 +84,7 @@ export class MyAssetsComponent implements IPageComponent, OnInit, OnDestroy, Aft
               this.myInfoService.isMyInfoEnabled = false;
               this.guideMeService.setMyAssetsTempData(this.assetsForm.value);
               this.closeMyInfoPopup();
+              this.guideMeService.myinfoValueRetrieved$.next(true);
               this.router.navigate([GUIDE_ME_ROUTE_PATHS.MYINFO_RETRIEVAL]);
             } else {
               this.closeMyInfoPopup();
@@ -135,16 +137,6 @@ export class MyAssetsComponent implements IPageComponent, OnInit, OnDestroy, Aft
   @HostListener('input', ['$event'])
   onChange() {
     this.setFormTotalValue();
-  }
-
-  // Skipping myinfo details page on clicking back
-  @HostListener('window:popstate', ['$event'])
-  onPopState(event) {
-    this.redirectToExpenses();
-  }
-
-  redirectToExpenses() {
-    this.router.navigate([GUIDE_ME_ROUTE_PATHS.EXPENSES]);
   }
 
   save(form: any) {

@@ -71,8 +71,4 @@ export class InsuranceMyinfoRetrievalComponent implements OnInit {
     this.router.navigate([GUIDE_ME_ROUTE_PATHS.ASSETS]);
   }
 
-  goBack() {
-    this._location.back();
-  }
-
 }
