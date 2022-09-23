@@ -137,10 +137,14 @@ export class MyAssetsComponent implements IPageComponent, OnInit, OnDestroy, Aft
     this.setFormTotalValue();
   }
 
-  // Skipping myinfo details page
+  // Skipping myinfo details page on clicking back
   @HostListener('window:popstate', ['$event'])
-  onPopState() {
-    this.router.navigate([GUIDE_ME_ROUTE_PATHS.EXPENSES])
+  onPopState(event) {
+    this.redirectToExpenses();
+  }
+
+  redirectToExpenses() {
+    this.router.navigate([GUIDE_ME_ROUTE_PATHS.EXPENSES]);
   }
 
   save(form: any) {
