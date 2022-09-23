@@ -56,14 +56,6 @@ export class MyAssetsComponent implements IPageComponent, OnInit, OnDestroy, Aft
   ngOnInit() {
     this.navbarService.setNavbarDirectGuided(true);
     this.assetsFormValues = Object.keys(this.guideMeService.getMyAssetsTempData()).length > 0 ? this.guideMeService.getMyAssetsTempData() : this.guideMeService.getMyAssets();
-    this.cpfFromMyInfo = this.assetsFormValues.cpfFromMyInfo;
-    if(this.myinfoRetrieved) {
-      this.cpfValue = this.myInfoService.myinfoCpfValue$.value;
-      this.assetsForm.controls['cpf'].setValue(this.cpfValue);
-      this.cpfFromMyInfo = true;
-      this.assetsForm.controls['cpfFromMyInfo'].setValue(this.cpfFromMyInfo);
-      this.setFormTotalValue();
-    }
     this.assetsForm = new FormGroup({
       cash: new FormControl(this.assetsFormValues.cash),
       cpf: new FormControl(this.assetsFormValues.cpf),
@@ -73,6 +65,13 @@ export class MyAssetsComponent implements IPageComponent, OnInit, OnDestroy, Aft
       otherInvestments: new FormControl(this.assetsFormValues.otherInvestments),
       otherAssets: new FormControl(this.assetsFormValues.otherAssets)
     });
+    if(this.myinfoRetrieved) {
+      this.cpfValue = this.myInfoService.getMyInfoCpfbalances()?.cpfbalances?.total;
+      this.assetsForm.controls['cpf'].setValue(this.cpfValue);
+      this.cpfFromMyInfo = true;
+      this.assetsForm.controls['cpfFromMyInfo'].setValue(this.cpfFromMyInfo);
+      this.setFormTotalValue();
+    }
     this.guideMeService.setMyAssetsTempData(null);
     this.myinfoChangeListener = this.myInfoService.changeListener.subscribe((myinfoObj: any) => {
       if (myinfoObj && myinfoObj !== '' && this.myInfoService.checkMyInfoSourcePage()) {
