@@ -71,7 +71,6 @@ export class AutofillMyinfoDataComponent implements OnInit {
   ngOnInit(): void {
     this.navbarService.setNavbarComprehensive(true);
     this.userDetails = this.comprehensiveService.getMyProfile();
-    this.comprehensiveService.isCFPAutofillMyInfoEnabled = false;
   }
 
   goToNext() {
@@ -80,7 +79,7 @@ export class AutofillMyinfoDataComponent implements OnInit {
       if (compreData && compreData.objectList[0]) {
         this.comprehensiveService.setComprehensiveSummary(compreData.objectList[0]);
         this.loaderService.hideLoaderForced();
-        this.router.navigate([COMPREHENSIVE_ROUTE_PATHS.GETTING_STARTED]);
+        this.router.navigate([COMPREHENSIVE_ROUTE_PATHS.GETTING_STARTED], { skipLocationChange: true });
       } else {
         this.loaderService.hideLoaderForced();
       }
