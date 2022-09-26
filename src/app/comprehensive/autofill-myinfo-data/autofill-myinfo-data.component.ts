@@ -71,6 +71,7 @@ export class AutofillMyinfoDataComponent implements OnInit {
   ngOnInit(): void {
     this.navbarService.setNavbarComprehensive(true);
     this.userDetails = this.comprehensiveService.getMyProfile();
+    this.comprehensiveService.isCFPAutofillMyInfoEnabled = false;
   }
 
   goToNext() {
