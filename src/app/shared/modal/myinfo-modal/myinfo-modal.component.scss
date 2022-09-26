@@ -1,7 +1,7 @@
-@import '../../../variables';
-@import "../../../_mixins.scss";
+@import '../../../../variables';
+@import '../../../../mixins';
 
-app-create-account-myinfo-modal {
+app-myinfo-modal {
   .modal-body {
     width: 450px;
     margin: 0 auto;
@@ -45,19 +45,19 @@ app-create-account-myinfo-modal {
       &:hover {
         background-color: $white-color;
         border-color: $teal-color;
-        color: $teal-color  !important;
+        color: $teal-color !important;
         -webkit-text-fill-color: $teal-color;
 
         @include allmobiles {
-          background-color: $white-color  !important;
-          color: $teal-color  !important;
-          -webkit-text-fill-color: $teal-color  !important;
+          background-color: $white-color !important;
+          color: $teal-color !important;
+          -webkit-text-fill-color: $teal-color !important;
         }
 
         @include tablet {
-          background-color: $white-color  !important;
-          color: $teal-color  !important;
-          -webkit-text-fill-color: $teal-color  !important;
+          background-color: $white-color !important;
+          color: $teal-color !important;
+          -webkit-text-fill-color: $teal-color !important;
         }
       }
     }
@@ -65,7 +65,7 @@ app-create-account-myinfo-modal {
     &:hover {
       background-color: $robins-egg-blue-color;
       border-color: $action-btn-hover-brdr-color;
-      color: $white-color  !important;
+      color: $white-color !important;
     }
 
     &:active {
@@ -76,7 +76,8 @@ app-create-account-myinfo-modal {
 
   .modal-body-message {
     margin-bottom: 10px;
-    .myinfo-txt{
+
+    .myinfo-txt {
       letter-spacing: -0.30px;
     }
   }
@@ -141,9 +142,11 @@ app-create-account-myinfo-modal {
       border-radius: 6px !important;
       background-color: $white-color;
       border: none;
-      &:last-child{
+
+      &:last-child {
         margin-bottom: 0;
       }
+
       .card-header {
         padding: 0px;
         background-color: $white-color;
@@ -209,13 +212,13 @@ app-create-account-myinfo-modal {
     margin: 0 14px 0 0;
     z-index: 100;
   }
-  
-  .switch input { 
+
+  .switch input {
     opacity: 0;
     width: 0;
     height: 0;
   }
-  
+
   .slider {
     position: absolute;
     cursor: pointer;
@@ -227,7 +230,7 @@ app-create-account-myinfo-modal {
     -webkit-transition: 0.4s;
     transition: 0.4s;
   }
-  
+
   .slider:before {
     position: absolute;
     content: "";
@@ -239,27 +242,27 @@ app-create-account-myinfo-modal {
     -webkit-transition: 0.4s;
     transition: 0.4s;
   }
-  
-  input:checked + .slider {
+
+  input:checked+.slider {
     background-color: $light-green-color;
     ;
   }
-  
-  input:focus + .slider {
+
+  input:focus+.slider {
     box-shadow: 0 0 1px $light-green-color;
   }
-  
-  input:checked + .slider:before {
+
+  input:checked+.slider:before {
     -webkit-transform: translateX(18px);
     -ms-transform: translateX(18px);
     transform: translateX(18px);
   }
-  
+
   /* Rounded sliders */
   .slider.round {
     border-radius: 34px;
   }
-  
+
   .slider.round:before {
     border-radius: 50%;
   }

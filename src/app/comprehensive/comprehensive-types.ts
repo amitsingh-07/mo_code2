@@ -44,6 +44,7 @@ export interface IComprehensiveEnquiry {
     advisorPaymentStatus: string;
     promoWaivedSpeakToAdvisor?: boolean;
     specialPromoCode?: boolean;
+    myInfoLastRetrievedOn?: string | null;
 }
 export interface IPromoCode {
     comprehensivePromoCodeToken: string;
@@ -58,6 +59,8 @@ export interface IMyProfile {
     ngbDob: any;
     dobUpdateable: boolean;
     enquiryId: number;
+    email: string;
+    mobileNumber: string;
 }
 
 export interface IDependantDetail {

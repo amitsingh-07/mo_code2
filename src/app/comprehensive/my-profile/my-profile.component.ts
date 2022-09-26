@@ -1,9 +1,15 @@
 import { Component, HostListener, OnDestroy, OnInit, ViewEncapsulation } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
-import { NgbDateParserFormatter, NgbDatepickerConfig } from '@ng-bootstrap/ng-bootstrap';
+import { NgbDateParserFormatter, NgbDatepickerConfig, NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { TranslateService } from '@ngx-translate/core';
 import { Subscription } from 'rxjs';
+import { appConstants } from '../../app.constants';
+import { ErrorModalComponent } from '../../shared/modal/error-modal/error-modal.component';
+import { ModelWithButtonComponent } from '../../shared/modal/model-with-button/model-with-button.component';
+import { MyinfoModalComponent } from '../../shared/modal/myinfo-modal/myinfo-modal.component';
+import { MyInfoService } from '../../shared/Services/my-info.service';
+import { SIGN_UP_ROUTE_PATHS } from '../../sign-up/sign-up.routes.constants';
 
 import { LoaderService } from '../../shared/components/loader/loader.service';
 import { NavbarService } from '../../shared/navbar/navbar.service';
@@ -19,6 +25,7 @@ import { ProgressTrackerService } from './../../shared/modal/progress-tracker/pr
 import { AboutAge } from './../../shared/utils/about-age.util';
 import { ComprehensiveApiService } from './../comprehensive-api.service';
 import { ComprehensiveService } from './../comprehensive.service';
+import { AppService } from '../../app.service';
 
 @Component({
     selector: 'app-cmp-my-profile',
@@ -55,6 +62,15 @@ export class MyProfileComponent implements IPageComponent, OnInit, OnDestroy {
     saveData: string;
     getCurrentVersionType: any;
     fetchData: string;
+    myInfoSubscription: any;
+    myinfoChangeListener: Subscription;
+    disabledAttributes: any;
+    loader1Modal: any
+    myinfoRetrievelDate: any;
+    myInfoModalBtn: string;
+    isOrganisationEnabled: boolean;
+    differentNricError: any;
+    myinfoModalDesc: string;
 
     @HostListener('window:popstate', ['$event'])
     onPopState(event) {
@@ -81,7 +97,10 @@ export class MyProfileComponent implements IPageComponent, OnInit, OnDestroy {
         private parserFormatter: NgbDateParserFormatter,
         private comprehensiveApiService: ComprehensiveApiService,
         private progressService: ProgressTrackerService,
-        private aboutAge: AboutAge
+        private aboutAge: AboutAge,
+        private myInfoService: MyInfoService,
+        private modal: NgbModal,
+        private appService: AppService
     ) {
         const today: Date = new Date();
         this.minDate = {
@@ -102,13 +121,74 @@ export class MyProfileComponent implements IPageComponent, OnInit, OnDestroy {
                 this.pageTitle = this.translate.instant('CMP.GETTING_STARTED.TITLE');
                 this.nationalityList = this.translate.instant('CMP.NATIONALITY');
                 this.saveData = this.translate.instant('COMMON_LOADER.SAVE_DATA');
-                this.fetchData = this.translate.instant('COMMON_LOADER.FETCH_DATA');                
+                this.fetchData = this.translate.instant('COMMON_LOADER.FETCH_DATA');
+                this.loader1Modal = this.translate.instant(
+                    'CMP.GETTING_STARTED.CFP_AUTOFILL.LOADER1'
+                );
+                this.differentNricError = this.translate.instant(
+                    'CMP.GETTING_STARTED.CFP_AUTOFILL.DIFFERENT_USER'
+                );
+                this.myInfoModalBtn = this.translate.instant(
+                    'CMP.GETTING_STARTED.CFP_AUTOFILL.MY_INFO_MODAL.BTN'
+                );
+                this.myinfoModalDesc = this.translate.instant(
+                    'CMP.GETTING_STARTED.CFP_AUTOFILL.MY_INFO_MODAL.MY_INFO_DESC'
+                );
                 this.setPageTitle(this.pageTitle);
             });
         });
 
         this.viewMode = this.comprehensiveService.getViewableMode();
 
+        this.isOrganisationEnabled = appService.getCorporateDetails() ? appService.getCorporateDetails().organisationEnabled : false;
+
+        this.myinfoChangeListener = this.myInfoService.changeListener.subscribe((myinfoObj: any) => {
+            let attributeList = comprehensiveService.cfpAutofillMyInfoAttributes;
+            if (this.disabledAttributes) {
+                attributeList = this.removeMyInfoAttributes(this.disabledAttributes.cpfHousingFlag, COMPREHENSIVE_CONST.EXCLUDABLE_CFP_AUTOFILL_MY_INFO_ATTRIBUTES.CPF_HOUSING_WITHDRAWAL, attributeList);
+                attributeList = this.removeMyInfoAttributes(this.disabledAttributes.vehicleFlag, COMPREHENSIVE_CONST.EXCLUDABLE_CFP_AUTOFILL_MY_INFO_ATTRIBUTES.VEHICLES, attributeList);
+            }
+            if (myinfoObj && myinfoObj !== '') {
+                if (myinfoObj.status && myinfoObj.status === 'SUCCESS' &&
+                    (this.myInfoService.getMyInfoAttributes() === comprehensiveService.cfpAutofillMyInfoAttributes.join() ||
+                        (this.disabledAttributes &&
+                            (attributeList.join() === this.myInfoService.getMyInfoAttributes())
+                        )
+                    )) {
+                    this.myInfoService.getCorpBizMyInfoAccountCreateData(this.userDetails.email, this.userDetails.mobileNumber, this.isOrganisationEnabled)
+                        .subscribe((data) => {
+                            if (data.responseMessage.responseCode === 6000 && data && data['objectList'] && data['objectList'][0]) {
+                                comprehensiveService.isCFPAutofillMyInfoEnabled = true;
+                                signUpService.loadCorpBizUserMyInfoData(data['objectList'][0]);
+                                this.myInfoService.isMyInfoEnabled = false;
+                                this.closeMyInfoPopup();
+                                router.navigate([COMPREHENSIVE_ROUTE_PATHS.CFP_AUTOFILL]);
+                            } else if (data.responseMessage.responseCode === 6014) {
+                                this.myInfoService.isMyInfoEnabled = false;
+                                this.closeMyInfoPopup();
+                                const ref = this.modal.open(ModelWithButtonComponent, { centered: true });
+                                ref.componentInstance.errorTitle = this.loader1Modal.title;
+                                ref.componentInstance.errorMessageHTML = this.loader1Modal.message;
+                                ref.componentInstance.primaryActionLabel = this.loader1Modal.btn;
+                            } else if (data.responseMessage.responseCode === 6015) {
+                                this.myInfoService.isMyInfoEnabled = false;
+                                this.closeMyInfoPopup();
+                                const ref = this.modal.open(ModelWithButtonComponent, { centered: true });
+                                ref.componentInstance.errorTitle = this.differentNricError.title;
+                                ref.componentInstance.errorMessageHTML = this.differentNricError.message;
+                                ref.componentInstance.primaryActionLabel = this.differentNricError.btn;
+                            } else {
+                                this.closeMyInfoPopup();
+                            }
+                        }, (error) => {
+                            this.closeMyInfoPopup();
+                        });
+                } else {
+                    this.myInfoService.isMyInfoEnabled = false;
+                    this.closeMyInfoPopup();
+                }
+            }
+        });
     }
 
     ngOnInit() {
@@ -119,11 +199,12 @@ export class MyProfileComponent implements IPageComponent, OnInit, OnDestroy {
             if (data && data.objectList[0]) {
                 this.comprehensiveService.setComprehensiveSummary(data.objectList[0]);
                 this.getComprehensiveEnquiry = this.comprehensiveService.getComprehensiveEnquiry();
+                this.myinfoRetrievelDate = this.getComprehensiveEnquiry.myInfoRetrievedDate;
                 this.getComprehensiveData = this.comprehensiveService.getComprehensiveEnquiry().type;
                 if (this.comprehensiveService.getComprehensiveSummary().comprehensiveEnquiry.reportStatus
                     === COMPREHENSIVE_CONST.REPORT_STATUS.ERROR || (!this.comprehensiveService.getComprehensiveSummary().comprehensiveEnquiry
                         .isLocked && this.comprehensiveService.getComprehensiveSummary().comprehensiveEnquiry.reportStatus
-                    === COMPREHENSIVE_CONST.REPORT_STATUS.READY) ) {
+                        === COMPREHENSIVE_CONST.REPORT_STATUS.READY)) {
                     this.loaderService.hideLoaderForced();
                     this.redirectToDashboard();
                 }
@@ -152,6 +233,7 @@ export class MyProfileComponent implements IPageComponent, OnInit, OnDestroy {
             }, 1000);
         }
     }
+
     checkRedirect() {
         const redirectUrl = this.signUpService.getRedirectUrl();
         if (redirectUrl) {
@@ -168,6 +250,9 @@ export class MyProfileComponent implements IPageComponent, OnInit, OnDestroy {
         this.menuClickSubscription.unsubscribe();
         this.navbarService.unsubscribeBackPress();
         this.navbarService.unsubscribeMenuItemClick();
+        if (this.myinfoChangeListener) {
+            this.myinfoChangeListener.unsubscribe();
+        }
     }
 
     setPageTitle(title: string) {
@@ -298,5 +383,72 @@ export class MyProfileComponent implements IPageComponent, OnInit, OnDestroy {
     }
     redirectToDashboard() {
         this.router.navigate([COMPREHENSIVE_ROUTE_PATHS.DASHBOARD]);
+    }
+
+    /* RELEASE 10.4 MYINFO INTEGRATION */
+    openDisclaimerModal() {
+        const ref = this.modal.open(ModelWithButtonComponent, { centered: true, windowClass: 'myinfo-disclaimer-modal' });
+        ref.componentInstance.errorTitle = this.translate.instant('CMP.GETTING_STARTED.CFP_AUTOFILL.DISCLAIMER_MODAL.TITLE');
+        ref.componentInstance.errorMessage = this.translate.instant('CMP.GETTING_STARTED.CFP_AUTOFILL.DISCLAIMER_MODAL.DESC');
+        ref.componentInstance.primaryActionLabel = this.translate.instant('CMP.GETTING_STARTED.CFP_AUTOFILL.DISCLAIMER_MODAL.PROCEED_BTN');
+        ref.componentInstance.primaryAction.subscribe(() => {
+            this.openMyInfoModal();
+        });
+        ref.componentInstance.disclaimerMessage = this.translate.instant('CMP.GETTING_STARTED.CFP_AUTOFILL.DISCLAIMER_MODAL.DISCLAIMER_TEXT');
+    }
+    openMyInfoModal() {
+        if (!this.viewMode) {
+            const ref = this.modal.open(MyinfoModalComponent, { centered: true, windowClass: 'cfp-myinfo-modal' });
+            ref.componentInstance.primaryActionLabel = this.myInfoModalBtn;
+            ref.componentInstance.unAccessedAttributes = COMPREHENSIVE_CONST.UNACCESSED_ATTRIBUTES;
+            ref.componentInstance.myInfo = true;
+            ref.componentInstance.modalDesc = this.myinfoModalDesc;
+            ref.componentInstance.myInfoEnableFlags.subscribe((attributesFlags: any) => {
+                ref.result.then(() => {
+                    this.disabledAttributes = attributesFlags
+                    let attributes = COMPREHENSIVE_CONST.MY_INFO_ATTRIBUTES;
+                    if (attributesFlags) {
+                        attributes = this.removeMyInfoAttributes(attributesFlags.cpfHousingFlag, COMPREHENSIVE_CONST.EXCLUDABLE_CFP_AUTOFILL_MY_INFO_ATTRIBUTES.CPF_HOUSING_WITHDRAWAL, attributes);
+                        attributes = this.removeMyInfoAttributes(attributesFlags.vehicleFlag, COMPREHENSIVE_CONST.EXCLUDABLE_CFP_AUTOFILL_MY_INFO_ATTRIBUTES.VEHICLES, attributes);
+                    }
+                    this.myInfoService.setMyInfoAttributes(attributes);
+                    this.myInfoService.setMyInfoAppId(appConstants.MYINFO_CPF);
+                    this.myInfoService.goToMyInfo();
+                }).catch((e) => {
+                });
+            });
+        }
+    }
+
+    removeMyInfoAttributes(flag: any, attribute: any, attributes: any) {
+        let attributeList = JSON.parse(JSON.stringify(attributes));
+        if (!flag) {
+            attributeList = attributeList.filter(attr => !attr.includes(attribute));
+        }
+        return attributeList;
+    }
+
+    cancelMyInfo() {
+        this.myInfoService.isMyInfoEnabled = false;
+        this.myInfoService.closeMyInfoPopup(false);
+        if (this.myInfoSubscription) {
+            this.myInfoSubscription.unsubscribe();
+        }
+    }
+    closeMyInfoPopup() {
+        this.myInfoService.closeFetchPopup();
+        this.myInfoService.changeListener.next('');
+        if (this.myInfoService.isMyInfoEnabled) {
+            this.myInfoService.isMyInfoEnabled = false;
+            const ref = this.modal.open(ErrorModalComponent, { centered: true, windowClass: 'my-info' });
+            ref.componentInstance.errorTitle = this.translate.instant('MYINFO.ERROR_MODAL_DATA.TITLE');
+            ref.componentInstance.errorMessage = this.translate.instant('MYINFO.ERROR_MODAL_DATA.DESCRIPTION');
+            ref.componentInstance.isMyinfoError = true;
+            ref.componentInstance.closeBtn = false;
+            ref.result.then(() => {
+                this.router.navigate([SIGN_UP_ROUTE_PATHS.DASHBOARD]);
+            }).catch((e) => {
+            });
+        }
     }
 }

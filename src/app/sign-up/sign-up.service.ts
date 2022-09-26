@@ -814,6 +814,9 @@ export class SignUpService {
   }
 
   loadCorpBizUserMyInfoData(data) {
+    if (data.uin) {
+      this.corpBizUserMyInfoData.uinfin = data.uin;
+    }
     this.setCorpBizMyInfoData(data);
     this.setPropertyData(data?.hdbOwnerships);
     this.setVehicleData(data?.vehicles);
@@ -875,7 +878,7 @@ export class SignUpService {
   }
 
   setCorpBizMyInfoData(data) {
-    if (data.dob.value) {
+    if (data.dob && data.dob.value) {
       this.corpBizUserMyInfoData.dateOfBirth = this.investmentAccountService.corpBizDateFormat(data.dob.value);
     }
 

@@ -93,7 +93,7 @@ export class RecommendedCardComponent implements OnInit {
       this.isLoadComplete = true;
       const responseCode = resp && resp.responseMessage && resp.responseMessage.responseCode ? resp.responseMessage.responseCode : 0;
       if (responseCode >= 6000) {
-          this.cards = resp.objectList.pageList;        
+        this.cards = resp.objectList.pageList;
       }
     }, err => {
       this.isLoadComplete = true;
@@ -103,8 +103,8 @@ export class RecommendedCardComponent implements OnInit {
   afterSlideChange(event) {
     const nextArrow: any = document.getElementsByClassName('next-arrow');
     const prevArrow: any = document.getElementsByClassName('prev-arrow');
-    if ((this.cards.length % 2 > 0 && event.currentSlide + 1 == this.cards.length) || 
-    (this.cards.length % 2 <= 0 && !event.first)) {
+    if ((this.cards.length % 2 > 0 && event.currentSlide + 1 == this.cards.length) ||
+      (this.cards.length % 2 <= 0 && !event.first)) {
       nextArrow[0].style.display = 'none';
     } else {
       nextArrow[0].style.display = 'inherit';

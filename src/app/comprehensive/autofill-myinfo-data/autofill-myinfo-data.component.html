@@ -1,0 +1,629 @@
+<div class="container-fluid max-width--1024 comprehensive">
+  <div class="content">
+    <div class="row">
+      <div class="col-md-12">
+        <div class="corpbiz-data-wrapper__description order2">
+          <div class="myinfo-accordian-block">
+            <div class="flex align-center">
+              <span class="check-icon mr10"><img src="assets/images/check-icon-green.svg" alt="" /></span>
+              <span class="title">{{'CMP.GETTING_STARTED.CFP_AUTOFILL.CORP_BIZ_SUCCESS_MSG' |
+                                translate}} </span>
+            </div>
+            <hr>
+            <div class="myinfo-data-block">
+              <ngb-accordion #acc="ngbAccordion">
+                <ngb-panel>
+                  <ng-template ngbPanelTitle>
+                    <div class="flex space-between">
+                      <div>{{'CMP.GETTING_STARTED.CFP_AUTOFILL.MY_INFO_MODAL.MODAL_ATTR.PERSONAL.TITLE' |
+                                                translate}}</div>
+                      <div><i class='arrow'></i></div>
+                    </div>
+                  </ng-template>
+                  <ng-template ngbPanelContent>
+                    <div class="myinfo-data-content">
+                      <div>
+                        <div>{{'CMP.GETTING_STARTED.CFP_AUTOFILL.MY_INFO_MODAL.MODAL_ATTR.PERSONAL.NRIC_TEXT' |
+                                                    translate}}</div>
+                        <div class="data_lbl">{{ cfpAutoFillMyinfoData.uinfin || '-'}}&nbsp;
+                        </div>
+                      </div>
+                      <div>
+                        <div>
+                          {{'CMP.GETTING_STARTED.CFP_AUTOFILL.MY_INFO_MODAL.MODAL_ATTR.PERSONAL.RESIDENCE_TEXT'
+                                                    | translate}}</div>
+                        <div class="data_lbl">{{ cfpAutoFillMyinfoData.residentialstatus || '-'}}
+                          &nbsp;
+                        </div>
+                      </div>
+                    </div>
+                  </ng-template>
+                </ngb-panel>
+                <ngb-panel>
+                  <ng-template ngbPanelTitle>
+                    <div class="flex space-between">
+                      <div>{{'CMP.GETTING_STARTED.CFP_AUTOFILL.MY_INFO_MODAL.MODAL_ATTR.FAMILY.TITLE' |
+                                                translate}}</div>
+                      <div><i class='arrow'></i></div>
+                    </div>
+                  </ng-template>
+                  <ng-template ngbPanelContent>
+                    <div class="myinfo-data-content">
+                      <!-- Child Data -->
+                      <ng-container *ngIf="childrenRecords && childrenRecords.length > 0; else childBlankRecord">
+                        <div *ngFor="let child of childrenRecords; let i = index">
+                          <div *ngIf="childrenRecords.length > 1" class="iterable-key-text mb10"
+                            [ngClass]="{'mt10': i > 0}">
+                            {{'CMP.GETTING_STARTED.CFP_AUTOFILL.MY_INFO_MODAL.ITERATABLE_KEYS.CHILD' |
+                                                        translate}} {{i + 1}}</div>
+                          <div>
+                            <div>
+                              {{'CMP.GETTING_STARTED.CFP_AUTOFILL.MY_INFO_MODAL.MODAL_ATTR.FAMILY.CHILD.NAME'
+                                                            |
+                                                            translate}}</div>
+                            <div class="data_lbl">{{child.name || '-'}}</div>
+                          </div>
+                          <div>
+                            <div>
+                              {{'CMP.GETTING_STARTED.CFP_AUTOFILL.MY_INFO_MODAL.MODAL_ATTR.FAMILY.CHILD.DOB_TEXT'
+                                                            |
+                                                            translate}}</div>
+                            <div class="data_lbl">{{child.dob || '-'}}</div>
+                          </div>
+                          <div>
+                            <div>
+                              {{'CMP.GETTING_STARTED.CFP_AUTOFILL.MY_INFO_MODAL.MODAL_ATTR.FAMILY.CHILD.GENDER_TEXT'
+                                                            |
+                                                            translate}}</div>
+                            <div class="data_lbl text-capitalise">{{child.gender || '-'}}
+                            </div>
+                          </div>
+                          <div>
+                            <div>
+                              {{'CMP.GETTING_STARTED.CFP_AUTOFILL.MY_INFO_MODAL.MODAL_ATTR.FAMILY.CHILD.LIFE_STATUS_TEXT'
+                                                            |
+                                                            translate}}</div>
+                            <div class="data_lbl">{{ child.lifeStatus || '-'}}</div>
+                          </div>
+                        </div>
+                      </ng-container>
+                      <ng-template #childBlankRecord>
+                        <div>
+                          <div>
+                            {{'CMP.GETTING_STARTED.CFP_AUTOFILL.MY_INFO_MODAL.MODAL_ATTR.FAMILY.CHILD.NAME'
+                                                        |
+                                                        translate}}</div>
+                          <div class="data_lbl">-</div>
+                        </div>
+                        <div>
+                          <div>
+                            {{'CMP.GETTING_STARTED.CFP_AUTOFILL.MY_INFO_MODAL.MODAL_ATTR.FAMILY.CHILD.DOB_TEXT'
+                                                        |
+                                                        translate}}</div>
+                          <div class="data_lbl">-</div>
+                        </div>
+                        <div>
+                          <div>
+                            {{'CMP.GETTING_STARTED.CFP_AUTOFILL.MY_INFO_MODAL.MODAL_ATTR.FAMILY.CHILD.GENDER_TEXT'
+                                                        |
+                                                        translate}}</div>
+                          <div class="data_lbl">-</div>
+                        </div>
+                        <div>
+                          <div>
+                            {{'CMP.GETTING_STARTED.CFP_AUTOFILL.MY_INFO_MODAL.MODAL_ATTR.FAMILY.CHILD.LIFE_STATUS_TEXT'
+                                                        |
+                                                        translate}}</div>
+                          <div class="data_lbl">-</div>
+                        </div>
+                      </ng-template>
+                      <!-- Sponsored Child Data -->
+                      <ng-container
+                        *ngIf="sponsoredChildrenRecords && sponsoredChildrenRecords.length > 0; else sponsoredChildBlankRecord">
+                        <div class="mt10" *ngFor="let sponsoredChild of sponsoredChildrenRecords; let i = index">
+                          <div *ngIf="sponsoredChildrenRecords.length > 1" class="iterable-key-text mb10"
+                            [ngClass]="{'mt10': i > 0}">
+                            {{'CMP.GETTING_STARTED.CFP_AUTOFILL.MY_INFO_MODAL.ITERATABLE_KEYS.SPONSORED_CHILD'
+                                                        | translate}} {{i + 1}}
+                          </div>
+                          <div>
+                            <div>
+                              {{'CMP.GETTING_STARTED.CFP_AUTOFILL.MY_INFO_MODAL.MODAL_ATTR.FAMILY.SPONSORED_CHILD.NAME'
+                                                            |
+                                                            translate}}</div>
+                            <div class="data_lbl">{{ sponsoredChild.name || '-'}}</div>
+                          </div>
+                          <div>
+                            <div>
+                              {{'CMP.GETTING_STARTED.CFP_AUTOFILL.MY_INFO_MODAL.MODAL_ATTR.FAMILY.SPONSORED_CHILD.DOB_TEXT'
+                                                            |
+                                                            translate}}</div>
+                            <div class="data_lbl">{{ sponsoredChild.dob || '-'}}</div>
+                          </div>
+                          <div>
+                            <div>
+                              {{'CMP.GETTING_STARTED.CFP_AUTOFILL.MY_INFO_MODAL.MODAL_ATTR.FAMILY.SPONSORED_CHILD.GENDER_TEXT'
+                                                            |
+                                                            translate}}</div>
+                            <div class="data_lbl text-capitalise">{{ sponsoredChild.gender
+                                                            || '-'}}</div>
+                          </div>
+                          <div>
+                            <div>
+                              {{'CMP.GETTING_STARTED.CFP_AUTOFILL.MY_INFO_MODAL.MODAL_ATTR.FAMILY.SPONSORED_CHILD.RESIDENTIAL_TEXT'
+                                                            |
+                                                            translate}}</div>
+                            <div class="data_lbl">{{ sponsoredChild.residentialStatus ||
+                                                            '-'}}</div>
+                          </div>
+                          <div>
+                            <div>
+                              {{'CMP.GETTING_STARTED.CFP_AUTOFILL.MY_INFO_MODAL.MODAL_ATTR.FAMILY.SPONSORED_CHILD.LIFE_STATUS_TEXT'
+                                                            |
+                                                            translate}}</div>
+                            <div class="data_lbl">{{ sponsoredChild.lifeStatus || '-'}}
+                            </div>
+                          </div>
+                        </div>
+                      </ng-container>
+                      <ng-template #sponsoredChildBlankRecord>
+                        <div>
+                          <div>
+                            {{'CMP.GETTING_STARTED.CFP_AUTOFILL.MY_INFO_MODAL.MODAL_ATTR.FAMILY.SPONSORED_CHILD.NAME'
+                                                        |
+                                                        translate}}</div>
+                          <div class="data_lbl">-</div>
+                        </div>
+                        <div>
+                          <div>
+                            {{'CMP.GETTING_STARTED.CFP_AUTOFILL.MY_INFO_MODAL.MODAL_ATTR.FAMILY.SPONSORED_CHILD.DOB_TEXT'
+                                                        |
+                                                        translate}}</div>
+                          <div class="data_lbl">-</div>
+                        </div>
+                        <div>
+                          <div>
+                            {{'CMP.GETTING_STARTED.CFP_AUTOFILL.MY_INFO_MODAL.MODAL_ATTR.FAMILY.SPONSORED_CHILD.GENDER_TEXT'
+                                                        |
+                                                        translate}}</div>
+                          <div class="data_lbl">-</div>
+                        </div>
+                        <div>
+                          <div>
+                            {{'CMP.GETTING_STARTED.CFP_AUTOFILL.MY_INFO_MODAL.MODAL_ATTR.FAMILY.SPONSORED_CHILD.RESIDENTIAL_TEXT'
+                                                        |
+                                                        translate}}</div>
+                          <div class="data_lbl">-</div>
+                        </div>
+                        <div>
+                          <div>
+                            {{'CMP.GETTING_STARTED.CFP_AUTOFILL.MY_INFO_MODAL.MODAL_ATTR.FAMILY.SPONSORED_CHILD.LIFE_STATUS_TEXT'
+                                                        |
+                                                        translate}}</div>
+                          <div class="data_lbl">-</div>
+                        </div>
+                      </ng-template>
+                    </div>
+                  </ng-template>
+                </ngb-panel>
+                <ngb-panel>
+                  <ng-template ngbPanelTitle>
+                    <div class="flex space-between">
+                      <div>{{'CMP.GETTING_STARTED.CFP_AUTOFILL.MY_INFO_MODAL.MODAL_ATTR.PROPERTY.TITLE' |
+                                                translate}}</div>
+                      <div><i class='arrow'></i></div>
+                    </div>
+                  </ng-template>
+                  <ng-template ngbPanelContent>
+                    <ng-container *ngIf="hdbProperty && hdbProperty.length > 0; else showHDBBlankGroup">
+                      <div class="myinfo-data-content" *ngFor="let house of hdbProperty; let i = index">
+                        <div class="iterable-key-text mb10" [ngClass]="{'mt10': i > 0}" *ngIf="hdbProperty.length > 1">
+                          {{'CMP.GETTING_STARTED.CFP_AUTOFILL.MY_INFO_MODAL.ITERATABLE_KEYS.HDB_OWNERSHIP'
+                                                    |
+                                                    translate}} {{i + 1}}</div>
+                        <div>
+                          <div>
+                            {{'CMP.GETTING_STARTED.CFP_AUTOFILL.MY_INFO_MODAL.MODAL_ATTR.PROPERTY.HDB_TEXT.PURCHASE_DATE_TEXT'
+                                                        |
+                                                        translate}}</div>
+                          <div class="data_lbl">{{ house.dateOfPurchase || '-'}}</div>
+                        </div>
+                        <div>
+                          <div>
+                            {{'CMP.GETTING_STARTED.CFP_AUTOFILL.MY_INFO_MODAL.MODAL_ATTR.PROPERTY.HDB_TEXT.LOAN_TEXT'
+                                                        |
+                                                        translate}}</div>
+                          <div class="data_lbl">{{ (house?.loanGranted |
+                                                        currencyEditor:'USD':'':'symbol-narrow') || '-'}}</div>
+                        </div>
+                        <div>
+                          <div>
+                            {{'CMP.GETTING_STARTED.CFP_AUTOFILL.MY_INFO_MODAL.MODAL_ATTR.PROPERTY.HDB_TEXT.OUTSTANDING_LOAN_TEXT'
+                                                        |
+                                                        translate}}</div>
+                          <div class="data_lbl">{{ (house.outstandingLoanBalance |
+                                                        currencyEditor:'USD':'':'symbol-narrow')
+                                                        || '-'}}
+                          </div>
+                        </div>
+                        <div>
+                          <div>
+                            {{'CMP.GETTING_STARTED.CFP_AUTOFILL.MY_INFO_MODAL.MODAL_ATTR.PROPERTY.HDB_TEXT.MONTHLY_LOAN_TEXT'
+                                                        |
+                                                        translate}}</div>
+                          <div class="data_lbl">{{ (house.monthlyLoanInstalment |
+                                                        currencyEditor:'USD':'':'symbol-narrow')
+                                                        || '-'}}
+                          </div>
+                        </div>
+                      </div>
+                    </ng-container>
+                    <ng-template ngbPanelContent #showHDBBlankGroup>
+                      <div class="myinfo-data-content">
+                        <div>
+                          <div>
+                            {{'CMP.GETTING_STARTED.CFP_AUTOFILL.MY_INFO_MODAL.MODAL_ATTR.PROPERTY.HDB_TEXT.PURCHASE_DATE_TEXT'
+                                                        |
+                                                        translate}}</div>
+                          <div class="data_lbl">-</div>
+                        </div>
+                        <div>
+                          <div>
+                            {{'CMP.GETTING_STARTED.CFP_AUTOFILL.MY_INFO_MODAL.MODAL_ATTR.PROPERTY.HDB_TEXT.LOAN_TEXT'
+                                                        |
+                                                        translate}}</div>
+                          <div class="data_lbl">-</div>
+                        </div>
+                        <div>
+                          <div>
+                            {{'CMP.GETTING_STARTED.CFP_AUTOFILL.MY_INFO_MODAL.MODAL_ATTR.PROPERTY.HDB_TEXT.OUTSTANDING_LOAN_TEXT'
+                                                        |
+                                                        translate}}</div>
+                          <div class="data_lbl">-</div>
+                        </div>
+                        <div>
+                          <div>
+                            {{'CMP.GETTING_STARTED.CFP_AUTOFILL.MY_INFO_MODAL.MODAL_ATTR.PROPERTY.HDB_TEXT.MONTHLY_LOAN_TEXT'
+                                                        |
+                                                        translate}}</div>
+                          <div class="data_lbl">-</div>
+                        </div>
+                      </div>
+                    </ng-template>
+                  </ng-template>
+                </ngb-panel>
+                <ngb-panel>
+                  <ng-template ngbPanelTitle>
+                    <div class="flex space-between">
+                      <div>{{'CMP.GETTING_STARTED.CFP_AUTOFILL.MY_INFO_MODAL.MODAL_ATTR.INCOME_BREAKDOWN.TITLE' |
+                                                translate}}</div>
+                      <div><i class='arrow'></i></div>
+                    </div>
+                  </ng-template>
+                  <ng-template ngbPanelContent>
+                    <div class="myinfo-data-content">
+                      <div>
+                        <div>
+                          {{'CMP.GETTING_STARTED.CFP_AUTOFILL.MY_INFO_MODAL.MODAL_ATTR.INCOME_BREAKDOWN.EMPLOYMENT_TEXT'
+                                                    |
+                                                    translate}}</div>
+                        <div class="data_lbl">{{ (noaData.employment |
+                                                    currencyEditor:'USD':'':'symbol-narrow') || '-'}}
+                        </div>
+                      </div>
+                      <div>
+                        <div>
+                          {{'CMP.GETTING_STARTED.CFP_AUTOFILL.MY_INFO_MODAL.MODAL_ATTR.INCOME_BREAKDOWN.TRADE_TEXT'
+                                                    |
+                                                    translate}}</div>
+                        <div class="data_lbl">{{ (noaData.trade |
+                                                    currencyEditor:'USD':'':'symbol-narrow') || '-'}}</div>
+                      </div>
+                      <div>
+                        <div>
+                          {{'CMP.GETTING_STARTED.CFP_AUTOFILL.MY_INFO_MODAL.MODAL_ATTR.INCOME_BREAKDOWN.RENT_TEXT'
+                                                    |
+                                                    translate}}</div>
+                        <div class="data_lbl">{{ (noaData.rent |
+                                                    currencyEditor:'USD':'':'symbol-narrow') || '-'}}</div>
+                      </div>
+                      <div>
+                        <div>
+                          {{'CMP.GETTING_STARTED.CFP_AUTOFILL.MY_INFO_MODAL.MODAL_ATTR.INCOME_BREAKDOWN.INTEREST_TEXT'
+                                                    |
+                                                    translate}}</div>
+                        <div class="data_lbl">{{ (noaData.interest |
+                                                    currencyEditor:'USD':'':'symbol-narrow') || '-'}}
+                        </div>
+                      </div>
+                    </div>
+                  </ng-template>
+                </ngb-panel>
+                <ngb-panel>
+                  <ng-template ngbPanelTitle>
+                    <div class="flex space-between">
+                      <div>{{'CMP.GETTING_STARTED.CFP_AUTOFILL.MY_INFO_MODAL.MODAL_ATTR.ASSESSMENT_NOTICE.TITLE' |
+                                                translate}}</div>
+                      <div><i class='arrow'></i></div>
+                    </div>
+                  </ng-template>
+                  <ng-template ngbPanelContent>
+                    <div class="myinfo-data-content">
+                      <div>
+                        <div>
+                          {{'CMP.GETTING_STARTED.CFP_AUTOFILL.MY_INFO_MODAL.MODAL_ATTR.ASSESSMENT_NOTICE.ASSESSMENT_YEAR_TEXT'
+                                                    |
+                                                    translate}}</div>
+                        <div class="data_lbl">{{ noaData.yearOfAssessment || '-'}}</div>
+                      </div>
+                      <div>
+                        <div>
+                          {{'CMP.GETTING_STARTED.CFP_AUTOFILL.MY_INFO_MODAL.MODAL_ATTR.ASSESSMENT_NOTICE.TYPE_TEXT'
+                                                    |
+                                                    translate}}</div>
+                        <div class="data_lbl text-capitalise">{{ noaData?.type?.toLowerCase() ||
+                                                    '-'}} {{
+                                                    noaData.type && noaData?.taxClearance ===
+                                                    taxClearanceConsts.YES.VALUE ? taxClearanceConsts.YES.DESC : ''}}
+                        </div>
+                      </div>
+                      <div>
+                        <div>
+                          {{'CMP.GETTING_STARTED.CFP_AUTOFILL.MY_INFO_MODAL.MODAL_ATTR.ASSESSMENT_NOTICE.INCOME_TEXT'
+                                                    |
+                                                    translate}}</div>
+                        <div class="data_lbl">{{ (noaData.assessableIncome |
+                                                    currencyEditor:'USD':'':'symbol-narrow') ||
+                                                    '-'}}
+                        </div>
+                      </div>
+                    </div>
+                  </ng-template>
+                </ngb-panel>
+                <ngb-panel>
+                  <ng-template ngbPanelTitle>
+                    <div class="flex space-between">
+                      <div>{{'CMP.GETTING_STARTED.CFP_AUTOFILL.MY_INFO_MODAL.MODAL_ATTR.CPF_ACC_BAL.TITLE' |
+                                                translate}}</div>
+                      <div><i class='arrow'></i></div>
+                    </div>
+                  </ng-template>
+                  <ng-template ngbPanelContent>
+                    <div class="myinfo-data-content">
+                      <div>
+                        <div>
+                          {{'CMP.GETTING_STARTED.CFP_AUTOFILL.MY_INFO_MODAL.MODAL_ATTR.CPF_ACC_BAL.ORDINARY_ACC_TEXT'
+                                                    |
+                                                    translate}}</div>
+                        <div class="data_lbl">{{ (cpfBalances.oa |
+                                                    currencyEditor:'USD':'':'symbol-narrow') || '-'}}</div>
+                      </div>
+                      <div>
+                        <div>
+                          {{'CMP.GETTING_STARTED.CFP_AUTOFILL.MY_INFO_MODAL.MODAL_ATTR.CPF_ACC_BAL.SPECIAL_ACC_TEXT'
+                                                    |
+                                                    translate}}</div>
+                        <div class="data_lbl">{{ (cpfBalances.sa |
+                                                    currencyEditor:'USD':'':'symbol-narrow') || '-'}}&nbsp;</div>
+                      </div>
+                      <div>
+                        <div>
+                          {{'CMP.GETTING_STARTED.CFP_AUTOFILL.MY_INFO_MODAL.MODAL_ATTR.CPF_ACC_BAL.MEDISAFE_ACC_TEXT'
+                                                    |
+                                                    translate}}</div>
+                        <div class="data_lbl">{{ (cpfBalances.ma |
+                                                    currencyEditor:'USD':'':'symbol-narrow') || '-'}}</div>
+                      </div>
+                      <div>
+                        <div>
+                          {{'CMP.GETTING_STARTED.CFP_AUTOFILL.MY_INFO_MODAL.MODAL_ATTR.CPF_ACC_BAL.RETIREMENT_ACC_TEXT'
+                                                    |
+                                                    translate}}</div>
+                        <div class="data_lbl">{{ (cpfBalances.ra |
+                                                    currencyEditor:'USD':'':'symbol-narrow') || '-' }}</div>
+                      </div>
+                    </div>
+                  </ng-template>
+                </ngb-panel>
+                <ngb-panel *ngIf="isCPFHousingWithdrawal">
+                  <ng-template ngbPanelTitle>
+                    <div class="flex space-between">
+                      <div>{{'CMP.GETTING_STARTED.CFP_AUTOFILL.MY_INFO_MODAL.MODAL_ATTR.CPF_HOUSING.TITLE' |
+                                                translate}}</div>
+                      <div><i class='arrow'></i></div>
+                    </div>
+                  </ng-template>
+                  <ng-template ngbPanelContent>
+                    <div class="myinfo-data-content"
+                      *ngIf="cpfHousingWihdrawal && cpfHousingWihdrawal.length > 0; else withdrawalBlankData">
+                      <div *ngFor="let housingData of cpfHousingWihdrawal; let i = index">
+                        <div *ngIf="cpfHousingWihdrawal.length > 1" class="iterable-key-text mb10"
+                          [ngClass]="{'mt10': i > 0}">
+                          {{'CMP.GETTING_STARTED.CFP_AUTOFILL.MY_INFO_MODAL.ITERATABLE_KEYS.WITHDRAWAL' |
+                                                    translate}} {{i + 1}}</div>
+                        <div>
+                          <div>
+                            {{'CMP.GETTING_STARTED.CFP_AUTOFILL.MY_INFO_MODAL.MODAL_ATTR.CPF_HOUSING.WITHDRAWAL_ACC_TEXT'
+                                                        |
+                                                        translate}}</div>
+                          <div class="data_lbl">{{ (housingData.withdrawalAmount |
+                                                        currencyEditor:'USD':'':'symbol-narrow') || '-'}}</div>
+                        </div>
+                        <div>
+                          <div>
+                            {{'CMP.GETTING_STARTED.CFP_AUTOFILL.MY_INFO_MODAL.MODAL_ATTR.CPF_HOUSING.MONTHLY_EMI_TEXT'
+                                                        |
+                                                        translate}}</div>
+                          <div class="data_lbl">{{ (housingData.installmentAmount |
+                                                        currencyEditor:'USD':'':'symbol-narrow') || '-'}}</div>
+                        </div>
+                        <div>
+                          <div>
+                            {{'CMP.GETTING_STARTED.CFP_AUTOFILL.MY_INFO_MODAL.MODAL_ATTR.CPF_HOUSING.INTEREST_TEXT'
+                                                        |
+                                                        translate}}</div>
+                          <div class="data_lbl">{{ (housingData.acruedInterest |
+                                                        currencyEditor:'USD':'':'symbol-narrow') || '-'}}</div>
+                        </div>
+                        <div>
+                          <div>
+                            {{'CMP.GETTING_STARTED.CFP_AUTOFILL.MY_INFO_MODAL.MODAL_ATTR.CPF_HOUSING.CPF_AMOUNT_TEXT'
+                                                        |
+                                                        translate}}</div>
+                          <div class="data_lbl">{{ (housingData.totalCPFAmount |
+                                                        currencyEditor:'USD':'':'symbol-narrow') || '-'}}</div>
+                        </div>
+                        <div>
+                          <div>
+                            {{'CMP.GETTING_STARTED.CFP_AUTOFILL.MY_INFO_MODAL.MODAL_ATTR.CPF_HOUSING.WITHDRAWAL_ADDRESS'
+                                                        |
+                                                        translate}}</div>
+                          <div class="data_lbl">{{ housingData.withdrawalAddress || '-'}}</div>
+                        </div>
+                      </div>
+                    </div>
+                    <ng-template #withdrawalBlankData>
+                      <div class="myinfo-data-content">
+                        <div class="iterable-key-text mb10" [ngClass]="{'mt10': i > 0}"
+                          *ngIf="cpfHousingWihdrawal.length > 1">
+                          {{'CMP.GETTING_STARTED.CFP_AUTOFILL.MY_INFO_MODAL.ITERATABLE_KEYS.WITHDRAWAL' |
+                                                    translate}} {{ i + 1 }}</div>
+                        <div>
+                          <div>
+                            {{'CMP.GETTING_STARTED.CFP_AUTOFILL.MY_INFO_MODAL.MODAL_ATTR.CPF_HOUSING.WITHDRAWAL_ACC_TEXT'
+                                                        |
+                                                        translate}}</div>
+                          <div class="data_lbl">-</div>
+                        </div>
+                        <div>
+                          <div>
+                            {{'CMP.GETTING_STARTED.CFP_AUTOFILL.MY_INFO_MODAL.MODAL_ATTR.CPF_HOUSING.MONTHLY_EMI_TEXT'
+                                                        |
+                                                        translate}}</div>
+                          <div class="data_lbl">-</div>
+                        </div>
+                        <div>
+                          <div>
+                            {{'CMP.GETTING_STARTED.CFP_AUTOFILL.MY_INFO_MODAL.MODAL_ATTR.CPF_HOUSING.INTEREST_TEXT'
+                                                        |
+                                                        translate}}</div>
+                          <div class="data_lbl">-</div>
+                        </div>
+                        <div>
+                          <div>
+                            {{'CMP.GETTING_STARTED.CFP_AUTOFILL.MY_INFO_MODAL.MODAL_ATTR.CPF_HOUSING.CPF_AMOUNT_TEXT'
+                                                        |
+                                                        translate}}</div>
+                          <div class="data_lbl">-</div>
+                        </div>
+                        <div>
+                          <div>
+                            {{'CMP.GETTING_STARTED.CFP_AUTOFILL.MY_INFO_MODAL.MODAL_ATTR.CPF_HOUSING.WITHDRAWAL_ADDRESS'
+                                                        |
+                                                        translate}}</div>
+                          <div class="data_lbl">-</div>
+                        </div>
+                      </div>
+                    </ng-template>
+                  </ng-template>
+                </ngb-panel>
+                <!-- Vehicle Data -->
+                <ngb-panel *ngIf="isVehicleData">
+                  <ng-template ngbPanelTitle>
+                    <div class="flex space-between">
+                      <div>{{'CMP.GETTING_STARTED.CFP_AUTOFILL.MY_INFO_MODAL.MODAL_ATTR.VEHICLES.TITLE' |
+                                                translate}}</div>
+                      <div><i class='arrow'></i></div>
+                    </div>
+                  </ng-template>
+                  <ng-template ngbPanelContent *ngIf="vehicles && vehicles.length > 0; else vehicleBlankRecord">
+                    <div class="myinfo-data-content" *ngFor="let vehicle of vehicles; let i = index">
+                      <div class="iterable-key-text mb10" [ngClass]="{'mt10': i > 0}"
+                        *ngIf="vehicles && vehicles.length > 1">
+                        {{'CMP.GETTING_STARTED.CFP_AUTOFILL.MY_INFO_MODAL.ITERATABLE_KEYS.VEHICLE' | translate}}
+                        {{i + 1}}</div>
+                      <div>
+                        <div>
+                          {{'CMP.GETTING_STARTED.CFP_AUTOFILL.MY_INFO_MODAL.MODAL_ATTR.VEHICLES.REGISTRATION_DATE_TEXT'
+                                                    |
+                                                    translate}}</div>
+                        <div class="data_lbl">{{ vehicle.registrationDate || '-'}}</div>
+                      </div>
+                      <div>
+                        <div>
+                          {{'CMP.GETTING_STARTED.CFP_AUTOFILL.MY_INFO_MODAL.MODAL_ATTR.VEHICLES.EXPIRY_DATE_TEXT'
+                                                    |
+                                                    translate}}</div>
+                        <div class="data_lbl">{{ vehicle.coeExpiryDate || '-'}}</div>
+                      </div>
+                      <div>
+                        <div>
+                          {{'CMP.GETTING_STARTED.CFP_AUTOFILL.MY_INFO_MODAL.MODAL_ATTR.VEHICLES.MARKET_VALUE_TEXT'
+                                                    |
+                                                    translate}}</div>
+                        <div class="data_lbl">{{ (vehicle.openMarketValue |
+                                                    currencyEditor:'USD':'':'symbol-narrow') ||
+                                                    '-'}}</div>
+                      </div>
+                      <div>
+                        <div>
+                          {{'CMP.GETTING_STARTED.CFP_AUTOFILL.MY_INFO_MODAL.MODAL_ATTR.VEHICLES.VEHICLE_STATUS_TEXT'
+                                                    |
+                                                    translate}}</div>
+                        <div class="data_lbl">{{ vehicle.status || '-'}}</div>
+                      </div>
+                    </div>
+                  </ng-template>
+                  <ng-template ngbPanelContent #vehicleBlankRecord>
+                    <div class="myinfo-data-content">
+                      <div>
+                        <div>
+                          {{'CMP.GETTING_STARTED.CFP_AUTOFILL.MY_INFO_MODAL.MODAL_ATTR.VEHICLES.REGISTRATION_DATE_TEXT'
+                                                    |
+                                                    translate}}</div>
+                        <div class="data_lbl">-</div>
+                      </div>
+                      <div>
+                        <div>
+                          {{'CMP.GETTING_STARTED.CFP_AUTOFILL.MY_INFO_MODAL.MODAL_ATTR.VEHICLES.EXPIRY_DATE_TEXT'
+                                                    |
+                                                    translate}}</div>
+                        <div class="data_lbl">-</div>
+                      </div>
+                      <div>
+                        <div>
+                          {{'CMP.GETTING_STARTED.CFP_AUTOFILL.MY_INFO_MODAL.MODAL_ATTR.VEHICLES.MARKET_VALUE_TEXT'
+                                                    |
+                                                    translate}}</div>
+                        <div class="data_lbl">-</div>
+                      </div>
+                      <div>
+                        <div>
+                          {{'CMP.GETTING_STARTED.CFP_AUTOFILL.MY_INFO_MODAL.MODAL_ATTR.VEHICLES.VEHICLE_STATUS_TEXT'
+                                                    |
+                                                    translate}}</div>
+                        <div class="data_lbl">-</div>
+                      </div>
+                    </div>
+                  </ng-template>
+                </ngb-panel>
+              </ngb-accordion>
+            </div>
+          </div>
+          <div class="flex note">
+            <span class="lock-icon mr10"><img src="assets/images/check-lock-icon.svg" alt="" /></span>
+            <div>
+              <span class="text-bold">{{'CMP.GETTING_STARTED.CFP_AUTOFILL.CORP_BIZ_ENSURE_TXT' |
+                                translate}}</span>
+              <span class="text-regular">{{'CMP.GETTING_STARTED.CFP_AUTOFILL.CORP_BIZ_STEP_CONTINUE_TXT' |
+                                translate}}</span>
+            </div>
+          </div>
+          <div class="btn-container">
+            <button id="nextDependentBtn" type="button" (click)="goToNext()" class="btn btn-primary width100 mt20">{{
+                        'CMP.GETTING_STARTED.CFP_AUTOFILL.SAVE_AND_CONTINUE' | translate }}</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>

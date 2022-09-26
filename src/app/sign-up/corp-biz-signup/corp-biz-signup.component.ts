@@ -7,14 +7,14 @@ import { ConfigService, IConfig } from '../../config/config.service';
 import { MyInfoService } from '../../shared/Services/my-info.service';
 import { FooterService } from '../../shared/footer/footer.service';
 import { NavbarService } from '../../shared/navbar/navbar.service';
-import { CreateAccountMyinfoModalComponent } from '../create-account-myinfo-modal/create-account-myinfo-modal.component';
 import { SignUpService } from '../sign-up.service';
 import { ModelWithButtonComponent } from '../../shared/modal/model-with-button/model-with-button.component';
-import { SIGN_UP_ROUTES, SIGN_UP_ROUTE_PATHS } from '../sign-up.routes.constants';
+import { SIGN_UP_ROUTE_PATHS } from '../sign-up.routes.constants';
 import { SIGN_UP_CONFIG } from '../sign-up.constant';
 import { AppService } from '../../app.service';
 import { SignUpApiService } from '../sign-up.api.service';
 import { appConstants } from 'src/app/app.constants';
+import { MyinfoModalComponent } from '../../shared/modal/myinfo-modal/myinfo-modal.component';
 
 @Component({
   selector: 'app-corp-biz-signup',
@@ -34,6 +34,7 @@ export class CorpBizSignupComponent implements OnInit {
   modalBtnTxt: string;
   myinfoChangeListener: Subscription;
   disabledAttributes: any;
+  myinfoModalDesc: string;
 
   constructor(
     private modal: NgbModal,
@@ -57,6 +58,9 @@ export class CorpBizSignupComponent implements OnInit {
       );
       this.modalBtnTxt = this.translate.instant(
         'CORP_BIZ_SIGN_UP.MY_INFO_MODAL.BTN'
+      );
+      this.myinfoModalDesc = this.translate.instant(
+        'CORP_BIZ_SIGN_UP.MY_INFO_MODAL.MY_INFO_DESC'
       );
       this.loader1Modal = this.translate.instant(
         'CORP_BIZ_SIGN_UP.LOADER1'
@@ -105,7 +109,7 @@ export class CorpBizSignupComponent implements OnInit {
     this.showFetchPopUp();
     let email = this.appService.getCorpBizData()?.email;
     let mobile = this.appService.getCorpBizData()?.mobileNumber;
-    this.myInfoSubscription = this.myInfoService.getCorpBizMyInfoAccountCreateData(email, mobile, null)
+    this.myInfoSubscription = this.myInfoService.getCorpBizMyInfoAccountCreateData(email, mobile, false)
       .subscribe((data) => {
         if (data.responseMessage.responseCode === 6000 && data && data.objectList[0]) {
           this.closeMyInfoPopup(false);
@@ -150,8 +154,9 @@ export class CorpBizSignupComponent implements OnInit {
   }
 
   proceedToMyInfo() {
-    const ref = this.modal.open(CreateAccountMyinfoModalComponent, { centered: true });
+    const ref = this.modal.open(MyinfoModalComponent, { centered: true });
     ref.componentInstance.primaryActionLabel = this.modalBtnTxt;
+    ref.componentInstance.modalDesc = this.myinfoModalDesc;
     ref.componentInstance.myInfoEnableFlags.subscribe((value: any) => {
       ref.result
         .then(() => {

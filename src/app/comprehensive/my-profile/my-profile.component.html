@@ -136,6 +136,13 @@
       <!--Form Content-->
     </div>
     <!--Form group-->
+    <div class="myinfo-block" *ngIf="!viewMode && !DOBAlert" appComprehensiveViewMode="{{viewMode}}" mode=1>
+        <div class="myinfo-desc">{{ 'CMP.MY_PROFILE.MYINFO_DESC' |translate }}</div>
+        <div *ngIf="myinfoRetrievelDate" class="retrieval-date">{{ 'CMP.MY_PROFILE.RETRIEVAL_DATE' |translate }}<span>{{myinfoRetrievelDate}}</span></div>
+      <div class="auto-fill-cpf">
+        <img class="auto-fill-logo" src="assets/images/retrieve-singpass-logo.svg" (click)="openDisclaimerModal()">
+      </div>
+    </div>
     <!--Footer CTA-->
     <div class="footer-cta">
       <button [disabled]="DOBAlert" type="button" (click)="goToNext(moGetStrdForm)" class="btn btn-primary width100"

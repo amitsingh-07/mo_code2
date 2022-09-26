@@ -35,9 +35,9 @@ import { RegularSavingPlanComponent } from './regular-saving-plan/regular-saving
 import { ResultComponent } from './result/result.component';
 import { RetirementPlanComponent } from './retirement-plan/retirement-plan.component';
 import { ValidateResultComponent } from './validate-result/validate-result.component';
-import { SignUpService } from '../sign-up/sign-up.service';
 import { RiskProfileComponent } from './risk-profile/risk-profile.component';
 import { YearsNeededComponent } from './dependants-details/years-needed/years-needed.component';
+import { AutofillMyinfoDataComponent } from './autofill-myinfo-data/autofill-myinfo-data.component';
 
 export function createTranslateLoader(http: HttpClient) {
   return new MultiTranslateHttpLoader(
@@ -85,7 +85,8 @@ export function createTranslateLoader(http: HttpClient) {
     ValidateResultComponent,
     ComprehensiveReviewComponent,
     RiskProfileComponent,
-    YearsNeededComponent
+    YearsNeededComponent,
+    AutofillMyinfoDataComponent
   ],
   providers: [NgbDateCustomParserFormatter],
   exports: [ComprehensiveDashboardComponent]

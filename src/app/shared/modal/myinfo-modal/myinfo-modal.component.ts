@@ -1,23 +1,26 @@
 import { Component, EventEmitter, Input, OnInit, Output, ViewEncapsulation } from '@angular/core';
-import { FormBuilder, FormGroup } from '@angular/forms';
-import { NavigationEnd, Router } from '@angular/router';
+import { FormGroup, FormBuilder } from '@angular/forms';
+import { Router, NavigationEnd } from '@angular/router';
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 import { TranslateService } from '@ngx-translate/core';
 import { filter } from 'rxjs/operators';
+
 @Component({
-  selector: 'app-create-account-myinfo-modal',
-  templateUrl: './create-account-myinfo-modal.component.html',
-  styleUrls: ['./create-account-myinfo-modal.component.scss'],
+  selector: 'app-myinfo-modal',
+  templateUrl: './myinfo-modal.component.html',
+  styleUrls: ['./myinfo-modal.component.scss'],
   encapsulation: ViewEncapsulation.None
 })
-export class CreateAccountMyinfoModalComponent implements OnInit {
+export class MyinfoModalComponent implements OnInit {
   @Input() primaryActionLabel: any;
   @Input() closeBtn = true;
   @Output() primaryAction = new EventEmitter<any>();
   @Output() closeAction = new EventEmitter<any>();
   @Output() myInfoEnableFlags = new EventEmitter<any>();
+  @Input() unAccessedAttributes: string[] = [];
+  @Input() modalDesc: string;
   myInfoEnableForm: FormGroup;
-  
+
   constructor(
     public activeModal: NgbActiveModal,
     private router: Router,
@@ -50,7 +53,6 @@ export class CreateAccountMyinfoModalComponent implements OnInit {
 
   closeIconAction() {
     this.closeAction.emit();
-    this.activeModal.dismiss('Cross click');    
+    this.activeModal.dismiss('Cross click');
   }
-
 }

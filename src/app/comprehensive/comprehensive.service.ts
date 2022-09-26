@@ -64,6 +64,8 @@ export class ComprehensiveService {
   cpfPayoutAmount: number = 0;
   welcomeFlowRetirementAge: number = 0;
   welcomeFlowMyInfoData: {enquiryId: number, reportId: number};
+  isCFPAutofillMyInfoEnabled = false;
+  cfpAutofillMyInfoAttributes = COMPREHENSIVE_CONST.MY_INFO_ATTRIBUTES;
 
   constructor(
     private http: HttpClient,
@@ -179,6 +181,7 @@ export class ComprehensiveService {
     }
     return this.comprehensiveFormData.comprehensiveDetails.baseProfile;
   }
+
   getMyDependant() {
     if (!this.comprehensiveFormData.comprehensiveDetails.dependentsSummaryList) {
       this.comprehensiveFormData.comprehensiveDetails.dependentsSummaryList.dependentsList = [] as IDependantDetail[];
@@ -1146,6 +1149,12 @@ export class ComprehensiveService {
               (cmpSummary.riskAssessmentAnswer.riskProfileSkipped || riskProfileProgressData.subItems[2].completed) &&
               (reportStatusData === COMPREHENSIVE_CONST.REPORT_STATUS.SUBMITTED || reportStatusData === COMPREHENSIVE_CONST.REPORT_STATUS.READY)
             ) {
+              accessibleUrl = urlList[index];
+            }
+            break;
+             // 'myinfo-autofill'
+          case 27:
+            if (isEditAccess && accessPage && this.isCFPAutofillMyInfoEnabled) {
               accessibleUrl = urlList[index];
             }
             break;
@@ -2581,5 +2590,4 @@ export class ComprehensiveService {
   getSpecialPromoCodeStatus() {
     return this.comprehensiveFormData.comprehensiveDetails.comprehensiveEnquiry.specialPromoCode;
   }
-
 }
