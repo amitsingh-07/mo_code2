@@ -10,6 +10,7 @@ import { MyInfoService } from '../../shared/Services/my-info.service';
 import { ComprehensiveService } from '../comprehensive.service';
 import { ComprehensiveApiService } from '../comprehensive-api.service';
 import { LoaderService } from '../../shared/components/loader/loader.service';
+import { IMyProfile } from '../comprehensive-types';
 
 @Component({
   selector: 'app-autofill-myinfo-data',
@@ -35,6 +36,8 @@ export class AutofillMyinfoDataComponent implements OnInit {
   myInfoAttriutes: any;
 
   saveData: string;
+
+  userDetails: IMyProfile;
 
   constructor(
     private router: Router,
@@ -67,11 +70,12 @@ export class AutofillMyinfoDataComponent implements OnInit {
 
   ngOnInit(): void {
     this.navbarService.setNavbarComprehensive(true);
+    this.userDetails = this.comprehensiveService.getMyProfile();
   }
 
   goToNext() {
     this.loaderService.showLoader({ title: this.saveData });
-    this.comprehensiveApiService.getComprehensiveAutoFillCFPData().subscribe((compreData) => {
+    this.comprehensiveApiService.getComprehensiveAutoFillCFPData(this.userDetails.gender, this.userDetails.dateOfBirth).subscribe((compreData) => {
       if (compreData && compreData.objectList[0]) {
         this.comprehensiveService.setComprehensiveSummary(compreData.objectList[0]);
         this.loaderService.hideLoaderForced();
