@@ -124,7 +124,7 @@ export class RecommendedCardComponent implements OnInit {
 
   checkElement(element, property) {
     if (element && element.length > 0) {
-      element.style.display = property;
+      element[0].style.display = property;
     }
   }
 }
