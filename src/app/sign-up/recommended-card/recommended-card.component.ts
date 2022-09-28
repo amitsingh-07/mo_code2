@@ -116,26 +116,30 @@ export class RecommendedCardComponent implements OnInit {
     const prevArrow: any = document.getElementsByClassName('prev-arrow');
     if ((this.cards.length % 2 > 0 && event.currentSlide + 1 == this.cards.length) ||
       (this.cards.length % 2 <= 0 && !event.first)) {
-      nextArrow[0].style.display = 'none';
+      this.checkElement(nextArrow, 'none');
     } else {
-      nextArrow[0].style.display = 'inherit';
+      this.checkElement(nextArrow, 'inherit');
     }
 
     if (event.first) {
-      prevArrow[0].style.display = 'none';
+      this.checkElement(prevArrow, 'none');
     } else {
-      prevArrow[0].style.display = 'inherit';
+      this.checkElement(prevArrow, 'inherit');
     }
   }
 
   slickInit(e) {
     const prevArrow: any = document.getElementsByClassName('prev-arrow');
-    if (prevArrow) {
-      prevArrow[0].style.display = 'none';
-    }
+    this.checkElement(prevArrow, 'none');
   }
 
   trackCards(index, item) {
     return index;
+  }
+
+  checkElement(element, property) {
+    if (element && element.length > 0) {
+      element[0].style.display = property;
+    }
   }
 }
