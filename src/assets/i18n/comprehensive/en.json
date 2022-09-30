@@ -116,7 +116,7 @@
     },
     "COMPREHENSIVE": {
       "PAGE_TITLE": "Welcome",
-      "INSTRUCTIONS": "<p>In comprehensive financial planning, we will focus on your financial health, achieving your core financial goals of retirement and children’s education, and risk-proofing your plan.</p><p>We integrate national schemes like CPF with commercial solutions in our advice. Beyond traditional methods of pointing out gaps, we will tell you what you can already achieve with what you have.</p>Note: This tool is currently available only for those aged 18 to 65 years old.",
+      "INSTRUCTIONS": "<p>In comprehensive financial planning, we will focus on your financial health, achieving your core financial goals of retirement and children’s education, and risk-proofing your plan.</p><p>We integrate national schemes like CPF with commercial solutions in our advice. Beyond traditional methods of pointing out gaps, we will tell you what you can already achieve with what you have.</p>Note: This tool is currently available only for those aged 15 to 65 years old.",
       "INCLUSIVE_GST": " (incl. GST)",
       "LIMITED_TIME": "For a limited time only, 100% fee rebate when you go through the full comprehensive financial planning process.",
       "ENTER_PROMO_CODE": "Enter Promo Code",
@@ -161,7 +161,7 @@
     },
     "MY_PROFILE": {
       "NATIONALITY_ALERT": "Seems like you have changed your input for “Nationality”. Changes will be applied to all platforms upon saving.",
-      "DOB_ALERT": "Sorry, this tool is currently only available to those aged 18 to 70 years old. For other enquiries, you may wish to contact us at enquiries@moneyowl.com.sg.",
+      "DOB_ALERT": "Sorry, this tool is currently only available to those aged 15 to 70 years old. For other enquiries, you may wish to contact us at enquiries@moneyowl.com.sg.",
       "MYINFO_DESC": "Fill or update your personal details faster with Singpass",
       "RETRIEVAL_DATE": "Your last retrieval was on "
     },
