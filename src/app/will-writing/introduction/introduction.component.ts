@@ -92,6 +92,9 @@ export class IntroductionComponent implements OnInit {
   ngOnInit() {
     this.navbarService.setNavbarMode(4);
     this.authService.authenticate().subscribe((token) => {
+      // Auto-populate Wills promo code 
+      //for both public(pre and post login) and corp users
+      this.getCustOrgPromoCode();
     });
     let promoCodeValue: any = this.willWritingService.getPromoCode();
     if (Object.keys(promoCodeValue).length > 0) {
@@ -114,9 +117,6 @@ export class IntroductionComponent implements OnInit {
       this.subscribeMessage = '';
       this.subscribeSuccess = false;
     });
-    // Auto-populate Wills promo code 
-    //for both public(pre and post login) and corp users
-       this.getCustOrgPromoCode();
   }
 
   @HostListener('input', ['$event'])
