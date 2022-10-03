@@ -172,6 +172,10 @@ app-recommended-card {
       border-radius: 6px;
       padding: 30px 15px;
       text-align: center;
+      @include allmobiles{
+        max-width: calc(100% - 30px);
+        margin: 0 auto;
+      }
 
       .logo-container {
         width: 60px;
