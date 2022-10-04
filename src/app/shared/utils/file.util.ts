@@ -5,10 +5,8 @@ const iOS = /iPad|iPhone|iPod/.test(navigator.userAgent);
 @Injectable()
 export class FileUtil {
 
-  public downloadPDF(data: any, fileName: string) {
-    let newWindow;
+  public downloadPDF(data: any, newWindow: any, fileName: string) {
     if (iOS) {
-      newWindow = window.open();
       const pdfUrl = window.URL.createObjectURL(data);
       if (newWindow.document.readyState === 'complete') {
         newWindow.location.assign(pdfUrl);
@@ -26,12 +24,11 @@ export class FileUtil {
     const blob = new Blob([data], { type: FILE_TYPE });
     const isSafari = !!navigator.userAgent.match(/Version\/[\d\.]+.*Safari/);
     const otherBrowsers = /Android|Windows|Mac/.test(navigator.userAgent);
-
     if (window.navigator && window.navigator.msSaveOrOpenBlob) {
       window.navigator.msSaveOrOpenBlob(blob, fileName);
     } else if ((isSafari && iOS) || otherBrowsers || isSafari) {
       setTimeout(() => {
-        this.downloadFile(data, fileName, blob);
+        this.downloadFile(fileName, blob);
       }, 1000);
     } else {
       const reader: any = new FileReader();
@@ -42,7 +39,7 @@ export class FileUtil {
     }
   }
 
-  private downloadFile(data: any, fileName: string, blobFile: Blob): void {
+  private downloadFile(fileName: string, blobFile: Blob): void {
     const url = window.URL.createObjectURL(blobFile);
     const a = document.createElement('a');
     document.body.appendChild(a);

@@ -121,9 +121,13 @@ export class ComprehensiveDashboardComponent implements OnInit {
   }
 
   downloadComprehensiveReport() {
+    let newWindow;
+    if(/iPad|iPhone|iPod/.test(navigator.userAgent)) {
+      newWindow = window.open();
+    }
     const payload = { reportId: this.getComprehensiveSummaryDashboard.reportId, enquiryId: this.enquiryId };
     this.comprehensiveApiService.downloadComprehensiveReport(payload).subscribe((data: any) => {
-      this.downloadfile.downloadPDF(data.body, COMPREHENSIVE_CONST.REPORT_PDF_NAME);
+      this.downloadfile.downloadPDF(data.body, newWindow, COMPREHENSIVE_CONST.REPORT_PDF_NAME);
     });
   }
 
