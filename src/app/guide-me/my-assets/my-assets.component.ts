@@ -148,7 +148,7 @@ export class MyAssetsComponent implements IPageComponent, OnInit, OnDestroy, Aft
     ref.componentInstance.primaryActionLabel = this.translate.instant('MYINFO.OPEN_MODAL_DATA.BTN-TEXT');
     ref.result.then(() => {
       this.myInfoService.setMyInfoAttributes('cpfbalances');
-      this.myInfoService.setMyInfoAppId(appConstants.MYINFO_CPF);
+      this.myInfoService.setMyInfoAppId(appConstants.MYINFO_LINK_INSURANCE);
       this.myInfoService.goToMyInfo();
     }).catch((e) => {
     });
