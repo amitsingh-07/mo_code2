@@ -7,7 +7,7 @@ export const environment: IEnvironment = {
   myInfoClientId: {
     robo2:'PROD-201820691C-MONEYOWL-BFA',
     signup: 'PROD-201820691C-MONEYOWL-BFA',
-    cpf: 'PROD-201820691C-MONEYOWL-BFA',
+    cpf: 'PROD-201820691C-MONEYOWL-INSURANCEANALYSIS',
     corpbiz:'PROD-201820691C-MONEYOWL-BFA',
     linkSingpass: 'PROD-201820691C-MONEYOWL-BFA'
   },
