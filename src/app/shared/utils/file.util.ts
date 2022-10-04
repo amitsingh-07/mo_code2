@@ -4,29 +4,38 @@ export const FILE_TYPE = 'application/pdf';
 @Injectable()
 export class FileUtil {
 
-  public saveAs(data: any, fileName: string): void {
-    const isSafari = !!navigator.userAgent.match(/Version\/[\d\.]+.*Safari/);
+  public downloadPDF(data: any, fileName: string) {
+    let newWindow;
     const iOS = /iPad|iPhone|iPod/.test(navigator.userAgent);
-    const otherBrowsers = /Android|Windows/.test(navigator.userAgent);
+    if (iOS) {
+      newWindow = window.open();
+    }
+    const pdfUrl = window.URL.createObjectURL(data);
+      if (iOS) {
+        if (newWindow.document.readyState === 'complete') {
+          newWindow.location.assign(pdfUrl);
+        } else {
+          newWindow.onload = () => {
+            newWindow.location.assign(pdfUrl);
+          };
+        }
+      } else {
+        this.saveAs(data, fileName);
+      }
+  }
 
+  private saveAs(data: any, fileName: string): void {
     const blob = new Blob([data], { type: FILE_TYPE });
     if (window.navigator && window.navigator.msSaveOrOpenBlob) {
       window.navigator.msSaveOrOpenBlob(blob, fileName);
-    } else if ((isSafari && iOS) || otherBrowsers || isSafari) {
+    } else {
       setTimeout(() => {
         this.downloadFile(data, fileName);
       }, 1000);
-    } else {
-      const reader: any = new FileReader();
-      const out = new Blob([data], { type: FILE_TYPE });
-      reader.onload = ((e) => {
-        window.open(reader.result);
-      });
-      reader.readAsDataURL(out);
     }
   }
 
-  public downloadFile(data: any, fileName: string): void {
+  private downloadFile(data: any, fileName: string): void {
     const blob = new Blob([data], { type: FILE_TYPE });
     const url = window.URL.createObjectURL(blob);
     const a = document.createElement('a');
@@ -35,12 +44,9 @@ export class FileUtil {
     a.href = url;
     a.download = fileName;
     a.click();
-    // window.URL.revokeObjectURL(url);
-    // a.remove();
     setTimeout(() => {
       document.body.removeChild(a);
       window.URL.revokeObjectURL(url);
     }, 1000);
-
   }
 }

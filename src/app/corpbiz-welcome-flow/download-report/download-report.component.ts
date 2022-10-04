@@ -62,11 +62,6 @@ export class DownloadReportComponent implements OnInit {
   }
 
   downloadComprehensiveReport() {
-    const iOS = /iPad|iPhone|iPod/.test(navigator.userAgent);
-    let newWindow;
-    if (iOS) {
-      newWindow = window.open();
-    }
     const payload = { 
       reportId: this.comprehensiveService.welcomeFlowMyInfoData.reportId, 
       enquiryId: this.comprehensiveService.welcomeFlowMyInfoData.enquiryId 
@@ -74,18 +69,7 @@ export class DownloadReportComponent implements OnInit {
     this.showLoader();
     this.comprehensiveApiService.downloadComprehensiveReport(payload).subscribe((data: any) => {
       this.loaderService.hideLoaderForced();
-      const pdfUrl = window.URL.createObjectURL(data.body);
-      if (iOS) {
-        if (newWindow.document.readyState === CORPBIZ_WELCOME_FLOW.CONDITION_CONST.COMPLETE) {
-          newWindow.location.assign(pdfUrl);
-        } else {
-          newWindow.onload = () => {
-            newWindow.location.assign(pdfUrl);
-          };
-        }
-      } else {
-        this.downloadfile.saveAs(data.body, COMPREHENSIVE_CONST.REPORT_PDF_NAME);
-      }
+      this.downloadfile.downloadPDF(data.body, COMPREHENSIVE_CONST.REPORT_PDF_NAME);
     }, () => {
       this.loaderService.hideLoaderForced();
     });
