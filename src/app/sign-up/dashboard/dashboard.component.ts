@@ -460,8 +460,12 @@ export class DashboardComponent implements OnInit {
     }
   }
   downloadWill() {
+    let newWindow;
+    if(/iPad|iPhone|iPod/.test(navigator.userAgent)) {
+      newWindow = window.open();
+    }
     this.willWritingApiService.downloadWill().subscribe((data: any) => {
-      this.fileUtil.downloadPDF(data, this.translate.instant('DASHBOARD.WILL_WRITING.WILLS_PDF_NAME'));
+      this.fileUtil.downloadPDF(data, newWindow, this.translate.instant('DASHBOARD.WILL_WRITING.WILLS_PDF_NAME'));
     }, (error) => console.log(error));
   }
 

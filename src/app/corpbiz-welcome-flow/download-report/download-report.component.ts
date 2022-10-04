@@ -67,9 +67,13 @@ export class DownloadReportComponent implements OnInit {
       enquiryId: this.comprehensiveService.welcomeFlowMyInfoData.enquiryId 
     };
     this.showLoader();
+    let newWindow;
+    if(/iPad|iPhone|iPod/.test(navigator.userAgent)) {
+      newWindow = window.open();
+    }
     this.comprehensiveApiService.downloadComprehensiveReport(payload).subscribe((data: any) => {
       this.loaderService.hideLoaderForced();
-      this.downloadfile.downloadPDF(data.body, COMPREHENSIVE_CONST.REPORT_PDF_NAME);
+      this.downloadfile.downloadPDF(data.body, newWindow, COMPREHENSIVE_CONST.REPORT_PDF_NAME);
     }, () => {
       this.loaderService.hideLoaderForced();
     });
