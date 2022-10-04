@@ -13,7 +13,8 @@ export const environment: IEnvironment = {
     signup: 'STG2-MYINFO-SELF-TEST',
     cpf: 'STG2-MYINFO-SELF-TEST',
     corpbiz:'STG2-MYINFO-SELF-TEST',
-    linkSingpass: 'STG2-MYINFO-SELF-TEST'
+    linkSingpass: 'STG2-MYINFO-SELF-TEST',
+    insurance: 'STG2-MYINFO-SELF-TEST'
   },
   myInfoCallbackBaseUrl: 'https://localhost:3001',
   myInfoAuthorizeUrl: 'https://test.api.myinfo.gov.sg/com/v3/authorise',
