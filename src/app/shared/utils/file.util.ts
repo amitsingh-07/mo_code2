@@ -6,8 +6,8 @@ const iOS = /iPad|iPhone|iPod/.test(navigator.userAgent);
 export class FileUtil {
 
   public downloadPDF(data: any, newWindow: any, fileName: string) {
+    const pdfUrl = window.URL.createObjectURL(data);
     if (iOS) {
-      const pdfUrl = window.URL.createObjectURL(data);
       if (newWindow.document.readyState === 'complete') {
         newWindow.location.assign(pdfUrl);
       } else {
@@ -16,40 +16,25 @@ export class FileUtil {
         };
       }
     } else {
-      this.saveAs(data, fileName);
+      if (window.navigator && window.navigator.msSaveOrOpenBlob) {
+        const blob = new Blob([data], { type: FILE_TYPE });
+        window.navigator.msSaveOrOpenBlob(blob, fileName);
+      } else {
+        this.createDownloadUrl(fileName, pdfUrl);
+      }
     }
   }
 
-  private saveAs(data: any, fileName: string): void {
-    const blob = new Blob([data], { type: FILE_TYPE });
-    const isSafari = !!navigator.userAgent.match(/Version\/[\d\.]+.*Safari/);
-    const otherBrowsers = /Android|Windows|Mac/.test(navigator.userAgent);
-    if (window.navigator && window.navigator.msSaveOrOpenBlob) {
-      window.navigator.msSaveOrOpenBlob(blob, fileName);
-    } else if ((isSafari && iOS) || otherBrowsers || isSafari) {
-      setTimeout(() => {
-        this.downloadFile(fileName, blob);
-      }, 1000);
-    } else {
-      const reader: any = new FileReader();
-      reader.onload = ((e) => {
-        window.open(reader.result);
-      });
-      reader.readAsDataURL(blob);
-    }
-  }
-
-  private downloadFile(fileName: string, blobFile: Blob): void {
-    const url = window.URL.createObjectURL(blobFile);
+  public createDownloadUrl(fileName: string, pdfUrl: string): void {
     const a = document.createElement('a');
     document.body.appendChild(a);
     a.setAttribute('style', 'display: none');
-    a.href = url;
+    a.href = pdfUrl;
     a.download = fileName;
     a.click();
     setTimeout(() => {
       document.body.removeChild(a);
-      window.URL.revokeObjectURL(url);
+      window.URL.revokeObjectURL(pdfUrl);
     }, 1000);
   }
 }

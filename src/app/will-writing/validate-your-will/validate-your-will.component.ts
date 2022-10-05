@@ -7,6 +7,7 @@ import { FooterService } from '../../shared/footer/footer.service';
 import { NavbarService } from '../../shared/navbar/navbar.service';
 import { SIGN_UP_ROUTE_PATHS } from '../../sign-up/sign-up.routes.constants';
 import { WillWritingApiService } from '../will-writing.api.service';
+import { FileUtil } from '../../shared/utils/file.util';
 
 @Component({
   selector: 'app-validate-your-will',
@@ -21,7 +22,8 @@ export class ValidateYourWillComponent implements OnInit, OnDestroy {
     public footerService: FooterService, private appService: AppService,
     private router: Router,
     public navbarService: NavbarService,
-    private willWritingApiService: WillWritingApiService) {
+    private willWritingApiService: WillWritingApiService,
+    private fileUtil: FileUtil) {
     this.translate.use('en');
     this.pageTitle = this.translate.instant('WILL_WRITING.VALIDATE_YOUR_WILL.TITLE');
     this.setPageTitle(this.pageTitle);
@@ -46,40 +48,12 @@ export class ValidateYourWillComponent implements OnInit, OnDestroy {
   }
 
   downloadWill() {
+    let newWindow;
+    if(/iPad|iPhone|iPod/.test(navigator.userAgent)) {
+      newWindow = window.open();
+    }
     this.willWritingApiService.downloadWill().subscribe((data: any) => {
-      this.saveAs(data);
+      this.fileUtil.downloadPDF(data, newWindow, this.translate.instant('WILL_WRITING.VALIDATE_YOUR_WILL.WILLS_PDF_NAME'));
     }, (error) => console.log(error));
   }
-
-  saveAs(data) {
-    const isSafari = !!navigator.userAgent.match(/Version\/[\d\.]+.*Safari/);
-    const iOS = /iPad|iPhone|iPod/.test(navigator.userAgent);
-    const otherBrowsers = /Android|Windows/.test(navigator.userAgent);
-
-    const blob = new Blob([data], { type: 'application/pdf' });
-    if (window.navigator && window.navigator.msSaveOrOpenBlob) {
-      window.navigator.msSaveOrOpenBlob(blob, 'MoneyOwl Will writing.pdf');
-    } else {
-      this.downloadFile(data);
-    }
-  }
-
-  downloadFile(data: any) {
-    const blob = new Blob([data], { type: 'application/pdf' });
-    const url = window.URL.createObjectURL(blob);
-    const a = document.createElement('a');
-    document.body.appendChild(a);
-    a.setAttribute('style', 'display: none');
-    a.href = url;
-    a.download = 'MoneyOwl Will Writing.pdf';
-    a.click();
-    // window.URL.revokeObjectURL(url);
-    // a.remove();
-    setTimeout(() => {
-      document.body.removeChild(a);
-      window.URL.revokeObjectURL(url);
-    }, 1000);
-
-  }
-
 }
