@@ -9,6 +9,7 @@ import { HeaderService } from '../../../shared/header/header.service';
 import { AuthenticationService } from '../../../shared/http/auth/authentication.service';
 import { InvestmentEngagementJourneyService } from '../../investment-engagement-journey/investment-engagement-journey.service';
 import { INVESTMENT_ENGAGEMENT_JOURNEY_CONSTANTS } from  './../../../investment/investment-engagement-journey/investment-engagement-journey.constants';
+import { FileUtil } from '../../../shared/utils/file.util';
 @Component({
   selector: 'app-fund-details',
   templateUrl: './fund-details.component.html',
@@ -45,7 +46,8 @@ export class FundDetailsComponent implements OnInit {
     private modal: NgbModal,
     public activeModal: NgbActiveModal,
     private _location: Location,
-    public investmentEngagementJourneyService: InvestmentEngagementJourneyService
+    public investmentEngagementJourneyService: InvestmentEngagementJourneyService,
+    private fileUtil: FileUtil
   ) {
     this.translate.use('en');
   }
@@ -103,7 +105,7 @@ export class FundDetailsComponent implements OnInit {
     if (iOS) {
       window.open(pdfUrl, '_blank');
     } else {        
-      this.downloadFile(highlightSheetFileName);
+      this.fileUtil.createDownloadUrl(highlightSheetFileName, document.getElementsByTagName('base')[0].href + 'assets/docs/portfolio/fund/' + highlightSheetFileName);
     }
     
   }
@@ -128,22 +130,8 @@ export class FundDetailsComponent implements OnInit {
     if (iOS) {
       window.open(pdfUrl, '_blank');
     } else {        
-      this.downloadFile(prospectusFileName);
+      this.fileUtil.createDownloadUrl(prospectusFileName, document.getElementsByTagName('base')[0].href + 'assets/docs/portfolio/fund/' + prospectusFileName);
     }
   }
-  
-  downloadFile(fileName) {
-    const url = document.getElementsByTagName('base')[0].href + 'assets/docs/portfolio/fund/' + fileName;
-    const a = document.createElement('a');
-    document.body.appendChild(a);
-    a.setAttribute('style', 'display: none');
-    a.href = url;
-    a.download = fileName;
-    a.click();
-    setTimeout(() => {
-      document.body.removeChild(a);
-      window.URL.revokeObjectURL(url);
-    }, 1000);
 
-  }
 }
