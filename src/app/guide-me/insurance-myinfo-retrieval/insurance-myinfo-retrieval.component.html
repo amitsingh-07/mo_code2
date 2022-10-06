@@ -22,7 +22,7 @@
                                 translate}} </span>
                         </div>
                         <hr>
-                        <div class="myinfo-data-block">
+                        <div *ngIf="myInfoData?.cpfbalances as cpfBalances" class="myinfo-data-block">
                             <div class="flex space-between">
                                 <div class="title">{{'MYINFO_RETRIEVAL.PERSONAL.TITLE' |
                                     translate}}</div>
@@ -31,7 +31,7 @@
                                 <div>
                                     <div>{{'MYINFO_RETRIEVAL.PERSONAL.NRIC_TEXT' |
                                         translate}}</div>
-                                    <div class="data_lbl">{{ nric || '-'}}&nbsp; </div>
+                                    <div class="data_lbl">{{myInfoData?.uin || '-'}}&nbsp; </div>
                                 </div>
                             </div>
                             <div class="flex space-between">
@@ -44,7 +44,8 @@
                                         {{'MYINFO_RETRIEVAL.CPF_ACC_BAL.ORDINARY_ACC_TEXT'
                                         |
                                         translate}}</div>
-                                    <div class="data_lbl"> {{ (cpfOa | currencyEditor:'USD':'':'symbol-narrow') || '-'}}
+                                    <div class="data_lbl"> {{ (cpfBalances?.oa |
+                                        currencyEditor:'USD':'':'symbol-narrow') || '-'}}
                                     </div>
                                 </div>
                                 <div>
@@ -52,7 +53,7 @@
                                         {{'MYINFO_RETRIEVAL.CPF_ACC_BAL.SPECIAL_ACC_TEXT'
                                         |
                                         translate}}</div>
-                                    <div class="data_lbl">{{ (cpfSa |
+                                    <div class="data_lbl">{{ (cpfBalances?.sa |
                                         currencyEditor:'USD':'':'symbol-narrow') || '-'}}&nbsp;
                                     </div>
                                 </div>
@@ -61,7 +62,7 @@
                                         {{'MYINFO_RETRIEVAL.CPF_ACC_BAL.MEDISAFE_ACC_TEXT'
                                         |
                                         translate}}</div>
-                                    <div class="data_lbl">{{ (cpfMa |
+                                    <div class="data_lbl">{{ (cpfBalances?.ma |
                                         currencyEditor:'USD':'':'symbol-narrow') || '-'}}
                                     </div>
                                 </div>
@@ -70,7 +71,7 @@
                                         {{'MYINFO_RETRIEVAL.CPF_ACC_BAL.RETIREMENT_ACC_TEXT'
                                         |
                                         translate}}</div>
-                                    <div class="data_lbl">{{ (cpfRa |
+                                    <div class="data_lbl">{{ (cpfBalances?.ra |
                                         currencyEditor:'USD':'':'symbol-narrow') || '-' }}
                                     </div>
                                 </div>

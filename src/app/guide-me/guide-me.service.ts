@@ -33,12 +33,15 @@ const PROTECTION_NEEDS_OCCUPATIONAL_DISABILITY_ID = 3;
 const PROTECTION_NEEDS_LIFE_HOSPITAL_PLAN_ID = 4;
 const PROTECTION_NEEDS_LIFE_LONG_TERM_CARE_ID = 5;
 
+const MYINFO_CPF_BALANCES = 'myinfo_cpf_balances';
+
 @Injectable({
   providedIn: 'root'
 })
 export class GuideMeService {
 
   private guideMeFormData: GuideMeFormData = new GuideMeFormData();
+  myinfoValueRequested$ = new BehaviorSubject<boolean>(false);
   myinfoValueRetrieved$ = new BehaviorSubject<boolean>(false);
   private formError: any = new FormError();
   private isProfileFormValid = false;
@@ -64,7 +67,7 @@ export class GuideMeService {
     private http: HttpClient, private modal: NgbModal,
     private authService: AuthenticationService,
     private translate: TranslateService,
-    ) {
+  ) {
     this.getGuideMeFormData();
     this.protectionNeedsPageIndex = this.guideMeFormData.protectionNeedsPageIndex;
     if (this.guideMeFormData.existingCoverageValues) {
@@ -206,6 +209,14 @@ export class GuideMeService {
   setMyAssets(data: IMyAssets) {
     this.guideMeFormData.assets = data;
     this.commit();
+  }
+
+  setMyInfoCpfbalances(value) {
+    window.sessionStorage.setItem(MYINFO_CPF_BALANCES, JSON.stringify(value))
+  }
+
+  getMyInfoCpfbalances() {
+    return JSON.parse(window.sessionStorage.getItem(MYINFO_CPF_BALANCES))
   }
 
   setPlanDetails(plan) {
@@ -622,7 +633,7 @@ export class GuideMeService {
           eduSupportCountry: dependentData.dependentProtectionNeeds.countryOfEducation,
           eduSupportCourse: dependentData.dependentProtectionNeeds.educationCourse,
           eduSupportNationality: dependentData.dependentProtectionNeeds.nationality,
-          educationSupport: (dependentData.dependentProtectionNeeds.countryOfEducation && dependentData.dependentProtectionNeeds.educationCourse && dependentData.dependentProtectionNeeds.nationality ) ? dependentData : false,
+          educationSupport: (dependentData.dependentProtectionNeeds.countryOfEducation && dependentData.dependentProtectionNeeds.educationCourse && dependentData.dependentProtectionNeeds.nationality) ? dependentData : false,
           gender: dependentData.gender,
           relationship: dependentData.relationship,
           supportAmount: dependentData.dependentProtectionNeeds.monthlySupportAmount,
