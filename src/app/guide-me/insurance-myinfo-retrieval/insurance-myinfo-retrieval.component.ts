@@ -17,8 +17,6 @@ import { IMyInfoData } from './insurance-myinfo-retrieval.interface';
 export class InsuranceMyinfoRetrievalComponent implements OnInit {
   private pageTitle: string;
   public myInfoData: IMyInfoData;
-  //public cpfBalances: ICpfBalances;
-  //public nric: string;
 
   constructor(
     private router: Router,
