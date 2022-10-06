@@ -1,12 +1,12 @@
 import { Component, OnInit, ViewEncapsulation } from '@angular/core';
-import { Location } from '@angular/common';
 import { Router } from '@angular/router';
 import { TranslateService } from '@ngx-translate/core';
 import { FooterService } from '../../shared/footer/footer.service';
 import { NavbarService } from '../../shared/navbar/navbar.service';
-import { MyInfoService } from '../../shared/Services/my-info.service';
 import { GuideMeService } from '../guide-me.service';
+import { ConfigService } from './../../config/config.service';
 import { GUIDE_ME_ROUTE_PATHS } from '../guide-me-routes.constants';
+import { IMyInfoData } from './insurance-myinfo-retrieval.interface';
 
 @Component({
   selector: 'app-insurance-myinfo-retrieval',
@@ -15,51 +15,33 @@ import { GUIDE_ME_ROUTE_PATHS } from '../guide-me-routes.constants';
   encapsulation: ViewEncapsulation.None
 })
 export class InsuranceMyinfoRetrievalComponent implements OnInit {
-  myInfoAttriutes: any;
-  insuranceMyInfoData: any;
-  pageTitle: string;
-  myInfoCpfBalances: any;
-  nric: string;
-  cpfMa: number;
-  cpfOa: number;
-  cpfRa: number;
-  cpfSa: number;
+  private pageTitle: string;
+  public myInfoData: IMyInfoData;
+  //public cpfBalances: ICpfBalances;
+  //public nric: string;
 
   constructor(
     private router: Router,
     public navbarService: NavbarService,
     public footerService: FooterService,
     public readonly translate: TranslateService,
-    private myInfoService: MyInfoService,
     private guideMeService: GuideMeService,
-    private _location: Location,
-
+    private configService: ConfigService
+    
   ) {
-    this.translate.use('en');
-    this.translate.get('COMMON').subscribe((result: string) => {
-    });
-    this.myInfoAttriutes = myInfoService.getMyInfoAttributes();
-    // get cpfbalances from session storage
-    this.myInfoCpfBalances = myInfoService.getMyInfoCpfbalances();
-    this.insuranceMyInfoData = guideMeService;
-    this.translate.get('COMMON').subscribe((result: string) => {
-      this.pageTitle = this.translate.instant('MY_ASSETS.TITLE');
-      this.setPageTitle(this.pageTitle);
+    this.configService.getConfig().subscribe((config: any) => {
+      this.translate.setDefaultLang(config.language);
+      this.translate.use(config.language);
+      this.translate.get(config.common).subscribe((result: string) => {
+        this.pageTitle = this.translate.instant('MY_ASSETS.TITLE');
+        this.setPageTitle(this.pageTitle);
+      });
     });
   }
 
   ngOnInit(): void {
-    this.navbarService.setNavbarVisibility(true);
-    this.footerService.setFooterVisibility(false);
     this.navbarService.setNavbarDirectGuided(true);
-    this.nric = this.myInfoCpfBalances && this.myInfoCpfBalances.uin;
-    if (this.myInfoCpfBalances && this.myInfoCpfBalances.cpfbalances) {
-      this.cpfMa = this.myInfoCpfBalances.cpfbalances.ma;
-      this.cpfOa = this.myInfoCpfBalances.cpfbalances.oa;
-      this.cpfRa = this.myInfoCpfBalances.cpfbalances.ra;
-      this.cpfSa = this.myInfoCpfBalances.cpfbalances.sa;
-    }
-
+    this.myInfoData = this.guideMeService.getMyInfoCpfbalances();
   }
 
   setPageTitle(title: string) {
@@ -67,7 +49,7 @@ export class InsuranceMyinfoRetrievalComponent implements OnInit {
   }
 
   goToNext() {
-    this.myInfoService.myinfoValueRetrieved$.next(true);
+    this.guideMeService.myinfoValueRetrieved$.next(true);
     this.router.navigate([GUIDE_ME_ROUTE_PATHS.ASSETS]);
   }
 

@@ -33,7 +33,7 @@ export class MyAssetsComponent implements IPageComponent, OnInit, OnDestroy, Aft
   cpfValue: number;
   useMyInfo: boolean;
   cpfFromMyInfo = false;
-  myinfoRetrieved = this.myInfoService.myinfoValueRetrieved$.value;
+  myinfoRetrieved = this.guideMeService.myinfoValueRetrieved$.value;
 
   constructor(
     private router: Router, public navbarService: NavbarService,
@@ -67,25 +67,26 @@ export class MyAssetsComponent implements IPageComponent, OnInit, OnDestroy, Aft
       otherAssets: new FormControl(this.assetsFormValues.otherAssets)
     });
     if(this.myinfoRetrieved) {
-      this.cpfValue = Math.floor(this.myInfoService.getMyInfoCpfbalances()?.cpfbalances?.total);
+      this.cpfValue = Math.floor(this.guideMeService.getMyInfoCpfbalances()?.cpfbalances?.total);
       this.assetsForm.controls['cpf'].setValue(this.cpfValue);
       this.cpfFromMyInfo = true;
       this.assetsForm.controls['cpfFromMyInfo'].setValue(this.cpfFromMyInfo);
       this.setFormTotalValue();
     }
-    this.myInfoService.myinfoValueRetrieved$.next(false);
     this.guideMeService.myinfoValueRetrieved$.next(false);
+    this.guideMeService.myinfoValueRequested$.next(false);
+
     this.guideMeService.setMyAssetsTempData(null);
     this.myinfoChangeListener = this.myInfoService.changeListener.subscribe((myinfoObj: any) => {
       if (myinfoObj && myinfoObj !== '' && this.myInfoService.checkMyInfoSourcePage()) {
         if (myinfoObj.status && myinfoObj.status === 'SUCCESS' && this.myInfoService.isMyInfoEnabled) {
           this.myInfoService.getMyInfoData().subscribe((data) => {
             if (data && data['objectList']) {
-              this.myInfoService.setMyInfoCpfbalances(data['objectList'][0]);
+              this.guideMeService.setMyInfoCpfbalances(data['objectList'][0]);
               this.myInfoService.isMyInfoEnabled = false;
               this.guideMeService.setMyAssetsTempData(this.assetsForm.value);
               this.closeMyInfoPopup();
-              this.guideMeService.myinfoValueRetrieved$.next(true);
+              this.guideMeService.myinfoValueRequested$.next(true);
               this.router.navigate([GUIDE_ME_ROUTE_PATHS.MYINFO_RETRIEVAL]);
             } else {
               this.closeMyInfoPopup();

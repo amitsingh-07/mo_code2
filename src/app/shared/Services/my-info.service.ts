@@ -12,7 +12,6 @@ import { ModelWithButtonComponent } from '../modal/model-with-button/model-with-
 import { SIGN_UP_ROUTE_PATHS } from './../../sign-up/sign-up.routes.constants';
 
 const MYINFO_ATTRIBUTE_KEY = 'myinfo_person_attributes';
-const MYINFO_CPF_BALANCES = 'myinfo_cpf_balances';
 declare var window: Window;
 
 const CANCELLED = -2;
@@ -25,7 +24,6 @@ const SUCCESS = 1;
 export class MyInfoService {
 
   changeListener = new Subject();
-  myinfoValueRetrieved$ = new BehaviorSubject<boolean>(false);
   authApiUrl = environment.myInfoAuthorizeUrl;
   clientId = environment.myInfoClientId;
   private attributes = '';
@@ -52,13 +50,6 @@ export class MyInfoService {
     return window.sessionStorage.getItem(MYINFO_ATTRIBUTE_KEY);
   }
 
-  setMyInfoCpfbalances(value) {
-    window.sessionStorage.setItem(MYINFO_CPF_BALANCES, JSON.stringify(value))
-  }
-
-  getMyInfoCpfbalances() {
-   return JSON.parse(window.sessionStorage.getItem(MYINFO_CPF_BALANCES))
-  }
 
   setMyInfoAppId(myInfoServices) {
     this.myInfoServices = myInfoServices;
@@ -143,7 +134,6 @@ export class MyInfoService {
     // Robo2 - MyInfo changes
     // tslint:disable-next-line:only-arrow-functions
     window.addEventListener('message', function (event) {
-      console.log('received: ' + event.data);
       clearInterval(timer);
       window.success = () => null;
       self.robo2SetMyInfo(event.data);

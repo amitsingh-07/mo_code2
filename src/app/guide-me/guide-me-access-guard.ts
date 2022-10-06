@@ -21,7 +21,7 @@ export class GuideMeAccessGuard implements CanActivate {
     if (this.authService.getToken() === null && this.authService.getSessionId() === null) {
       this.authService.authenticate().subscribe((token) => {
         if (this.appService.getCorporateDetails() && this.appService.getCorporateDetails().organisationEnabled) {
-          this.router.navigate([SIGN_UP_ROUTE_PATHS.CORPORATE_LOGIN], { queryParams: {orgID: this.appService.getCorporateDetails().uuid}});
+          this.router.navigate([SIGN_UP_ROUTE_PATHS.CORPORATE_LOGIN], { queryParams: { orgID: this.appService.getCorporateDetails().uuid } });
         } else {
           this.router.navigate([GUIDE_ME_ROUTE_PATHS.PROFILE]);
         }
@@ -41,7 +41,7 @@ export class MyinfoAssetsAccessGuard implements CanActivate {
   ) {
   }
   canActivate(): boolean {
-    if(!this.guideMeService.myinfoValueRetrieved$.value) {
+    if (!this.guideMeService.myinfoValueRequested$.value) {
       this.router.navigate([GUIDE_ME_ROUTE_PATHS.EXPENSES]);
       return false;
     } else {
