@@ -1,15 +1,11 @@
-import { Location } from '@angular/common';
 import { Component, OnInit, ViewEncapsulation, Input } from '@angular/core';
-import { FormBuilder, FormGroup } from '@angular/forms';
-import { Router } from '@angular/router';
-import { NgbActiveModal, NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 import { TranslateService } from '@ngx-translate/core';
 
-import { HeaderService } from '../../../shared/header/header.service';
-import { AuthenticationService } from '../../../shared/http/auth/authentication.service';
 import { InvestmentEngagementJourneyService } from '../../investment-engagement-journey/investment-engagement-journey.service';
 import { INVESTMENT_ENGAGEMENT_JOURNEY_CONSTANTS } from  './../../../investment/investment-engagement-journey/investment-engagement-journey.constants';
 import { FileUtil } from '../../../shared/utils/file.util';
+
 @Component({
   selector: 'app-fund-details',
   templateUrl: './fund-details.component.html',
@@ -17,18 +13,7 @@ import { FileUtil } from '../../../shared/utils/file.util';
   encapsulation: ViewEncapsulation.None
 })
 export class FundDetailsComponent implements OnInit {
-  pageTitle: string;
-  financialDetails: FormGroup;
-  FinancialFormData;
-  formValues;
-  fundDetails;
-  arrowup = true;
-  arrowdown = true;
-  selected;
-  showArrow = false;
-  fund;
-  fundDetail: any;
-  prospectusFile: any;
+  fundDetails: any;
   investmentEnabled: boolean;
   wiseSaverEnabled : boolean;
   wiseIncomeEnabled: boolean;
@@ -39,13 +24,7 @@ export class FundDetailsComponent implements OnInit {
 
   constructor(
     public readonly translate: TranslateService,
-    public headerService: HeaderService,
-    private formBuilder: FormBuilder,
-    public authService: AuthenticationService,
-    private router: Router,
-    private modal: NgbModal,
     public activeModal: NgbActiveModal,
-    private _location: Location,
     public investmentEngagementJourneyService: InvestmentEngagementJourneyService,
     private fileUtil: FileUtil
   ) {
@@ -99,13 +78,13 @@ export class FundDetailsComponent implements OnInit {
     if (fund.factSheetLink) {
       highlightSheetFileName = fund.factSheetLink.split('|')[1];
     }
-    const pdfUrl = document.getElementsByTagName('base')[0].href + 'assets/docs/portfolio/fund/' + highlightSheetFileName;
+    const pdfUrl = document.getElementsByTagName('base')[0].href + INVESTMENT_ENGAGEMENT_JOURNEY_CONSTANTS.FUND_DOC_PATH + highlightSheetFileName;
     
     const iOS = /iPad|iPhone|iPod/.test(navigator.userAgent);
     if (iOS) {
       window.open(pdfUrl, '_blank');
     } else {        
-      this.fileUtil.createDownloadUrl(highlightSheetFileName, document.getElementsByTagName('base')[0].href + 'assets/docs/portfolio/fund/' + highlightSheetFileName);
+      this.fileUtil.createDownloadUrl(highlightSheetFileName, document.getElementsByTagName('base')[0].href + INVESTMENT_ENGAGEMENT_JOURNEY_CONSTANTS.FUND_DOC_PATH + highlightSheetFileName);
     }
     
   }
@@ -126,11 +105,11 @@ export class FundDetailsComponent implements OnInit {
         prospectusFileName = INVESTMENT_ENGAGEMENT_JOURNEY_CONSTANTS.PROSPECTUS_FILE.CPF_UOB;
       }
     }
-    const pdfUrl = document.getElementsByTagName('base')[0].href + 'assets/docs/portfolio/fund/' + prospectusFileName;
+    const pdfUrl = document.getElementsByTagName('base')[0].href + INVESTMENT_ENGAGEMENT_JOURNEY_CONSTANTS.FUND_DOC_PATH + prospectusFileName;
     if (iOS) {
       window.open(pdfUrl, '_blank');
     } else {        
-      this.fileUtil.createDownloadUrl(prospectusFileName, document.getElementsByTagName('base')[0].href + 'assets/docs/portfolio/fund/' + prospectusFileName);
+      this.fileUtil.createDownloadUrl(prospectusFileName, document.getElementsByTagName('base')[0].href + INVESTMENT_ENGAGEMENT_JOURNEY_CONSTANTS.FUND_DOC_PATH + prospectusFileName);
     }
   }
 
