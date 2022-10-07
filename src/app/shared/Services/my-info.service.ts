@@ -2,7 +2,7 @@ import { HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import { NgbModal, NgbModalOptions, NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
-import { BehaviorSubject, Subject } from 'rxjs';
+import { Subject } from 'rxjs';
 import { appConstants } from '../../app.constants';
 
 import { environment } from '../../../environments/environment';

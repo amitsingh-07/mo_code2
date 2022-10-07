@@ -1,7 +1,6 @@
 import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { Router } from '@angular/router';
 import { TranslateService } from '@ngx-translate/core';
-import { FooterService } from '../../shared/footer/footer.service';
 import { NavbarService } from '../../shared/navbar/navbar.service';
 import { GuideMeService } from '../guide-me.service';
 import { ConfigService } from './../../config/config.service';
@@ -21,7 +20,6 @@ export class InsuranceMyinfoRetrievalComponent implements OnInit {
   constructor(
     private router: Router,
     public navbarService: NavbarService,
-    public footerService: FooterService,
     public readonly translate: TranslateService,
     private guideMeService: GuideMeService,
     private configService: ConfigService

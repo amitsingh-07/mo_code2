@@ -4,8 +4,8 @@ export interface IMyInfoData {
 }
 
 export interface ICpfBalances {
-    oa: number,
-    ma: number,
-    sa: number,
-    ra: number,
+    oa: number;
+    ma: number;
+    sa: number;
+    ra: number;
 }

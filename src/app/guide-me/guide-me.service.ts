@@ -1,10 +1,6 @@
-import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-
 import { NgbModal, NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
-import { TranslateService } from '@ngx-translate/core';
 import { BehaviorSubject } from 'rxjs';
-import { AuthenticationService } from '../shared/http/auth/authentication.service';
 import { ErrorModalComponent } from '../shared/modal/error-modal/error-modal.component';
 import { CriticalIllnessData } from './ci-assessment/ci-assessment';
 import { IMyExpenses } from './expenses/expenses.interface';
@@ -64,9 +60,7 @@ export class GuideMeService {
   private result_value;
 
   constructor(
-    private http: HttpClient, private modal: NgbModal,
-    private authService: AuthenticationService,
-    private translate: TranslateService,
+    private modal: NgbModal,
   ) {
     this.getGuideMeFormData();
     this.protectionNeedsPageIndex = this.guideMeFormData.protectionNeedsPageIndex;
