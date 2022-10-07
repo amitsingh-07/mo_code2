@@ -1,46 +1,40 @@
 import { Injectable } from '@angular/core';
 export const FILE_TYPE = 'application/pdf';
+const iOS = /iPad|iPhone|iPod/.test(navigator.userAgent);
 
 @Injectable()
 export class FileUtil {
 
-  public saveAs(data: any, fileName: string): void {
-    const isSafari = !!navigator.userAgent.match(/Version\/[\d\.]+.*Safari/);
-    const iOS = /iPad|iPhone|iPod/.test(navigator.userAgent);
-    const otherBrowsers = /Android|Windows/.test(navigator.userAgent);
-
-    const blob = new Blob([data], { type: FILE_TYPE });
-    if (window.navigator && window.navigator.msSaveOrOpenBlob) {
-      window.navigator.msSaveOrOpenBlob(blob, fileName);
-    } else if ((isSafari && iOS) || otherBrowsers || isSafari) {
-      setTimeout(() => {
-        this.downloadFile(data, fileName);
-      }, 1000);
+  public downloadPDF(data: any, newWindow: any, fileName: string) {
+    const pdfUrl = window.URL.createObjectURL(data);
+    if (iOS) {
+      if (newWindow.document.readyState === 'complete') {
+        newWindow.location.assign(pdfUrl);
+      } else {
+        newWindow.onload = () => {
+          newWindow.location.assign(pdfUrl);
+        };
+      }
     } else {
-      const reader: any = new FileReader();
-      const out = new Blob([data], { type: FILE_TYPE });
-      reader.onload = ((e) => {
-        window.open(reader.result);
-      });
-      reader.readAsDataURL(out);
+      if (window.navigator && window.navigator.msSaveOrOpenBlob) {
+        const blob = new Blob([data], { type: FILE_TYPE });
+        window.navigator.msSaveOrOpenBlob(blob, fileName);
+      } else {
+        this.createDownloadUrl(fileName, pdfUrl);
+      }
     }
   }
 
-  public downloadFile(data: any, fileName: string): void {
-    const blob = new Blob([data], { type: FILE_TYPE });
-    const url = window.URL.createObjectURL(blob);
+  public createDownloadUrl(fileName: string, pdfUrl: string): void {
     const a = document.createElement('a');
     document.body.appendChild(a);
     a.setAttribute('style', 'display: none');
-    a.href = url;
+    a.href = pdfUrl;
     a.download = fileName;
     a.click();
-    // window.URL.revokeObjectURL(url);
-    // a.remove();
     setTimeout(() => {
       document.body.removeChild(a);
-      window.URL.revokeObjectURL(url);
+      window.URL.revokeObjectURL(pdfUrl);
     }, 1000);
-
   }
 }

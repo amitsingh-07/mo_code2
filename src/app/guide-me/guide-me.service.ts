@@ -1,9 +1,6 @@
-import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-
 import { NgbModal, NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
-import { TranslateService } from '@ngx-translate/core';
-import { AuthenticationService } from '../shared/http/auth/authentication.service';
+import { BehaviorSubject } from 'rxjs';
 import { ErrorModalComponent } from '../shared/modal/error-modal/error-modal.component';
 import { CriticalIllnessData } from './ci-assessment/ci-assessment';
 import { IMyExpenses } from './expenses/expenses.interface';
@@ -32,12 +29,16 @@ const PROTECTION_NEEDS_OCCUPATIONAL_DISABILITY_ID = 3;
 const PROTECTION_NEEDS_LIFE_HOSPITAL_PLAN_ID = 4;
 const PROTECTION_NEEDS_LIFE_LONG_TERM_CARE_ID = 5;
 
+const MYINFO_CPF_BALANCES = 'myinfo_cpf_balances';
+
 @Injectable({
   providedIn: 'root'
 })
 export class GuideMeService {
 
   private guideMeFormData: GuideMeFormData = new GuideMeFormData();
+  myinfoValueRequested$ = new BehaviorSubject<boolean>(false);
+  myinfoValueRetrieved$ = new BehaviorSubject<boolean>(false);
   private formError: any = new FormError();
   private isProfileFormValid = false;
   private isProtectionNeedFormValid = false;
@@ -53,15 +54,14 @@ export class GuideMeService {
   myInfoValue: any;
   loadingModalRef: NgbModalRef;
   isMyInfoEnabled = false;
-
   // Variables for Insurance Results Generation
   private result_title: string;
   private result_icon: string;
   private result_value;
 
   constructor(
-    private http: HttpClient, private modal: NgbModal,
-    private authService: AuthenticationService, private translate: TranslateService) {
+    private modal: NgbModal,
+  ) {
     this.getGuideMeFormData();
     this.protectionNeedsPageIndex = this.guideMeFormData.protectionNeedsPageIndex;
     if (this.guideMeFormData.existingCoverageValues) {
@@ -203,6 +203,14 @@ export class GuideMeService {
   setMyAssets(data: IMyAssets) {
     this.guideMeFormData.assets = data;
     this.commit();
+  }
+
+  setMyInfoCpfbalances(value) {
+    window.sessionStorage.setItem(MYINFO_CPF_BALANCES, JSON.stringify(value))
+  }
+
+  getMyInfoCpfbalances() {
+    return JSON.parse(window.sessionStorage.getItem(MYINFO_CPF_BALANCES))
   }
 
   setPlanDetails(plan) {
@@ -619,7 +627,7 @@ export class GuideMeService {
           eduSupportCountry: dependentData.dependentProtectionNeeds.countryOfEducation,
           eduSupportCourse: dependentData.dependentProtectionNeeds.educationCourse,
           eduSupportNationality: dependentData.dependentProtectionNeeds.nationality,
-          educationSupport: (dependentData.dependentProtectionNeeds.countryOfEducation && dependentData.dependentProtectionNeeds.educationCourse && dependentData.dependentProtectionNeeds.nationality ) ? dependentData : false,
+          educationSupport: (dependentData.dependentProtectionNeeds.countryOfEducation && dependentData.dependentProtectionNeeds.educationCourse && dependentData.dependentProtectionNeeds.nationality) ? dependentData : false,
           gender: dependentData.gender,
           relationship: dependentData.relationship,
           supportAmount: dependentData.dependentProtectionNeeds.monthlySupportAmount,
@@ -639,5 +647,17 @@ export class GuideMeService {
     } else if (window.sessionStorage && sessionStorage.getItem(GUIDE_ME_FORM_DATA_LOADED)) {
       return true;
     }
+  }
+
+  getMyAssetsTempData(): IMyAssets {
+    if (!this.guideMeFormData.assetsTemmp) {
+      this.guideMeFormData.assetsTemmp = {} as IMyAssets;
+    }
+    return this.guideMeFormData.assetsTemmp;
+  }
+
+  setMyAssetsTempData(data: IMyAssets) {
+    this.guideMeFormData.assetsTemmp = data;
+    this.commit();
   }
 }

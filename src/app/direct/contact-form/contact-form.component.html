@@ -49,7 +49,7 @@
             </div>
           </div>
         </div>
-        <div class="flex-row mb20">
+        <div class="flex-row">
           <div class="flex-col-12 stretch">
             <div class="form-group-floating-label" [ngClass]="{'inline-error': formObject.controls.mobileNumber.invalid && formObject.controls.mobileNumber.dirty}">
               <input type="number" maxlength="15" id="crtAccInpt1" #mobileNumber  formControlName="mobileNumber" class="form-control" required>
@@ -68,6 +68,14 @@
             </div>
           </div>
         </div>
+        <div class="flex-col-12 checkbox-button one-label consent-checkbox">
+          <input id="acceptMarketingEmails" name="acceptMarketingEmails" type="checkbox"
+          formControlName="acceptMarketingEmails" class="field checkbox">
+          <label for="acceptMarketingEmails">
+            <div class="title">{{'CONTACT_MODAL.FORM.CONSENT_CHECKBOX.LABEL' | translate}}</div>
+          </label>
+        </div>
+        <div class="mb20">{{ 'CONTACT_MODAL.CONSENT_INFO' | translate }}</div>
         <div class="recommnendation-info">
           <div class="title">{{ 'CONTACT_MODAL.SUB_TITLE' | translate }}</div>
           <ngb-accordion #acc="ngbAccordion" (panelChange)="toggleAccordian($event)">
