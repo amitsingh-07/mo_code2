@@ -50,4 +50,7 @@ export class GuideMeFormData {
 
     // Exisiting Coverage
     existingCoverageValues: IExistingCoverage;
+
+    // My Assets
+    assetsTemmp: IMyAssets;
 }

@@ -1,0 +1,136 @@
+@import '../../../variables';
+@import '../../../mixins';
+
+app-insurance-myinfo-retrieval {
+    .container-fluid {
+        &.max-width--1024 {
+            @include allmobiles {
+                padding-top: 100px;
+            }
+            @include phablet{
+                padding-top: 100px;
+            }
+        }
+    }
+
+    .insurance-data-wrapper__title {
+        font-family: $muli-semi-bold;
+        font-size: 36px;
+        letter-spacing: -0.38px;
+        line-height: 45px;
+        text-align: left;
+
+        @include allmobiles {
+            font-size: 24px;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+    }
+
+    .insurance-data-wrapper__sub-title {
+        font-size: 18px;
+    }
+
+    .insurance-max-width {
+        max-width: 100%;
+        margin-left: auto;
+        @include desktop{
+            max-width: 365px;
+        }
+        @include allmobiles {
+            padding: 0 15px;
+            max-width: 100%;
+            margin: 0 auto;
+        }
+    }
+
+    .banner-image{
+        margin-top: 108px;
+        img {
+            padding-top: 0;
+        }
+    }
+
+    .insurance-data-wrapper__description {
+        
+        .myinfo-header-block {
+            padding: 20px;
+            background: $white-color;
+            border-radius: 6px;
+
+            .check-icon {
+                width: 24px;
+                height: 24px;
+                display: flex;
+            }
+
+            .title {
+                font-family: $muli-semi-bold;
+                font-size: 16px;
+                line-height: 20px;
+                letter-spacing: -0.18px;
+                color: $blue-stone-color;
+            }
+
+            hr {
+                border: 1px solid $mercury-smoke-color;
+                margin: 20px 0;
+            }
+        }
+
+        .myinfo-data-block {
+
+            .title {
+                padding: 0 3px 10px 0;
+                width: 100%;
+                font-size: 14px;
+                font-family: $muli-semi-bold;
+                line-height: 22px;
+                letter-spacing: -0.3px;
+                color: $black-color;
+
+            }
+        }
+
+
+        .myinfo-data-content {
+            font-family: $muli-semi-bold;
+            font-size: 14px;
+            line-height: 22px;
+            color: $dark-dusty-grey-color;
+            margin-bottom: 10px;
+
+            .data_lbl {
+                color: $teal-color;
+                font-family: $muli-semi-bold;
+            }
+        }
+
+    }
+
+    .note {
+        padding: 30px 15px 15px 0;
+        font-family: $muli-regular;
+        font-size: 13px;
+        line-height: 16px;
+        letter-spacing: -0.16px;
+        color: $white-color;
+        @include max360{
+            padding-right: 10px;
+        }
+        .lock-icon {
+            width: 48px;
+            height: 48px;
+            display: flex;
+
+            @include allmobiles {
+                margin-left: 10px;
+            }
+        }
+
+        .text-bold {
+            font-family: $muli-bold;
+            font-size: 13px;
+        }
+    }
+}

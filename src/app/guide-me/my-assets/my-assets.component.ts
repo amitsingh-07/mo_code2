@@ -11,10 +11,9 @@ import { IPageComponent } from '../../shared/interfaces/page-component.interface
 import { ErrorModalComponent } from '../../shared/modal/error-modal/error-modal.component';
 import { NavbarService } from '../../shared/navbar/navbar.service';
 import { MyInfoService } from '../../shared/Services/my-info.service';
-import { GUIDE_ME_ROUTE_PATHS, GUIDE_ME_ROUTES } from '../guide-me-routes.constants';
+import { GUIDE_ME_ROUTE_PATHS} from '../guide-me-routes.constants';
 import { GuideMeApiService } from '../guide-me.api.service';
 import { GuideMeService } from '../guide-me.service';
-import { APP_ROUTES } from './../../app-routes.constants';
 import { ConfigService, IConfig } from './../../config/config.service';
 import { IMyAssets } from './my-assets.interface';
 import { SIGN_UP_ROUTE_PATHS } from './../../sign-up/sign-up.routes.constants';
@@ -34,6 +33,7 @@ export class MyAssetsComponent implements IPageComponent, OnInit, OnDestroy, Aft
   cpfValue: number;
   useMyInfo: boolean;
   cpfFromMyInfo = false;
+  myinfoRetrieved = this.guideMeService.myinfoValueRetrieved$.value;
 
   constructor(
     private router: Router, public navbarService: NavbarService,
@@ -55,7 +55,7 @@ export class MyAssetsComponent implements IPageComponent, OnInit, OnDestroy, Aft
 
   ngOnInit() {
     this.navbarService.setNavbarDirectGuided(true);
-    this.assetsFormValues = this.guideMeService.getMyAssets();
+    this.assetsFormValues = Object.keys(this.guideMeService.getMyAssetsTempData()).length > 0 ? this.guideMeService.getMyAssetsTempData() : this.guideMeService.getMyAssets();
     this.cpfFromMyInfo = this.assetsFormValues.cpfFromMyInfo;
     this.assetsForm = new FormGroup({
       cash: new FormControl(this.assetsFormValues.cash),
@@ -66,18 +66,28 @@ export class MyAssetsComponent implements IPageComponent, OnInit, OnDestroy, Aft
       otherInvestments: new FormControl(this.assetsFormValues.otherInvestments),
       otherAssets: new FormControl(this.assetsFormValues.otherAssets)
     });
+    if(this.myinfoRetrieved) {
+      this.cpfValue = Math.floor(this.guideMeService.getMyInfoCpfbalances()?.cpfbalances?.total);
+      this.assetsForm.controls['cpf'].setValue(this.cpfValue);
+      this.cpfFromMyInfo = true;
+      this.assetsForm.controls['cpfFromMyInfo'].setValue(this.cpfFromMyInfo);
+      this.setFormTotalValue();
+    }
+    this.guideMeService.myinfoValueRetrieved$.next(false);
+    this.guideMeService.myinfoValueRequested$.next(false);
+
+    this.guideMeService.setMyAssetsTempData(null);
     this.myinfoChangeListener = this.myInfoService.changeListener.subscribe((myinfoObj: any) => {
       if (myinfoObj && myinfoObj !== '' && this.myInfoService.checkMyInfoSourcePage()) {
         if (myinfoObj.status && myinfoObj.status === 'SUCCESS' && this.myInfoService.isMyInfoEnabled) {
           this.myInfoService.getMyInfoData().subscribe((data) => {
             if (data && data['objectList']) {
-              this.cpfValue = Math.floor(data['objectList'][0].cpfbalances.total);
-              this.assetsForm.controls['cpf'].setValue(this.cpfValue);
+              this.guideMeService.setMyInfoCpfbalances(data['objectList'][0]);
               this.myInfoService.isMyInfoEnabled = false;
-              this.cpfFromMyInfo = true;
-              this.assetsForm.controls['cpfFromMyInfo'].setValue(this.cpfFromMyInfo);
-              this.setFormTotalValue();
+              this.guideMeService.setMyAssetsTempData(this.assetsForm.value);
               this.closeMyInfoPopup();
+              this.guideMeService.myinfoValueRequested$.next(true);
+              this.router.navigate([GUIDE_ME_ROUTE_PATHS.MYINFO_RETRIEVAL]);
             } else {
               this.closeMyInfoPopup();
             }

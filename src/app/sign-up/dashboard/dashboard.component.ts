@@ -50,6 +50,7 @@ import { appConstants } from '../../app.constants';
 import { InvestmentEngagementJourneyService} from '../../investment/investment-engagement-journey/investment-engagement-journey.service';
 import { INVESTMENT_ENGAGEMENT_JOURNEY_CONSTANTS } from '../../investment/investment-engagement-journey/investment-engagement-journey.constants';
 import { InvestModalComponent } from '../invest-modal/invest-modal.component';
+import { FileUtil } from '../../shared/utils/file.util';
 
 @Component({
   selector: 'app-dashboard',
@@ -120,7 +121,8 @@ export class DashboardComponent implements OnInit {
     private guideMeService: GuideMeService,
     private selectedPlansService: SelectedPlansService,
     private comprehensiveService: ComprehensiveService,
-    private investmentEngagementService: InvestmentEngagementJourneyService
+    private investmentEngagementService: InvestmentEngagementJourneyService,
+    private fileUtil: FileUtil
   ) {
     this.translate.use('en');
     this.translate.get('COMMON').subscribe((result: string) => {
@@ -458,38 +460,13 @@ export class DashboardComponent implements OnInit {
     }
   }
   downloadWill() {
-    const iOS = /iPad|iPhone|iPod/.test(navigator.userAgent);
     let newWindow;
-    if (iOS) {
+    if(/iPad|iPhone|iPod/.test(navigator.userAgent)) {
       newWindow = window.open();
     }
     this.willWritingApiService.downloadWill().subscribe((data: any) => {
-      const pdfUrl = window.URL.createObjectURL(data);
-      if (iOS) {
-        if (newWindow.document.readyState === 'complete') {
-          newWindow.location.assign(pdfUrl);
-        } else {
-          newWindow.onload = () => {
-            newWindow.location.assign(pdfUrl);
-          };
-        }
-      } else {
-        this.downloadFile(pdfUrl);
-      }
+      this.fileUtil.downloadPDF(data, newWindow, this.translate.instant('DASHBOARD.WILL_WRITING.WILLS_PDF_NAME'));
     }, (error) => console.log(error));
-  }
-
-  downloadFile(pdfUrl) {
-    const a = document.createElement('a');
-    a.setAttribute('style', 'display: none');
-    a.href = pdfUrl;
-    a.download = 'MoneyOwl Will Writing.pdf';
-    document.body.appendChild(a);
-    a.click();
-    setTimeout(() => {
-      document.body.removeChild(a);
-      window.URL.revokeObjectURL(pdfUrl);
-    }, 1000);
   }
 
   showCustomErrorModal(title, desc) {
