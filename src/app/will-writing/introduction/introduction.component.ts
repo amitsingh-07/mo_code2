@@ -91,8 +91,16 @@ export class IntroductionComponent implements OnInit {
 
   ngOnInit() {
     this.navbarService.setNavbarMode(4);
-    this.authService.authenticate().subscribe((token) => {
-    });
+    if (this.authService.isAuthenticated()) {
+      // Auto-populate Wills promo code for post login flow
+      this.getCustOrgPromoCode();
+    } else {
+      this.authService.authenticate().subscribe((token) => {
+        // Auto-populate Wills promo code for pre login flow
+        this.getCustOrgPromoCode();
+      });
+    }
+
     let promoCodeValue: any = this.willWritingService.getPromoCode();
     if (Object.keys(promoCodeValue).length > 0) {
       promoCodeValue = promoCodeValue.toUpperCase();
@@ -114,9 +122,6 @@ export class IntroductionComponent implements OnInit {
       this.subscribeMessage = '';
       this.subscribeSuccess = false;
     });
-    // Auto-populate Wills promo code 
-    //for both public(pre and post login) and corp users
-       this.getCustOrgPromoCode();
   }
 
   @HostListener('input', ['$event'])

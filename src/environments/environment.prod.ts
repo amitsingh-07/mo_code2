@@ -9,7 +9,8 @@ export const environment: IEnvironment = {
     signup: 'PROD-201820691C-MONEYOWL-BFA',
     cpf: 'PROD-201820691C-MONEYOWL-BFA',
     corpbiz:'PROD-201820691C-MONEYOWL-BFA',
-    linkSingpass: 'PROD-201820691C-MONEYOWL-BFA'
+    linkSingpass: 'PROD-201820691C-MONEYOWL-BFA',
+    insurance: 'PROD-201820691C-MONEYOWL-INSURANCEANALYSIS'
   },
   myInfoCallbackBaseUrl: 'https://www.moneyowl.com.sg/app/myinfo',
   myInfoAuthorizeUrl: 'https://api.myinfo.gov.sg/com/v3/authorise',

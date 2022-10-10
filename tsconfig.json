@@ -20,7 +20,8 @@
   },
   "angularCompilerOptions": {
     "enableIvy": true,
-    "allowEmptyCodegenFiles": true
+    "allowEmptyCodegenFiles": true,
+    "disableTypeScriptVersionCheck": true
   },
   "include": [
     "src/**/*"
