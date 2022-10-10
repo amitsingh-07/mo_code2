@@ -62,5 +62,7 @@ export let appConstants = {
    MYINFO_SIGNUP: 'signup',
    MYINFO_CPF: 'cpf',
    MYINFO_LINK_SINGPASS: 'linkSingpass',
-   MYINFO_LINK_INSURANCE: 'insurance'
+   MYINFO_LINK_INSURANCE: 'insurance',
+   MYINFO_INSURANCE_ATTRIBUTES: ['cpfbalances','uinfin'],
+   CHECK_MYINFO_INSURANCE_ATTRIBUTES: 'cpfbalances,uinfin'
 };
