@@ -13,7 +13,8 @@ export const environment: IEnvironment = {
     signup: 'STG-201820691C-MONEYOWL-BFA',
     cpf: 'STG-201820691C-MONEYOWL-BFA',
     corpbiz:'STG-201820691C-MONEYOWL-BFA',
-    linkSingpass: 'STG-201820691C-MONEYOWL-BFA'
+    linkSingpass: 'STG-201820691C-MONEYOWL-BFA',
+    insurance: 'STG-201820691C-MONEYOWL-INSURANCEANALYSIS'
   },
   myInfoCallbackBaseUrl: 'https://newmouat1.ntucbfa.com/app/myinfo',
   myInfoAuthorizeUrl: 'https://test.api.myinfo.gov.sg/com/v3/authorise',
