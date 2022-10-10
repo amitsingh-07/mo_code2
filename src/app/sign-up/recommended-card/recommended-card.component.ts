@@ -44,7 +44,7 @@ export class RecommendedCardComponent implements OnInit {
   constructor(
     public modal: NgbModal,
     private signUpApiService: SignUpApiService,
-    private readonly translate: TranslateService,
+    private readonly translate: TranslateService
   ) {
     this.translate.use('en');
   }
@@ -97,12 +97,21 @@ export class RecommendedCardComponent implements OnInit {
       if (responseCode >= 6000) {
         this.cards = resp.objectList.pageList;
         if (this.isCardDsmissed && this.cardEvent) {
-          setTimeout(() => {
-            const getCurrentSlideIndex = (document.getElementsByClassName('slick-current') as any)[0].getAttribute('data-slick-index');
-            this.cardEvent.currentSlide = parseInt(getCurrentSlideIndex);
-            this.afterSlideChange(this.cardEvent);
-            this.isCardDsmissed = false;
-          });
+          if (window.innerWidth < SIGN_UP_CONFIG.RECOMMENDED_CARD.CAROUSEL_CONFIG.SCREEN_SIZE && this.cardEvent.currentSlide <= this.cards.length) {
+            this.carousel.unslick();
+            setTimeout(() => {
+              this.carousel.slickGoTo(this.cardEvent.currentSlide == this.cards.length ? this.cardEvent.currentSlide - 1 : this.cardEvent.currentSlide);
+              this.isCardDsmissed = false;
+            });
+          } else {
+            setTimeout(() => {
+              const getSlides = (document.getElementsByClassName('slick-current') as any);
+              const getCurrentSlideIndex = getSlides && getSlides.length > 0 ? getSlides[0].getAttribute('data-slick-index') : '-1';
+              this.cardEvent.currentSlide = Number(getCurrentSlideIndex) > -1 ? parseInt(getCurrentSlideIndex) : this.cardEvent.currentSlide - 1;
+              this.afterSlideChange(this.cardEvent);
+              this.isCardDsmissed = false;
+            });
+          }
         }
       }
     }, err => {
