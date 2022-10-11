@@ -97,17 +97,15 @@ export class RecommendedCardComponent implements OnInit {
       if (responseCode >= 6000) {
         this.cards = resp.objectList.pageList;
         if (this.isCardDsmissed && this.cardEvent) {
-          if (window.innerWidth < SIGN_UP_CONFIG.RECOMMENDED_CARD.CAROUSEL_CONFIG.SCREEN_SIZE && this.cards.length != SIGN_UP_CONFIG.RECOMMENDED_CARD.PAGE_COUNT) {
+          if (window.innerWidth < SIGN_UP_CONFIG.RECOMMENDED_CARD.CAROUSEL_CONFIG.SCREEN_SIZE && this.cards.length != SIGN_UP_CONFIG.RECOMMENDED_CARD.PAGE_COUNT && this.cards.length > 0) {
             this.carousel.unslick();
-            setTimeout(() => {
-              
+            setTimeout(() => {              
               const slideToShow = this.cardEvent.currentSlide == this.cards.length ? this.cardEvent.currentSlide - 1 : this.cardEvent.currentSlide;
               if (!this.carousel.initialized) {
                 this.carousel.initSlick();
               }
               this.carousel.slickGoTo(slideToShow);
-              this.isCardDsmissed = false;
-              
+              this.isCardDsmissed = false;              
             });
           } else {
             setTimeout(() => {
