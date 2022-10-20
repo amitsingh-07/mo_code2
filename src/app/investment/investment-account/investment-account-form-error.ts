@@ -509,43 +509,89 @@ export class InvestmentAccountFormError {
         errorMessage: 'Select Source Of Investment Funds'
       }
     },
+    sourceOfWealth: {
+      required: {
+        // tslint:disable-next-line:no-duplicate-string
+        errorTitle: 'Invalid Source Of Wealth',
+        errorMessage: 'Select Source Of Wealth'
+      }
+    },
     personalSavings: {
       required: {
         // tslint:disable-next-line:no-duplicate-string
-        errorTitle: 'Invalid Personal Savings',
-        errorMessage: 'Enter Personal Savings'
+        errorTitle: 'Source Of Investment Funds: Invalid Personal Savings',
+        errorMessage: 'Source Of Investment Funds: Enter Personal Savings'
       }
     },
     inheritanceGift: {
       required: {
         // tslint:disable-next-line:no-duplicate-string
-        errorTitle: 'Invalid enter Gift Inheritance',
-        errorMessage: 'Enter Gift Inheritance'
+        errorTitle: 'Source Of Investment Funds: Invalid enter Gift Inheritance',
+        errorMessage: 'Source Of Investment Funds: Enter Gift Inheritance'
       }
     },
     durationInvestment: {
       required: {
         // tslint:disable-next-line:no-duplicate-string
-        errorTitle: 'Invalid Investment Period.',
-        errorMessage: 'Enter Duration investment held for'
+        errorTitle: 'Source Of Investment Funds: Invalid Investment Period.',
+        errorMessage: 'Source Of Investment Funds: Enter Duration investment held for'
       },
       minValueCheck: {
-        errorTitle: 'Invalid Expected Amount Per Transaction',
-        errorMessage: 'Enter Duration of investment held for more than 0.'
+        errorTitle: 'Source Of Investment Funds: Invalid Expected Amount Per Transaction',
+        errorMessage: 'Source Of Investment Funds: Enter Duration of investment held for more than 0.'
       }
     },
     otherSources: {
       required: {
         // tslint:disable-next-line:no-duplicate-string
-        errorTitle: 'Invalid others.',
-        errorMessage: 'Enter Others'
+        errorTitle: 'Source Of Investment Funds: Invalid others.',
+        errorMessage: 'Source Of Investment Funds: Enter Others'
       }
     },
     earningsGenerated: {
       required: {
         // tslint:disable-next-line:no-duplicate-string
-        errorTitle: 'Invalid Earnings Generated From',
-        errorMessage: 'Select Earnings Generated From'
+        errorTitle: 'Source Of Investment Funds: Invalid Earnings Generated From',
+        errorMessage: 'Source Of Investment Funds: Select Earnings Generated From'
+      }
+    },
+    personalSavingsWealth: {
+      required: {
+        // tslint:disable-next-line:no-duplicate-string
+        errorTitle: 'Source Of Wealth: Invalid Personal Savings',
+        errorMessage: 'Source Of Wealth: Enter Personal Savings'
+      }
+    },
+    inheritanceGiftWealth: {
+      required: {
+        // tslint:disable-next-line:no-duplicate-string
+        errorTitle: 'Source Of Wealth: Invalid enter Gift Inheritance',
+        errorMessage: 'Source Of Wealth: Enter Gift Inheritance'
+      }
+    },
+    durationInvestmentWealth: {
+      required: {
+        // tslint:disable-next-line:no-duplicate-string
+        errorTitle: 'Source Of Wealth: Invalid Investment Period.',
+        errorMessage: 'Source Of Wealth: Enter Duration investment held for'
+      },
+      minValueCheck: {
+        errorTitle: 'Source Of Wealth: Invalid Expected Amount Per Transaction',
+        errorMessage: 'Source Of Wealth: Enter Duration of investment held for more than 0.'
+      }
+    },
+    otherSourcesWealth: {
+      required: {
+        // tslint:disable-next-line:no-duplicate-string
+        errorTitle: 'Source Of Wealth: Invalid others.',
+        errorMessage: 'Source Of Wealth: Enter Others'
+      }
+    },
+    earningsGeneratedWealth: {
+      required: {
+        // tslint:disable-next-line:no-duplicate-string
+        errorTitle: 'Source Of Wealth: Invalid Earnings Generated From',
+        errorMessage: 'Source Of Wealth: Select Earnings Generated From'
       }
     },
     pepoccupation: {

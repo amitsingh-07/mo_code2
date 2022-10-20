@@ -882,6 +882,26 @@ export class InvestmentAccountService {
       this.investmentAccountFormData.earningsGenerated =
         data.investmentEarnings.earningsGenerated;
     }
+
+    // Source of wealth changes 
+    this.investmentAccountFormData.sourceOfWealth = data.sourceOfWealth;
+    if (data.srcOfWealthPersonalSavingForm) {
+      this.investmentAccountFormData.srcOfWealthPersonalSavings =
+        data.srcOfWealthPersonalSavingForm.personalSavingsWealth;
+    }
+    if (data.srcOfWealthInheritanceGiftForm) {
+      this.investmentAccountFormData.srcOfWealthInheritanceGift =
+        data.srcOfWealthInheritanceGiftForm.inheritanceGiftWealth;
+    }
+    if (data.srcOfWealthOthersForm) {
+      this.investmentAccountFormData.srcOfWealthOtherSources = data.srcOfWealthOthersForm.otherSourcesWealth;
+    }
+    if (data.srcOfWealthInvestmentEarningsForm) {
+      this.investmentAccountFormData.srcOfWealthDurationInvestment =
+        data.srcOfWealthInvestmentEarningsForm.durationInvestmentWealth;
+      this.investmentAccountFormData.srcOfWealthEarningsGenerated =
+        data.srcOfWealthInvestmentEarningsForm.earningsGeneratedWealth;
+    }
     this.commit();
     return true;
   }
@@ -1064,6 +1084,7 @@ export class InvestmentAccountService {
 
   getPersonalDecReqData(data): IPersonalDeclaration {
     const earningsGeneratedId = data.earningsGenerated ? data.earningsGenerated.id : null;
+    const srcOfWealthEarningsGeneratedId = data.srcOfWealthEarningsGenerated ? data.srcOfWealthEarningsGenerated.id : null;
     return {
       investmentSourceId: data.sourceOfIncome ? data.sourceOfIncome.id : null,
       beneficialOwner: data.beneficial,
@@ -1102,6 +1123,21 @@ export class InvestmentAccountService {
             data.source.key ===
             INVESTMENT_ACCOUNT_CONSTANTS.ADDITIONAL_DECLARATION_TWO.INVESTMENT_EARNINGS
             ? earningsGeneratedId
+            : null,
+        // SOURCE OF WEALTH PARAMETERS
+        wealthInvestmentSourceId: data.sourceOfWealth ? data.sourceOfWealth.id : null,
+        wealthAdditionalInfo: this.getSrcOfWealthAdditionalInfoDesc(data),
+        wealthInvestmentDuration:
+          data.sourceOfWealth &&
+            data.sourceOfWealth.key ===
+            INVESTMENT_ACCOUNT_CONSTANTS.ADDITIONAL_DECLARATION_TWO.INVESTMENT_EARNINGS
+            ? data.srcOfWealthDurationInvestment
+            : null,
+        wealthEarningSourceId:
+          data.sourceOfWealth &&
+            data.sourceOfWealth.key ===
+            INVESTMENT_ACCOUNT_CONSTANTS.ADDITIONAL_DECLARATION_TWO.INVESTMENT_EARNINGS
+            ? srcOfWealthEarningsGeneratedId
             : null
       }
     };
@@ -1139,6 +1175,30 @@ export class InvestmentAccountService {
         data.source.key === INVESTMENT_ACCOUNT_CONSTANTS.ADDITIONAL_DECLARATION_TWO.OTHERS
       ) {
         additionalDesc = data.otherSources;
+      }
+    }
+
+    return additionalDesc;
+  }
+
+  // ADDITIONAL DECLARATION: SOURCE OF WEALTH CHANGES
+  getSrcOfWealthAdditionalInfoDesc(data) {
+    let additionalDesc = '';
+    if (data.sourceOfWealth) {
+      if (
+        data.sourceOfWealth.key ===
+        INVESTMENT_ACCOUNT_CONSTANTS.ADDITIONAL_DECLARATION_TWO.PERSONAL_SAVING
+      ) {
+        additionalDesc = data.srcOfWealthPersonalSavings;
+      } else if (
+        data.sourceOfWealth.key ===
+        INVESTMENT_ACCOUNT_CONSTANTS.ADDITIONAL_DECLARATION_TWO.GIFT_INHERITANCE
+      ) {
+        additionalDesc = data.srcOfWealthInheritanceGift;
+      } else if (
+        data.sourceOfWealth.key === INVESTMENT_ACCOUNT_CONSTANTS.ADDITIONAL_DECLARATION_TWO.OTHERS
+      ) {
+        additionalDesc = data.srcOfWealthOtherSources;
       }
     }
 

@@ -8,6 +8,8 @@ app-additional-declaration2 {
     letter-spacing: -0.3px;
     font-family: $muli-semi-bold;
     font-weight: normal;
+    width: calc(100% - 18px);
+    margin-bottom: 0;
   }
 
   .form-group-with-bg--content-label {
@@ -55,5 +57,52 @@ app-additional-declaration2 {
 
   .text-right {
     text-align: left !important;
+  }
+
+  .flex-row {
+    justify-content: space-between;
+    margin-bottom: 20px;
+
+    .flex-col-4 {
+      max-width: 120px;
+      align-items: flex-start;
+      display: flex;
+      margin-right: 25px;
+
+      @include allmobiles {
+        margin-right: 0;
+      }
+
+      .block-tooltip-icon {
+        background: url('/assets/images/investment-account/blocked-help-icon.svg') no-repeat;
+        height: 18px;
+        width: 18px;
+        cursor: pointer;
+        display: block;
+        margin: 5px 0 0 0;
+      }
+    }
+
+    .flex-col-8 {
+      max-width: 310px;
+      @include allmobiles {
+        max-width: 210px;
+      }
+      @include max360 {
+        max-width: 195px;
+      }
+    }
+  }
+
+  .form-group {
+    margin-bottom: 20px;
+    .flex-row {
+      align-items: flex-start;
+      margin-bottom: 0;
+    }
+  }
+
+  .btn-primary {
+    margin-top: 20px !important;
   }
 }
