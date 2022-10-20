@@ -56,7 +56,7 @@
                     <div class="flex-col-7"
                       [ngClass]="{'inline-error': !financialDetails.get('numberOfHouseHoldMembers').valid && !financialDetails.get('numberOfHouseHoldMembers').pristine}">
                       <div class="dropdown-control">
-                        <div ngbDropdown [placement]="getPlacement()">
+                        <div ngbDropdown placement="bottom">
                           <button class="btn btn-dropdown without-border"
                             id="financial_details_number_of_house_members-drpdown" ngbDropdownToggle>
                             {{(financialDetails.controls.numberOfHouseHoldMembers.value == '' || financialDetails.controls.numberOfHouseHoldMembers.value)  ? financialDetails.controls.numberOfHouseHoldMembers.value  :'Select Number'}}
