@@ -28,7 +28,8 @@ export class FinancialDetailsComponent implements OnInit {
   annualHouseHoldIncomeRanges: any;
   numberOfHouseHoldMembersList = Array(11)
     .fill(0)
-    .map((x, i) => i);
+    .map((x, i) => i)
+    .filter(y => y > 0);
 
   constructor(
     public readonly translate: TranslateService,
@@ -118,9 +119,5 @@ export class FinancialDetailsComponent implements OnInit {
   }
   isDisabled() {
     return this.investmentAccountService.isDisabled('annualHouseHoldIncomeRange');
-  }
-
-  getPlacement() {
-    return this.formValues.isMyInfoEnabled ? 'bottom' : 'top';
   }
 }
