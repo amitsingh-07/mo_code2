@@ -39,7 +39,7 @@
     "ng-otp-input": "1.8.1",
     "ng2-nouislider": "^1.8.3",
     "ngx-slick-carousel": "^0.6.0",
-    "ngx-translate-multi-http-loader": "^3.0.0",
+    "ngx-translate-multi-http-loader": "^8.0.2",
     "node-sass": "^4.14.1",
     "nouislider": "^15.6.1",
     "rxjs": "^7.5.7",
