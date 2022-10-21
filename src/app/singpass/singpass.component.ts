@@ -5,6 +5,8 @@ import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { DynamicScriptLoaderService } from '../shared/Services/dynamic-script-loader.service';
 import { ModelWithButtonComponent } from '../shared/modal/model-with-button/model-with-button.component';
 import { SingpassService } from './singpass.service';
+import { connectableObservableDescriptor } from 'rxjs/internal/observable/ConnectableObservable';
+import { Observable } from 'rxjs/internal/Observable';
 
 @Component({
   selector: 'app-singpass',
@@ -14,6 +16,7 @@ import { SingpassService } from './singpass.service';
 })
 export class SingPassComponent implements OnInit, AfterViewInit, OnDestroy {
   @Input() showSingpassLogin: boolean;
+  loginUrl: Observable<any>;
   
   constructor(
     public translate: TranslateService,
@@ -24,16 +27,10 @@ export class SingPassComponent implements OnInit, AfterViewInit, OnDestroy {
   }
 
   ngOnInit() {
-    
+    this.singpassService.getStateNonce();
   }
 
   ngAfterViewInit() {
-    this.dynamicScriptLoaderService.load('singpass-ndi').then(data => {
-      // Script Loaded Successfully
-      if (data[0]['loaded']) {
-        this.singpassService.initSingPassQR();
-      }
-    }).catch(error => {});
   }
 
   ngOnDestroy() {
@@ -47,6 +44,10 @@ export class SingPassComponent implements OnInit, AfterViewInit, OnDestroy {
     ref.componentInstance.errorMessageHTML = this.translate.instant('LOGIN.SINGPASS_ACTIVATE_MODAL.MESSAGE');
     event.stopPropagation();
     event.preventDefault();
+  }
+
+  openSingpassLogin(){
+    this.singpassService.loginSingpassUrl();
   }
 
 }

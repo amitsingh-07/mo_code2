@@ -17,28 +17,29 @@
     <div class="sp-pw-container">
       <div class="pw-login-container">
         <div class="signup-wrapper">
-          <div class="password-qr-toggle">
+         <!--  <div class="password-qr-toggle">
             <div class="toggle-container">
               <div [ngClass]="{'white-txt': showPasswordLogin}" class="toggle-btn" (click)="toggleSingpass('PASSWORD', $event)">{{
                 'LOGIN.PASSWORD_LOGIN' | translate}}</div>
-              <div [hidden]="showSingpassLogin" class=" underline"></div>
+              <div class=" underline"></div>
             </div>
             <div class="toggle-container">
               <div [ngClass]="{'white-txt': showSingpassLogin}" class="toggle-btn" (click)="toggleSingpass('SINGPASS', $event)">
-                <img [hidden]="showSingpassLogin" src="assets/images/singpass/icon-scan-qr.svg">
-                <img [hidden]="showPasswordLogin" src="assets/images/singpass/icon-scan-qr-white.svg">
+                <img src="assets/images/singpass/icon-scan-qr.svg">
+                <img src="assets/images/singpass/icon-scan-qr-white.svg">
                 <div>{{ 'LOGIN.SINGPASS_MOBILE' | translate}}</div>
               </div>
-              <div [hidden]="showPasswordLogin" class="underline"></div>
-            </div>
-          </div>
+              <div class="underline"></div>
+            </div> 
+          </div>-->
           <div class="login-title" #welcomeTitle id="login_welcometxt_lbl">
             {{ 'LOGIN.LOGIN_TO_MO' | translate}}</div>
-          <div class="img-container" [hidden]="showSingpassLogin">
+          <div class="img-container">
             <img class="login-header-icon" src="assets/images/createAccount-icon.svg" />
           </div>
-        </div>
-        <form [hidden]="showSingpassLogin" id="loginForm" name="loginForm" [formGroup]="loginForm"
+          <app-singpass [showSingpassLogin]="showSingpassLogin"></app-singpass>
+          <div class="h-separator-container"><img class="separator-icon" src="assets/images/singpass/asset-seperator-h.svg"></div>
+        <form id="loginForm" name="loginForm" [formGroup]="loginForm"
           (keyup.enter)="doLogin(loginForm)">
           <div class="flex-row mb10">
             <div class="flex-col-12 stretch">
@@ -87,7 +88,7 @@
               </div>
             </div>
           </div>
-          <button id="login_submit_btn" (click)="doLogin(loginForm)" type="button" class="btn btn__footer--fixed btn-primary width100">{{
+          <button id="login_submit_btn" (click)="doLogin(loginForm)" type="button" class="btn btn-primary width100">{{
             'COMMON.LOGIN' | translate }}</button>
           <!-- FORGOT -->
           <div class="forgot-link mt30" *ngIf="!hideForgotPassword">
@@ -99,10 +100,7 @@
               translate}}</a></div>
         </form>
       </div>
-      <div class="separator-container">
-        <img src="assets/images/singpass/asset-separator.svg" />
       </div>
-      <app-singpass [showSingpassLogin]="showSingpassLogin"></app-singpass>
     </div>
     <div class="client-assist mt30" innerHTML="{{'LOGIN.CLIENT_ASSISTANCE' | translate}}"></div>
   </div>

@@ -1,10 +1,5 @@
 <div class="singpass-container" [ngClass]="{'show-element': showSingpassLogin}">
-  <div class="title-container">
-    <img src="assets/images/singpass/icon-new.svg" />
-    <div>{{ 'LOGIN.LOGIN_USE_SINGPASS' | translate}}<a (click)="openSingpassModal($event)">{{ 'LOGIN.HOW_TO_ACTIVATE' |
-        translate}}</a></div>
-  </div>
-  <div id="qr_wrapper"></div>
-  <div class="footer-container">{{ 'LOGIN.DONT_HAVE_SINGPASS' | translate}}<a href="https://app.singpass.gov.sg/"
-      target="_blank">{{ 'LOGIN.DOWNLOAD_NOW' | translate}}</a></div>
+  <div id="login_btn"><a (click)="openSingpassLogin()">
+    <img class="singpass-login-icon" src="assets/images/singpass/sp-login-button.svg" /></a>
+   </div>
 </div>

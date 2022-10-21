@@ -57,7 +57,7 @@ export class LoginComponent implements OnInit, AfterViewInit, OnDestroy {
   capsOn: boolean;
   capslockFocus: boolean;
   showPasswordLogin = true;
-  showSingpassLogin = false;
+  showSingpassLogin = true;
   singpassEnabled = true;
   subscription: Subscription;
   isCorpBiz: boolean = false;
@@ -69,10 +69,6 @@ export class LoginComponent implements OnInit, AfterViewInit, OnDestroy {
     if (/Android|Windows/.test(navigator.userAgent)) {
       this.welcomeTitle.nativeElement.scrollIntoView(true);
     }
-    if (window.matchMedia("(orientation: landscape)").matches && screen.width > 500) {
-      this.showPasswordLogin = true;
-      this.showSingpassLogin = false;
-   }
   }
 
   constructor(

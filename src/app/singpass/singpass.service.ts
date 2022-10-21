@@ -9,33 +9,29 @@ import { SIGN_UP_ROUTE_PATHS } from '../sign-up/sign-up.routes.constants';
   providedIn: 'root'
 })
 export class SingpassService {
+  private stateNonce: any;
+  private authoriseUrl : any;
+  
   constructor(
     private apiService: ApiService,
     private authService: AuthenticationService
   ) {
   }
 
-  // Initialize Singpass QR
-  initSingPassQR() {
-    setTimeout(() => {
-      if (this.authService.isAuthenticated()) {
-        const authParamsSupplier = async () => {
-          const promise = await this.getStateNonce().toPromise();
-          return promise['objectList'][0];
-        }
-        if (authParamsSupplier) {
-          this.initSingpassAuthSession(authParamsSupplier);
-        }
-      } else {
-        this.initSingPassQR();
-      }
+  // Get state & nonce using session id
+  getStateNonce() : any {
+    const payload = { sessionId: this.authService.getSessionId() };
+    this.apiService.getStateNonce(payload).subscribe((data)=>{
+      this.setStateNonceObj(data['objectList'][0]);
     });
   }
 
-  // Get state & nonce using session id
-  getStateNonce() {
-    const payload = { sessionId: this.authService.getSessionId() };
-    return this.apiService.getStateNonce(payload);
+  setStateNonceObj(statenonce) {
+    this.stateNonce = statenonce;
+  }
+
+  getStateNonceObj() {
+    return this.stateNonce;
   }
 
   // Get state & nonce using session id
@@ -48,28 +44,33 @@ export class SingpassService {
       redirect_uri: environment.singpassBaseUrl + SIGN_UP_ROUTE_PATHS.SINGPASS_REDIRECT_URL
     };
     return this.apiService.loginSingpass(payload);
+  } 
+
+  //open singpass login window
+  loginSingpassUrl(){
+    const stateNonceParam = this.getStateNonceObj()
+    this.getSingpassLoginUrl(stateNonceParam);
+    window.open(this.getLoginUrl(), '_self');
   }
 
-  // Init Singpass QR
-  initSingpassAuthSession(authParamsSupplier) {
-    const onError = (errorId, message) => {}
-    try {
-      window['NDI'].initAuthSession(
-        'qr_wrapper',
-        {
-          clientId: environment.singpassClientId,
-          redirectUri: environment.singpassBaseUrl + SIGN_UP_ROUTE_PATHS.SINGPASS_REDIRECT_URL,
-          scope: 'openid',
-          responseType: 'code'
-        },
-        authParamsSupplier,
-        onError
-      );
-    } catch {}
+  //method to construct singpass login url
+  getSingpassLoginUrl(stateNonceParam)
+  {
+     const loginUrl = environment.singpassLoginUrl +
+        '?client_id=' + environment.singpassClientId +
+        '&redirect_uri=' + environment.singpassBaseUrl + SIGN_UP_ROUTE_PATHS.SINGPASS_REDIRECT_URL+
+        '&scope=openid' +
+        '&response_type=code' +
+        '&state=' + stateNonceParam.state +
+        '&nonce=' + stateNonceParam.nonce;
+    this.setLoginUrl(loginUrl);
   }
 
-  // Method to invoke when user abort login
-  cancelSingpassAuthSession() {
-    window['NDI'].cancelAuthSession();
+  setLoginUrl(loginUrl){
+    this.authoriseUrl = loginUrl
   }
+  getLoginUrl(){
+    return this.authoriseUrl;
+  }
+
 }

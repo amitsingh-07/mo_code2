@@ -3,48 +3,24 @@
 
 app-singpass {
   .singpass-container {
+    display:none;
     align-self: flex-end;
-    font-size: 14px;
-    color: $black-color;
     height: auto;
-    width: 354px;
-    background-color: $mercury-smoke-color;
-    border-radius: 6px;
-    box-shadow: 0 2px 6px 0 rgba(0, 0, 0, 0.5);
-    line-height: 21px;
-    letter-spacing: -0.13px;
+    width: 390px;
+    margin-bottom:20px;
     @include allmobiles {
       display: none;
-      font-size: 3.382vmin;
     }
     a {
       font-family: $muli-bold;
       color: $dark-orange-color !important;
       cursor: pointer;
     }
-    .title-container {
-      padding: 18px 19px 10px 20px;
-      height: auto;
-      min-height: 70px;
-      border-top-left-radius: 6px;
-      border-top-right-radius: 6px;
-      display: flex;
-      align-items: flex-start;
+    .singpass-login-icon {
+      width: 390px;
       @include allmobiles {
-        padding: 4.348vmin 4.831vmin 4.831vmin 4.831vmin;
+        max-width: 354px;
       }
-      img {
-        margin-right: 10px;
-      }
-    }
-    #qr_wrapper {
-      background-color: $white-color;
-      border-top-left-radius: 6px;
-      border-top-right-radius: 6px;
-      height: auto;
-    }
-    .footer-container {
-      padding: 12px 0 14px 20px;
     }
   }
 }
