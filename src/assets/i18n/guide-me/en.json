@@ -60,7 +60,7 @@
     "INVESTMENTS_HINT": "(E.g. Stocks, Unit Trusts, ETF)",
     "OTHERS": "Others",
     "OTHERS_HINT": "(E.g. Car, Jewelry, Trust fund)",
-    "FILL_VIA_SINGPASS":"Fill via Myinfo"
+    "FILL_VIA_SINGPASS": "Fill via Myinfo"
   },
   "MY_LIABILITIES": {
     "TITLE": "My Liabilities",
@@ -100,9 +100,21 @@
     "EDUCATION_SUPPORT_COUNTRY": "Country",
     "EDUCATION_SUPPORT_NATIONALITY": "Nationality",
     "YEARS_MODAL_DESC": "Click on your dependant’s profile type for a general guideline on the years needed.",
-    "PROFILE_TYPE": ["spouse", "child", "family"],
-    "DEPENDENT_COUNT_OPTIONS": [0, 1, 2, 3, 4, 5],
-    "YEARS_NEEDED": [{
+    "PROFILE_TYPE": [
+      "spouse",
+      "child",
+      "family"
+    ],
+    "DEPENDENT_COUNT_OPTIONS": [
+      0,
+      1,
+      2,
+      3,
+      4,
+      5
+    ],
+    "YEARS_NEEDED": [
+      {
         "id": 0,
         "className": "spouse",
         "message": "Years Needed = 85 – Spouse’s Current Age"
@@ -124,11 +136,31 @@
       "imageName": "life-protection-mobile.svg"
     },
     "DROP_DOWN_OPTIONS": {
-      "GENDER": ["Male", "Female"],
-      "RELATIONSHIP": ["Child", "Parent", "Spouse", "Siblings"],
-      "EDU_SUPPORT_COURSE": ["Medicine", "Non-Medicine"],
-      "EDU_SUPPORT_COUNTRY": ["Singapore", "USA", "United Kingdom", "Australia"],
-      "EDU_SUPPORT_NATIONALITY": ["Singaporean", "Singapore PR", "Foreigner"]
+      "GENDER": [
+        "Male",
+        "Female"
+      ],
+      "RELATIONSHIP": [
+        "Child",
+        "Parent",
+        "Spouse",
+        "Siblings"
+      ],
+      "EDU_SUPPORT_COURSE": [
+        "Medicine",
+        "Non-Medicine"
+      ],
+      "EDU_SUPPORT_COUNTRY": [
+        "Singapore",
+        "USA",
+        "United Kingdom",
+        "Australia"
+      ],
+      "EDU_SUPPORT_NATIONALITY": [
+        "Singaporean",
+        "Singapore PR",
+        "Foreigner"
+      ]
     }
   },
   "CI_ASSESSMENT": {
@@ -151,7 +183,7 @@
       "description": "<h4>Critical Illness</h4><p>This coverage replaces your income during recovery period (about 2-5 years) while you are unable to work. A person usually requires <b class=\"text-bold\">Critical Illness</b> coverage till their intended retirement age.</p>",
       "imageName": "ci-assessment.svg"
     },
-    "COVERAGE_TOOLTIP" : {
+    "COVERAGE_TOOLTIP": {
       "TITLE": "Coverage Age",
       "DESCRIPTION": "<p>After the age you have indicated, the coverage will cease and you will no longer be eligible for payout in the event of a <span class=\"modal-text-secondary\">Critical Illness</span>.</p>"
     }
@@ -169,7 +201,8 @@
     "MODAL_TITLE": "Occupational Disability",
     "RETIREMENTAGE": 65,
     "COVERAGEPERCENT": 75,
-    "EMPLOYEE_TYPE": [{
+    "EMPLOYEE_TYPE": [
+      {
         "status": "Salaried Employee"
       },
       {
@@ -181,7 +214,7 @@
       "description": "<h4>Occupational Disability</h4><p>This coverage provides monthly payouts to replace a portion of your salary in the event of <b>Occupational Disability</b>. A person usually requires coverage until their retirement age.</p>",
       "imageName": "occupation-disability.svg"
     },
-    "COVERAGE_TOOLTIP" : {
+    "COVERAGE_TOOLTIP": {
       "TITLE": "Coverage Age",
       "DESCRIPTION": "<p>After the age you have indicated, the coverage will cease and you will no longer be eligible for payout in the event of an <span class=\"modal-text-secondary\">Occupational Disability</span>.</p>"
     }
@@ -207,7 +240,7 @@
   "MYINFO": {
     "OPEN_MODAL_DATA": {
       "TITLE": "Retrieve Myinfo with Singpass<span class=\"lock\"><img src=\"assets/images/lock.svg\"></span>",
-      "DESCRIPTION": "<strong class=\"text-bold\">Applicable to Singapore Citizens and Singapore Permanent Residents (PRs) only. Otherwise, please return to fill form manually.</strong><br><br>You will now proceed to login via Myinfo and retrieve your following details.<strong class=\"text-bold\"> Please use your own account only.</strong><div class=\"my_info_details\">CPF Account Balance<br>NRIC/FIN</div><br>Would you like to proceed?",
+      "DESCRIPTION": "<strong class=\"text-bold\">Applicable to Singapore Citizens and Singapore Permanent Residents (PRs) only. Otherwise, please return to fill form manually.</strong><br><br>You will now proceed to login via Myinfo and retrieve your following details.<strong class=\"text-bold\"> Please use your own account only.</strong><div class=\"my_info_details\">NRIC/FIN<br>CPF Account Balance</div><br>Would you like to proceed?",
       "BTN-TEXT": "Let's go!"
     },
     "ERROR_MODAL_DATA": {
@@ -238,40 +271,57 @@
     "PLANS": {
       "COVARAGE_NEEDED": "Coverage Needed",
       "LESS_EXISTING_COVERAGE": "Less Existing Coverage",
-      "DOLLER":"$",
-      "PERSENTAGE":"%",
-      "LIFE_PROTECTION":{ 
+      "DOLLER": "$",
+      "PERSENTAGE": "%",
+      "LIFE_PROTECTION": {
         "TITLE": "Life Protection",
         "ICON": "life-protection-icon.svg",
-        "EDUCATION_SUPPORT":"Education Support",
-        "FOR_DEPENDENTS":"For Dependants",
-        "LIABILITIES":"Liabilities",
-        "LESS_CURRENT_ASSETS":"Less Current Assets"
-        
-        },
-      "CRITICAL_ILLNESS":{ 
+        "EDUCATION_SUPPORT": "Education Support",
+        "FOR_DEPENDENTS": "For Dependants",
+        "LIABILITIES": "Liabilities",
+        "LESS_CURRENT_ASSETS": "Less Current Assets"
+      },
+      "CRITICAL_ILLNESS": {
         "TITLE": "Critical Illness",
         "ICON": "critical-illness-icon.svg",
-        "ANNUAL_INCOME":"Annual Income",
-        "YEARS_TO_REPLACE":"Years To Replace",
-        "YEARS":" Years"
-        }, 
-      "OCCUPATIONAL_DISABILITY": { 
+        "ANNUAL_INCOME": "Annual Income",
+        "YEARS_TO_REPLACE": "Years To Replace",
+        "YEARS": " Years"
+      },
+      "OCCUPATIONAL_DISABILITY": {
         "TITLE": "Occupational Disability",
         "ICON": "occupational-disability-icon.svg",
-        "MONTHLY_SALARY":"Monthly Salary",
-        "PERSENTAGE_TO_REPLACE":"% to Replace"
-        },
-      "LONG_TERM_CARE":{ 
+        "MONTHLY_SALARY": "Monthly Salary",
+        "PERSENTAGE_TO_REPLACE": "% to Replace"
+      },
+      "LONG_TERM_CARE": {
         "TITLE": "Long-Term Care",
         "ICON": "long-term-care-icon.svg",
-        "FOR_MONTH":" / mth"
-        }, 
-      "HOSPITAL_PLAN":{ 
+        "FOR_MONTH": " / mth"
+      },
+      "HOSPITAL_PLAN": {
         "TITLE": "Hospital Plan",
         "ICON": "hospital-plan-icon.svg",
-        "FAMILY_MEMBER":"Family Member"
-        }
+        "FAMILY_MEMBER": "Family Member"
+      }
     }
+  },
+  "MYINFO_RETRIEVAL": {
+    "TITLE": "Complete Data Retrieval",
+    "SUCCESS_MSG": "These details will be used for your insurance planning",
+    "PERSONAL": {
+      "TITLE": "Personal",
+      "NRIC_TEXT": "NRIC/FIN"
+    },
+    "CPF_ACC_BAL": {
+      "TITLE": "CPF Account Balance",
+      "ORDINARY_ACC_TEXT": "Ordinary Account (OA)",
+      "SPECIAL_ACC_TEXT": "Special Account (SA)",
+      "MEDISAFE_ACC_TEXT": "Medisave Account (MA)",
+      "RETIREMENT_ACC_TEXT": "Retirement Account (RA)"
+    },
+    "ENSURE_TXT": "We will ensure that your information is safe with us. ",
+    "STEP_CONTINUE_TXT": "This step is required to continue.",
+    "CONTINUE": "Continue"
   }
 }

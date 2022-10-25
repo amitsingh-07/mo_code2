@@ -1,5 +1,6 @@
 import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { Router } from '@angular/router';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { TranslateService } from '@ngx-translate/core';
 import { Subscription } from 'rxjs';
 import { CORPBIZ_WELCOME_FLOW } from '../corpbiz-welcome-flow.constant';
@@ -11,6 +12,7 @@ import { FooterService } from '../../shared/footer/footer.service';
 import { NavbarService } from '../../shared/navbar/navbar.service';
 import { SIGN_UP_ROUTE_PATHS } from '../../sign-up/sign-up.routes.constants';
 import { LoaderService } from '../../shared/components/loader/loader.service';
+import { ModelWithButtonComponent } from '../../shared/modal/model-with-button/model-with-button.component';
 
 @Component({
   selector: 'app-download-report',
@@ -31,7 +33,8 @@ export class DownloadReportComponent implements OnInit {
               private footerService: FooterService,
               private navbarService: NavbarService,
               private router: Router,
-              private loaderService: LoaderService
+              private loaderService: LoaderService,
+              private modal: NgbModal
               ) {
                 this.translate.use('en');
               }
@@ -59,30 +62,18 @@ export class DownloadReportComponent implements OnInit {
   }
 
   downloadComprehensiveReport() {
-    const iOS = /iPad|iPhone|iPod/.test(navigator.userAgent);
-    let newWindow;
-    if (iOS) {
-      newWindow = window.open();
-    }
     const payload = { 
       reportId: this.comprehensiveService.welcomeFlowMyInfoData.reportId, 
       enquiryId: this.comprehensiveService.welcomeFlowMyInfoData.enquiryId 
     };
     this.showLoader();
+    let newWindow;
+    if(/iPad|iPhone|iPod/.test(navigator.userAgent)) {
+      newWindow = window.open();
+    }
     this.comprehensiveApiService.downloadComprehensiveReport(payload).subscribe((data: any) => {
       this.loaderService.hideLoaderForced();
-      const pdfUrl = window.URL.createObjectURL(data.body);
-      if (iOS) {
-        if (newWindow.document.readyState === CORPBIZ_WELCOME_FLOW.CONDITION_CONST.COMPLETE) {
-          newWindow.location.assign(pdfUrl);
-        } else {
-          newWindow.onload = () => {
-            newWindow.location.assign(pdfUrl);
-          };
-        }
-      } else {
-        this.downloadfile.saveAs(data.body, COMPREHENSIVE_CONST.REPORT_PDF_NAME);
-      }
+      this.downloadfile.downloadPDF(data.body, newWindow, COMPREHENSIVE_CONST.REPORT_PDF_NAME);
     }, () => {
       this.loaderService.hideLoaderForced();
     });
@@ -96,5 +87,18 @@ export class DownloadReportComponent implements OnInit {
 
   ngOnDestroy() {
     this.subscription.unsubscribe();
+  }
+
+  openAssumptionsModal(){
+    const ref = this.modal.open(ModelWithButtonComponent, {
+      centered: true,
+      windowClass: "assumptions-modal",
+    });
+    ref.componentInstance.errorTitle = this.translate.instant(
+      "DOWNLOAD_REPORT.ASSUMPTIONS_MODAL.TITLE"
+    );
+    ref.componentInstance.errorMessageHTML = this.translate.instant(
+      "DOWNLOAD_REPORT.ASSUMPTIONS_MODAL.DESC"
+    );
   }
 }

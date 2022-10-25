@@ -18,7 +18,7 @@ import { ExpensesComponent } from './expenses/expenses.component';
 import { FinAssessmentComponent } from './fin-assessment/fin-assessment.component';
 import { GetStartedFormComponent } from './get-started/get-started-form/get-started-form.component';
 import { GetStartedComponent } from './get-started/get-started.component';
-import { GuideMeAccessGuard } from './guide-me-access-guard';
+import { GuideMeAccessGuard, MyinfoAssetsAccessGuard } from './guide-me-access-guard';
 import { GuideMeRoutingModule } from './guide-me-routing.module';
 import { HospitalPlanComponent } from './hospital-plan/hospital-plan.component';
 import { IncomeComponent } from './income/income.component';
@@ -34,6 +34,7 @@ import { OcpDisabilityComponent } from './ocp-disability/ocp-disability.componen
 import { ProfileComponent } from './profile/profile.component';
 import { ProtectionNeedsComponent } from './protection-needs/protection-needs.component';
 import { RecommendationsComponent } from './recommendations/recommendations.component';
+import { InsuranceMyinfoRetrievalComponent } from './insurance-myinfo-retrieval/insurance-myinfo-retrieval.component';
 
 export function createTranslateLoader(http: HttpClient) {
   return new MultiTranslateHttpLoader(
@@ -79,9 +80,10 @@ export function createTranslateLoader(http: HttpClient) {
     InsuranceResultsComponent,
     InsuranceResultComponent,
     RecommendationsComponent,
-    CustomCurrencyPipe
+    CustomCurrencyPipe,
+    InsuranceMyinfoRetrievalComponent
   ],
-  providers: [CurrencyPipe, CustomCurrencyPipe, LoggedUserService, GuideMeAccessGuard],
+  providers: [CurrencyPipe, CustomCurrencyPipe, LoggedUserService, GuideMeAccessGuard, MyinfoAssetsAccessGuard],
   entryComponents: [ProductDetailComponent]
 })
 export class GuideMeModule {

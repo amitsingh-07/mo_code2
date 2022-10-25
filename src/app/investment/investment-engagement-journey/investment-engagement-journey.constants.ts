@@ -21,6 +21,7 @@ export let INVESTMENT_ENGAGEMENT_JOURNEY_CONSTANTS = {
     WISEINCOME: 'WiseIncome',
     CPF_PORTFOLIO: 'CPF'
   },
+  FUND_DOC_PATH: 'assets/docs/portfolio/fund/',
   PROSPECTUS_FILE: {
     INVESTMENT: 'Product Prospectus.pdf',
     WISESAVER: 'prospectus_wise_saver.pdf',

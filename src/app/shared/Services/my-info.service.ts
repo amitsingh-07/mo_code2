@@ -24,7 +24,6 @@ const SUCCESS = 1;
 export class MyInfoService {
 
   changeListener = new Subject();
-
   authApiUrl = environment.myInfoAuthorizeUrl;
   clientId = environment.myInfoClientId;
   private attributes = '';
@@ -50,6 +49,7 @@ export class MyInfoService {
   getMyInfoAttributes() {
     return window.sessionStorage.getItem(MYINFO_ATTRIBUTE_KEY);
   }
+
 
   setMyInfoAppId(myInfoServices) {
     this.myInfoServices = myInfoServices;
@@ -134,7 +134,6 @@ export class MyInfoService {
     // Robo2 - MyInfo changes
     // tslint:disable-next-line:only-arrow-functions
     window.addEventListener('message', function (event) {
-      console.log('received: ' + event.data);
       clearInterval(timer);
       window.success = () => null;
       self.robo2SetMyInfo(event.data);
@@ -274,7 +273,7 @@ export class MyInfoService {
   checkMyInfoSourcePage() {
     const currentUrl = window.location.toString();
     const currentPath = currentUrl.split(currentUrl.split('/')[2])[currentUrl.split(currentUrl.split('/')[2]).length - 1].substr(1);
-    if (this.getMyInfoAttributes() === 'cpfbalances'
+    if (this.getMyInfoAttributes() === appConstants.CHECK_MYINFO_INSURANCE_ATTRIBUTES
       && window.sessionStorage.getItem('currentUrl') === currentPath) {
       return true;
     } else {

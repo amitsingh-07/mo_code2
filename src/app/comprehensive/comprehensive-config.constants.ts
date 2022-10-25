@@ -8,7 +8,7 @@ export const COMPREHENSIVE_CONST = {
         TYPE: 'COMPRE'
     },
     YOUR_PROFILE: {
-        APP_MIN_AGE: 18,
+        APP_MIN_AGE: 15,
         APP_MAX_AGE: 70,
         DATE_PICKER_MIN_YEAR: 0,
         DATE_PICKER_MAX_YEAR: 100
