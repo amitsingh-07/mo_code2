@@ -13,17 +13,17 @@
         </div>
         <div class="col-md-8">
           <div class="row">
-            <div class="col-md-2"></div>
-            <div class="col-md-10">
+            <div class="col-md-1"></div>
+            <div class="col-md-11">
               <form id="additional_declaration-screen_address_form" name="additional_declaration-screen"
                 [formGroup]="additionDeclarationtwo">
                 <div class="flex-row">
-                  <div class="flex-col-4">
+                  <div class="flex-col-5">
                     <div class="form-group-with-bg--content-label"
                       id="additional_declaration_Expected_number_of_transaction_lab" for="name">
                       {{'ADDITIONAL_DECLARATIONS_SCREEN_TWO.EXPECTED_NUMBER_OF_TRANSATIONS' | translate}}</div>
                   </div>
-                  <div class="flex-col-8">
+                  <div class="flex-col-7">
                     <div class="form-control form-control-right"
                       [ngClass]="{'inline-error':getInlineErrorStatus(additionDeclarationtwo.controls.expectedNumberOfTransation)}">
                       <input type="text" id="additional_declaration_Expected_number_of_transaction_lab_input"
@@ -34,12 +34,12 @@
                   </div>
                 </div>
                 <div class="flex-row">
-                  <div class="flex-col-4">
+                  <div class="flex-col-5">
                     <div class="form-group-with-bg--content-label"
                       id="additional_declaration_Expected_amount_of_transaction_lab" for="name">
                       {{'ADDITIONAL_DECLARATIONS_SCREEN_TWO.EXPECTED_AMOUNT_PER_TRANSATION' | translate}}</div>
                   </div>
-                  <div class="flex-col-8">
+                  <div class="flex-col-7">
                     <div class="form-control"
                       [ngClass]="{'inline-error':getInlineErrorStatus(additionDeclarationtwo.controls.expectedAmountPerTranction)}">
                       <i id="doller_syb">$</i>
@@ -50,15 +50,15 @@
                   </div>
                 </div>
                 <!-- START OF SOURCE OF INVESTMENT FUNDS -->
-                <div class="form-group">
+                <div class="form-group mb10">
                   <div class="flex-row">
-                    <div class="flex-col-4">
-                      <label class="label-font" for="employement_details_status" id="additional_declaration_sourse-lbl">
+                    <div class="flex-col-5">
+                      <label class="label-font label-icon" for="employement_details_status" id="additional_declaration_sourse-lbl">
                         {{'ADDITIONAL_DECLARATIONS_SCREEN_TWO.SOURCE_OF_INVESTMENT_FUND' | translate}}
                       </label>
                       <i class="block-tooltip-icon" id="countryHelpIcon" (click)="openHelpModal(1)"></i>
                     </div>
-                    <div class="flex-col-8"
+                    <div class="flex-col-7"
                       [ngClass]="{'inline-error':getInlineErrorStatus(additionDeclarationtwo.controls.source)}">
                       <div class="dropdown-control">
                         <div ngbDropdown>
@@ -80,7 +80,7 @@
                   </div>
                 </div>
                 <!-- PERSONAL SAVINGS -->
-                <div class="form-group mb40"
+                <div class="form-group "
                   *ngIf="additionDeclarationtwo.controls.source.value && additionDeclarationtwo.controls.source.value.key == 'savings'">
                   <div class="flex-row">
                     <div class="flex-col-12 mb10">
@@ -101,7 +101,7 @@
                   </div>
                 </div>
                 <!-- inheritancesGift -->
-                <div class="form-group mb40"
+                <div class="form-group "
                   *ngIf="additionDeclarationtwo.controls.source.value && additionDeclarationtwo.controls.source.value.key == 'gift'">
                   <div class="flex-row">
                     <div class="flex-col-12 mb10">
@@ -123,7 +123,7 @@
                   </div>
                 </div>
                 <!-- others -->
-                <div class="form-group mb40"
+                <div class="form-group "
                   *ngIf="additionDeclarationtwo.controls.source.value && additionDeclarationtwo.controls.source.value.key == 'others'">
                   <div class="flex-row">
                     <div class="flex-col-12 mb10">
@@ -148,12 +148,12 @@
                   *ngIf="additionDeclarationtwo.controls.source.value && additionDeclarationtwo.controls.source.value.key == 'earnings'"
                   formGroupName="investmentEarnings">
                   <div class="flex-row">
-                    <div class="flex-col-4">
+                    <div class="flex-col-5">
                       <div class="form-group-with-bg--content-label"
                         id="additional_declaration_Expected_number_of_transaction_lab" for="name">
                         {{'ADDITIONAL_DECLARATIONS_SCREEN_TWO.DURATION_INVESTMENT' | translate}}</div>
                     </div>
-                    <div class="flex-col-8">
+                    <div class="flex-col-7">
                       <div class="form-control form-control-right investment-duration"
                         [ngClass]="{'inline-error':getInlineErrorStatus(additionDeclarationtwo.controls.investmentEarnings.controls.durationInvestment)}">
                         <input type="text" id="additional_declaration_Expected_number_of_transaction_lab_input"
@@ -167,13 +167,13 @@
                   </div>
                   <div class="form-group">
                     <div class="flex-row">
-                      <div class="flex-col-4">
+                      <div class="flex-col-5">
                         <label class="label-font" for="employement_details_status"
                           id="additional_declaration_earnings_generated_lab-lbl">
                           {{'ADDITIONAL_DECLARATIONS_SCREEN_TWO.EARNINGS_GENERATED_FORM' | translate}}
                         </label>
                       </div>
-                      <div class="flex-col-8"
+                      <div class="flex-col-7"
                         [ngClass]="{'inline-error':getInlineErrorStatus(additionDeclarationtwo.controls.investmentEarnings.controls.earningsGenerated)}">
                         <div class="dropdown-control">
                           <div ngbDropdown placement="top">
@@ -200,15 +200,15 @@
                 </div>
                 <!-- END OF SOURCE OF INVESTMENT FUNDS -->
                 <!-- START OF SOURCE OF INVESTMENT WEALTH -->
-                <div class="form-group">
+                <div class="form-group mb10">
                   <div class="flex-row">
-                    <div class="flex-col-4">
-                      <label class="label-font" for="employement_details_status" id="additional_declaration_sourse-lbl">
+                    <div class="flex-col-5">
+                      <label class="label-font label-icon" for="employement_details_status" id="additional_declaration_sourse-lbl">
                         {{'ADDITIONAL_DECLARATIONS_SCREEN_TWO.SOURCE_OF_WEALTH' | translate}}
                       </label>
                       <i class="block-tooltip-icon" id="countryHelpIcon" (click)="openHelpModal(2)"></i>
                     </div>
-                    <div class="flex-col-8"
+                    <div class="flex-col-7"
                       [ngClass]="{'inline-error':getInlineErrorStatus(additionDeclarationtwo.controls.sourceOfWealth)}">
                       <div class="dropdown-control">
                         <div ngbDropdown>
@@ -298,12 +298,12 @@
                   *ngIf="additionDeclarationtwo.controls.sourceOfWealth.value && additionDeclarationtwo.controls.sourceOfWealth.value.key == 'earnings'"
                   formGroupName="srcOfWealthInvestmentEarningsForm">
                   <div class="flex-row">
-                    <div class="flex-col-4">
+                    <div class="flex-col-5">
                       <div class="form-group-with-bg--content-label"
                         id="additional_declaration_Expected_number_of_transaction_lab" for="name">
                         {{'ADDITIONAL_DECLARATIONS_SCREEN_TWO.DURATION_INVESTMENT' | translate}}</div>
                     </div>
-                    <div class="flex-col-8">
+                    <div class="flex-col-7">
                       <div class="form-control form-control-right investment-duration"
                         [ngClass]="{'inline-error':getInlineErrorStatus(additionDeclarationtwo.controls.srcOfWealthInvestmentEarningsForm.controls.durationInvestmentWealth)}">
                         <input type="text" id="additional_declaration_Expected_number_of_transaction_lab_input"
@@ -317,13 +317,13 @@
                   </div>
                   <div class="form-group">
                     <div class="flex-row">
-                      <div class="flex-col-4">
+                      <div class="flex-col-5">
                         <label class="label-font" for="employement_details_status"
                           id="additional_declaration_earnings_generated_lab-lbl">
                           {{'ADDITIONAL_DECLARATIONS_SCREEN_TWO.EARNINGS_GENERATED_FORM' | translate}}
                         </label>
                       </div>
-                      <div class="flex-col-8"
+                      <div class="flex-col-7"
                         [ngClass]="{'inline-error':getInlineErrorStatus(additionDeclarationtwo.controls.srcOfWealthInvestmentEarningsForm.controls.earningsGeneratedWealth)}">
                         <div class="dropdown-control">
                           <div ngbDropdown placement="top">
