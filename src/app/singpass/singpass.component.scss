@@ -6,21 +6,46 @@ app-singpass {
     display:none;
     align-self: flex-end;
     height: auto;
-    width: 390px;
+    width: 420;
     margin-bottom:20px;
+    display:inline-block;
+    a {
+        cursor: pointer;
+    }
     @include allmobiles {
       display: none;
-    }
-    a {
-      font-family: $muli-bold;
-      color: $dark-orange-color !important;
-      cursor: pointer;
     }
     .singpass-login-icon {
       width: 390px;
       @include allmobiles {
         max-width: 354px;
       }
-    }
+  }
+}
+    .singpass-instruction {
+      width: 420px;
+      margin-top: 20px;
+      font-family: $muli-light;
+      text-align: center;
+      letter-spacing: -0.166667px;
+      margin-left: -15px;
+      a {
+      color: #fff;
+        font-family: $muli-bold;
+        font-size: 16px;
+        cursor: pointer;
+       }
+       .hidden {
+        display: none;
+       }
+       @include allmobiles {
+        max-width: 354px;
+        margin-top: 11px;
+        margin-left: 0;
+
+        .hidden {
+          display: inline;
+         }
+      }
   }
 }

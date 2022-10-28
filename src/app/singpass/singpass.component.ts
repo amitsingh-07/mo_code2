@@ -39,9 +39,10 @@ export class SingPassComponent implements OnInit, AfterViewInit, OnDestroy {
   }
 
   openSingpassModal(event) {
-    const ref = this.modal.open(ModelWithButtonComponent, { centered: true });
+    const ref = this.modal.open(ModelWithButtonComponent, { centered: true,  windowClass: 'open-singpass-modal'});
     ref.componentInstance.errorTitle = this.translate.instant('LOGIN.SINGPASS_ACTIVATE_MODAL.TITLE');
     ref.componentInstance.errorMessageHTML = this.translate.instant('LOGIN.SINGPASS_ACTIVATE_MODAL.MESSAGE');
+    ref.componentInstance.primaryActionLabel = this.translate.instant('LOGIN.SINGPASS_ACTIVATE_MODAL.BTN_TXT');
     event.stopPropagation();
     event.preventDefault();
   }

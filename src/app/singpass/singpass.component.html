@@ -1,5 +1,7 @@
 <div class="singpass-container" [ngClass]="{'show-element': showSingpassLogin}">
-  <div id="login_btn"><a (click)="openSingpassLogin()">
+  <div><a (click)="openSingpassLogin()">
     <img class="singpass-login-icon" src="assets/images/singpass/sp-login-button.svg" /></a>
    </div>
+   <div class="singpass-instruction">{{ 'LOGIN.LOGIN_USE_SINGPASS' | translate}} <br class="hidden"><a (click)="openSingpassModal($event)">{{ 'LOGIN.HOW_TO_ACTIVATE' |
+    translate}}</a></div>
 </div>
