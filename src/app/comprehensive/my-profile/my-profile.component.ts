@@ -412,7 +412,7 @@ export class MyProfileComponent implements IPageComponent, OnInit, OnDestroy {
                         attributes = this.removeMyInfoAttributes(attributesFlags.vehicleFlag, COMPREHENSIVE_CONST.EXCLUDABLE_CFP_AUTOFILL_MY_INFO_ATTRIBUTES.VEHICLES, attributes);
                     }
                     this.myInfoService.setMyInfoAttributes(attributes);
-                    this.myInfoService.setMyInfoAppId(appConstants.MYINFO_CPF);
+                    this.myInfoService.setMyInfoAppId(appConstants.MYINFO_CFP);
                     this.myInfoService.goToMyInfo();
                 }).catch((e) => {
                 });

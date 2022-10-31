@@ -30,10 +30,6 @@ export class SingpassService {
     this.stateNonce = statenonce;
   }
 
-  getStateNonceObj() {
-    return this.stateNonce;
-  }
-
   // Get state & nonce using session id
   loginSingpass(code, state, enquiryId, journeyType) {
     const payload = {
@@ -48,29 +44,14 @@ export class SingpassService {
 
   //open singpass login window
   loginSingpassUrl(){
-    const stateNonceParam = this.getStateNonceObj()
-    this.getSingpassLoginUrl(stateNonceParam);
-    window.open(this.getLoginUrl(), '_self');
-  }
-
-  //method to construct singpass login url
-  getSingpassLoginUrl(stateNonceParam)
-  {
-     const loginUrl = environment.singpassLoginUrl +
-        '?client_id=' + environment.singpassClientId +
-        '&redirect_uri=' + environment.singpassBaseUrl + SIGN_UP_ROUTE_PATHS.SINGPASS_REDIRECT_URL+
-        '&scope=openid' +
-        '&response_type=code' +
-        '&state=' + stateNonceParam.state +
-        '&nonce=' + stateNonceParam.nonce;
-    this.setLoginUrl(loginUrl);
-  }
-
-  setLoginUrl(loginUrl){
-    this.authoriseUrl = loginUrl
-  }
-  getLoginUrl(){
-    return this.authoriseUrl;
+    const loginUrl = environment.singpassLoginUrl +
+    '?client_id=' + environment.singpassClientId +
+    '&redirect_uri=' + environment.singpassBaseUrl + SIGN_UP_ROUTE_PATHS.SINGPASS_REDIRECT_URL+
+    '&scope=openid' +
+    '&response_type=code' +
+    '&state=' + this.stateNonce.state +
+    '&nonce=' + this.stateNonce.nonce;
+    window.open(loginUrl, '_self');
   }
 
 }

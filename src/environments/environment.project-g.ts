@@ -10,9 +10,9 @@ export const environment: IEnvironment = {
   isDebugMode: true,
   apiBaseUrl: '',
   myInfoClientId: {
-    robo2:'STG2-MYINFO-SELF-TEST',
+    invest:'STG2-MYINFO-SELF-TEST',
     signup: 'STG2-MYINFO-SELF-TEST',
-    cpf: 'STG2-MYINFO-SELF-TEST',
+    cfp: 'STG2-MYINFO-SELF-TEST',
     corpbiz:'STG2-MYINFO-SELF-TEST',
     linkSingpass: 'STG2-MYINFO-SELF-TEST',
     insurance: 'STG2-MYINFO-SELF-TEST'
@@ -24,8 +24,7 @@ export const environment: IEnvironment = {
   fbPropertyId: '',
   brand: 'g',
   singpassClientId: '',
-  singpassLoginUrl: '',
-  singpassAuthJs: ''
+  singpassLoginUrl: ''
 };
 
 /*

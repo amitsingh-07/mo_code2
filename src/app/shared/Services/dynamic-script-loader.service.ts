@@ -8,7 +8,6 @@ interface Scripts {
 }
 
 export const ScriptStore: Scripts[] = [
-  { name: 'singpass-ndi', src: environment.singpassAuthJs }
 ];
 
 declare var document: any;

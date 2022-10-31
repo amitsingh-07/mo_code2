@@ -1,12 +1,13 @@
 import { Component, OnInit, ViewEncapsulation, AfterViewInit, Input, OnDestroy } from '@angular/core';
 import { TranslateService } from '@ngx-translate/core';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { connectableObservableDescriptor } from 'rxjs/internal/observable/ConnectableObservable';
+import { Observable } from 'rxjs/internal/Observable';
 
 import { DynamicScriptLoaderService } from '../shared/Services/dynamic-script-loader.service';
 import { ModelWithButtonComponent } from '../shared/modal/model-with-button/model-with-button.component';
 import { SingpassService } from './singpass.service';
-import { connectableObservableDescriptor } from 'rxjs/internal/observable/ConnectableObservable';
-import { Observable } from 'rxjs/internal/Observable';
+
 
 @Component({
   selector: 'app-singpass',

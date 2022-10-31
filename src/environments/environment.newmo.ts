@@ -9,9 +9,9 @@ export const environment: IEnvironment = {
   isDebugMode: false,
   apiBaseUrl: 'https://newmouat1.ntucbfa.com',
   myInfoClientId: {
-    robo2:'STG-201820691C-MONEYOWL-BFA',
+    invest:'STG-201820691C-MONEYOWL-BFA',
     signup: 'STG-201820691C-MONEYOWL-BFA',
-    cpf: 'STG-201820691C-MONEYOWL-BFA',
+    cfp: 'STG-201820691C-MONEYOWL-BFA',
     corpbiz:'STG-201820691C-MONEYOWL-BFA',
     linkSingpass: 'STG-201820691C-MONEYOWL-BFA',
     insurance: 'STG-201820691C-MONEYOWL-INSURANCEANALYSIS'
@@ -30,7 +30,6 @@ export const environment: IEnvironment = {
   hsPortalId: '6411917',
   hsUrlTrack: '9f0ad9ef-ba87-4059-9ee9-60d46880dc5f',
   singpassClientId: 'iROTlv1CU9Cz3GlYiNosMsZDGIYwWSB3',
-  singpassAuthJs: 'https://stg-id.singpass.gov.sg/static/ndi_embedded_auth.js',
   singpassLoginUrl:'https://stg-id.singpass.gov.sg/auth',
   singpassBaseUrl: 'https://newmouat1.ntucbfa.com'
 };
