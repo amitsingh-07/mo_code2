@@ -46,20 +46,9 @@
         <!-- buttons -->
         <div class="flex-row">
           <div class="flex-col-12 mb10">
-            <div class="btn-group--toggle" ngbRadioGroup name="radioGender" formControlName="unitedStatesResident">
-              <div class="flex-row">
-                <div class="flex-col-6">
-                  <label ngbButtonLabel class="btn-outline-primary fixed-btn--sm mr5">
-                    <input ngbButton type="radio" id="select_nationlity_yes"
-                      [value]="true">{{ 'SELECT_NATIONALITY.YES_lABEL' | translate}}
-                  </label>
-                </div>
-                <div class="flex-col-6">
-                  <label ngbButtonLabel class="btn-outline-primary fixed-btn--sm">
-                    <input ngbButton type="radio" id="select_nationlity_no"
-                      [value]="false">{{ 'SELECT_NATIONALITY.NO_LABEL' | translate}}</label>
-                </div>
-              </div>
+            <div class="btn-group--toggle" name="radioGender">            
+              <app-custom-radio-controller formControlName="unitedStatesResident" [radioLabelValue]="radioLabelValue"
+              customStyleClass="fixed-btn--sm"></app-custom-radio-controller>
             </div>
           </div>
         </div>
@@ -75,23 +64,13 @@
         <!-- buttons -->
         <div class="flex-row">
           <div class="flex-col-12 mb10">
-            <div class="btn-group--toggle" ngbRadioGroup name="radioGender" formControlName="singaporeanResident">
-              <div class="flex-row">
-                <div class="flex-col-6 ">
-                  <label ngbButtonLabel class="btn-outline-primary fixed-btn--sm mr5">
-                    <input ngbButton type="radio" id="select_nationlity_yes1" [value]="true">
-                    {{ 'SELECT_NATIONALITY.YES_lABEL' | translate}}
-                  </label>
-                </div>
-                <div class="flex-col-6 ">
-                  <label ngbButtonLabel class="btn-outline-primary fixed-btn--sm">
-                    <input ngbButton type="radio" id="select_nationlity_no1" [value]="false">
-                    {{ 'SELECT_NATIONALITY.NO_LABEL' | translate}}</label>
-                </div>
-              </div>
+            <div class="btn-group--toggle" name="radioGender">
+              <app-custom-radio-controller formControlName="singaporeanResident" [radioLabelValue]="radioLabelValue"
+              customStyleClass="fixed-btn--sm"></app-custom-radio-controller>
             </div>
           </div>
         </div>
+
       </div>
     </form>
 

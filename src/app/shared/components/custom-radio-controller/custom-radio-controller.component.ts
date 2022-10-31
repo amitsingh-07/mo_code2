@@ -15,6 +15,7 @@ export const DEFAULT_VALUE_ACCESSOR: any = {
 })
 export class CustomRadioControllerComponent implements OnInit, ControlValueAccessor {
   @Input('radioLabelValue') radioLabelValue;
+  @Input('customStyleClass') customStyleClass;
   formControl = new FormControl('', [Validators.required]);
   _onChange: any = () => {};
   _onTouch: any = () => {};

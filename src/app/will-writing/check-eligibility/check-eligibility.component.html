@@ -55,8 +55,9 @@
                 </div>
                 <div class="flex-col-8 direct-form-grp">
                   <div class="btn-group--toggle" name="assets">
-                    <app-custom-radio-controller formControlName="assets" [radioLabelValue]="radioLabelValue" (valueChangedEvent)="changeAssets($event)"></app-custom-radio-controller>
-                 </div>
+                    <app-custom-radio-controller formControlName="assets" [radioLabelValue]="radioLabelValue"
+                      (valueChangedEvent)="changeAssets($event)" customStyleClass="direct-form-btn--radio"></app-custom-radio-controller>
+                  </div>
                 </div>
               </div>
               <div class="flex-row section religion">
