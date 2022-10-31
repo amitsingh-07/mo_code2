@@ -149,7 +149,7 @@ app-fees {
     }
     hr {
       margin: 10px 0;
-      border: 1px solid #e7e7e7;
+      border-color: $mercury-smoke-color;
       hr:last-child {
         border: none !important;
       }

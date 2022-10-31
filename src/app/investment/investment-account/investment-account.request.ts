@@ -86,4 +86,8 @@ export interface IPep {
   additionalInfo: string;
   investmentDuration: number;
   earningSourceId: number;
+  wealthInvestmentSourceId: number;
+  wealthAdditionalInfo: string;
+  wealthInvestmentDuration: number;
+  wealthEarningSourceId: number;
 }
