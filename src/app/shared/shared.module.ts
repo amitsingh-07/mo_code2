@@ -91,6 +91,7 @@ import { BankDetailsComponent } from './components/bank-details/bank-details.com
 import { UploadDocComponent } from './components/upload-document/upload-document.component';
 import { CurrencyEditorPipe } from './Pipes/currency-editor.pipe';
 import { MyinfoModalComponent } from './modal/myinfo-modal/myinfo-modal.component';
+import { CustomRadioControllerComponent } from './components/custom-radio-controller/custom-radio-controller.component';
 
 export function createTranslateLoader(http: HttpClient) {
   return new MultiTranslateHttpLoader(
@@ -161,7 +162,8 @@ export function createTranslateLoader(http: HttpClient) {
     BankDetailsComponent,    
     UploadDocComponent,
     CurrencyEditorPipe,
-    MyinfoModalComponent
+    MyinfoModalComponent,
+    CustomRadioControllerComponent
   ],
   declarations: [
     CurrencyInputDirective,
@@ -223,7 +225,8 @@ export function createTranslateLoader(http: HttpClient) {
     ReferralRewardDetailsComponent,
     BankDetailsComponent,    
     UploadDocComponent, CurrencyEditorPipe,
-    MyinfoModalComponent
+    MyinfoModalComponent,
+    CustomRadioControllerComponent
   ],
   entryComponents: [
     EditInvestmentModalComponent,

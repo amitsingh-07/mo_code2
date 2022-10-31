@@ -34,6 +34,14 @@ export class CheckEligibilityComponent implements OnInit, OnDestroy {
   tooltip;
   private subscription: Subscription;
   unsavedMsg: string;
+  radioLabelValue = [{
+    name: this.translate.instant('COMMON.LBL_YES'),
+    value: 'Y'
+  }, {
+    name: this.translate.instant('COMMON.LBL_NO'),
+    value: 'N'
+  }]
+
   constructor(
     private formBuilder: FormBuilder,
     private willWritingService: WillWritingService,
@@ -127,8 +135,8 @@ export class CheckEligibilityComponent implements OnInit, OnDestroy {
     this.eligibilityForm.controls['religion'].setValue(religion.value);
   }
 
-  changeAssets(event) {
-    if (event && event['target'].value === 'N') {
+  changeAssets(value:  string) {
+    if (value === 'N') {
       this.isAssets = true;
     } else {
       this.isAssets = false;
