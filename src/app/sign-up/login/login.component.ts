@@ -57,7 +57,7 @@ export class LoginComponent implements OnInit, AfterViewInit, OnDestroy {
   capsOn: boolean;
   capslockFocus: boolean;
   showPasswordLogin = true;
-  showSingpassLogin = false;
+  showSingpassLogin = true;
   singpassEnabled = true;
   subscription: Subscription;
   isCorpBiz: boolean = false;
@@ -69,10 +69,6 @@ export class LoginComponent implements OnInit, AfterViewInit, OnDestroy {
     if (/Android|Windows/.test(navigator.userAgent)) {
       this.welcomeTitle.nativeElement.scrollIntoView(true);
     }
-    if (window.matchMedia("(orientation: landscape)").matches && screen.width > 500) {
-      this.showPasswordLogin = true;
-      this.showSingpassLogin = false;
-   }
   }
 
   constructor(
@@ -118,12 +114,6 @@ export class LoginComponent implements OnInit, AfterViewInit, OnDestroy {
       this.signUpService.removeFromLoginPage();
       this.signUpService.removeFromMobileNumber();
     }
-    // Check if mobile device and set last login type
-    this.getSetLoginPref();
-    this.subscription = this.loginService.toogleLoginType$.subscribe(
-      (type) => {
-        this.toggleSingpass(type);
-      });
   }
   /**
     * Initialize tasks.
@@ -491,37 +481,4 @@ export class LoginComponent implements OnInit, AfterViewInit, OnDestroy {
       this.loginForm.controls[key].setValue(emailValue);
     }
   }
-
-  // Toggle UI for showing Singpass/Password Login
-  toggleSingpass(type:string, event?) {
-    if (type === SIGN_UP_CONFIG.SINGPASS) {
-      this.showSingpassLogin = true;
-      this.showPasswordLogin = false;
-    } else {
-      this.showPasswordLogin = true;
-      this.showSingpassLogin = false;
-    }
-    this.getSetLoginPref(type);
-    if(event) {
-      event.stopPropagation();
-      event.preventDefault();
-    }
-  }
-  // Get or set the login pref for mobile view
-  getSetLoginPref(type?: string) {
-    if (this.singpassEnabled) {
-      if (window.localStorage && screen.width < 500 && /Mobi|Android/i.test(navigator.userAgent)) {
-        if (type) {
-          if (type !== window.localStorage.getItem("LOGIN_PREFERENCE")) {
-            window.localStorage.setItem('LOGIN_PREFERENCE', type);
-          }
-        } else {
-          if (window.localStorage.getItem("LOGIN_PREFERENCE")) {
-            this.toggleSingpass(window.localStorage.getItem("LOGIN_PREFERENCE"));
-          }
-        }
-      }
-    }
-  }
-
 }

@@ -1,10 +1,13 @@
 import { Component, OnInit, ViewEncapsulation, AfterViewInit, Input, OnDestroy } from '@angular/core';
 import { TranslateService } from '@ngx-translate/core';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { connectableObservableDescriptor } from 'rxjs/internal/observable/ConnectableObservable';
+import { Observable } from 'rxjs/internal/Observable';
 
 import { DynamicScriptLoaderService } from '../shared/Services/dynamic-script-loader.service';
 import { ModelWithButtonComponent } from '../shared/modal/model-with-button/model-with-button.component';
 import { SingpassService } from './singpass.service';
+
 
 @Component({
   selector: 'app-singpass',
@@ -14,6 +17,7 @@ import { SingpassService } from './singpass.service';
 })
 export class SingPassComponent implements OnInit, AfterViewInit, OnDestroy {
   @Input() showSingpassLogin: boolean;
+  loginUrl: Observable<any>;
   
   constructor(
     public translate: TranslateService,
@@ -24,16 +28,10 @@ export class SingPassComponent implements OnInit, AfterViewInit, OnDestroy {
   }
 
   ngOnInit() {
-    
+    this.singpassService.getStateNonce();
   }
 
   ngAfterViewInit() {
-    this.dynamicScriptLoaderService.load('singpass-ndi').then(data => {
-      // Script Loaded Successfully
-      if (data[0]['loaded']) {
-        this.singpassService.initSingPassQR();
-      }
-    }).catch(error => {});
   }
 
   ngOnDestroy() {
@@ -42,11 +40,16 @@ export class SingPassComponent implements OnInit, AfterViewInit, OnDestroy {
   }
 
   openSingpassModal(event) {
-    const ref = this.modal.open(ModelWithButtonComponent, { centered: true });
+    const ref = this.modal.open(ModelWithButtonComponent, { centered: true,  windowClass: 'open-singpass-modal'});
     ref.componentInstance.errorTitle = this.translate.instant('LOGIN.SINGPASS_ACTIVATE_MODAL.TITLE');
     ref.componentInstance.errorMessageHTML = this.translate.instant('LOGIN.SINGPASS_ACTIVATE_MODAL.MESSAGE');
+    ref.componentInstance.primaryActionLabel = this.translate.instant('LOGIN.SINGPASS_ACTIVATE_MODAL.BTN_TXT');
     event.stopPropagation();
     event.preventDefault();
+  }
+
+  openSingpassLogin(){
+    this.singpassService.loginSingpassUrl();
   }
 
 }
