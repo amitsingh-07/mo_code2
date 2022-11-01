@@ -1,8 +1,7 @@
-<div class="flex-row mb0">
+<div class="flex-row" [class]="flexRowMarPadClass">
   <div class="flex-col-6" *ngFor="let radioObj of radioLabelValue">
-    <label class="btn" [class]="customStyleClass"
-      [ngClass]="{'active': formControl.value === radioObj.value, 'no': radioObj.value === 'N' && formControl.value === 'N'}">
-      <input type="radio" [value]="radioObj.value" [formControl]="formControl" id="eligibilityInpt3">
+    <label class="btn" [ngClass]="[_defaultLabelStyleClass, formControl.value === radioObj.value ? 'active' : '',  radioObj.conditionalClass ? radioObj.conditionalClass?.applyClass : '']">
+      <input type="radio" [value]="radioObj.value" [formControl]="formControl">
       {{radioObj.name}}
     </label>
   </div>

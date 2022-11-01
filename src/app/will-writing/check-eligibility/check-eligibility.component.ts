@@ -39,8 +39,10 @@ export class CheckEligibilityComponent implements OnInit, OnDestroy {
     value: 'Y'
   }, {
     name: this.translate.instant('COMMON.LBL_NO'),
-    value: 'N'
-  }]
+    value: 'N',
+    conditionalClass: { matchValue : 'N', applyClass: 'no' }
+  }];
+  defaultRadioStyleClass = "direct-form-btn--radio";
 
   constructor(
     private formBuilder: FormBuilder,

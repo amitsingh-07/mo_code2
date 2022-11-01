@@ -15,11 +15,17 @@ export const DEFAULT_VALUE_ACCESSOR: any = {
 })
 export class CustomRadioControllerComponent implements OnInit, ControlValueAccessor {
   @Input('radioLabelValue') radioLabelValue;
-  @Input('customStyleClass') customStyleClass;
+  @Input('flexRowMarPadClass') flexRowMarPadClass;
   formControl = new FormControl('', [Validators.required]);
   _onChange: any = () => {};
   _onTouch: any = () => {};
   @Output() valueChangedEvent = new EventEmitter();
+  _defaultLabelStyleClass = '';
+
+  @Input()
+  set defaultLabelStyleClass(val: string) {
+    this._defaultLabelStyleClass = val;
+  }
 
   constructor() { }
 

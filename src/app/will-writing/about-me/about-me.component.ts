@@ -44,6 +44,16 @@ export class AboutMeComponent implements OnInit, OnDestroy {
 
   fromConfirmationPage = this.willWritingService.fromConfirmationPage;
 
+  radioLabelValue = [{
+    name: this.translate.instant('LABEL.MALE'),
+    value: 'male'
+  }, {
+    name: this.translate.instant('LABEL.FEMALE'),
+    value: 'female',
+    conditionalClass: { matchValue : 'female', applyClass: 'female' }
+  }];
+  defaultRadioStyleClass = 'direct-form-btn--radio';
+
   constructor(
     private appService: AppService,
     private formBuilder: FormBuilder,
@@ -121,12 +131,21 @@ export class AboutMeComponent implements OnInit, OnDestroy {
     }, 100);
   }
 
+  checkGenderValidations(value?) {
+    if (this.aboutMeForm.get('gender').invalid) {
+      this.defaultRadioStyleClass = `${this.defaultRadioStyleClass} inline-error`;
+    } else if (this.aboutMeForm.get('gender').valid) {
+      this.defaultRadioStyleClass = this.defaultRadioStyleClass.replace(' inline-error','');
+    }
+  }
+
   /**
    * validate aboutMeForm.
    * @param form - user personal detail.
    */
   validateAboutMeForm(form: any) {
     this.submitted = true;
+    this.checkGenderValidations();
     if (!form.valid) {
       Object.keys(form.controls).forEach((key) => {
         form.get(key).markAsDirty();

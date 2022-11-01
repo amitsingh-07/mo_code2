@@ -38,7 +38,8 @@ export class NationalityComponent implements OnInit {
   foreignerConfirmModel: any;
   radioLabelValue = [{
     name: this.translate.instant('SELECT_NATIONALITY.YES_lABEL'),
-    value: true
+    value: true,
+    conditionalClass: { matchValue : true, applyClass: 'mr5' } 
   }, {
     name: this.translate.instant('SELECT_NATIONALITY.NO_LABEL'),
     value: false
