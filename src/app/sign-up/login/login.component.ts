@@ -8,7 +8,6 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { TranslateService } from '@ngx-translate/core';
 import { mergeMap } from 'rxjs/operators';
-import { Subscription } from 'rxjs/internal/Subscription';
 
 import { SessionsService } from './../../shared/Services/sessions/sessions.service';
 import { appConstants } from '../../app.constants';
@@ -59,7 +58,6 @@ export class LoginComponent implements OnInit, AfterViewInit, OnDestroy {
   showPasswordLogin = true;
   showSingpassLogin = true;
   singpassEnabled = true;
-  subscription: Subscription;
   isCorpBiz: boolean = false;
 
   @ViewChild('welcomeTitle') welcomeTitle: ElementRef;
@@ -430,7 +428,6 @@ export class LoginComponent implements OnInit, AfterViewInit, OnDestroy {
 
   ngOnDestroy() {
     this.navbarService.unsubscribeBackPress();
-    this.subscription.unsubscribe();
   }
 
   markAllFieldsDirty(form) {
