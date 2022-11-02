@@ -9,9 +9,9 @@ export const environment: IEnvironment = {
   isDebugMode: true,
   apiBaseUrl: 'https://newmouat1.ntucbfa.com',
   myInfoClientId: { 
-    robo2:'STG2-MYINFO-SELF-TEST',
+    invest:'STG2-MYINFO-SELF-TEST',
     signup: 'STG2-MYINFO-SELF-TEST',
-    cpf: 'STG2-MYINFO-SELF-TEST',
+    cfp: 'STG2-MYINFO-SELF-TEST',
     corpbiz:'STG2-MYINFO-SELF-TEST',
     linkSingpass: 'STG2-MYINFO-SELF-TEST',
     insurance: 'STG2-MYINFO-SELF-TEST'
@@ -30,7 +30,7 @@ export const environment: IEnvironment = {
   hsPortalId: '6411917',
   hsUrlTrack: '9f0ad9ef-ba87-4059-9ee9-60d46880dc5f',
   singpassClientId: 'iROTlv1CU9Cz3GlYiNosMsZDGIYwWSB3',
-  singpassAuthJs: 'https://stg-id.singpass.gov.sg/static/ndi_embedded_auth.js',
+  singpassLoginUrl:'https://stg-id.singpass.gov.sg/auth',
   singpassBaseUrl: 'https://newmouat1.ntucbfa.com'
 };
 

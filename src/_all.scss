@@ -2480,6 +2480,17 @@ select:-webkit-autofill:focus {
     }
   }
 }
+
+.open-singpass-modal{
+  .modal-content{
+    max-width: 375px;
+    margin: 0 auto;
+    @include allmobiles{
+      max-width: 100%;
+    }
+  }
+}
+
 .linked-singpass-modal{
   .modal-content{
     max-width: 375px;

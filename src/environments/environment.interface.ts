@@ -3,9 +3,9 @@ export interface IEnvironment {
     isDebugMode: boolean;
     apiBaseUrl: string;
     myInfoClientId: {
-        robo2: string,
+        invest: string,
         signup: string,
-        cpf:string,
+        cfp:string,
         corpbiz:string;
         linkSingpass:string;
         insurance:string
@@ -29,6 +29,6 @@ export interface IEnvironment {
     hsPortalId?: string; // Hubspot Portal Id
     hsUrlTrack?: string; // Hubspot Tracking of HUKT Code
     singpassClientId: string; // Singpass Login Client Id
-    singpassAuthJs: string; // Singpass NDI embedded JS,
+    singpassLoginUrl: string; // Singpass login url,
     singpassBaseUrl?: string // Singpass Base Url
 }
