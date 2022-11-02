@@ -4,13 +4,11 @@ import { ApiService } from '../shared/http/api.service';
 import { AuthenticationService } from '../shared/http/auth/authentication.service';
 import { environment } from '../../environments/environment';
 import { SIGN_UP_ROUTE_PATHS } from '../sign-up/sign-up.routes.constants';
-
 @Injectable({
   providedIn: 'root'
 })
 export class SingpassService {
   private stateNonce: any;
-  private authoriseUrl : any;
   
   constructor(
     private apiService: ApiService,
@@ -30,7 +28,7 @@ export class SingpassService {
     this.stateNonce = statenonce;
   }
 
-  // Get state & nonce using session id
+  // Singpass redirecting back to MO
   loginSingpass(code, state, enquiryId, journeyType) {
     const payload = {
       enquiryId: enquiryId,
@@ -42,8 +40,8 @@ export class SingpassService {
     return this.apiService.loginSingpass(payload);
   } 
 
-  //open singpass login window
-  loginSingpassUrl(){
+  // Open Singpass redirect link in window
+  openSingpassUrl(){
     const loginUrl = environment.singpassLoginUrl +
     '?client_id=' + environment.singpassClientId +
     '&redirect_uri=' + environment.singpassBaseUrl + SIGN_UP_ROUTE_PATHS.SINGPASS_REDIRECT_URL+
