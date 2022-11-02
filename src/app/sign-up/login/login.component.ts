@@ -30,7 +30,7 @@ import { LoginFormError } from './login-form-error';
 import { SIGN_UP_CONFIG } from './../sign-up.constant';
 import { TermsModalComponent } from './../../shared/modal/terms-modal/terms-modal.component';
 import { LoginService } from './../login.service';
-
+import { SingpassService } from '../../singpass/singpass.service';
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
@@ -87,7 +87,8 @@ export class LoginComponent implements OnInit, AfterViewInit, OnDestroy {
     private changeDetectorRef: ChangeDetectorRef,
     private loaderService: LoaderService,
     private helper: HelperService,
-    private loginService: LoginService) {
+    private loginService: LoginService,
+    private singpassService: SingpassService) {
     this.translate.use('en');
     this.translate.get('COMMON').subscribe((result: string) => {
       this.duplicateError = this.translate.instant('COMMON.DUPLICATE_ERROR');
@@ -135,6 +136,7 @@ export class LoginComponent implements OnInit, AfterViewInit, OnDestroy {
         this.appService.clearData();
         this.appService.startAppSession();
         this.authService.authenticate().subscribe((token) => {
+          this.singpassService.getStateNonce();
           this.loaderService.hideLoader();
           const customError: IError = {
             error: [],
@@ -144,6 +146,7 @@ export class LoginComponent implements OnInit, AfterViewInit, OnDestroy {
         });
       } else {
         this.authService.authenticate().subscribe((token) => {
+          this.singpassService.getStateNonce();
           if (this.organisationEnabled && this.route.snapshot.queryParams.orgID) {
             this.getOrganisationCode();
           }
