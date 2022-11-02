@@ -18,10 +18,12 @@ export class SingpassService {
 
   // Get state & nonce using session id
   getStateNonce() : any {
-    const payload = { sessionId: this.authService.getSessionId() };
-    this.apiService.getStateNonce(payload).subscribe((data)=>{
-      this.setStateNonceObj(data['objectList'][0]);
-    });
+    if (this.authService.isAuthenticated()) {
+      const payload = { sessionId: this.authService.getSessionId() };
+      this.apiService.getStateNonce(payload).subscribe((data)=>{
+        this.setStateNonceObj(data['objectList'][0]);
+      });
+    }
   }
 
   setStateNonceObj(statenonce) {
