@@ -17,8 +17,6 @@
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
-            "baseHref": "/app/",
-            "deployUrl": "/app/",
             "outputPath": "dist/NTUCDev",
             "index": "src/index.html",
             "main": "src/main.ts",
@@ -231,6 +229,9 @@
             "browserTarget": "bfa-frontend:build"
           },
           "configurations": {
+            "development": {
+              "browserTarget": "bfa-frontend:build:development"
+            },
             "production": {
               "browserTarget": "bfa-frontend:build:production"
             },
