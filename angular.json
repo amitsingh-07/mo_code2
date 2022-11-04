@@ -229,9 +229,6 @@
             "browserTarget": "bfa-frontend:build"
           },
           "configurations": {
-            "development": {
-              "browserTarget": "bfa-frontend:build:development"
-            },
             "production": {
               "browserTarget": "bfa-frontend:build:production"
             },
