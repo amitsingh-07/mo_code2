@@ -266,11 +266,24 @@
     "EXPECTED_NUMBER_OF_TRANSATIONS": "Expected Number Of Transactions",
     "EXPECTED_AMOUNT_PER_TRANSATION": "Expected Amount Per Transaction",
     "SOURCE_OF_INVESTMENT_FUND": "Source Of Investment Funds",
+    "SOURCE_OF_WEALTH": "Source Of Wealth",
     "PERSONAL_SAVINGS": "Please indicate the employer that contributed most to your savings:",
     "DURATION_INVESTMENT": "Duration investment held for?",
     "EARNINGS_GENERATED_FORM": "Earnings Generated From?",
     "INHERITANCE_GIFT": "Please indicate from whom you inherited the wealth and the reason for receiving the wealth:",
-    "OTHERS": "Please Elaborate:"
+    "OTHERS": "Please Elaborate:",
+    "YEARS_TXT": "year(s)",
+    "EARNINGS_PLACEHOLDER": "Select Earnings",
+    "SOURCE_PLACEHOLDER": "Select Source",
+    "PER_YEAR": "/year",
+    "SOURCE_OF_INV_FUNDS_HELP": {
+      "TITLE": "Source Of Investment Funds",
+      "DESC": "<p>Your Source Of Investment Funds refers to the origin of the monies you are planning to place in your investment portfolios with MoneyOwl.</p><p>Examples include personal savings, inheritance and investment returns.</p>"
+    },
+    "SOURCE_OF_WEALTH_HELP": {
+      "TITLE": "Source Of Wealth",
+      "DESC": "<p>Your Source Of Wealth describe how you have acquired your total wealth.</p><p>It refers to the main activity that has generated or contributed to the accumulation of your financial and other assets (total wealth) over time.</p>"
+    }
   },
   "ADDITIONAL_DECLARATION": {
     "TITLE": "Additional Declaration",

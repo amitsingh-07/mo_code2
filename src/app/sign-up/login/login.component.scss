@@ -318,6 +318,7 @@ app-login {
       font-size: 32px;
       margin-bottom: 40px;
       font-family: $muli-semi-bold;
+      text-align: center;
       @include allmobiles {
         font-size: 24px;
         margin-bottom: 20px;
@@ -346,6 +347,16 @@ app-login {
         display: none;
       }
     }
+
+    .h-separator-container {
+      display: flex;
+      justify-content: center;
+      margin-bottom: 20px;
+      .separator-icon {
+        width: 354px;
+      }
+      }
+    }
     .show-element {
       display: block !important;
     }
@@ -354,17 +365,25 @@ app-login {
     font-size: 14px;
     line-height: 21px;
     letter-spacing: -0.13px;
-    max-width: 749px;
+    max-width: 390px;
     margin: auto;
     padding: 20px 19.9px 20px 20.1px;
     border-radius: 6px;
     background-color: $strong-cyan-color;
     @include allmobiles {
-      margin: auto 10px;
+      max-width: 354px;
+    }
+  }
+
+  form#loginForm{
+    width: 390px;
+    @include allmobiles {
+      max-width: 354px;
+      width:100%;
     }
   }
   .captcha-img {
     height: 72px;
     margin-right: 16px;
   }
-}
+

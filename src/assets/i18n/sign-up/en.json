@@ -356,7 +356,7 @@
     "LOGIN_TO_MO": "Log In to MoneyOwl",
     "PASSWORD_LOGIN": "PASSWORD LOGIN",
     "SINGPASS_MOBILE": "SINGPASS MOBILE",
-    "LOGIN_USE_SINGPASS": "You can now log in to MoneyOwl using Singpass Mobile App! ",
+    "LOGIN_USE_SINGPASS": "Available to Singpass registered users.",
     "HOW_TO_ACTIVATE": "How to activate?",
     "DONT_HAVE_SINGPASS": "Don’t have Singpass Mobile? ",
     "DOWNLOAD_NOW": "Download now!",
@@ -376,10 +376,13 @@
       "VERIFY_EMAIL_MESSAGE": "You are almost there! An email verification is sent. We need you to verify your email to complete your account creation!"
     },
     "CLIENT_ASSISTANCE": "If you require any assistance, please contact us at <b class='text-bold'><a href='mailto:clientsupport@moneyowl.com.sg' target='_blank'>clientsupport@moneyowl.com.sg</a></b> or <b class='text-bold'><a href='tel:63299188' target='_blank' class='text-bold'>6329 9188.</a></b> Our operating hours are Monday - Friday, 9am - 6pm.",
+
     "SINGPASS_ACTIVATE_MODAL": {
-      "TITLE": "Log In to MoneyOwl using Singpass Mobile App",
-      "MESSAGE": "If you <span class='bold-txt'>do not have</span> a MoneyOwl investment account, please do a Password Login and activate Singpass Login in your Profile page.<br><br>If you <span class='bold-txt'>have</span> a MoneyOwl investment account, simply scan the QR code with your Singpass Mobile App to log in!<br><br>Please note that this feature is available to all Singpass Registered Users.<br><br><a class='anchor-txt' target='_blank' href='https://www.singpass.gov.sg/main/html/faq.html'>Learn more about Singpass</a>"
+      "TITLE": "Activate Singpass Login",
+      "MESSAGE": "If you  <span class='bold-txt'>have</span> a MoneyOwl account,<br>please do a password log in and activate<br>Singpass Login in your Profile page.<br><br> If you <span class='bold-txt'>do not have</span> a MoneyOwl account,<br><a class='anchor-txt' target='_self' href='./accounts/sign-up'>click here</a> to create an account.<br><br>Download the Singpass Mobile App <a class='anchor-txt' target='_blank' href='https://app.singpass.gov.sg/'>here</a>.",
+      "BTN_TXT": "Got it!"
     },
+
     "SINGPASS_LOGIN_FAIL_MODAL": {
       "TITLE": "Unable to Proceed",
       "MESSAGE": "If you <span class='bold-txt'>have</span> a MoneyOwl account, please do a Password Login and activate Singpass Login in your Profile page.<br><br>If you <span class='bold-txt'>do not have</span> a MoneyOwl account, <a class='anchor-txt' target='_self' href='./accounts/sign-up'>click here</a> to create an account.",
