@@ -825,6 +825,12 @@ export class SignUpService {
     this.commitCorpBizUserInfo();
   }
 
+  clearCorpbizSessionData() {
+    if (window.sessionStorage) {
+      sessionStorage.setItem(CORP_BIZ_USER_MYINFO_SESSION_STORAGE_KEY, null);
+    }
+  }
+
   setMaritalStatus(data) {
     if (data.marital) {
       if (data.marital.desc === SIGN_UP_CONFIG.MARITAL_STATUS.SINGLE.DESC.toUpperCase()) {
@@ -947,9 +953,9 @@ export class SignUpService {
     let childrenData: Child[] = [];
     children.forEach(child => {
       const childDOB = child.dob.value ? this.investmentAccountService.corpBizDateFormat(child.dob.value) : null;
-      if (child.lifeStatus && child.lifeStatus.value !== SIGN_UP_CONFIG.LIFE_STATUS.DECEASED.VALUE) {
+      if (child.lifeStatus && child.lifeStatus.value !== SIGN_UP_CONFIG.LIFE_STATUS.DECEASED.VALUE && child.name && !Util.isEmptyOrNull(child.name.value)) {
         childrenData.push({
-          name: child.name ? child.name.value : null,
+          name: child.name.value,
           gender: child.sex ? (child.sex.value == SIGN_UP_CONFIG.GENDER.FEMALE.VALUE ? SIGN_UP_CONFIG.GENDER.FEMALE.DESC : SIGN_UP_CONFIG.GENDER.MALE.DESC) : null,
           lifeStatus: SIGN_UP_CONFIG.LIFE_STATUS.ALIVE.DESC,
           dob: childDOB ? `${childDOB.day}/${childDOB.month}/${childDOB.year}` : null,
