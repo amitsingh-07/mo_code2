@@ -827,8 +827,8 @@ export class SignUpService {
 
   clearCorpbizSessionData() {
     if (window.sessionStorage) {
-      this.corpBizUserMyInfoData = null;
-      sessionStorage.setItem(CORP_BIZ_USER_MYINFO_SESSION_STORAGE_KEY, JSON.stringify(this.corpBizUserMyInfoData));
+      this.corpBizUserMyInfoData = new CorpBizUserMyInfoData();
+      sessionStorage.setItem(CORP_BIZ_USER_MYINFO_SESSION_STORAGE_KEY, null);
     }
   }
 
