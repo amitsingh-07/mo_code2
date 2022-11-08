@@ -113,6 +113,9 @@ export class CorpBizSignupComponent implements OnInit {
       .subscribe((data) => {
         if (data.responseMessage.responseCode === 6000 && data && data.objectList[0]) {
           this.closeMyInfoPopup(false);
+          if (Object.keys(this.signUpService.getCorpBizUserMyInfoData()).length > 0) {
+            this.signUpService.clearCorpbizSessionData();
+          }
           data.objectList[0].email.value = email;
           data.objectList[0].mobileno.nbr = mobile;
           this.signUpService.setCorpBizMyInfoStatus(true);
