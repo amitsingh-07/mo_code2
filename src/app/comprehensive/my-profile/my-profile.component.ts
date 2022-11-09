@@ -158,6 +158,9 @@ export class MyProfileComponent implements IPageComponent, OnInit, OnDestroy {
                     this.myInfoService.getCorpBizMyInfoAccountCreateData(this.userDetails.email, this.userDetails.mobileNumber, this.isOrganisationEnabled)
                         .subscribe((data) => {
                             if (data.responseMessage.responseCode === 6000 && data && data['objectList'] && data['objectList'][0]) {
+                                if (Object.keys(signUpService.getCorpBizUserMyInfoData()).length > 0) {
+                                    signUpService.clearCorpbizSessionData();
+                                }
                                 comprehensiveService.isCFPAutofillMyInfoEnabled = true;
                                 signUpService.loadCorpBizUserMyInfoData(data['objectList'][0]);
                                 this.myInfoService.isMyInfoEnabled = false;
