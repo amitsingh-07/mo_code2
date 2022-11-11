@@ -210,13 +210,11 @@
               "fileReplacements": [
                 {
                   "replace": "src/environments/environment.ts",
-                  "with": "src/environments/environment.dev.ts"
+                  "with": "src/environments/environment.newmodev.ts"
                 }
               ],
               "optimization": false,
-              "outputHashing": "all",
               "sourceMap": true,
-              "extractCss": false,
               "namedChunks": false,
               "aot": true,
               "extractLicenses": true,
@@ -255,7 +253,8 @@
             "common": {
               "browserTarget": "bfa-frontend:build:common"
             }
-          }
+          },
+          "defaultConfiguration": "common"
         },
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
