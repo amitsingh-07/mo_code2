@@ -17,6 +17,15 @@
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
+              "allowedCommonJsDependencies": [
+                "deepmerge",
+                "nouislider",
+                "smoothscroll-polyfill",
+                "text-mask-core",
+                "crypto-js",
+                "js-sha512",
+                "angular2-text-mask"
+            ],
             "outputPath": "dist/NTUCDev",
             "index": "src/index.html",
             "main": "src/main.ts",
