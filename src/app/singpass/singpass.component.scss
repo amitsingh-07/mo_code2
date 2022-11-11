@@ -2,26 +2,23 @@
 @import "../../_mixins.scss";
 
 app-singpass {
+  width:100%;
+  @include allmobiles {
+    max-width:354px;
+    width:100%
+  }
   .singpass-container {
-    display:none;
-    align-self: flex-end;
-    height: auto;
-    width: 420;
-    margin-bottom:20px;
-    display:inline-block;
     a {
         cursor: pointer;
-    }
-    @include allmobiles {
-      display: none;
     }
     .singpass-login-icon {
       width: 390px;
       @include allmobiles {
         max-width: 354px;
+        width:100%;
       }
   }
-}
+
     .singpass-instruction {
       width: 420px;
       margin-top: 20px;
@@ -34,18 +31,20 @@ app-singpass {
         font-family: $muli-bold;
         font-size: 16px;
         cursor: pointer;
-       }
-       .hidden {
+      }
+      .hidden {
         display: none;
-       }
-       @include allmobiles {
+      }
+      @include allmobiles {
         max-width: 354px;
         margin-top: 11px;
         margin-left: 0;
+        width:100%;
 
         .hidden {
           display: inline;
-         }
+        }
       }
+  }  
   }
 }
