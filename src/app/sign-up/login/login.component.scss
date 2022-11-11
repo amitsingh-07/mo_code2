@@ -10,6 +10,10 @@ app-login {
 
   .container-fluid.full-height {
     min-height: 85vh;
+    @include allmobiles {
+      padding-left: 30px !important;
+      padding-right: 30px !important;
+    }
   }
 
   input::-webkit-credentials-auto-fill-button {
@@ -353,7 +357,12 @@ app-login {
       justify-content: center;
       margin-bottom: 20px;
       .separator-icon {
-        width: 354px;
+        max-width: 354px;
+        width:100%;
+        margin-top:20px;
+        @include allmobiles {
+          margin-top:10px;
+        }
       }
       }
     }
@@ -379,7 +388,6 @@ app-login {
     width: 390px;
     @include allmobiles {
       max-width: 354px;
-      min-width: 354px;
       width:100%;
     }
   }
