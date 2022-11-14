@@ -16,6 +16,8 @@ app-singpass {
       @include allmobiles {
         max-width: 354px;
         width:100%;
+        min-height:60px;
+        border-radius: 6px;
       }
   }
 
