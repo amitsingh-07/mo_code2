@@ -15,7 +15,7 @@ app-singpass {
       width: 390px;
       height: 60px;
       border-radius: 6px;
-      outline: 2px #CECDD2 solid;
+      outline: 2px $ghost-color solid;
       outline-offset: -2px;
       @include allmobiles {
         max-width: 354px;
