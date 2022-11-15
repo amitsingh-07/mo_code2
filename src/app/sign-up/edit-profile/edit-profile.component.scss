@@ -137,6 +137,7 @@ app-edit-profile {
         line-height: normal;
         letter-spacing: -0.12px;
         color: $btn-orange-txt-color;
+        align-items: center;
         &:disabled,
         &.disabled{
           background-color: $mercury-smoke-color;
