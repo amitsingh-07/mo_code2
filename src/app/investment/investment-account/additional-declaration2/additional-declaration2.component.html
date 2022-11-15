@@ -53,10 +53,13 @@
                 <div class="form-group mb10">
                   <div class="flex-row">
                     <div class="flex-col-5">
-                      <label class="label-font label-icon" for="employement_details_status" id="additional_declaration_sourse-lbl">
-                        {{'ADDITIONAL_DECLARATIONS_SCREEN_TWO.SOURCE_OF_INVESTMENT_FUND' | translate}}
+                      <label class="label-font label-icon" for="employement_details_status"
+                        id="additional_declaration_sourse-lbl">
+                        <span>{{'ADDITIONAL_DECLARATIONS_SCREEN_TWO.SOURCE_OF_INVESTMENT_FUND' | translate}}</span>
+                        <i class="block-tooltip-icon" id="countryHelpIcon" (click)="openHelpModal(1)">
+                          <img src="assets/images/investment-account/blocked-help-icon.svg" />
+                        </i>
                       </label>
-                      <i class="block-tooltip-icon" id="countryHelpIcon" (click)="openHelpModal(1)"></i>
                     </div>
                     <div class="flex-col-7"
                       [ngClass]="{'inline-error':getInlineErrorStatus(additionDeclarationtwo.controls.source)}">
@@ -203,10 +206,13 @@
                 <div class="form-group mb10">
                   <div class="flex-row">
                     <div class="flex-col-5">
-                      <label class="label-font label-icon" for="employement_details_status" id="additional_declaration_sourse-lbl">
-                        {{'ADDITIONAL_DECLARATIONS_SCREEN_TWO.SOURCE_OF_WEALTH' | translate}}
+                      <label class="label-font label-icon" for="employement_details_status"
+                        id="additional_declaration_sourse-lbl">
+                        <span>{{'ADDITIONAL_DECLARATIONS_SCREEN_TWO.SOURCE_OF_WEALTH' | translate}}</span>
+                        <i class="block-tooltip-icon" id="countryHelpIcon" (click)="openHelpModal(2)">
+                          <img src="assets/images/investment-account/blocked-help-icon.svg" />
+                        </i>
                       </label>
-                      <i class="block-tooltip-icon" id="countryHelpIcon" (click)="openHelpModal(2)"></i>
                     </div>
                     <div class="flex-col-7"
                       [ngClass]="{'inline-error':getInlineErrorStatus(additionDeclarationtwo.controls.sourceOfWealth)}">
