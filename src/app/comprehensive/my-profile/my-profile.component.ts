@@ -81,6 +81,16 @@ export class MyProfileComponent implements IPageComponent, OnInit, OnDestroy {
         this.showToolTip = false;
     }
 
+    radioLabelValue = [{
+        name: this.translate.instant('LABEL.MALE'),
+        value: 'male',
+        conditionalClass: { matchValue : 'male', applyClass: 'mr5' }
+      }, {
+        name: this.translate.instant('LABEL.FEMALE'),
+        value: 'female'
+      }];
+      defaultRadioStyleClass = 'btn-outline-primary fixed-btn--sm-comprehensive';
+
     // tslint:disable-next-line: parameters-max-number
     constructor(
         private loaderService: LoaderService,
@@ -291,6 +301,9 @@ export class MyProfileComponent implements IPageComponent, OnInit, OnDestroy {
             ngbDob: [this.userDetails ? this.userDetails.ngbDob : '', [Validators.required]]
         });
         this.myProfileShow = false;
+        if (this.viewMode || this.disableDOB) {
+            this.defaultRadioStyleClass = `${this.defaultRadioStyleClass} view-mode`;
+        }
     }
 
     goToNext(form: FormGroup) {

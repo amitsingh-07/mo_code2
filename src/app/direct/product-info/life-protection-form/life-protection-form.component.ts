@@ -40,6 +40,9 @@ export class LifeProtectionFormComponent implements OnInit, OnDestroy {
   maxDate;
 
   private userInfoSubscription: Subscription;
+  radioLabelValue = [];
+  radioLabelValueIsEarlyCI = [];
+  defaultRadioStyleClass: any;
 
   constructor(
     private directService: DirectService, private modal: NgbModal,
@@ -51,6 +54,23 @@ export class LifeProtectionFormComponent implements OnInit, OnDestroy {
     this.maxDate = { year: today.getFullYear(), month: (today.getMonth() + 1), day: today.getDate() };
     config.outsideDays = 'collapsed';
     this.translate.use('en');
+    this.translate.get('COMMON').subscribe((result: string) => {
+    this.radioLabelValue = [{
+      name: this.translate.instant('COMMON.LBL_MALE'),
+      value: 'male'
+    }, {
+      name: this.translate.instant('COMMON.LBL_FEMALE'),
+      value: 'female'
+    }];
+    this.radioLabelValueIsEarlyCI = [{
+      name: this.translate.instant('COMMON.LBL_YES'),
+      value: 'yes'
+    }, {
+      name: this.translate.instant('COMMON.LBL_NO'),
+      value: 'no'
+    }];
+    this.defaultRadioStyleClass = 'direct-form-btn--radio btn';
+  });
     this.coverageAmtValuesTemp.push(1500000);
     this.coverageAmtValuesTemp.push(2000000);
   }

@@ -24,6 +24,16 @@ export class PersonalDeclarationComponent implements OnInit {
   pageTitle: string;
   personalDeclarationForm: FormGroup;
   personalDeclarationFormValues: any;
+  radioLabelValueEmploye = [{
+    name: this.translate.instant('PERSONAL_DECLARATION.YES_LBL'),
+    value: true,
+    conditionalClass: { matchValue : true, applyClass: 'mr5' }
+  }, {
+    name: this.translate.instant('PERSONAL_DECLARATION.NO_LBL'),
+    value: false
+  }];
+  defaultRadioStyleClass = 'btn-outline-primary fixed-btn--sm';
+
   constructor(
     public headerService: HeaderService,
     public navbarService: NavbarService,

@@ -17,6 +17,7 @@ export class CustomRadioControllerComponent implements OnInit, ControlValueAcces
   @Input('radioLabelValue') radioLabelValue;
   @Input('flexRowMarPadClass') flexRowMarPadClass;
   @Input('name') name;
+  @Input('flexColumns') flexColumns = 'flex-col-6';
   formControl = new FormControl('', [Validators.required]);
   _onChange: any = () => {};
   _onTouch: any = () => {};

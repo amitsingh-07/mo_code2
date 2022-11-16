@@ -44,6 +44,14 @@ export class YourFinancialsComponent implements IPageComponent, OnInit {
   selectedPortfolioType;
   loaderDescTwo: string;
   userPortfolioType: any;
+  radioLabelValue = [{
+    name: this.translate.instant('MY_FINANCIALS.LABEL_YES'),
+    value: true
+  }, {
+    name: this.translate.instant('MY_FINANCIALS.LABEL_NO'),
+    value: false
+  }];
+  defaultRadioStyleClass = 'btn-outline-primary fixed-btn--sm';
 
   constructor(
     private router: Router,
