@@ -16,6 +16,7 @@ export const DEFAULT_VALUE_ACCESSOR: any = {
 export class CustomRadioControllerComponent implements OnInit, ControlValueAccessor {
   @Input('radioLabelValue') radioLabelValue;
   @Input('flexRowMarPadClass') flexRowMarPadClass;
+  @Input('name') name;
   formControl = new FormControl('', [Validators.required]);
   _onChange: any = () => {};
   _onTouch: any = () => {};

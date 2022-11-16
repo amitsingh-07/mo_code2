@@ -47,7 +47,7 @@
                   </div>
                   <div class="flex-col-7 direct-form-grp">
                     <div class="btn-group--toggle" name="radioGender">
-                      <app-custom-radio-controller formControlName="gender" [radioLabelValue]="radioLabelValue"
+                      <app-custom-radio-controller formControlName="gender" name="gender"  [radioLabelValue]="radioLabelValue"
                       [defaultLabelStyleClass]="defaultRadioStyleClass" flexRowMarPadClass="section pl0 pr0 mb0"
                       (valueChangedEvent)="checkGenderValidations($event)"></app-custom-radio-controller>
                     </div>
