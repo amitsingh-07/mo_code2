@@ -73,7 +73,7 @@
           <ngb-accordion #acc="ngbAccordion" (panelChange)="toggleAccordian($event)">
             <ngb-panel>
                 <ng-template ngbPanelTitle>
-                    <div class="flex justify-center">
+                    <div class="flex justify-center margin-auto">
                       <i class='arrow'></i>
                     </div>
                 </ng-template>
@@ -87,7 +87,7 @@
                               [ngClass]="{'inline-error': formObject.controls.dateOfBirth.invalid && formObject.controls.dateOfBirth.dirty}">
                                 <input  class="form-control"
                                     name="dp" ngbDatepicker [minDate]="minDate" [maxDate]="maxDate" formControlName="dateOfBirth"
-                                  #dobInput="ngbDatepicker" id="invPersInfoInpt7" required placement="bottom-left">
+                                  #dobInput="ngbDatepicker" id="invPersInfoInpt7" required placement="bottom-right">
                                   <label class="form-control-placeholder">{{ 'CONTACT_MODAL.FORM.DOB.PLACEHOLDER_LBL' | translate}}</label>
                                 <div class="input-group-append">
                                   <button  class="btn btn-primary" type="button" (click)="dobInput.toggle()" id="createDobBtn1">
