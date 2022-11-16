@@ -25,6 +25,129 @@
 <div class="transaction-panel">
   <div class="container-fluid max-width--1024">
     <div class="content">
+      <nav ngbNav #nav="ngbNav" class="nav-tabs">
+        <ng-container [ngbNavItem]="1">
+            <a ngbNavLink>History</a>
+            <ng-template ngbNavContent>
+              <div class="flex-row" *ngIf="transactionHistory">
+                <div class="flex-col-12 transction-screen">
+                  <div class="transaction-panel__history white-bg">
+                    <div *ngFor="let group of transactionHistory; let i = index" class="transaction-group">
+                      <div class="transaction-panel__history--date">{{group.groupName}}</div>
+                      <div class="transaction-panel__history--details">
+                        <div *ngFor="let transaction of group.value; let j = index">
+                          <div class="flex-row transaction-panel__history--details--title"
+                            [class.cursor_pointer]="transaction.fundInvestmentSplits && transaction.fundInvestmentSplits.length"
+                            (click)="expandCollapseAccordion(i, j)">
+                            <div class="flex-col-7">
+                              <div class="transaction-panel__history--details--transaction-id">
+                                {{ 'TRANSACTIONS.TRANSACTION_ID' | translate}}
+                                {{transaction.contractNo}}</div>
+                              <div class="history-type-transaction">
+                                <div [class.buy]="transaction.transactionType.name.toUpperCase() === 'BUY'"
+                                  class="transaction-panel__history--details--title--sale"
+                                  *ngIf="transaction.transactionType && transaction.transactionType.name.toUpperCase() !== 'FUNDING' && transaction.transactionType.name.toUpperCase() !== 'CASH_WITHDRAW' && transaction.transactionType.name.toUpperCase() !== 'CASH_TRANSFER_IN' && 
+                                                                transaction.transactionType.name.toUpperCase() !== 'CASH_TRANSFER_OUT' && transaction.transactionType.name.toUpperCase() !== 'DIVIDEND_PAYOUT' && transaction.transactionType.name.toUpperCase() !== 'DIVIDEND_REINVEST'">
+                                  {{transaction.transactionType.name}}</div>
+                                <div *ngIf="transaction.transactionType.name.toUpperCase() === 'FUNDING'">
+                                  {{ 'TRANSACTIONS.CASH_TOP_UP' | translate}}</div>
+                                <div *ngIf="transaction.transactionType.name.toUpperCase() === 'CASH_WITHDRAW'">
+                                  {{ 'TRANSACTIONS.CASH_WITHDRAWAL' | translate}}</div>
+                                <div *ngIf="transaction.transactionType.name.toUpperCase() === 'DIVIDEND_PAYOUT'">
+                                  {{ 'TRANSACTIONS.DIVIDEND_PAYOUT' | translate}}</div>
+                                <div *ngIf="transaction.transactionType.name.toUpperCase() === 'DIVIDEND_REINVEST'">
+                                  {{ 'TRANSACTIONS.DIVIDEND_REINVEST' | translate }}</div>  
+                                <div class="portfolio-name"
+                                  *ngIf="transaction.portfolio && transaction.transactionType.name.toUpperCase() !== 'CASH_TRANSFER_IN' && 
+                                transaction.transactionType.name.toUpperCase() !== 'CASH_TRANSFER_OUT' && transaction.transactionType.name.toUpperCase() !== 'CASH_WITHDRAW' && transaction.transactionType.name.toUpperCase() !== 'DIVIDEND_REINVEST'">
+                                  {{transaction.portfolio.name}}
+                                </div>
+                                <!-- cash portfolio transaction  -->
+                                <div
+                                  [class.transfer]="transaction.transactionType.name.toUpperCase() === 'CASH_TRANSFER_IN' ||
+                                   transaction.transactionType.name.toUpperCase() === 'CASH_TRANSFER_OUT'"
+                                  *ngIf="transaction.transactionType.name.toUpperCase() === 'CASH_TRANSFER_IN' || 
+                                 transaction.transactionType.name.toUpperCase() === 'CASH_TRANSFER_OUT'">
+                                  <span  *ngIf="transaction.transactionType.name.toUpperCase() === 'CASH_TRANSFER_IN'">
+                                    {{ 'TRANSACTIONS.CASH_ACCOUNT_TRANSFER_IN' | translate}}</span>
+                                  <span  *ngIf="transaction.transactionType.name.toUpperCase() === 'CASH_TRANSFER_OUT'"
+                                  >{{ 'TRANSACTIONS.CASH_ACCOUNT_TRANSFER_OUT' | translate}}</span>
+                                </div>
+                                <!-- cash portfolio transaction  -->
+                              </div>
+                            </div>
+                            <div class="flex-col-5 text-right"><span
+                                [class.buy]="transaction.transactionType.name.toUpperCase() === 'BUY' || transaction.transactionType.name.toUpperCase() === 'FUNDING' || transaction.transactionType.name.toUpperCase() === 'CASH_TRANSFER_IN' || transaction.transactionType.name.toUpperCase() === 'DIVIDEND_PAYOUT' || transaction.transactionType.name.toUpperCase() === 'DIVIDEND_REINVEST'"
+                                class="transaction-panel__history--details--title--amount--sale">
+                                <span
+                                  *ngIf="transaction.transactionType.name.toUpperCase() === 'SELL' || transaction.transactionType.name.toUpperCase() === 'CASH_WITHDRAW' || transaction.transactionType.name.toUpperCase() === 'CASH_TRANSFER_OUT'">-</span>
+                                {{transaction.amount | formatCurrency}}</span>
+                              <i *ngIf="transaction.fundInvestmentSplits && transaction.fundInvestmentSplits.length"
+                                class='fa right mt5'
+                                [class.fa-chevron-down]="activeTransactionIndex !== i.toString() + j.toString()"
+                                [class.fa-chevron-up]="activeTransactionIndex === i.toString() + j.toString()"></i>
+                            </div>
+                          </div>
+                          <div *ngFor="let fund of transaction.fundInvestmentSplits">
+                            <div *ngIf="fund.fund" class="flex-row transaction-panel__history--details--desc"
+                              [class.show]="activeTransactionIndex === i.toString() + j.toString()">
+                              <div class="flex-col-7">{{fund.fund.name}}</div>
+                              <div class="flex-col-5 text-right">
+                                <span *ngIf="transaction.transactionType.name.toUpperCase() !== 'BUY' && transaction.transactionType.name.toUpperCase() !== 'DIVIDEND_REINVEST'">-</span>
+                                {{fund.splitAmount | formatCurrency }}
+                              </div>
+                              <div class="flex-col-12 text-left unit-price">
+                                <span>{{ 'TRANSACTIONS.UNIT_PRICE' | translate}} {{fund.unitPrice | formatCurrency4dp}} </span>
+                                <span>{{ 'TRANSACTIONS.UNITS' | translate}} {{fund.unit}}</span>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="no-transaction" *ngIf="!transactionHistory || !transactionHistory.length">
+                    <div class="no-content">
+                      <img src="assets/images/investment-account/light_owl.svg" width="170" height="170" />
+                      <div class="mt15">{{ 'TRANSACTIONS.NO_TRANSACTION_HISTORY' | translate}}</div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </ng-template>
+        </ng-container>
+        <ng-container  [ngbNavItem]="2">
+            <a ngbNavLink>Statements</a>
+            <ng-template ngbNavContent>
+              <div class="flex-row">
+                <div class="flex-col-12 transction-screen">
+                  <div class="transaction-panel__statements white-bg">
+                    <div *ngIf="statementMonthsList">
+                      <div *ngFor="let statementMonth of statementMonthsList" class="statement-group">
+                        <div class="transaction-panel__statements--date">{{statementMonth.year}}</div>
+                        <div class="flex-row transaction-panel__statements--details"
+                          *ngFor="let month of statementMonth.months">
+                          <div class="flex-col-6">{{month.monthName}}</div>
+                          <div class="flex-col-6 text-right">
+                            <a class="download-link" target="_blank" download
+                              (click)="downloadStatement(month)">Download</a>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="no-transaction" *ngIf="!statementMonthsList || !statementMonthsList.length">
+                    <div class="no-content">
+                      <img src="assets/images/investment-account/light_owl.svg" width="170" height="170" />
+                      <div class="mt15">{{ 'TRANSACTIONS.NO_TRANSACTION_STATEMENTS' | translate}}</div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </ng-template>
+        </ng-container>
+      </nav>
+      <div [ngbNavOutlet]="nav" ></div>
     </div>
   </div>
 </div>
