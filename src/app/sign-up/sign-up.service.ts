@@ -957,7 +957,7 @@ export class SignUpService {
       if (child.lifeStatus && child.lifeStatus.value !== SIGN_UP_CONFIG.LIFE_STATUS.DECEASED.VALUE && child.name && !Util.isEmptyOrNull(child.name.value)) {
         childrenData.push({
           name: child.name.value,
-          gender: child.sex ? (child.sex.value == SIGN_UP_CONFIG.GENDER.FEMALE.VALUE ? SIGN_UP_CONFIG.GENDER.FEMALE.DESC : SIGN_UP_CONFIG.GENDER.MALE.DESC) : null,
+          gender: child.sex && child.sex.value ? (child.sex.value == SIGN_UP_CONFIG.GENDER.FEMALE.VALUE ? SIGN_UP_CONFIG.GENDER.FEMALE.DESC : SIGN_UP_CONFIG.GENDER.MALE.DESC) : null,
           lifeStatus: SIGN_UP_CONFIG.LIFE_STATUS.ALIVE.DESC,
           dob: childDOB ? `${childDOB.day}/${childDOB.month}/${childDOB.year}` : null,
           residentialStatus: child.residentialStatus ? this.setResidentialStatus(child.residentialStatus) : null
