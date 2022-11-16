@@ -207,12 +207,6 @@
                   "maximumWarning": "6kb"
                 }
               ],
-              "fileReplacements": [
-                {
-                  "replace": "src/environments/environment.ts",
-                  "with": "src/environments/environment.newmodev.ts"
-                }
-              ],
               "optimization": false,
               "sourceMap": true,
               "namedChunks": false,
