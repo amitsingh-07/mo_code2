@@ -97,7 +97,8 @@
                         [ngClass]="{'inline-error':getInlineErrorStatus(additionDeclarationtwo.controls.personalSavingForm.controls.personalSavings)}">
                         <div name="totalAssets">
                           <input class="text-right input-control " type="text" formControlName="personalSavings"
-                            id="additional_declaration_personalSaving_input" appCurrencyInputPortfolio #personalSavings>
+                            id="additional_declaration_personalSaving_input" appCurrencyInputPortfolio #personalSavings
+                            maxlength="300">
                         </div>
                       </div>
                     </div>
@@ -119,7 +120,7 @@
                         <div name="totalAssets">
                           <input class=" text-right input-control" type="text" formControlName="inheritanceGift"
                             id="additional_declaration_Gift_inheritanc_input" appCurrencyInputPortfolio
-                            #inheritanceGiftFrom>
+                            #inheritanceGiftFrom maxlength="300">
                         </div>
                       </div>
                     </div>
@@ -140,7 +141,7 @@
                         [ngClass]="{'inline-error':getInlineErrorStatus(additionDeclarationtwo.controls.othersFrom.controls.otherSources)}">
                         <div name="totalAssets">
                           <input class=" text-right input-control" type="text" formControlName="otherSources"
-                            id="additional_declaration_others" appCurrencyInputPortfolio #otherSources>
+                            id="additional_declaration_others" appCurrencyInputPortfolio #otherSources maxlength="300">
                         </div>
                       </div>
                     </div>
@@ -250,7 +251,8 @@
                         [ngClass]="{'inline-error':getInlineErrorStatus(additionDeclarationtwo.controls.srcOfWealthPersonalSavingForm.controls.personalSavingsWealth)}">
                         <div name="totalAssets">
                           <input class="text-right input-control " type="text" formControlName="personalSavingsWealth"
-                            id="additional_declaration_personalSaving_input" appCurrencyInputPortfolio #personalSavings>
+                            id="additional_declaration_personalSaving_input" appCurrencyInputPortfolio #personalSavings
+                            maxlength="300">
                         </div>
                       </div>
                     </div>
@@ -272,7 +274,7 @@
                         <div name="totalAssets">
                           <input class=" text-right input-control" type="text" formControlName="inheritanceGiftWealth"
                             id="additional_declaration_Gift_inheritanc_input" appCurrencyInputPortfolio
-                            #srcOfWealthInheritanceGiftForm>
+                            #srcOfWealthInheritanceGiftForm maxlength="300">
                         </div>
                       </div>
                     </div>
@@ -293,7 +295,7 @@
                         [ngClass]="{'inline-error':getInlineErrorStatus(additionDeclarationtwo.controls.srcOfWealthOthersForm.controls.otherSourcesWealth)}">
                         <div name="totalAssets">
                           <input class=" text-right input-control" type="text" formControlName="otherSourcesWealth"
-                            id="additional_declaration_others" appCurrencyInputPortfolio #otherSources>
+                            id="additional_declaration_others" appCurrencyInputPortfolio #otherSources maxlength="300">
                         </div>
                       </div>
                     </div>
