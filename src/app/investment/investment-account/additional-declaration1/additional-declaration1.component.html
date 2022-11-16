@@ -20,11 +20,11 @@
                 <div class="flex-row mb10" *ngIf="addInfoFormValues.pep">
                   <div class="flex-col-11">
                     <div class="tin_question_text" id="pep_Info_question-one">
-                      {{ 'PERSONAL_DECLARATION.QUESTION2' | translate}}
+                      <span>{{ 'PERSONAL_DECLARATION.QUESTION2' | translate}}</span>
+                      <i class="tooltip-icon" id="pep_Info_myFinancialHelpIcon" (click)="showHelpModalPep()">
+                        <img src="assets/images/investment-account/tin-info.svg">
+                      </i>
                     </div>
-                  </div>
-                  <div class="flex-col-1">
-                    <i class="tooltip-icon" id="pep_Info_myFinancialHelpIcon" (click)="showHelpModalPep()"></i>
                   </div>
                 </div>
                 <!-- Button part -->
@@ -73,9 +73,9 @@
                         [ngClass]="{'inline-error':getInlineErrorStatus(addInfoForm.controls.pepFullName)}">
                         <div contenteditable="true" id="pepFullName"
                           [textContent]="addInfoForm.get('pepFullName').value"
-                          (focusout)="setControlValue($event.target.textContent, 'pepFullName', addInfoForm);" maxlength="100"
-                          (keypress)="onKeyPressEvent($event, $event.target.textContent)" class="content-editable"
-                          placeholder="Full Name">
+                          (focusout)="setControlValue($event.target.textContent, 'pepFullName', addInfoForm);"
+                          maxlength="100" (keypress)="onKeyPressEvent($event, $event.target.textContent)"
+                          class="content-editable" placeholder="Full Name">
                         </div>
                       </div>
                     </div>
@@ -90,7 +90,7 @@
                       <div class="flex-col-7"
                         [ngClass]="{'inline-error':getInlineErrorStatus(addInfoForm.controls.cName)}">
                         <div contenteditable="true" id="cName" [textContent]="addInfoForm.get('cName').value"
-                        (focusout)="setControlValue($event.target.textContent, 'cName', addInfoForm);" maxlength="100"
+                          (focusout)="setControlValue($event.target.textContent, 'cName', addInfoForm);" maxlength="100"
                           (keypress)="onKeyPressEvent($event, $event.target.textContent)" class="content-editable"
                           placeholder="Company Name">
                         </div>
@@ -154,7 +154,8 @@
                       <div class="flex-col-5">
                         <label for="residentialAddress-mailcountry-drpdown" id="addtion-declaration-country-lbl">{{
                 'EMPLOYMENT_DETAILS.COUNTRY'
-                | translate}} <i class="block-tooltip-icon" id="countryHelpIcon" (click)="showHelpModalCountry()"></i> </label>
+                | translate}} <i class="block-tooltip-icon" id="countryHelpIcon" (click)="showHelpModalCountry()"></i>
+                        </label>
                       </div>
                       <div class="flex-col-7">
                         <div class="dropdown-control">

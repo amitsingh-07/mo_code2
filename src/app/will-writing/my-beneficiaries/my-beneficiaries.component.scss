@@ -273,7 +273,7 @@ input[type='checkbox']+label {
         position: absolute;
         bottom: 2px;
         border-radius: 0;
-        margin-right: -2px;
+        right: -2px;
     }
 }
 
@@ -286,13 +286,6 @@ input[type='checkbox']+label {
 
 .relationship {
     width: 119px;
-}
-.dropdown-menu {
-    z-index: 998;
-    height: auto;
-    &.show{
-        margin-bottom: 65px;
-    }
 }
 
 .input-label-black {

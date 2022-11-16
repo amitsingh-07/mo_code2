@@ -2,7 +2,7 @@
 @import '../../../../_mixins.scss';
 
 app-additional-declaration1 {
-  .app-add-step1 {    
+  .app-add-step1 {
     .block-tooltip-icon {
       background: url('/assets/images/investment-account/blocked-help-icon.svg') no-repeat;
       height: 18px;
@@ -12,6 +12,7 @@ app-additional-declaration1 {
       float: right;
       margin: 5px 0 0 8px;
     }
+
     .dropdown-control {
       .dependent-count {
         color: $text-color-secondary;
@@ -64,12 +65,15 @@ app-additional-declaration1 {
     }
 
     .tooltip-icon {
-      background: url('/assets/images/investment-account/tin-info.svg') no-repeat;
       height: 20px;
       width: 20px;
       cursor: pointer;
-      display: block;
-      margin-top: 3px;
+      display: inline-block;
+
+      img {
+        margin-top: -3px;
+        margin-left: 7px;
+      }
     }
 
     .country_text {
