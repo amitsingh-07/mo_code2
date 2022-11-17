@@ -351,5 +351,9 @@ export const COMPREHENSIVE_CONST = {
         'sponsoredchildrenrecords.dob',
         'sponsoredchildrenrecords.lifestatus',
         'sponsoredchildrenrecords.residentialstatus'
-    ]
+    ],
+    GENDER: {
+        MALE: 'male',
+        FEMALE: 'female'
+    }
 };
