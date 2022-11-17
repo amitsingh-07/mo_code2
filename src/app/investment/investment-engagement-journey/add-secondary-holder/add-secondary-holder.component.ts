@@ -172,6 +172,7 @@ export class AddSecondaryHolderComponent implements OnInit {
       this.tabChange();
     }
     this.buildMajorForm();
+    this.buildMinorForm();
     let apiCalls = [];
     apiCalls.push(this.investmentAccountService.getAllDropDownList());
     apiCalls.push(this.investmentAccountService.getNationalityCountryList());
