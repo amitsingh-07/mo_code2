@@ -169,7 +169,7 @@ export class DependantsDetailsComponent implements OnInit, OnDestroy {
       name: [thisDependant.name, [Validators.required, Validators.minLength(2), Validators.maxLength(100)
         , Validators.pattern(RegexConstants.NameWithSymbol)]],
       relationship: [thisDependant.relationship, [Validators.required]],
-      gender: [thisDependant.gender, [Validators.required]],
+      gender: [thisDependant.gender ? thisDependant.gender : '', [Validators.required]],
       dateOfBirth: [this.parserFormatter.parse(thisDependant.dateOfBirth), [Validators.required]],
       nation: [thisDependant.nation, [Validators.required]],
       yearsNeeded: [thisDependant.yearsNeeded ? thisDependant.yearsNeeded : '0', [Validators.required]],
