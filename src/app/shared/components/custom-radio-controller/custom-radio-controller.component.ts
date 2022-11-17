@@ -39,7 +39,7 @@ export class CustomRadioControllerComponent implements OnInit, ControlValueAcces
   }
 
   writeValue(val: any): void {
-    val && this.formControl.setValue(val, {emitEvent: false});
+    this.formControl.setValue(val, {emitEvent: false});
   }
 
   registerOnChange(fn) {
