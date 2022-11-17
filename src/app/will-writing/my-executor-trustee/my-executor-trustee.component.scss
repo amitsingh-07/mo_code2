@@ -261,13 +261,6 @@ app-my-executor-trustee{
       }
   }
 
-  .dropdown-menu {
-    z-index: 998;
-    height: auto;
-    &.show{
-        margin-bottom: 65px;
-    }
-  }
 .save {
     justify-content: space-around !important;
     .cancel-btn {
