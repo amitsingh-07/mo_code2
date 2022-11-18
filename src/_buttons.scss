@@ -140,6 +140,7 @@ button:active:focus {
     box-shadow: none;
     border: none;
     cursor: not-allowed;
+    pointer-events: auto;
 
     &:hover {
       background-color: $btn-disabled-bg !important;
@@ -279,6 +280,11 @@ button:active:focus {
   cursor: not-allowed;
 }
 
+.btn:disabled:active {
+  background: #009a9a !important;
+  color: #99cfcf;
+  cursor: not-allowed;
+}
 /*Fixed button small*/
 
 .fixed-btn--sm {
@@ -948,7 +954,7 @@ button:active:focus {
       .dropdown-menu {
         @include allmobiles {
           left: auto !important;
-          right: 0px !important;
+          right: -46px !important;
         }
       }
     }

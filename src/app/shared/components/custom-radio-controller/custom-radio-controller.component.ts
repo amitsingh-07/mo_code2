@@ -16,6 +16,7 @@ export const DEFAULT_VALUE_ACCESSOR: any = {
 export class CustomRadioControllerComponent implements OnInit, ControlValueAccessor {
   @Input('radioLabelValue') radioLabelValue;
   @Input('flexRowMarPadClass') flexRowMarPadClass;
+  @Input('disabled') disabled = false;
   @Input('name') name;
   @Input('flexColumns') flexColumns = 'flex-col-6';
   formControl = new FormControl('', [Validators.required]);
@@ -36,6 +37,9 @@ export class CustomRadioControllerComponent implements OnInit, ControlValueAcces
       this._onChange(val);
       this.valueChangedEvent.emit(val);
     })
+    if (this.disabled) {
+      this.formControl.disable();
+    }
   }
 
   writeValue(val: any): void {

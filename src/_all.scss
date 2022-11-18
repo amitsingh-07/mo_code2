@@ -1186,6 +1186,7 @@ a {
   padding-left: 12px;
   font-size: 16px;
   font-family: $muli-bold;
+  color: $teal-color;
 
   p {
     margin-bottom: 0px;
@@ -1912,7 +1913,7 @@ a.link-white {
   .dropdown-menu.show {
     @include allmobiles {
       left: inherit !important;
-      right: 0px;
+      right: -46px !important;
     }
   }
 }
@@ -2074,12 +2075,12 @@ select:-webkit-autofill:focus {
     height: 82px;
   }
 
-  .datepicker-upside {
-    .dropdown-menu.show {
-      top: -240px !important;
-      transform: none !important;
-    }
-  }
+  // .datepicker-upside {
+  //   .dropdown-menu.show {
+  //      top: -240px !important;
+  //      transform: none !important;
+  //   }
+  // }
 
   .road-map {
     border-left: 3px solid $screen-separator-bar-color;

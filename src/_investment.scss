@@ -207,6 +207,10 @@
     .btn-dropdown {
       color: $form-dropdown-txt-color !important;
 
+      &:active{
+        background: $white-color;
+      }
+
       &:disabled,
       &.disabled {
         cursor: not-allowed;
