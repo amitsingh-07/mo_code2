@@ -95,15 +95,16 @@ app-contact-form{
             color: $dark-fountain-blue-color;
             margin-bottom: 15px;
         }
-        .card{
+        .accordion-item{
             border: none;
-            .card-header{
+            .accordion-header{
                 padding: 0;
                 background: $white-color;
                 border: none;
-                .btn-link {
+                .accordion-button {
                     padding: 0px;
                     width: 100%;
+                    background: $white-color;
                     .arrow {
                         border: solid $half-baked-blue-color;
                         border-width: 0 2px 2px 0;
@@ -123,9 +124,12 @@ app-contact-form{
                     &:focus {
                         text-decoration: none;
                     }
+                    &::after{
+                        display: none;
+                    }
                 }
             }
-            .card-body{
+            .accordion-body{
                 padding: 0;
                 .form-control{
                     &.gender{

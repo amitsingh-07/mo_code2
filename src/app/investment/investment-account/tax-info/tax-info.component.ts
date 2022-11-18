@@ -38,6 +38,15 @@ export class TaxInfoComponent implements OnInit {
   investmentAccountCommon: InvestmentAccountCommon = new InvestmentAccountCommon();
   showNricHint = false;
   tooltipDetails: any;
+  radioLabelValue = [{
+    name: this.translate.instant('TAX_INFO.YES_LABEL'),
+    value: true,
+    conditionalClass: { matchValue : true, applyClass: 'mr5' }
+  }, {
+    name: this.translate.instant('TAX_INFO.NO_LABEL'),
+    value: false
+  }]
+  defaultRadioStyleClass = 'btn-outline-primary fixed-btn--sm';
 
   constructor(
     public headerService: HeaderService,

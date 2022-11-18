@@ -32,8 +32,14 @@ export class CriticalIllnessFormComponent implements OnInit, OnDestroy {
   durationValues = CRITICAL_ILLNESS_CONST.DURATION_LIST;
   minDate;
   maxDate;
+  radioLabelValue = [];
+  radioLabelValueSmoker = [];
+  radioLabelValueEarlyCI =[];
+  defaultRadioStyleClass: any;
   private userInfoSubscription: Subscription;
-
+  
+  
+  
   @Output() formSubmitted: EventEmitter<any> = new EventEmitter();
 
   constructor(
@@ -46,7 +52,30 @@ export class CriticalIllnessFormComponent implements OnInit, OnDestroy {
     this.maxDate = { year: today.getFullYear(), month: (today.getMonth() + 1), day: today.getDate() };
     config.outsideDays = 'collapsed';
     this.translate.use('en');
-
+    this.translate.get('COMMON').subscribe((result: string) => {
+      this.radioLabelValue = [{
+        name: this.translate.instant('COMMON.LBL_MALE'),
+        value: 'male',
+      }, {
+        name: this.translate.instant('COMMON.LBL_FEMALE'),
+        value: 'female'
+      }];
+      this.radioLabelValueSmoker = [{
+        name: this.translate.instant('COMMON.LBL_NONSMOKER'),
+        value: 'nonsmoker',
+      }, {
+        name: this.translate.instant('COMMON.LBL_SMOKER'),
+        value: 'smoker'
+      }];
+      this.radioLabelValueEarlyCI = [{
+        name: this.translate.instant('COMMON.LBL_YES'),
+        value: 'yes',
+      }, {
+        name: this.translate.instant('COMMON.LBL_NO'),
+        value: 'no'
+      }];
+      this.defaultRadioStyleClass = 'direct-form-btn--radio btn';
+    });    
     this.coverageAmtValuesTemp.push(1500000);
     this.coverageAmtValuesTemp.push(2000000);
   }

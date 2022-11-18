@@ -56,4 +56,37 @@ export class ValidateYourWillComponent implements OnInit, OnDestroy {
       this.fileUtil.downloadPDF(data, newWindow, this.translate.instant('WILL_WRITING.VALIDATE_YOUR_WILL.WILLS_PDF_NAME'));
     }, (error) => console.log(error));
   }
+
+  saveAs(data) {
+    const isSafari = !!navigator.userAgent.match(/Version\/[\d\.]+.*Safari/);
+    const iOS = /iPad|iPhone|iPod/.test(navigator.userAgent);
+    const otherBrowsers = /Android|Windows/.test(navigator.userAgent);
+
+    const blob = new Blob([data], { type: 'application/pdf' });
+    const nav = (window.navigator as any);
+    if (nav && nav.msSaveOrOpenBlob) {
+      nav.msSaveOrOpenBlob(blob, 'MoneyOwl Will writing.pdf');
+    } else {
+      this.downloadFile(data);
+    }
+  }
+
+  downloadFile(data: any) {
+    const blob = new Blob([data], { type: 'application/pdf' });
+    const url = window.URL.createObjectURL(blob);
+    const a = document.createElement('a');
+    document.body.appendChild(a);
+    a.setAttribute('style', 'display: none');
+    a.href = url;
+    a.download = 'MoneyOwl Will Writing.pdf';
+    a.click();
+    // window.URL.revokeObjectURL(url);
+    // a.remove();
+    setTimeout(() => {
+      document.body.removeChild(a);
+      window.URL.revokeObjectURL(url);
+    }, 1000);
+
+  }
+
 }

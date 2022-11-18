@@ -134,7 +134,7 @@ export class WithdrawalComponent implements OnInit, OnDestroy {
       this.subscription.unsubscribe();
     }
 
-    this.destroySubscription$.next();
+    this.destroySubscription$.next(undefined);
     this.destroySubscription$.complete();
   }
 

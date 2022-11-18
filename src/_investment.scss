@@ -55,7 +55,7 @@
   .btn-proceed {
     border: 0px;
     border-radius: 6px;
-    background-color: $white-color;
+    background-color: $white-color !important;
     box-shadow: 0 12px 14px 0 $btn-proceed-shadow-color !important;
     cursor: pointer;
     font-family: $muli-bold;
@@ -63,7 +63,7 @@
     font-size: 22px;
     letter-spacing: -0.2px;
     text-align: center;
-    color: $teal-color;
+    color: $teal-color !important;
     width: 370px;
     display: flex;
     justify-content: center;
@@ -148,7 +148,7 @@
   .btn-proceed {
     border: 0px;
     border-radius: 6px;
-    background-color: $white-color;
+    background-color: $white-color !important;
     box-shadow: 0 12px 14px 0 $btn-proceed-shadow-color !important;
     cursor: pointer;
     font-family: $muli-bold;
@@ -158,7 +158,7 @@
     line-height: normal;
     letter-spacing: -0.2px;
     text-align: center;
-    color: $teal-color;
+    color: $teal-color !important;
     font-weight: 400;
     width: 370px;
 

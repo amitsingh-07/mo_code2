@@ -103,6 +103,7 @@ app-wise-income-payout {
                     display: flex;
                     padding: 17px 34px;
                     font-family: $muli-bold;
+                    border-radius: 0;
                     @include allmobiles {
                         padding: 0px 6px 7px;
                         line-height: normal;
@@ -205,15 +206,15 @@ app-wise-income-payout {
         }
         .learn-more-options {
             .learn-more-accordian {
-                .card {
+                .accordion-item {
                     margin-bottom: 15px;
                     border-radius: 6px !important;
                     background-color: $white-color;
                     border: none;
-                    .card-header {
+                    .accordion-header {
                         padding: 0px;
-                        background-color: $white-color;
-                        .btn-link {
+                        // background-color: $white-color;
+                        .accordion-button {
                             padding: 20px;
                             width: 100%;
                             font-size: 16px;
@@ -221,6 +222,10 @@ app-wise-income-payout {
                             line-height: normal;
                             letter-spacing: -0.3px;
                             color: $black-color;
+                            background-color: $white-color;
+                            div{
+                                width: 100%;
+                            }
                             .arrow {
                                 border: solid$teal-color;
                                 border-width: 0 2px 2px 0;
@@ -231,6 +236,8 @@ app-wise-income-payout {
                                 -webkit-transform: rotate(-135deg);
                             }
                             &.collapsed {
+                                border-radius: 6px;
+                                background-color: $white-color;
                                 .arrow {
                                     transform: rotate(45deg);
                                     -webkit-transform: rotate(45deg);
@@ -240,9 +247,12 @@ app-wise-income-payout {
                             &:focus {
                                 text-decoration: none;
                             }
+                            &::after{
+                                display: none;
+                            }
                         }
                     }
-                    .card-body {
+                    .accordion-body {
                         padding: 0;
                         .pannel-tab-content {
                             background-color: $black-squeeze-grey-color;

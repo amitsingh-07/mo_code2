@@ -3,6 +3,7 @@ import 'hammerjs';
 import { MultiTranslateHttpLoader } from 'ngx-translate-multi-http-loader';
 
 import {
+  APP_BASE_HREF,
   CurrencyPipe, LocationStrategy, PathLocationStrategy, TitleCasePipe
 } from '@angular/common';
 import {
@@ -214,8 +215,9 @@ export function tokenGetterFn() {
       provide: APP_INITIALIZER,
       useFactory: onAppInit,
       multi: true,
-      deps: [Injector]
+      deps: [Injector]  
     },
+    { provide: APP_BASE_HREF, useValue: '/app' },
     NgbActiveModal,
     AuthenticationService, CustomErrorHandlerService, RequestCache,
     AppService, TitleCasePipe, PendingChangesGuard, DefaultErrors,

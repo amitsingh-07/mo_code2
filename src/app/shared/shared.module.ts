@@ -3,8 +3,7 @@ import { MultiTranslateHttpLoader } from 'ngx-translate-multi-http-loader';
 
 import { CommonModule, UpperCasePipe, LowerCasePipe, TitleCasePipe } from '@angular/common';
 import { HttpClient } from '@angular/common/http';
-import { ModuleWithProviders } from '@angular/compiler/src/core';
-import { NgModule } from '@angular/core';
+import { ModuleWithProviders, NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
@@ -92,6 +91,7 @@ import { BankDetailsComponent } from './components/bank-details/bank-details.com
 import { UploadDocComponent } from './components/upload-document/upload-document.component';
 import { CurrencyEditorPipe } from './Pipes/currency-editor.pipe';
 import { MyinfoModalComponent } from './modal/myinfo-modal/myinfo-modal.component';
+import { CustomRadioControllerComponent } from './components/custom-radio-controller/custom-radio-controller.component';
 
 export function createTranslateLoader(http: HttpClient) {
   return new MultiTranslateHttpLoader(
@@ -162,7 +162,8 @@ export function createTranslateLoader(http: HttpClient) {
     BankDetailsComponent,    
     UploadDocComponent,
     CurrencyEditorPipe,
-    MyinfoModalComponent
+    MyinfoModalComponent,
+    CustomRadioControllerComponent
   ],
   declarations: [
     CurrencyInputDirective,
@@ -224,7 +225,8 @@ export function createTranslateLoader(http: HttpClient) {
     ReferralRewardDetailsComponent,
     BankDetailsComponent,    
     UploadDocComponent, CurrencyEditorPipe,
-    MyinfoModalComponent
+    MyinfoModalComponent,
+    CustomRadioControllerComponent
   ],
   entryComponents: [
     EditInvestmentModalComponent,
@@ -238,7 +240,7 @@ export function createTranslateLoader(http: HttpClient) {
   providers: [ProgressTrackerService, RoundPipe, UpperCasePipe, LowerCasePipe, TitleCasePipe]
 })
 export class SharedModule {
-  static forRoot(): ModuleWithProviders {
+  static forRoot(): ModuleWithProviders<SharedModule> {
     return {
       ngModule: SharedModule,
       providers: [ProgressTrackerService]

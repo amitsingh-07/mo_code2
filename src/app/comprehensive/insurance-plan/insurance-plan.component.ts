@@ -1,4 +1,4 @@
-import { Component, OnDestroy, OnInit, HostListener } from '@angular/core';
+import { Component, OnDestroy, OnInit, ViewEncapsulation, HostListener } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { TranslateService } from '@ngx-translate/core';
@@ -20,7 +20,8 @@ import { LoaderService } from './../../shared/components/loader/loader.service';
 @Component({
   selector: 'app-insurance-plan',
   templateUrl: './insurance-plan.component.html',
-  styleUrls: ['./insurance-plan.component.scss']
+  styleUrls: ['./insurance-plan.component.scss'],
+  encapsulation: ViewEncapsulation.None
 })
 export class InsurancePlanComponent implements OnInit, OnDestroy {
   pageTitle: any;
@@ -45,6 +46,36 @@ export class InsurancePlanComponent implements OnInit, OnDestroy {
   careShieldMessage: string;
   userAgeCriteria: any;
   saveData: any;
+  radioLabelValue = [{
+    name: this.translate.instant('CMP.FORM_LABEL.YES_LABEL'),
+    value: true,
+    conditionalClass: { matchValue : true, applyClass: 'mr5' }
+  }, {
+    name: this.translate.instant('CMP.FORM_LABEL.NO_LABEL'),
+    value: false
+  }];
+  radioLabelValueRider = [{
+    name: this.translate.instant('CMP.FORM_LABEL.YES_LABEL'),
+    value: '1',
+    conditionalClass: { matchValue : true, applyClass: 'mr5' }
+  }, {
+    name: this.translate.instant('CMP.FORM_LABEL.NO_LABEL'),
+    value: '0'
+  }, {
+    name: this.translate.instant('CMP.FORM_LABEL.NOT_SURE'),
+    value: '2'
+  }];
+  radioLabelValueLTESAmt = [{
+    name: this.translate.instant('CMP.FORM_LABEL.YES_LABEL'),
+    value: '300',
+    conditionalClass: { matchValue : true, applyClass: 'full-width' }
+  }, {
+    name: this.translate.instant('CMP.FORM_LABEL.NO_LABEL'),
+    value: '400',
+    conditionalClass: { matchValue : true, applyClass: 'full-width' }
+  }];
+  defaultRadioStyleClass = 'btn-outline-primary fixed-btn--sm-comprehensive';
+
   constructor(
     private navbarService: NavbarService, private progressService: ProgressTrackerService,
     private translate: TranslateService,
@@ -170,6 +201,9 @@ export class InsurancePlanComponent implements OnInit, OnDestroy {
           : 0, disabled: this.viewMode
       }, []]
     });
+    if (this.viewMode) {
+      this.defaultRadioStyleClass = `${this.defaultRadioStyleClass} view-mode`;
+    }
   }
   ngOnInit() {
     this.progressService.setProgressTrackerData(this.comprehensiveService.generateProgressTrackerData());
