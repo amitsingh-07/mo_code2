@@ -104,7 +104,7 @@
                     <div class="flex-col-7">
                       <div [ngClass]="{'inline-error':getInlineErrorStatus(addressForm.controls.floor)}">
                         <input type="text" class="form-control input-control grey" formControlName="floor"
-                          id="residentialAddress-floor-txt" maxlength="50" />
+                          id="residentialAddress-floor-txt" maxlength="20" />
                       </div>
                     </div>
                   </div>
@@ -119,7 +119,7 @@
                     <div class="flex-col-7">
                       <div [ngClass]="{'inline-error':getInlineErrorStatus(addressForm.controls.unitNo)}">
                         <input type="text" class="form-control input-control grey" formControlName="unitNo"
-                          id="residentialAddress-unitno-txt" maxlength="50" />
+                          id="residentialAddress-unitno-txt" maxlength="20" />
                       </div>
                     </div>
                   </div>
@@ -324,7 +324,7 @@
                         <div
                           [ngClass]="{'inline-error':getInlineErrorStatus(addressForm.controls.mailingAddress.controls.mailFloor)}">
                           <input type="text" class="form-control input-control grey" formControlName="mailFloor"
-                            id="residentialAddress-mailfloor-txt" maxlength="50" />
+                            id="residentialAddress-mailfloor-txt" maxlength="20" />
                         </div>
                       </div>
                     </div>
@@ -340,7 +340,7 @@
                         <div
                           [ngClass]="{'inline-error':getInlineErrorStatus(addressForm.controls.mailingAddress.controls.mailUnitNo)}">
                           <input type="text" class="form-control input-control grey" formControlName="mailUnitNo"
-                            id="residentialAddress-mailunitno-txt" maxlength="50" />
+                            id="residentialAddress-mailunitno-txt" maxlength="20" />
                         </div>
                       </div>
                     </div>
