@@ -221,6 +221,9 @@ input[type='checkbox']+label {
 
 .header-container{
     padding: 0px !important;
+    @include allmobiles{
+        width: 100%;
+    }
     .mobile-header {
             background-color: #00a7a7;
             position: relative;

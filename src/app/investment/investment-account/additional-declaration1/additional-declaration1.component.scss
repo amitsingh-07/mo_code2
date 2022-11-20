@@ -47,7 +47,7 @@ app-additional-declaration1 {
       .btn-outline-primary{
         &.disabled{
           cursor: not-allowed;
-          pointer-events: unset !important;
+          pointer-events: auto !important;
       }
       }
     }
