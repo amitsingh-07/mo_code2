@@ -338,20 +338,24 @@ export class AdditionalDeclaration2Component implements OnInit {
   }
 
   addAndRemoveSourceOfWealthFields() {
+    const wealthPersonalSavings = 'srcOfWealthPersonalSavingForm';
+    const wealthInvEarnings = 'srcOfWealthInvestmentEarningsForm';
+    const wealthOtherSources = 'srcOfWealthOthersForm';
+    const wealthInheritanceGift = 'srcOfWealthInheritanceGiftForm'
     if (
       this.additionDeclarationtwo.controls.sourceOfWealth.value &&
       this.additionDeclarationtwo.controls.sourceOfWealth.value.key ===
       INVESTMENT_ACCOUNT_CONSTANTS.ADDITIONAL_DECLARATION_TWO.PERSONAL_SAVING
     ) {
       this.additionDeclarationtwo.addControl(
-        'srcOfWealthPersonalSavingForm',
+        wealthPersonalSavings,
         this.formBuilder.group({
           personalSavingsWealth: ['', Validators.required]
         })
       );
-      this.additionDeclarationtwo.removeControl('srcOfWealthInvestmentEarningsForm');
-      this.additionDeclarationtwo.removeControl('srcOfWealthInheritanceGiftForm');
-      this.additionDeclarationtwo.removeControl('srcOfWealthOthersForm');
+      this.additionDeclarationtwo.removeControl(wealthInvEarnings);
+      this.additionDeclarationtwo.removeControl(wealthInheritanceGift);
+      this.additionDeclarationtwo.removeControl(wealthOtherSources);
     }
     if (
       this.additionDeclarationtwo.controls.sourceOfWealth.value &&
@@ -359,14 +363,14 @@ export class AdditionalDeclaration2Component implements OnInit {
       INVESTMENT_ACCOUNT_CONSTANTS.ADDITIONAL_DECLARATION_TWO.GIFT_INHERITANCE
     ) {
       this.additionDeclarationtwo.addControl(
-        'srcOfWealthInheritanceGiftForm',
+        wealthInheritanceGift,
         this.formBuilder.group({
           inheritanceGiftWealth: ['', Validators.required]
         })
       );
-      this.additionDeclarationtwo.removeControl('srcOfWealthPersonalSavingForm');
-      this.additionDeclarationtwo.removeControl('srcOfWealthInvestmentEarningsForm');
-      this.additionDeclarationtwo.removeControl('srcOfWealthOthersForm');
+      this.additionDeclarationtwo.removeControl(wealthPersonalSavings);
+      this.additionDeclarationtwo.removeControl(wealthInvEarnings);
+      this.additionDeclarationtwo.removeControl(wealthOtherSources);
     }
     if (
       this.additionDeclarationtwo.controls.sourceOfWealth.value &&
@@ -374,15 +378,15 @@ export class AdditionalDeclaration2Component implements OnInit {
       INVESTMENT_ACCOUNT_CONSTANTS.ADDITIONAL_DECLARATION_TWO.INVESTMENT_EARNINGS
     ) {
       this.additionDeclarationtwo.addControl(
-        'srcOfWealthInvestmentEarningsForm',
+        wealthInvEarnings,
         this.formBuilder.group({
           durationInvestmentWealth: ['', [Validators.required, this.minValueValidation]],
           earningsGeneratedWealth: ['', Validators.required]
         })
       );
-      this.additionDeclarationtwo.removeControl('srcOfWealthPersonalSavingForm');
-      this.additionDeclarationtwo.removeControl('srcOfWealthInheritanceGiftForm');
-      this.additionDeclarationtwo.removeControl('srcOfWealthOthersForm');
+      this.additionDeclarationtwo.removeControl(wealthPersonalSavings);
+      this.additionDeclarationtwo.removeControl(wealthInheritanceGift);
+      this.additionDeclarationtwo.removeControl(wealthOtherSources);
     }
     if (
       this.additionDeclarationtwo.controls.sourceOfWealth.value &&
@@ -390,14 +394,14 @@ export class AdditionalDeclaration2Component implements OnInit {
       INVESTMENT_ACCOUNT_CONSTANTS.ADDITIONAL_DECLARATION_TWO.OTHERS
     ) {
       this.additionDeclarationtwo.addControl(
-        'srcOfWealthOthersForm',
+        wealthOtherSources,
         this.formBuilder.group({
           otherSourcesWealth: ['', Validators.required]
         })
       );
-      this.additionDeclarationtwo.removeControl('srcOfWealthPersonalSavingForm');
-      this.additionDeclarationtwo.removeControl('srcOfWealthInvestmentEarningsForm');
-      this.additionDeclarationtwo.removeControl('srcOfWealthInheritanceGiftForm');
+      this.additionDeclarationtwo.removeControl(wealthPersonalSavings);
+      this.additionDeclarationtwo.removeControl(wealthInvEarnings);
+      this.additionDeclarationtwo.removeControl(wealthInheritanceGift);
     }
   }
 
