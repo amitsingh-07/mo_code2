@@ -91,6 +91,10 @@ h6 {
 a {
   text-decoration: none;
   background-color: transparent;
+
+  &:hover {
+    text-decoration: underline;
+  }
 }
 
 // end
