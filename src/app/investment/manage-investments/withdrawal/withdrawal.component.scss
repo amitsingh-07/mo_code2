@@ -61,6 +61,9 @@ app-withdrawal {
 
     a {
       color: #a7f3f1;
+      &:hover {
+        text-decoration: underline;
+      }
     }
   }
 
