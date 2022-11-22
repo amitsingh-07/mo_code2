@@ -664,23 +664,27 @@ app-your-portfolio {
         padding-bottom: 15px;
       }
       .withdrawal{
-        .card{
+        .accordion-item{
           border-radius: 8px;
           border: none !important;
-          .card-header {
+          .accordion-header {
             padding: 0;
             background: #ffffff;
             border-radius: 8px;
             border: none;
-            .btn{
+            .accordion-button{
               padding: 0;
               width: 100%;
-              &.btn-link{
-                  text-decoration: none !important;
+              background-color: $white-color;
+              .form-group-with-bg--header{
+                width: 100%;
+              }
+              &::after{
+                display: none;
               }
             }
           }
-          .card-body{
+          .accordion-body{
             padding: 0;
           }
         }

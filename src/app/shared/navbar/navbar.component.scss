@@ -311,9 +311,24 @@
 
 //wiseIncome Dropdown
 .wiseincome-dropdown {
-  position: absolute;
-  right: 10px;
-  top: 19px;
+  
+  .arrow {
+    border: solid$teal-color;
+    border-width: 0 2px 2px 0;
+    display: inline-block;
+    padding: 4px;
+    float: right;
+    transform: rotate(-135deg);
+    -webkit-transform: rotate(-135deg);
+    position: absolute;
+    right: 17px;
+    top: 28px;
+    &.collapsed {
+      transform: rotate(45deg);
+      -webkit-transform: rotate(45deg);
+      top: 25px;
+    }
+  }
 }
 .wiseincome-dropdown-item {
   position: absolute;

@@ -284,7 +284,7 @@
       <!-- lock icon -->
       <div class="navbar__lockIcon" *ngIf="showPaymentLockIcon"></div>
       <!--For WiseIncome Payout-->
-      <div class="wiseincome-dropdown" *ngIf="showDropDownIcon" (click)="wiseIncomeDropDown($event)"><i class="material-icons" *ngIf="!wiseIncomeDropDownShow">keyboard_arrow_down</i><i class="material-icons" *ngIf="wiseIncomeDropDownShow">keyboard_arrow_up</i></div>
+      <div class="wiseincome-dropdown" *ngIf="showDropDownIcon" (click)="wiseIncomeDropDown($event)"><i class='arrow collapsed' *ngIf="!wiseIncomeDropDownShow"></i><i class='arrow' *ngIf="wiseIncomeDropDownShow"></i></div>
       <div class="wiseincome-dropdown-item" *ngIf="wiseIncomeDropDownShow">
         <div class="scroll-to">Scrolls to:</div>
         <ul>
