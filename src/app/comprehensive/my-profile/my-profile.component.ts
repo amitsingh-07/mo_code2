@@ -158,6 +158,9 @@ export class MyProfileComponent implements IPageComponent, OnInit, OnDestroy {
                     this.myInfoService.getCorpBizMyInfoAccountCreateData(this.userDetails.email, this.userDetails.mobileNumber, this.isOrganisationEnabled)
                         .subscribe((data) => {
                             if (data.responseMessage.responseCode === 6000 && data && data['objectList'] && data['objectList'][0]) {
+                                if (Object.keys(signUpService.getCorpBizUserMyInfoData()).length > 0) {
+                                    signUpService.clearCorpbizSessionData();
+                                }
                                 comprehensiveService.isCFPAutofillMyInfoEnabled = true;
                                 signUpService.loadCorpBizUserMyInfoData(data['objectList'][0]);
                                 this.myInfoService.isMyInfoEnabled = false;
@@ -412,7 +415,7 @@ export class MyProfileComponent implements IPageComponent, OnInit, OnDestroy {
                         attributes = this.removeMyInfoAttributes(attributesFlags.vehicleFlag, COMPREHENSIVE_CONST.EXCLUDABLE_CFP_AUTOFILL_MY_INFO_ATTRIBUTES.VEHICLES, attributes);
                     }
                     this.myInfoService.setMyInfoAttributes(attributes);
-                    this.myInfoService.setMyInfoAppId(appConstants.MYINFO_CPF);
+                    this.myInfoService.setMyInfoAppId(appConstants.MYINFO_CFP);
                     this.myInfoService.goToMyInfo();
                 }).catch((e) => {
                 });

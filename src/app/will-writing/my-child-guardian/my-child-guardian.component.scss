@@ -257,10 +257,7 @@ app-my-child-guardian{
     }
     .dropdown-menu{
         @include allmobiles {
-            z-index: 998;
             max-height: 180px !important;
-            overflow: auto;
-            top: -186px !important;
         }
     }
 }

@@ -321,7 +321,7 @@ export class ComprehensiveService {
         dependant.dateOfBirth,
         new Date()
       );
-      const maxAge = dependant.gender.toLowerCase() === 'male' ? 21 : 19;
+      const maxAge = dependant && dependant.gender && dependant.gender.toLowerCase() === COMPREHENSIVE_CONST.GENDER.MALE ? 21 : 19;
       if (getAge < maxAge) {
         hasChildDependant = true;
         return;

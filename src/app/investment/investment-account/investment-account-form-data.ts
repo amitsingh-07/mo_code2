@@ -105,6 +105,14 @@ export class InvestmentAccountFormData {
   investmentEarnings: string;
   earningsGenerated: string;
   durationInvestment: number;
+  
+  // Source of Wealth fields
+  sourceOfWealth: string;
+  srcOfWealthPersonalSavings: string;
+  srcOfWealthOtherSources: string;
+  srcOfWealthInheritanceGift: string;
+  srcOfWealthEarningsGenerated: string;
+  srcOfWealthDurationInvestment: number;
 
   // Additional declaration PEP
   pepFullName: string;

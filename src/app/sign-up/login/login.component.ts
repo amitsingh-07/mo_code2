@@ -8,7 +8,6 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { TranslateService } from '@ngx-translate/core';
 import { mergeMap } from 'rxjs/operators';
-import { Subscription } from 'rxjs/internal/Subscription';
 
 import { SessionsService } from './../../shared/Services/sessions/sessions.service';
 import { appConstants } from '../../app.constants';
@@ -31,7 +30,7 @@ import { LoginFormError } from './login-form-error';
 import { SIGN_UP_CONFIG } from './../sign-up.constant';
 import { TermsModalComponent } from './../../shared/modal/terms-modal/terms-modal.component';
 import { LoginService } from './../login.service';
-
+import { SingpassService } from '../../singpass/singpass.service';
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
@@ -57,9 +56,8 @@ export class LoginComponent implements OnInit, AfterViewInit, OnDestroy {
   capsOn: boolean;
   capslockFocus: boolean;
   showPasswordLogin = true;
-  showSingpassLogin = false;
+  showSingpassLogin = true;
   singpassEnabled = true;
-  subscription: Subscription;
   isCorpBiz: boolean = false;
 
   @ViewChild('welcomeTitle') welcomeTitle: ElementRef;
@@ -69,10 +67,6 @@ export class LoginComponent implements OnInit, AfterViewInit, OnDestroy {
     if (/Android|Windows/.test(navigator.userAgent)) {
       this.welcomeTitle.nativeElement.scrollIntoView(true);
     }
-    if (window.matchMedia("(orientation: landscape)").matches && screen.width > 500) {
-      this.showPasswordLogin = true;
-      this.showSingpassLogin = false;
-   }
   }
 
   constructor(
@@ -93,7 +87,8 @@ export class LoginComponent implements OnInit, AfterViewInit, OnDestroy {
     private changeDetectorRef: ChangeDetectorRef,
     private loaderService: LoaderService,
     private helper: HelperService,
-    private loginService: LoginService) {
+    private loginService: LoginService,
+    private singpassService: SingpassService) {
     this.translate.use('en');
     this.translate.get('COMMON').subscribe((result: string) => {
       this.duplicateError = this.translate.instant('COMMON.DUPLICATE_ERROR');
@@ -118,12 +113,6 @@ export class LoginComponent implements OnInit, AfterViewInit, OnDestroy {
       this.signUpService.removeFromLoginPage();
       this.signUpService.removeFromMobileNumber();
     }
-    // Check if mobile device and set last login type
-    this.getSetLoginPref();
-    this.subscription = this.loginService.toogleLoginType$.subscribe(
-      (type) => {
-        this.toggleSingpass(type);
-      });
   }
   /**
     * Initialize tasks.
@@ -147,6 +136,7 @@ export class LoginComponent implements OnInit, AfterViewInit, OnDestroy {
         this.appService.clearData();
         this.appService.startAppSession();
         this.authService.authenticate().subscribe((token) => {
+          this.singpassService.getStateNonce();
           this.loaderService.hideLoader();
           const customError: IError = {
             error: [],
@@ -156,6 +146,7 @@ export class LoginComponent implements OnInit, AfterViewInit, OnDestroy {
         });
       } else {
         this.authService.authenticate().subscribe((token) => {
+          this.singpassService.getStateNonce();
           if (this.organisationEnabled && this.route.snapshot.queryParams.orgID) {
             this.getOrganisationCode();
           }
@@ -440,7 +431,6 @@ export class LoginComponent implements OnInit, AfterViewInit, OnDestroy {
 
   ngOnDestroy() {
     this.navbarService.unsubscribeBackPress();
-    this.subscription.unsubscribe();
   }
 
   markAllFieldsDirty(form) {
@@ -491,37 +481,4 @@ export class LoginComponent implements OnInit, AfterViewInit, OnDestroy {
       this.loginForm.controls[key].setValue(emailValue);
     }
   }
-
-  // Toggle UI for showing Singpass/Password Login
-  toggleSingpass(type:string, event?) {
-    if (type === SIGN_UP_CONFIG.SINGPASS) {
-      this.showSingpassLogin = true;
-      this.showPasswordLogin = false;
-    } else {
-      this.showPasswordLogin = true;
-      this.showSingpassLogin = false;
-    }
-    this.getSetLoginPref(type);
-    if(event) {
-      event.stopPropagation();
-      event.preventDefault();
-    }
-  }
-  // Get or set the login pref for mobile view
-  getSetLoginPref(type?: string) {
-    if (this.singpassEnabled) {
-      if (window.localStorage && screen.width < 500 && /Mobi|Android/i.test(navigator.userAgent)) {
-        if (type) {
-          if (type !== window.localStorage.getItem("LOGIN_PREFERENCE")) {
-            window.localStorage.setItem('LOGIN_PREFERENCE', type);
-          }
-        } else {
-          if (window.localStorage.getItem("LOGIN_PREFERENCE")) {
-            this.toggleSingpass(window.localStorage.getItem("LOGIN_PREFERENCE"));
-          }
-        }
-      }
-    }
-  }
-
 }

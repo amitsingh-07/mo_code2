@@ -1,52 +1,42 @@
-import { Component, OnInit, ViewEncapsulation, AfterViewInit, Input, OnDestroy } from '@angular/core';
+import { Component, OnInit, ViewEncapsulation, Input } from '@angular/core';
 import { TranslateService } from '@ngx-translate/core';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { Observable } from 'rxjs/internal/Observable';
 
-import { DynamicScriptLoaderService } from '../shared/Services/dynamic-script-loader.service';
 import { ModelWithButtonComponent } from '../shared/modal/model-with-button/model-with-button.component';
 import { SingpassService } from './singpass.service';
-
 @Component({
   selector: 'app-singpass',
   templateUrl: './singpass.component.html',
   styleUrls: ['./singpass.component.scss'],
   encapsulation: ViewEncapsulation.None
 })
-export class SingPassComponent implements OnInit, AfterViewInit, OnDestroy {
+export class SingPassComponent implements OnInit {
   @Input() showSingpassLogin: boolean;
+  loginUrl: Observable<any>;
   
   constructor(
     public translate: TranslateService,
     private modal: NgbModal,
-    private singpassService: SingpassService,
-    private dynamicScriptLoaderService: DynamicScriptLoaderService) {
+    private singpassService: SingpassService) {
     this.translate.use('en');
   }
 
   ngOnInit() {
-    
-  }
-
-  ngAfterViewInit() {
-    this.dynamicScriptLoaderService.load('singpass-ndi').then(data => {
-      // Script Loaded Successfully
-      if (data[0]['loaded']) {
-        this.singpassService.initSingPassQR();
-      }
-    }).catch(error => {});
-  }
-
-  ngOnDestroy() {
-    this.dynamicScriptLoaderService.unload('singpass-ndi').then(data => {
-    }).catch(error => {});
+    this.singpassService.getStateNonce();
   }
 
   openSingpassModal(event) {
-    const ref = this.modal.open(ModelWithButtonComponent, { centered: true });
+    const ref = this.modal.open(ModelWithButtonComponent, { centered: true,  windowClass: 'open-singpass-modal'});
     ref.componentInstance.errorTitle = this.translate.instant('LOGIN.SINGPASS_ACTIVATE_MODAL.TITLE');
     ref.componentInstance.errorMessageHTML = this.translate.instant('LOGIN.SINGPASS_ACTIVATE_MODAL.MESSAGE');
+    ref.componentInstance.primaryActionLabel = this.translate.instant('LOGIN.SINGPASS_ACTIVATE_MODAL.BTN_TXT');
     event.stopPropagation();
     event.preventDefault();
+  }
+
+  openSingpassLogin(){
+    this.singpassService.openSingpassUrl();
   }
 
 }

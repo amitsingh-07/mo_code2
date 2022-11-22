@@ -1,6 +1,6 @@
 import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import {
-    AbstractControl, FormBuilder, FormControl, FormGroup, ValidatorFn, Validators
+  AbstractControl, FormBuilder, FormGroup, Validators
 } from '@angular/forms';
 import { Router } from '@angular/router';
 import { NgbActiveModal, NgbModal } from '@ng-bootstrap/ng-bootstrap';
@@ -11,7 +11,7 @@ import { AuthenticationService } from '../../../shared/http/auth/authentication.
 import { ErrorModalComponent } from '../../../shared/modal/error-modal/error-modal.component';
 import { NavbarService } from '../../../shared/navbar/navbar.service';
 import {
-    AccountCreationErrorModalComponent
+  AccountCreationErrorModalComponent
 } from '../../investment-common/confirm-portfolio/account-creation-error-modal/account-creation-error-modal.component';
 import { INVESTMENT_ACCOUNT_ROUTE_PATHS } from '../investment-account-routes.constants';
 import { InvestmentAccountService } from '../investment-account-service';
@@ -33,6 +33,14 @@ export class AdditionalDeclaration2Component implements OnInit {
   generatedList;
   additionDeclarationtwo: FormGroup;
   formValues;
+  sourceOfInvestmentHelpModal: any = {
+    title: '',
+    desc: ''
+  };
+  sourceOfWealthHelpModal: any = {
+    title: '',
+    desc: ''
+  };
   constructor(
     public navbarService: NavbarService,
     public footerService: FooterService,
@@ -49,6 +57,10 @@ export class AdditionalDeclaration2Component implements OnInit {
     this.translate.use('en');
     this.translate.get('COMMON').subscribe((result: string) => {
       this.pageTitle = this.translate.instant('ADDITIONAL_DECLARATIONS_SCREEN_TWO.TITLE');
+      this.sourceOfInvestmentHelpModal.title = this.translate.instant('ADDITIONAL_DECLARATIONS_SCREEN_TWO.SOURCE_OF_INV_FUNDS_HELP.TITLE');
+      this.sourceOfInvestmentHelpModal.desc = this.translate.instant('ADDITIONAL_DECLARATIONS_SCREEN_TWO.SOURCE_OF_INV_FUNDS_HELP.DESC');
+      this.sourceOfWealthHelpModal.title = this.translate.instant('ADDITIONAL_DECLARATIONS_SCREEN_TWO.SOURCE_OF_WEALTH_HELP.TITLE');
+      this.sourceOfWealthHelpModal.desc = this.translate.instant('ADDITIONAL_DECLARATIONS_SCREEN_TWO.SOURCE_OF_WEALTH_HELP.DESC');
       this.setPageTitle(this.pageTitle);
     });
   }
@@ -76,7 +88,8 @@ export class AdditionalDeclaration2Component implements OnInit {
           Validators.required, this.minValueValidation
         ]
       ],
-      source: [this.formValues.source, Validators.required]
+      source: [this.formValues.source, Validators.required],
+      sourceOfWealth: [null, Validators.required]
     },
     );
     this.addAndRemoveSourseFields();
@@ -169,16 +182,17 @@ export class AdditionalDeclaration2Component implements OnInit {
       });
   }
 
-  selectInvestmentPeriod(key, value, nestedKey) {
-    this.additionDeclarationtwo.controls[nestedKey]['controls'][key].setValue(value);
-  }
   selectEarningsGenerated(key, value, nestedKey) {
     this.additionDeclarationtwo.controls[nestedKey]['controls'][key].setValue(value);
   }
 
   selectSource(key, value) {
     this.additionDeclarationtwo.controls[key].setValue(value);
-    this.addAndRemoveSourseFields();
+    if (key == 'sourceOfWealth') {
+      this.addAndRemoveSourceOfWealthFields();
+    } else {
+      this.addAndRemoveSourseFields();
+    }
   }
 
   markAllFieldsDirty(form) {
@@ -226,11 +240,11 @@ export class AdditionalDeclaration2Component implements OnInit {
           INVESTMENT_ACCOUNT_CONSTANTS.status.ddc_submitted
         );
         const isCpfEnabled = this.investmentCommonService.getInvestmentCommonFormData().portfolioDetails.fundingTypeValue === INVESTMENT_COMMON_CONSTANTS.FUNDING_METHODS.CPF_OA;
-        if(isCpfEnabled) {
+        if (isCpfEnabled) {
           this.investmentCommonService.getCKAAssessmentStatus().subscribe((res) => {
-            if((res.responseMessage.responseCode === 6000)) {
+            if ((res.responseMessage.responseCode === 6000)) {
               const cpfStatus = (res.objectList && res.objectList.cKAStatusMessage) ? res.objectList.cKAStatusMessage : '';
-              if (cpfStatus  === INVESTMENT_COMMON_CONSTANTS.CKA.CKA_BE_CERTIFICATE_UPLOADED) {
+              if (cpfStatus === INVESTMENT_COMMON_CONSTANTS.CKA.CKA_BE_CERTIFICATE_UPLOADED) {
                 this.updatePortfolioAccountStatus();
               } else {
                 this.router.navigate([INVESTMENT_ACCOUNT_ROUTE_PATHS.STATUS]);
@@ -276,7 +290,7 @@ export class AdditionalDeclaration2Component implements OnInit {
       autoHide: false
     });
     const param = this.constructUpdatePortfolioAccountStatusParams();
-        
+
     this.investmentCommonService.updatePortfolioStatus(param).subscribe((response) => {
       this.loaderService.hideLoaderForced();
       if (response.responseMessage.responseCode === 6000) {
@@ -296,7 +310,7 @@ export class AdditionalDeclaration2Component implements OnInit {
     return {
       customerPortfolioId: +this.formValues.recommendedCustomerPortfolioId,
     };
-  }  
+  }
 
   redirectToPortfolioInProgress() {
     this.router.navigate([INVESTMENT_ENGAGEMENT_JOURNEY_ROUTE_PATHS.PORTFOLIO_APP_INPROGRESS_SCREEN]);
@@ -309,4 +323,89 @@ export class AdditionalDeclaration2Component implements OnInit {
     this.investmentCommonService.clearAccountCreationActions();
   }
 
+  // MO2MP-6065 CHANGES
+
+  openHelpModal(source) {
+    const ref = this.modal.open(ErrorModalComponent, { centered: true });
+    if (source == 1) {
+      ref.componentInstance.errorTitle = this.sourceOfInvestmentHelpModal.title;
+      ref.componentInstance.errorDescription = this.sourceOfInvestmentHelpModal.desc;
+    } else if (source == 2) {
+      ref.componentInstance.errorTitle = this.sourceOfWealthHelpModal.title;
+      ref.componentInstance.errorDescription = this.sourceOfWealthHelpModal.desc;
+    }
+    return false;
+  }
+
+  addAndRemoveSourceOfWealthFields() {
+    const wealthPersonalSavings = 'srcOfWealthPersonalSavingForm';
+    const wealthInvEarnings = 'srcOfWealthInvestmentEarningsForm';
+    const wealthOtherSources = 'srcOfWealthOthersForm';
+    const wealthInheritanceGift = 'srcOfWealthInheritanceGiftForm'
+    if (
+      this.additionDeclarationtwo.controls.sourceOfWealth.value &&
+      this.additionDeclarationtwo.controls.sourceOfWealth.value.key ===
+      INVESTMENT_ACCOUNT_CONSTANTS.ADDITIONAL_DECLARATION_TWO.PERSONAL_SAVING
+    ) {
+      this.additionDeclarationtwo.addControl(
+        wealthPersonalSavings,
+        this.formBuilder.group({
+          personalSavingsWealth: ['', Validators.required]
+        })
+      );
+      this.additionDeclarationtwo.removeControl(wealthInvEarnings);
+      this.additionDeclarationtwo.removeControl(wealthInheritanceGift);
+      this.additionDeclarationtwo.removeControl(wealthOtherSources);
+    }
+    if (
+      this.additionDeclarationtwo.controls.sourceOfWealth.value &&
+      this.additionDeclarationtwo.controls.sourceOfWealth.value.key ===
+      INVESTMENT_ACCOUNT_CONSTANTS.ADDITIONAL_DECLARATION_TWO.GIFT_INHERITANCE
+    ) {
+      this.additionDeclarationtwo.addControl(
+        wealthInheritanceGift,
+        this.formBuilder.group({
+          inheritanceGiftWealth: ['', Validators.required]
+        })
+      );
+      this.additionDeclarationtwo.removeControl(wealthPersonalSavings);
+      this.additionDeclarationtwo.removeControl(wealthInvEarnings);
+      this.additionDeclarationtwo.removeControl(wealthOtherSources);
+    }
+    if (
+      this.additionDeclarationtwo.controls.sourceOfWealth.value &&
+      this.additionDeclarationtwo.controls.sourceOfWealth.value.key ===
+      INVESTMENT_ACCOUNT_CONSTANTS.ADDITIONAL_DECLARATION_TWO.INVESTMENT_EARNINGS
+    ) {
+      this.additionDeclarationtwo.addControl(
+        wealthInvEarnings,
+        this.formBuilder.group({
+          durationInvestmentWealth: ['', [Validators.required, this.minValueValidation]],
+          earningsGeneratedWealth: ['', Validators.required]
+        })
+      );
+      this.additionDeclarationtwo.removeControl(wealthPersonalSavings);
+      this.additionDeclarationtwo.removeControl(wealthInheritanceGift);
+      this.additionDeclarationtwo.removeControl(wealthOtherSources);
+    }
+    if (
+      this.additionDeclarationtwo.controls.sourceOfWealth.value &&
+      this.additionDeclarationtwo.controls.sourceOfWealth.value.key ===
+      INVESTMENT_ACCOUNT_CONSTANTS.ADDITIONAL_DECLARATION_TWO.OTHERS
+    ) {
+      this.additionDeclarationtwo.addControl(
+        wealthOtherSources,
+        this.formBuilder.group({
+          otherSourcesWealth: ['', Validators.required]
+        })
+      );
+      this.additionDeclarationtwo.removeControl(wealthPersonalSavings);
+      this.additionDeclarationtwo.removeControl(wealthInvEarnings);
+      this.additionDeclarationtwo.removeControl(wealthInheritanceGift);
+    }
+  }
+
+  getInlineErrorStatus(control) {
+    return !control.pristine && !control.valid;
+  }
 }

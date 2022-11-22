@@ -48,13 +48,13 @@ export class TestMyInfoComponent implements OnInit {
     this.project = this.route.snapshot.queryParams.project;
     if (this.project === 'robo2') {
       this.myInfoAttributes = this.robo2Attributes;
-      this.myInfoFlow = appConstants.MYINFO_ROBO2;
+      this.myInfoFlow = appConstants.MYINFO_INVEST;
     } else if (this.project === 'corpbiz') {
       this.myInfoAttributes = this.corpBizAttributes;
       this.myInfoFlow = appConstants.MYINFO_CORPBIZ_SIGNUP;
     } else {
       this.myInfoAttributes.push(this.corpBizAttributes[0]); // Get CPF Balances
-      this.myInfoFlow = appConstants.MYINFO_CPF;
+      this.myInfoFlow = appConstants.MYINFO_CFP;
     }
     this.authService.authenticate().subscribe((token) => {
     });
