@@ -45,17 +45,17 @@ export class HospitalPlanFormComponent implements OnInit, OnDestroy {
       this.planType = this.translate.instant('DIRECT_HOSPITAL_PLAN.HOSPITAL_PLANS');
       this.radioLabelValue = [{
         name: this.translate.instant('COMMON.LBL_MALE'),
-        value: 'male'
+        value: this.translate.instant('COMMON.LBL_MALE_VALUE')
       }, {
         name: this.translate.instant('COMMON.LBL_FEMALE'),
-        value: 'female'
+        value: this.translate.instant('COMMON.LBL_FEMALE_VALUE')
       }];
       this.radioLabelValueRider = [{
         name: this.translate.instant('COMMON.LBL_YES'),
-        value: true
+        value: this.translate.instant('COMMON.LBL_TRUE_VALUE')
       }, {
         name: this.translate.instant('COMMON.LBL_NO'),
-        value: false
+        value: this.translate.instant('COMMON.LBL_FALSE_VALUE')
       }];
       this.defaultRadioStyleClass = 'direct-form-btn--radio btn';
     });

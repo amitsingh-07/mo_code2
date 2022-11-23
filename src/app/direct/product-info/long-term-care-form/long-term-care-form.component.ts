@@ -45,17 +45,17 @@ export class LongTermCareFormComponent implements OnInit, OnDestroy {
     this.translate.get('COMMON').subscribe((result: string) => {
       this.radioLabelValue = [{
         name: this.translate.instant('COMMON.LBL_MALE'),
-        value: 'male',
+        value: this.translate.instant('COMMON.LBL_MALE_VALUE')
       }, {
         name: this.translate.instant('COMMON.LBL_FEMALE'),
-        value: 'female'
+        value: this.translate.instant('COMMON.LBL_FEMALE_VALUE')
       }];
       this.radioLabelValuePayoutType = [{
         name: this.translate.instant('LONG_TERM_CARE.PAYOUT_TYPE_1'),
-        value: 'Escalating',
+        value: this.translate.instant('LONG_TERM_CARE.PAYOUT_TYPE_1')
       }, {
         name: this.translate.instant('LONG_TERM_CARE.PAYOUT_TYPE_2'),
-        value: 'Level'
+        value: this.translate.instant('LONG_TERM_CARE.PAYOUT_TYPE_2')
       }];
       this.defaultRadioStyleClass = 'direct-form-btn--radio btn';
     });

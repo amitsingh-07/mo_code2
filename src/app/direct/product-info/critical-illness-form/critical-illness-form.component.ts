@@ -33,7 +33,6 @@ export class CriticalIllnessFormComponent implements OnInit, OnDestroy {
   minDate;
   maxDate;
   radioLabelValue = [];
-  radioLabelValueSmoker = [];
   radioLabelValueEarlyCI =[];
   defaultRadioStyleClass: any;
   private userInfoSubscription: Subscription;
@@ -55,24 +54,17 @@ export class CriticalIllnessFormComponent implements OnInit, OnDestroy {
     this.translate.get('COMMON').subscribe((result: string) => {
       this.radioLabelValue = [{
         name: this.translate.instant('COMMON.LBL_MALE'),
-        value: 'male',
+        value: this.translate.instant('COMMON.LBL_MALE_VALUE')
       }, {
         name: this.translate.instant('COMMON.LBL_FEMALE'),
-        value: 'female'
-      }];
-      this.radioLabelValueSmoker = [{
-        name: this.translate.instant('COMMON.LBL_NONSMOKER'),
-        value: 'nonsmoker',
-      }, {
-        name: this.translate.instant('COMMON.LBL_SMOKER'),
-        value: 'smoker'
+        value: this.translate.instant('COMMON.LBL_FEMALE_VALUE')
       }];
       this.radioLabelValueEarlyCI = [{
         name: this.translate.instant('COMMON.LBL_YES'),
-        value: 'yes',
+        value: this.translate.instant('COMMON.LBL_YES_VALUE')
       }, {
         name: this.translate.instant('COMMON.LBL_NO'),
-        value: 'no'
+        value: this.translate.instant('COMMON.LBL_NO_VALUE')
       }];
       this.defaultRadioStyleClass = 'direct-form-btn--radio btn';
     });    

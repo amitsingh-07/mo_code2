@@ -52,10 +52,10 @@ export class SrsApprovedPlansFormComponent implements OnInit, OnDestroy {
       this.payoutType = '';
       this.radioLabelValue = [{
         name: this.translate.instant('COMMON.LBL_MALE'),
-        value: 'male',
+        value: this.translate.instant('COMMON.LBL_MALE_VALUE')
       }, {
         name: this.translate.instant('COMMON.LBL_FEMALE'),
-        value: 'female'
+        value: this.translate.instant('COMMON.LBL_FEMALE_VALUE')
       }];
       this.defaultRadioStyleClass = 'direct-form-btn--radio btn';
     });
