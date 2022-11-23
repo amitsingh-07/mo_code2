@@ -217,13 +217,13 @@ export function tokenGetterFn() {
       multi: true,
       deps: [Injector]  
     },
-    { provide: APP_BASE_HREF, useValue: '/app/' },
+    { provide: APP_BASE_HREF, useValue: '/app' },
     NgbActiveModal,
     AuthenticationService, CustomErrorHandlerService, RequestCache,
     AppService, TitleCasePipe, PendingChangesGuard, DefaultErrors,
     ArticleService,
     { provide: LoggerService, useClass: ConsoleLoggerService },
-    { provide: LocationStrategy, useClass: PathLocationStrategy },
+    //{ provide: LocationStrategy, useClass: PathLocationStrategy },
     {
       provide: HAMMER_GESTURE_CONFIG,
       useClass: HammerConfig
