@@ -1473,7 +1473,7 @@ input::placeholder {
   }
 
   .view-mode .input-group-append {
-    margin-left: 0;
+    margin-left: 0 !important;
   }
 
   .earn-btn-dropdown:disabled {

@@ -106,6 +106,9 @@ app-transactions {
         color: $secondary-action-color;
         border-bottom: 6px solid $secondary-action-color;
       }
+      &:hover{
+        text-decoration: none;
+      }
     }
 
     .transction-screen {

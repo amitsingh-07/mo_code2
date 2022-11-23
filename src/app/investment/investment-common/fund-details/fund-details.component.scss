@@ -247,6 +247,9 @@ app-fund-details {
               background-color: $white-color;
               box-shadow: 0 -3px 5px 0 rgba(0, 0, 0, 0.15);
             }
+            &:hover{
+              text-decoration: none;
+            }
             @include allmobiles{
               width: calc(50% - 5px);
             }
