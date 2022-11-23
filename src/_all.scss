@@ -87,7 +87,6 @@ h6 {
   padding-left: 15px;
 }
 
-
 a {
   text-decoration: none;
   background-color: transparent;
@@ -97,6 +96,15 @@ a {
   }
 }
 
+hr{
+  opacity: 1;
+}
+
+.nav-tabs{
+  .nav-link{
+    transition: none;
+  }
+}
 // end
 .navbar {
   padding-left: 0;
