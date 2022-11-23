@@ -189,21 +189,6 @@ app-your-portfolio {
       @include allmobiles{
         margin-bottom: 15px;
       }
-         // li{
-        //   &:first-child{
-        //     width: 20%;
-        //     @include allmobiles{
-        //       width: 50%;
-        //       padding-left: 5px;
-        //     }
-        //   }
-        //   &:last-child{
-        //     width: 35%;
-        //     @include allmobiles{
-        //       width: 50%;
-        //     }
-        //   }
-        // }
         .nav-link {
           border: none;
           color: #ffffff;
@@ -228,6 +213,9 @@ app-your-portfolio {
             @include allmobiles{
               width: 50%;
             }
+          }
+          &:hover{
+            text-decoration: none;
           }
           &.active {
             color: #ffffff;
@@ -678,6 +666,11 @@ app-your-portfolio {
               background-color: $white-color;
               .form-group-with-bg--header{
                 width: 100%;
+                .downward-icon{
+                  @include allmobiles{
+                    right: 0;
+                  }
+                }
               }
               &::after{
                 display: none;

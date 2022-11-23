@@ -124,6 +124,9 @@ app-wise-income-payout {
                     &:last-child{
                         border-right: none;
                     }
+                    &:hover{
+                        text-decoration: none;
+                    }
                 }
             }
         }

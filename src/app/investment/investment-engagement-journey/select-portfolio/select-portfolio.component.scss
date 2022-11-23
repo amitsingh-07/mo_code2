@@ -257,6 +257,9 @@ app-select-portfolio {
             background-color: $robins-egg-blue-color;
             border: 1px solid $robins-egg-blue-color;
           }
+          &:hover{
+            text-decoration: none;
+          }
         }
     }
   }
