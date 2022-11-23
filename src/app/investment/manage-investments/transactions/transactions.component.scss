@@ -101,6 +101,7 @@ app-transactions {
       display: flex;
       align-items: center;
       justify-content: center;
+      border-radius: 0;
 
       &.active {
         color: $secondary-action-color;
