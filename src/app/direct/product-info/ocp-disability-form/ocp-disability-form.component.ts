@@ -56,6 +56,8 @@ export class OcpDisabilityFormComponent implements OnInit, AfterViewInit, OnDest
       }
     }
   };
+  radioLabelValue = [];
+  defaultRadioStyleClass: any;
   constructor(
     private directService: DirectService, private modal: NgbModal,
     private parserFormatter: NgbDateParserFormatter,
@@ -69,6 +71,14 @@ export class OcpDisabilityFormComponent implements OnInit, AfterViewInit, OnDest
     this.translate.get('COMMON').subscribe((result: string) => {
       this.employmentTypeList = this.translate.instant('OCCUPATIONAL_DISABILITY.EMPLOYMENT_TYPE_LIST');
       this.durationValues = this.translate.instant('OCCUPATIONAL_DISABILITY.DURATION_VALUES');
+      this.radioLabelValue = [{
+        name: this.translate.instant('COMMON.LBL_MALE'),
+        value: this.translate.instant('COMMON.LBL_MALE_VALUE')
+      }, {
+        name: this.translate.instant('COMMON.LBL_FEMALE'),
+        value: this.translate.instant('COMMON.LBL_FEMALE_VALUE')
+      }];
+      this.defaultRadioStyleClass = 'direct-form-btn--radio btn';
     });
   }
 

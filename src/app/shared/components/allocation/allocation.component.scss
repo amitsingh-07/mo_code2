@@ -95,18 +95,18 @@ app-allocation {
                         font-family: $muli-semi-bold;
                     }
                 }
-                .card {
+                .accordion-item {
                     border: none;
                     border-bottom-right-radius: 6px;
                     border-bottom-left-radius: 6px;
                     background-color: $bonds-equity-card-bg-color;
-                    .card-header {
+                    .accordion-header {
                         display: none;
                         .btn {
                             color: $bonds-equity-card-btn-color;
                         }
                     }
-                    .card-body {
+                    .accordion-body {
                         padding: 0;
                         margin-bottom: 20px;
                         border-bottom-left-radius: 6px;
@@ -158,7 +158,7 @@ app-allocation {
             font-size: 18px;
             font-weight: 400;
             letter-spacing: -0.2px;
-            color: $bonds-btn-txt-color;
+            color: $bonds-btn-txt-color !important;
             border-top-left-radius: 0;
             border-top-right-radius: 0;
             background-color: $bonds-btn-bg-color;
@@ -179,16 +179,16 @@ app-allocation {
                     margin-bottom: 15px;
                     color: $bonds-progress-txt-color;
                 }
-                .card {
+                .accordion-item {
                     margin-bottom: 10px;
                     border-radius: 6px !important;
                     border: solid 1px $bonds-equity-title-border-color;
                     background-color: $bonds-equity-card-bg-color;
-                    .card-header {
+                    .accordion-header {
                         padding: 0 !important;
-                        border: solid 1px $bonds-equity-title-border-color;
-                        background-color: $bonds-equity-bg-color !important;
-                        .btn-link {
+                        // border: solid 1px $bonds-equity-title-border-color;
+                        // background-color: $bonds-equity-bg-color !important;
+                        .accordion-button  {
                             padding: 11px 20px !important;
                             width: 100%;
                             font-size: 18px;
@@ -196,6 +196,8 @@ app-allocation {
                             line-height: normal;
                             letter-spacing: -0.3px;
                             color: $white-color !important;
+                            border: solid 1px $bonds-equity-title-border-color;
+                            background-color: $bonds-equity-bg-color !important;
                             .arrow {
                                 border: solid $white-color;
                                 border-width: 0 2px 2px 0;
@@ -234,9 +236,12 @@ app-allocation {
                                 margin-top: 4px;
                                 margin-right: 10px;
                             }
+                            &::after{
+                                display: none;
+                            }
                         }
                     }
-                    .card-body {
+                    .accordion-body {
                         padding: 0px;
                         .tab-content {
                             padding: 15px;
@@ -246,6 +251,7 @@ app-allocation {
                             line-height: 1.64;
                             letter-spacing: -0.13px;
                             color: $black-color;
+                            border-radius: 6px;
                         }
                     }
                 }

@@ -7,6 +7,7 @@ import { ErrorModalComponent } from '../../../shared/modal/error-modal/error-mod
 import { NgbDateCustomParserFormatter } from '../../../shared/utils/ngb-date-custom-parser-formatter';
 import { GUIDE_ME_ROUTE_PATHS } from '../../guide-me-routes.constants';
 import { GuideMeService } from '../../guide-me.service';
+import { TranslateService } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-get-started-form',
@@ -27,6 +28,9 @@ export class GetStartedFormComponent implements OnInit {
   doberror = false;
   minDate;
   maxDate;
+  radioLabelValue = [];
+  defaultRadioStyleClass: any;
+  
 
   constructor(
     private router: Router,
@@ -34,11 +38,23 @@ export class GetStartedFormComponent implements OnInit {
     private guideMeService: GuideMeService,
     private parserFormatter: NgbDateParserFormatter,
     private formBuilder: FormBuilder,
-    private config: NgbDatepickerConfig) {
+    private config: NgbDatepickerConfig,
+    public readonly translate: TranslateService) {
     const today: Date = new Date();
     this.minDate = { year: (today.getFullYear() - 100), month: (today.getMonth() + 1), day: today.getDate() };
     this.maxDate = { year: today.getFullYear(), month: (today.getMonth() + 1), day: today.getDate() };
     config.outsideDays = 'collapsed';
+    this.translate.get('COMMON').subscribe((result: string) => {
+      this.radioLabelValue = [{
+        name: this.translate.instant('COMMON.LBL_MALE'),
+        value: this.translate.instant('COMMON.LBL_MALE_VALUE'),
+        conditionalClass: { matchValue : true, applyClass: 'mr17' }
+      }, {
+        name: this.translate.instant('COMMON.LBL_FEMALE'),
+        value: this.translate.instant('COMMON.LBL_FEMALE_VALUE')
+      }];
+      this.defaultRadioStyleClass = 'btn-outline-primary fixed-btn--sm';
+    });
   }
 
   ngOnInit() {

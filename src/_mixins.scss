@@ -169,7 +169,7 @@ $desktop-width: 1024px;
 //Responsive font conversion
 //--------------------------
 @function fontRem($size) {
-$remSize: $size / 10px;
+$remSize: calc($size / 10px);
 @return #{$remSize}rem;
 }
 @mixin fontSize($size) {
@@ -181,7 +181,7 @@ font-size: fontRem($size);
 //Responsive Line heights conversion
 //-----------------------------------
 @function lineHeightRem($size) {
-$remSize: $size / 10px;
+$remSize: calc($size / 10px);
 @return #{$remSize}rem;
 }
 @mixin lineHeight($size) {

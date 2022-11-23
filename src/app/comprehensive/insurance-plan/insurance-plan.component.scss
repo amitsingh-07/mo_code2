@@ -72,19 +72,23 @@
       margin-bottom: 40px!important;
     }
   }
-  .insurance-input-radio{
-    .flex-col-4,.flex-col-6{
-      padding-right: 10px;
-      max-width: 105px;
-      @include iphone5 {
-        max-width: 82px;
+  .btn-group--toggle{
+    .custom-radio-btn{
+       &.insurance-input-radio{
+        .flex-col-4,.flex-col-6{
+          padding-right: 10px;
+          max-width: 105px !important;
+          @include iphone5 {
+            max-width: 82px;
+          }
+          @include min360{
+            max-width:105px;
+          }
+        }
       }
-      @include min360{
-        max-width:105px;
+      .flex-col-4:last-child,.flex-col-6:last-child {
+        padding-right: 0px;
       }
-    }
-    .flex-col-4:last-child,.flex-col-6:last-child {
-      padding-right: 0px;
     }
   }
   .insurancePlanForm{
