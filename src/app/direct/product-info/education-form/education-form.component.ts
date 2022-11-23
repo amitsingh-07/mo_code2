@@ -44,10 +44,10 @@ export class EducationFormComponent implements OnInit, OnDestroy {
     this.translate.get('COMMON').subscribe((result: string) => {
       this.radioLabelValue = [{
         name: this.translate.instant('COMMON.LBL_MALE'),
-        value: 'male',
+        value: this.translate.instant('COMMON.LBL_MALE_VALUE')
       }, {
         name: this.translate.instant('COMMON.LBL_FEMALE'),
-        value: 'female'
+        value: this.translate.instant('COMMON.LBL_FEMALE_VALUE')
       }];
       this.defaultRadioStyleClass = 'direct-form-btn--radio btn';
     });

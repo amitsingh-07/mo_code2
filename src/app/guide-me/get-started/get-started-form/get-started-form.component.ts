@@ -28,22 +28,9 @@ export class GetStartedFormComponent implements OnInit {
   doberror = false;
   minDate;
   maxDate;
-  radioLabelValue = [{
-    name: this.translate.instant('LABEL.MALE'),
-    value: 'male',
-    conditionalClass: { matchValue : true, applyClass: 'mr17' }
-  }, {
-    name: this.translate.instant('LABEL.FEMALE'),
-    value: 'female'
-  }];
-  radioLabelValueSmoker = [{
-    name: this.translate.instant('LABEL.NON_SMOKER'),
-    value: 'non-smoker',
-  }, {
-    name: this.translate.instant('LABEL.SMOKER'),
-    value: 'smoker'
-  }];
-  defaultRadioStyleClass = 'btn-outline-primary fixed-btn--sm';
+  radioLabelValue = [];
+  defaultRadioStyleClass: any;
+  
 
   constructor(
     private router: Router,
@@ -57,6 +44,17 @@ export class GetStartedFormComponent implements OnInit {
     this.minDate = { year: (today.getFullYear() - 100), month: (today.getMonth() + 1), day: today.getDate() };
     this.maxDate = { year: today.getFullYear(), month: (today.getMonth() + 1), day: today.getDate() };
     config.outsideDays = 'collapsed';
+    this.translate.get('COMMON').subscribe((result: string) => {
+      this.radioLabelValue = [{
+        name: this.translate.instant('COMMON.LBL_MALE'),
+        value: this.translate.instant('COMMON.LBL_MALE_VALUE'),
+        conditionalClass: { matchValue : true, applyClass: 'mr17' }
+      }, {
+        name: this.translate.instant('COMMON.LBL_FEMALE'),
+        value: this.translate.instant('COMMON.LBL_FEMALE_VALUE')
+      }];
+      this.defaultRadioStyleClass = 'btn-outline-primary fixed-btn--sm';
+    });
   }
 
   ngOnInit() {

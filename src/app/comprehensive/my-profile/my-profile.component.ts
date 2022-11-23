@@ -71,6 +71,8 @@ export class MyProfileComponent implements IPageComponent, OnInit, OnDestroy {
     isOrganisationEnabled: boolean;
     differentNricError: any;
     myinfoModalDesc: string;
+    radioLabelValue = [];
+    defaultRadioStyleClass: any;
 
     @HostListener('window:popstate', ['$event'])
     onPopState(event) {
@@ -82,15 +84,6 @@ export class MyProfileComponent implements IPageComponent, OnInit, OnDestroy {
         this.showToolTip = false;
     }
 
-    radioLabelValue = [{
-        name: this.translate.instant('LABEL.MALE'),
-        value: 'male',
-        conditionalClass: { matchValue : 'male', applyClass: 'mr5' }
-      }, {
-        name: this.translate.instant('LABEL.FEMALE'),
-        value: 'female'
-      }];
-      defaultRadioStyleClass = 'btn-outline-primary fixed-btn--sm-comprehensive';
 
     // tslint:disable-next-line: parameters-max-number
     constructor(
@@ -145,6 +138,17 @@ export class MyProfileComponent implements IPageComponent, OnInit, OnDestroy {
                     'CMP.GETTING_STARTED.CFP_AUTOFILL.MY_INFO_MODAL.MY_INFO_DESC'
                 );
                 this.setPageTitle(this.pageTitle);
+            });
+            this.translate.get('COMMON').subscribe((result: string) => {
+                this.radioLabelValue = [{
+                    name: this.translate.instant('COMMON.LBL_MALE'),
+                    value: this.translate.instant('COMMON.LBL_MALE_VALUE'),
+                    conditionalClass: { matchValue: 'male', applyClass: 'mr5' }
+                }, {
+                    name: this.translate.instant('COMMON.LBL_FEMALE'),
+                    value: this.translate.instant('COMMON.LBL_FEMALE_VALUE')
+                }];
+                this.defaultRadioStyleClass = 'btn-outline-primary fixed-btn--sm-comprehensive';
             });
         });
 

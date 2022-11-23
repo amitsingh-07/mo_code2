@@ -57,17 +57,17 @@ export class LifeProtectionFormComponent implements OnInit, OnDestroy {
     this.translate.get('COMMON').subscribe((result: string) => {
     this.radioLabelValue = [{
       name: this.translate.instant('COMMON.LBL_MALE'),
-      value: 'male'
+      value: this.translate.instant('COMMON.LBL_MALE_VALUE')
     }, {
       name: this.translate.instant('COMMON.LBL_FEMALE'),
-      value: 'female'
+      value: this.translate.instant('COMMON.LBL_FEMALE_VALUE')
     }];
     this.radioLabelValueIsEarlyCI = [{
       name: this.translate.instant('COMMON.LBL_YES'),
-      value: 'yes'
+      value: this.translate.instant('COMMON.LBL_YES_VALUE')
     }, {
       name: this.translate.instant('COMMON.LBL_NO'),
-      value: 'no'
+      value: this.translate.instant('COMMON.LBL_NO_VALUE')
     }];
     this.defaultRadioStyleClass = 'direct-form-btn--radio btn';
   });
