@@ -479,7 +479,7 @@ hr{
             color: $teal-color;
 
             &:after {
-              background-image: url("/assets/images/nav-dropdown-icon.svg");
+              background-image: url("./assets/images/nav-dropdown-icon.svg");
             }
 
             &:hover {
@@ -514,7 +514,7 @@ hr{
             background-color: $white-color;
 
             &::after {
-              background-image: url('/assets/images/nav-dropdown-icon.svg');
+              background-image: url('./assets/images/nav-dropdown-icon.svg');
               top: 27px;
             }
           }
@@ -850,7 +850,7 @@ hr{
       }
 
       &::after {
-        background-image: url('/assets/images/nav-dropdown-icon.svg');
+        background-image: url('./assets/images/nav-dropdown-icon.svg');
         background-size: 12px 8px;
         background-repeat: no-repeat;
         width: 15px;
@@ -1094,14 +1094,14 @@ hr{
 }
 
 .navbar__logo--primary {
-  background-image: url("/assets/images/logo--primary.svg");
+  background-image: url("./assets/images/logo--primary.svg");
   width: 180px;
   height: 45px;
   background-repeat: no-repeat;
 }
 
 .navbar__corp--logo--primary {
-  background-image: url("/assets/images/logo--corporate.svg");
+  background-image: url("./assets/images/logo--corporate.svg");
   width: 187.4px;
   height: 35px;
   background-repeat: no-repeat;
