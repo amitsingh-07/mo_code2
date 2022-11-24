@@ -17,6 +17,7 @@
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
+              "baseHref": "/app",
               "allowedCommonJsDependencies": [
                 "deepmerge",
                 "nouislider",
@@ -319,5 +320,7 @@
       }
     }
   },
-  "defaultProject": "bfa-frontend"
+  "cli": {
+    "analytics": false
+  }
 }
