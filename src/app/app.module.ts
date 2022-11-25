@@ -22,12 +22,8 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { appConstants } from './app.constants';
 import { AppService } from './app.service';
-import { ArticleChildEnableGuard } from './article/article-child-enable-guard';
-import { ArticleEnableGuard } from './article/article-enable-guard';
-import { ArticleService } from './article/article.service';
 import { CallBackComponent } from './call-back/call-back.component';
 import { PendingChangesGuard } from './changes.guard';
-import { FAQComponent } from './faq/faq.component';
 import { HelpModalComponent } from './guide-me/help-modal/help-modal.component';
 import {
   ExistingCoverageModalComponent
@@ -60,8 +56,6 @@ import {
   RestrictAddPortfolioModalComponent
 } from './investment/manage-investments/investment-overview/restrict-add-portfolio-modal/restrict-add-portfolio-modal.component';
 import { NotFoundComponent } from './not-found/not-found.component';
-import { PromotionChildEnableGuard } from './promotion/promotion-child-enable-guard';
-import { PromotionEnableGuard } from './promotion/promotion-enable-guard';
 import { TermsComponent } from './shared/components/terms/terms.component';
 import {
   WillDisclaimerComponent
@@ -76,7 +70,6 @@ import { ConsoleLoggerService } from './shared/logger/console-logger.service';
 import { LoggerService } from './shared/logger/logger.service';
 import { BankDetailsComponent } from './shared/modal/bank-details/bank-details.component';
 import { ConfirmationModalComponent } from './shared/modal/confirmation-modal/confirmation-modal.component';
-import { DiyModalComponent } from './shared/modal/diy-modal/diy-modal.component';
 import { DefaultErrors } from './shared/modal/error-modal/default-errors';
 import { ErrorModalComponent } from './shared/modal/error-modal/error-modal.component';
 import { LoaderComponent } from './shared/modal/loader/loader.component';
@@ -86,7 +79,6 @@ import {
 import {
   PaymentInstructionModalComponent
 } from './shared/modal/payment-instruction-modal/payment-instruction-modal.component';
-import { PopupModalComponent } from './shared/modal/popup-modal/popup-modal.component';
 import {
   RecommendationsModalComponent
 } from './shared/modal/recommendations-modal/recommendations-modal.component';
@@ -97,7 +89,7 @@ import { ComprehensiveEnableGuard } from './comprehensive/comprehensive-enable-g
 import { EmailEnquirySuccessComponent } from './email-enquiry-success/email-enquiry-success.component';
 import { ExternalRouteGuard } from './external-route-guard';
 import { InvestmentMaintenanceGuard } from './investment-maintenance/investment-maintenance-guard';
-import { InvestmentMaintenanceComponent } from './investment-maintenance/investment-maintenance.component';
+import { InvestmentMaintenanceComponent } from './investment-maintenance/investment-maintenance.component';
 import { PaymentChildEnableGuard } from './payment/payment-child-enable-guard';
 import { PaymentEnableGuard } from './payment/payment-enable-guard';
 import {
@@ -140,8 +132,7 @@ export function createTranslateLoader(http: HttpClient) {
     http,
     [
       { prefix: './assets/i18n/app/', suffix: '.json' },
-      { prefix: './assets/i18n/home/', suffix: '.json' },
-      { prefix: './assets/i18n/faq/', suffix: '.json' }
+      { prefix: './assets/i18n/home/', suffix: '.json' }
     ]);
 }
 
@@ -165,7 +156,6 @@ export function tokenGetterFn() {
     CreateAccountModelComponent,
     LoginCreateAccountModelComponent,
     ExistingCoverageModalComponent,
-    PopupModalComponent,
     SuccessModalComponent,
     RestrictAlphabetsDirective,
     HeaderComponent,
@@ -175,11 +165,9 @@ export function tokenGetterFn() {
     UrlRedirectComponent,
     TestMyInfoComponent,
     TransactionModalComponent,
-    FAQComponent,
     FundDetailsComponent,
     UnsupportedDeviceModalComponent,
     SummaryModalComponent,
-    DiyModalComponent,
     NotFoundComponent,
     EmailEnquirySuccessComponent,
     RestrictAddPortfolioModalComponent,
@@ -221,7 +209,6 @@ export function tokenGetterFn() {
     NgbActiveModal,
     AuthenticationService, CustomErrorHandlerService, RequestCache,
     AppService, TitleCasePipe, PendingChangesGuard, DefaultErrors,
-    ArticleService,
     { provide: LoggerService, useClass: ConsoleLoggerService },
     { provide: LocationStrategy, useClass: PathLocationStrategy },
     {
@@ -239,10 +226,6 @@ export function tokenGetterFn() {
     InvestmentChildEnableGuard,
     WillWritingEnableGuard,
     WillWritingChildEnableGuard,
-    PromotionEnableGuard,
-    PromotionChildEnableGuard,
-    ArticleEnableGuard,
-    ArticleChildEnableGuard,
     SignUpService,
     ComprehensiveEnableGuard,
     ComprehensiveChildEnableGuard,
@@ -255,7 +238,7 @@ export function tokenGetterFn() {
   ],
   bootstrap: [AppComponent],
   entryComponents: [RefereeComponent,HelpModalComponent, LoaderComponent, ErrorModalComponent, BankDetailsComponent, ToolTipModalComponent, ModelWithButtonComponent,
-    LifeProtectionModalComponent, MobileModalComponent, InsuranceResultModalComponent, PopupModalComponent, DiyModalComponent,
+    LifeProtectionModalComponent, MobileModalComponent, InsuranceResultModalComponent,
     CreateAccountModelComponent, ExistingCoverageModalComponent, RecommendationsModalComponent, TermsModalComponent,
     SettingsWidgetComponent, ConfirmationModalComponent, TermsComponent, WillDisclaimerComponent, TransactionModalComponent,
     FundDetailsComponent, UnsupportedDeviceModalComponent, RestrictAddPortfolioModalComponent,
