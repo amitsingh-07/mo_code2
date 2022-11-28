@@ -45,7 +45,7 @@ export class AboutMeComponent implements OnInit, OnDestroy {
   fromConfirmationPage = this.willWritingService.fromConfirmationPage;
 
   radioLabelValue = [];
-  defaultRadioStyleClass: any;
+  defaultRadioStyleClass = 'direct-form-btn--radio';
 
   constructor(
     private appService: AppService,
@@ -75,7 +75,6 @@ export class AboutMeComponent implements OnInit, OnDestroy {
         value: this.translate.instant('COMMON.LBL_FEMALE_VALUE'),
         conditionalClass: { matchValue : 'female', applyClass: 'female' }
       }];
-      this.defaultRadioStyleClass = 'direct-form-btn--radio';
     });
   }
 

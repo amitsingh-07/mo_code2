@@ -34,7 +34,7 @@ export class CriticalIllnessFormComponent implements OnInit, OnDestroy {
   maxDate;
   radioLabelValue = [];
   radioLabelValueEarlyCI =[];
-  defaultRadioStyleClass: any;
+  defaultRadioStyleClass = 'direct-form-btn--radio btn';
   private userInfoSubscription: Subscription;
   
   @Output() formSubmitted: EventEmitter<any> = new EventEmitter();

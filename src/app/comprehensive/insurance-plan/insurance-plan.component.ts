@@ -49,7 +49,7 @@ export class InsurancePlanComponent implements OnInit, OnDestroy {
   radioLabelValue = [];
   radioLabelValueRider = [];
   radioLabelValueLTESAmt = [];
-  defaultRadioStyleClass: any;
+  defaultRadioStyleClass = 'btn-outline-primary fixed-btn--sm-comprehensive';
 
   constructor(
     private navbarService: NavbarService, private progressService: ProgressTrackerService,
@@ -75,16 +75,14 @@ export class InsurancePlanComponent implements OnInit, OnDestroy {
       this.translate.get('COMMON').subscribe((result: string) => {
         this.radioLabelValue = [{
           name: this.translate.instant('COMMON.LBL_YES'),
-          value: this.translate.instant('COMMON.LBL_TRUE_VALUE'),
-          conditionalClass: { matchValue: true, applyClass: 'mr5' }
+          value: this.translate.instant('COMMON.LBL_TRUE_VALUE')
         }, {
           name: this.translate.instant('COMMON.LBL_NO'),
           value: this.translate.instant('COMMON.LBL_FALSE_VALUE')
         }];
         this.radioLabelValueRider = [{
           name: this.translate.instant('COMMON.LBL_YES'),
-          value: this.translate.instant('COMMON.YES_RIDER_VAL'),
-          conditionalClass: { matchValue: true, applyClass: 'mr5' }
+          value: this.translate.instant('COMMON.YES_RIDER_VAL')
         }, {
           name: this.translate.instant('COMMON.LBL_NO'),
           value: this.translate.instant('COMMON.NO_RIDER_VAL')
@@ -101,7 +99,6 @@ export class InsurancePlanComponent implements OnInit, OnDestroy {
           value: this.translate.instant('COMMON.NO_TES_VAL'),
           conditionalClass: { matchValue: true, applyClass: 'full-width' }
         }];
-        this.defaultRadioStyleClass = 'btn-outline-primary fixed-btn--sm-comprehensive';
       });
     });
 

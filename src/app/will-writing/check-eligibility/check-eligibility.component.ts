@@ -35,7 +35,7 @@ export class CheckEligibilityComponent implements OnInit, OnDestroy {
   private subscription: Subscription;
   unsavedMsg: string;
   radioLabelValue = [];
-  defaultRadioStyleClass: any;
+  defaultRadioStyleClass = "direct-form-btn--radio btn";
 
   constructor(
     private formBuilder: FormBuilder,
@@ -63,7 +63,6 @@ export class CheckEligibilityComponent implements OnInit, OnDestroy {
         value: this.translate.instant('COMMON.NO_VALUE'),
         conditionalClass: { matchValue : 'N', applyClass: 'no' }
       }];
-      this.defaultRadioStyleClass = "direct-form-btn--radio btn";
     });
   }
 

@@ -26,8 +26,7 @@ export class PersonalDeclarationComponent implements OnInit {
   personalDeclarationFormValues: any;
   radioLabelValueEmploye = [{
     name: this.translate.instant('PERSONAL_DECLARATION.YES_LBL'),
-    value: this.translate.instant('COMMON.LBL_TRUE_VALUE'),
-    conditionalClass: { matchValue : true, applyClass: 'mr5' }
+    value: this.translate.instant('COMMON.LBL_TRUE_VALUE')
   }, {
     name: this.translate.instant('PERSONAL_DECLARATION.NO_LBL'),
     value: this.translate.instant('COMMON.LBL_FALSE_VALUE')

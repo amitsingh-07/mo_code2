@@ -29,7 +29,7 @@ export class GetStartedFormComponent implements OnInit {
   minDate;
   maxDate;
   radioLabelValue = [];
-  defaultRadioStyleClass: any;
+  defaultRadioStyleClass = 'btn-outline-primary fixed-btn--sm';
 
   constructor(
     private router: Router,
@@ -52,7 +52,6 @@ export class GetStartedFormComponent implements OnInit {
         name: this.translate.instant('COMMON.LBL_FEMALE'),
         value: this.translate.instant('COMMON.LBL_FEMALE_VALUE')
       }];
-      this.defaultRadioStyleClass = 'btn-outline-primary fixed-btn--sm';
     });
   }
 

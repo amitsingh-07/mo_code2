@@ -36,7 +36,7 @@ export class SrsApprovedPlansFormComponent implements OnInit, OnDestroy {
   dpMaxDate;
   private userInfoSubscription: Subscription;
   radioLabelValue = [];
-  defaultRadioStyleClass: any;
+  defaultRadioStyleClass = 'direct-form-btn--radio btn';
 
   constructor(
     private directService: DirectService, private modal: NgbModal,
@@ -57,7 +57,6 @@ export class SrsApprovedPlansFormComponent implements OnInit, OnDestroy {
         name: this.translate.instant('COMMON.LBL_FEMALE'),
         value: this.translate.instant('COMMON.LBL_FEMALE_VALUE')
       }];
-      this.defaultRadioStyleClass = 'direct-form-btn--radio btn';
     });
   }
 
