@@ -129,6 +129,7 @@ app-check-eligibility {
     }
     @include allmobiles {
         flex-direction: column-reverse;
+        width: 100%;
     }
     .tooltip-content{
         border: 1px solid #00a7a7;
