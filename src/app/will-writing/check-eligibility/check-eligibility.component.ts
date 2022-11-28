@@ -34,15 +34,8 @@ export class CheckEligibilityComponent implements OnInit, OnDestroy {
   tooltip;
   private subscription: Subscription;
   unsavedMsg: string;
-  radioLabelValue = [{
-    name: this.translate.instant('COMMON.LBL_YES'),
-    value: 'Y'
-  }, {
-    name: this.translate.instant('COMMON.LBL_NO'),
-    value: 'N',
-    conditionalClass: { matchValue : 'N', applyClass: 'no' }
-  }];
-  defaultRadioStyleClass = "direct-form-btn--radio";
+  radioLabelValue = [];
+  defaultRadioStyleClass: any;
 
   constructor(
     private formBuilder: FormBuilder,
@@ -62,6 +55,15 @@ export class CheckEligibilityComponent implements OnInit, OnDestroy {
       this.unsavedMsg = this.translate.instant('WILL_WRITING.COMMON.UNSAVED');
       this.setPageTitle(this.pageTitle);
       this.getOptionListCollection();
+      this.radioLabelValue = [{
+        name: this.translate.instant('COMMON.LBL_YES'),
+        value: this.translate.instant('COMMON.YES_VALUE')
+      }, {
+        name: this.translate.instant('COMMON.LBL_NO'),
+        value: this.translate.instant('COMMON.NO_VALUE'),
+        conditionalClass: { matchValue : 'N', applyClass: 'no' }
+      }];
+      this.defaultRadioStyleClass = "direct-form-btn--radio btn";
     });
   }
 

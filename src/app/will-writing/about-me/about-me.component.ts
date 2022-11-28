@@ -44,15 +44,8 @@ export class AboutMeComponent implements OnInit, OnDestroy {
 
   fromConfirmationPage = this.willWritingService.fromConfirmationPage;
 
-  radioLabelValue = [{
-    name: this.translate.instant('LABEL.MALE'),
-    value: 'male'
-  }, {
-    name: this.translate.instant('LABEL.FEMALE'),
-    value: 'female',
-    conditionalClass: { matchValue : 'female', applyClass: 'female' }
-  }];
-  defaultRadioStyleClass = 'direct-form-btn--radio';
+  radioLabelValue = [];
+  defaultRadioStyleClass: any;
 
   constructor(
     private appService: AppService,
@@ -74,6 +67,15 @@ export class AboutMeComponent implements OnInit, OnDestroy {
       this.unsavedMsg = this.translate.instant('WILL_WRITING.COMMON.UNSAVED');
       this.toolTip = this.translate.instant('WILL_WRITING.COMMON.ID_TOOLTIP');
       this.setPageTitle(this.pageTitle);
+      this.radioLabelValue = [{
+        name: this.translate.instant('COMMON.LBL_MALE'),
+        value: this.translate.instant('COMMON.LBL_MALE_VALUE')
+      }, {
+        name: this.translate.instant('COMMON.LBL_FEMALE'),
+        value: this.translate.instant('COMMON.LBL_FEMALE_VALUE'),
+        conditionalClass: { matchValue : 'female', applyClass: 'female' }
+      }];
+      this.defaultRadioStyleClass = 'direct-form-btn--radio';
     });
   }
 

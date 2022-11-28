@@ -84,7 +84,6 @@ export class MyProfileComponent implements IPageComponent, OnInit, OnDestroy {
         this.showToolTip = false;
     }
 
-
     // tslint:disable-next-line: parameters-max-number
     constructor(
         private loaderService: LoaderService,

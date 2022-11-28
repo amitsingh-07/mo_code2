@@ -37,8 +37,6 @@ export class CriticalIllnessFormComponent implements OnInit, OnDestroy {
   defaultRadioStyleClass: any;
   private userInfoSubscription: Subscription;
   
-  
-  
   @Output() formSubmitted: EventEmitter<any> = new EventEmitter();
 
   constructor(

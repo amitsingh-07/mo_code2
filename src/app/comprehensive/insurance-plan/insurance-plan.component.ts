@@ -46,35 +46,10 @@ export class InsurancePlanComponent implements OnInit, OnDestroy {
   careShieldMessage: string;
   userAgeCriteria: any;
   saveData: any;
-  radioLabelValue = [{
-    name: this.translate.instant('CMP.FORM_LABEL.YES_LABEL'),
-    value: true,
-    conditionalClass: { matchValue : true, applyClass: 'mr5' }
-  }, {
-    name: this.translate.instant('CMP.FORM_LABEL.NO_LABEL'),
-    value: false
-  }];
-  radioLabelValueRider = [{
-    name: this.translate.instant('CMP.FORM_LABEL.YES_LABEL'),
-    value: '1',
-    conditionalClass: { matchValue : true, applyClass: 'mr5' }
-  }, {
-    name: this.translate.instant('CMP.FORM_LABEL.NO_LABEL'),
-    value: '0'
-  }, {
-    name: this.translate.instant('CMP.FORM_LABEL.NOT_SURE'),
-    value: '2'
-  }];
-  radioLabelValueLTESAmt = [{
-    name: this.translate.instant('CMP.FORM_LABEL.YES_LABEL'),
-    value: '300',
-    conditionalClass: { matchValue : true, applyClass: 'full-width' }
-  }, {
-    name: this.translate.instant('CMP.FORM_LABEL.NO_LABEL'),
-    value: '400',
-    conditionalClass: { matchValue : true, applyClass: 'full-width' }
-  }];
-  defaultRadioStyleClass = 'btn-outline-primary fixed-btn--sm-comprehensive';
+  radioLabelValue = [];
+  radioLabelValueRider = [];
+  radioLabelValueLTESAmt = [];
+  defaultRadioStyleClass: any;
 
   constructor(
     private navbarService: NavbarService, private progressService: ProgressTrackerService,
@@ -96,6 +71,37 @@ export class InsurancePlanComponent implements OnInit, OnDestroy {
         this.careShieldTitle = this.translate.instant('CARE_SHIELD_TITLE');
         this.careShieldMessage = this.translate.instant('CARE_SHIELD_MESSAGE');
         this.saveData = this.translate.instant('COMMON_LOADER.SAVE_DATA');
+      });
+      this.translate.get('COMMON').subscribe((result: string) => {
+        this.radioLabelValue = [{
+          name: this.translate.instant('COMMON.LBL_YES'),
+          value: this.translate.instant('COMMON.LBL_TRUE_VALUE'),
+          conditionalClass: { matchValue: true, applyClass: 'mr5' }
+        }, {
+          name: this.translate.instant('COMMON.LBL_NO'),
+          value: this.translate.instant('COMMON.LBL_FALSE_VALUE')
+        }];
+        this.radioLabelValueRider = [{
+          name: this.translate.instant('COMMON.LBL_YES'),
+          value: this.translate.instant('COMMON.YES_RIDER_VAL'),
+          conditionalClass: { matchValue: true, applyClass: 'mr5' }
+        }, {
+          name: this.translate.instant('COMMON.LBL_NO'),
+          value: this.translate.instant('COMMON.NO_RIDER_VAL')
+        }, {
+          name: this.translate.instant('CMP.FORM_LABEL.NOT_SURE'),
+          value: this.translate.instant('COMMON.NOT_SURE_RIDER_VAL')
+        }];
+        this.radioLabelValueLTESAmt = [{
+          name: this.translate.instant('COMMON.LBL_YES'),
+          value: this.translate.instant('COMMON.YES_TES_VAL'),
+          conditionalClass: { matchValue: true, applyClass: 'full-width' }
+        }, {
+          name: this.translate.instant('COMMON.LBL_NO'),
+          value: this.translate.instant('COMMON.NO_TES_VAL'),
+          conditionalClass: { matchValue: true, applyClass: 'full-width' }
+        }];
+        this.defaultRadioStyleClass = 'btn-outline-primary fixed-btn--sm-comprehensive';
       });
     });
 

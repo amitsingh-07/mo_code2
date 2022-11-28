@@ -30,7 +30,6 @@ export class GetStartedFormComponent implements OnInit {
   maxDate;
   radioLabelValue = [];
   defaultRadioStyleClass: any;
-  
 
   constructor(
     private router: Router,
