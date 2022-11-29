@@ -21,7 +21,7 @@ color: $dark-teal-color;
     }
 }
 .help-icon {      
-    background: url("/assets/images/comprehensive/tool-tip-white.svg") no-repeat;
+    background: url("./../../../assets/images/comprehensive/tool-tip-white.svg") no-repeat;
     width: 20px;
     height: 20px;
     cursor: pointer;
@@ -39,7 +39,7 @@ color: $dark-teal-color;
 }
 
 .dropdown-control .earn-btn-dropdown:after {
-    background-image: url('/assets/images/dropdown_white.svg');
+    background-image: url('./../../../assets/images/dropdown_white.svg');
     width: 16px;
     height: 10px;
     border: none;
@@ -84,7 +84,7 @@ color: $dark-teal-color;
     position: relative;
     //font-size: 18px;
     .delete-icon {      
-        background: url("/assets/images/comprehensive/delete-icon.svg") no-repeat;
+        background: url("./../../../assets/images/comprehensive/delete-icon.svg") no-repeat;
         width: 40px;
         height: 20px;
         cursor: pointer;
@@ -106,7 +106,7 @@ color: $dark-teal-color;
     }   
 }
 .earn-dollar-icon{
-    background: url("/assets/images/comprehensive/money.svg") no-repeat;
+    background: url("./../../../assets/images/comprehensive/money.svg") no-repeat;
     width: 40px;
     height: 40px;
     background-repeat: no-repeat;
@@ -155,19 +155,19 @@ color: $dark-teal-color;
     color:$light-grey-color;
 }
 .emptyBucket{
-    background: url("/assets/images/comprehensive/empty-earnings-bucket.svg") no-repeat;
+    background: url("./../../../assets/images/comprehensive/empty-earnings-bucket.svg") no-repeat;
     display: inline-block;
     width: 117px;
     height: 112px;
 }
 .filledBucket{
-    background: url("/assets/images/comprehensive/filled-earnings-bucket.svg") no-repeat;
+    background: url("./../../../assets/images/comprehensive/filled-earnings-bucket.svg") no-repeat;
     display: inline-block;
     width: 117px;
     height: 112px;
 }
 .middleBucket{
-    background: url("/assets/images/comprehensive/middle-earnings-bucket.svg") no-repeat;
+    background: url("./../../../assets/images/comprehensive/middle-earnings-bucket.svg") no-repeat;
     display: inline-block;
     width: 117px;
     height: 112px;

@@ -20,7 +20,7 @@ $grey-color-notes: #9f9f9f;
 
   //font-size: 18px;
   .help-icon {
-    background: url("/assets/images/tool-help-icon.svg") no-repeat;
+    background: url("./../../../assets/images/tool-help-icon.svg") no-repeat;
     cursor: pointer;
     background-repeat: no-repeat;
     position: absolute;
@@ -31,7 +31,7 @@ $grey-color-notes: #9f9f9f;
 }
 
 .delete-icon {
-  background: url("/assets/images/comprehensive/delete-icon.svg") no-repeat;
+  background: url("./../../../assets/images/comprehensive/delete-icon.svg") no-repeat;
   cursor: pointer;
   background-repeat: no-repeat;
   position: absolute;
