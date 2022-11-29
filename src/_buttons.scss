@@ -988,6 +988,10 @@ button:active:focus {
       white-space: nowrap;
       overflow: hidden;
       text-overflow: ellipsis;
+      &:active{
+        color: $teal-color;
+        background: $white-color;
+      }
     }
   }
 
