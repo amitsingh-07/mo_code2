@@ -14,10 +14,6 @@ app-terms {
     background: $white-color !important;
   }
 
-  .legal__header .legal__header--bg {
-    display: none;
-  }
-
   .modal-content{
     justify-content:center;
     align-items:center;
@@ -109,6 +105,9 @@ app-terms {
     @include minMobilemaxPhablet {
       padding:0px !important;
       margin:0px !important;
+    }
+    @include minPhabletmaxTablet{
+      padding: 0 20px 20px;
     }
   }
 
