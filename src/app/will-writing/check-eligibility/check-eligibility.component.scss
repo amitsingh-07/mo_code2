@@ -188,6 +188,8 @@ app-check-eligibility {
     &.no {
         background-color: #fff3e9 !important;
         color: #e57300 !important;
+        border-radius: 6px !important;
+        border: solid 2px $crusta-orange-color !important;
     }
 }
 .section {

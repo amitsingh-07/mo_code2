@@ -40,11 +40,10 @@ export class TaxInfoComponent implements OnInit {
   tooltipDetails: any;
   radioLabelValue = [{
     name: this.translate.instant('TAX_INFO.YES_LABEL'),
-    value: true,
-    conditionalClass: { matchValue : true, applyClass: 'mr5' }
+    value: this.translate.instant('COMMON.LBL_TRUE_VALUE')
   }, {
     name: this.translate.instant('TAX_INFO.NO_LABEL'),
-    value: false
+    value: this.translate.instant('COMMON.LBL_FALSE_VALUE')
   }]
   defaultRadioStyleClass = 'btn-outline-primary fixed-btn--sm';
 

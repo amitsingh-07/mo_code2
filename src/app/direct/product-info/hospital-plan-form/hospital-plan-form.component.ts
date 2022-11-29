@@ -30,7 +30,7 @@ export class HospitalPlanFormComponent implements OnInit, OnDestroy {
   private userInfoSubscription: Subscription;
   radioLabelValue = [];
   radioLabelValueRider = [];
-  defaultRadioStyleClass: any;
+  defaultRadioStyleClass = 'direct-form-btn--radio btn';
 
   constructor(
     private directService: DirectService, private modal: NgbModal,
@@ -57,7 +57,6 @@ export class HospitalPlanFormComponent implements OnInit, OnDestroy {
         name: this.translate.instant('COMMON.LBL_NO'),
         value: this.translate.instant('COMMON.LBL_FALSE_VALUE')
       }];
-      this.defaultRadioStyleClass = 'direct-form-btn--radio btn';
     });
   }
 

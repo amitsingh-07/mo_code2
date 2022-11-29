@@ -31,7 +31,7 @@ export class LongTermCareFormComponent implements OnInit, OnDestroy {
   payoutEnabled = false;
   radioLabelValue = [];
   radioLabelValuePayoutType = [];
-  defaultRadioStyleClass: any;
+  defaultRadioStyleClass = 'direct-form-btn--radio btn';
 
 
   constructor(
@@ -57,7 +57,6 @@ export class LongTermCareFormComponent implements OnInit, OnDestroy {
         name: this.translate.instant('LONG_TERM_CARE.PAYOUT_TYPE_2'),
         value: this.translate.instant('LONG_TERM_CARE.PAYOUT_TYPE_2')
       }];
-      this.defaultRadioStyleClass = 'direct-form-btn--radio btn';
     });
     const today: Date = new Date();
     this.minDate = { year: (today.getFullYear() - 100), month: (today.getMonth() + 1), day: today.getDate() };

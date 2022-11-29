@@ -127,9 +127,6 @@ app-life-protection-form {
       .dropdown-toggle {
         padding: 0.90rem;
         //padding-right: 0;
-        &:active {
-          border-color: 1px solid #94CCCC;
-          }
         &:disabled {
           cursor: not-allowed;
           &:hover {

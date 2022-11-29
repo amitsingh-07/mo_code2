@@ -42,7 +42,7 @@ export class LifeProtectionFormComponent implements OnInit, OnDestroy {
   private userInfoSubscription: Subscription;
   radioLabelValue = [];
   radioLabelValueIsEarlyCI = [];
-  defaultRadioStyleClass: any;
+  defaultRadioStyleClass = 'direct-form-btn--radio btn';
 
   constructor(
     private directService: DirectService, private modal: NgbModal,
@@ -69,7 +69,6 @@ export class LifeProtectionFormComponent implements OnInit, OnDestroy {
       name: this.translate.instant('COMMON.LBL_NO'),
       value: this.translate.instant('COMMON.LBL_NO_VALUE')
     }];
-    this.defaultRadioStyleClass = 'direct-form-btn--radio btn';
   });
     this.coverageAmtValuesTemp.push(1500000);
     this.coverageAmtValuesTemp.push(2000000);
