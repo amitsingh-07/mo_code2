@@ -89,6 +89,7 @@ app-direct-results {
       border: 1px solid #fff;
       &:hover {
         color: $white-color;
+        border: 1px solid $white-color;
       }
       &:disabled:hover {
         color: $btn-disabled-color;
