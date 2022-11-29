@@ -50,11 +50,11 @@ export class PersonalInfoComponent implements OnInit {
   source: any;
   radioLabelValue = [{
     name: this.translate.instant('LABEL.MALE'),
-    value: 'male',    
+    value: this.translate.instant('COMMON.LBL_MALE_VALUE'),    
     conditionalClass: { matchValue : 'male', applyClass: 'mr17' }
   }, {
     name: this.translate.instant('LABEL.FEMALE'),
-    value: 'female'
+    value: this.translate.instant('COMMON.LBL_FEMALE_VALUE')
   }]
 
   constructor(

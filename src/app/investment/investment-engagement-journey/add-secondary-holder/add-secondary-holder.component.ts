@@ -80,8 +80,7 @@ export class AddSecondaryHolderComponent implements OnInit {
   navigationType: any;
   radioLabelValueUsPR = [{
     name: this.translate.instant('SECONDARY_HOLDER.MINOR.YES_LABEL'),
-    value: true,
-    conditionalClass: { matchValue : true, applyClass: 'mr5' }
+    value: true
   }, {
     name: this.translate.instant('SECONDARY_HOLDER.MINOR.NO_LABEL'),
     value: false
@@ -96,8 +95,7 @@ export class AddSecondaryHolderComponent implements OnInit {
   }];
   radioLabelValueTin = [{
     name: this.translate.instant('SECONDARY_HOLDER.MINOR.TAX_INFO.YES_LABEL'),
-    value: true,
-    conditionalClass: { matchValue : true, applyClass: 'mr5' }
+    value: true
   }, {
     name: this.translate.instant('SECONDARY_HOLDER.MINOR.TAX_INFO.NO_LABEL'),
     value: false,

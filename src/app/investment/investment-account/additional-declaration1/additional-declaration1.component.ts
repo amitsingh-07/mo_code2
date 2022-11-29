@@ -31,10 +31,10 @@ export class AdditionalDeclaration1Component implements OnInit {
   tooltipDetails: any;
   radioLabelValuePEP = [{
     name: this.translate.instant('ADDITIONAL_DECLARATION.YES'),
-    value: true
+    value: this.translate.instant('COMMON.LBL_TRUE_VALUE')
   }, {
     name: this.translate.instant('ADDITIONAL_DECLARATION.NO'),
-    value: false
+    value: this.translate.instant('COMMON.LBL_FALSE_VALUE')
   }];
   defaultRadioStyleClass = 'btn-outline-primary fixed-btn--sm mr5 disabled';
 
