@@ -1931,8 +1931,14 @@ a.link-white {
 .input-group.date-picker {
   .dropdown-menu.show {
     @include allmobiles {
-      left: inherit !important;
+      left: auto !important;
       right: -46px !important;
+    }
+    @include min400max425{
+      right: 0 !important;
+    }
+    @include min475max568{
+      right: 0 !important;
     }
   }
 }
@@ -1940,7 +1946,6 @@ a.link-white {
 .date-picker-above {
   .dropdown-menu.show {
     @include allmobiles {
-      top: -272px !important;
       z-index: 998 !important;
     }
   }
