@@ -198,7 +198,7 @@
         <span class="earn-dollar-icon earn-monthly-income-dollar"></span>
       </div>
       <div class="flex-col-12 with-help-icon">
-        <div class="dropdown-control earn-notes flex-col-10">
+        <div class="dropdown-control transparent-dropdown earn-notes flex-col-10">
           <div ngbDropdown id="employmentTypeDropDown">
             <button type="button" class="btn btn-dropdown earn-btn-dropdown mb-3" id="dropdownEmploymentType"
               ngbDropdownToggle appComprehensiveViewMode="{{viewMode}}" mode=1>
@@ -342,7 +342,7 @@
         <div class="flex-col-1 earn-dollar-help">
           <span class="earn-dollar-icon earn-monthly-income-dollar"></span>
         </div>
-        <div class="flex-col-11 dropdown-control" [hidden]="otherAnnualIncomeType && annualDividendsType">
+        <div class="flex-col-11 dropdown-control transparent-dropdown" [hidden]="otherAnnualIncomeType && annualDividendsType">
           <div ngbDropdown id="employmentTypeDropDown">
             <button type="button" class="btn btn-dropdown earn-btn-dropdown mb-3" id="dropdownEmploymentType"
               ngbDropdownToggle appComprehensiveViewMode="{{viewMode}}" mode=1>
