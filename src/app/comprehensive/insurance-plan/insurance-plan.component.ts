@@ -50,6 +50,7 @@ export class InsurancePlanComponent implements OnInit, OnDestroy {
   radioLabelValueRider = [];
   radioLabelValueLTESAmt = [];
   defaultRadioStyleClass = 'btn-outline-primary fixed-btn--sm-comprehensive';
+  lifeProtectionRadioBtns = [];
 
   constructor(
     private navbarService: NavbarService, private progressService: ProgressTrackerService,
@@ -98,6 +99,17 @@ export class InsurancePlanComponent implements OnInit, OnDestroy {
           name: this.translate.instant('COMMON.LBL_NO'),
           value: this.translate.instant('COMMON.NO_TES_VAL'),
           conditionalClass: { matchValue: true, applyClass: 'full-width' }
+        }];
+        this.lifeProtectionRadioBtns = [{
+          name: this.translate.instant('COMMON.LBL_YES'),
+          value: Number(this.translate.instant('COMMON.YES_RIDER_VAL')),
+          conditionalClass: { matchValue: true, applyClass: 'mr5' }
+        }, {
+          name: this.translate.instant('COMMON.LBL_NO'),
+          value: Number(this.translate.instant('COMMON.NO_RIDER_VAL'))
+        }, {
+          name: this.translate.instant('CMP.FORM_LABEL.NOT_SURE'),
+          value: Number(this.translate.instant('COMMON.NOT_SURE_RIDER_VAL'))
         }];
       });
     });
