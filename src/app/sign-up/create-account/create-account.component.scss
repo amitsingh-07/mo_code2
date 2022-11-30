@@ -15,6 +15,14 @@ app-create-account {
     height: 200px;
     overflow-y: auto;
   }
+  .input-group.date-picker {
+    .dropdown-menu.show {
+      @include allmobiles {
+        left: auto !important;
+        right: 0px !important;
+      }
+    }
+  }
 
   .back-btn {
     background-image: url("../../../assets/images/back-web.svg");
