@@ -493,7 +493,7 @@ button:active:focus {
       min-height: 250px;
     }
 
-    &:last-child() {
+    &:last-child {
       margin-right: 0px;
     }
 
@@ -507,7 +507,7 @@ button:active:focus {
         margin-left: 0px;
       }
 
-      &:nth-child(odd):last-child() {
+      &:nth-child(odd):last-child {
         margin-right: auto;
       }
 

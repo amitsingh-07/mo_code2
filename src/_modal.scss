@@ -413,7 +413,7 @@ body.modal-open::-webkit-scrollbar {
         app-product-category {
           margin-right: 10px;
 
-          &:last-child() {
+          &:last-child {
             padding-right: 20px;
           }
         }
@@ -423,7 +423,7 @@ body.modal-open::-webkit-scrollbar {
         app-product-category {
           margin-right: 10px;
 
-          &:last-child() {
+          &:last-child {
             padding-right: 20px;
           }
         }
