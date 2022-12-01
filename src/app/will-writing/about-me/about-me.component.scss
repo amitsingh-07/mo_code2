@@ -153,6 +153,13 @@ app-about-me{
         }
     }
     
+    .dropdown{
+        .btn-dropdown{
+            &:active{
+                border: 1px solid $half-baked-blue-color;
+            }
+        }
+    }
 }
 
 .with-help-icon{
