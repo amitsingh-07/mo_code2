@@ -1,4 +1,4 @@
-import { Component, Input, OnInit, ViewEncapsulation } from '@angular/core';
+import { ChangeDetectorRef, Component, Input, OnInit, ViewEncapsulation } from '@angular/core';
 import { Location } from '@angular/common';
 import { ActivatedRoute, Router } from '@angular/router';
 import { SIGN_UP_ROUTE_PATHS } from '../sign-up.routes.constants';
@@ -236,7 +236,9 @@ export class CreateAccountMyinfoComponent implements OnInit {
     ref.componentInstance.myInfo = true;
     ref.result
       .then(() => {
-        this.getMyInfo();
+        setTimeout(() => {          
+          this.getMyInfo();
+        },500)
       })
       .catch((e) => { });
   }
