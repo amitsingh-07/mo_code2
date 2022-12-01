@@ -236,7 +236,9 @@ export class CreateAccountMyinfoComponent implements OnInit {
     ref.componentInstance.myInfo = true;
     ref.result
       .then(() => {
-        this.getMyInfo();
+        setTimeout(() => {          
+          this.getMyInfo();
+        },500)
       })
       .catch((e) => { });
   }
