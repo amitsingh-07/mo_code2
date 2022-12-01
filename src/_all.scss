@@ -1482,7 +1482,7 @@ label{
       justify-content: flex-start;
       border-bottom: 1px solid $light-teal-color;
 
-      &:last-child() {
+      &:last-child {
         border-bottom: 0px;
       }
     }
