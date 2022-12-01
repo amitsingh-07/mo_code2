@@ -91,13 +91,13 @@ export class InsurancePlanComponent implements OnInit, OnDestroy {
           value: Number(this.translate.instant('COMMON.NOT_SURE_RIDER_VAL'))
         }];
         this.radioLabelValueLTESAmt = [{
-          name: this.translate.instant('COMMON.LBL_YES'),
+          name: this.translate.instant('CMP.INSURANCE_PLAN.LONG_TERM_INSURANCE_VALUE_1'),
           value: Number(this.translate.instant('COMMON.YES_TES_VAL')),
-          conditionalClass: { matchValue: true, applyClass: 'full-width' }
+          conditionalClass: { matchValue: 300, applyClass: 'full-width' }
         }, {
-          name: this.translate.instant('COMMON.LBL_NO'),
+          name: this.translate.instant('CMP.INSURANCE_PLAN.LONG_TERM_INSURANCE_VALUE_2'),
           value: Number(this.translate.instant('COMMON.NO_TES_VAL')),
-          conditionalClass: { matchValue: true, applyClass: 'full-width' }
+          conditionalClass: { matchValue: 400, applyClass: 'full-width' }
         }];
       });
     });
@@ -143,7 +143,7 @@ export class InsurancePlanComponent implements OnInit, OnDestroy {
       }
     }
     if (this.insurancePlanFormValues && this.insurancePlanFormValues.haveCPFDependentsProtectionScheme !== 1) {
-      this.resetLifeProtectionAmount();
+      this.resetLifeProtectionAmount(this.insurancePlanFormValues.haveCPFDependentsProtectionScheme);
     }
     this.progressService.setProgressTrackerData(this.comprehensiveService.generateProgressTrackerData());
   }
@@ -229,16 +229,20 @@ export class InsurancePlanComponent implements OnInit, OnDestroy {
     });
   }
 
-  resetLifeProtectionAmount() {
-    this.insurancePlanForm.controls['lifeProtectionAmount'].setValue(this.userAgeCriteria);
+  resetLifeProtectionAmount(value) {
+    if(value !== 1) {
+         this.insurancePlanForm.controls['lifeProtectionAmount'].setValue(this.userAgeCriteria);
+    }
   }
   resetHDBScheme() {
     this.insurancePlanForm.controls['haveHDBHomeProtectionScheme'].setValue('');
     this.insurancePlanForm.controls['homeProtectionCoverageAmount'].setValue(0);
   }
-  resetLongTermShieldAmount() {
+  resetLongTermShieldAmount(value) {
+    if(value !== 1) {
     this.insurancePlanForm.controls['longTermElderShieldAmount'].setValue('');
     this.insurancePlanForm.controls['otherLongTermCareInsuranceAmount'].setValue(0);
+    }
   }
   ngOnDestroy() {
     this.subscription.unsubscribe();
