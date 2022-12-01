@@ -33,24 +33,9 @@
           </div>
         </div>
         <div class="flex-col-8" [ngClass]="{'mb20' : insurancePlanForm.get('haveHospitalPlan').value}">
-          <div class="btn-group--toggle" ngbRadioGroup name="radioGender" formControlName="haveHospitalPlan">
-            <div class="flex-row insurance-input-radio mb0">
-              <div class="flex-col-6">
-                <label ngbButtonLabel class="btn-outline-primary fixed-btn--sm-comprehensive mr5"
-                  [ngClass]="{'inline-error': submitted, 'view-mode': viewMode}">
-                  <input id="myProfileRadioMale" ngbButton type="radio" [value]=true>{{ 'CMP.FORM_LABEL.YES_LABEL' |
-                    translate}}
-                </label>
-              </div>
-              <div class="flex-col-6">
-                <label ngbButtonLabel class="btn-outline-primary fixed-btn--sm-comprehensive"
-                  [ngClass]="{'inline-error': submitted, 'view-mode': viewMode}">
-                  <input id="myProfileRadioFemale" ngbButton type="radio" [value]=false>{{ 'CMP.FORM_LABEL.NO_LABEL' |
-                    translate}}
-                </label>
-              </div>
-            </div>
-
+          <div class="btn-group--toggle" name="radioGender">
+            <app-custom-radio-controller formControlName="haveHospitalPlan" name="haveHospitalPlan" [radioLabelValue]="radioLabelValue"
+            [defaultLabelStyleClass]="defaultRadioStyleClass" flexRowMarPadClass="insurance-input-radio mb0"></app-custom-radio-controller>
           </div>
         </div>
 
@@ -60,30 +45,9 @@
             <div class="flex-col-11">{{'CMP.INSURANCE_PLAN.HOSPITAL_PLAN_LABEL_2' | translate}}</div>
           </div>
           <div class="flex-col-12">
-            <div class="btn-group--toggle" ngbRadioGroup name="radioGender" formControlName="haveHospitalPlanWithRider">
-              <div class="flex-row insurance-input-radio mb0">
-                <div class="flex-col-4 ">
-                  <label ngbButtonLabel class="btn-outline-primary fixed-btn--sm-comprehensive mr5"
-                    [ngClass]="{'inline-error': submitted, 'view-mode': viewMode}">
-                    <input ngbButton type="radio" [value]="1">{{ 'CMP.FORM_LABEL.YES_LABEL' |
-                  translate}}
-                  </label>
-                </div>
-                <div class="flex-col-4">
-                  <label ngbButtonLabel class="btn-outline-primary fixed-btn--sm-comprehensive"
-                    [ngClass]="{'inline-error': submitted, 'view-mode': viewMode}">
-                    <input ngbButton type="radio" [value]="0">{{ 'CMP.FORM_LABEL.NO_LABEL' |
-                  translate}}
-                  </label>
-                </div>
-                <div class="flex-col-4">
-                  <label ngbButtonLabel class="btn-outline-primary fixed-btn--sm-comprehensive"
-                    [ngClass]="{'inline-error': submitted, 'view-mode': viewMode}">
-                    <input ngbButton type="radio" [value]="2">{{ 'CMP.FORM_LABEL.NOT_SURE' |
-                  translate}}
-                  </label>
-                </div>
-              </div>
+            <div class="btn-group--toggle" name="radioGender">
+              <app-custom-radio-controller formControlName="haveHospitalPlanWithRider" name="haveHospitalPlanWithRider" [radioLabelValue]="radioLabelValueRider"
+              [defaultLabelStyleClass]="defaultRadioStyleClass" flexRowMarPadClass="insurance-input-radio mb0" flexColumns="flex-col-4"></app-custom-radio-controller>
             </div>
           </div>
         </div>
@@ -107,34 +71,12 @@
               src="assets/images/comprehensive/tool-tip-white.svg" width="20" height="20"></span>
         </div>
         <div class="flex-col-12 mb-3">
-          <div class="btn-group--toggle" ngbRadioGroup name="radioGender"
-            formControlName="haveCPFDependentsProtectionScheme">
-            <div class="flex-row mb0 insurance-input-radio">
-              <div class="flex-col-4 ">
-                <label ngbButtonLabel class="btn-outline-primary fixed-btn--sm-comprehensive mr5"
-                  [ngClass]="{'inline-error': submitted, 'view-mode': viewMode}">
-                  <input ngbButton type="radio" [value]="1">{{ 'CMP.FORM_LABEL.YES_LABEL' |
-                    translate}}
-                </label>
-              </div>
-              <div (click)="resetLifeProtectionAmount()" class="flex-col-4">
-                <label ngbButtonLabel class="btn-outline-primary fixed-btn--sm-comprehensive"
-                  [ngClass]="{'inline-error': submitted, 'view-mode': viewMode}">
-                  <input ngbButton type="radio" [value]="0">{{ 'CMP.FORM_LABEL.NO_LABEL' |
-                    translate}}
-                </label>
-              </div>
-              <div (click)="resetLifeProtectionAmount()" class="flex-col-4">
-                <label ngbButtonLabel class="btn-outline-primary fixed-btn--sm-comprehensive"
-                  [ngClass]="{'inline-error': submitted, 'view-mode': viewMode}">
-                  <input ngbButton type="radio" [value]="2">{{ 'CMP.FORM_LABEL.NOT_SURE' |
-                    translate}}
-                </label>
-              </div>
-            </div>
+          <div class="btn-group--toggle" name="radioGender">
+            <app-custom-radio-controller formControlName="haveCPFDependentsProtectionScheme" name="haveCPFDependentsProtectionScheme" [radioLabelValue]="radioLabelValueRider"
+            [defaultLabelStyleClass]="defaultRadioStyleClass" flexRowMarPadClass="insurance-input-radio mb0" (valueChangedEvent)="resetLifeProtectionAmount()" flexColumns="flex-col-4"></app-custom-radio-controller>
           </div>
         </div>
-        <div *ngIf="insurancePlanForm.get('haveCPFDependentsProtectionScheme').value === 1" class="flex-row mb20">
+        <div *ngIf="insurancePlanForm.get('haveCPFDependentsProtectionScheme').value == 1" class="flex-row mb20">
           <div class="flex-col-5 pr5">
             <label for="name">
               <div>{{ 'CMP.FORM_LABEL.COVERAGE_AMOUNT' | translate}}
@@ -174,31 +116,9 @@
 
 
           <div class="flex-col-12 mb-3">
-            <div class="btn-group--toggle" ngbRadioGroup name="radioGender"
-              formControlName="haveHDBHomeProtectionScheme">
-              <div class="flex-row mb0 insurance-input-radio">
-                <div class="flex-col-4 ">
-                  <label ngbButtonLabel class="btn-outline-primary fixed-btn--sm-comprehensive mr5"
-                    [ngClass]="{'inline-error': submitted, 'view-mode': viewMode}">
-                    <input id="myProfileRadioMale" ngbButton type="radio" [value]="1">{{ 'CMP.FORM_LABEL.YES_LABEL' |
-                    translate}}
-                  </label>
-                </div>
-                <div class="flex-col-4">
-                  <label ngbButtonLabel class="btn-outline-primary fixed-btn--sm-comprehensive"
-                    [ngClass]="{'inline-error': submitted, 'view-mode': viewMode}">
-                    <input id="myProfileRadioFemale" ngbButton type="radio" [value]="0">{{ 'CMP.FORM_LABEL.NO_LABEL' |
-                    translate}}
-                  </label>
-                </div>
-                <div class="flex-col-4">
-                  <label ngbButtonLabel class="btn-outline-primary fixed-btn--sm-comprehensive"
-                    [ngClass]="{'inline-error': submitted, 'view-mode': viewMode}">
-                    <input id="myProfileRadioFemale" ngbButton type="radio" [value]="2">{{ 'CMP.FORM_LABEL.NOT_SURE' |
-                    translate}}
-                  </label>
-                </div>
-              </div>
+            <div class="btn-group--toggle" name="radioGender">
+              <app-custom-radio-controller formControlName="haveHDBHomeProtectionScheme" name="haveHDBHomeProtectionScheme" [radioLabelValue]="radioLabelValueRider"
+              [defaultLabelStyleClass]="defaultRadioStyleClass" flexRowMarPadClass="insurance-input-radio mb0"></app-custom-radio-controller>
             </div>
           </div>
 
@@ -332,33 +252,9 @@
                 <div class="flex-col-11">{{'CMP.INSURANCE_PLAN.LONG_TERM_INSURANCE_LABEL' | translate}}</div>
               </div>
               <div class="flex-col-12 mb-3">
-                <div class="btn-group--toggle" ngbRadioGroup name="radioGender"
-                  formControlName="haveLongTermElderShield">
-                  <div class="flex-row mb0 insurance-input-radio">
-                    <div class="flex-col-4 ">
-                      <label ngbButtonLabel class="btn-outline-primary fixed-btn--sm-comprehensive mr5"
-                        [ngClass]="{'inline-error': submitted, 'view-mode': viewMode}">
-                        <input id="myProfileRadioMale" ngbButton type="radio" [value]="1">{{ 'CMP.FORM_LABEL.YES_LABEL'
-                        |
-                        translate}}
-                      </label>
-                    </div>
-                    <div (click)="resetLongTermShieldAmount()" class="flex-col-4">
-                      <label ngbButtonLabel class="btn-outline-primary fixed-btn--sm-comprehensive"
-                        [ngClass]="{'inline-error': submitted, 'view-mode': viewMode}">
-                        <input id="myProfileRadioFemale" ngbButton type="radio" [value]="0">{{
-                        'CMP.FORM_LABEL.NO_LABEL' |
-                        translate}}
-                      </label>
-                    </div>
-                    <div (click)="resetLongTermShieldAmount()" class="flex-col-4 ">
-                      <label ngbButtonLabel class="btn-outline-primary fixed-btn--sm-comprehensive"
-                        [ngClass]="{'inline-error': submitted, 'view-mode': viewMode}">
-                        <input id="myProfileRadioFemale" ngbButton type="radio" [value]="2">{{ 'CMP.FORM_LABEL.NOT_SURE' |
-                        translate}}
-                      </label>
-                    </div>
-                  </div>
+                <div class="btn-group--toggle" name="radioGender">
+                  <app-custom-radio-controller formControlName="haveLongTermElderShield" name="haveLongTermElderShield" [radioLabelValue]="radioLabelValueRider"
+                  [defaultLabelStyleClass]="defaultRadioStyleClass" flexRowMarPadClass="insurance-input-radio mb0"></app-custom-radio-controller>
                 </div>
               </div>
             </div>
@@ -366,24 +262,9 @@
           <div
             *ngIf="(showLongTermInsurance && insurancePlanForm.get('haveLongTermElderShield').value === 1)|| longTermInsurance">
             <div class="flex-row payout-width" *ngIf="!longTermInsurance">
-              <div class="btn-group--toggle payout-width" ngbRadioGroup name="radioGender"
-                formControlName="longTermElderShieldAmount">
-                <div class="flex-col-12 mb-3">
-                  <label ngbButtonLabel class="btn-outline-primary fixed-btn--sm-comprehensive full-width"
-                    [ngClass]="{'inline-error': submitted}">
-                    <input id="myProfileRadioFemale" ngbButton type="radio" [value]="300">{{
-                    'CMP.INSURANCE_PLAN.LONG_TERM_INSURANCE_VALUE_1' |
-                    translate}}
-                  </label>
-                </div>
-                <div class="flex-col-12 mb-3">
-                  <label ngbButtonLabel class="btn-outline-primary fixed-btn--sm-comprehensive full-width"
-                    [ngClass]="{'inline-error': submitted}">
-                    <input id="myProfileRadioFemale" ngbButton type="radio" [value]="400">{{
-                    'CMP.INSURANCE_PLAN.LONG_TERM_INSURANCE_VALUE_2' |
-                    translate}}
-                  </label>
-                </div>
+              <div class="btn-group--toggle" name="radioGender">
+                <app-custom-radio-controller formControlName="longTermElderShieldAmount" name="longTermElderShieldAmount" [radioLabelValue]="radioLabelValueLTESAmt"
+                [defaultLabelStyleClass]="defaultRadioStyleClass" flexRowMarPadClass="insurance-input-radio mb0"></app-custom-radio-controller>
               </div>
             </div>
             <div class="form-group-with-bg--content-white--desc flex-row">

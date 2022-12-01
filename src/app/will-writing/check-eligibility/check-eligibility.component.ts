@@ -34,6 +34,9 @@ export class CheckEligibilityComponent implements OnInit, OnDestroy {
   tooltip;
   private subscription: Subscription;
   unsavedMsg: string;
+  radioLabelValue = [];
+  defaultRadioStyleClass = "direct-form-btn--radio btn";
+
   constructor(
     private formBuilder: FormBuilder,
     private willWritingService: WillWritingService,
@@ -52,6 +55,14 @@ export class CheckEligibilityComponent implements OnInit, OnDestroy {
       this.unsavedMsg = this.translate.instant('WILL_WRITING.COMMON.UNSAVED');
       this.setPageTitle(this.pageTitle);
       this.getOptionListCollection();
+      this.radioLabelValue = [{
+        name: this.translate.instant('COMMON.LBL_YES'),
+        value: this.translate.instant('COMMON.YES_VALUE')
+      }, {
+        name: this.translate.instant('COMMON.LBL_NO'),
+        value: this.translate.instant('COMMON.NO_VALUE'),
+        conditionalClass: { matchValue : 'N', applyClass: 'no' }
+      }];
     });
   }
 
@@ -127,8 +138,8 @@ export class CheckEligibilityComponent implements OnInit, OnDestroy {
     this.eligibilityForm.controls['religion'].setValue(religion.value);
   }
 
-  changeAssets(event) {
-    if (event && event['target'].value === 'N') {
+  changeAssets(value:  string) {
+    if (value === 'N') {
       this.isAssets = true;
     } else {
       this.isAssets = false;

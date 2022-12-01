@@ -5,7 +5,7 @@
 
 .notification-icon {
   position: relative;
-  background-image: url("/assets/images/nav/notification-icon.svg");
+  background-image: url("./../../../assets/images/nav/notification-icon.svg");
   background-repeat: no-repeat;
   background-color: $white-color;
   background-size: 19px 22px;
@@ -159,7 +159,7 @@
   .navbar__helpIcon--mobile-filter {
     position: absolute;
     display: inline-block;
-    background-image: url(/assets/images/filter_icon.svg);
+    background-image: url(./../../../assets/images/filter_icon.svg);
     width: 20px;
     height: 20px;
     top: 22px;
@@ -171,7 +171,7 @@
   .navbar__lockIcon {
     position: absolute;
     display: inline-block;
-    background-image: url(/assets/images/lock.svg);
+    background-image: url(./../../../assets/images/lock.svg);
     width: 18px;
     height: 18px;
     top: 22px;
@@ -311,9 +311,24 @@
 
 //wiseIncome Dropdown
 .wiseincome-dropdown {
-  position: absolute;
-  right: 10px;
-  top: 19px;
+  
+  .arrow {
+    border: solid$teal-color;
+    border-width: 0 2px 2px 0;
+    display: inline-block;
+    padding: 4px;
+    float: right;
+    transform: rotate(-135deg);
+    -webkit-transform: rotate(-135deg);
+    position: absolute;
+    right: 17px;
+    top: 28px;
+    &.collapsed {
+      transform: rotate(45deg);
+      -webkit-transform: rotate(45deg);
+      top: 25px;
+    }
+  }
 }
 .wiseincome-dropdown-item {
   position: absolute;

@@ -34,6 +34,15 @@ app-product-info {
     @include allmobiles {
       border: none;
     }
+    .dropdown {
+      .btn-dropdown {
+        &:active {
+          color: $teal-color;
+          border: 1px solid $half-baked-blue-color;
+          background: $white-color;
+        }
+      }
+    }
     .dropdown-menu {
       height: auto !important;
       overflow: auto;

@@ -16,9 +16,10 @@ export class FileUtil {
         };
       }
     } else {
-      if (window.navigator && window.navigator.msSaveOrOpenBlob) {
+      const nav = (window.navigator as any);
+      if (nav && nav.msSaveOrOpenBlob) {
         const blob = new Blob([data], { type: FILE_TYPE });
-        window.navigator.msSaveOrOpenBlob(blob, fileName);
+        nav.msSaveOrOpenBlob(blob, fileName);
       } else {
         this.createDownloadUrl(fileName, pdfUrl);
       }

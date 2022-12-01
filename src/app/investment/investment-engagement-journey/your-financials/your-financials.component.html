@@ -36,22 +36,10 @@
                   </div>
                   <div class="flex-row emergency-fund">
                     <div class="flex-col-12">
-                      <div class="btn-group--toggle" ngbRadioGroup name="radioGender"
-                        formControlName="suffEmergencyFund">
-                        <div class="flex-row">
-                          <div class="flex-col-6 mr15">
-                            <label ngbButtonLabel class="btn-outline-primary fixed-btn--sm" id="my_financial_yes_lab">
-                              <input ngbButton type="radio" value="yes" id="my_financial_yes_btn">
-                              {{ 'MY_FINANCIALS.LABEL_YES' | translate}}
-                            </label>
-                          </div>
-                          <div class="flex-col-6">
-                            <label ngbButtonLabel class="btn-outline-primary fixed-btn--sm" id="my_financial_no_lab">
-                              <input ngbButton type="radio" value="no" id="my_financial_no_btn">
-                              {{ 'MY_FINANCIALS.LABEL_NO' | translate}} </label>
-                          </div>
-                        </div>
-                      </div>
+                      <div class="btn-group--toggle" name="radioGender">            
+                        <app-custom-radio-controller formControlName="suffEmergencyFund" name="suffEmergencyFund" [radioLabelValue]="radioLabelValue"
+                         [defaultLabelStyleClass]="defaultRadioStyleClass" ></app-custom-radio-controller>
+                    </div>
                     </div>
                   </div>
                 </div>

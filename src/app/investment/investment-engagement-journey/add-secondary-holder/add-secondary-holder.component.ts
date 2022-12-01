@@ -78,6 +78,31 @@ export class AddSecondaryHolderComponent implements OnInit {
   customerPortfolioId: any;
   routeParams: any;
   navigationType: any;
+  radioLabelValueUsPR = [{
+    name: this.translate.instant('SECONDARY_HOLDER.MINOR.YES_LABEL'),
+    value: true
+  }, {
+    name: this.translate.instant('SECONDARY_HOLDER.MINOR.NO_LABEL'),
+    value: false
+  }];
+  radioLabelValueGender = [{
+    name: this.translate.instant('LABEL.MALE'),
+    value: 'male',
+    conditionalClass: { matchValue : true, applyClass: 'mr10' }
+  }, {
+    name: this.translate.instant('LABEL.FEMALE'),
+    value: 'female'
+  }];
+  radioLabelValueTin = [{
+    name: this.translate.instant('SECONDARY_HOLDER.MINOR.TAX_INFO.YES_LABEL'),
+    value: true
+  }, {
+    name: this.translate.instant('SECONDARY_HOLDER.MINOR.TAX_INFO.NO_LABEL'),
+    value: false,
+    conditionalClass: { matchValue : true, applyClass: 'm15' }
+  }];
+  defaultRadioStyleClass = 'btn-outline-primary fixed-btn--sm';
+
   constructor(
     public authService: AuthenticationService,
     private investmentEngagementService: InvestmentEngagementJourneyService,
@@ -145,11 +170,12 @@ export class AddSecondaryHolderComponent implements OnInit {
       this.tabChange();
     }
     this.buildMajorForm();
+    this.buildMinorForm();
     let apiCalls = [];
     apiCalls.push(this.investmentAccountService.getAllDropDownList());
     apiCalls.push(this.investmentAccountService.getNationalityCountryList());
     this.showLoader();
-    forkJoin(apiCalls).subscribe(results => {
+    forkJoin(apiCalls).subscribe((results: number[]) => {
       this.setDropdownLists(results[0]);
       this.getNationalityCountriesList(results[1]);
       this.route.paramMap.subscribe(params => {

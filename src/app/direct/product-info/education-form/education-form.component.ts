@@ -30,6 +30,8 @@ export class EducationFormComponent implements OnInit, OnDestroy {
   minDate;
   maxDate;
   private userInfoSubscription: Subscription;
+  radioLabelValue = [];
+  defaultRadioStyleClass = 'direct-form-btn--radio btn';
 
   constructor(
     private directService: DirectService, private modal: NgbModal,
@@ -39,6 +41,15 @@ export class EducationFormComponent implements OnInit, OnDestroy {
     this.minDate = { year: (today.getFullYear() - 100), month: (today.getMonth() + 1), day: today.getDate() };
     this.maxDate = { year: today.getFullYear(), month: (today.getMonth() + 1), day: today.getDate() };
     config.outsideDays = 'collapsed';
+    this.translate.get('COMMON').subscribe((result: string) => {
+      this.radioLabelValue = [{
+        name: this.translate.instant('COMMON.LBL_MALE'),
+        value: this.translate.instant('COMMON.LBL_MALE_VALUE')
+      }, {
+        name: this.translate.instant('COMMON.LBL_FEMALE'),
+        value: this.translate.instant('COMMON.LBL_FEMALE_VALUE')
+      }];
+    });
   }
 
   ngOnInit() {

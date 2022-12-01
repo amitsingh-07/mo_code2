@@ -1,4 +1,4 @@
-import { Component, OnDestroy, OnInit, HostListener } from '@angular/core';
+import { Component, OnDestroy, OnInit, ViewEncapsulation, HostListener } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { TranslateService } from '@ngx-translate/core';
@@ -20,7 +20,8 @@ import { LoaderService } from './../../shared/components/loader/loader.service';
 @Component({
   selector: 'app-insurance-plan',
   templateUrl: './insurance-plan.component.html',
-  styleUrls: ['./insurance-plan.component.scss']
+  styleUrls: ['./insurance-plan.component.scss'],
+  encapsulation: ViewEncapsulation.None
 })
 export class InsurancePlanComponent implements OnInit, OnDestroy {
   pageTitle: any;
@@ -45,6 +46,11 @@ export class InsurancePlanComponent implements OnInit, OnDestroy {
   careShieldMessage: string;
   userAgeCriteria: any;
   saveData: any;
+  radioLabelValue = [];
+  radioLabelValueRider = [];
+  radioLabelValueLTESAmt = [];
+  defaultRadioStyleClass = 'btn-outline-primary fixed-btn--sm-comprehensive';
+
   constructor(
     private navbarService: NavbarService, private progressService: ProgressTrackerService,
     private translate: TranslateService,
@@ -65,6 +71,34 @@ export class InsurancePlanComponent implements OnInit, OnDestroy {
         this.careShieldTitle = this.translate.instant('CARE_SHIELD_TITLE');
         this.careShieldMessage = this.translate.instant('CARE_SHIELD_MESSAGE');
         this.saveData = this.translate.instant('COMMON_LOADER.SAVE_DATA');
+      });
+      this.translate.get('COMMON').subscribe((result: string) => {
+        this.radioLabelValue = [{
+          name: this.translate.instant('COMMON.LBL_YES'),
+          value: this.translate.instant('COMMON.LBL_TRUE_VALUE')
+        }, {
+          name: this.translate.instant('COMMON.LBL_NO'),
+          value: this.translate.instant('COMMON.LBL_FALSE_VALUE')
+        }];
+        this.radioLabelValueRider = [{
+          name: this.translate.instant('COMMON.LBL_YES'),
+          value: Number(this.translate.instant('COMMON.YES_RIDER_VAL'))
+        }, {
+          name: this.translate.instant('COMMON.LBL_NO'),
+          value: Number(this.translate.instant('COMMON.NO_RIDER_VAL'))
+        }, {
+          name: this.translate.instant('CMP.FORM_LABEL.NOT_SURE'),
+          value: Number(this.translate.instant('COMMON.NOT_SURE_RIDER_VAL'))
+        }];
+        this.radioLabelValueLTESAmt = [{
+          name: this.translate.instant('COMMON.LBL_YES'),
+          value: Number(this.translate.instant('COMMON.YES_TES_VAL')),
+          conditionalClass: { matchValue: true, applyClass: 'full-width' }
+        }, {
+          name: this.translate.instant('COMMON.LBL_NO'),
+          value: Number(this.translate.instant('COMMON.NO_TES_VAL')),
+          conditionalClass: { matchValue: true, applyClass: 'full-width' }
+        }];
       });
     });
 
@@ -170,6 +204,9 @@ export class InsurancePlanComponent implements OnInit, OnDestroy {
           : 0, disabled: this.viewMode
       }, []]
     });
+    if (this.viewMode) {
+      this.defaultRadioStyleClass = `${this.defaultRadioStyleClass} view-mode`;
+    }
   }
   ngOnInit() {
     this.progressService.setProgressTrackerData(this.comprehensiveService.generateProgressTrackerData());

@@ -54,19 +54,9 @@
                     translate}}</label>
                 </div>
                 <div class="flex-col-8 direct-form-grp">
-                  <div class="btn-group--toggle" ngbRadioGroup name="assets" formControlName="assets">
-                    <div class="flex-row mb0">
-                      <div class="flex-col-6">
-                        <label ngbButtonLabel class="direct-form-btn--radio btn" id="eligibilityLbl5">
-                          <input ngbButton type="radio" value="Y" (click) = "changeAssets($event)" id="eligibilityInpt3"> {{ 'COMMON.LBL_YES' | translate}}
-                        </label>
-                      </div>
-                      <div class="flex-col-6">
-                        <label ngbButtonLabel class="direct-form-btn--radio btn no" [ngClass] = "{'inline-error' : isAssets}" id="eligibilityLbl6">
-                          <input ngbButton type="radio" value="N" (click) = "changeAssets($event)" id="eligibilityInpt4"> {{ 'COMMON.LBL_NO' | translate}}
-                        </label>
-                      </div>
-                    </div>
+                  <div class="btn-group--toggle" name="assets">
+                    <app-custom-radio-controller formControlName="assets" name="assets" [radioLabelValue]="radioLabelValue"
+                      (valueChangedEvent)="changeAssets($event)" [defaultLabelStyleClass]="defaultRadioStyleClass" flexRowMarPadClass="mb0"></app-custom-radio-controller>
                   </div>
                 </div>
               </div>

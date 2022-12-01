@@ -140,6 +140,7 @@ button:active:focus {
     box-shadow: none;
     border: none;
     cursor: not-allowed;
+    pointer-events: auto;
 
     &:hover {
       background-color: $btn-disabled-bg !important;
@@ -279,6 +280,11 @@ button:active:focus {
   cursor: not-allowed;
 }
 
+.btn:disabled:active {
+  background: #009a9a !important;
+  color: #99cfcf;
+  cursor: not-allowed;
+}
 /*Fixed button small*/
 
 .fixed-btn--sm {
@@ -487,7 +493,7 @@ button:active:focus {
       min-height: 250px;
     }
 
-    &:last-child() {
+    &:last-child {
       margin-right: 0px;
     }
 
@@ -501,7 +507,7 @@ button:active:focus {
         margin-left: 0px;
       }
 
-      &:nth-child(odd):last-child() {
+      &:nth-child(odd):last-child {
         margin-right: auto;
       }
 
@@ -878,7 +884,7 @@ button:active:focus {
       white-space: normal;
       justify-content: center;
       align-items: center;
-      width: 100px;
+      // width: 100px;
       height: 51px;
       @extend .flex;
       @extend .align-center;
@@ -948,7 +954,7 @@ button:active:focus {
       .dropdown-menu {
         @include allmobiles {
           left: auto !important;
-          right: 0px !important;
+          right: -46px !important;
         }
       }
     }
@@ -974,6 +980,18 @@ button:active:focus {
 // dropdown-item with 24px gap 
 .dropdown-control {
 
+  &.transparent-dropdown {
+    .dropdown,
+    .dropup {
+      .btn-dropdown {
+        &:active{
+          color: $white-color;
+          background: transparent;
+        }
+      }
+    }
+  }
+
   .dropdown,
   .dropup {
     .btn-dropdown {
@@ -982,6 +1000,10 @@ button:active:focus {
       white-space: nowrap;
       overflow: hidden;
       text-overflow: ellipsis;
+      &:active{
+        color: $teal-color;
+        background: $white-color;
+      }
     }
   }
 

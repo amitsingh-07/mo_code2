@@ -512,6 +512,8 @@ input::placeholder {
       @extend .flex;
       @extend .justify-center;
       height: 60px;
+      border-top-left-radius: 0;
+      border-bottom-left-radius: 0;
     }
   }
 
@@ -1471,7 +1473,7 @@ input::placeholder {
   }
 
   .view-mode .input-group-append {
-    margin-left: 0;
+    margin-left: 0 !important;
   }
 
   .earn-btn-dropdown:disabled {

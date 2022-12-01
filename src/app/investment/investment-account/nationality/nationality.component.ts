@@ -36,6 +36,13 @@ export class NationalityComponent implements OnInit {
   tooltipDetails: any;
   foreignerModal: any;
   foreignerConfirmModel: any;
+  radioLabelValue = [{
+    name: this.translate.instant('SELECT_NATIONALITY.YES_lABEL'),
+    value: this.translate.instant('COMMON.LBL_TRUE_VALUE')
+  }, {
+    name: this.translate.instant('SELECT_NATIONALITY.NO_LABEL'),
+    value: this.translate.instant('COMMON.LBL_FALSE_VALUE')
+  }]
 
   constructor(
     public headerService: HeaderService,

@@ -1,6 +1,6 @@
 import { Location } from '@angular/common';
-import { AfterViewInit, Component, HostListener, OnInit } from '@angular/core';
-import { NavigationEnd, ActivatedRoute, Router } from '@angular/router';
+import { Component, HostListener, OnInit } from '@angular/core';
+import { ActivatedRoute, Router } from '@angular/router';
 import { NgbModal, NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
 import { TranslateService } from '@ngx-translate/core';
 import { Observable } from 'rxjs';
@@ -9,8 +9,6 @@ import { IComponentCanDeactivate } from './changes.guard';
 import { ConfigService, IConfig } from './config/config.service';
 import { GoogleAnalyticsService } from './shared/analytics/google-analytics.service';
 import { AuthenticationService } from './shared/http/auth/authentication.service';
-import { DiyModalComponent } from './shared/modal/diy-modal/diy-modal.component';
-import { PopupModalComponent } from './shared/modal/popup-modal/popup-modal.component';
 import { TermsModalComponent } from './shared/modal/terms-modal/terms-modal.component';
 import { INavbarConfig } from './shared/navbar/config/navbar.config.interface';
 import { NavbarConfig } from './shared/navbar/config/presets';
@@ -34,7 +32,7 @@ declare global {
   styleUrls: ['./app.component.scss']
 })
 
-export class AppComponent implements IComponentCanDeactivate, OnInit, AfterViewInit {
+export class AppComponent implements IComponentCanDeactivate, OnInit {
   title = 'Money Owl';
   modalRef: NgbModalRef;
   initRoute = false;
@@ -103,43 +101,8 @@ export class AppComponent implements IComponentCanDeactivate, OnInit, AfterViewI
     });
   }
 
-  ngAfterViewInit() {
-    this.route.events.subscribe((val) => {
-      if (val instanceof NavigationEnd) {// Redirected out
-        if (!this.initRoute) {
-          if (val.url === '/home#diy') {
-            this.triggerDiyPopup();
-          }
-          /*
-          else {
-            this.triggerPopup();
-          }*/
-          this.initRoute = true;
-        } else {
-          if (this.modalRef) {
-            this.modalRef.close();
-          }
-        }
-    }
-    });
-  }
-
   onActivate(event) {
     window.scroll(0, 0);
-  }
-
-  triggerDiyPopup() {
-    this.modalRef = this.modal.open(DiyModalComponent, {
-      centered: true,
-      windowClass: 'popup-modal-dialog modal-animated'
-    });
-  }
-
-  triggerPopup() {
-    this.modalRef = this.modal.open(PopupModalComponent, {
-      centered: true,
-      windowClass: 'popup-modal-dialog modal-animated',
-    });
   }
 
   openTermsOfConditions() {

@@ -1,0 +1,17 @@
+.custom-radio-btn {
+    .flex-col-6 {
+        &:first-child {
+            label {
+                margin-right: 5px;
+            }
+        }
+    }
+
+    .flex-col-6 {
+        &:last-child {
+            label {
+                margin-left: 5px;
+            }
+        }
+    }
+}

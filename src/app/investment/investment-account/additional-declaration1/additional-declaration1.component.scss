@@ -4,7 +4,7 @@
 app-additional-declaration1 {
   .app-add-step1 {
     .block-tooltip-icon {
-      background: url('/assets/images/investment-account/blocked-help-icon.svg') no-repeat;
+      background: url('./../../../../assets/images/investment-account/blocked-help-icon.svg') no-repeat;
       height: 18px;
       width: 18px;
       cursor: pointer;
@@ -43,6 +43,13 @@ app-additional-declaration1 {
       label {
         font-size: 16px;
         font-family: $muli-regular;
+      }
+      .btn-outline-primary {
+        &.disabled {
+            cursor: not-allowed;
+            pointer-events: auto !important;
+            border-color: $fixed-btn-brdr-color;
+          }
       }
     }
 

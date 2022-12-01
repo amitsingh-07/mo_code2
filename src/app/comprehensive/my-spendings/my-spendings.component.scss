@@ -18,7 +18,7 @@ color: $dark-teal-color;
     position: relative;
     //font-size: 18px;
     .help-icon {      
-        background: url("/assets/images/tool-help-icon.svg") no-repeat;
+        background: url("./../../../assets/images/tool-help-icon.svg") no-repeat;
         width: 40px;
         height: 20px;
         cursor: pointer;
@@ -29,7 +29,7 @@ color: $dark-teal-color;
     }    
 }
 .help-icon {
-    background: url("/assets/images/tool-help-icon.svg") no-repeat;
+    background: url("./../../../assets/images/tool-help-icon.svg") no-repeat;
     width: 20px;
     cursor: pointer;
     position: absolute;
@@ -40,7 +40,7 @@ color: $dark-teal-color;
     position: relative;
 }
 .delete-icon {      
-        background: url("/assets/images/comprehensive/delete-icon.svg") no-repeat;
+        background: url("./../../../assets/images/comprehensive/delete-icon.svg") no-repeat;
         width: 16px;
         height: 20px;
         cursor: pointer;
@@ -57,19 +57,19 @@ color: $dark-teal-color;
     margin-bottom: 30px !important;
 }
 .filledSpend{
-    background: url(/assets/images/comprehensive/empty-expenses-bucket.svg) no-repeat;
+    background: url(./../../../assets/images/comprehensive/empty-expenses-bucket.svg) no-repeat;
     display: inline-block;
     width: 243px;
     height: 150px;
 }
 .emptySpend{
-    background: url(/assets/images/comprehensive/filled-expenses-bucket.svg) no-repeat;
+    background: url(./../../../assets/images/comprehensive/filled-expenses-bucket.svg) no-repeat;
     display: inline-block;
     width: 243px;
     height: 150px;
 }
 .middleSpend{
-    background: url(/assets/images/comprehensive/middle-expenses-bucket.svg) no-repeat;
+    background: url(./../../../assets/images/comprehensive/middle-expenses-bucket.svg) no-repeat;
     display: inline-block;
     width: 243px;
     height: 150px;
@@ -107,7 +107,7 @@ color: $dark-teal-color;
 .otherMortage{
     //border-top:1px solid rgba(134, 205, 206, 0.3);
     .help-icon {
-        background: url("/assets/images/tool-help-icon.svg") no-repeat;
+        background: url("./../../../assets/images/tool-help-icon.svg") no-repeat;
         width: 20px;
         cursor: pointer;
         position: relative !important;

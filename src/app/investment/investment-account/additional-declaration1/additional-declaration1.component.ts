@@ -29,6 +29,14 @@ export class AdditionalDeclaration1Component implements OnInit {
   countries: any;
   isUserNationalitySingapore;
   tooltipDetails: any;
+  radioLabelValuePEP = [{
+    name: this.translate.instant('ADDITIONAL_DECLARATION.YES'),
+    value: this.translate.instant('COMMON.LBL_TRUE_VALUE')
+  }, {
+    name: this.translate.instant('ADDITIONAL_DECLARATION.NO'),
+    value: this.translate.instant('COMMON.LBL_FALSE_VALUE')
+  }];
+  defaultRadioStyleClass = 'btn-outline-primary fixed-btn--sm mr5 disabled';
 
   constructor(
     public headerService: HeaderService,

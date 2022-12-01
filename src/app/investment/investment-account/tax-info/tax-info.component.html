@@ -56,23 +56,10 @@
                     <!-- Button part -->
                     <div class="flex-row">
                       <div class="flex-col-12 mb15">
-                        <div class="btn-group--toggle" ngbRadioGroup name="radioTin" formControlName="radioTin">
-                          <div class="flex-row">
-                            <div class="flex-col-6">
-                              <label ngbButtonLabel class="btn-outline-primary fixed-btn--sm mr5">
-                                <input ngbButton type="radio" id="tin_yes" [value]=true
-                                  (change)="isTinNumberAvailChanged(true , taxInfoItem, null)">
-                                {{ 'TAX_INFO.YES_lABEL' | translate}}
-                              </label>
-                            </div>
-                            <div class="flex-col-6">
-                              <label ngbButtonLabel class="btn-outline-primary fixed-btn--sm">
-                                <input ngbButton type="radio" id="tin_no" [value]=false
-                                  (change)="isTinNumberAvailChanged(false , taxInfoItem, null)">{{
-                              'TAX_INFO.NO_LABEL' | translate}}</label>
-                            </div>
-                          </div>
-                        </div>
+                        <div class="btn-group--toggle" name="radioTin">            
+                          <app-custom-radio-controller formControlName="radioTin" name="radioTin" [radioLabelValue]="radioLabelValue" [disabled]="taxInfoItem.get('radioTin').disabled"
+                          (valueChangedEvent)="isTinNumberAvailChanged($event, taxInfoItem, null)" [defaultLabelStyleClass]="defaultRadioStyleClass"></app-custom-radio-controller>
+                      </div>
                       </div>
                     </div>
                     <!-- Second Dropdown -->
