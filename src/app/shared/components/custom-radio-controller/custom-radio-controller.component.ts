@@ -1,4 +1,4 @@
-import { Component, EventEmitter, forwardRef, Input, OnInit, Output, Provider } from '@angular/core';
+import { Component, EventEmitter, forwardRef, Input, Output, Provider } from '@angular/core';
 import { ControlValueAccessor, FormControl, NG_VALUE_ACCESSOR, Validators } from '@angular/forms';
 
 export const DEFAULT_VALUE_ACCESSOR: any = {
@@ -13,7 +13,7 @@ export const DEFAULT_VALUE_ACCESSOR: any = {
   styleUrls: ['./custom-radio-controller.component.scss'],
   providers: [DEFAULT_VALUE_ACCESSOR]
 })
-export class CustomRadioControllerComponent implements OnInit, ControlValueAccessor {
+export class CustomRadioControllerComponent implements ControlValueAccessor {
   @Input('radioLabelValue') radioLabelValue;
   @Input('flexRowMarPadClass') flexRowMarPadClass;
   _disabled = false;
@@ -42,11 +42,10 @@ export class CustomRadioControllerComponent implements OnInit, ControlValueAcces
 
   constructor() { }
 
-  ngOnInit(): void {
-    this.formControl.valueChanges.subscribe(val => {
-      this._onChange(val);
-      this.valueChangedEvent.emit(val);
-    })
+  valueChanged() {
+    const fControlValue = this.formControl.value;
+    this._onChange(fControlValue);
+    this.valueChangedEvent.emit(fControlValue);
   }
 
   writeValue(val: any): void {

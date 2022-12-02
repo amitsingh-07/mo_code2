@@ -46,8 +46,7 @@ export class GetStartedFormComponent implements OnInit {
     this.translate.get('COMMON').subscribe((result: string) => {
       this.radioLabelValue = [{
         name: this.translate.instant('COMMON.LBL_MALE'),
-        value: this.translate.instant('COMMON.LBL_MALE_VALUE'),
-        conditionalClass: { matchValue : true, applyClass: 'mr17' }
+        value: this.translate.instant('COMMON.LBL_MALE_VALUE')
       }, {
         name: this.translate.instant('COMMON.LBL_FEMALE'),
         value: this.translate.instant('COMMON.LBL_FEMALE_VALUE')

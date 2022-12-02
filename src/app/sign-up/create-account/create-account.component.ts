@@ -1,5 +1,4 @@
 import { flatMap } from 'rxjs/operators';
-
 import { Location } from '@angular/common';
 import {
   AfterViewInit, ChangeDetectorRef, Component, OnInit, ViewEncapsulation
@@ -28,16 +27,11 @@ import { SignUpService } from '../sign-up.service';
 import { ICorpBizData, IEnquiryUpdate } from '../signup-types';
 import { ValidatePassword } from './password.validator';
 import { ValidateRange } from './range.validator';
-import { ANIMATION_DATA } from '../../../assets/animation/animationData';
 import { Util } from '../../shared/utils/util';
 import { AffiliateService } from '../../shared/Services/affiliate.service';
 import { SIGN_UP_CONFIG } from '../sign-up.constant';
 import { NgbDateCustomParserFormatter } from '../../shared/utils/ngb-date-custom-parser-formatter';
 import { InvestmentAccountService } from '../../investment/investment-account/investment-account-service';
-
-declare var require: any;
-const bodymovin = require("../../../assets/scripts/lottie_svg.min.js");
-
 @Component({
   selector: 'app-create-account',
   templateUrl: './create-account.component.html',
@@ -161,7 +155,6 @@ export class CreateAccountComponent implements OnInit, AfterViewInit {
       this.createAccountForm.controls['referralCode'].setValue(this.route.snapshot.paramMap.get('referralCode'));
       this.showClearBtn = true;
     }
-    this.createAnimation();
   }
 
   ngAfterViewInit() {
@@ -693,18 +686,6 @@ export class CreateAccountComponent implements OnInit, AfterViewInit {
     this.showClearBtn = false;
     event.stopPropagation();
     event.preventDefault();
-  }
-
-  createAnimation() {
-    const animationData = ANIMATION_DATA.MO_SPINNER;
-    bodymovin.loadAnimation({
-      container: document.getElementById('mo_spinner'), // Required
-      path: '/app/assets/animation/mo_spinner.json', // Required
-      renderer: 'canvas', // Required
-      loop: true, // Optional
-      autoplay: true, // Optional
-      animationData: animationData
-    })
   }
 
   // Go to Corp biz signup with data page 
