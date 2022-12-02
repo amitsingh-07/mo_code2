@@ -980,6 +980,18 @@ button:active:focus {
 // dropdown-item with 24px gap 
 .dropdown-control {
 
+  &.transparent-dropdown {
+    .dropdown,
+    .dropup {
+      .btn-dropdown {
+        &:active{
+          color: $white-color;
+          background: transparent;
+        }
+      }
+    }
+  }
+
   .dropdown,
   .dropup {
     .btn-dropdown {

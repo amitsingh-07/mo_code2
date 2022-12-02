@@ -35,7 +35,7 @@
         <div class="flex-col-8" [ngClass]="{'mb20' : insurancePlanForm.get('haveHospitalPlan').value}">
           <div class="btn-group--toggle" name="radioGender">
             <app-custom-radio-controller formControlName="haveHospitalPlan" name="haveHospitalPlan" [radioLabelValue]="radioLabelValue"
-            [defaultLabelStyleClass]="defaultRadioStyleClass" flexRowMarPadClass="insurance-input-radio mb0" ></app-custom-radio-controller>
+            [defaultLabelStyleClass]="defaultRadioStyleClass" flexRowMarPadClass="insurance-input-radio mb0" flexColumns="flex-col-6" ></app-custom-radio-controller>
           </div>
         </div>
 
@@ -73,10 +73,10 @@
         <div class="flex-col-12 mb-3">
           <div class="btn-group--toggle" name="radioGender">
             <app-custom-radio-controller formControlName="haveCPFDependentsProtectionScheme" name="haveCPFDependentsProtectionScheme" [radioLabelValue]="radioLabelValueRider"
-            [defaultLabelStyleClass]="defaultRadioStyleClass" flexRowMarPadClass="insurance-input-radio mb0" flexColumns="flex-col-4"></app-custom-radio-controller>
+            [defaultLabelStyleClass]="defaultRadioStyleClass" flexRowMarPadClass="insurance-input-radio mb0" (valueChangedEvent)="resetLifeProtectionAmount($event)" flexColumns="flex-col-4"></app-custom-radio-controller>
           </div>
         </div>
-        <div *ngIf="insurancePlanForm.get('haveCPFDependentsProtectionScheme').value === 1" class="flex-row mb20">
+        <div *ngIf="insurancePlanForm.get('haveCPFDependentsProtectionScheme').value == 1" class="flex-row mb20">
           <div class="flex-col-5 pr5">
             <label for="name">
               <div>{{ 'CMP.FORM_LABEL.COVERAGE_AMOUNT' | translate}}
@@ -118,7 +118,7 @@
           <div class="flex-col-12 mb-3">
             <div class="btn-group--toggle" name="radioGender">
               <app-custom-radio-controller formControlName="haveHDBHomeProtectionScheme" name="haveHDBHomeProtectionScheme" [radioLabelValue]="radioLabelValueRider"
-              [defaultLabelStyleClass]="defaultRadioStyleClass" flexRowMarPadClass="insurance-input-radio mb0"></app-custom-radio-controller>
+              [defaultLabelStyleClass]="defaultRadioStyleClass" flexRowMarPadClass="insurance-input-radio mb0" flexColumns="flex-col-4"></app-custom-radio-controller>
             </div>
           </div>
 
@@ -254,7 +254,7 @@
               <div class="flex-col-12 mb-3">
                 <div class="btn-group--toggle" name="radioGender">
                   <app-custom-radio-controller formControlName="haveLongTermElderShield" name="haveLongTermElderShield" [radioLabelValue]="radioLabelValueRider"
-                  [defaultLabelStyleClass]="defaultRadioStyleClass" flexRowMarPadClass="insurance-input-radio mb0"></app-custom-radio-controller>
+                  [defaultLabelStyleClass]="defaultRadioStyleClass" (valueChangedEvent)="resetLongTermShieldAmount($event)" flexRowMarPadClass="insurance-input-radio mb0" flexColumns="flex-col-4"></app-custom-radio-controller>
                 </div>
               </div>
             </div>
@@ -262,9 +262,9 @@
           <div
             *ngIf="(showLongTermInsurance && insurancePlanForm.get('haveLongTermElderShield').value === 1)|| longTermInsurance">
             <div class="flex-row payout-width" *ngIf="!longTermInsurance">
-              <div class="btn-group--toggle" name="radioGender">
+              <div class="btn-group--toggle payout-width" name="radioGender">
                 <app-custom-radio-controller formControlName="longTermElderShieldAmount" name="longTermElderShieldAmount" [radioLabelValue]="radioLabelValueLTESAmt"
-                [defaultLabelStyleClass]="defaultRadioStyleClass" flexRowMarPadClass="insurance-input-radio mb0"></app-custom-radio-controller>
+                [defaultLabelStyleClass]="defaultRadioStyleClass" flexRowMarPadClass="insurance-input-radio mb0" flexColumns="flex-col-12 mb20"></app-custom-radio-controller>
               </div>
             </div>
             <div class="form-group-with-bg--content-white--desc flex-row">

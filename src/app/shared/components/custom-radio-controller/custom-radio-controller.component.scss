@@ -14,4 +14,18 @@
             }
         }
     }
+
+    .flex-col-4 {
+            label {
+                margin-right: 10px;
+            } 
+    }
+
+    .flex-col-4 {
+        &:last-child {
+            label {
+                margin-right: 0px;
+            }
+        }
+    }
 }

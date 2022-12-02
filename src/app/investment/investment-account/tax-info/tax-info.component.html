@@ -57,7 +57,7 @@
                     <div class="flex-row">
                       <div class="flex-col-12 mb15">
                         <div class="btn-group--toggle" name="radioTin">            
-                          <app-custom-radio-controller formControlName="radioTin" name="radioTin" [radioLabelValue]="radioLabelValue"
+                          <app-custom-radio-controller formControlName="radioTin" name="radioTin" [radioLabelValue]="radioLabelValue" [disabled]="taxInfoItem.get('radioTin').disabled"
                           (valueChangedEvent)="isTinNumberAvailChanged($event, taxInfoItem, null)" [defaultLabelStyleClass]="defaultRadioStyleClass"></app-custom-radio-controller>
                       </div>
                       </div>
