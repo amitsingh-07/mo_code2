@@ -294,9 +294,9 @@ export class TaxInfoComponent implements OnInit {
   setControlEnableDisable(taxInfoItem, controlName, enableFlag) {
     if (taxInfoItem.controls[controlName]) {
       if (enableFlag) {
-        taxInfoItem.controls[controlName].enable(true);
+        (taxInfoItem.controls[controlName] as FormControl).enable();
       } else {
-        taxInfoItem.controls[controlName].disable(true);
+        (taxInfoItem.controls[controlName] as FormControl).disable();
       }
     }
   }
