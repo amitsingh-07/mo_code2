@@ -78,29 +78,9 @@ export class AddSecondaryHolderComponent implements OnInit {
   customerPortfolioId: any;
   routeParams: any;
   navigationType: any;
-  radioLabelValueUsPR = [{
-    name: this.translate.instant('SECONDARY_HOLDER.MINOR.YES_LABEL'),
-    value: true
-  }, {
-    name: this.translate.instant('SECONDARY_HOLDER.MINOR.NO_LABEL'),
-    value: false
-  }];
-  radioLabelValueGender = [{
-    name: this.translate.instant('LABEL.MALE'),
-    value: 'male',
-    conditionalClass: { matchValue : true, applyClass: 'mr10' }
-  }, {
-    name: this.translate.instant('LABEL.FEMALE'),
-    value: 'female'
-  }];
-  radioLabelValueTin = [{
-    name: this.translate.instant('SECONDARY_HOLDER.MINOR.TAX_INFO.YES_LABEL'),
-    value: true
-  }, {
-    name: this.translate.instant('SECONDARY_HOLDER.MINOR.TAX_INFO.NO_LABEL'),
-    value: false,
-    conditionalClass: { matchValue : true, applyClass: 'm15' }
-  }];
+  radioLabelValueUsPR = [];
+  radioLabelValueGender = [];
+  radioLabelValueTin = [];
   defaultRadioStyleClass = 'btn-outline-primary fixed-btn--sm';
 
   constructor(
@@ -158,6 +138,27 @@ export class AddSecondaryHolderComponent implements OnInit {
         month: today.getMonth() + 1,
         day: today.getDate()
       };
+      this.radioLabelValueUsPR = [{
+        name: this.translate.instant('SECONDARY_HOLDER.MINOR.YES_LABEL'),
+        value: this.translate.instant('COMMON.LBL_TRUE_VALUE')
+      }, {
+        name: this.translate.instant('SECONDARY_HOLDER.MINOR.NO_LABEL'),
+        value: this.translate.instant('COMMON.LBL_FALSE_VALUE')
+      }];
+      this.radioLabelValueGender = [{
+        name: this.translate.instant('LABEL.MALE'),
+        value: this.translate.instant('COMMON.LBL_MALE_VALUE')
+      }, {
+        name: this.translate.instant('LABEL.FEMALE'),
+        value: this.translate.instant('COMMON.LBL_FEMALE_VALUE')
+      }];
+      this.radioLabelValueTin = [{
+        name: this.translate.instant('SECONDARY_HOLDER.MINOR.TAX_INFO.YES_LABEL'),
+        value: this.translate.instant('COMMON.LBL_TRUE_VALUE')
+      }, {
+        name: this.translate.instant('SECONDARY_HOLDER.MINOR.TAX_INFO.NO_LABEL'),
+        value: this.translate.instant('COMMON.LBL_FALSE_VALUE')
+      }];
     });
     this.secondaryHolderMinorFormValues = investmentEngagementService.getMinorSecondaryHolderData() ? JSON.parse(JSON.stringify(investmentEngagementService.getMinorSecondaryHolderData())) : null;
     this.secondaryHolderMajorFormValues = investmentEngagementService.getMajorSecondaryHolderData() ? JSON.parse(JSON.stringify(investmentEngagementService.getMajorSecondaryHolderData())) : null;

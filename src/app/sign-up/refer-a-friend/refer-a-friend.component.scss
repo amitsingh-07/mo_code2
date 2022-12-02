@@ -319,7 +319,7 @@ app-refer-a-friend {
                                 }
                             }
                             .social-media-block {
-                                transform: translate(-225px, -210px) !important;
+                                transform: translate(-225px, -165px) !important;
                                 font-family: $muli-bold;
                                 font-size: 18px;
                                 line-height: 23px;
@@ -336,14 +336,14 @@ app-refer-a-friend {
                                 @include min300max350 {
                                     padding: 20px;
                                     width: 300px;
-                                    transform: translate(-168px, -206px) !important;
+                                    transform: translate(-168px, -161px) !important;
                                 }
                                 @include min350max375 {
                                     width: 320px;
-                                    transform: translate(-199px, -206px) !important;
+                                    transform: translate(-199px, -161px) !important;
                                 }
                                 @include min375max400 {
-                                    transform: translate(-212px, -206px) !important;
+                                    transform: translate(-212px, -161px) !important;
                                 }
                                 &::after {
                                     content: "";

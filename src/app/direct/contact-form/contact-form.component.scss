@@ -51,20 +51,24 @@ app-contact-form{
         }
     }
     .datepicker-control{
-        .date-picker{
-            flex-wrap: nowrap;
-            .form-control-placeholder{
-                top: 20px;
-             }
-             .form-control:focus + .form-control-placeholder , 
-             .form-control:valid + .form-control-placeholder {
-               top: 14px
-             }
-        }
-        .dropdown-menu{
-            &.show{
-                right: 0;
-                left: unset !important;
+        .input-group{
+            &.date-picker{
+                flex-wrap: nowrap;
+                .form-control-placeholder{
+                    top: 20px;
+                    margin-left: 0 !important;
+                 }
+                 .form-control:focus + .form-control-placeholder , 
+                 .form-control:valid + .form-control-placeholder {
+                   top: 14px;
+                 }
+        
+                 .dropdown-menu{
+                    &.show{
+                        right: -46px !important;
+                        left: unset !important;
+                    }
+                 }
             }
         }
     }

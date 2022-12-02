@@ -311,7 +311,7 @@ button:active:focus {
   &:active,
   &:focus {
     background: transparent !important;
-    border-color: $fixed-btn-txt-color;
+    border-color: $fixed-btn-txt-color !important;
   }
 }
 
