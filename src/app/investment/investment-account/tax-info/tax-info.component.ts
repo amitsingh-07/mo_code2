@@ -38,13 +38,7 @@ export class TaxInfoComponent implements OnInit {
   investmentAccountCommon: InvestmentAccountCommon = new InvestmentAccountCommon();
   showNricHint = false;
   tooltipDetails: any;
-  radioLabelValue = [{
-    name: this.translate.instant('TAX_INFO.YES_LABEL'),
-    value: this.translate.instant('COMMON.LBL_TRUE_VALUE')
-  }, {
-    name: this.translate.instant('TAX_INFO.NO_LABEL'),
-    value: this.translate.instant('COMMON.LBL_FALSE_VALUE')
-  }]
+  radioLabelValue = [];
   defaultRadioStyleClass = 'btn-outline-primary fixed-btn--sm';
 
   constructor(
@@ -65,6 +59,13 @@ export class TaxInfoComponent implements OnInit {
       this.translator = this.translate.instant('TAX_INFO');
       this.tooltipDetails = this.translate.instant('BLOCKED_COUNTRY_TOOLTIP');
       this.setPageTitle(this.pageTitle);
+      this.radioLabelValue = [{
+        name: this.translate.instant('TAX_INFO.YES_LABEL'),
+        value: this.translate.instant('COMMON.LBL_TRUE_VALUE')
+      }, {
+        name: this.translate.instant('TAX_INFO.NO_LABEL'),
+        value: this.translate.instant('COMMON.LBL_FALSE_VALUE')
+      }];
     });
   }
   setPageTitle(title: string) {
