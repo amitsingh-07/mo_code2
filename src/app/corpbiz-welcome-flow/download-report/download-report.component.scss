@@ -176,6 +176,7 @@ app-download-report {
                   border-radius : 0;
                 }
                 hr{
+                    opacity: 0.25;
                     margin: 15px auto;
                     border-color: $mercury-smoke-color;
                     @include allmobiles{
