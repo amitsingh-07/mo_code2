@@ -112,7 +112,6 @@ app-terms {
   }
 
   .legal__section--inner {
-    padding: 0 0 0 10px !important;
     font-size:13px;
     line-height:21px;
     color:#5e5e5e;
@@ -126,7 +125,11 @@ app-terms {
       margin-bottom:10px;
       margin-top:25px;
       color: $teal-color;
-      margin-left: -10px;
+      font-family: $muli-semi-bold;
+    }
+    .section--sub-title{
+      display: inline-block;
+      margin-bottom: 10px;
     }
 
     li {
@@ -134,6 +137,56 @@ app-terms {
         margin-top: 4px;
       }
     }
-  }
 
+    ol {
+      counter-reset: item;
+      li{
+        display: block;
+        margin-bottom: 10px;
+        &::before {
+          content: counters(item,".") " ";
+          counter-increment: item;
+        }
+      }
+    }
+    ul{
+      li{
+        &::before {
+          content: " ";
+          display: inline-block;
+          width: 5px;
+          height: 5px;
+          border-radius: 50%;
+          margin-right: 10px;
+          background-color: $black-color;
+          counter-increment: none;
+        }
+      } 
+    }
+    .section--desc{
+      position: relative;
+      display: block;
+      width: 100%;
+      font-family: $muli;
+      color: $black-color;
+      a{
+        color: $teal-color !important;
+        &:hover{
+          color: $teal-color !important;
+        }
+      }
+    }
+  }
+  .disclosures{
+    .legal--title{
+      @include allmobiles{
+        text-align: center!important;
+      }
+    }
+    .section--title{
+      @include allmobiles{
+        text-align: center!important;
+      }
+    }
+  }
 }
