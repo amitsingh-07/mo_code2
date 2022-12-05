@@ -213,6 +213,11 @@ app-fund-details {
     @include desktop {
       padding: 0 50px;
     }
+    a{
+      &:hover{
+        text-decoration: none;
+      }
+    }
   }
   .fund-details-primary-btn {
     font-family: $muli-bold !important;
