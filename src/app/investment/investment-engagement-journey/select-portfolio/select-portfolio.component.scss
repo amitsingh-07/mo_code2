@@ -174,7 +174,7 @@ app-select-portfolio {
 
       li {
         margin-bottom: 15px;
-        background: url("/assets/images/wisesaver/icon-tick.svg") no-repeat 0 0;
+        background: url("./../../../../assets/images/wisesaver/icon-tick.svg") no-repeat 0 0;
         padding-left: 30px;
       }
       .disclaimer{
@@ -256,6 +256,9 @@ app-select-portfolio {
           &.active{
             background-color: $robins-egg-blue-color;
             border: 1px solid $robins-egg-blue-color;
+          }
+          &:hover{
+            text-decoration: none;
           }
         }
     }

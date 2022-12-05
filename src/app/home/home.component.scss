@@ -40,7 +40,7 @@ body{
                 width:35px;
                 height:35px;
                 margin-right:5px;
-                background:url('/assets/images/home-page/banner/marquee-icon.svg') no-repeat;
+                background:url('./../../assets/images/home-page/banner/marquee-icon.svg') no-repeat;
                 background-size:35px 35px;
                 margin-left:60px;
                 margin-right:15px;
@@ -98,7 +98,7 @@ body{
                 height:15px;
                 transform: translate(-20px, -10px);
                 align-self: center;
-                background: url("/assets/images/close-btn-white.png") no-repeat;
+                background: url("./../../assets/images/close-btn-white.png") no-repeat;
                 background-size:10px,10px;
                 background-color:$teal-color;
                 cursor: pointer;
@@ -130,7 +130,7 @@ body{
                 height:350px;
                 bottom:0px;
                 left:0px;
-                background:url('/assets/images/bg/cloud-bg.svg');
+                background:url('./../../assets/images/bg/cloud-bg.svg');
                 background-repeat: repeat-x;
             }
         }
@@ -157,7 +157,7 @@ body{
                 bottom:0px;
                 right:50px;
                 z-index:0;
-                background: url("/assets/images/banner1-thumbnail.svg") no-repeat; 
+                background: url("./../../assets/images/banner1-thumbnail.svg") no-repeat; 
                 background-size:504px 268px;
                 background-position: bottom;
 
@@ -184,7 +184,7 @@ body{
                 &.srsPromo{
                     width:560px;
                     height: 386px;
-                    background: url("/assets/images/home-page/banner/srsPromo/banner-thumbnail.svg") no-repeat;
+                    background: url("./../../assets/images/home-page/banner/srsPromo/banner-thumbnail.svg") no-repeat;
                     background-size:560px 386px;
                     
                     .banner-image-content{
@@ -202,7 +202,7 @@ body{
                             display:block;
                             width:40px;
                             height:45px;
-                            background: url("/assets/images/home-page/banner/srsPromo/speaker.svg") no-repeat;
+                            background: url("./../../assets/images/home-page/banner/srsPromo/speaker.svg") no-repeat;
                         }    
                         .desc{
                             text-align:center;
@@ -891,7 +891,7 @@ body{
         }
         .subscribe__section--bg{
             position: absolute;
-            background-image:url('/assets/images/bg/cloud-bg.svg');
+            background-image:url('./../../assets/images/bg/cloud-bg.svg');
             background-repeat: repeat-x;
             width:100%;
             height:507px;

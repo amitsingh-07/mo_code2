@@ -51,20 +51,24 @@ app-contact-form{
         }
     }
     .datepicker-control{
-        .date-picker{
-            flex-wrap: nowrap;
-            .form-control-placeholder{
-                top: 20px;
-             }
-             .form-control:focus + .form-control-placeholder , 
-             .form-control:valid + .form-control-placeholder {
-               top: 14px
-             }
-        }
-        .dropdown-menu{
-            &.show{
-                right: 0;
-                left: unset !important;
+        .input-group{
+            &.date-picker{
+                flex-wrap: nowrap;
+                .form-control-placeholder{
+                    top: 20px;
+                    margin-left: 0 !important;
+                 }
+                 .form-control:focus + .form-control-placeholder , 
+                 .form-control:valid + .form-control-placeholder {
+                   top: 14px;
+                 }
+        
+                 .dropdown-menu{
+                    &.show{
+                        right: -46px !important;
+                        left: unset !important;
+                    }
+                 }
             }
         }
     }
@@ -95,15 +99,16 @@ app-contact-form{
             color: $dark-fountain-blue-color;
             margin-bottom: 15px;
         }
-        .card{
+        .accordion-item{
             border: none;
-            .card-header{
+            .accordion-header{
                 padding: 0;
                 background: $white-color;
                 border: none;
-                .btn-link {
+                .accordion-button {
                     padding: 0px;
                     width: 100%;
+                    background: $white-color;
                     .arrow {
                         border: solid $half-baked-blue-color;
                         border-width: 0 2px 2px 0;
@@ -123,9 +128,12 @@ app-contact-form{
                     &:focus {
                         text-decoration: none;
                     }
+                    &::after{
+                        display: none;
+                    }
                 }
             }
-            .card-body{
+            .accordion-body{
                 padding: 0;
                 .form-control{
                     &.gender{

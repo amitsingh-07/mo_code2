@@ -260,6 +260,14 @@ app-my-child-guardian{
             max-height: 180px !important;
         }
     }
+
+    .dropdown{
+        .btn-dropdown{
+            &:active{
+                border: 1px solid $half-baked-blue-color;
+            }
+        }
+    }
 }
 
 .input-label-black {

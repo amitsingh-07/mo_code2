@@ -101,7 +101,7 @@ app-update-user-id {
       .btn-dropdown {
         &:disabled {
           border: solid 1px $aqua-squeeze-color !important;
-          background-color: $aqua-squeeze-color;
+          background-color: $aqua-squeeze-color !important;
           color: $teal-color !important;
           cursor: not-allowed;
 

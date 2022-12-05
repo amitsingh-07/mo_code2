@@ -78,6 +78,11 @@ export class AddSecondaryHolderComponent implements OnInit {
   customerPortfolioId: any;
   routeParams: any;
   navigationType: any;
+  radioLabelValueUsPR = [];
+  radioLabelValueGender = [];
+  radioLabelValueTin = [];
+  defaultRadioStyleClass = 'btn-outline-primary fixed-btn--sm';
+
   constructor(
     public authService: AuthenticationService,
     private investmentEngagementService: InvestmentEngagementJourneyService,
@@ -133,6 +138,27 @@ export class AddSecondaryHolderComponent implements OnInit {
         month: today.getMonth() + 1,
         day: today.getDate()
       };
+      this.radioLabelValueUsPR = [{
+        name: this.translate.instant('SECONDARY_HOLDER.MINOR.YES_LABEL'),
+        value: this.translate.instant('COMMON.LBL_TRUE_VALUE')
+      }, {
+        name: this.translate.instant('SECONDARY_HOLDER.MINOR.NO_LABEL'),
+        value: this.translate.instant('COMMON.LBL_FALSE_VALUE')
+      }];
+      this.radioLabelValueGender = [{
+        name: this.translate.instant('LABEL.MALE'),
+        value: this.translate.instant('COMMON.LBL_MALE_VALUE')
+      }, {
+        name: this.translate.instant('LABEL.FEMALE'),
+        value: this.translate.instant('COMMON.LBL_FEMALE_VALUE')
+      }];
+      this.radioLabelValueTin = [{
+        name: this.translate.instant('SECONDARY_HOLDER.MINOR.TAX_INFO.YES_LABEL'),
+        value: this.translate.instant('COMMON.LBL_TRUE_VALUE')
+      }, {
+        name: this.translate.instant('SECONDARY_HOLDER.MINOR.TAX_INFO.NO_LABEL'),
+        value: this.translate.instant('COMMON.LBL_FALSE_VALUE')
+      }];
     });
     this.secondaryHolderMinorFormValues = investmentEngagementService.getMinorSecondaryHolderData() ? JSON.parse(JSON.stringify(investmentEngagementService.getMinorSecondaryHolderData())) : null;
     this.secondaryHolderMajorFormValues = investmentEngagementService.getMajorSecondaryHolderData() ? JSON.parse(JSON.stringify(investmentEngagementService.getMajorSecondaryHolderData())) : null;
@@ -145,11 +171,12 @@ export class AddSecondaryHolderComponent implements OnInit {
       this.tabChange();
     }
     this.buildMajorForm();
+    this.buildMinorForm();
     let apiCalls = [];
     apiCalls.push(this.investmentAccountService.getAllDropDownList());
     apiCalls.push(this.investmentAccountService.getNationalityCountryList());
     this.showLoader();
-    forkJoin(apiCalls).subscribe(results => {
+    forkJoin(apiCalls).subscribe((results: number[]) => {
       this.setDropdownLists(results[0]);
       this.getNationalityCountriesList(results[1]);
       this.route.paramMap.subscribe(params => {

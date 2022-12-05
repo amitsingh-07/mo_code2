@@ -84,7 +84,9 @@ export class MyInfoService {
 
   newWindow(authoriseUrl, linkAccount?): void {
     const self = this;
-    this.openFetchPopup(linkAccount);
+    setTimeout(() => {    
+      this.openFetchPopup(linkAccount);
+    }, 500);
     this.isMyInfoEnabled = true;
     const screenWidth = screen.width;
     const screenHeight = screen.height;

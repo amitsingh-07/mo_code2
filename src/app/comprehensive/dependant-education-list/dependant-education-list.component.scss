@@ -4,10 +4,10 @@
 
 
 input[type='checkbox']+label {
-  background: url("/assets/images/check-box-normal.svg") left top no-repeat;
+  background: url("./../../../assets/images/check-box-normal.svg") left top no-repeat;
 }
 input[type='checkbox']:checked+label {
-  background-image: url("/assets/images/check-box-select.svg");
+  background-image: url("./../../../assets/images/check-box-select.svg");
 }
 .title {
   
@@ -31,7 +31,7 @@ input[type='checkbox']:checked+label {
       font-size: 18px;
   }
   .help-icon {
-    background: url("/assets/images/comprehensive/tool-tip-white.svg") no-repeat;
+    background: url("./../../../assets/images/comprehensive/tool-tip-white.svg") no-repeat;
     width: 20px;
     position: relative;
     top: 5px;

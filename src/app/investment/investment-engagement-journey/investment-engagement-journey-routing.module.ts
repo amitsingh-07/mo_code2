@@ -38,13 +38,11 @@ const routes: Routes = [
   {
     path: INVESTMENT_ENGAGEMENT_JOURNEY_ROUTES.ROOT,
     redirectTo: INVESTMENT_ENGAGEMENT_JOURNEY_ROUTES.START,
-    pathMatch: 'full',
-    canActivate: [InvestmentEngagementJourneyGuard, AuthGuard]
+    pathMatch: 'full'
   },
   {
     path: INVESTMENT_ENGAGEMENT_JOURNEY_ROUTES.SELECT_PORTFOLIO_TYPE,
-    component: SelectPortfolioTypeComponent,
-    canActivate: [InvestmentEngagementJourneyGuard, AuthGuard]
+    component: SelectPortfolioTypeComponent
   },
   {
     path: INVESTMENT_ENGAGEMENT_JOURNEY_ROUTES.SELECT_PORTFOLIO,
@@ -85,8 +83,7 @@ const routes: Routes = [
   {
     path: INVESTMENT_ENGAGEMENT_JOURNEY_ROUTES.RISK_ASSESSMENT,
     redirectTo: INVESTMENT_ENGAGEMENT_JOURNEY_ROUTES.RISK_ASSESSMENT + '/1',
-    pathMatch: 'full',
-    canActivate: [InvestmentEngagementJourneyGuard, AuthGuard]
+    pathMatch: 'full'
   },
   {
     path: INVESTMENT_ENGAGEMENT_JOURNEY_ROUTES.RISK_ASSESSMENT + '/:id',

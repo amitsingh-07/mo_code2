@@ -5,21 +5,9 @@
         <label for="name" id="getStrdLbl1">{{ 'PROFILE.GENDER.TITLE' | translate}}</label>
       </div>
       <div class="flex-col-8 direct-form-grp">
-        <div class="btn-group--toggle" ngbRadioGroup name="radioGender" formControlName="gender">
-          <div class="flex-row mb0">
-            <div>
-              <label ngbButtonLabel class="direct-form-btn--radio btn" id="getStrdLbl2">
-                <input ngbButton type="radio" value="male" (change)="onGenderChange()" id="getStrdInpt1"> {{
-                'COMMON.LBL_MALE' | translate}}
-              </label>
-            </div>
-            <div>
-              <label ngbButtonLabel class="direct-form-btn--radio btn" id="getStrdLbl3">
-                <input ngbButton type="radio" value="female" (change)="onGenderChange()" id="getStrdInpt2"> {{
-                'COMMON.LBL_FEMALE' | translate}}
-              </label>
-            </div>
-          </div>
+        <div class="btn-group--toggle" name="radioGender">
+          <app-custom-radio-controller formControlName="gender" name="gender" [radioLabelValue]="radioLabelValue"
+          [defaultLabelStyleClass]="defaultRadioStyleClass" (valueChangedEvent)="onGenderChange()" flexRowMarPadClass="mb0"></app-custom-radio-controller>
         </div>
       </div>
     </div>
@@ -69,28 +57,6 @@
                 (click)="selectCoverageAmt(ele_coverageAmt)">
                 {{ 'DIRECT_LIFE_PROTECTION.COVERAGE_AMT.DOLLAR' | translate}}{{ele_coverageAmt}}
               </button>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-    <div class="flex-row" style="display:none;">
-      <div class="flex-col-3">
-        <label for="name" id="getStrdLbl5">{{ 'PROFILE.SMOKER.TITLE' | translate}}</label>
-      </div>
-      <div class="flex-col-8 direct-form-grp">
-        <div class="btn-group--toggle" ngbRadioGroup name="radioSmoker" formControlName="smoker">
-          <div class="flex-row mb0">
-            <div>
-              <label ngbButtonLabel class="direct-form-btn--radio" id="getStrdLbl2">
-                <input ngbButton type="radio" value="nonsmoker" id="getStrdInpt1" /> {{ 'COMMON.LBL_NONSMOKER' |
-                translate}}
-              </label>
-            </div>
-            <div>
-              <label ngbButtonLabel class="direct-form-btn--radio" id="getStrdLbl3">
-                <input ngbButton type="radio" value="smoker" id="getStrdInpt2" /> {{ 'COMMON.LBL_SMOKER' | translate}}
-              </label>
             </div>
           </div>
         </div>
@@ -152,21 +118,9 @@
             <span class="help-icon" (click)="showToolTip('EARLY_TITLE','EARLY_DESCRIPTION')"></span>
       </div>
       <div class="flex-col-8 direct-form-grp">
-        <div class="btn-group--toggle" ngbRadioGroup name="radioIsEarlyCI" formControlName="isEarlyCI">
-          <div class="flex-row mb0">
-            <div>
-              <label ngbButtonLabel class="direct-form-btn--radio btn" id="getStrdLbl2">
-                <input ngbButton type="radio" value="yes" id="getStrdInpt1" [disabled]="isEarlyDisabled"> {{
-                'COMMON.LBL_YES' | translate}}
-              </label>
-            </div>
-            <div>
-              <label ngbButtonLabel class="direct-form-btn--radio btn" id="getStrdLbl3">
-                <input ngbButton type="radio" value="no" id="getStrdInpt2" [disabled]="isEarlyDisabled"> {{
-                'COMMON.LBL_NO' | translate}}
-              </label>
-            </div>
-          </div>
+        <div class="btn-group--toggle" name="radioGender">
+          <app-custom-radio-controller formControlName="isEarlyCI" name="isEarlyCI" [radioLabelValue]="radioLabelValueIsEarlyCI"
+          [defaultLabelStyleClass]="defaultRadioStyleClass" [disabled]="isEarlyDisabled" flexRowMarPadClass="mb0"></app-custom-radio-controller>
         </div>
       </div>
     </div>

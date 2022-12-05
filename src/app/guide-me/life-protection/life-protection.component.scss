@@ -9,4 +9,17 @@ app-life-protection {
       }
     }
   }
+  .dropdown-control {
+    .btn-dropdown {
+      &:active {
+        background: $white-color;
+      }
+      @include allmobiles {
+        &:active {
+          background: $white-color;
+          color: $teal-color;
+        }
+      }
+    }
+  }
 }

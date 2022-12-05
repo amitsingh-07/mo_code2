@@ -36,6 +36,7 @@ app-confirmation{
 
 
 .mobile-header--container {
+    width: 100%;
     @include allmobiles{
         background-image: url('../../../assets/images/will-writing/confirmation-mobile.svg');
         background-repeat: no-repeat;

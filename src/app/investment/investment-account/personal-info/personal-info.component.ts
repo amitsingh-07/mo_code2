@@ -48,6 +48,8 @@ export class PersonalInfoComponent implements OnInit {
   maxDate: any;
   investmentAccountCommon: InvestmentAccountCommon = new InvestmentAccountCommon();
   source: any;
+  radioLabelValue = [];
+
   constructor(
     private router: Router,
     private formBuilder: FormBuilder,
@@ -85,6 +87,13 @@ export class PersonalInfoComponent implements OnInit {
         month: today.getMonth() + 1,
         day: today.getDate()
       };
+      this.radioLabelValue = [{
+        name: this.translate.instant('LABEL.MALE'),
+        value: this.translate.instant('COMMON.LBL_MALE_VALUE')
+      }, {
+        name: this.translate.instant('LABEL.FEMALE'),
+        value: this.translate.instant('COMMON.LBL_FEMALE_VALUE')
+      }]
     });
   }
 

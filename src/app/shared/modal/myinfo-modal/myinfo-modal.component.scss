@@ -137,7 +137,7 @@ app-myinfo-modal {
   }
 
   .myinfo-data-block {
-    .card {
+    .accordion-item {
       margin-bottom: 10px;
       border-radius: 6px !important;
       background-color: $white-color;
@@ -147,19 +147,23 @@ app-myinfo-modal {
         margin-bottom: 0;
       }
 
-      .card-header {
+      .accordion-header {
         padding: 0px;
         background-color: $white-color;
         border: none !important;
 
-        .btn-link {
+        .accordion-button {
           padding: 0 3px 0 0;
           width: 100%;
           font-size: 14px;
           font-family: $muli-semi-bold;
-          line-height: 22px;
+          line-height: 21px;
           letter-spacing: -0.3px;
           color: $black-color;
+          background-color: $white-color;
+          div {
+            width: 100%;
+          }
 
           .arrow {
             border: solid $black-color;
@@ -182,10 +186,13 @@ app-myinfo-modal {
           &:focus {
             text-decoration: none;
           }
+          &::after {
+            display: none;
+          }
         }
       }
 
-      .card-body {
+      .accordion-body {
         padding: 10px 0 0 0;
 
         .myinfo-data-content {

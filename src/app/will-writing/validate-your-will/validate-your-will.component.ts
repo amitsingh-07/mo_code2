@@ -56,4 +56,5 @@ export class ValidateYourWillComponent implements OnInit, OnDestroy {
       this.fileUtil.downloadPDF(data, newWindow, this.translate.instant('WILL_WRITING.VALIDATE_YOUR_WILL.WILLS_PDF_NAME'));
     }, (error) => console.log(error));
   }
+
 }

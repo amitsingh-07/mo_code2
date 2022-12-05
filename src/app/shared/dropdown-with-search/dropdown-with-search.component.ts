@@ -6,6 +6,8 @@ import {
   FormControl, FormGroupDirective
 } from '@angular/forms';
 
+const NATIONALITY_FORM_CONTROLLER = 'nationality';
+
 @Component({
   selector: 'app-dropdown-with-search',
   templateUrl: './dropdown-with-search.component.html',
@@ -59,6 +61,9 @@ export class DropdownWithSearchComponent implements OnInit {
   emitSelected(option) {
     this.form.controls[this.searchControlName].setValue('');
     this.itemSelected.emit(option);
+    if (NATIONALITY_FORM_CONTROLLER === this.controlName) {
+      this.selectedValue = option[this.displayKey];
+    }
   }
 
   preventPropogation(event) {
