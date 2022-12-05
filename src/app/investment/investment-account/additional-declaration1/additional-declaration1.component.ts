@@ -29,13 +29,7 @@ export class AdditionalDeclaration1Component implements OnInit {
   countries: any;
   isUserNationalitySingapore;
   tooltipDetails: any;
-  radioLabelValuePEP = [{
-    name: this.translate.instant('ADDITIONAL_DECLARATION.YES'),
-    value: this.translate.instant('COMMON.LBL_TRUE_VALUE')
-  }, {
-    name: this.translate.instant('ADDITIONAL_DECLARATION.NO'),
-    value: this.translate.instant('COMMON.LBL_FALSE_VALUE')
-  }];
+  radioLabelValuePEP = [];
   defaultRadioStyleClass = 'btn-outline-primary fixed-btn--sm mr5 disabled';
 
   constructor(
@@ -56,6 +50,13 @@ export class AdditionalDeclaration1Component implements OnInit {
       this.translator = this.translate.instant('PERSONAL_DECLARATION');
       this.tooltipDetails = this.translate.instant('BLOCKED_COUNTRY_TOOLTIP');
       this.setPageTitle(this.pageTitle);
+      this.radioLabelValuePEP = [{
+        name: this.translate.instant('ADDITIONAL_DECLARATION.YES'),
+        value: this.translate.instant('COMMON.LBL_TRUE_VALUE')
+      }, {
+        name: this.translate.instant('ADDITIONAL_DECLARATION.NO'),
+        value: this.translate.instant('COMMON.LBL_FALSE_VALUE')
+      }];
     });
   }
   setPageTitle(title: string) {
