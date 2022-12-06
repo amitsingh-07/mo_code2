@@ -10,10 +10,10 @@ export const environment: IEnvironment = {
   isDebugMode: true,
   apiBaseUrl: 'https://bfa-dev.ntucbfa.cloud',
   myInfoClientId: {
-    invest:'STG-201820691C-MONEYOWL-BFA',
+    invest:'STG-201820691C-MONEYOWL-CPACCT',
     signup: 'STG-201820691C-MONEYOWL-BFA',
-    cfp: 'STG-201820691C-MONEYOWL-BFA',
-    corpbiz:'STG-201820691C-MONEYOWL-BFA',
+    cfp: 'STG-201820691C-MONEYOWL-FPREPORT',
+    corpbiz:'STG-201820691C-MONEYOWL-CPACCT-FPREPORT',
     linkSingpass: 'STG-201820691C-MONEYOWL-BFA',
     insurance: 'STG-201820691C-MONEYOWL-INSURANCEANALYSIS'
   },
