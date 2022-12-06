@@ -1,4 +1,4 @@
-FROM node:12.18.3 AS mofe
+FROM node:16.18.1 AS mofe
 ARG envflag=newmodev
 ENV NODE_OPTIONS="--max_old_space_size=2700"
 WORKDIR /opt/
@@ -8,7 +8,7 @@ RUN npm install --ignore-scripts
 ENV PATH="./node_modules/.bin:$PATH"
 COPY . ./
 RUN npm uninstall -g typescript
-RUN npm install typescript@3.8.3 --save-dev
+RUN npm install typescript@4.6.4 --save-dev
 RUN ng build -c=${envflag}
 
 
