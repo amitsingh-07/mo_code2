@@ -102,10 +102,11 @@ app-direct-results {
   }
 
   .compare {
-    background: white;
+    background: $white-color;
     color: #00A7A7;
     &:hover {
       color: $app-backgrnd-color;
+      background: $white-color;
     }
   }
 
@@ -232,6 +233,7 @@ app-direct-results {
   text-align: center;
   opacity: 0.6;
   color: $white-color;
+  padding-top: 20px;
   @include iPhone11 {
     padding-bottom: 70px;
   }

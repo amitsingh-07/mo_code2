@@ -344,12 +344,13 @@ app-verify-mobile {
     text-align: center;
     color: $white-color;
     border-radius: 21px;
-    background-color: $blue-stone-color;
+    background-color: $blue-stone-color !important;
     padding: 4px 20px !important;
     min-width: 119px;
 
     &:hover {
       color: $white-color !important;
+      background-color: $blue-stone-color;
     }
 
     &.seconds-timer {

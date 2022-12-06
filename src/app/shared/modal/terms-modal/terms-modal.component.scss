@@ -102,6 +102,7 @@ app-terms-modal{
       margin-bottom: 0px !important;
       h1{
         font-size:18px;
+        font-family: $muli-bold;
       }
       @include minMobilemaxPhablet {
         padding:0px !important;
@@ -124,7 +125,7 @@ app-terms-modal{
       .section--title {
         font-size:15px;
         margin-bottom:10px;
-        margin-top:25px;
+        padding-top:25px;
         color: $teal-color;
         font-family: $muli-semi-bold;
       }
