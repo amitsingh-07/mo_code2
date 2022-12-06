@@ -213,6 +213,9 @@ app-validate-your-will{
       }
   }
 .instruction-content{
+    ul{
+        padding-left: 40px;
+    }
     li{
         &:last-child{
             .section{
