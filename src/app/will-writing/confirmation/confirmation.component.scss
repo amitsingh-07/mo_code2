@@ -4,7 +4,7 @@
 app-confirmation{
 .container-fluid {
     background-color: #fff;
-    padding: 50px 60px 50px 60px;
+    padding: 50px 60px 51px 60px;
     font-family: $muli-semi-bold;
     @include allmobiles{
         padding: 10px 0 !important;
@@ -165,6 +165,9 @@ app-confirmation{
             .col-lg-6{
                 &.col-md-6{
                     &.col-sm-12{
+                        @include allmobiles{
+                            margin-bottom: -24px;
+                        }
                         &:first-child{
                             // padding-bottom: 20px;
                             @include allmobiles{
