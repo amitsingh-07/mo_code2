@@ -106,12 +106,12 @@ app-appoint-your-executor-trustee{
         }
     }
     .btn {
-       background-color: #fff;
+       background-color: $white-color !important;
         font-family: $muli;
         font-size: 22px;
         letter-spacing: -0.2px;
         text-align: center;
-        color: #066360; 
+        color: $watercourse-color !important; 
     }
 }
 .back-btn {
