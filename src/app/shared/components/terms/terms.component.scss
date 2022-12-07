@@ -103,6 +103,9 @@ app-terms {
       font-size:18px;
       font-family: $muli-bold;
     }
+    @include allmobiles{
+      text-align: center!important;
+    }
     @include minMobilemaxPhablet {
       padding:0px !important;
       margin:0px !important;
@@ -127,6 +130,9 @@ app-terms {
       padding-top:25px;
       color: $teal-color;
       font-family: $muli-semi-bold;
+      @include allmobiles{
+        text-align: center!important;
+      }
     }
     .section--sub-title{
       display: inline-block;
@@ -175,18 +181,6 @@ app-terms {
         &:hover{
           color: $teal-color !important;
         }
-      }
-    }
-  }
-  .disclosures{
-    .legal--title{
-      @include allmobiles{
-        text-align: center!important;
-      }
-    }
-    .section--title{
-      @include allmobiles{
-        text-align: center!important;
       }
     }
   }
