@@ -52,7 +52,7 @@ app-add-secondary-holder {
 
         &:active,
         &.active {
-          border-color: $white-color;
+          border-color: $white-color !important;
           outline: none;
           opacity: 1;
         }
