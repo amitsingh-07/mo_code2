@@ -281,6 +281,12 @@ body.modal-open::-webkit-scrollbar {
     line-height: 22px;
     letter-spacing: -0.2px;
   }
+
+  &.modal-static {
+     .modal-dialog {
+        transform: scale(1);
+     }
+  }
 }
 
 .modal__icon-container {
