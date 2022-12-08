@@ -158,16 +158,13 @@ app-confirmation{
             flex-wrap: wrap;
             justify-content: space-between;
             @include allmobiles {
-                flex-direction: column;
+                display: block;
                 padding-bottom: 0;
                 padding-top: 10px;
             }
             .col-lg-6{
                 &.col-md-6{
                     &.col-sm-12{
-                        @include allmobiles{
-                            margin-bottom: -24px;
-                        }
                         &:first-child{
                             // padding-bottom: 20px;
                             @include allmobiles{
