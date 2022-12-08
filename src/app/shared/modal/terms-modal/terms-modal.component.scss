@@ -100,8 +100,12 @@ app-terms-modal{
       color: $teal-color;
       margin-top: 10px !important;
       margin-bottom: 0px !important;
+      @include allmobiles{
+        text-align: center!important;
+      }
       h1{
         font-size:18px;
+        font-family: $muli-bold;
       }
       @include minMobilemaxPhablet {
         padding:0px !important;
@@ -124,9 +128,12 @@ app-terms-modal{
       .section--title {
         font-size:15px;
         margin-bottom:10px;
-        margin-top:25px;
+        padding-top:25px;
         color: $teal-color;
         font-family: $muli-semi-bold;
+        @include allmobiles{
+          text-align: center!important;
+        }
       }
       .section--sub-title{
         display: inline-block;
@@ -174,18 +181,6 @@ app-terms-modal{
           &:hover{
             color: $teal-color !important;
           }
-        }
-      }
-    }
-    .disclosures{
-      .legal--title{
-        @include allmobiles{
-          text-align: center!important;
-        }
-      }
-      .section--title{
-        @include allmobiles{
-          text-align: center!important;
         }
       }
     }

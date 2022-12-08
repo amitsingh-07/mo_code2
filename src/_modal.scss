@@ -971,6 +971,7 @@ body.modal-open::-webkit-scrollbar {
   .modal-body {
     width: 375px !important;
     margin: 0 auto;
+    padding-left: 25px !important;
     .modal-body-title {
       width: 310px;
     }
