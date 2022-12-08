@@ -102,7 +102,11 @@ export class AppComponent implements IComponentCanDeactivate, OnInit {
   }
 
   onActivate(event) {
-    window.scroll(0, 0);
+    (window as any).scroll({
+      top: 0, 
+      left: 0, 
+      behavior: 'instant'
+    });   
   }
 
   openTermsOfConditions() {
