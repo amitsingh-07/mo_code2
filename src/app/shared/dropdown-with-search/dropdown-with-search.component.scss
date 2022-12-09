@@ -53,6 +53,12 @@
     &.show {
       display:block;
     }
+    input {
+      border-radius: 0;
+    }
+    input[type="search"] {
+      -webkit-appearance: none;
+    }
   }
   
   .no-result {
