@@ -38,6 +38,8 @@ export class VerifyEmailComponent implements OnInit, AfterViewInit {
   captchaSrc = '';
   emailResend: string;
 
+  emailFocus = false;
+
   constructor(
     // tslint:disable-next-line
     private formBuilder: FormBuilder,
@@ -80,6 +82,10 @@ export class VerifyEmailComponent implements OnInit, AfterViewInit {
     this.buildForgotPasswordForm();
   }
 
+  get forgetPassword() {
+    return this.forgotPasswordForm.controls;
+  }
+
   ngAfterViewInit() {
     this.refreshCaptcha();
   }
@@ -98,7 +104,7 @@ export class VerifyEmailComponent implements OnInit, AfterViewInit {
     this.forgotPasswordForm = this.formBuilder.group({
       email: [this.formValues.email, [Validators.required, Validators.email, this.signUpService.emailDomainValidator(this.authService.isUserTypeCorporate)]],
       captcha: ['', [Validators.required]]
-    });
+    }, { validator: this.validateEmail() });
     return true;
   }
 
@@ -142,6 +148,30 @@ export class VerifyEmailComponent implements OnInit, AfterViewInit {
       });
     }
   }
+
+  private validateEmail() {
+    return (group: FormGroup) => {
+      const emailInput = group.controls['email'];
+
+      // Check Disposable E-mail
+      if (!emailInput.value) {
+        emailInput.setErrors({ required: true });
+      } 
+      else if (emailInput.value){
+        this.signUpService.validateEmail(this.forgotPasswordForm.controls['email'].value).subscribe((response) => {
+          if (response.responseMessage['responseCode'] === 5036) {
+            setTimeout(() => {
+              emailInput.setErrors({invalidDomain: true});
+            }, 1200);
+          } 
+        });       
+      } else {
+        emailInput.setErrors(null);
+      }
+    };
+  }
+
+
   goBack() {
     this._location.back();
   }
@@ -150,5 +180,11 @@ export class VerifyEmailComponent implements OnInit, AfterViewInit {
     this.forgotPasswordForm.controls['captcha'].reset();
     this.captchaSrc = this.authService.getCaptchaUrl();
     this.changeDetectorRef.detectChanges();
+  }
+
+  showValidity(from) {
+    if (from === 'email'){
+      this.emailFocus = !this.emailFocus;
+    }
   }
 }

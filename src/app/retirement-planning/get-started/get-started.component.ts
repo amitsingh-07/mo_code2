@@ -8,6 +8,7 @@ import { AuthenticationService } from './../../shared/http/auth/authentication.s
 import { NavbarService } from './../../shared/navbar/navbar.service';
 import { RegexConstants } from './../../shared/utils/api.regex.constants';
 import { RetirementPlanningService } from './../retirement-planning.service';
+import { SignUpService } from '../../sign-up/sign-up.service'
 
 @Component({
   selector: 'app-get-started',
@@ -24,8 +25,10 @@ export class GetStartedComponent implements OnInit {
 
   submitted = false;
   confirmEmailFocus = false;
+  emailFocus = false;
 
   constructor(
+    private signUpService: SignUpService,
     public navbarService: NavbarService,
     private translate: TranslateService,
     private formBuilder: FormBuilder,
@@ -93,6 +96,22 @@ export class GetStartedComponent implements OnInit {
       const mobileNumberInput = group.controls['mobileNumber'];
       const SINGAPORE_MOBILE_REGEXP = RegexConstants.MobileNumber;
 
+      // Check Disposable E-mail
+      if (!emailInput.value) {
+        emailInput.setErrors({ required: true });
+      } 
+      else if (emailInput.value){
+        this.signUpService.validateEmail(this.retirementPlanningForm.controls['emailAddress'].value).subscribe((response) => {
+          if (response.responseMessage['responseCode'] === 5036) {
+            setTimeout(() => {
+              emailInput.setErrors({invalidDomain: true});
+            }, 1200);
+          } 
+        });       
+      } else {
+        emailInput.setErrors(null);
+      }
+
       // Confirm E-mail
       if (!emailConfirmationInput.value) {
         emailConfirmationInput.setErrors({ required: true });
@@ -114,7 +133,9 @@ export class GetStartedComponent implements OnInit {
   }
 
   showValidity(from) {
-    if (from === 'confirmEmail') {
+    if (from === 'email'){
+      this.emailFocus = !this.emailFocus;
+    } else if (from === 'confirmEmail') {
       this.confirmEmailFocus = !this.confirmEmailFocus;
     }
   }

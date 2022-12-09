@@ -213,22 +213,27 @@
             <div class="flex-col-12 stretch">
               <div class="form-group-floating-label"
                 [ngClass]="{'inline-error': submitted && account.email.errors, 'disabled': isCorpBiz}">
-                <input type="text" id="crtAccInpt4" class="form-control" #email formControlName="email"
+                <input type="text" id="crtAccInpt4" (blur)="showValidity('email')" 
+                  (focus)="showValidity('email')" class="form-control" #email formControlName="email"
                   (paste)="onPaste($event, 'email')" (keyup)="onKeyupEvent($event, 'email')" required>
                 <label class="form-control-placeholder" for="lastName">{{ 'CREATE_ACCOUNT.FORM.EMAIL.LABEL' |
                   translate}}</label>
               </div>
             </div>
-            <div class="alert-msg" *ngIf="submitted && account.email.errors">
-              <div *ngIf="account.email.errors?.required">
+            <div class="alert-msg" *ngIf="account.email.errors">
+              <div *ngIf="!emailFocus && account.email.errors?.invalidDomain">
+                <span class="alert-icon"><img src="assets/images/alert.svg" /></span>
+                <span class="err-msg">{{ 'CREATE_ACCOUNT.FORM.EMAIL.ERROR.INVALID_DOMAIN' | translate}}</span>
+              </div>
+              <div *ngIf="submitted && account.email.errors?.required">
                 <span class="alert-icon"><img src="assets/images/alert.svg" /></span>
                 <span class="err-msg">{{ 'CREATE_ACCOUNT.FORM.EMAIL.ERROR.REQUIRED' | translate}}</span>
               </div>
-              <div *ngIf="account.email.errors?.email || account.email.errors?.pattern">
+              <div *ngIf="submitted && (account.email.errors?.email || account.email.errors?.pattern)">
                 <span class="alert-icon"><img src="assets/images/alert.svg" /></span>
                 <span class="err-msg">{{ 'CREATE_ACCOUNT.FORM.EMAIL.ERROR.INVALID' | translate}}</span>
               </div>
-              <div *ngIf="account.email.errors?.invalidDomain">
+              <div *ngIf="submitted && account.email.errors?.invalidDomain">
                 <span class="alert-icon"><img src="assets/images/alert.svg" /></span>
                 <span class="err-msg">{{ 'CREATE_ACCOUNT.FORM.EMAIL.ERROR.INVALID_DOMAIN' | translate}}</span>
               </div>

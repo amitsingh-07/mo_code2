@@ -18,8 +18,16 @@
             <div class="flex-row mb15">
               <div class="flex-col-12 stretch" [formGroup]="forgotPasswordForm">
                 <div class="form-group-floating-label">
-                  <input type="text" appInputFocus id="forgotPasswordinputEmail" class="form-control" #email formControlName="email" required>
+                  <input type="text" appInputFocus id="forgotPasswordinputEmail" 
+                  (blur)="showValidity('email')" (focus)="showValidity('email')" class="form-control" #email formControlName="email" required>
                   <label class="form-control-placeholder" for="lastName" id="forgotEmailPlaceHolder">{{ 'FORGOTPASSWORD.EMAIL' | translate}}</label>
+                </div>
+                <!-- Email error validation -->
+                <div class="alert-msg" *ngIf="forgetPassword.email.errors">
+                  <div *ngIf="!emailFocus && forgetPassword.email.errors?.invalidDomain">
+                    <span class="alert-icon"><img src="assets/images/alert.svg" /></span>
+                    <span class="err-msg"> {{ 'VERIFY_EMAIL.FORM.EMAIL.ERROR.INVALID_DOMAIN' | translate}}</span>
+                  </div>
                 </div>
               </div>
             </div>

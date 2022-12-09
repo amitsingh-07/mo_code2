@@ -831,4 +831,12 @@ export class ApiService {
         catchError((error: HttpErrorResponse) => this.handleError(error))
       );
   }
+  //check for disposable email
+  validateEmail(payload) {
+    return this.http.post(apiConstants.endpoint.validateEmail, payload)
+      .pipe(
+        catchError((error: HttpErrorResponse) => this.handleError(error))
+      );
+  }
+
 }
