@@ -194,6 +194,13 @@ app-confirmation{
                         @include allmobiles{
                             border: none;
                         }
+                        &:last-child{
+                            @include allmobiles{
+                                border: none;
+                                padding-bottom: 24px;
+                                margin-bottom: 0;
+                            }
+                        }
                     }
                 }
             }
@@ -225,6 +232,12 @@ app-confirmation{
                   padding-bottom: 16px;
                   border-bottom: 0.5px solid #bbbbbb;
               }
+          }
+          &.no-brdr{
+            @include allmobiles{
+                margin-bottom: 0;
+                padding-bottom: 24px;
+            }
           }
       }
       .section-header{
