@@ -102,10 +102,10 @@ export class AppComponent implements IComponentCanDeactivate, OnInit {
   }
 
   onActivate(event) {
-    window.scroll({
+    (window as any).scroll({
       top: 0, 
       left: 0, 
-      behavior: "auto"
+      behavior: 'instant'
     });   
   }
 
