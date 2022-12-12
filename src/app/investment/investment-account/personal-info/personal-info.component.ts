@@ -50,6 +50,7 @@ export class PersonalInfoComponent implements OnInit {
   source: any;
   radioLabelValue = [];
   isGenderDisabled = false;
+  genderDisabledStyleClass = 'fixed-btn--sm';
 
   constructor(
     private router: Router,
@@ -125,6 +126,7 @@ export class PersonalInfoComponent implements OnInit {
 
   buildFormForNricNumber(): FormGroup {
     this.isGenderDisabled = this.investmentAccountService.isDisabled('gender');
+    this.genderDisabledStyleClass = this.isGenderDisabled ? `${this.genderDisabledStyleClass} disabled` : this.genderDisabledStyleClass;
     return this.formBuilder.group(
       {
         salutation: [
