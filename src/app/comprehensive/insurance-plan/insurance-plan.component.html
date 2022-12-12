@@ -73,7 +73,7 @@
         <div class="flex-col-12 mb-3">
           <div class="btn-group--toggle" name="radioGender">
             <app-custom-radio-controller formControlName="haveCPFDependentsProtectionScheme" name="haveCPFDependentsProtectionScheme" [radioLabelValue]="radioLabelValueRider"
-            [defaultLabelStyleClass]="defaultRadioStyleClass" flexRowMarPadClass="insurance-input-radio mb0" (valueChangedEvent)="resetLifeProtectionAmount($event)" flexColumns="flex-col-4"></app-custom-radio-controller>
+            [defaultLabelStyleClass]="defaultRadioStyleClass" flexRowMarPadClass="insurance-input-radio mb0 radio-btn-space" (valueChangedEvent)="resetLifeProtectionAmount($event)" flexColumns="flex-col-4"></app-custom-radio-controller>
           </div>
         </div>
         <div *ngIf="insurancePlanForm.get('haveCPFDependentsProtectionScheme').value == 1" class="flex-row mb20">
