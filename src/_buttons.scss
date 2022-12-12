@@ -300,18 +300,16 @@ button:active:focus {
   @extend .justify-center;
   height: 50px;
 
-  //margin-bottom: 5px;
-  &.active {
-    border: 1px solid $module-fill-color !important;
-    color: $module-fill-color !important;
-    background: transparent !important;
-  }
-
   &:hover,
   &:active,
   &:focus {
     background: transparent !important;
     border-color: $fixed-btn-txt-color !important;
+  }
+  &.active {
+    border: 1px solid $module-fill-color !important;
+    color: $module-fill-color !important;
+    background: transparent !important;
   }
 }
 
