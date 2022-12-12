@@ -30,7 +30,7 @@ export class AdditionalDeclaration1Component implements OnInit {
   isUserNationalitySingapore;
   tooltipDetails: any;
   radioLabelValuePEP = [];
-  defaultRadioStyleClass = 'btn-outline-primary fixed-btn--sm mr5 disabled';
+  defaultRadioStyleClass = 'btn-outline-primary fixed-btn--sm disabled';
 
   constructor(
     public headerService: HeaderService,
