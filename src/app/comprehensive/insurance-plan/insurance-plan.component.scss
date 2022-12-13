@@ -86,8 +86,14 @@ app-insurance-plan{
            @include max360 {
             max-width: 87px;
           }
-          @include iphone6{
-            max-width:110px;
+          @include iphone6 {
+            max: width 110px;
+          }
+          
+          &:last-child {
+            .fixed-btn--sm-comprehensive {
+              margin-left: 10px;
+            }
           }
            .fixed-btn--sm-comprehensive{
              max-width: 105px;
