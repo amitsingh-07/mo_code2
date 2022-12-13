@@ -87,7 +87,7 @@ app-insurance-plan{
             max-width: 87px;
           }
           @include iphone6 {
-            max: width 110px;
+            max-width:110px;
           }
           
           &:last-child {
