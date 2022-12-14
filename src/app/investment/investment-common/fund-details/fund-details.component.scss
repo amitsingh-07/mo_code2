@@ -133,6 +133,7 @@ app-fund-details {
       &:hover {
         background: $fund-details-btn-hover-bg !important;
         box-shadow: none !important;
+        text-decoration: none;
       }
     }
   }
