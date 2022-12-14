@@ -76,42 +76,53 @@ app-insurance-plan{
   .btn-group--toggle{
     .custom-radio-btn{
        &.insurance-input-radio{
+        &.radio-btn-space {
+          @include allmobiles {
+            justify-content: space-between;
+          }
+        }
         .flex-col-6{
-           max-width: 110px !important;
-           @include iphone5 {
-             max-width: 87px;
-           }
-           @include min360{
-             max-width:110px;
-           }
+           max-width: 110px;
+           @include max360 {
+            max-width: 87px;
+          }
+          @include iphone6 {
+            max-width:110px;
+          }
+          
+          &:last-child {
+            .fixed-btn--sm-comprehensive {
+              margin-left: 10px;
+            }
+          }
            .fixed-btn--sm-comprehensive{
-             max-width: 105px !important;
-           @include iphone5 {
-             max-width: 82px;
-           }
-           @include min360{
-             max-width:105px;
-           }
+             max-width: 105px;
+             @include max360 {
+              max-width: 82px;
+            }
+            @include iphone6{
+              max-width:105px;
+            }
              &:active{
                color: $white-color !important;
              }
            }
          }
         .flex-col-4{
-          max-width: 115px !important;
-          @include iphone5 {
+          max-width: 115px;
+          @include max360 {
             max-width: 92px;
           }
-          @include min360{
-            max-width:115px;
+          @include iphone6{
+            max: width 102px;
           }
           .fixed-btn--sm-comprehensive{
-            max-width: 105px !important;
-          @include iphone5 {
+            max-width: 105px;
+          @include max360 {
             max-width: 82px;
           }
-          @include min360{
-            max-width:105px;
+          @include iphone6 {
+            max-width:92px;
           }
             &:active{
               color: $white-color !important;

@@ -49,6 +49,8 @@ export class PersonalInfoComponent implements OnInit {
   investmentAccountCommon: InvestmentAccountCommon = new InvestmentAccountCommon();
   source: any;
   radioLabelValue = [];
+  isGenderDisabled = false;
+  genderDisabledStyleClass = 'fixed-btn--sm';
 
   constructor(
     private router: Router,
@@ -123,6 +125,8 @@ export class PersonalInfoComponent implements OnInit {
   }
 
   buildFormForNricNumber(): FormGroup {
+    this.isGenderDisabled = this.investmentAccountService.isDisabled('gender');
+    this.genderDisabledStyleClass = this.isGenderDisabled ? `${this.genderDisabledStyleClass} disabled` : this.genderDisabledStyleClass;
     return this.formBuilder.group(
       {
         salutation: [
@@ -155,7 +159,7 @@ export class PersonalInfoComponent implements OnInit {
         gender: [
           {
             value: this.formValues.gender,
-            disabled: this.investmentAccountService.isDisabled('gender')
+            disabled: this.isGenderDisabled
           },
           Validators.required
         ],

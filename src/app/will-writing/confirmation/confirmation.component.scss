@@ -4,7 +4,7 @@
 app-confirmation{
 .container-fluid {
     background-color: #fff;
-    padding: 50px 60px 50px 60px;
+    padding: 50px 60px 51px 60px;
     font-family: $muli-semi-bold;
     @include allmobiles{
         padding: 10px 0 !important;
@@ -158,7 +158,7 @@ app-confirmation{
             flex-wrap: wrap;
             justify-content: space-between;
             @include allmobiles {
-                flex-direction: column;
+                display: block;
                 padding-bottom: 0;
                 padding-top: 10px;
             }
@@ -194,6 +194,13 @@ app-confirmation{
                         @include allmobiles{
                             border: none;
                         }
+                        &:last-child{
+                            @include allmobiles{
+                                border: none;
+                                padding-bottom: 24px;
+                                margin-bottom: 0;
+                            }
+                        }
                     }
                 }
             }
@@ -225,6 +232,12 @@ app-confirmation{
                   padding-bottom: 16px;
                   border-bottom: 0.5px solid #bbbbbb;
               }
+          }
+          &.no-brdr{
+            @include allmobiles{
+                margin-bottom: 0;
+                padding-bottom: 24px;
+            }
           }
       }
       .section-header{
