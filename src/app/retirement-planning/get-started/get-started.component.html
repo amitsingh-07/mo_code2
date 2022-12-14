@@ -90,27 +90,22 @@
                 <div class="flex-col-12 stretch">
                   <div class="form-group-floating-label"
                     [ngClass]="{'inline-error': submitted && retirementPlan.emailAddress.errors}">
-                    <input type="text" id="emailAddress" (blur)="showValidity('emailAddress')" 
-                    (focus)="showValidity('emailAddress')" class="form-control" #emailAddress formControlName="emailAddress" required>
+                    <input type="text" id="emailAddress" class="form-control" #emailAddress formControlName="emailAddress" required>
                     <label class="form-control-placeholder"
                       for="email">{{ 'RETIREMENT_PLANNING.CREATE.FORM.EMAIL.LABEL' | translate}}</label>
                   </div>
 
                   <!-- Email error validation -->
-                  <div class="alert-msg" *ngIf="retirementPlan.emailAddress.errors">
-                    <div *ngIf="submitted && retirementPlan.emailAddress.errors?.required">
+                  <div class="alert-msg" *ngIf="submitted && retirementPlan.emailAddress.errors">
+                    <div *ngIf="retirementPlan.emailAddress.errors?.required">
                       <span class="alert-icon"><img src="assets/images/alert.svg" /></span>
                       <span
                         class="err-msg">{{ 'RETIREMENT_PLANNING.CREATE.FORM.EMAIL.ERROR.REQUIRED' | translate}}</span>
                     </div>
-                    <div *ngIf="submitted && retirementPlan.emailAddress.errors?.email">
+                    <div *ngIf="retirementPlan.emailAddress.errors?.email">
                       <span class="alert-icon"><img src="assets/images/alert.svg" /></span>
                       <span
                         class="err-msg">{{ 'RETIREMENT_PLANNING.CREATE.FORM.EMAIL.ERROR.INVALID' | translate}}</span>
-                    </div>
-                    <div *ngIf="!emailFocus && retirementPlan.emailAddress.errors?.invalidDomain">
-                      <span class="alert-icon"><img src="assets/images/alert.svg" /></span>
-                      <span class="err-msg">{{ 'RETIREMENT_PLANNING.CREATE.FORM.EMAIL.ERROR.INVALID_DOMAIN' | translate}}</span>
                     </div>
                   </div>
                 </div>
