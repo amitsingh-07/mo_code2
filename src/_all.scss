@@ -1940,6 +1940,12 @@ a.link-white {
     @include min400max425{
       right: 0 !important;
     }
+    @include min425max450{
+      right: 0 !important;
+    }
+    @include min450max475{
+      right: 0 !important;
+    }
     @include min475max568{
       right: 0 !important;
     }
@@ -2590,4 +2596,23 @@ select:-webkit-autofill:focus {
 
 .not-allowed {
   cursor: not-allowed;
+}
+
+// adding styles from _promotion.scss which were removed as part of code clean up
+.disclaimer{
+  font-size: 14px;
+  line-height: 1.29;
+  letter-spacing: -0.1px;
+  color: $black-color;
+  display: flex;
+  padding-top: 20px;
+  font-family: $muli-regular;
+  text-align: left;
+  span{
+      &:first-child{                
+          letter-spacing: -0.1px;
+          padding-right: 5px;
+          font-family: $muli-bold;
+      }
+  }
 }
