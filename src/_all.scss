@@ -1940,6 +1940,12 @@ a.link-white {
     @include min400max425{
       right: 0 !important;
     }
+    @include min425max450{
+      right: 0 !important;
+    }
+    @include min450max475{
+      right: 0 !important;
+    }
     @include min475max568{
       right: 0 !important;
     }

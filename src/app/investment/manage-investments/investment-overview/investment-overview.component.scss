@@ -433,6 +433,11 @@ app-investment-overview {
                     } 
                     .portfolio-list {
                         background-color: $white-smoke-color;
+                        .flex-row{
+                            @include allmobiles{
+                                flex-direction: column !important;
+                            }
+                        }
                         &.invested {
                             background-color: $white-color;
                         }
