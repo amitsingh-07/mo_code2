@@ -70,6 +70,7 @@ export let apiConstants = {
         getCustOrgPromoCode: ACCOUNT_API_BASE_URL + '/promocode/getCustOrgPromoCode',
         directContactMeForm: ACCOUNT_API_BASE_URL + '/contactMe?handleError=true',
         getInterestedInList: ACCOUNT_API_BASE_URL + '/getInstestedInsruanceList',
+        validateEmail: ACCOUNT_API_BASE_URL + '/validateEmail?handleError=true',
         customer: {
             validateUIN: ACCOUNT_API_BASE_URL + '/customer/validateUin',
         },
