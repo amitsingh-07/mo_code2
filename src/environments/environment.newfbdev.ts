@@ -10,7 +10,7 @@ export const environment: IEnvironment = {
   isDebugMode: true,
   apiBaseUrl: 'https://bfa-fb-newdev.ntucbfa.cloud',
   myInfoClientId: {
-    invest:'STG-201820691C-MONEYOWL-CPACCT',
+    invest:'STG-201820691C-MONEYOWL-BFA',
     signup: 'STG-201820691C-MONEYOWL-BFA',
     cfp: 'STG-201820691C-MONEYOWL-FPREPORT',
     corpbiz:'STG-201820691C-MONEYOWL-CPACCT-FPREPORT',
