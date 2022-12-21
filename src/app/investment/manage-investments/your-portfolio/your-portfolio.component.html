@@ -108,7 +108,7 @@
 </section>
 <div class="portfolio-panel" *ngIf="portfolio">
   <div class="container-fluid max-width--1024">
-    <nav ngbNav #nav="ngbNav" class="nav-tabs" [(activeId)]="activeTabId">
+    <nav ngbNav #nav="ngbNav" class="nav-tabs" [(activeId)]="activeTab">
       <ng-container [ngbNavItem]="1">
           <a ngbNavLink><div class="your-portfolio-tab-title" innerHTML="{{'YOUR_PORTFOLIO.PORTFOLIO_SUMMARY' | translate}}"></div></a>
           <ng-template ngbNavContent>
