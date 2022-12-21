@@ -50,7 +50,7 @@ export class YourPortfolioComponent implements OnInit, OnDestroy {
   isToastMessageShown: boolean;
   showErrorMessage: boolean;
   toastMsg: any;
-  activeTab: string;
+  activeTab: number;
   srsAccDetail;
   cpfiaAccDetail: ICPFIAccountDetails;
   portfolioWithdrawRequests = false;
@@ -565,9 +565,9 @@ export class YourPortfolioComponent implements OnInit, OnDestroy {
   showBuyRequest() {
     if (this.signUpService.getByRequestFlag()) {
       this.signUpService.clearByRequestFlag();
-      this.activeTab = 'tab-2';
+      this.activeTab = 2;
     } else {
-      this.activeTab = 'tab-1';
+      this.activeTab = 1;
     }
   }
   getSrsAccDetails() {
