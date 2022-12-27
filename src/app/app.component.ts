@@ -4,6 +4,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { NgbModal, NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
 import { TranslateService } from '@ngx-translate/core';
 import { Observable } from 'rxjs';
+import { App } from '@capacitor/app';
 
 import { IComponentCanDeactivate } from './changes.guard';
 import { ConfigService, IConfig } from './config/config.service';
@@ -97,6 +98,22 @@ export class AppComponent implements IComponentCanDeactivate, OnInit {
             localStorage.setItem('irclickid_json', JSON.stringify(item));
           }
         });
+      }
+    });
+
+    // Capacitor - Native Android/iOS device specific listeners
+    App.addListener('appStateChange', ({ isActive }) => {
+      console.log('App state changed. Is active?', isActive);
+    });
+
+    App.addListener('backButton', ( BackButtonListener ) => {
+      console.log('Device Back Button Clicked');
+      if (BackButtonListener.canGoBack) {
+        console.log('Go the previous screen');
+        this._location.back();        
+      } else {
+        console.log('No Back screen');
+        //App.exitApp();
       }
     });
   }
