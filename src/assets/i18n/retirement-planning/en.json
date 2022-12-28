@@ -29,7 +29,8 @@
           "LABEL": "Email Address",
           "ERROR": {
             "REQUIRED": "Enter an email address",
-            "INVALID": "Enter a valid email address"
+            "INVALID": "Enter a valid email address",
+            "INVALID_DOMAIN": "Invalid Email domain"
           }
         },
         "CONFIRM_EMAIL": {
