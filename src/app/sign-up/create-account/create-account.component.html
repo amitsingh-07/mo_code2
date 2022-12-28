@@ -221,6 +221,10 @@
               </div>
             </div>
             <div class="alert-msg" *ngIf="account.email.errors">
+              <div *ngIf="!emailFocus && account.email.errors?.invalidDomain">
+                <span class="alert-icon"><img src="assets/images/alert.svg" /></span>
+                <span class="err-msg">{{ 'CREATE_ACCOUNT.FORM.EMAIL.ERROR.INVALID_DOMAIN' | translate}}</span>
+              </div>
               <div *ngIf="submitted && account.email.errors?.required">
                 <span class="alert-icon"><img src="assets/images/alert.svg" /></span>
                 <span class="err-msg">{{ 'CREATE_ACCOUNT.FORM.EMAIL.ERROR.REQUIRED' | translate}}</span>
@@ -229,7 +233,7 @@
                 <span class="alert-icon"><img src="assets/images/alert.svg" /></span>
                 <span class="err-msg">{{ 'CREATE_ACCOUNT.FORM.EMAIL.ERROR.INVALID' | translate}}</span>
               </div>
-              <div *ngIf="(!emailFocus || submitted) && account.email.errors?.invalidDomain">
+              <div *ngIf="submitted && account.email.errors?.invalidDomain">
                 <span class="alert-icon"><img src="assets/images/alert.svg" /></span>
                 <span class="err-msg">{{ 'CREATE_ACCOUNT.FORM.EMAIL.ERROR.INVALID_DOMAIN' | translate}}</span>
               </div>
