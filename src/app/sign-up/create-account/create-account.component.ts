@@ -49,7 +49,6 @@ export class CreateAccountComponent implements OnInit, AfterViewInit {
   captchaSrc: any = '';
   isPasswordValid = true;
 
-  emailFocus = false;
   confirmEmailFocus = false;
   confirmPwdFocus = false;
   passwordFocus = false;
@@ -587,7 +586,6 @@ export class CreateAccountComponent implements OnInit, AfterViewInit {
       const emailConfirmationInput = group.controls['confirmEmail'];
       const mobileNumberInput = group.controls['mobileNumber'];
       const SINGAPORE_MOBILE_REGEXP = RegexConstants.MobileNumber;
-      //const isDisposable = this.checkDisposableEmail();
 
       // Confirm Password
       if (!passwordConfirmationInput.value) {
@@ -597,7 +595,7 @@ export class CreateAccountComponent implements OnInit, AfterViewInit {
       } else {
         passwordConfirmationInput.setErrors(null);
       }
-      
+
       // Confirm E-mail
       if (!this.isCorpBiz && !emailConfirmationInput.value) {
         emailConfirmationInput.setErrors({ required: true });
@@ -619,16 +617,7 @@ export class CreateAccountComponent implements OnInit, AfterViewInit {
   }
 
   showValidity(from) {
-    if (from === 'email'){
-      this.emailFocus = !this.emailFocus;
-      
-      // Check Disposable E-mail
-      const emailInput = this.createAccountForm.controls['email'];
-      if (!this.emailFocus && emailInput.value){
-        this.signUpService.validateEmail(emailInput);
-      }   
-      
-    } else if (from === 'confirmEmail') {
+    if (from === 'confirmEmail') {
       this.confirmEmailFocus = !this.confirmEmailFocus;
     } else if (from === 'confirmPassword') {
       this.confirmPwdFocus = !this.confirmPwdFocus;
