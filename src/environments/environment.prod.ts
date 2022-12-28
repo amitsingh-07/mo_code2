@@ -5,10 +5,10 @@ export const environment: IEnvironment = {
   isDebugMode: false,
   apiBaseUrl: 'https://moneyowl.com.sg',
   myInfoClientId: {
-    invest:'PROD-201820691C-MONEYOWL-CPACCT',
+    invest:'PROD-201820691C-MONEYOWL-BFA',
     signup: 'PROD-201820691C-MONEYOWL-BFA',
-    cfp: 'PROD-201820691C-MONEYOWL-FPREPORT',
-    corpbiz:'PROD-201820691C-MONEYOWL-CPACCT-FPREPORT',
+    cfp: 'PROD-201820691C-MONEYOWL-BFA',
+    corpbiz:'PROD-201820691C-MONEYOWL-BFA',
     linkSingpass: 'PROD-201820691C-MONEYOWL-BFA',
     insurance: 'PROD-201820691C-MONEYOWL-INSURANCEANALYSIS'
   },
