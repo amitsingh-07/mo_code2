@@ -356,7 +356,22 @@ export class UpdateUserIdComponent implements OnInit, OnDestroy {
       const emailConfirmationInput = group.controls['confirmEmail'];
       const mobileNumberInput = group.controls['newMobileNumber'];
       const confirmMbileNumberInput = group.controls['confirmMobileNumber'];
-      
+
+      // Check Disposable E-mail
+      if (!emailInput.value) {
+        emailInput.setErrors({ required: true });
+      } 
+      else if (emailInput.value){
+        this.signUpService.validateEmail(this.updateUserIdForm.controls['newEmail'].value).subscribe((response) => {
+          if (response.responseMessage['responseCode'] === 5036) {
+            setTimeout(() => {
+              emailInput.setErrors({invalidDomain: true});
+            }, 1200);
+          } 
+        });       
+      } else {
+        emailInput.setErrors(null);
+      }
       // Confirm E-mail
       if (this.checkEditType()) {
         if (!emailConfirmationInput.value) {
@@ -413,18 +428,6 @@ export class UpdateUserIdComponent implements OnInit, OnDestroy {
   showValidity(controlName) {
     if (controlName === 'newEmail'){
       this.emailFocus = !this.emailFocus;
-      // Check Disposable E-mail
-      const emailInput = this.updateUserIdForm.controls['newEmail'];
-      if (emailInput.value){
-        this.signUpService.validateEmail(emailInput.value).subscribe((response) => {
-          if (response.responseMessage['responseCode'] === 5036) {
-            setTimeout(() => {
-              emailInput.setErrors({invalidDomain: true});
-            }, 0);
-          } 
-        });       
-      } 
-
     } else if (controlName === 'confirmEmail') {
       this.confirmEmailFocus = !this.confirmEmailFocus;
     } else if (controlName === 'confirmMobileNumber') {
