@@ -12,8 +12,8 @@ export const environment: IEnvironment = {
   myInfoClientId: {
     invest:'STG-201820691C-MONEYOWL-BFA',
     signup: 'STG-201820691C-MONEYOWL-BFA',
-    cfp: 'STG-201820691C-MONEYOWL-FPREPORT',
-    corpbiz:'STG-201820691C-MONEYOWL-CPACCT-FPREPORT',
+    cfp: 'STG-201820691C-MONEYOWL-BFA',
+    corpbiz:'STG-201820691C-MONEYOWL-BFA',
     linkSingpass: 'STG-201820691C-MONEYOWL-BFA',
     insurance: 'STG-201820691C-MONEYOWL-INSURANCEANALYSIS'
   },
