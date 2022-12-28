@@ -50,7 +50,6 @@ export class SignUpService {
   private createAccountFormError: any = new CreateAccountFormError();
   private resetPasswordUrl: string;
   private resetPasswordCorpUrl: string;
-  private emailId: string;
   private mobileOptimized = new BehaviorSubject(false);
   mobileOptimizedObservable$ = this.mobileOptimized.asObservable();
   myInfoAttributes = SIGN_UP_CONFIG.MY_INFO_ATTRIBUTES;
@@ -766,11 +765,6 @@ export class SignUpService {
     // API Call here
     const data = { "referralCode": referralCode };
     return this.apiService.validateReferralCode(data);
-  }
-
-  validateEmail(email){
-    const data = { "email": email};
-    return this.apiService.validateEmail(data);
   }
 
   // create account my_info details

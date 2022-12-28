@@ -47,7 +47,6 @@ export class UpdateUserIdComponent implements OnInit, OnDestroy {
   capslockFocus: boolean;
   capsOn: boolean;
   editType;
-  emailFocus = false;
   confirmEmailFocus = false;
   confirmMobileFocus = false;
   submitted = false;
@@ -357,21 +356,6 @@ export class UpdateUserIdComponent implements OnInit, OnDestroy {
       const mobileNumberInput = group.controls['newMobileNumber'];
       const confirmMbileNumberInput = group.controls['confirmMobileNumber'];
 
-      // Check Disposable E-mail
-      if (!emailInput.value) {
-        emailInput.setErrors({ required: true });
-      } 
-      else if (emailInput.value){
-        this.signUpService.validateEmail(this.updateUserIdForm.controls['newEmail'].value).subscribe((response) => {
-          if (response.responseMessage['responseCode'] === 5036) {
-            setTimeout(() => {
-              emailInput.setErrors({invalidDomain: true});
-            }, 1200);
-          } 
-        });       
-      } else {
-        emailInput.setErrors(null);
-      }
       // Confirm E-mail
       if (this.checkEditType()) {
         if (!emailConfirmationInput.value) {
@@ -426,9 +410,7 @@ export class UpdateUserIdComponent implements OnInit, OnDestroy {
     return isDisabled;
   }
   showValidity(controlName) {
-    if (controlName === 'newEmail'){
-      this.emailFocus = !this.emailFocus;
-    } else if (controlName === 'confirmEmail') {
+    if (controlName === 'confirmEmail') {
       this.confirmEmailFocus = !this.confirmEmailFocus;
     } else if (controlName === 'confirmMobileNumber') {
       this.confirmMobileFocus = !this.confirmMobileFocus;
