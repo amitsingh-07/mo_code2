@@ -416,8 +416,12 @@ export class UpdateUserIdComponent implements OnInit, OnDestroy {
       // Check Disposable E-mail
       const emailInput = this.updateUserIdForm.controls['newEmail'];
       if (!this.emailFocus && emailInput.value){
-        this.signUpService.validateEmail(emailInput);
-      }
+        this.signUpService.validateEmail(emailInput.value).subscribe((response) => {
+          if (response.responseMessage['responseCode'] === 5036) {
+              emailInput.setErrors({invalidDomain: true});
+          } 
+        });       
+      } 
 
     } else if (controlName === 'confirmEmail') {
       this.confirmEmailFocus = !this.confirmEmailFocus;

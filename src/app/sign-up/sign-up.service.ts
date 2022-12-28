@@ -769,13 +769,9 @@ export class SignUpService {
   }
 
   validateEmail(email){
-    const data = { "email": email.value};
-      this.apiService.validateEmail(data).subscribe((response) => {
-        if (response.responseMessage['responseCode'] === 5036) {
-            email.setErrors({invalidDomain: true});
-        } 
-      });       
-    } 
+    const data = { "email": email};
+    return this.apiService.validateEmail(data);
+  }
 
   // create account my_info details
   setCreateAccountMyInfoFormData(data) {
@@ -1045,5 +1041,4 @@ export class SignUpService {
   getCorpBizMyInfoStatus() {
     return this.corpBizUserMyInfoData.isCorpBizMyInfoEnabled;
   }
-
 }
