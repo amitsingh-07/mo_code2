@@ -624,10 +624,12 @@ export class CreateAccountComponent implements OnInit, AfterViewInit {
       
       // Check Disposable E-mail
       const emailInput = this.createAccountForm.controls['email'];
-      if (!this.emailFocus && emailInput.value){
+      if (emailInput.value){
         this.signUpService.validateEmail(emailInput.value).subscribe((response) => {
           if (response.responseMessage['responseCode'] === 5036) {
+            setTimeout(() => {
               emailInput.setErrors({invalidDomain: true});
+            }, 0);
           } 
         });       
       } 
