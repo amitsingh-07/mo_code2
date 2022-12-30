@@ -1,4 +1,4 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 
 import { CallBackComponent } from './call-back.component';
 
@@ -6,7 +6,7 @@ describe('CallBackComponent', () => {
   let component: CallBackComponent;
   let fixture: ComponentFixture<CallBackComponent>;
 
-  beforeEach(async(() => {
+  beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
       declarations: [ CallBackComponent ]
     })

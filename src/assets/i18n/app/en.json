@@ -597,7 +597,9 @@
     "EMAIL_ENQUIRY": {
         "THANKYOU": "Thank you!",
         "TITLE": "Your enquiry has been sent successfully. Our advisors will contact you as soon as possible.",
-        "FOR_ENQUIRY": "For enquiries, please contact us at:"
+        "FOR_ENQUIRY": "For enquiries, please contact us at:",
+        "ENQUIRY_NUMBER": "(65) 6329 9188",
+        "ENQUIRY_EMAIL": "enquiries@moneyowl.com.sg"
     },
     "INVESTMENT_ADD_PORTFOLIO_ERROR": {
         "MAX_PORTFOLIO_LIMIT_TITLE": "You have just reached the maximum number of 20 portfolios limit.",

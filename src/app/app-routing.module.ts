@@ -74,12 +74,6 @@ const routes: Routes = [
         canActivateChild: [WillWritingChildEnableGuard]
       },
       {
-        path: 'retirement-planning',
-        loadChildren: () => import('./retirement-planning/retirement-planning.module').then(m => m.RetirementPlanningModule),
-        canActivate: [],
-        canActivateChild: []
-      },
-      {
         path: 'payment',
         loadChildren: () => import('./payment/payment.module').then(m => m.PaymentModule),
         canActivate: [PaymentEnableGuard],

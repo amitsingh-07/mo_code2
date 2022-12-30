@@ -89,20 +89,6 @@ export class AppComponent implements IComponentCanDeactivate, OnInit {
     window.failed.namespace = window.failed.namespace || {};
     window.success = window.success || {};
     window.success.namespace = window.success.namespace || {};
-
-    this.configService.getConfig().subscribe((config: IConfig) => {
-      if (config.affiliateEnabled) {
-        this.activatedRoute.queryParams.subscribe(params => {
-          if (params['irclickid'] && typeof(Storage) !== "undefined") {
-            const item = {
-              irClickId: params['irclickid'],
-              clickIdCreatedDate: new Date().toISOString()
-            };
-            localStorage.setItem('irclickid_json', JSON.stringify(item));
-          }
-        });
-      }
-    });
   }
 
   initializeApp() {
