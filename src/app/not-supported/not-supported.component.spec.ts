@@ -1,4 +1,4 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 
 import { NotSupportedComponent } from './not-supported.component';
 
@@ -6,7 +6,7 @@ describe('NotSupportedComponent', () => {
   let component: NotSupportedComponent;
   let fixture: ComponentFixture<NotSupportedComponent>;
 
-  beforeEach(async(() => {
+  beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
       declarations: [ NotSupportedComponent ]
     })

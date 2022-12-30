@@ -618,6 +618,10 @@
         "TITLE": "Oh…this is embarassing!",
         "SUB_TITLE": "Owls could not find the page you are looking for!"
     },
+    "NOT_SUPPORTED": {
+        "TITLE": "Web browser not supported",
+        "SUB_TITLE": "You are using a web browser that we do not support. Please switch to using Chrome or Safari to continue viewing our website."
+    },
     "UPLOAD_DOCUMENTS": {
         "CKA_CERTIFICATE" : "UT & ILP Certificate",
         "OKAY_GOT_IT_BTN": "Okay, Got It!",
