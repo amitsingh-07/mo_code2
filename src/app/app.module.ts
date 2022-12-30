@@ -42,7 +42,6 @@ import {
   CreateAccountModelComponent
 } from './guide-me/recommendations/create-account-model/create-account-model.component';
 import { HammerConfig } from './hammer.config';
-import { HomeComponent } from './home/home.component';
 import {
   FundDetailsComponent
 } from './investment/investment-common/fund-details/fund-details.component';
@@ -105,7 +104,6 @@ import {
 import {
   UnsupportedDeviceModalComponent
 } from './shared/modal/unsupported-device-modal/unsupported-device-modal.component';
-import { NavbarComponent } from './shared/navbar/navbar.component';
 import { NavbarService } from './shared/navbar/navbar.service';
 import { RoutingService } from './shared/Services/routing.service';
 import { StateStoreService } from './shared/Services/state-store.service';
@@ -161,7 +159,6 @@ export function tokenGetterFn() {
     HeaderComponent,
     FooterComponent,
     CallBackComponent,
-    HomeComponent,
     UrlRedirectComponent,
     TestMyInfoComponent,
     TransactionModalComponent,
@@ -205,7 +202,6 @@ export function tokenGetterFn() {
       multi: true,
       deps: [Injector]  
     },
-    // { provide: APP_BASE_HREF, useValue: '/app/' },
     NgbActiveModal,
     AuthenticationService, CustomErrorHandlerService, RequestCache,
     AppService, TitleCasePipe, PendingChangesGuard, DefaultErrors,

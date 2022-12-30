@@ -38,7 +38,6 @@ export class ComprehensiveComponent implements OnInit {
   promoValidated: string;
 
   getComprehensiveSummaryDashboard: any;
-  isBannerNoteVisible: boolean;
   includingGst = false;
   fetchData: string;
   loading: string;
@@ -128,8 +127,6 @@ export class ComprehensiveComponent implements OnInit {
       });
 
     }
-    this.isBannerNoteVisible = this.isCurrentDateInRange(COMPREHENSIVE_CONST.BANNER_NOTE_START_TIME,
-      COMPREHENSIVE_CONST.BANNER_NOTE_END_TIME);
   }
 
   /**

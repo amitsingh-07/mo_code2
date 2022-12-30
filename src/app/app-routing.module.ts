@@ -10,7 +10,6 @@ import {
   EmailEnquirySuccessComponent
 } from './email-enquiry-success/email-enquiry-success.component';
 import { ExternalRouteGuard } from './external-route-guard';
-import { HomeComponent } from './home/home.component';
 import { InvestmentMaintenanceGuard } from './investment-maintenance/investment-maintenance-guard';
 import { InvestmentMaintenanceComponent } from './investment-maintenance/investment-maintenance.component';
 import { InvestmentChildEnableGuard } from './investment/investment-engagement-journey/investment-child-enable-guard';
@@ -30,7 +29,6 @@ const routes: Routes = [
     children: [
       { component: UrlRedirectComponent, matcher: validateUrl },
       { path: '', redirectTo: 'home', pathMatch: 'full' },
-      { path: 'home', component: HomeComponent },
       { path: '9462test-myinfo', component: TestMyInfoComponent },
       { path: 'direct', loadChildren: () => import('./direct/direct.module').then(m => m.DirectModule) },
       { path: 'welcome-journey', loadChildren: () => import('./corpbiz-welcome-flow/corpbiz-welcome-flow.module').then(m => m.CorpBizWelcomeFlowModule) },
