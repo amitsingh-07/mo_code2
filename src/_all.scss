@@ -2,6 +2,10 @@
 @import './mixins';
 
 /*Global Styles*/
+html {
+  padding: env(safe-area-inset-top) env(safe-area-inset-right) env(safe-area-inset-bottom) env(safe-area-inset-left);
+}
+
 html,
 body {
   height: 100%;
@@ -117,8 +121,7 @@ label{
 }
 // end
 .navbar {
-  padding-left: 0;
-  padding-right: 0;
+  padding: env(safe-area-inset-top) env(safe-area-inset-right) env(safe-area-inset-left);
   background-color: $module-fill-color;
   box-shadow: none;
   display: flex;
@@ -127,7 +130,6 @@ label{
   color: $app-backgrnd-color;
   justify-content: space-between;
   height: 84px;
-  padding: 0px;
   box-shadow: 0 2px 14px 0 rgba(0, 0, 0, 0.25);
   transition: 0.5s;
   //z-index:1063;
@@ -312,6 +314,7 @@ label{
     flex-direction: row;
     justify-content: space-between;
     max-width: 500px;
+    margin: env(safe-area-inset-top) env(safe-area-inset-right) env(safe-area-inset-left);
 
     @include minPhabletmaxTablet {
       max-width: 465px;
@@ -1957,6 +1960,7 @@ a.link-white {
 @include allmobiles {
   .collapse.navbar-collapse.show {
     width: 100vw;
+    margin: env(safe-area-inset-top) env(safe-area-inset-right) env(safe-area-inset-bottom) env(safe-area-inset-left);
   }
 }
 

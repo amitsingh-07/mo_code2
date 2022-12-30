@@ -1,9 +1,10 @@
 import { Location } from '@angular/common';
-import { Component, HostListener, OnInit } from '@angular/core';
+import { Component, HostListener, NgZone, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { NgbModal, NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
 import { TranslateService } from '@ngx-translate/core';
 import { Observable } from 'rxjs';
+import { App, URLOpenListenerEvent } from '@capacitor/app';
 
 import { IComponentCanDeactivate } from './changes.guard';
 import { ConfigService, IConfig } from './config/config.service';
@@ -17,6 +18,7 @@ import { RoutingService } from './shared/Services/routing.service';
 import { SessionsService } from './shared/Services/sessions/sessions.service';
 import { appConstants } from './app.constants';
 import { UnsupportedDeviceModalComponent } from './shared/modal/unsupported-device-modal/unsupported-device-modal.component';
+import { environment } from 'src/environments/environment';
 
 declare global {
   interface Window {
@@ -44,7 +46,7 @@ export class AppComponent implements IComponentCanDeactivate, OnInit {
     private googleAnalyticsService: GoogleAnalyticsService,
     private modal: NgbModal, public route: Router, public routingService: RoutingService, private location: Location,
     private configService: ConfigService, private authService: AuthenticationService, private sessionsService: SessionsService,
-    public activatedRoute: ActivatedRoute) {
+    public activatedRoute: ActivatedRoute, private zone: NgZone) {
     this.translate.setDefaultLang('en');
     this.configService.getConfig().subscribe((config: IConfig) => {
       this.translate.setDefaultLang(config.language);
@@ -76,6 +78,8 @@ export class AppComponent implements IComponentCanDeactivate, OnInit {
         this.showFbWarning();
       }
     });
+    // Capacitor Deeplink
+    this.initializeApp();
   }
 
   ngOnInit() {
@@ -98,6 +102,20 @@ export class AppComponent implements IComponentCanDeactivate, OnInit {
           }
         });
       }
+    });
+  }
+
+  initializeApp() {
+    App.addListener('appUrlOpen', (event: URLOpenListenerEvent) => {
+      console.log("IN APP LISTENER")
+      this.zone.run(() => {
+        if (event.url.includes(environment.myInfoCallbackBaseUrl)) {
+          console.log("IN MYINFO")
+          this.route.navigateByUrl("myinfo");
+        }
+        // If no match, do nothing - let regular routing
+        // logic take over
+      });
     });
   }
 
