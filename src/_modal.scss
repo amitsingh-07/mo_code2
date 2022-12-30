@@ -1539,3 +1539,15 @@ body.modal-open::-webkit-scrollbar {
     }
   }
 }
+
+.cka-expiry-modal {
+  .modal-body-message {
+    padding-right: 20px;
+    @include allmobiles {
+      padding-right: 15px;
+    }
+    @include max360 {
+      padding-right: 0px;
+    }
+  }
+}

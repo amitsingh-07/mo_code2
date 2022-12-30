@@ -28,6 +28,7 @@ import { ManageInvestmentsService } from '../manage-investments.service';
 import { environment } from './../../../../environments/environment';
 import { PromoCodeService } from './../../../promo-code/promo-code.service';
 import { appConstants } from '../../../app.constants';
+import { INVESTMENT_ENGAGEMENT_JOURNEY_ROUTE_PATHS } from './../../../investment/investment-engagement-journey/investment-engagement-journey-routes.constants';
 
 @Component({
   selector: 'app-top-up',
@@ -59,6 +60,8 @@ export class TopUpComponent implements OnInit, OnDestroy {
   reviewBuyRequestModal: NgbModalRef;
   private subscription: Subscription;
   corpFaq = appConstants.CORPORATE_FAQ;
+  isCPF;
+  ckaInfo;
 
   constructor(
     public readonly translate: TranslateService,
@@ -97,6 +100,7 @@ export class TopUpComponent implements OnInit, OnDestroy {
     }
     this.footerService.setFooterVisibility(false);
     this.getPortfolioList();
+    this.getCKAInfo();
     this.cashBalance = this.manageInvestmentsService.getUserCashBalance();
     this.fundDetails = this.manageInvestmentsService.getFundingDetails();
     this.formValues = this.manageInvestmentsService.getTopUpFormData();
@@ -188,6 +192,10 @@ export class TopUpComponent implements OnInit, OnDestroy {
   }
   getPortfolioList() {
     this.portfolioList = this.manageInvestmentsService.getUserPortfolioList();
+  }
+
+  getCKAInfo() {
+    this.ckaInfo = this.manageInvestmentsService.getCKAInformation();
   }
 
   setDropDownValue(key, value) {
@@ -313,15 +321,54 @@ export class TopUpComponent implements OnInit, OnDestroy {
       }
     }
   }
-
+ 
   saveAndProceed(form: any) {
     form.value.topupAmount = this.topupAmount;
     this.manageInvestmentsService.setTopUp(form.value);
+    this.isCPF = this.manageInvestmentsService.getTopUpFormData().portfolio['fundingTypeValue'];
     // Save all the details of the top up before proceed
     this.saveFundingDetails();
+    if ( this.isCPF == 'CPF OA' && this.ckaInfo.isCKAExpired == true) {
+    const ref = this.modal.open(ModelWithButtonComponent, { centered: true , windowClass: 'cka-expiry-modal , limited-width' });
+    ref.componentInstance.errorTitle = this.translate.instant(
+      'TOPUP.CKA_EXPIRY_MODAL.TITLE'
+    );
+    ref.componentInstance.errorMessage = this.translate.instant(
+      'TOPUP.CKA_EXPIRY_MODAL.TITLE_DESC'
+    );
+    ref.componentInstance.primaryActionLabel = this.translate.instant(
+      'TOPUP.CKA_EXPIRY_MODAL.BTN-TEXT'
+    );
+    ref.componentInstance.primaryAction.subscribe(() => {
+      this.openCKAModal()
+    });
+    ref.componentInstance.closeBtn = true;
+    } else {
     // Open up show review buy request pop up
     this.showReviewBuyRequestModal(form);
+    }
   }
+
+  openCKAModal() {
+    this.investmentCommonService.setCKARedirectFromLocation(MANAGE_INVESTMENTS_ROUTE_PATHS.TOPUP);
+    const ref = this.modal.open(ModelWithButtonComponent, { centered: true , windowClass: 'custom-cka-modal' });
+    ref.componentInstance.errorTitle = this.translate.instant(
+      'OPEN_CKA.TITLE'
+    );
+    ref.componentInstance.errorMessage = this.translate.instant(
+      'OPEN_CKA.DESC'
+    );
+    ref.componentInstance.primaryActionLabel = this.translate.instant(
+      'OPEN_CKA.BTN-TEXT'
+    );
+    ref.componentInstance.primaryAction.subscribe(() => {
+      const routerURL =
+        INVESTMENT_ENGAGEMENT_JOURNEY_ROUTE_PATHS.CKA_ASSESSMENT
+      this.router.navigate([routerURL]);
+    });
+    ref.componentInstance.closeBtn = false;
+  }
+
   saveFundingDetails() {
     if (this.formValues.oneTimeInvestmentAmount) {
       this.topupAmount = this.formValues.oneTimeInvestmentAmount - this.formValues.portfolio['cashAccountBalance'];

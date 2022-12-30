@@ -191,6 +191,8 @@ export class InvestmentOverviewComponent implements OnInit, OnDestroy {
     this.investmentoverviewlist = (data.objectList) ? data.objectList : {};
     this.setSelectedCategory(this.manageInvestmentsService.selectedPortfolioCategory);
     this.portfolioList = (this.investmentoverviewlist.portfolios) ? this.investmentoverviewlist.portfolios : [];
+    const ckaInfo = this.investmentoverviewlist?.ckaInformation;
+    this.manageInvestmentsService.setCKAInformation(ckaInfo);
     this.totalPortfolio = this.portfolioList.length;
     if (this.portfolioList) {
       this.filterWiseIncomePortfolio(this.portfolioList);
