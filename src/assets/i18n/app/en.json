@@ -614,6 +614,10 @@
         "CONTACT_US": "Contact Us",
         "ABT_MO": "MoneyOwl Pte Ltd is a financial adviser and fund management company licensed by MAS. We are a joint venture between NTUC Enterprise Co-operative Ltd and Providend Holding Pte Ltd. Capital Markets Services Licence No: CMS100758. {{copyrightYear}} MoneyOwl Pte Ltd. All Rights Reserved."
     },
+    "NOT_FOUND": {
+        "TITLE": "Oh…this is embarassing!",
+        "SUB_TITLE": "Owls could not find the page you are looking for!"
+    },
     "UPLOAD_DOCUMENTS": {
         "CKA_CERTIFICATE" : "UT & ILP Certificate",
         "OKAY_GOT_IT_BTN": "Okay, Got It!",
