@@ -505,8 +505,7 @@ export class DashboardComponent implements OnInit {
       if (data.responseMessage.responseCode >= 6000) {
         const investmentoverviewlist = (data.objectList) ? data.objectList : {};
         const portfolioList = (investmentoverviewlist.portfolios) ? investmentoverviewlist.portfolios : [];
-        const ckaInfo = investmentoverviewlist?.ckaInformation;
-        this.manageInvestmentsService.setCKAInformation(ckaInfo);
+        this.manageInvestmentsService.setCKAInformation(investmentoverviewlist?.ckaInformation);
         this.manageInvestmentsService.setUserPortfolioList(portfolioList);
         this.router.navigate([MANAGE_INVESTMENTS_ROUTE_PATHS.TOPUP]);
       }

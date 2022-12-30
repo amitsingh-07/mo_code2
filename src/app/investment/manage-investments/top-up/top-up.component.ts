@@ -100,7 +100,7 @@ export class TopUpComponent implements OnInit, OnDestroy {
     }
     this.footerService.setFooterVisibility(false);
     this.getPortfolioList();
-    this.getCKAInfo();
+    this.ckaInfo = this.manageInvestmentsService.getCKAInformation();
     this.cashBalance = this.manageInvestmentsService.getUserCashBalance();
     this.fundDetails = this.manageInvestmentsService.getFundingDetails();
     this.formValues = this.manageInvestmentsService.getTopUpFormData();
@@ -192,10 +192,6 @@ export class TopUpComponent implements OnInit, OnDestroy {
   }
   getPortfolioList() {
     this.portfolioList = this.manageInvestmentsService.getUserPortfolioList();
-  }
-
-  getCKAInfo() {
-    this.ckaInfo = this.manageInvestmentsService.getCKAInformation();
   }
 
   setDropDownValue(key, value) {
@@ -325,10 +321,10 @@ export class TopUpComponent implements OnInit, OnDestroy {
   saveAndProceed(form: any) {
     form.value.topupAmount = this.topupAmount;
     this.manageInvestmentsService.setTopUp(form.value);
-    this.isCPF = this.manageInvestmentsService.getTopUpFormData().portfolio['fundingTypeValue'];
+    this.isCPF = this.manageInvestmentsService.getTopUpFormData().portfolio['portfolioCategory'];
     // Save all the details of the top up before proceed
     this.saveFundingDetails();
-    if ( this.isCPF == 'CPF OA' && this.ckaInfo.isCKAExpired == true) {
+    if ( this.isCPF === this.translate.instant('YOUR_INVESTMENT.CPF') && this.ckaInfo.isCKAExpired === this.translate.instant('COMMON.LBL_TRUE_VALUE')) {
     const ref = this.modal.open(ModelWithButtonComponent, { centered: true , windowClass: 'cka-expiry-modal , limited-width' });
     ref.componentInstance.errorTitle = this.translate.instant(
       'TOPUP.CKA_EXPIRY_MODAL.TITLE'
