@@ -131,7 +131,7 @@ export class Util {
         if (CapacitorUtils.isApp) {
             await Browser.open({ url: redirectURL });
         } else {
-            window.open(redirectURL, '_blank');
+            window.open(redirectURL, target);
         }
     }
 }

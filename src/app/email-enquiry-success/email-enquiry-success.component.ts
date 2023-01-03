@@ -1,15 +1,16 @@
 import { Component, HostListener, OnInit, ViewEncapsulation } from '@angular/core';
 import { Router } from '@angular/router';
+
 import { APP_ROUTES } from './../app-routes.constants';
 import { AuthenticationService } from './../shared/http/auth/authentication.service';
 import { SIGN_UP_ROUTE_PATHS } from './../sign-up/sign-up.routes.constants';
-
 import { FooterService } from '../shared/footer/footer.service';
 import { NavbarService } from '../shared/navbar/navbar.service';
 import { environment } from './../../environments/environment';
 import { FBPixelService } from '../shared/analytics/fb-pixel.service';
 import { GoogleAnalyticsService } from '../shared/analytics/google-analytics.service';
 import { trackingConstants } from '../shared/analytics/tracking.constants';
+import { Util } from '../shared/utils/util';
 
 @Component({
   selector: 'app-email-enquiry-success',
@@ -45,7 +46,7 @@ export class EmailEnquirySuccessComponent implements OnInit {
 
   checkHideHomePageFlag() {
     if (environment.hideHomepage && !this.isSignedUser) {
-      window.open('/', '_self');
+      Util.openExternalUrl('/', '_self');
     } else if(this.isSignedUser){
       this.router.navigate([SIGN_UP_ROUTE_PATHS.DASHBOARD]);
     } else {
