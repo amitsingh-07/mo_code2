@@ -1,4 +1,7 @@
 import { Injectable } from '@angular/core';
+
+import { CapacitorUtils } from './capacitor.util';
+
 export const FILE_TYPE = 'application/pdf';
 const iOS = /iPad|iPhone|iPod/.test(navigator.userAgent);
 
@@ -7,21 +10,25 @@ export class FileUtil {
 
   public downloadPDF(data: any, newWindow: any, fileName: string) {
     const pdfUrl = window.URL.createObjectURL(data);
-    if (iOS) {
-      if (newWindow.document.readyState === 'complete') {
-        newWindow.location.assign(pdfUrl);
-      } else {
-        newWindow.onload = () => {
-          newWindow.location.assign(pdfUrl);
-        };
-      }
+    if (CapacitorUtils.isApp) {
+      CapacitorUtils.openNativePDF(data, fileName);
     } else {
-      const nav = (window.navigator as any);
-      if (nav && nav.msSaveOrOpenBlob) {
-        const blob = new Blob([data], { type: FILE_TYPE });
-        nav.msSaveOrOpenBlob(blob, fileName);
+      if (iOS) {
+        if (newWindow.document.readyState === 'complete') {
+          newWindow.location.assign(pdfUrl);
+        } else {
+          newWindow.onload = () => {
+            newWindow.location.assign(pdfUrl);
+          };
+        }
       } else {
-        this.createDownloadUrl(fileName, pdfUrl);
+        const nav = (window.navigator as any);
+        if (nav && nav.msSaveOrOpenBlob) {
+          const blob = new Blob([data], { type: FILE_TYPE });
+          nav.msSaveOrOpenBlob(blob, fileName);
+        } else {
+          this.createDownloadUrl(fileName, pdfUrl);
+        }
       }
     }
   }

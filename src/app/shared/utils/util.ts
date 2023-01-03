@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
-
+import { Browser } from '@capacitor/browser';
 import { environment } from './../../../environments/environment';
+import { CapacitorUtils } from './capacitor.util';
 
 @Injectable()
 export class Util {
@@ -125,4 +126,12 @@ export class Util {
         }
         return result;
       }
+
+    public static async openExternalUrl(redirectURL, target = '_blank') {
+        if (CapacitorUtils.isApp) {
+            await Browser.open({ url: redirectURL });
+        } else {
+            window.open(redirectURL, '_blank');
+        }
+    }
 }
