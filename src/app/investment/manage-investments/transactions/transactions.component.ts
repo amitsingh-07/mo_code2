@@ -153,7 +153,7 @@ export class TransactionsComponent implements OnInit {
         const blob = new Blob([response], { type: 'application/pdf' });
         const url = window.URL.createObjectURL(blob);
         const fileName = month.monthName + '_' + month.year + '_' + '.pdf';
-        this.fileUtil.createDownloadUrl(fileName, url);
+        this.fileUtil.createDownloadUrl(fileName, url, false);
       }
     },
       (err) => {
