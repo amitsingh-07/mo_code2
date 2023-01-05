@@ -638,6 +638,16 @@ body.modal-open::-webkit-scrollbar {
 
 .settings-modal-dialog {
   max-height: 100% !important;
+  &.modal {
+    @include allmobiles {
+      .close {
+        @supports (-webkit-touch-callout: none) {
+          /* CSS specific to iOS devices */
+          right: -28px !important;
+        }
+      }
+    }
+  }
 }
 
 .settings-tooltip-dialog {
@@ -676,7 +686,7 @@ body.modal-open::-webkit-scrollbar {
         @supports (-webkit-touch-callout: none) {
           /* CSS specific to iOS devices */ 
           right: -20px !important;
-       }
+        }
       }
     }
   }
@@ -1526,6 +1536,18 @@ body.modal-open::-webkit-scrollbar {
   .modal-body-message {
     .myinfo-txt {
       letter-spacing: -0.4px;
+    }
+  }
+}
+
+.cka-expiry-modal {
+  .modal-body-message {
+    padding-right: 20px;
+    @include allmobiles {
+      padding-right: 15px;
+    }
+    @include max360 {
+      padding-right: 0px;
     }
   }
 }

@@ -23,7 +23,17 @@
       "CPF_ONE_TIME": "Please note that you have an <strong>existing one-time buy request of {{existingOrderAmount}}</strong> in processing status and can initiate new buy order only upon completion of this order.",
       "YES": "Yes",
       "NO": "No"
+    },
+    "CKA_EXPIRY_MODAL": {
+      "TITLE": "CKA Expiry",
+      "TITLE_DESC": "<p>Your Customer Knowledge Assessment (CKA) has expired.</p>To be eligible for continued investments in this portfolio, you are required to take a re-assessment of your CKA.",
+      "BTN-TEXT": "Take Assessment"
     }
+  },
+  "OPEN_CKA": {
+    "TITLE": "Before you proceed…",
+    "DESC": "<p>We will assess if you have the knowledge or investment experience in understanding the risks and features of unlisted Specified Investment Products (‘SIPs’).</p>If you have undergone and passed the ABS e-Learning (Module 5), you may upload the certificate. Otherwise, you will be asked to go through the e-learning.",
+    "BTN-TEXT": "Continue"
   },
   "TOPUP_REQUEST": {
     "TOPUP_REQUEST_RECEIVED": "Top Up Request Received!",

@@ -140,7 +140,7 @@
                           <div class="flex-col-12 mb10">
                             <div class="btn-group--toggle" name="radioGender">            
                               <app-custom-radio-controller formControlName="unitedStatesResident" name="unitedStatesResident" [radioLabelValue]="radioLabelValueUsPR"
-                              (valueChangedEvent)="unitedStatesPRChange(value)" [defaultLabelStyleClass]="defaultRadioStyleClass"></app-custom-radio-controller>
+                              (valueChangedEvent)="unitedStatesPRChange($event)" [defaultLabelStyleClass]="defaultRadioStyleClass"></app-custom-radio-controller>
                           </div>
                           </div>
                         </div>
@@ -181,7 +181,7 @@
                             </div> -->
                             <div class="btn-group--toggle" name="radioGender">            
                               <app-custom-radio-controller formControlName="singaporeanResident" [radioLabelValue]="radioLabelValueUsPR"
-                              (valueChangedEvent)="singaporeanPRChange(value)" [defaultLabelStyleClass]="defaultRadioStyleClass"></app-custom-radio-controller>
+                              (valueChangedEvent)="singaporeanPRChange($event)" [defaultLabelStyleClass]="defaultRadioStyleClass"></app-custom-radio-controller>
                           </div>
                           </div>
                         </div>
@@ -293,9 +293,9 @@
                               id="invPersInfoLbl8">{{ 'SECONDARY_HOLDER.MINOR.PERSONAL_INFO.GENDER' | translate}}</label>
                           </div>
                           <div class="flex-col-7">
-                            <div class="btn-group--toggle" name="radioGender">            
+                            <div class="btn-group--toggle" name="radioGender">  
                               <app-custom-radio-controller formControlName="gender" name="gender" [radioLabelValue]="radioLabelValueGender"
-                               [defaultLabelStyleClass]="defaultRadioStyleClass"></app-custom-radio-controller>
+                               [defaultLabelStyleClass]="defaultRadioStyleClass" flexRowMarPadClass="mb0"></app-custom-radio-controller>
                           </div>
                           </div>
                         </div>
