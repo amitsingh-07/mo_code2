@@ -1,10 +1,11 @@
 
-import {map} from 'rxjs/operators';
+import { map } from 'rxjs/operators';
 import { Injectable } from '@angular/core';
 import { CanActivate, Router } from '@angular/router';
 import { Observable } from 'rxjs';
 
 import { ConfigService, IConfig } from '../config/config.service';
+import { Util } from '../shared/utils/util';
 
 @Injectable()
 export class InvestmentMaintenanceGuard implements CanActivate {
@@ -16,7 +17,7 @@ export class InvestmentMaintenanceGuard implements CanActivate {
       if (config.iFastMaintenance && this.configService.checkIFastStatus(config.maintenanceStartTime, config.maintenanceEndTime)) {
         return true;
       } else {
-        window.open('/', '_self');
+        Util.openExternalUrl('/', '_self');
         return false;
       }
     }));

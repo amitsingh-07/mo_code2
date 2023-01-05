@@ -19,7 +19,6 @@ export interface IConfig {
   investmentEngagementEnabled: boolean;
   investmentMyInfoEnabled: boolean;
   comprehensiveEnabled: boolean;
-  retirementPlanningEnabled: boolean;
   srsEnabled: boolean;
   resetPasswordUrl: string;
   resetPasswordCorpUrl?: string;
@@ -38,8 +37,6 @@ export interface IConfig {
   showPortfolioInfo: boolean;
   investment: any;
   account: any;
-  affiliateEnabled: boolean;
-  affiliateAttributionInMs: number;
 }
 
 const CACHE_SIZE = 1;

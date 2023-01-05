@@ -78,15 +78,7 @@ export class FundDetailsComponent implements OnInit {
     if (fund.factSheetLink) {
       highlightSheetFileName = fund.factSheetLink.split('|')[1];
     }
-    const pdfUrl = document.getElementsByTagName('base')[0].href + INVESTMENT_ENGAGEMENT_JOURNEY_CONSTANTS.FUND_DOC_PATH + highlightSheetFileName;
-    
-    const iOS = /iPad|iPhone|iPod/.test(navigator.userAgent);
-    if (iOS) {
-      window.open(pdfUrl, '_blank');
-    } else {        
-      this.fileUtil.createDownloadUrl(highlightSheetFileName, document.getElementsByTagName('base')[0].href + INVESTMENT_ENGAGEMENT_JOURNEY_CONSTANTS.FUND_DOC_PATH + highlightSheetFileName);
-    }
-    
+    this.fileUtil.createDownloadUrl(highlightSheetFileName, INVESTMENT_ENGAGEMENT_JOURNEY_CONSTANTS.FUND_DOC_PATH + highlightSheetFileName, true);    
   }
   getProspectusLink() {
     const iOS = /iPad|iPhone|iPod/.test(navigator.userAgent);
@@ -105,12 +97,7 @@ export class FundDetailsComponent implements OnInit {
         prospectusFileName = INVESTMENT_ENGAGEMENT_JOURNEY_CONSTANTS.PROSPECTUS_FILE.CPF_UOB;
       }
     }
-    const pdfUrl = document.getElementsByTagName('base')[0].href + INVESTMENT_ENGAGEMENT_JOURNEY_CONSTANTS.FUND_DOC_PATH + prospectusFileName;
-    if (iOS) {
-      window.open(pdfUrl, '_blank');
-    } else {        
-      this.fileUtil.createDownloadUrl(prospectusFileName, document.getElementsByTagName('base')[0].href + INVESTMENT_ENGAGEMENT_JOURNEY_CONSTANTS.FUND_DOC_PATH + prospectusFileName);
-    }
+    this.fileUtil.createDownloadUrl(prospectusFileName, INVESTMENT_ENGAGEMENT_JOURNEY_CONSTANTS.FUND_DOC_PATH + prospectusFileName, true);
   }
 
 }

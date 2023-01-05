@@ -412,15 +412,7 @@
   },
   "VERIFY_EMAIL": {
     "DESCRIPTION": "Enter your email to receive your verification email.",
-    "TITLE": "Email Verification",
-    "FORM": {
-      "EMAIL": {
-        "LABEL": "Email Address",
-        "ERROR": {
-          "INVALID_DOMAIN": "Invalid Email domain"
-        }
-      }
-    }
+    "TITLE": "Email Verification"
   },
   "PRELOGIN": {
     "TITLE": "Are you an existing MoneyOwl user?",
@@ -534,8 +526,7 @@
       "LABEL": "Email Address",
       "ERROR": {
         "REQUIRED": "Enter an email address",
-        "INVALID": "Enter a valid email address",
-        "INVALID_DOMAIN": "Invalid Email domain"
+        "INVALID": "Enter a valid email address"
       }
     }
   },

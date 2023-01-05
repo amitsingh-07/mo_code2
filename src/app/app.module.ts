@@ -41,7 +41,6 @@ import {
   CreateAccountModelComponent
 } from './guide-me/recommendations/create-account-model/create-account-model.component';
 import { HammerConfig } from './hammer.config';
-import { HomeComponent } from './home/home.component';
 import {
   FundDetailsComponent
 } from './investment/investment-common/fund-details/fund-details.component';
@@ -129,8 +128,7 @@ export function createTranslateLoader(http: HttpClient) {
   return new MultiTranslateHttpLoader(
     http,
     [
-      { prefix: './assets/i18n/app/', suffix: '.json' },
-      { prefix: './assets/i18n/home/', suffix: '.json' }
+      { prefix: './assets/i18n/app/', suffix: '.json' }
     ]);
 }
 
@@ -159,7 +157,6 @@ export function tokenGetterFn() {
     HeaderComponent,
     FooterComponent,
     CallBackComponent,
-    HomeComponent,
     UrlRedirectComponent,
     TestMyInfoComponent,
     TransactionModalComponent,
@@ -203,7 +200,6 @@ export function tokenGetterFn() {
       multi: true,
       deps: [Injector]  
     },
-    // { provide: APP_BASE_HREF, useValue: '/app/' },
     NgbActiveModal,
     AuthenticationService, CustomErrorHandlerService, RequestCache,
     AppService, TitleCasePipe, PendingChangesGuard, DefaultErrors,

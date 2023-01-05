@@ -38,8 +38,6 @@ export class VerifyEmailComponent implements OnInit, AfterViewInit {
   captchaSrc = '';
   emailResend: string;
 
-  emailFocus = false;
-
   constructor(
     // tslint:disable-next-line
     private formBuilder: FormBuilder,
@@ -80,10 +78,6 @@ export class VerifyEmailComponent implements OnInit, AfterViewInit {
     this.navbarService.setNavbarMode(101);
     this.footerService.setFooterVisibility(false);
     this.buildForgotPasswordForm();
-  }
-
-  get forgetPassword() {
-    return this.forgotPasswordForm.controls;
   }
 
   ngAfterViewInit() {
@@ -148,7 +142,6 @@ export class VerifyEmailComponent implements OnInit, AfterViewInit {
       });
     }
   }
-
   goBack() {
     this._location.back();
   }
@@ -157,17 +150,5 @@ export class VerifyEmailComponent implements OnInit, AfterViewInit {
     this.forgotPasswordForm.controls['captcha'].reset();
     this.captchaSrc = this.authService.getCaptchaUrl();
     this.changeDetectorRef.detectChanges();
-  }
-
-  showValidity(from) {
-    if (from === 'email'){
-      this.emailFocus = !this.emailFocus;
-
-      // Check Disposable E-mail
-      const emailInput = this.forgotPasswordForm.controls['email'];
-      if (!this.emailFocus && emailInput.value){
-        this.signUpService.validateEmail(emailInput);
-      }
-    }
   }
 }

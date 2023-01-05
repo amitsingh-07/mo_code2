@@ -50,7 +50,6 @@ export class SignUpService {
   private createAccountFormError: any = new CreateAccountFormError();
   private resetPasswordUrl: string;
   private resetPasswordCorpUrl: string;
-  private emailId: string;
   private mobileOptimized = new BehaviorSubject(false);
   mobileOptimizedObservable$ = this.mobileOptimized.asObservable();
   myInfoAttributes = SIGN_UP_CONFIG.MY_INFO_ATTRIBUTES;
@@ -768,15 +767,6 @@ export class SignUpService {
     return this.apiService.validateReferralCode(data);
   }
 
-  validateEmail(email){
-    const data = { "email": email.value};
-      this.apiService.validateEmail(data).subscribe((response) => {
-        if (response.responseMessage['responseCode'] === 5036) {
-            email.setErrors({invalidDomain: true});
-        } 
-      });       
-    } 
-
   // create account my_info details
   setCreateAccountMyInfoFormData(data) {
     if (data.name && data.name.value) {
@@ -1045,5 +1035,4 @@ export class SignUpService {
   getCorpBizMyInfoStatus() {
     return this.corpBizUserMyInfoData.isCorpBizMyInfoEnabled;
   }
-
 }

@@ -1,0 +1,14 @@
+[
+  {
+    "relation": [
+      "delegate_permission/common.handle_all_urls"
+    ],
+    "target": {
+      "namespace": "android_app",
+      "package_name": "com.moneyowl.app",
+      "sha256_cert_fingerprints": [
+        "17:14:72:18:13:D6:37:A3:64:B2:D9:56:FF:8D:9D:86:B4:36:45:02:D6:55:90:5A:7E:8E:71:0F:D9:BD:0A:40"
+      ]
+    }
+  }
+]
