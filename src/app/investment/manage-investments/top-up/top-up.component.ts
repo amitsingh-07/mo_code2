@@ -29,7 +29,7 @@ import { environment } from './../../../../environments/environment';
 import { PromoCodeService } from './../../../promo-code/promo-code.service';
 import { appConstants } from '../../../app.constants';
 import { INVESTMENT_ENGAGEMENT_JOURNEY_ROUTE_PATHS } from './../../../investment/investment-engagement-journey/investment-engagement-journey-routes.constants';
-
+import { INVESTMENT_COMMON_CONSTANTS } from '../../investment-common/investment-common.constants'
 @Component({
   selector: 'app-top-up',
   templateUrl: './top-up.component.html',
@@ -100,7 +100,6 @@ export class TopUpComponent implements OnInit, OnDestroy {
     }
     this.footerService.setFooterVisibility(false);
     this.getPortfolioList();
-    this.ckaInfo = this.manageInvestmentsService.getCKAInformation();
     this.cashBalance = this.manageInvestmentsService.getUserCashBalance();
     this.fundDetails = this.manageInvestmentsService.getFundingDetails();
     this.formValues = this.manageInvestmentsService.getTopUpFormData();
@@ -324,7 +323,7 @@ export class TopUpComponent implements OnInit, OnDestroy {
     this.isCPF = this.manageInvestmentsService.getTopUpFormData().portfolio['portfolioCategory'];
     // Save all the details of the top up before proceed
     this.saveFundingDetails();
-    if ( this.isCPF === this.translate.instant('YOUR_INVESTMENT.CPF') && this.ckaInfo.isCKAExpired === this.translate.instant('COMMON.LBL_TRUE_VALUE')) {
+    if ( this.isCPF === INVESTMENT_COMMON_CONSTANTS.PORTFOLIO_CATEGORY.CPF  && ((typeof this.ckaInfo?.isCKAExpired === 'boolean' && this.ckaInfo?.isCKAExpired) || typeof this.ckaInfo?.isCKAExpired !== 'boolean')) {
     const ref = this.modal.open(ModelWithButtonComponent, { centered: true , windowClass: 'cka-expiry-modal , limited-width' });
     ref.componentInstance.errorTitle = this.translate.instant(
       'TOPUP.CKA_EXPIRY_MODAL.TITLE'
@@ -392,6 +391,8 @@ export class TopUpComponent implements OnInit, OnDestroy {
   getMonthlyInvestmentInfo(customerPortfolioId) {
     this.manageInvestmentsService.getMonthlyInvestmentInfo(customerPortfolioId).subscribe((response) => {
       if (response.responseMessage.responseCode >= 6000) {
+        this.ckaInfo = response.objectList.ckaInformation;
+        this.manageInvestmentsService.setCKAInformation(this.ckaInfo);
         this.currentMonthlyInvAmount = response.objectList.monthlyInvestment;
         // If monthly investment already exists, allow zero
         if (this.currentMonthlyInvAmount && this.topForm.get('MonthlyInvestmentAmount')) {
