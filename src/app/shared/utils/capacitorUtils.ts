@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Capacitor } from '@capacitor/core';
-import { Filesystem, Directory, Encoding } from '@capacitor/filesystem';
+import { Filesystem, Directory } from '@capacitor/filesystem';
 import { FileOpener } from '@awesome-cordova-plugins/file-opener/ngx';
 import { Http, HttpDownloadFileResult } from '@capacitor-community/http';
 

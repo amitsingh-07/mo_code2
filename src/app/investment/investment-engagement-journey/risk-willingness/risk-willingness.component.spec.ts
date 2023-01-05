@@ -1,7 +1,6 @@
 
 
 import { RiskWillingnessComponent } from './risk-willingness.component';
-import { IntroScreenComponent } from '../intro-screen/intro-screen.component';
 import { async, ComponentFixture, TestBed,getTestBed } from '@angular/core/testing';
 import { ReactiveFormsModule } from '@angular/forms';
 import { RouterTestingModule } from '@angular/router/testing';
@@ -11,25 +10,14 @@ import { TranslateModule } from '@ngx-translate/core';
 import { Router } from '@angular/router';
 import { FooterService } from '../../../shared/footer/footer.service';
 import { NavbarService } from '../../../shared/navbar/navbar.service';
-import {
-  INVESTMENT_ENGAGEMENT_JOURNEY_ROUTE_PATHS
-} from '../investment-engagement-journey-routes.constants';
 import { TranslateService } from '@ngx-translate/core';
-import { Injector, NO_ERRORS_SCHEMA } from '@angular/core';
-import { Component, OnInit, ViewEncapsulation } from '@angular/core';
-import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { ActivatedRoute } from '@angular/router';
+import { Injector } from '@angular/core';
 import { InvestmentAccountService } from '../../investment-account/investment-account-service';
 import { AuthenticationService } from '../../../shared/http/auth/authentication.service';
-import { IPageComponent } from '../../../shared/interfaces/page-component.interface';
-import { LoggerService } from '../../../shared/logger/logger.service';
-import { INVESTMENT_ENGAGEMENT_JOURNEY_CONSTANTS } from '../investment-engagement-journey.constants';
 import { InvestmentEngagementJourneyService } from '../investment-engagement-journey.service';
-import { QuestionIcons } from './questionicon';
 import { HttpClientModule } from '@angular/common/http';
 import { SignUpService } from '../../../sign-up/sign-up.service';
 import { DatePipe } from '@angular/common';
-import { HttpTestingController, HttpClientTestingModule } from '@angular/common/http/testing';
 
 
 

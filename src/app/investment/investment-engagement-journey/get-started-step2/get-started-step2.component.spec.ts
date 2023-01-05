@@ -13,7 +13,7 @@ import {
   INVESTMENT_ENGAGEMENT_JOURNEY_ROUTE_PATHS
 } from '../investment-engagement-journey-routes.constants';
 import { TranslateService } from '@ngx-translate/core';
-import { Injector, NO_ERRORS_SCHEMA } from '@angular/core';
+import { Injector } from '@angular/core';
 
 describe('GetStartedStep2Component', () => {
   let component: GetStartedStep2Component;

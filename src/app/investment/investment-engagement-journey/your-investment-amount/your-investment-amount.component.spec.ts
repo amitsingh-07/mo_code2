@@ -10,10 +10,6 @@ import { TranslateModule } from '@ngx-translate/core';
 import { Router } from '@angular/router';
 import { FooterService } from '../../../shared/footer/footer.service';
 import { NavbarService } from '../../../shared/navbar/navbar.service';
-import {
-  INVESTMENT_ENGAGEMENT_JOURNEY_ROUTE_PATHS
-} from '../investment-engagement-journey-routes.constants';
-import { HttpClient } from '@angular/common/http';
 import { TranslateService } from '@ngx-translate/core';
 import { InvestmentAccountService } from '../../investment-account/investment-account-service';
 import { HttpClientModule } from '@angular/common/http';
@@ -25,21 +21,10 @@ import { InvestmentCommonService } from '../../investment-common/investment-comm
 import { mockInvestmentEngagementJourneyService } from './../../../../assets/mocks/service/shared-service';
 
 import { Injector, NO_ERRORS_SCHEMA } from '@angular/core';
-import { concat, Observable, of, throwError } from 'rxjs';
 
 import { LoaderService } from '../../../shared/components/loader/loader.service';
-import { INVESTMENT_ENGAGEMENT_JOURNEY_CONSTANTS } from '../investment-engagement-journey.constants';
-import { ErrorModalComponent } from '../../../shared/modal/error-modal/error-modal.component';
 import { SrsTooltipComponent } from '../srs-tooltip/srs-tooltip.component';
 import { BrowserDynamicTestingModule } from '@angular/platform-browser-dynamic/testing';
-import { ChangeDetectorRef, Component, OnInit, ViewEncapsulation } from '@angular/core';
-import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
-
-import { IPageComponent } from '../../../shared/interfaces/page-component.interface';
-
-import {
-  ModelWithButtonComponent
-} from '../../../shared/modal/model-with-button/model-with-button.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { InvestmentEngagementJourneyService } from '../investment-engagement-journey.service';

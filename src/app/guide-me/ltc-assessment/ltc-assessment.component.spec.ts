@@ -1,7 +1,4 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-
-import { DebugElement } from '@angular/core';
-import { By } from '@angular/platform-browser';
 import { LtcAssessmentComponent } from './ltc-assessment.component';
 
 describe('LtcAssessmentComponent', () => {

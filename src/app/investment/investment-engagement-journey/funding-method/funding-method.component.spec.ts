@@ -1,5 +1,4 @@
 import { FundingMethodComponent } from './funding-method.component';
-import { IntroScreenComponent } from '../intro-screen/intro-screen.component';
 
 import { async, ComponentFixture, TestBed, getTestBed } from '@angular/core/testing';
 
@@ -14,7 +13,6 @@ import { NavbarService } from '../../../shared/navbar/navbar.service';
 import {
   INVESTMENT_ENGAGEMENT_JOURNEY_ROUTE_PATHS
 } from '../investment-engagement-journey-routes.constants';
-import { HttpClient } from '@angular/common/http';
 import { TranslateService } from '@ngx-translate/core';
 import { InvestmentAccountService } from '../../investment-account/investment-account-service';
 import { HttpClientModule } from '@angular/common/http';
@@ -23,13 +21,8 @@ import { SignUpService } from '../../../sign-up/sign-up.service';
 import { AuthenticationService } from '../../../shared/http/auth/authentication.service';
 import { DatePipe } from '@angular/common';
 import { InvestmentCommonService } from '../../investment-common/investment-common.service';
-//import { mockInvestmentEngagementJourneyService } from './../../../../assets/mocks/service/shared-service';
-//import mockData from '../../../../assets/mocks/data/funding-method';
-import { concat, Observable, of, throwError } from 'rxjs';
 import { Injector } from '@angular/core';
 import { LoaderService } from '../../../shared/components/loader/loader.service';
-import { INVESTMENT_ENGAGEMENT_JOURNEY_CONSTANTS } from '../investment-engagement-journey.constants';
-import { ErrorModalComponent } from '../../../shared/modal/error-modal/error-modal.component';
 import { SrsTooltipComponent } from '../srs-tooltip/srs-tooltip.component';
 import { BrowserDynamicTestingModule } from '@angular/platform-browser-dynamic/testing';
 export class TestComponent {

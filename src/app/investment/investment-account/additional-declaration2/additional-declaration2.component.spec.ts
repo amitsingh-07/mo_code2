@@ -1,29 +1,24 @@
-import { HttpClientTestingModule } from '@angular/common/http/testing';
-import { NO_ERRORS_SCHEMA } from '@angular/core';
+
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-import { FormsModule, ReactiveFormsModule, FormGroup, FormControl } from '@angular/forms';
+import { ReactiveFormsModule } from '@angular/forms';
 import { Router } from '@angular/router';
 import { RouterTestingModule } from '@angular/router/testing';
-import { JwtHelperService, JwtModule } from '@auth0/angular-jwt';
-import { NgbActiveModal, NgbModal, NgbModalRef, NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { JwtModule } from '@auth0/angular-jwt';
+import { NgbActiveModal, NgbModal, NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
 import { TranslateModule } from '@ngx-translate/core';
 import { FooterService } from '../../../shared/footer/footer.service';
 import { MockInvestmentAccountService } from './../../../../assets/mocks/service/shared-service';
 import { NavbarService } from './../../../shared/navbar/navbar.service';
 import { InvestmentAccountService } from './../investment-account-service';
 import { AdditionalDeclaration2Component } from './additional-declaration2.component';
-import { getTestBed } from '@angular/core/testing';
-import { HttpClient } from '@angular/common/http';
 import { TranslateService } from '@ngx-translate/core';
 import { HttpClientModule } from '@angular/common/http';
 import { SignUpService } from '../../../sign-up/sign-up.service';
 import { AuthenticationService } from '../../../shared/http/auth/authentication.service';
 import { DatePipe } from '@angular/common';
 import { InvestmentCommonService } from '../../investment-common/investment-common.service';
-import { concat, Observable, of, throwError } from 'rxjs';
 import { Injector } from '@angular/core';
 import { LoaderService } from '../../../shared/components/loader/loader.service';
-import { ErrorModalComponent } from '../../../shared/modal/error-modal/error-modal.component';
 import { BrowserDynamicTestingModule } from '@angular/platform-browser-dynamic/testing';
 
 describe('AdditionalDeclaration2Component', () => {
