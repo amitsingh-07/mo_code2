@@ -129,7 +129,7 @@ export class Util {
 
     public static async openExternalUrl(redirectURL, target = '_blank') {
         if (CapacitorUtils.isApp) {
-            await Browser.open({ url: redirectURL });
+            await Browser.open({ url: encodeURI(redirectURL) });
         } else {
             window.open(redirectURL, target);
         }

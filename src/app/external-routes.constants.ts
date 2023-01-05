@@ -9,10 +9,6 @@ export const EXT_ROUTES = {
         EXTERNAL_URL: '/works/'
     },
     {
-        IN_APP_ROUTE: '/works/financial-literacy',
-        EXTERNAL_URL: '/works/financial-literacy/'
-    },
-    {
         IN_APP_ROUTE: '/about-us/contact-us',
         EXTERNAL_URL: '/contact-us/'
     },
