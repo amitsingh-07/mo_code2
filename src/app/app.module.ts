@@ -3,7 +3,6 @@ import 'hammerjs';
 import { MultiTranslateHttpLoader } from 'ngx-translate-multi-http-loader';
 
 import {
-  APP_BASE_HREF,
   CurrencyPipe, LocationStrategy, PathLocationStrategy, TitleCasePipe
 } from '@angular/common';
 import {
@@ -105,7 +104,6 @@ import {
 import {
   UnsupportedDeviceModalComponent
 } from './shared/modal/unsupported-device-modal/unsupported-device-modal.component';
-import { NavbarComponent } from './shared/navbar/navbar.component';
 import { NavbarService } from './shared/navbar/navbar.service';
 import { RoutingService } from './shared/Services/routing.service';
 import { StateStoreService } from './shared/Services/state-store.service';

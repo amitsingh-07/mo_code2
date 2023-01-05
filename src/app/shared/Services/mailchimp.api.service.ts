@@ -3,8 +3,6 @@ import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { BehaviorSubject } from 'rxjs';
 
 import { ApiService } from './../http/api.service';
-import { ErrorModalComponent } from './../modal/error-modal/error-modal.component';
-import { SuccessModalComponent } from './../modal/success-modal/success-modal.component';
 import { FormError } from './mailChimpError';
 import { SubscribeMember } from './subscribeMember';
 

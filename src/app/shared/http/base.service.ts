@@ -1,5 +1,5 @@
-import {throwError as observableThrowError,  Observable } from 'rxjs';
-import {map, finalize,  catchError } from 'rxjs/operators';
+import {  Observable } from 'rxjs';
+import { finalize,  catchError } from 'rxjs/operators';
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 
@@ -7,7 +7,6 @@ import { ConfigService, IConfig } from '../../config/config.service';
 import { Util } from '../utils/util';
 import { CustomErrorHandlerService } from './custom-error-handler.service';
 import { HelperService } from './helper.service';
-import { IError } from './interfaces/error.interface';
 import { IServerResponse } from './interfaces/server-response.interface';
 
 @Injectable({

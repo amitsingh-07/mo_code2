@@ -1,8 +1,7 @@
 import { Component, OnInit, ViewEncapsulation} from '@angular/core';
 import { TranslateService } from '@ngx-translate/core';
-import { ActivatedRoute, Router } from '@angular/router';
-import { INVESTMENT_ENGAGEMENT_JOURNEY_ROUTES, INVESTMENT_ENGAGEMENT_JOURNEY_ROUTE_PATHS } from '../investment-engagement-journey-routes.constants';
-import { INVESTMENT_ENGAGEMENT_JOURNEY_CONSTANTS } from '../investment-engagement-journey.constants';
+import { Router } from '@angular/router';
+import { INVESTMENT_ENGAGEMENT_JOURNEY_ROUTE_PATHS } from '../investment-engagement-journey-routes.constants';
 import { SIGN_UP_ROUTES, SIGN_UP_ROUTE_PATHS } from '../../../sign-up/sign-up.routes.constants';
 import { InvestmentEngagementJourneyService } from '../investment-engagement-journey.service';
 import { InvestmentCommonService } from '../../investment-common/investment-common.service';

@@ -1,5 +1,4 @@
 import { Component, DoCheck, EventEmitter, Input, OnInit, Output, ViewEncapsulation } from '@angular/core';
-import { DirectApiService } from './../../direct.api.service';
 import { IProductCategory } from './product-category';
 
 @Component({

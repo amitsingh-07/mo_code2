@@ -1,10 +1,8 @@
 import {
-  Component, EventEmitter, HostListener, Input, OnInit, Output, ViewEncapsulation
+  Component, EventEmitter, Input, OnInit, Output, ViewEncapsulation
 } from '@angular/core';
-import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { FormGroup } from '@angular/forms';
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
-
-import { RegexConstants } from '../../../../shared/utils/api.regex.constants';
 import { SignUpService } from '../../../../sign-up/sign-up.service';
 import { ManageInvestmentsService } from '../../manage-investments.service';
 

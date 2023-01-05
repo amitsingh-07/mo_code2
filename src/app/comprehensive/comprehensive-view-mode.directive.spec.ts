@@ -1,6 +1,6 @@
 import { ComprehensiveViewModeDirective } from './comprehensive-view-mode.directive';
 import { TestBed } from '@angular/core/testing';
-import { ElementRef, Injectable } from '@angular/core';
+import { ElementRef } from '@angular/core';
 
 export class MockElementRef extends ElementRef {
   nativeElement = {};

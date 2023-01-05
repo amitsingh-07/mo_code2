@@ -1,7 +1,7 @@
 import {
-  Component, EventEmitter, HostListener, Input, OnInit, Output, ViewEncapsulation
+  Component, EventEmitter, OnInit, Output, ViewEncapsulation
 } from '@angular/core';
-import { AbstractControl, FormControl, FormGroup, ValidatorFn, Validators } from '@angular/forms';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 import { RegexConstants } from '../../shared/utils/api.regex.constants';
 import { PromoCodeService } from '../promo-code.service';

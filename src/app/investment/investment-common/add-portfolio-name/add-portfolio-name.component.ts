@@ -10,7 +10,6 @@ import { ErrorModalComponent } from '../../../shared/modal/error-modal/error-mod
 import { NavbarService } from '../../../shared/navbar/navbar.service';
 import { RegexConstants } from '../../../shared/utils/api.regex.constants';
 import { SIGN_UP_CONFIG } from '../../../sign-up/sign-up.constant';
-import { InvestmentAccountCommon } from '../../investment-account/investment-account-common';
 import {
   INVESTMENT_ACCOUNT_ROUTE_PATHS
 } from '../../investment-account/investment-account-routes.constants';

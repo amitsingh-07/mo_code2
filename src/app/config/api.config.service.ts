@@ -2,8 +2,6 @@ import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { throwError } from 'rxjs';
 import { catchError, share } from 'rxjs/operators';
-
-import { HospitalPlan } from '../guide-me/hospital-plan/hospital-plan';
 import { IApiConfig } from './api.config.interface';
 
 @Injectable({

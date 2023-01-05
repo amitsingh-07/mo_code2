@@ -4,7 +4,6 @@ import { TranslateService } from '@ngx-translate/core';
 
 import { IPageComponent } from '../../shared/interfaces/page-component.interface';
 import { NavbarService } from '../../shared/navbar/navbar.service';
-import { GUIDE_ME_ROUTE_PATHS } from '../guide-me-routes.constants';
 import { GuideMeService } from '../guide-me.service';
 
 @Component({

@@ -1,4 +1,4 @@
-import { Component, HostListener, OnInit, ViewEncapsulation, OnDestroy } from '@angular/core';
+import { Component, HostListener, OnInit, ViewEncapsulation } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { TranslateService } from '@ngx-translate/core';
