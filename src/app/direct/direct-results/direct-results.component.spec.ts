@@ -1,30 +1,23 @@
-import { PreLoginComponent } from './../../sign-up/pre-login/pre-login.component';
-import { async, ComponentFixture, fakeAsync, getTestBed, inject, TestBed, tick } from '@angular/core/testing';
-import { FormBuilder, FormGroup, ReactiveFormsModule, Validators, FormArray, FormControl  } from '@angular/forms';
-import { Subscription } from 'rxjs';
-import { Location, APP_BASE_HREF, DatePipe } from '@angular/common';
+
+import { async, ComponentFixture, getTestBed, TestBed } from '@angular/core/testing';
+import { FormBuilder, ReactiveFormsModule, FormArray  } from '@angular/forms';
+import { Location, DatePipe } from '@angular/common';
 import { HttpClient } from '@angular/common/http';
 import { HttpClientTestingModule, HttpTestingController } from '@angular/common/http/testing';
-import { Injector, NO_ERRORS_SCHEMA, QueryList, ViewChildren } from '@angular/core';
-import { By } from '@angular/platform-browser';
-import { BrowserDynamicTestingModule } from '@angular/platform-browser-dynamic/testing';
-import { RouterModule, Router, Routes, ActivatedRoute } from '@angular/router';
+import { Injector, NO_ERRORS_SCHEMA } from '@angular/core';
+import { Router, ActivatedRoute } from '@angular/router';
 import { RouterTestingModule } from '@angular/router/testing';
 import { JwtModule, JwtHelperService } from '@auth0/angular-jwt';
 import { NgbActiveModal, NgbModal, NgbModalRef, NgbModule, NgbDateParserFormatter } from '@ng-bootstrap/ng-bootstrap';
 import { TranslateLoader, TranslateModule, TranslateService } from '@ngx-translate/core';
-import { concat, Observable, of, throwError } from 'rxjs';
+import { of } from 'rxjs';
 
 import { DirectResultsComponent } from './direct-results.component';
-
-import { ConfigService } from './../../config/config.service';
 import { LoaderService } from './../../shared/components/loader/loader.service';
 import { ProgressTrackerService } from './../../shared/modal/progress-tracker/progress-tracker.service';
 import { NavbarService } from './../../shared/navbar/navbar.service';
-import { Util } from './../../shared/utils/util';
 
 import { CurrencyPipe, TitleCasePipe } from '@angular/common';
-import { appConstants } from './../../app.constants';
 
 import { tokenGetterFn, mockCurrencyPipe, mockAuthService } from
   '../../../assets/mocks/service/shared-service';
@@ -34,30 +27,19 @@ import { HeaderService } from './../../shared/header/header.service';
 import { AppService } from './../../app.service';
 import { ApiService } from './../../shared/http/api.service';
 import { AuthenticationService } from './../../shared/http/auth/authentication.service';
-
-import { ErrorModalComponent } from './../../shared/modal/error-modal/error-modal.component';
 import { RoutingService } from './../../shared/Services/routing.service';
 import { MyInfoService } from '../../shared/Services/my-info.service';
-import { NgbDateCustomParserFormatter } from '../../shared/utils/ngb-date-custom-parser-formatter';
 
 import { ProductDetailComponent } from '../../shared/components/product-detail/product-detail.component';
 //import { createTranslateLoader } from '../direct.module';
 import { MultiTranslateHttpLoader } from 'ngx-translate-multi-http-loader';
-
-import { IPageComponent } from '../../shared/interfaces/page-component.interface';
-import { StateStoreService } from '../../shared/Services/state-store.service';
-import { PRODUCT_CATEGORY_INDEX } from '../direct.constants';
-import { FBPixelService } from '../../shared/analytics/fb-pixel.service';
-import { MobileModalComponent } from './../../guide-me/mobile-modal/mobile-modal.component';
 import {
   CreateAccountModelComponent
 } from './../../guide-me/recommendations/create-account-model/create-account-model.component';
 import { ToolTipModalComponent } from './../../shared/modal/tooltip-modal/tooltip-modal.component';
 import { SelectedPlansService } from './../../shared/Services/selected-plans.service';
-import { Formatter } from './../../shared/utils/formatter.util';
 import { PlanWidgetComponent } from './../../shared/widgets/plan-widget/plan-widget.component';
 import { SettingsWidgetComponent } from './../../shared/widgets/settings-widget/settings-widget.component';
-import { DIRECT_ROUTE_PATHS } from './../direct-routes.constants';
 import { DirectApiService } from './../direct.api.service';
 import { DirectService } from './../direct.service';
 import { DirectResultsState } from './direct-results.state';

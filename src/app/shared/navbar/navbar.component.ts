@@ -32,7 +32,6 @@ import { NavbarConfig } from './config/presets';
 import { NavbarService } from './navbar.service';
 import { SessionsService } from '../Services/sessions/sessions.service';
 import { MANAGE_INVESTMENTS_ROUTE_PATHS } from '../../investment/manage-investments/manage-investments-routes.constants';
-import { INVESTMENT_ENGAGEMENT_JOURNEY_ROUTE_PATHS } from '../../investment/investment-engagement-journey/investment-engagement-journey-routes.constants';
 import { ViewportScroller } from '@angular/common';
 import { Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';

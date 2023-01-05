@@ -8,7 +8,6 @@ import { AuthenticationService } from '../../shared/http/auth/authentication.ser
 import { SIGN_UP_ROUTE_PATHS, DASHBOARD_PATH } from '../../sign-up/sign-up.routes.constants';
 import { InvestmentAccountService } from '../investment-account/investment-account-service';
 import { InvestmentCommonService } from '../investment-common/investment-common.service';
-import { INVESTMENT_ENGAGEMENT_JOURNEY_ROUTE_PATHS } from './investment-engagement-journey-routes.constants';
 
 @Injectable({
   providedIn: 'root'

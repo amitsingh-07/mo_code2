@@ -6,13 +6,10 @@ import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { TranslateService } from '@ngx-translate/core';
 
 import { AuthenticationService } from '../../shared/http/auth/authentication.service';
-import { ErrorModalComponent } from '../../shared/modal/error-modal/error-modal.component';
 import { NavbarService } from '../../shared/navbar/navbar.service';
-import { RegexConstants } from '../../shared/utils/api.regex.constants';
 import { SignUpApiService } from '../sign-up.api.service';
 import { SIGN_UP_ROUTE_PATHS } from '../sign-up.routes.constants';
 import { SignUpService } from '../sign-up.service';
-import { APP_ROUTES } from './../../app-routes.constants';
 import { FooterService } from './../../shared/footer/footer.service';
 import { CustomErrorHandlerService } from './../../shared/http/custom-error-handler.service';
 import { ValidatePassword } from '../create-account/password.validator';

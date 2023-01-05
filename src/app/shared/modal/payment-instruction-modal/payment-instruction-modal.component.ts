@@ -7,13 +7,6 @@ import { TranslateService } from '@ngx-translate/core';
 
 import { ErrorModalComponent } from '../error-modal/error-modal.component';
 
-import {
-    INVESTMENT_ENGAGEMENT_JOURNEY_ROUTE_PATHS
-} from '../../../investment/investment-engagement-journey/investment-engagement-journey-routes.constants';
-import {
-    RecommendationComponent
-} from '../../../investment/investment-engagement-journey/recommendation/recommendation.component';
-
 @Component({
   selector: 'app-payment-instruction-modal',
   templateUrl: './payment-instruction-modal.component.html',

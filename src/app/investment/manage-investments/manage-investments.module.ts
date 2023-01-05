@@ -4,7 +4,7 @@ import { MultiTranslateHttpLoader } from 'ngx-translate-multi-http-loader';
 
 import { CommonModule, CurrencyPipe } from '@angular/common';
 import { HttpClient } from '@angular/common/http';
-import { NgModule, OnInit } from '@angular/core';
+import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
@@ -12,7 +12,6 @@ import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
 
 import { FormatCurrencyPipe } from '../../shared/Pipes/format-currency.pipe';
 import { SharedModule } from '../../shared/shared.module';
-import { SignUpService } from '../../sign-up/sign-up.service';
 import {
   RenameInvestmentModalComponent
 } from '../manage-investments/your-portfolio/rename-investment-modal/rename-investment-modal.component';

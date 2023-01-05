@@ -5,8 +5,6 @@ import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 import { TranslateService } from '@ngx-translate/core';
 import { filter } from 'rxjs/operators';
 
-import { RegexConstants } from '../../../../shared/utils/api.regex.constants';
-
 @Component({
   selector: 'app-rename-investment-modal',
   templateUrl: './rename-investment-modal.component.html',

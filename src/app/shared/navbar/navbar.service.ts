@@ -1,5 +1,5 @@
 import { Location } from '@angular/common';
-import { ElementRef, Injectable, ViewChild } from '@angular/core';
+import { ElementRef, Injectable } from '@angular/core';
 import { NavigationStart, Router } from '@angular/router';
 import { BehaviorSubject, fromEvent, Observable } from 'rxjs';
 import { Subject } from 'rxjs/internal/Subject';

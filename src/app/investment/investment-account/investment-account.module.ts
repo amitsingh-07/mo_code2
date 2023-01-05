@@ -11,7 +11,6 @@ import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
 
 import { FormatCurrencyPipe } from '../../shared/Pipes/format-currency.pipe';
 import { SharedModule } from '../../shared/shared.module';
-import { SignUpService } from '../../sign-up/sign-up.service';
 import {
   InvestmentAccountRoutingModule
 } from '../investment-account/investment-account-routing.module';

@@ -11,16 +11,13 @@ import { NavbarService } from '../../../shared/navbar/navbar.service';
 import {
   INVESTMENT_ENGAGEMENT_JOURNEY_ROUTE_PATHS
 } from '../investment-engagement-journey-routes.constants';
-import { HttpClient } from '@angular/common/http';
 import { TranslateService } from '@ngx-translate/core';
-import { InvestmentAccountService } from '../../investment-account/investment-account-service';
 import { HttpClientModule } from '@angular/common/http';
 import { SignUpService } from '../../../sign-up/sign-up.service';
 import { AuthenticationService } from '../../../shared/http/auth/authentication.service';
 import { DatePipe } from '@angular/common';
 import { Injector } from '@angular/core';
 import { StartJourneyComponent } from './start-journey.component';
-import mockData from '../../../../assets/mocks/data/start-journey';
 
 export class TestComponent {
 }

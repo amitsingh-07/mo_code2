@@ -103,6 +103,22 @@ export class AppComponent implements IComponentCanDeactivate, OnInit {
         // logic take over
       });
     });
+
+    // Capacitor - Native Android/iOS device specific listeners
+    App.addListener('appStateChange', ({ isActive }) => {
+      console.log('App state changed. Is active?', isActive);
+    });
+
+    App.addListener('backButton', ( BackButtonListener ) => {
+      console.log('Device Back Button Clicked');
+      if (BackButtonListener.canGoBack) {
+        console.log('Go the previous screen');
+        this._location.back();        
+      } else {
+        console.log('No Back screen');
+        //App.exitApp();
+      }
+    });
   }
 
   onActivate(event) {

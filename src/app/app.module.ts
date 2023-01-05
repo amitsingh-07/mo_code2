@@ -3,7 +3,6 @@ import 'hammerjs';
 import { MultiTranslateHttpLoader } from 'ngx-translate-multi-http-loader';
 
 import {
-  APP_BASE_HREF,
   CurrencyPipe, LocationStrategy, PathLocationStrategy, TitleCasePipe
 } from '@angular/common';
 import {

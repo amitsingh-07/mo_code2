@@ -1,7 +1,6 @@
 
 
 import { SrsTooltipComponent } from './srs-tooltip.component';
-import { IntroScreenComponent } from '../intro-screen/intro-screen.component';
 import { async, ComponentFixture, TestBed,getTestBed } from '@angular/core/testing';
 import { ReactiveFormsModule } from '@angular/forms';
 import { RouterTestingModule } from '@angular/router/testing';
@@ -13,10 +12,6 @@ import { Router } from '@angular/router';
 
 import { TranslateService } from '@ngx-translate/core';
 import { Injector } from '@angular/core';
-import { Component, EventEmitter, Input, OnInit, Output, ViewEncapsulation } from '@angular/core';
-import { NavigationEnd} from '@angular/router';
-
-import { filter } from 'rxjs/operators';
 
 describe('SrsTooltipComponent', () => {
   let component: SrsTooltipComponent;

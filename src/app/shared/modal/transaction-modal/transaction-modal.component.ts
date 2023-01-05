@@ -1,7 +1,7 @@
-import { Component, OnInit, ViewEncapsulation} from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Component, OnInit} from '@angular/core';
+import { FormBuilder, FormGroup } from '@angular/forms';
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
-import { NgbDateParserFormatter, NgbDatepickerConfig} from '@ng-bootstrap/ng-bootstrap';
+import { NgbDatepickerConfig} from '@ng-bootstrap/ng-bootstrap';
 @Component({
   selector: 'app-transaction-modal',
   templateUrl: './transaction-modal.component.html',
