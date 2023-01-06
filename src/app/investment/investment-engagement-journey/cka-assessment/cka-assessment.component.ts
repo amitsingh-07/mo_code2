@@ -39,10 +39,12 @@ export class CkaAssessmentComponent implements OnInit {
     this.navbarService.setNavbarMode(6);
     this.footerService.setFooterVisibility(false);
     this.ckaInfo = this.investmentCommonService.getCKAStatus();
-    this.ckaStatus =  [
+    this.ckaStatus =  ([
       this.ckaConstant.CKA_PASSED_STATUS,
       this.ckaConstant.CKA_EXPIRED_STATUS,
-    ].includes(this.ckaInfo);
+    ].includes(this.ckaInfo)
+    && this.investmentCommonService.getCKAInformation()?.ckaretake
+    );
   }
 
   setPageTitle(title: string) {

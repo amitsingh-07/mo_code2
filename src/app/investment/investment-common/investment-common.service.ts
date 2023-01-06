@@ -553,4 +553,13 @@ export class InvestmentCommonService {
   saveCKABankAccount(data) {
     return this.investmentApiService.saveCKABankAccount(data);
   }
+
+  setCKAInformation(ckaInfo) {
+    this.investmentCommonFormData.ckaDetails = ckaInfo;
+    this.commit();
+  }
+
+  getCKAInformation() {
+    return this.investmentCommonFormData.ckaDetails;
+  }
 }

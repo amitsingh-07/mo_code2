@@ -149,6 +149,7 @@ export class CpfPrerequisitesComponent implements OnInit {
       if (responseMessage && responseMessage.responseCode === 6000) {
         if (data.objectList) {
           this.ckaInfo = data.objectList;
+          this.investmentCommonService.setCKAInformation(this.ckaInfo);
           this.getCPFBankDetails();
           if (this.ckaInfo.cKAStatusMessage && this.ckaInfo.cKAStatusMessage === this.ckaConstant.CKA_PASSED_STATUS) {
             this.investmentCommonService.setCKAStatus(this.ckaConstant.CKA_PASSED_STATUS);
