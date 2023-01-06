@@ -21,7 +21,6 @@ export class ManageInvestmentsFormData {
 
   userPortfolios: any;
   cashAccountBalance: number;
-  ckaDetails: any;
 
   // your portfolio
   holdingList;

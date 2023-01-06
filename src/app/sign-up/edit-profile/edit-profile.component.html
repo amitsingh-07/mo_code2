@@ -684,7 +684,8 @@
           (click)="openCKAModal()">
           <div class="flex-col-11 align-items-center">
             <div class="flex">
-              <div class="mr10 flex align-items-center"><img src="assets/images/cka/icon-profile-cka.svg"></div>
+              <div *ngIf="ckaInfo?.cKAStatusMessage === CKA_STATUS_CONSTANTS.CKA_EXPIRED_STATUS; else CKAIcon" class="mr10 flex align-items-center"><img src="assets/images/cka/expired-icon-profile-cka.svg"></div>
+              <ng-template #CKAIcon><div class="mr10 flex align-items-center"><img src="assets/images/cka/icon-profile-cka.svg"></div></ng-template>
               <div>
                 <div class="form-group-heading">{{'CKA.HEADING' | translate}}</div>
                 <div class="form-group-sub-heading">
