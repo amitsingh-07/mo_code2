@@ -115,7 +115,7 @@ export class TopUpComponent implements OnInit, OnDestroy {
       ]
     });
     if (this.formValues['selectedCustomerPortfolio']) {
-      this.getMonthlyInvestmentInfo(this.formValues['selectedCustomerPortfolioId']);
+      this.getMonthlyInvestmentInfo(this.formValues['selectedCustomerPortfolioId'] ? this.formValues['selectedCustomerPortfolioId'] : this.formValues.selectedCustomerPortfolio?.customerPortfolioId);
       this.getAwaitingOrPendingInfo(this.formValues['selectedCustomerPortfolioId'],
       this.awaitingOrPendingReq(this.formValues.selectedCustomerPortfolio.fundingTypeValue));
     }
@@ -194,6 +194,7 @@ export class TopUpComponent implements OnInit, OnDestroy {
   }
 
   setDropDownValue(key, value) {
+    this.portfolio = value;
     this.getInvestmentCriteria(value.portfolioCategory);
     this.topForm.controls[key].setValue(value);
     this.getMonthlyInvestmentInfo(value['customerPortfolioId']);
@@ -357,6 +358,7 @@ export class TopUpComponent implements OnInit, OnDestroy {
       'OPEN_CKA.BTN-TEXT'
     );
     ref.componentInstance.primaryAction.subscribe(() => {
+      this.manageInvestmentsService.setSelectedCustomerPortfolio(this.portfolio);
       const routerURL =
         INVESTMENT_ENGAGEMENT_JOURNEY_ROUTE_PATHS.CKA_ASSESSMENT
       this.router.navigate([routerURL]);
