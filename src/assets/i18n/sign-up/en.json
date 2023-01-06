@@ -379,7 +379,7 @@
 
     "SINGPASS_ACTIVATE_MODAL": {
       "TITLE": "Activate Singpass Login",
-      "MESSAGE": "If you  <span class='bold-txt'>have</span> a MoneyOwl account,<br>please do a password log in and activate<br>Singpass Login in your Profile page.<br><br> If you <span class='bold-txt'>do not have</span> a MoneyOwl account,<br><a class='anchor-txt' target='_self' href='./accounts/sign-up'>click here</a> to create an account.<br><br>Download the Singpass Mobile App <a class='anchor-txt' target='_blank' href='https://app.singpass.gov.sg/'>here</a>.",
+      "MESSAGE": "If you  <span class='bold-txt'>have</span> a MoneyOwl account,<br>please do a password log in and activate<br>Singpass Login in your Profile page.<br><br> If you <span class='bold-txt'>do not have</span> a MoneyOwl account,<br><a class='anchor-txt' target='_self' href='./accounts/sign-up'>click here</a> to create an account.<br><br>Download the Singpass Mobile App <a class='anchor-txt external-url' target='_blank' href='https://app.singpass.gov.sg/'>here</a>.",
       "BTN_TXT": "Got it!"
     },
 

@@ -1,5 +1,5 @@
 import { Location } from '@angular/common';
-import { Component, HostListener, NgZone, OnInit } from '@angular/core';
+import { AfterViewInit, Component, HostListener, NgZone, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { NgbModal, NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
 import { TranslateService } from '@ngx-translate/core';
@@ -19,6 +19,7 @@ import { SessionsService } from './shared/Services/sessions/sessions.service';
 import { appConstants } from './app.constants';
 import { UnsupportedDeviceModalComponent } from './shared/modal/unsupported-device-modal/unsupported-device-modal.component';
 import { environment } from 'src/environments/environment';
+import { Util } from './shared/utils/util';
 
 declare global {
   interface Window {
@@ -34,7 +35,7 @@ declare global {
   styleUrls: ['./app.component.scss']
 })
 
-export class AppComponent implements IComponentCanDeactivate, OnInit {
+export class AppComponent implements IComponentCanDeactivate, OnInit, AfterViewInit {
   title = 'Money Owl';
   modalRef: NgbModalRef;
   initRoute = false;
@@ -119,6 +120,21 @@ export class AppComponent implements IComponentCanDeactivate, OnInit {
         //App.exitApp();
       }
     });
+  }
+
+  ngAfterViewInit(): void {  
+    document.body.addEventListener('click', evt => {
+      const anchorEle = evt.target as HTMLAnchorElement;
+      if (anchorEle.classList.contains('external-url')) { 
+        evt.preventDefault();
+        let url = anchorEle.getAttribute('href');
+        let _target = anchorEle.getAttribute('target');
+        if(!url.startsWith('http')) {
+          url = `${environment.apiBaseUrl}${url}`;
+        }
+        Util.openExternalUrl(url, _target);
+      }
+    })
   }
 
   onActivate(event) {
