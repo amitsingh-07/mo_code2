@@ -18,7 +18,7 @@ export class CkaAssessmentComponent implements OnInit {
   pageTitle: string;
   ckaInfo: string;
   ckaConstant = INVESTMENT_COMMON_CONSTANTS.CKA;
-  ckaStatus: boolean
+  ckaStatus: boolean;
   constructor(
     public readonly translate: TranslateService,
     private router: Router,
