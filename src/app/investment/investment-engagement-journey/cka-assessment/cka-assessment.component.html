@@ -55,7 +55,8 @@
               </div>
             </div>
           </button>
-          <button type="button" class="btn flex-row tile" (click)="goToNext(4)">
+          <button *ngIf="!ckaStatus"
+           type="button" class="btn flex-row tile" (click)="goToNext(4)">
             <div class="flex-col-11">
               <div class="title">{{'CKA_ASSESSMENT.SELECT_OPTION_5' | translate}}</div>
               <div [innerHtml]="'CKA_ASSESSMENT.SELECT_OPTION_5_DESC' | translate"></div>
@@ -66,7 +67,8 @@
               </div>
             </div>
           </button>
-          <button type="button" class="btn flex-row tile" (click)="goToNext(5)">
+          <button *ngIf="!ckaStatus"
+           type="button" class="btn flex-row tile" (click)="goToNext(5)">
             <div class="flex-col-11">
               <div class="title">{{'CKA_ASSESSMENT.SELECT_OPTION_6' | translate}}</div>
               <div>{{'CKA_ASSESSMENT.SELECT_OPTION_6_DESC' | translate}}</div>
@@ -77,6 +79,8 @@
               </div>
             </div>
           </button>
+          <div *ngIf="ckaStatus"
+           class="enquiry-text" [innerHtml]="'CKA_ASSESSMENT.ENQUIRY_TXT' | translate"></div>
         </div>
       </div>
     </div>

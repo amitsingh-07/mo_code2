@@ -394,7 +394,7 @@ export class TopUpComponent implements OnInit, OnDestroy {
     this.manageInvestmentsService.getMonthlyInvestmentInfo(customerPortfolioId).subscribe((response) => {
       if (response.responseMessage.responseCode >= 6000) {
         this.ckaInfo = response.objectList.ckaInformation;
-        this.manageInvestmentsService.setCKAInformation(this.ckaInfo);
+        this.investmentCommonService.setCKAInformation(this.ckaInfo);
         this.currentMonthlyInvAmount = response.objectList.monthlyInvestment;
         // If monthly investment already exists, allow zero
         if (this.currentMonthlyInvAmount && this.topForm.get('MonthlyInvestmentAmount')) {

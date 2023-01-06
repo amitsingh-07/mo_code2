@@ -18,6 +18,7 @@ export class InvestmentCommonFormData {
     portfolioDetails :any;
     ckaStatus: any;
     ckaRedirectFromLocation: any;
+    ckaDetails: any;
 }
 
 export interface IAccountCreationActions {
