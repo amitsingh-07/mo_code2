@@ -18,6 +18,7 @@ export class CkaAssessmentComponent implements OnInit {
   pageTitle: string;
   ckaInfo: string;
   ckaConstant = INVESTMENT_COMMON_CONSTANTS.CKA;
+  ckaStatus: boolean;
   constructor(
     public readonly translate: TranslateService,
     private router: Router,
@@ -38,6 +39,10 @@ export class CkaAssessmentComponent implements OnInit {
     this.navbarService.setNavbarMode(6);
     this.footerService.setFooterVisibility(false);
     this.ckaInfo = this.investmentCommonService.getCKAStatus();
+    this.ckaStatus =  [
+      this.ckaConstant.CKA_PASSED_STATUS,
+      this.ckaConstant.CKA_EXPIRED_STATUS,
+    ].includes(this.ckaInfo);
   }
 
   setPageTitle(title: string) {
@@ -63,12 +68,5 @@ export class CkaAssessmentComponent implements OnInit {
         INVESTMENT_ENGAGEMENT_JOURNEY_ROUTE_PATHS.NONE_OF_THE_ABOVE,
       ]);
     }
-  }
-
-  public checkCKAStatus(): boolean {
-    return [
-      this.ckaConstant.CKA_PASSED_STATUS,
-      this.ckaConstant.CKA_EXPIRED_STATUS,
-    ].includes(this.ckaInfo);
   }
 }
