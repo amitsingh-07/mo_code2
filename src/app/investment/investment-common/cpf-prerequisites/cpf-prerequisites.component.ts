@@ -33,6 +33,7 @@ export class CpfPrerequisitesComponent implements OnInit {
   cpfBankOperators: any;
   cpfBankDetails: any;
   showOperatorBank = false;
+  ckaConstant = INVESTMENT_COMMON_CONSTANTS.CKA;
 
   constructor(
     private router: Router,
@@ -112,7 +113,12 @@ export class CpfPrerequisitesComponent implements OnInit {
             [Validators.required, Validators.pattern(RegexConstants.cpfOperatorMaskForValidation.UOB)]);
           break;
       }
-      this.preRequisitesForm.controls['cpfAccountNo'].enable();
+      [
+        this.ckaConstant.CKA_EXPIRED_STATUS,
+        this.ckaConstant.CKA_PASSED_STATUS,
+      ].includes(this.ckaInfo?.cKAStatusMessage) && this.cpfBankDetails
+        ? this.preRequisitesForm.controls["cpfAccountNo"].disable()
+        : this.preRequisitesForm.controls["cpfAccountNo"].enable();
       this.preRequisitesForm.updateValueAndValidity();
     }
   }
@@ -144,13 +150,15 @@ export class CpfPrerequisitesComponent implements OnInit {
         if (data.objectList) {
           this.ckaInfo = data.objectList;
           this.getCPFBankDetails();
-          if (this.ckaInfo.cKAStatusMessage && this.ckaInfo.cKAStatusMessage === INVESTMENT_COMMON_CONSTANTS.CKA.CKA_PASSED_STATUS) {
-            this.investmentCommonService.setCKAStatus(INVESTMENT_COMMON_CONSTANTS.CKA.CKA_PASSED_STATUS);
-          } else if (this.ckaInfo.cKAStatusMessage && this.ckaInfo.cKAStatusMessage === INVESTMENT_COMMON_CONSTANTS.CKA.CKA_BE_CERTIFICATE_UPLOADED) {
-            this.investmentCommonService.setCKAStatus(INVESTMENT_COMMON_CONSTANTS.CKA.CKA_BE_CERTIFICATE_UPLOADED);
-          } else if (this.ckaInfo.cKAStatusMessage && this.ckaInfo.cKAStatusMessage === INVESTMENT_COMMON_CONSTANTS.CKA.CKA_REJECTED_STATUS) {
-            this.investmentCommonService.setCKAStatus(INVESTMENT_COMMON_CONSTANTS.CKA.CKA_REJECTED_STATUS);
+          if (this.ckaInfo.cKAStatusMessage && this.ckaInfo.cKAStatusMessage === this.ckaConstant.CKA_PASSED_STATUS) {
+            this.investmentCommonService.setCKAStatus(this.ckaConstant.CKA_PASSED_STATUS);
+          } else if (this.ckaInfo.cKAStatusMessage && this.ckaInfo.cKAStatusMessage === this.ckaConstant.CKA_BE_CERTIFICATE_UPLOADED) {
+            this.investmentCommonService.setCKAStatus(this.ckaConstant.CKA_BE_CERTIFICATE_UPLOADED);
+          } else if (this.ckaInfo.cKAStatusMessage && this.ckaInfo.cKAStatusMessage === this.ckaConstant.CKA_REJECTED_STATUS) {
+            this.investmentCommonService.setCKAStatus(this.ckaConstant.CKA_REJECTED_STATUS);
             this.enableDisableStepTwo();
+          } else if (this.ckaInfo.cKAStatusMessage && this.ckaInfo.cKAStatusMessage === this.ckaConstant.CKA_EXPIRED_STATUS) {
+            this.investmentCommonService.setCKAStatus(this.ckaConstant.CKA_EXPIRED_STATUS);
           }
         } else {
           this.enableDisableStepTwo();
@@ -201,8 +209,8 @@ export class CpfPrerequisitesComponent implements OnInit {
 
   isCKACompleted() {
     return this.ckaInfo && this.ckaInfo.cKAStatusMessage &&
-      (this.ckaInfo.cKAStatusMessage === INVESTMENT_COMMON_CONSTANTS.CKA.CKA_PASSED_STATUS
-        || this.ckaInfo.cKAStatusMessage === INVESTMENT_COMMON_CONSTANTS.CKA.CKA_BE_CERTIFICATE_UPLOADED)
+      (this.ckaInfo.cKAStatusMessage === this.ckaConstant.CKA_PASSED_STATUS
+        || this.ckaInfo.cKAStatusMessage === this.ckaConstant.CKA_BE_CERTIFICATE_UPLOADED)
   }
 
   goToNext() {
@@ -299,15 +307,17 @@ export class CpfPrerequisitesComponent implements OnInit {
   }
 
   disableContinue() {
-    if (Util.isEmptyOrNull(this.ckaInfo) || !this.preRequisitesForm.valid) {
+    if (Util.isEmptyOrNull(this.ckaInfo) || !this.preRequisitesForm.valid || this.ckaInfo.cKAStatusMessage ===this.ckaConstant.CKA_EXPIRED_STATUS) {
       return true;
     }
     return false;
   }
 
   setBankEnableStatus() {
-    if (Util.isEmptyOrNull(this.ckaInfo) || (!Util.isEmptyOrNull(this.ckaInfo) && this.ckaInfo.cKAStatusMessage
-      && this.ckaInfo.cKAStatusMessage === INVESTMENT_COMMON_CONSTANTS.CKA.CKA_REJECTED_STATUS)) {
+    if (Util.isEmptyOrNull(this.ckaInfo) || (!Util.isEmptyOrNull(this.ckaInfo) && 
+    this.ckaInfo?.cKAStatusMessage === this.ckaConstant.CKA_REJECTED_STATUS || 
+    this.ckaInfo?.cKAStatusMessage === this.ckaConstant.CKA_EXPIRED_STATUS) 
+    || this.cpfBankDetails) {
       this.showOperatorBank = true;
     } else {
       this.showOperatorBank = false;
