@@ -150,6 +150,7 @@ export let INVESTMENT_COMMON_CONSTANTS = {
     DBS: 'DBS',
     OCBC: 'OCBC',
     UOB: 'UOB',
+    BANK_EDITABLE_STATUS: 'edit'
   },
   ASSET_TYPE:{
     EQUITIES: 'Equities',

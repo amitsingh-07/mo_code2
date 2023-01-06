@@ -19,6 +19,7 @@ export class InvestmentCommonFormData {
     ckaStatus: any;
     ckaRedirectFromLocation: any;
     ckaDetails: any;
+    isCPFBankEdited: string;
 }
 
 export interface IAccountCreationActions {
