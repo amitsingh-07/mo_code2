@@ -626,7 +626,8 @@
     "SELECT_OPTION_5": "Upload e-Learning Certificate",
     "SELECT_OPTION_5_DESC": "I have undergone and passed the ABS e-Learning module <br>(Module 5).",
     "SELECT_OPTION_6": "None of the Above Applies",
-    "SELECT_OPTION_6_DESC": "You will be guided through the ABS e-Learning Module in order to pass your CKA. (est. time ~20mins)"
+    "SELECT_OPTION_6_DESC": "You will be guided through the ABS e-Learning Module in order to pass your CKA. (est. time ~20mins)",
+    "ENQUIRY_TXT": "For any enquiries, please email us at <b class='text-bold'><a href='mailto:inv_ops@moneyowl.com.sg' target='_blank'>inv_ops@moneyowl.com.sg.</a></b>"
   },
   "CKA_UPLOAD_DOCUMENT":{
     "PAGE_TITLE": "Customer Knowledge Assessment",
