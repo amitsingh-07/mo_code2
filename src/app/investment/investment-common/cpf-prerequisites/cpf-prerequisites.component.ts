@@ -1,6 +1,6 @@
 import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { Router, ActivatedRoute } from '@angular/router';
+import { Router } from '@angular/router';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { TranslateService } from '@ngx-translate/core';
 import { RegexConstants } from '../../../shared/utils/api.regex.constants';
@@ -10,13 +10,11 @@ import { NavbarService } from '../../../shared/navbar/navbar.service';
 import { INVESTMENT_ENGAGEMENT_JOURNEY_ROUTE_PATHS } from '../../investment-engagement-journey/investment-engagement-journey-routes.constants';
 import { INVESTMENT_COMMON_CONSTANTS } from '../investment-common.constants';
 import { ModelWithButtonComponent } from '../../../shared/modal/model-with-button/model-with-button.component';
-import { SignUpService } from '../../../sign-up/sign-up.service';
 import { InvestmentCommonService } from '../investment-common.service';
 import { INVESTMENT_COMMON_ROUTE_PATHS } from '../investment-common-routes.constants';
 import { InvestmentAccountService } from '../../investment-account/investment-account-service';
 import { LoaderService } from '../../../shared/components/loader/loader.service';
 import { CpfiaTooltipComponent } from './cpfia-tooltip/cpfia-tooltip.component';
-import { InvestmentEngagementJourneyService } from '../../investment-engagement-journey/investment-engagement-journey.service';
 import { Util } from '../../../shared/utils/util';
 
 @Component({
@@ -34,19 +32,18 @@ export class CpfPrerequisitesComponent implements OnInit {
   cpfBankDetails: any;
   showOperatorBank = false;
   ckaConstant = INVESTMENT_COMMON_CONSTANTS.CKA;
+  isCPFBankEdited: string;
+  ifPrerequisitesFormValueChanged = false;
 
   constructor(
     private router: Router,
-    private route: ActivatedRoute,
     public navbarService: NavbarService,
     public footerService: FooterService,
     public readonly translate: TranslateService,
     public headerService: HeaderService,
     private modal: NgbModal,
-    private signUpService: SignUpService,
     private investmentCommonService: InvestmentCommonService,
     private investmentAccountService: InvestmentAccountService,
-    private investmentEngagementJourneyService: InvestmentEngagementJourneyService,
     private loaderService: LoaderService
   ) {
     this.translate.use('en');
@@ -56,6 +53,7 @@ export class CpfPrerequisitesComponent implements OnInit {
       this.buildPreRequisitesForm();
       this.getCPFBankOptionList();
     });
+    this.isCPFBankEdited = investmentCommonService.getIfCPFBankEdited();
   }
 
   ngOnInit(): void {
@@ -73,11 +71,17 @@ export class CpfPrerequisitesComponent implements OnInit {
       cpfOperator: new FormControl("", Validators.required),
       cpfAccountNo: new FormControl({ value: '', disabled: true }, Validators.required)
     });
+    this.preRequisitesForm.controls['cpfOperator'].valueChanges.subscribe(() => {
+      this.ifPrerequisitesFormValueChanged = true;
+    });
+    this.preRequisitesForm.controls['cpfAccountNo'].valueChanges.subscribe(() => {
+      this.ifPrerequisitesFormValueChanged = true;
+    });
   }
 
   getCPFBankOptionList() {
     this.showLoader();
-    this.investmentAccountService.getSpecificDropList('cpfAgentBank').subscribe((resp: any) => { 
+    this.investmentAccountService.getSpecificDropList('cpfAgentBank').subscribe((resp: any) => {
       this.loaderService.hideLoaderForced();
       if (resp.responseMessage.responseCode >= 6000 && resp.objectList) {
         this.cpfBankOperators = resp.objectList.cpfAgentBank;
@@ -85,7 +89,7 @@ export class CpfPrerequisitesComponent implements OnInit {
     }, () => {
       this.loaderService.hideLoaderForced();
     });
-    
+
     this.getCKAAssessmentData();
   }
 
@@ -117,6 +121,7 @@ export class CpfPrerequisitesComponent implements OnInit {
         this.ckaConstant.CKA_EXPIRED_STATUS,
         this.ckaConstant.CKA_PASSED_STATUS,
       ].includes(this.ckaInfo?.cKAStatusMessage) && this.cpfBankDetails
+        && this.isCPFBankEdited != INVESTMENT_COMMON_CONSTANTS.CPF_BANK_KEYS.BANK_EDITABLE_STATUS
         ? this.preRequisitesForm.controls["cpfAccountNo"].disable()
         : this.preRequisitesForm.controls["cpfAccountNo"].enable();
       this.preRequisitesForm.updateValueAndValidity();
@@ -221,11 +226,14 @@ export class CpfPrerequisitesComponent implements OnInit {
       this.saveCPFAccountDetails(this.preRequisitesForm);
     }
   }
-  
+
   saveCPFAccountDetails(form) {
-    const params = this.constructCpfAccountParams(form.value);
+    const params = this.constructCpfAccountParams(form.getRawValue());
     this.investmentCommonService.saveCKABankAccount(params).subscribe((data) => {
       if (data && data.objectList) {
+        if (Util.isEmptyOrNull(this.cpfBankDetails) && this.ifPrerequisitesFormValueChanged) {
+          this.investmentCommonService.setIfCPFBankEdited(INVESTMENT_COMMON_CONSTANTS.CPF_BANK_KEYS.BANK_EDITABLE_STATUS);
+        }
         this.router.navigate([INVESTMENT_ENGAGEMENT_JOURNEY_ROUTE_PATHS.GET_STARTED_STEP1]);
       }
     }, () => {
@@ -237,7 +245,7 @@ export class CpfPrerequisitesComponent implements OnInit {
     let reqParams = {
       accountNumber: data.cpfAccountNo ? data.cpfAccountNo.replace(/[-]/g, '') : null,
       bankOperatorId: data.cpfOperator ? data.cpfOperator.id : null
-    };  
+    };
     return reqParams;
   }
 
@@ -308,17 +316,17 @@ export class CpfPrerequisitesComponent implements OnInit {
   }
 
   disableContinue() {
-    if (Util.isEmptyOrNull(this.ckaInfo) || !this.preRequisitesForm.valid || this.ckaInfo.cKAStatusMessage ===this.ckaConstant.CKA_EXPIRED_STATUS) {
+    if (Util.isEmptyOrNull(this.ckaInfo) || !this.preRequisitesForm.valid || this.ckaInfo.cKAStatusMessage === this.ckaConstant.CKA_EXPIRED_STATUS) {
       return true;
     }
     return false;
   }
 
   setBankEnableStatus() {
-    if (Util.isEmptyOrNull(this.ckaInfo) || (!Util.isEmptyOrNull(this.ckaInfo) && 
-    this.ckaInfo?.cKAStatusMessage === this.ckaConstant.CKA_REJECTED_STATUS || 
-    this.ckaInfo?.cKAStatusMessage === this.ckaConstant.CKA_EXPIRED_STATUS) 
-    || this.cpfBankDetails) {
+    if ((Util.isEmptyOrNull(this.ckaInfo) || (!Util.isEmptyOrNull(this.ckaInfo) &&
+      this.ckaInfo?.cKAStatusMessage === this.ckaConstant.CKA_REJECTED_STATUS ||
+      this.ckaInfo?.cKAStatusMessage === this.ckaConstant.CKA_EXPIRED_STATUS) || this.cpfBankDetails)
+      && this.isCPFBankEdited != INVESTMENT_COMMON_CONSTANTS.CPF_BANK_KEYS.BANK_EDITABLE_STATUS) {
       this.showOperatorBank = true;
     } else {
       this.showOperatorBank = false;

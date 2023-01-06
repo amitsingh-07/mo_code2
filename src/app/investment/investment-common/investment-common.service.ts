@@ -562,4 +562,13 @@ export class InvestmentCommonService {
   getCKAInformation() {
     return this.investmentCommonFormData.ckaDetails;
   }
+
+  setIfCPFBankEdited(isCPFBankEdited: string) {
+    this.investmentCommonFormData.isCPFBankEdited = isCPFBankEdited;
+    this.commit();
+  }
+
+  getIfCPFBankEdited() {
+    return this.investmentCommonFormData.isCPFBankEdited;
+  }
 }
