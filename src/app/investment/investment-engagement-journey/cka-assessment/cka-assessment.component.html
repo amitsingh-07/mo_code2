@@ -55,7 +55,7 @@
               </div>
             </div>
           </button>
-          <button *ngIf="!(checkCKAStatus())"
+          <button *ngIf="!ckaStatus"
            type="button" class="btn flex-row tile" (click)="goToNext(4)">
             <div class="flex-col-11">
               <div class="title">{{'CKA_ASSESSMENT.SELECT_OPTION_5' | translate}}</div>
@@ -67,7 +67,7 @@
               </div>
             </div>
           </button>
-          <button *ngIf="!(checkCKAStatus())"
+          <button *ngIf="!ckaStatus"
            type="button" class="btn flex-row tile" (click)="goToNext(5)">
             <div class="flex-col-11">
               <div class="title">{{'CKA_ASSESSMENT.SELECT_OPTION_6' | translate}}</div>
@@ -79,7 +79,7 @@
               </div>
             </div>
           </button>
-          <div *ngIf="(checkCKAStatus())"
+          <div *ngIf="ckaStatus"
            class="enquiry-text" [innerHtml]="'CKA_ASSESSMENT.ENQUIRY_TXT' | translate"></div>
         </div>
       </div>
