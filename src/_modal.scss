@@ -404,6 +404,7 @@ body.modal-open::-webkit-scrollbar {
 
       @include allmobiles {
         padding: 15px 7px 50px 7px;
+        margin: env(safe-area-inset-top) env(safe-area-inset-right) env(safe-area-inset-left);
       }
     }
 
@@ -518,6 +519,7 @@ body.modal-open::-webkit-scrollbar {
         flex-direction: column;
         justify-content: flex-start;
         z-index: 0;
+        margin: env(safe-area-inset-top) env(safe-area-inset-right) env(safe-area-inset-left);
       }
     }
   }
