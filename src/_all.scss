@@ -2226,7 +2226,8 @@ select:-webkit-autofill:focus {
     left: 4%;
     z-index: 1062;
     box-shadow: 0 2px 7px 0 rgba(68, 68, 68, 0.4);
-
+    margin: env(safe-area-inset-top) env(safe-area-inset-right) env(safe-area-inset-left);
+    
     @include desktop {
       width: 400px;
       right: 200px;

@@ -8,7 +8,7 @@ app-promo-code-modal {
     justify-content: center;
     height: 100%;
     min-height: 460px;
-
+    
     @include minPhabletmaxTablet {
       width: 500px;
     }
@@ -21,6 +21,7 @@ app-promo-code-modal {
       border-radius: 0px;
       left: 0;
       right: 0;
+      margin: env(safe-area-inset-top) env(safe-area-inset-right) env(safe-area-inset-left);
     }
 
     .modal-body-message {
