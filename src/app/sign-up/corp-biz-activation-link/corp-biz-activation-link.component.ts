@@ -43,34 +43,35 @@ export class CorpBizActivationLinkComponent implements OnInit {
     this.authService.authenticate().subscribe(() => {
       this.signUpApiService.checkCorporateEmailValidity({ token: `${this.token}` }).subscribe((data) => {
         const responseCode = data.responseMessage.responseCode;
-        const response = data.objectList?.length?data.objectList[0]:'';
-        switch(responseCode){
+
+        const response = data.objectList?.length ? data.objectList[0] : '';
+        switch (responseCode) {
           case 6000:
-              const corpBizData = response && {
-                isCorpBiz: true,
-                email: response.email,
-                maskedMobileNumber: response.maskedMobileNumber,
-                enrollmentId: response.enrolmentId,
-                mobileNumber: response.mobileNumber
-              }
-              this.appService.setCorpBizData(corpBizData);
-              this.router.navigate([SIGN_UP_ROUTE_PATHS.CORP_BIZ_SIGNUP]);
+            const corpBizData = response && {
+              isCorpBiz: true,
+              email: response.email,
+              maskedMobileNumber: response.maskedMobileNumber,
+              enrollmentId: response.enrolmentId,
+              mobileNumber: response.mobileNumber
+            }
+            this.appService.setCorpBizData(corpBizData);
+            this.router.navigate([SIGN_UP_ROUTE_PATHS.CORP_BIZ_SIGNUP]);
             break;
           case 5022:
             this.screenToShow = SIGN_UP_CONFIG.CORP_BIZ_ACTIVATIONLINK.LINK_EXPIRED;
             break;
           case 5033:
-          case 5135: 
+          case 5135:
             this.screenToShow = SIGN_UP_CONFIG.CORP_BIZ_ACTIVATIONLINK.INVALID_USER;
             break;
-          case 6008: 
+          case 6008:
             this.screenToShow = SIGN_UP_CONFIG.CORP_BIZ_ACTIVATIONLINK.ACC_EXIST;
             break;
-          default: 
+          default:
             this.router.navigate(['/page-not-found']);
         }
-       // redirect to home page after 10 seconds if activation link not valid
-        if(this.screenToShow) {
+        // redirect to home page after 10 seconds if activation link not valid
+        if (this.screenToShow) {
           setTimeout(() => {
             window.location.replace('https://www.moneyowl.com.sg/');
           }, 10000);
