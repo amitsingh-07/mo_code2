@@ -13,7 +13,7 @@ import { SIGN_UP_ROUTE_PATHS } from '../sign-up.routes.constants';
 import { SIGN_UP_CONFIG } from '../sign-up.constant';
 import { AppService } from '../../app.service';
 import { SignUpApiService } from '../sign-up.api.service';
-import { appConstants } from 'src/app/app.constants';
+import { appConstants } from '../../app.constants';
 import { MyinfoModalComponent } from '../../shared/modal/myinfo-modal/myinfo-modal.component';
 
 @Component({

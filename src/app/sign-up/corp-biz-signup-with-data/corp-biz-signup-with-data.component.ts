@@ -46,11 +46,11 @@ export class CorpBizSignupWithDataComponent implements OnInit {
     this.translate.use('en');
     this.translate.get('COMMON').subscribe((result: string) => {
     });
-    this.myInfoAttriutes = myInfoService.getMyInfoAttributes();
+    this.myInfoAttriutes = this.myInfoService.getMyInfoAttributes();
     this.isVehicleData = this.myInfoAttriutes.includes(SIGN_UP_CONFIG.EXCLUDABLE_CORP_BIZ_MY_INFO_ATTRIBUTES.VEHICLES);
     this.isCPFHousingWithdrawal = this.myInfoAttriutes.includes(SIGN_UP_CONFIG.EXCLUDABLE_CORP_BIZ_MY_INFO_ATTRIBUTES.CPF_HOUSING_WITHDRAWAL);
-    this.corpBizMyInfoPersonalData = signUpService.getAccountInfo();
-    this.corpBizMyInfoData = signUpService.getCorpBizUserMyInfoData();
+    this.corpBizMyInfoPersonalData = this.signUpService.getAccountInfo();
+    this.corpBizMyInfoData = this.signUpService.getCorpBizUserMyInfoData();
     this.noaData = this.corpBizMyInfoData && this.corpBizMyInfoData.noa ? this.corpBizMyInfoData.noa : null;
     this.childrenRecords = this.corpBizMyInfoData && this.corpBizMyInfoData.childrenRecords && this.corpBizMyInfoData.childrenRecords.length > 0 ? this.corpBizMyInfoData.childrenRecords : [];
     this.sponsoredChildrenRecords = this.corpBizMyInfoData && this.corpBizMyInfoData.sponsoredChildrenRecords && this.corpBizMyInfoData.sponsoredChildrenRecords.length >= 0 ? this.corpBizMyInfoData.sponsoredChildrenRecords : [];
@@ -58,7 +58,7 @@ export class CorpBizSignupWithDataComponent implements OnInit {
     this.hdbProperty = this.corpBizMyInfoData.hdbProperty;
     this.vehicles = this.corpBizMyInfoData.vehicles;
     this.cpfBalances = this.corpBizMyInfoData.cpfBalances
-    this.corpBizUserData = appService.getCorpBizData();
+    this.corpBizUserData = this.appService.getCorpBizData();
   }
 
   ngOnInit(): void {

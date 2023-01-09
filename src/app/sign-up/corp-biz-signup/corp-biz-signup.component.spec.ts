@@ -8,9 +8,9 @@ describe('CorpBizSignupComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ CorpBizSignupComponent ]
+      declarations: [CorpBizSignupComponent]
     })
-    .compileComponents();
+      .compileComponents();
   }));
 
   beforeEach(() => {

@@ -38,25 +38,29 @@
                                             <div>
                                                 <div>{{'CORP_BIZ_SIGN_UP.MY_INFO_MODAL.MODAL_ATTR.PERSONAL.NAME_TEXT' |
                                                     translate}}</div>
-                                                <div class="data_lbl">{{ corpBizMyInfoPersonalData.fullName || '-'}}</div>
+                                                <div class="data_lbl">{{ corpBizMyInfoPersonalData.fullName || '-'}}
+                                                </div>
                                             </div>
                                             <div>
                                                 <div>{{'CORP_BIZ_SIGN_UP.MY_INFO_MODAL.MODAL_ATTR.PERSONAL.SEX_TEXT' |
                                                     translate}}</div>
-                                                <div class="data_lbl text-capitalise">{{ corpBizMyInfoPersonalData.gender ||
+                                                <div class="data_lbl text-capitalise">{{
+                                                    corpBizMyInfoPersonalData.gender ||
                                                     '-'}}&nbsp;</div>
                                             </div>
                                             <div>
                                                 <div>{{'CORP_BIZ_SIGN_UP.MY_INFO_MODAL.MODAL_ATTR.PERSONAL.DOB_TEXT' |
                                                     translate}}</div>
                                                 <div class="data_lbl">{{corpBizMyInfoData.dateOfBirth ?
-                                                    (corpBizMyInfoData.dateOfBirth?.day + '/' + corpBizMyInfoData.dateOfBirth?.month +
+                                                    (corpBizMyInfoData.dateOfBirth?.day + '/' +
+                                                    corpBizMyInfoData.dateOfBirth?.month +
                                                     '/' + corpBizMyInfoData.dateOfBirth?.year) : '-'}}&nbsp;</div>
                                             </div>
                                             <div>
                                                 <div>{{'CORP_BIZ_SIGN_UP.MY_INFO_MODAL.MODAL_ATTR.PERSONAL.NRIC_TEXT' |
                                                     translate}}</div>
-                                                <div class="data_lbl">{{ corpBizMyInfoPersonalData.nricNumber || '-'}}&nbsp;
+                                                <div class="data_lbl">{{ corpBizMyInfoPersonalData.nricNumber ||
+                                                    '-'}}&nbsp;
                                                 </div>
                                             </div>
                                             <div>
@@ -378,7 +382,8 @@
                                 <ngb-panel>
                                     <ng-template ngbPanelTitle>
                                         <div class="flex space-between">
-                                            <span>{{'CORP_BIZ_SIGN_UP.MY_INFO_MODAL.MODAL_ATTR.ASSESSMENT_NOTICE.TITLE' |
+                                            <span>{{'CORP_BIZ_SIGN_UP.MY_INFO_MODAL.MODAL_ATTR.ASSESSMENT_NOTICE.TITLE'
+                                                |
                                                 translate}}</span>
                                             <span><i class='arrow'></i></span>
                                         </div>
@@ -514,7 +519,8 @@
                                                         {{'CORP_BIZ_SIGN_UP.MY_INFO_MODAL.MODAL_ATTR.CPF_HOUSING.WITHDRAWAL_ADDRESS'
                                                         |
                                                         translate}}</div>
-                                                    <div class="data_lbl">{{ housingData.withdrawalAddress || '-'}}</div>
+                                                    <div class="data_lbl">{{ housingData.withdrawalAddress || '-'}}
+                                                    </div>
                                                 </div>
                                             </div>
                                         </div>
