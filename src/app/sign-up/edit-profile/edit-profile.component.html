@@ -704,6 +704,7 @@
             *ngIf="ckaInfo == null || 
             ckaInfo?.cKAStatusMessage === CKA_STATUS_CONSTANTS.CKA_BE_CERTIFICATE_UPLOADED || 
             ckaInfo?.cKAStatusMessage === CKA_STATUS_CONSTANTS.CKA_EXPIRED_STATUS ||
+            ckaInfo?.cKAStatusMessage === CKA_STATUS_CONSTANTS.CKA_REJECTED_STATUS ||
             ckaInfo?.ckaredeclarationRequired">
             <div class="dropdown-img">
               <span class="arrow-right mt0"></span>
