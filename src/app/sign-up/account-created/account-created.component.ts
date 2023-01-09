@@ -69,14 +69,14 @@ export class AccountCreatedComponent implements OnInit, OnDestroy {
   /**
    * redirect to login page.
    */
-   redirectToLogin() {
+  redirectToLogin() {
     if (!this.organisationEnabled) {
       this.authService.displayCorporateLogo$.next(false);
     }
     if (this.finlitEnabled) {
       this.router.navigate([SIGN_UP_ROUTE_PATHS.FINLIT_LOGIN]);
     } else if (this.organisationEnabled) {
-      this.router.navigate([SIGN_UP_ROUTE_PATHS.CORPORATE_LOGIN], { queryParams: {orgID: this.appService.getCorporateDetails().uuid}});
+      this.router.navigate([SIGN_UP_ROUTE_PATHS.CORPORATE_LOGIN], { queryParams: { orgID: this.appService.getCorporateDetails().uuid } });
     } else {
       this.router.navigate([SIGN_UP_ROUTE_PATHS.LOGIN]);
     }
