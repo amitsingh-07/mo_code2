@@ -35,6 +35,7 @@
   position: fixed;
   width: calc(100% - 15px);
   padding-right: 15px;
+  margin: env(safe-area-inset-top) env(safe-area-inset-right) env(safe-area-inset-left);
 
   @include desktop {
     position: fixed;
