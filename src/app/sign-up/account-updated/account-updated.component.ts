@@ -42,7 +42,7 @@ export class AccountUpdatedComponent implements OnInit {
 
   redirectToLogin() {
     if (this.authService.isUserTypeCorporate) {
-      this.router.navigate([SIGN_UP_ROUTE_PATHS.CORPORATE_LOGIN], { queryParams: {orgID: this.appService.getCorporateDetails().uuid}});
+      this.router.navigate([SIGN_UP_ROUTE_PATHS.CORPORATE_LOGIN], { queryParams: { orgID: this.appService.getCorporateDetails().uuid } });
     } else {
       this.router.navigate([SIGN_UP_ROUTE_PATHS.LOGIN]);
     }
