@@ -69,16 +69,13 @@ export class ReferalRedirectingPartComponent implements OnInit {
     public modal: NgbModal,
     private translate: TranslateService,
     private signUpService: SignUpService,
-    private renderer: Renderer2,
     private investmentAccountService: InvestmentAccountService,
     private investmentCommonService: InvestmentCommonService,
     private configService: ConfigService,
     private comprehensiveApiService: ComprehensiveApiService,
-    private appService: AppService,
     private loaderService: LoaderService,
     private comprehensiveService: ComprehensiveService,
     private guideMeApiService: GuideMeApiService,
-    private guideMeService: GuideMeService,
     private selectedPlansService: SelectedPlansService,
     public location: Location
   ) {

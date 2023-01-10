@@ -4,11 +4,12 @@
 app-create-account-myinfo {
     .container-fluid {
         &.max-width--1024 {
-            @include allmobiles {               
+            @include allmobiles {
                 padding-top: 0px;
             }
         }
     }
+
     .back-btn {
         background-image: url("../../../assets/images/back-web.svg");
         width: 43px;
@@ -20,40 +21,48 @@ app-create-account-myinfo {
         background-repeat: no-repeat;
         z-index: 999;
     }
+
     .signup-wrapper__title {
         font-family: $muli-bold;
         letter-spacing: -0.18px;
         text-align: center;
         text-align: left;
+
         @include allmobiles {
             font-size: 24px;
             margin-bottom: 10px;
             text-align: center;
         }
     }
-    .sign-up-max-width{
+
+    .sign-up-max-width {
         padding: 0;
         max-width: 315px;
         margin-left: 0;
-        @include allmobiles{
+
+        @include allmobiles {
             padding: 0 15px;
             max-width: 100%;
             margin: 0 auto;
         }
-        .autofill-logo{
+
+        .autofill-logo {
             display: flex;
             height: 48px;
             margin-top: 20px;
             cursor: pointer;
-            @include allmobiles{
+
+            @include allmobiles {
                 height: 45px;
             }
+
             img {
                 width: 100%;
                 height: auto;
-              }
+            }
         }
     }
+
     .create_account__header-icon {
         width: 260px !important;
         height: 232px !important;
@@ -65,6 +74,7 @@ app-create-account-myinfo {
             margin-bottom: 36px;
         }
     }
+
     .desc {
         font-size: 18px;
         line-height: 1.22;
@@ -77,24 +87,29 @@ app-create-account-myinfo {
         letter-spacing: -0.18px;
         text-align: center;
         color: $white-color;
+
         p {
             font-family: $muli-regular;
             font-size: 16px;
             line-height: 1.5;
             text-align: left;
             margin-bottom: 20px;
+
             @include allmobiles {
                 text-align: center;
             }
         }
+
         div {
             font-family: $muli-regular;
             font-size: 16px;
             line-height: 1.5;
             text-align: left;
+
             @include allmobiles {
                 text-align: center;
             }
+
             a {
                 font-family: $muli-bold;
                 font-size: 16px;
@@ -102,40 +117,49 @@ app-create-account-myinfo {
                 text-align: left;
                 color: $white-color;
                 text-decoration: none;
+
                 @include allmobiles {
                     text-align: center;
                 }
             }
         }
     }
+
     .btn {
         font-size: 18px;
         font-family: $muli-bold;
         padding: 16px;
         margin: 0;
+
         @include iphone5 {
             padding: 16px 7px;
         }
+
         &.btn-login {
             line-height: 1.33;
             letter-spacing: normal;
             text-align: center;
             color: $white-color;
+
             @include allmobiles {
                 margin-left: 10px;
             }
+
             @include min300max325 {
                 margin-left: 0px;
             }
         }
+
         &.btn-myinfo {
             color: $white-color;
             margin-right: 0px;
             border-radius: 6px;
             border: 1px solid $white-color;
+
             @include allmobiles {
                 margin-right: 10px;
             }
+
             @include min300max325 {
                 margin-right: 0px;
             }

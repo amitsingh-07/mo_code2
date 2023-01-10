@@ -17,7 +17,6 @@
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
-              "baseHref": "/app/",
               "allowedCommonJsDependencies": [
                 "deepmerge",
                 "nouislider",
@@ -35,7 +34,12 @@
             "assets": [
               "src/favicon.ico",
               "src/assets",
-              "src/myinfo"
+              "src/myinfo",
+              {
+                "glob": "**/*",
+                "input": "src/.well-known",
+                "output": ".well-known/"
+              }
             ],
             "styles": [
               {
@@ -47,28 +51,6 @@
             "scripts": []
           },
           "configurations": {
-            "production": {
-              "budgets": [
-                {
-                  "type": "anyComponentStyle",
-                  "maximumWarning": "6kb"
-                }
-              ],
-              "fileReplacements": [
-                {
-                  "replace": "src/environments/environment.ts",
-                  "with": "src/environments/environment.prod.ts"
-                }
-              ],
-              "optimization": true,
-              "outputHashing": "all",
-              "sourceMap": false,
-              "namedChunks": false,
-              "aot": true,
-              "extractLicenses": true,
-              "vendorChunk": false,
-              "buildOptimizer": true
-            },
             "prod": {
               "budgets": [
                 {
@@ -215,6 +197,75 @@
               "extractLicenses": true,
               "vendorChunk": false,
               "buildOptimizer": false
+            },
+            "mobiledev": {
+              "baseHref": "/",
+              "budgets": [
+                {
+                  "type": "anyComponentStyle",
+                  "maximumWarning": "6kb"
+                }
+              ],
+              "fileReplacements": [
+                {
+                  "replace": "src/environments/environment.ts",
+                  "with": "src/environments/environment.newmodev.ts"
+                }
+              ],
+              "optimization": false,
+              "outputHashing": "all",
+              "sourceMap": true,
+              "namedChunks": false,
+              "aot": true,
+              "extractLicenses": true,
+              "vendorChunk": false,
+              "buildOptimizer": false
+            },
+            "mobileuat": {
+              "baseHref": "/",
+              "budgets": [
+                {
+                  "type": "anyComponentStyle",
+                  "maximumWarning": "6kb"
+                }
+              ],
+              "fileReplacements": [
+                {
+                  "replace": "src/environments/environment.ts",
+                  "with": "src/environments/environment.newmo.ts"
+                }
+              ],
+              "optimization": true,
+              "outputHashing": "all",
+              "sourceMap": false,
+              "namedChunks": false,
+              "aot": true,
+              "extractLicenses": true,
+              "vendorChunk": false,
+              "buildOptimizer": true
+            },
+            "mobileprod": {
+              "baseHref": "/",
+              "budgets": [
+                {
+                  "type": "anyComponentStyle",
+                  "maximumWarning": "6kb"
+                }
+              ],
+              "fileReplacements": [
+                {
+                  "replace": "src/environments/environment.ts",
+                  "with": "src/environments/environment.prod.ts"
+                }
+              ],
+              "optimization": true,
+              "outputHashing": "all",
+              "sourceMap": false,
+              "namedChunks": false,
+              "aot": true,
+              "extractLicenses": true,
+              "vendorChunk": false,
+              "buildOptimizer": true
             }
           }
         },
@@ -224,9 +275,6 @@
             "browserTarget": "bfa-frontend:build"
           },
           "configurations": {
-            "production": {
-              "browserTarget": "bfa-frontend:build:production"
-            },
             "prod": {
               "browserTarget": "bfa-frontend:build:prod"
             },

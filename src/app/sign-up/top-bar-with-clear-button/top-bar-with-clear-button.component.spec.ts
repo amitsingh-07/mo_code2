@@ -1,4 +1,4 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { waitForAsync, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { TopBarWithClearButtonComponent } from './top-bar-with-clear-button.component';
 
@@ -6,11 +6,11 @@ describe('TopBarWithClearButtonComponent', () => {
   let component: TopBarWithClearButtonComponent;
   let fixture: ComponentFixture<TopBarWithClearButtonComponent>;
 
-  beforeEach(async(() => {
+  beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
-      declarations: [ TopBarWithClearButtonComponent ]
+      declarations: [TopBarWithClearButtonComponent]
     })
-    .compileComponents();
+      .compileComponents();
   }));
 
   beforeEach(() => {

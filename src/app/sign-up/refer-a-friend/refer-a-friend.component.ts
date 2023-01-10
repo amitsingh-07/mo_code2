@@ -1,6 +1,5 @@
 import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { Router } from '@angular/router';
-import { forkJoin as observableForkJoin } from 'rxjs';
 import { TranslateService } from '@ngx-translate/core';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 
@@ -61,7 +60,7 @@ export class ReferAFriendComponent implements OnInit {
           const referralData = data.objectList;
           this.referrerName = referralData.referrerName ? referralData.referrerName : '';
           this.referralCode = referralData.referralCode ? referralData.referralCode : '';
-          this.refereeExists =  referralData.refereeExists;
+          this.refereeExists = referralData.refereeExists;
           this.referrerExists = referralData.referrerExists;
           if (this.referralCode) {
             this.createReferrerLink();
@@ -104,7 +103,7 @@ export class ReferAFriendComponent implements OnInit {
   }
 
   openRefereeModal() {
-    this.router.navigate([SIGN_UP_ROUTE_PATHS.REFER_REDIRECT+'/'+SIGN_UP_CONFIG.REFEREE_REWARDS.REFER_A_FRIEND],{ skipLocationChange: true });
+    this.router.navigate([SIGN_UP_ROUTE_PATHS.REFER_REDIRECT + '/' + SIGN_UP_CONFIG.REFEREE_REWARDS.REFER_A_FRIEND], { skipLocationChange: true });
   }
 
   notify(event) {

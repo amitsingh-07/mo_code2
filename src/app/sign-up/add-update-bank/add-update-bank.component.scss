@@ -48,14 +48,6 @@ app-add-update-bank {
     margin-bottom: 18px;
   }
 
-  // .inline-error {
-  //   .btn {
-  //     &.btn-secondary {
-  //       background-color: $secondary-action-color !important;
-  //     }
-  //   }
-  // }
-
   .dropdown-control {
     .btn-dropdown {
       color: $teal-color;
@@ -383,27 +375,4 @@ app-add-update-bank {
   [placeholder]:empty:focus::before {
     content: "";
   }
-
-  // .content-editable {
-  //   border: 1px solid #94CCCC;
-  //   border-radius: 6px;
-  //   padding: .90rem;
-  //   background: $white-color;
-  //   color: $app-backgrnd-color;
-  //   word-break: break-word;
-  //   min-height: 52px;
-
-  //   &.view-mode {
-  //     background-color: rgba(0, 167, 167, 0.15) !important;
-  //   }
-
-  //   &.inline-error {
-  //     color: #e57300 !important;
-  //     background: #fff3e9;
-
-  //     &[placeholder]:empty::before {
-  //       color: #e57300 !important;
-  //     }
-  //   }
-  // }
 }

@@ -1,5 +1,5 @@
 import { Location } from '@angular/common';
-import { Component, EventEmitter , Input, OnInit, Output , ViewEncapsulation} from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output, ViewEncapsulation } from '@angular/core';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { TranslateService } from '@ngx-translate/core';
 
@@ -53,7 +53,7 @@ export class TopBarWithClearButtonComponent implements OnInit {
     const message = this.tooltip['message'];
   }
   clearAllSelected() {
-    console.log ('going to emit');
+    console.log('going to emit');
     this.clearAll.emit();
   }
 

@@ -1,4 +1,4 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { waitForAsync, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { ActivateSingpassModalComponent } from './activate-singpass-modal.component';
 
@@ -6,11 +6,11 @@ describe('ActivateSingpassModalComponent', () => {
   let component: ActivateSingpassModalComponent;
   let fixture: ComponentFixture<ActivateSingpassModalComponent>;
 
-  beforeEach(async(() => {
+  beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
-      declarations: [ ActivateSingpassModalComponent ]
+      declarations: [ActivateSingpassModalComponent]
     })
-    .compileComponents();
+      .compileComponents();
   }));
 
   beforeEach(() => {

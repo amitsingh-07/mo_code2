@@ -693,4 +693,3 @@ export class CreateAccountComponent implements OnInit, AfterViewInit {
     this.router.navigate([SIGN_UP_ROUTE_PATHS.CORP_BIZ_SIGNUP_DATA]);
   }
 }
-

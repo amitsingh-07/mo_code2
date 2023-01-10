@@ -246,7 +246,7 @@ export class AddUpdateSrsComponent implements OnInit, OnDestroy {
   updateSrsSaveCall(form: any) {
     if (!form.valid) {
       return false;
-    } else if(this.isEdit) {
+    } else if (this.isEdit) {
       this.isEdit = false;
       const formValue = form.getRawValue();
       const reqParams = {};

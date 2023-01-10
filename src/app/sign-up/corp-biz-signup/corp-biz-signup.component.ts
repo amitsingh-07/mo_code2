@@ -12,7 +12,6 @@ import { ModelWithButtonComponent } from '../../shared/modal/model-with-button/m
 import { SIGN_UP_ROUTE_PATHS } from '../sign-up.routes.constants';
 import { SIGN_UP_CONFIG } from '../sign-up.constant';
 import { AppService } from '../../app.service';
-import { SignUpApiService } from '../sign-up.api.service';
 import { appConstants } from '../../app.constants';
 import { MyinfoModalComponent } from '../../shared/modal/myinfo-modal/myinfo-modal.component';
 
@@ -45,8 +44,7 @@ export class CorpBizSignupComponent implements OnInit {
     private navbarService: NavbarService,
     private footerService: FooterService,
     private readonly translate: TranslateService,
-    private appService: AppService,
-    private signUpApiService: SignUpApiService
+    private appService: AppService
   ) {
     this.translate.use('en');
     this.translate.get('COMMON').subscribe((result: string) => {
