@@ -274,7 +274,8 @@
                 class="form-group-floating-label" (capsLock)="capsOn=$event">
                 <input id="crtAccInpt6" type="password" (blur)="showValidity('password')"
                   (focus)="showValidity('password')" (keyup)="onPasswordInputChange()" class="form-control"
-                  formControlName="password" #password required (focus)="onFocus()" (blur)="onBlur()" autocomplete="new-password">
+                  formControlName="password" #password required (focus)="onFocus()" (blur)="onBlur()"
+                  autocomplete="new-password">
                 <label class="form-control-placeholder" for="password">{{ 'PASSWORD.FORM.PASSWORD' | translate}}</label>
                 <span [ngClass]="(password.type === 'text') ? 'show-password' : 'hide-password'"
                   (click)="showHidePassword(password)"></span>

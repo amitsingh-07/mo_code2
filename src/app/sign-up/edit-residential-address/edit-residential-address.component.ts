@@ -1,6 +1,6 @@
 
 
-import { Component, OnInit, ViewEncapsulation  } from '@angular/core';
+import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
@@ -73,28 +73,28 @@ export class EditResidentialAddressComponent implements OnInit {
       this.observeMailCountryChange();
     }
     this.isResidentialAddressAvail = this.formValues.resUploadedPath ? true : false;
-    this.isMailingAddressAvail =  this.formValues.mailingUploadedPath ? true : false;
+    this.isMailingAddressAvail = this.formValues.mailingUploadedPath ? true : false;
   }
   getNationalityCountryList() {
-        this.investmentAccountService.getNationalityCountryList().subscribe((data) => {
-            this.countries = this.investmentAccountService.getCountryList(data.objectList);
-        });
-}
+    this.investmentAccountService.getNationalityCountryList().subscribe((data) => {
+      this.countries = this.investmentAccountService.getCountryList(data.objectList);
+    });
+  }
 
-buildForm(): FormGroup {
-  return this.formBuilder.group({
-    country: [{
-      value: this.formValues.country,
-      disabled: this.investmentAccountService.isDisabled('country')
-    }, Validators.required],
-    address1: [{ value: this.formValues.address1, disabled: this.investmentAccountService.isDisabled('address1') },
-    [Validators.required, Validators.pattern(RegexConstants.AlphanumericWithSpaces)]],
-    address2: [{ value: this.formValues.address2, disabled: this.investmentAccountService.isDisabled('address2') },
-    [Validators.pattern(RegexConstants.AlphanumericWithSpaces)]],
-    isMailingAddressSame: [this.formValues.isMailingAddressSame],
-    resAddressProof: [this.formValues.resAddressProof]
-  });
-}
+  buildForm(): FormGroup {
+    return this.formBuilder.group({
+      country: [{
+        value: this.formValues.country,
+        disabled: this.investmentAccountService.isDisabled('country')
+      }, Validators.required],
+      address1: [{ value: this.formValues.address1, disabled: this.investmentAccountService.isDisabled('address1') },
+      [Validators.required, Validators.pattern(RegexConstants.AlphanumericWithSpaces)]],
+      address2: [{ value: this.formValues.address2, disabled: this.investmentAccountService.isDisabled('address2') },
+      [Validators.pattern(RegexConstants.AlphanumericWithSpaces)]],
+      isMailingAddressSame: [this.formValues.isMailingAddressSame],
+      resAddressProof: [this.formValues.resAddressProof]
+    });
+  }
 
   addOrRemoveAdditionalControls(country) {
     const isSingapore = this.investmentAccountService.isCountrySingapore(country);
@@ -149,7 +149,7 @@ buildForm(): FormGroup {
         [Validators.pattern(RegexConstants.AlphanumericWithSpaces)]],
         mailAdressProof: [{ value: this.formValues.mailAdressProof, disabled: this.investmentAccountService.isDisabled('mailAdressProof') },
         [Validators.pattern(RegexConstants.AlphanumericWithSpaces)]],
-         }));
+      }));
       this.addOrRemoveAdditionalControlsMailing(this.addressForm.get('mailingAddress').get('mailCountry').value);
       this.observeMailCountryChange();
     } else {
@@ -164,7 +164,7 @@ buildForm(): FormGroup {
       mailFormGroup.addControl('mailPostalCode', new FormControl({
         value: this.formValues.mailPostalCode,
         disabled: this.investmentAccountService.isDisabled('mailPostalCode')
-      },  [Validators.required, Validators.pattern(RegexConstants.NumericOnly)]));
+      }, [Validators.required, Validators.pattern(RegexConstants.NumericOnly)]));
       mailFormGroup.addControl('mailFloor', new FormControl({
         value: this.formValues.mailFloor,
         disabled: this.investmentAccountService.isDisabled('mailFloor')
@@ -214,7 +214,7 @@ buildForm(): FormGroup {
     }
     return defaultCountry;
   }
-getInlineErrorStatus(control) {
+  getInlineErrorStatus(control) {
     return (!control.pristine && !control.valid);
   }
 
@@ -239,28 +239,28 @@ getInlineErrorStatus(control) {
 
   retrieveAddress(postalCode, address1Control, address2Control) {
     if (postalCode) {
-    this.investmentAccountService.getAddressUsingPostalCode(postalCode).subscribe(
-      (response: any) => {
-        if (response) {
-          if (response.Status.code === 200) {
-            const address1 = response.Placemark[0].AddressDetails.Country.Thoroughfare.ThoroughfareName;
-            const address2 = response.Placemark[0].AddressDetails.Country.AddressLine;
-            address1Control.setValue(address1);
-            address2Control.setValue(address2);
-          } else {
-            const ref = this.modal.open(ErrorModalComponent, { centered: true });
-            ref.componentInstance.errorTitle = this.translate.instant('RESIDENTIAL_ADDRESS.POSTALCODE_NOT_FOUND_ERROR.TITLE');
-            ref.componentInstance.errorMessage = this.translate.instant('RESIDENTIAL_ADDRESS.POSTALCODE_NOT_FOUND_ERROR.MESSAGE');
-            address1Control.setValue('');
-            address2Control.setValue('');
+      this.investmentAccountService.getAddressUsingPostalCode(postalCode).subscribe(
+        (response: any) => {
+          if (response) {
+            if (response.Status.code === 200) {
+              const address1 = response.Placemark[0].AddressDetails.Country.Thoroughfare.ThoroughfareName;
+              const address2 = response.Placemark[0].AddressDetails.Country.AddressLine;
+              address1Control.setValue(address1);
+              address2Control.setValue(address2);
+            } else {
+              const ref = this.modal.open(ErrorModalComponent, { centered: true });
+              ref.componentInstance.errorTitle = this.translate.instant('RESIDENTIAL_ADDRESS.POSTALCODE_NOT_FOUND_ERROR.TITLE');
+              ref.componentInstance.errorMessage = this.translate.instant('RESIDENTIAL_ADDRESS.POSTALCODE_NOT_FOUND_ERROR.MESSAGE');
+              address1Control.setValue('');
+              address2Control.setValue('');
+            }
           }
-        }
-      },
-      (err) => {
-        const ref = this.modal.open(ErrorModalComponent, { centered: true });
-        ref.componentInstance.errorTitle = this.translate.instant('RESIDENTIAL_ADDRESS.ERROR.POSTAL_CODE_TITLE');
-        ref.componentInstance.errorMessage = this.translate.instant('RESIDENTIAL_ADDRESS.ERROR.POSTAL_CODE_DESC');
-      });
+        },
+        (err) => {
+          const ref = this.modal.open(ErrorModalComponent, { centered: true });
+          ref.componentInstance.errorTitle = this.translate.instant('RESIDENTIAL_ADDRESS.ERROR.POSTAL_CODE_TITLE');
+          ref.componentInstance.errorMessage = this.translate.instant('RESIDENTIAL_ADDRESS.ERROR.POSTAL_CODE_DESC');
+        });
     } else {
       const ref = this.modal.open(ErrorModalComponent, { centered: true });
       ref.componentInstance.errorTitle = this.translate.instant('RESIDENTIAL_ADDRESS.POSTALCODE_EMPTY_ERROR.TITLE');
@@ -278,11 +278,11 @@ getInlineErrorStatus(control) {
       return false;
     } else {
       this.investmentAccountService.editResidentialAddressFormData(form.value).subscribe((data) => {
-        if (form.controls.resAddressProof && form.controls.resAddressProof.value ) {
-        this.uploadDocument();
+        if (form.controls.resAddressProof && form.controls.resAddressProof.value) {
+          this.uploadDocument();
         }
         if (this.addressForm.controls.isMailingAddressSame.value !== true) {
-          if (form.controls.mail && form.controls.mailAdressProof.value ) {
+          if (form.controls.mail && form.controls.mailAdressProof.value) {
             this.uploadDocument();
           }
         }
@@ -302,7 +302,7 @@ getInlineErrorStatus(control) {
         this.hideUploadLoader();
         // INTERIM SAVE
         this.investmentAccountService.saveInvestmentAccount().subscribe((data) => {
-          console.log ('After uploading ' + data);
+          console.log('After uploading ' + data);
         });
       }
     });
@@ -330,8 +330,8 @@ getInlineErrorStatus(control) {
       ref.componentInstance.errorDescription = errorDesc;
       control.setValue('');
     } else {
-        const selFile = fileElem.target.files[0];
-        control.setValue(selFile ? selFile.name : '');
+      const selFile = fileElem.target.files[0];
+      control.setValue(selFile ? selFile.name : '');
     }
   }
 
@@ -339,16 +339,6 @@ getInlineErrorStatus(control) {
     const payloadKey = this.investmentAccountCommon.getPayloadKey(controlname);
     return payloadKey;
   }
-
-  // uploadDocument() {
-  //   this.showUploadLoader();
-  //   this.investmentAccountService.uploadDocument(this.formData).subscribe((data) => {
-  //     if (data) {
-  //       this.hideUploadLoader();
-  //       this.redirectToNextPage();
-  //     }
-  //   });
-  // }
 
   setThumbnail(thumbElem, file) {
     // Set Thumbnail
@@ -360,7 +350,7 @@ getInlineErrorStatus(control) {
     if (this.isResidentialAddressAvail) {
       fileName = this.formValues.resUploadedPath.split('/').pop();
     } else {
-    fileName = this.investmentAccountCommon.getFileName(fileElem);
+      fileName = this.investmentAccountCommon.getFileName(fileElem);
     }
     return fileName;
   }
@@ -369,14 +359,14 @@ getInlineErrorStatus(control) {
     if (this.isMailingAddressAvail) {
       fileName = this.formValues.mailingUploadedPath.split('/').pop();
     } else {
-    fileName = this.investmentAccountCommon.getFileName(fileElem);
+      fileName = this.investmentAccountCommon.getFileName(fileElem);
     }
     return fileName;
   }
 
-  clearFileSelection(type , controlName, control, event, thumbElem?) {
+  clearFileSelection(type, controlName, control, event, thumbElem?) {
     if (type === 'Residential') {
-    this.isResidentialAddressAvail = false;
+      this.isResidentialAddressAvail = false;
     }
     if (type === 'Mailing') {
       this.isMailingAddressAvail = false;

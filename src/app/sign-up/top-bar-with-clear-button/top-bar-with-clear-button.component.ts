@@ -53,7 +53,7 @@ export class TopBarWithClearButtonComponent implements OnInit {
     const message = this.tooltip['message'];
   }
   clearAllSelected() {
-    console.log ('going to emit');
+    console.log('going to emit');
     this.clearAll.emit();
   }
 

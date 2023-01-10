@@ -17,10 +17,12 @@ app-recommended-card {
     white-space: nowrap;
     text-overflow: ellipsis;
     max-width: 191px !important;
-    @include max360{
+
+    @include max360 {
       max-width: 166px !important;
     }
-    @include min300max350{
+
+    @include min300max350 {
       max-width: 158px !important;
     }
   }
@@ -29,40 +31,46 @@ app-recommended-card {
     -webkit-line-clamp: 3 !important;
     max-width: 197px !important;
     display: -webkit-box;
-   -webkit-box-orient: vertical;  
+    -webkit-box-orient: vertical;
     overflow: hidden;
-    word-wrap:break-word;
+    word-wrap: break-word;
     visibility: visible;
     text-overflow: ellipsis;
     line-clamp: 3;
     -webkit-box-pack: end;
-    @include max360{
+
+    @include max360 {
       max-width: 182px !important;
     }
-    @include min300max350{
+
+    @include min300max350 {
       max-width: 164px !important;
     }
   }
 
-  .slick-track{
-    @include allmobiles{
+  .slick-track {
+    @include allmobiles {
       margin-left: 15px;
     }
   }
 
   .slick-slide {
     width: 335px;
-    @include min300max350{
+
+    @include min300max350 {
       width: 290px !important;
     }
-    @include max360{
+
+    @include max360 {
       width: 310px;
     }
+
     &:last-child {
       .card {
         margin-right: 0px !important;
       }
-      @include allmobiles{
+
+      @include allmobiles {
         margin-right: 10px !important;
       }
     }
@@ -115,9 +123,11 @@ app-recommended-card {
     line-height: 18px;
     letter-spacing: -0.2px;
     color: rgba(0, 0, 0, 0.7);
-    @include allmobiles{
+
+    @include allmobiles {
       margin: 0 -15px;
     }
+
     .card-container {
       padding: 0;
 
@@ -139,7 +149,8 @@ app-recommended-card {
           width: 80px;
           height: 80px;
           margin-right: 16px;
-          @include min300max350{
+
+          @include min300max350 {
             margin-right: 8px;
           }
 
@@ -172,7 +183,8 @@ app-recommended-card {
       border-radius: 6px;
       padding: 30px 15px;
       text-align: center;
-      @include allmobiles{
+
+      @include allmobiles {
         max-width: calc(100% - 30px);
         margin: 0 auto;
       }

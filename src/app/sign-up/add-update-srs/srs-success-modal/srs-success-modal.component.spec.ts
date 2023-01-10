@@ -1,4 +1,4 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { waitForAsync, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { SrsSuccessModalComponent } from './srs-success-modal.component';
 
@@ -6,11 +6,11 @@ describe('SrsSuccessModalComponent', () => {
   let component: SrsSuccessModalComponent;
   let fixture: ComponentFixture<SrsSuccessModalComponent>;
 
-  beforeEach(async(() => {
+  beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
-      declarations: [ SrsSuccessModalComponent ]
+      declarations: [SrsSuccessModalComponent]
     })
-    .compileComponents();
+      .compileComponents();
   }));
 
   beforeEach(() => {

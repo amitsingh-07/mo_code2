@@ -10,22 +10,13 @@
       "prefix": "app",
       "schematics": {
         "@schematics/angular:component": {
-          "style": "scss"
+          "styleext": "scss"
         }
       },
       "architect": {
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
-              "allowedCommonJsDependencies": [
-                "deepmerge",
-                "nouislider",
-                "smoothscroll-polyfill",
-                "text-mask-core",
-                "crypto-js",
-                "js-sha512",
-                "angular2-text-mask"
-            ],
             "outputPath": "dist/NTUCDev",
             "index": "src/index.html",
             "main": "src/main.ts",
@@ -34,15 +25,9 @@
             "assets": [
               "src/favicon.ico",
               "src/assets",
-              "src/myinfo",
-              {
-                "glob": "**/*",
-                "input": "src/.well-known",
-                "output": ".well-known/"
-              }
+              "src/myinfo"
             ],
-            "styles": [
-              {
+            "styles": [{
                 "input": "./node_modules/bootstrap/dist/css/bootstrap.css"
               },
               "src/styles.scss",
@@ -51,22 +36,30 @@
             "scripts": []
           },
           "configurations": {
-            "prod": {
-              "budgets": [
-                {
-                  "type": "anyComponentStyle",
-                  "maximumWarning": "6kb"
-                }
-              ],
-              "fileReplacements": [
-                {
-                  "replace": "src/environments/environment.ts",
-                  "with": "src/environments/environment.prod.ts"
-                }
-              ],
+            "production": {
+              "fileReplacements": [{
+                "replace": "src/environments/environment.ts",
+                "with": "src/environments/environment.prod.ts"
+              }],
               "optimization": true,
               "outputHashing": "all",
               "sourceMap": false,
+              "extractCss": true,
+              "namedChunks": false,
+              "aot": true,
+              "extractLicenses": true,
+              "vendorChunk": false,
+              "buildOptimizer": true
+            },
+            "prod": {
+              "fileReplacements": [{
+                "replace": "src/environments/environment.ts",
+                "with": "src/environments/environment.prod.ts"
+              }],
+              "optimization": true,
+              "outputHashing": "all",
+              "sourceMap": false,
+              "extractCss": true,
               "namedChunks": false,
               "aot": true,
               "extractLicenses": true,
@@ -74,12 +67,6 @@
               "buildOptimizer": true
             },
             "newmo": {
-              "budgets": [
-                {
-                  "type": "anyComponentStyle",
-                  "maximumWarning": "6kb"
-                }
-              ],
               "fileReplacements": [
                 {
                   "replace": "src/environments/environment.ts",
@@ -89,6 +76,7 @@
               "optimization": true,
               "outputHashing": "all",
               "sourceMap": false,
+              "extractCss": true,
               "namedChunks": false,
               "aot": true,
               "extractLicenses": true,
@@ -96,12 +84,6 @@
               "buildOptimizer": true
             },
             "newmodev": {
-              "budgets": [
-                {
-                  "type": "anyComponentStyle",
-                  "maximumWarning": "6kb"
-                }
-              ],
               "fileReplacements": [
                 {
                   "replace": "src/environments/environment.ts",
@@ -111,6 +93,7 @@
               "optimization": false,
               "outputHashing": "all",
               "sourceMap": true,
+              "extractCss": false,
               "namedChunks": false,
               "aot": true,
               "extractLicenses": true,
@@ -118,12 +101,6 @@
               "buildOptimizer": false
             },
             "newfbdev": {
-              "budgets": [
-                {
-                  "type": "anyComponentStyle",
-                  "maximumWarning": "6kb"
-                }
-              ],
               "fileReplacements": [
                 {
                   "replace": "src/environments/environment.ts",
@@ -133,28 +110,7 @@
               "optimization": false,
               "outputHashing": "all",
               "sourceMap": true,
-              "namedChunks": false,
-              "aot": true,
-              "extractLicenses": true,
-              "vendorChunk": false,
-              "buildOptimizer": false
-            },
-            "newmodev2": {
-              "budgets": [
-                {
-                  "type": "anyComponentStyle",
-                  "maximumWarning": "6kb"
-                }
-              ],
-              "fileReplacements": [
-                {
-                  "replace": "src/environments/environment.ts",
-                  "with": "src/environments/environment.newmodev2.ts"
-                }
-              ],
-              "optimization": false,
-              "outputHashing": "all",
-              "sourceMap": true,
+              "extractCss": false,
               "namedChunks": false,
               "aot": true,
               "extractLicenses": true,
@@ -162,21 +118,14 @@
               "buildOptimizer": false
             },
             "newmouat3": {
-              "budgets": [
-                {
-                  "type": "anyComponentStyle",
-                  "maximumWarning": "6kb"
-                }
-              ],
-              "fileReplacements": [
-                {
-                  "replace": "src/environments/environment.ts",
-                  "with": "src/environments/environment.newmouat3.ts"
-                }
-              ],
+              "fileReplacements": [{
+                "replace": "src/environments/environment.ts",
+                "with": "src/environments/environment.newmouat3.ts"
+              }],
               "optimization": true,
               "outputHashing": "all",
               "sourceMap": false,
+              "extractCss": true,
               "namedChunks": false,
               "aot": true,
               "extractLicenses": true,
@@ -184,83 +133,10 @@
               "buildOptimizer": true
             },
             "common": {
-              "budgets": [
-                {
-                  "type": "anyComponentStyle",
-                  "maximumWarning": "6kb"
-                }
-              ],
-              "optimization": false,
-              "sourceMap": true,
-              "namedChunks": false,
-              "aot": true,
-              "extractLicenses": true,
-              "vendorChunk": false,
-              "buildOptimizer": false
-            },
-            "mobiledev": {
-              "baseHref": "/",
-              "budgets": [
-                {
-                  "type": "anyComponentStyle",
-                  "maximumWarning": "6kb"
-                }
-              ],
-              "fileReplacements": [
-                {
-                  "replace": "src/environments/environment.ts",
-                  "with": "src/environments/environment.newmodev.ts"
-                }
-              ],
-              "optimization": false,
-              "outputHashing": "all",
-              "sourceMap": true,
-              "namedChunks": false,
-              "aot": true,
-              "extractLicenses": true,
-              "vendorChunk": false,
-              "buildOptimizer": false
-            },
-            "mobileuat": {
-              "baseHref": "/",
-              "budgets": [
-                {
-                  "type": "anyComponentStyle",
-                  "maximumWarning": "6kb"
-                }
-              ],
-              "fileReplacements": [
-                {
-                  "replace": "src/environments/environment.ts",
-                  "with": "src/environments/environment.newmo.ts"
-                }
-              ],
               "optimization": true,
               "outputHashing": "all",
               "sourceMap": false,
-              "namedChunks": false,
-              "aot": true,
-              "extractLicenses": true,
-              "vendorChunk": false,
-              "buildOptimizer": true
-            },
-            "mobileprod": {
-              "baseHref": "/",
-              "budgets": [
-                {
-                  "type": "anyComponentStyle",
-                  "maximumWarning": "6kb"
-                }
-              ],
-              "fileReplacements": [
-                {
-                  "replace": "src/environments/environment.ts",
-                  "with": "src/environments/environment.prod.ts"
-                }
-              ],
-              "optimization": true,
-              "outputHashing": "all",
-              "sourceMap": false,
+              "extractCss": true,
               "namedChunks": false,
               "aot": true,
               "extractLicenses": true,
@@ -275,29 +151,14 @@
             "browserTarget": "bfa-frontend:build"
           },
           "configurations": {
-            "prod": {
-              "browserTarget": "bfa-frontend:build:prod"
-            },
-            "newmo": {
-              "browserTarget": "bfa-frontend:build:newmo"
-            },
-            "newmodev": {
-              "browserTarget": "bfa-frontend:build:newmodev"
-            },
-            "newmodev2": {
-              "browserTarget": "bfa-frontend:build:newmodev2"
-            },
-            "newfbdev": {
-              "browserTarget": "bfa-frontend:build:newfbdev"
-            },
-            "newmouat3": {
-              "browserTarget": "bfa-frontend:build:newmouat3"
-            },
-            "common": {
-              "browserTarget": "bfa-frontend:build:common"
-            }
-          },
-          "defaultConfiguration": "common"
+            "production": { "browserTarget": "bfa-frontend:build:production" },
+            "prod": { "browserTarget": "bfa-frontend:build:prod" },
+            "newmo": { "browserTarget": "bfa-frontend:build:newmo"},
+            "newmodev": { "browserTarget": "bfa-frontend:build:newmodev"},
+            "newfbdev": { "browserTarget": "bfa-frontend:build:newfbdev"},
+            "newmouat3": { "browserTarget": "bfa-frontend:build:newmouat3"},
+            "common": { "browserTarget": "bfa-frontend:build:common" }
+          }
         },
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
@@ -368,7 +229,5 @@
       }
     }
   },
-  "cli": {
-    "analytics": false
-  }
+  "defaultProject": "bfa-frontend"
 }
