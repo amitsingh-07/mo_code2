@@ -40,7 +40,7 @@ export class RecommendedCardModalComponent implements OnInit {
       this.closeAction.emit(false);
       this.activeModal.dismiss();
     } else {
-      window.open(redirectURL, '_blank');
+      Util.openExternalUrl(redirectURL, '_blank');
     }
   }
 }
