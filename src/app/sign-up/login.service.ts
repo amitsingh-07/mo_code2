@@ -149,7 +149,7 @@ export class LoginService {
         || (insuranceEnquiry.enquiryProtectionTypeData && insuranceEnquiry.enquiryProtectionTypeData.length > 0)));
   }
 
-  updateInsuranceEnquiry(insuranceEnquiry, data, clearState=null) {
+  updateInsuranceEnquiry(insuranceEnquiry, data, clearState = null) {
     const journeyType = (insuranceEnquiry.journeyType === appConstants.JOURNEY_TYPE_DIRECT) ?
       appConstants.INSURANCE_JOURNEY_TYPE.DIRECT : appConstants.INSURANCE_JOURNEY_TYPE.GUIDED;
     const payload: IEnquiryUpdate = {

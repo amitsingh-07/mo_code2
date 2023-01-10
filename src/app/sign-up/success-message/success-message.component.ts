@@ -24,7 +24,6 @@ export class SuccessMessageComponent implements OnInit {
     // tslint:disable-next-line
     public navbarService: NavbarService,
     public footerService: FooterService,
-    private signUpService: SignUpService,
     private route: ActivatedRoute,
     private router: Router,
     private translate: TranslateService,

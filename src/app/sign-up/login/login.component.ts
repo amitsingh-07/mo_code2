@@ -106,9 +106,9 @@ export class LoginComponent implements OnInit, AfterViewInit, OnDestroy {
       this.appService.clearJourneys();
       this.appService.clearPromoCode();
     }
-    this.appService.setCorporateDetails({organisationEnabled: this.organisationEnabled, uuid: this.route.snapshot.queryParams.orgID || null});
+    this.appService.setCorporateDetails({ organisationEnabled: this.organisationEnabled, uuid: this.route.snapshot.queryParams.orgID || null });
     this.signUpService.removeUserType();
-    if(this.authService.isSignedUserWithRole(SIGN_UP_CONFIG.ROLE_2FA)) {
+    if (this.authService.isSignedUserWithRole(SIGN_UP_CONFIG.ROLE_2FA)) {
       this.authService.clearTokenID();
       this.signUpService.removeFromLoginPage();
       this.signUpService.removeFromMobileNumber();
@@ -154,11 +154,11 @@ export class LoginComponent implements OnInit, AfterViewInit, OnDestroy {
         });
       }
     } else if (this.organisationEnabled && this.route.snapshot.queryParams.orgID) {
-        this.getOrganisationCode();      
+      this.getOrganisationCode();
     }
     this.signUpService.setModalShownStatus('');
     if (this.organisationEnabled) {
-        this.openTermsOfConditions();
+      this.openTermsOfConditions();
     }
     this.navbarService.welcomeJourneyCompleted = false;
   }
@@ -219,7 +219,7 @@ export class LoginComponent implements OnInit, AfterViewInit, OnDestroy {
     if (this.finlitEnabled) {
       this.loginForm.addControl('accessCode', new FormControl(this.formValues.accessCode, [Validators.required]));
     }
-    
+
     this.loginForm.get('organisationCode').valueChanges.subscribe(val => {
       if (val) {
         this.signUpService.organisationName = val;
@@ -230,19 +230,19 @@ export class LoginComponent implements OnInit, AfterViewInit, OnDestroy {
 
   openTermsOfConditions() {
     if (localStorage.getItem('onInit') !== 'true') {
-      const ref = this.modal.open(TermsModalComponent, { centered: true, windowClass: 'sign-up-terms-modal-dialog', backdrop: 'static'});
-        ref.result.then((data) => {
-          localStorage.setItem('onInit', 'true');
-        });
-      }
+      const ref = this.modal.open(TermsModalComponent, { centered: true, windowClass: 'sign-up-terms-modal-dialog', backdrop: 'static' });
+      ref.result.then((data) => {
+        localStorage.setItem('onInit', 'true');
+      });
     }
+  }
 
   getOrganisationCode() {
     this.signUpApiService.getOrganisationCode(this.route.snapshot.queryParams.orgID).subscribe(res => {
       this.loginForm.get('organisationCode').patchValue(res.objectList[0]);
     });
   }
- 
+
   /**
    * Show or hide inline error.
    * @param form - form control.
@@ -291,7 +291,7 @@ export class LoginComponent implements OnInit, AfterViewInit, OnDestroy {
       this.signUpApiService.verifyLogin(this.loginForm.value.loginUsername, this.loginForm.value.loginPassword,
         this.loginForm.value.captchaValue, this.finlitEnabled, accessCode, loginType, organisationCode).subscribe((data) => {
           this.isCorpBiz = this.authService.isCorpBiz;
-          if(SIGN_UP_CONFIG.AUTH_2FA_ENABLED) {
+          if (SIGN_UP_CONFIG.AUTH_2FA_ENABLED) {
             if (data.responseMessage && data.responseMessage.responseCode >= 6000) {
               try {
                 if (data.objectList[0].customerId) {
@@ -300,7 +300,7 @@ export class LoginComponent implements OnInit, AfterViewInit, OnDestroy {
               } catch (e) {
                 console.log(e);
               }
-              if(this.finlitEnabled && accessCode && accessCode !== '') {
+              if (this.finlitEnabled && accessCode && accessCode !== '') {
                 this.authService.saveAccessCode(accessCode);
               }
               this.authService.set2faVerifyAllowed(true);
@@ -345,7 +345,7 @@ export class LoginComponent implements OnInit, AfterViewInit, OnDestroy {
         const insuranceEnquiry = this.selectedPlansService.getSelectedPlan();
         if (this.loginService.checkInsuranceEnquiry(insuranceEnquiry)) {
           this.loginService.updateInsuranceEnquiry(insuranceEnquiry, data);
-          setTimeout(()=>{
+          setTimeout(() => {
             this.callErrorModal(data);
           });
         } else {
@@ -379,7 +379,7 @@ export class LoginComponent implements OnInit, AfterViewInit, OnDestroy {
       this.showErrorModal(this.translate.instant('SIGNUP_ERRORS.TITLE'),
         this.translate.instant('SIGNUP_ERRORS.VERIFY_MOBILE_OTP'),
         this.translate.instant('COMMON.VERIFY_NOW'),
-        (this.finlitEnabled && SIGN_UP_ROUTE_PATHS.FINLIT_VERIFY_MOBILE) || 
+        (this.finlitEnabled && SIGN_UP_ROUTE_PATHS.FINLIT_VERIFY_MOBILE) ||
         (this.organisationEnabled && SIGN_UP_ROUTE_PATHS.CORPORATE_VERIFY_MOBILE) ||
         SIGN_UP_ROUTE_PATHS.VERIFY_MOBILE,
         false);
@@ -404,7 +404,7 @@ export class LoginComponent implements OnInit, AfterViewInit, OnDestroy {
     }
     if (emailResend) {
       ref.componentInstance.enableResendEmail = true;
-      if(!this.isCorpBiz && !this.organisationEnabled) {
+      if (!this.isCorpBiz && !this.organisationEnabled) {
         ref.componentInstance.enableChangeEmail = true;
       }
       ref.componentInstance.resendEmail.pipe(
@@ -470,10 +470,10 @@ export class LoginComponent implements OnInit, AfterViewInit, OnDestroy {
     this.capslockFocus = false;
   }
   onPaste(event: ClipboardEvent, key) {
-      const pastedEmailText = event.clipboardData.getData('text').replace(/\s/g, '').toUpperCase();
-      const pastedText = (key == 'organisationCode'? event.clipboardData.getData('text').replace(/\s/g, '').toUpperCase() : event.clipboardData.getData('text').replace(/\s/g, ''));
-      this.loginForm.controls[key].setValue(pastedText);
-      event.preventDefault();    
+    const pastedEmailText = event.clipboardData.getData('text').replace(/\s/g, '').toUpperCase();
+    const pastedText = (key == 'organisationCode' ? event.clipboardData.getData('text').replace(/\s/g, '').toUpperCase() : event.clipboardData.getData('text').replace(/\s/g, ''));
+    this.loginForm.controls[key].setValue(pastedText);
+    event.preventDefault();
   }
   onKeyupEvent(event, key) {
     if (event.target.value) {

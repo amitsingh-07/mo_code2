@@ -1,4 +1,4 @@
-import {FormGroup, ValidationErrors, ValidatorFn } from '@angular/forms';
+import { FormGroup, ValidationErrors, ValidatorFn } from '@angular/forms';
 
 export function ValidateMobileChange(params: any): ValidatorFn {
   return (group: FormGroup): ValidationErrors => {

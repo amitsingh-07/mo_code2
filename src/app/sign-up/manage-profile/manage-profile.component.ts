@@ -48,7 +48,7 @@ export class ManageProfileComponent implements OnInit {
     }
     this.footerService.setFooterVisibility(false);
     this.setPageTitle(this.pageTitle);
-    this.getEditProfileData();    
+    this.getEditProfileData();
     this.accessEmailOnRoles = this.authService.accessCorporateUserFeature('EMAIL_UPDATE');
   }
 

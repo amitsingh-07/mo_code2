@@ -16,7 +16,7 @@
           <div class="widget-block">
             <!--for desktop-->
             <div class="hidden-sm-md">
-              <div class="user-profile-bg col-12 mb10" >
+              <div class="user-profile-bg col-12 mb10">
                 <div>{{'DASHBOARD.PROFILE.WELCOME' | translate}}</div>
                 <div class="user_name">{{userProfileInfo.firstName | titlecase}}</div>
               </div>
@@ -35,14 +35,9 @@
             </div>
             <div class="recommended-card-container">
               <div class="recommended-card-title flex">{{'RECOMMENDED_CARD.TITLE' | translate}}
-                <!-- 
-                  TO BE UNCOMMENTED IN RELEASE 10.4
-                  <span class="circle">
-                  <img src="assets/images/arrow-right-white.svg" alt="" />
-                </span> -->
               </div>
               <!--Recommended Card section-->
-              <div >
+              <div>
                 <app-recommended-card></app-recommended-card>
               </div>
               <!--Recommended Card section /-->
@@ -52,59 +47,36 @@
             <app-comprehensive-dashboard *ngIf='isComprehensiveEnabled'></app-comprehensive-dashboard>
             <!-- Investment widget Start -->
             <div class="widget">
-              <div class="reward-points" [ngClass]="{'grey': !cardCategory.investment[0].isEnabled}" *ngIf="getReferralInfo && getReferralInfo.isWelcomeRewardsValid && getReferralInfo.refereeExists"><span *ngIf="!cardCategory.investment[0].isEnabled"><img src="assets/images/refer-friend/gift-icon-grey.svg"></span><span *ngIf="cardCategory.investment[0].isEnabled"><img src="assets/images/refer-friend/gift-icon.svg"></span>${{cardCategory.investment[0].creditValue}}</div>
+              <div class="reward-points" [ngClass]="{'grey': !cardCategory.investment[0].isEnabled}"
+                *ngIf="getReferralInfo && getReferralInfo.isWelcomeRewardsValid && getReferralInfo.refereeExists"><span
+                  *ngIf="!cardCategory.investment[0].isEnabled"><img
+                    src="assets/images/refer-friend/gift-icon-grey.svg"></span><span
+                  *ngIf="cardCategory.investment[0].isEnabled"><img
+                    src="assets/images/refer-friend/gift-icon.svg"></span>${{cardCategory.investment[0].creditValue}}
+              </div>
               <ng-container *ngIf="isInvestmentEnabled; else loader">
                 <!-- Purchased Investment and WiseSaver Card -->
                 <ng-container *ngIf="showPortfolioPurchased">
                   <div ngbDropdown placement="bottom-right" class="widget-title widget-portfolio-title">
                     <span class="flex">{{'DASHBOARD.INVESTMENT.TITLE_INVESTMENT' | translate}}
                     </span>
-                      <button type="button" class="btn-with-icon show-sm" id="invest_button" (click)="openInvestMenuModal()" *ngIf="getReferralInfo && !getReferralInfo.isWelcomeRewardsValid && !getReferralInfo.refereeExists">
-                        <span>{{'DASHBOARD.INVESTMENT.INVEST' | translate}}</span>
-                        <span class="invest-btn-img"><img id="top-up_img" src="assets/images/investment-account/plus-white.svg"
-                            alt="" /></span>
-                      </button>
-                      <button  id="investMenu" ngbDropdownToggle type="button" class="btn-with-icon hidden-sm" *ngIf="getReferralInfo && !getReferralInfo.isWelcomeRewardsValid && !getReferralInfo.refereeExists">
-                        <span>{{'DASHBOARD.INVESTMENT.INVEST' | translate}}</span>
-                        <span class="invest-btn-img"><img id="top-up_img" src="assets/images/investment-account/plus-white.svg"
-                            alt="" /></span>
-                      </button>
-                      <div ngbDropdownMenu="investMenu">
-                        <button ngbDropdownItem (click)="newPortfolio()">
-                          <div class="flex btn-menu-item" >
-                            <div class="menu-icon"><img src="assets/images/new-portfolio-icon.svg"
-                              alt="" /></div>
-                            <div>
-                              <div>{{'DASHBOARD.INVESTMENT.MENU_LBL_1' | translate}}</div>
-                              <div class="sub-text">{{'DASHBOARD.INVESTMENT.MENU_SUB_LBL_1' | translate}}</div>
-                            </div>
-                          </div>
-                        </button>
-                        <div class="dropdown-divider"></div>
-                        <button ngbDropdownItem (click)="existingPortfolio()">
-                          <div class="flex btn-menu-item" >
-                            <div class="menu-icon"><img src="assets/images/existing-portfolio-icon.svg"
-                              alt="" /></div>
-                            <div>
-                              <div>{{'DASHBOARD.INVESTMENT.MENU_LBL_2' | translate}}</div>
-                              <div class="sub-text">{{'DASHBOARD.INVESTMENT.MENU_SUB_LBL_2' | translate}}</div>
-                            </div>
-                          </div>
-                          </button>
-                      </div>
-                  </div>
-                  <!-- reward invest btn -->
-                  <div ngbDropdown placement="bottom-right" class="invest-btn hidden-sm" *ngIf="getReferralInfo && getReferralInfo.isWelcomeRewardsValid && getReferralInfo.refereeExists">
-                    <button type="button" class="btn-with-icon" id="rewardInvestMenu" ngbDropdownToggle>
+                    <button type="button" class="btn-with-icon show-sm" id="invest_button"
+                      (click)="openInvestMenuModal()"
+                      *ngIf="getReferralInfo && !getReferralInfo.isWelcomeRewardsValid && !getReferralInfo.refereeExists">
                       <span>{{'DASHBOARD.INVESTMENT.INVEST' | translate}}</span>
-                      <span class="invest-btn-img"><img id="top-up_img" src="assets/images/investment-account/plus-white.svg"
-                          alt="" /></span>
+                      <span class="invest-btn-img"><img id="top-up_img"
+                          src="assets/images/investment-account/plus-white.svg" alt="" /></span>
                     </button>
-                    <div ngbDropdownMenu="rewardInvestMenu">
+                    <button id="investMenu" ngbDropdownToggle type="button" class="btn-with-icon hidden-sm"
+                      *ngIf="getReferralInfo && !getReferralInfo.isWelcomeRewardsValid && !getReferralInfo.refereeExists">
+                      <span>{{'DASHBOARD.INVESTMENT.INVEST' | translate}}</span>
+                      <span class="invest-btn-img"><img id="top-up_img"
+                          src="assets/images/investment-account/plus-white.svg" alt="" /></span>
+                    </button>
+                    <div ngbDropdownMenu="investMenu">
                       <button ngbDropdownItem (click)="newPortfolio()">
-                        <div class="flex btn-menu-item" >
-                          <div class="menu-icon"><img src="assets/images/new-portfolio-icon.svg"
-                            alt="" /></div>
+                        <div class="flex btn-menu-item">
+                          <div class="menu-icon"><img src="assets/images/new-portfolio-icon.svg" alt="" /></div>
                           <div>
                             <div>{{'DASHBOARD.INVESTMENT.MENU_LBL_1' | translate}}</div>
                             <div class="sub-text">{{'DASHBOARD.INVESTMENT.MENU_SUB_LBL_1' | translate}}</div>
@@ -113,22 +85,52 @@
                       </button>
                       <div class="dropdown-divider"></div>
                       <button ngbDropdownItem (click)="existingPortfolio()">
-                        <div class="flex btn-menu-item" >
-                          <div class="menu-icon"><img src="assets/images/existing-portfolio-icon.svg"
-                            alt="" /></div>
+                        <div class="flex btn-menu-item">
+                          <div class="menu-icon"><img src="assets/images/existing-portfolio-icon.svg" alt="" /></div>
                           <div>
                             <div>{{'DASHBOARD.INVESTMENT.MENU_LBL_2' | translate}}</div>
                             <div class="sub-text">{{'DASHBOARD.INVESTMENT.MENU_SUB_LBL_2' | translate}}</div>
                           </div>
                         </div>
-                        </button>
+                      </button>
                     </div>
                   </div>
-                  <div class="invest-btn show-sm" *ngIf="getReferralInfo && getReferralInfo.isWelcomeRewardsValid && getReferralInfo.refereeExists"> 
+                  <!-- reward invest btn -->
+                  <div ngbDropdown placement="bottom-right" class="invest-btn hidden-sm"
+                    *ngIf="getReferralInfo && getReferralInfo.isWelcomeRewardsValid && getReferralInfo.refereeExists">
+                    <button type="button" class="btn-with-icon" id="rewardInvestMenu" ngbDropdownToggle>
+                      <span>{{'DASHBOARD.INVESTMENT.INVEST' | translate}}</span>
+                      <span class="invest-btn-img"><img id="top-up_img"
+                          src="assets/images/investment-account/plus-white.svg" alt="" /></span>
+                    </button>
+                    <div ngbDropdownMenu="rewardInvestMenu">
+                      <button ngbDropdownItem (click)="newPortfolio()">
+                        <div class="flex btn-menu-item">
+                          <div class="menu-icon"><img src="assets/images/new-portfolio-icon.svg" alt="" /></div>
+                          <div>
+                            <div>{{'DASHBOARD.INVESTMENT.MENU_LBL_1' | translate}}</div>
+                            <div class="sub-text">{{'DASHBOARD.INVESTMENT.MENU_SUB_LBL_1' | translate}}</div>
+                          </div>
+                        </div>
+                      </button>
+                      <div class="dropdown-divider"></div>
+                      <button ngbDropdownItem (click)="existingPortfolio()">
+                        <div class="flex btn-menu-item">
+                          <div class="menu-icon"><img src="assets/images/existing-portfolio-icon.svg" alt="" /></div>
+                          <div>
+                            <div>{{'DASHBOARD.INVESTMENT.MENU_LBL_2' | translate}}</div>
+                            <div class="sub-text">{{'DASHBOARD.INVESTMENT.MENU_SUB_LBL_2' | translate}}</div>
+                          </div>
+                        </div>
+                      </button>
+                    </div>
+                  </div>
+                  <div class="invest-btn show-sm"
+                    *ngIf="getReferralInfo && getReferralInfo.isWelcomeRewardsValid && getReferralInfo.refereeExists">
                     <button type="button" class="btn-with-icon" id="invest_button" (click)="openInvestMenuModal()">
                       <span>{{'DASHBOARD.INVESTMENT.INVEST' | translate}}</span>
-                      <span class="invest-btn-img"><img id="top-up_img" src="assets/images/investment-account/plus-white.svg"
-                          alt="" /></span>
+                      <span class="invest-btn-img"><img id="top-up_img"
+                          src="assets/images/investment-account/plus-white.svg" alt="" /></span>
                     </button>
                   </div>
                   <div class="widget-body investment-card">
@@ -137,15 +139,18 @@
                         <div class="flex total-portfolio-title">
                           {{'DASHBOARD.INVESTMENT.TOTAL_PORTFOLIO_VALUE' | translate}} </div>
                         <div class="flex total-portfolio-value" (click)="goToInvOverview(portfolioCategory.ALL)">
-                          {{(investmentsSummary && investmentsSummary.portfolioSummary.overallPortfolioValue ? investmentsSummary.portfolioSummary.overallPortfolioValue : 0) | formatCurrency}}
-                          <img src="assets/images/dashboard-arrow.svg" alt="" /></div>
+                          {{(investmentsSummary && investmentsSummary.portfolioSummary.overallPortfolioValue ?
+                          investmentsSummary.portfolioSummary.overallPortfolioValue : 0) | formatCurrency}}
+                          <img src="assets/images/dashboard-arrow.svg" alt="" />
+                        </div>
                       </div>
                       <div class="flex-col-6 widget-portfolio-right-section">
                         <div class="flex total-portfolio-title total-portfolio-title-width">
                           {{'DASHBOARD.INVESTMENT.TOTAL_CASH_BALANCE_VALUE' | translate}}<img
                             (click)="showCashAccountPopUp()" src="assets/images/dashboard-help.svg" alt="" /></div>
                         <div class="flex total-portfolio-value">
-                          {{(investmentsSummary && investmentsSummary.portfolioSummary.overallCashAccountBalance ? investmentsSummary.portfolioSummary.overallCashAccountBalance : 0) | formatCurrency}}
+                          {{(investmentsSummary && investmentsSummary.portfolioSummary.overallCashAccountBalance ?
+                          investmentsSummary.portfolioSummary.overallCashAccountBalance : 0) | formatCurrency}}
                         </div>
                       </div>
                     </div>
@@ -155,13 +160,20 @@
                     <div class="col-md-6" *ngIf="investmentsSummary.portfolioSummary.investmentPortfolio.available">
                       <div class='portfolio-type-box' (click)="goToInvOverview(portfolioCategory.INVESTMENT)">
                         <span class='dashboard-invest-portfolio'></span>
-                        <p class='portfolio-type-box-title'>{{'DASHBOARD.INVESTMENT.DIMENSIONAL_PORTFOLIOS' | translate}}
+                        <p class='portfolio-type-box-title'>{{'DASHBOARD.INVESTMENT.DIMENSIONAL_PORTFOLIOS' |
+                          translate}}
                         </p>
                         <p class='portfolio-type-box-value'>
-                          {{(investmentsSummary && investmentsSummary.portfolioSummary.investmentPortfolio && investmentsSummary.portfolioSummary.investmentPortfolio.totalPortfolioValue ? investmentsSummary.portfolioSummary.investmentPortfolio.totalPortfolioValue : 0) | formatCurrency}}
+                          {{(investmentsSummary && investmentsSummary.portfolioSummary.investmentPortfolio &&
+                          investmentsSummary.portfolioSummary.investmentPortfolio.totalPortfolioValue ?
+                          investmentsSummary.portfolioSummary.investmentPortfolio.totalPortfolioValue : 0) |
+                          formatCurrency}}
                         </p>
                         <p class="portfolio-type-cash-balance">{{'DASHBOARD.INVESTMENT.CASH_BALANCE' | translate}}:
-                          {{(investmentsSummary && investmentsSummary.portfolioSummary.investmentPortfolio && investmentsSummary.portfolioSummary.investmentPortfolio.totalCashAccountBalance ? investmentsSummary.portfolioSummary.investmentPortfolio.totalCashAccountBalance : 0) | formatCurrency}}
+                          {{(investmentsSummary && investmentsSummary.portfolioSummary.investmentPortfolio &&
+                          investmentsSummary.portfolioSummary.investmentPortfolio.totalCashAccountBalance ?
+                          investmentsSummary.portfolioSummary.investmentPortfolio.totalCashAccountBalance : 0) |
+                          formatCurrency}}
                         </p>
                       </div>
                     </div>
@@ -171,20 +183,29 @@
                         <p class='portfolio-type-box-title'>{{'DASHBOARD.INVESTMENT.CPF_PORTFOLIOS' | translate}}
                         </p>
                         <p class='portfolio-type-box-value'>
-                          {{(investmentsSummary && investmentsSummary.portfolioSummary.cpfPortfolio && investmentsSummary.portfolioSummary.cpfPortfolio.totalPortfolioValue ? investmentsSummary.portfolioSummary.cpfPortfolio.totalPortfolioValue : 0) | formatCurrency}}
+                          {{(investmentsSummary && investmentsSummary.portfolioSummary.cpfPortfolio &&
+                          investmentsSummary.portfolioSummary.cpfPortfolio.totalPortfolioValue ?
+                          investmentsSummary.portfolioSummary.cpfPortfolio.totalPortfolioValue : 0) | formatCurrency}}
                         </p>
                       </div>
                     </div>
                     <div class="col-md-6" *ngIf="investmentsSummary.portfolioSummary.wiseIncomePortfolio.available">
                       <div class='portfolio-type-box' (click)="goToInvOverview(portfolioCategory.WISEINCOME)">
                         <span class='dashboard-wise-income-portfolio'></span>
-                        <p class='portfolio-type-box-title'>{{'DASHBOARD.INVESTMENT.WISE_INCOME_PORTFOLIOS' | translate}}
+                        <p class='portfolio-type-box-title'>{{'DASHBOARD.INVESTMENT.WISE_INCOME_PORTFOLIOS' |
+                          translate}}
                         </p>
                         <p class='portfolio-type-box-value'>
-                          {{(investmentsSummary && investmentsSummary.portfolioSummary.wiseIncomePortfolio && investmentsSummary.portfolioSummary.wiseIncomePortfolio.totalPortfolioValue ? investmentsSummary.portfolioSummary.wiseIncomePortfolio.totalPortfolioValue : 0) | formatCurrency}}
+                          {{(investmentsSummary && investmentsSummary.portfolioSummary.wiseIncomePortfolio &&
+                          investmentsSummary.portfolioSummary.wiseIncomePortfolio.totalPortfolioValue ?
+                          investmentsSummary.portfolioSummary.wiseIncomePortfolio.totalPortfolioValue : 0) |
+                          formatCurrency}}
                         </p>
                         <p class="portfolio-type-cash-balance">{{'DASHBOARD.INVESTMENT.CASH_BALANCE' | translate}}:
-                          {{(investmentsSummary && investmentsSummary.portfolioSummary.wiseIncomePortfolio && investmentsSummary.portfolioSummary.wiseIncomePortfolio.totalCashAccountBalance ? investmentsSummary.portfolioSummary.wiseIncomePortfolio.totalCashAccountBalance : 0) | formatCurrency}}
+                          {{(investmentsSummary && investmentsSummary.portfolioSummary.wiseIncomePortfolio &&
+                          investmentsSummary.portfolioSummary.wiseIncomePortfolio.totalCashAccountBalance ?
+                          investmentsSummary.portfolioSummary.wiseIncomePortfolio.totalCashAccountBalance : 0) |
+                          formatCurrency}}
                         </p>
                       </div>
                     </div>
@@ -194,10 +215,16 @@
                         <p class='portfolio-type-box-title'>{{'DASHBOARD.INVESTMENT.WISE_SAVER_PORTFOLIOS' | translate}}
                         </p>
                         <p class='portfolio-type-box-value'>
-                          {{(investmentsSummary && investmentsSummary.portfolioSummary.wiseSaverPortfolio && investmentsSummary.portfolioSummary.wiseSaverPortfolio.totalPortfolioValue ? investmentsSummary.portfolioSummary.wiseSaverPortfolio.totalPortfolioValue : 0) | formatCurrency}}
+                          {{(investmentsSummary && investmentsSummary.portfolioSummary.wiseSaverPortfolio &&
+                          investmentsSummary.portfolioSummary.wiseSaverPortfolio.totalPortfolioValue ?
+                          investmentsSummary.portfolioSummary.wiseSaverPortfolio.totalPortfolioValue : 0) |
+                          formatCurrency}}
                         </p>
                         <p class="portfolio-type-cash-balance">{{'DASHBOARD.INVESTMENT.CASH_BALANCE' | translate}}:
-                          {{(investmentsSummary && investmentsSummary.portfolioSummary.wiseSaverPortfolio && investmentsSummary.portfolioSummary.wiseSaverPortfolio.totalCashAccountBalance ? investmentsSummary.portfolioSummary.wiseSaverPortfolio.totalCashAccountBalance : 0) | formatCurrency}}
+                          {{(investmentsSummary && investmentsSummary.portfolioSummary.wiseSaverPortfolio &&
+                          investmentsSummary.portfolioSummary.wiseSaverPortfolio.totalCashAccountBalance ?
+                          investmentsSummary.portfolioSummary.wiseSaverPortfolio.totalCashAccountBalance : 0) |
+                          formatCurrency}}
                         </p>
                       </div>
                     </div>
@@ -242,8 +269,9 @@
                           </div>
                         </div>
                         <div class="flex">
-                          <button type="button" (click)="goToDocUpload()" class="btn btn-ghost col-12">{{'DASHBOARD.INVESTMENT.UPDATE'
-                                            | translate}}</button>
+                          <button type="button" (click)="goToDocUpload()"
+                            class="btn btn-ghost col-12">{{'DASHBOARD.INVESTMENT.UPDATE'
+                            | translate}}</button>
                         </div>
                       </div>
                       <!-- CDD Check or EDD Check ON GOING -->
@@ -371,7 +399,8 @@
               <div class="widget-title">
                 <span class="flex">{{'DASHBOARD.WILL_WRITING.TITLE' | translate}}
                 </span>
-                <span class="view_all" *ngIf="wills.completedWill" (click)="redirectTo('edit')"><img src="assets/images/button-edit.svg"></span>
+                <span class="view_all" *ngIf="wills.completedWill" (click)="redirectTo('edit')"><img
+                    src="assets/images/button-edit.svg"></span>
               </div>
               <div class="widget-body">
                 <div class="scenarios flex-col-12">
@@ -379,11 +408,13 @@
                   <div class="start col-12">
                     <div class="warning-txt">
                       <div class="flex-col-8">
+                        <span *ngIf="!wills.hasWills">{{'DASHBOARD.WILL_WRITING.CREATE_YOUR_WILL_DESC' |
+                          translate}}</span>
                         <span
-                          *ngIf="!wills.hasWills">{{'DASHBOARD.WILL_WRITING.CREATE_YOUR_WILL_DESC' | translate}}</span>
-                        <span *ngIf="wills.hasWills && !wills.completedWill">{{'DASHBOARD.WILL_WRITING.CONTINUE_WILL_DESC'
+                          *ngIf="wills.hasWills && !wills.completedWill">{{'DASHBOARD.WILL_WRITING.CONTINUE_WILL_DESC'
                           | translate}}</span>
-                        <span *ngIf="wills.hasWills && wills.completedWill">{{'DASHBOARD.WILL_WRITING.EXISTING_WILL_DESC'
+                        <span
+                          *ngIf="wills.hasWills && wills.completedWill">{{'DASHBOARD.WILL_WRITING.EXISTING_WILL_DESC'
                           | translate}}</span>
                       </div>
                       <div class="flex-col-4">
@@ -414,7 +445,13 @@
               </div>
             </div>
             <div class="widget insurance" *ngIf="showInsuranceSection">
-              <div class="reward-points" [ngClass]="{'grey': !cardCategory.insurance[0].isEnabled}" *ngIf="getReferralInfo && getReferralInfo.isWelcomeRewardsValid && getReferralInfo.refereeExists"><span *ngIf="!cardCategory.insurance[0].isEnabled"><img src="assets/images/refer-friend/gift-icon-grey.svg"></span><span *ngIf="cardCategory.insurance[0].isEnabled"><img src="assets/images/refer-friend/gift-icon.svg"></span>${{cardCategory.insurance[0].creditValue}}</div>
+              <div class="reward-points" [ngClass]="{'grey': !cardCategory.insurance[0].isEnabled}"
+                *ngIf="getReferralInfo && getReferralInfo.isWelcomeRewardsValid && getReferralInfo.refereeExists"><span
+                  *ngIf="!cardCategory.insurance[0].isEnabled"><img
+                    src="assets/images/refer-friend/gift-icon-grey.svg"></span><span
+                  *ngIf="cardCategory.insurance[0].isEnabled"><img
+                    src="assets/images/refer-friend/gift-icon.svg"></span>${{cardCategory.insurance[0].creditValue}}
+              </div>
               <div class="widget-title">
                 <span class="flex">{{'DASHBOARD.INSURANCE.TITLE' | translate}}</span>
               </div>
@@ -423,10 +460,10 @@
                   <div class="start col-12">
                     <div class="warning-txt">
                       <div class="flex-col-8">
-                        <span
-                          *ngIf="!insurance.hasInsurance">{{'DASHBOARD.INSURANCE.NO_INSURANCE_DESC' | translate}}</span>
+                        <span *ngIf="!insurance.hasInsurance">{{'DASHBOARD.INSURANCE.NO_INSURANCE_DESC' |
+                          translate}}</span>
                         <span *ngIf="insurance.hasInsurance">{{'DASHBOARD.INSURANCE.INSURANCE_DESC' | translate}} {{
-                            insurance.lastTransactionDate | date: 'dd MMM yyyy'}}.</span>
+                          insurance.lastTransactionDate | date: 'dd MMM yyyy'}}.</span>
                       </div>
                       <div class="flex-col-4">
                         <div class="investment_icon">
@@ -445,8 +482,8 @@
                         {{'DASHBOARD.INSURANCE.REASSESS_MY_NEEDS' | translate}}
                       </button>
                     </div>
-                    <div class="find-plan"><a
-                        routerLink="/direct">{{'DASHBOARD.INSURANCE.DIRECT_JOURNEY' | translate}}</a>
+                    <div class="find-plan"><a routerLink="/direct">{{'DASHBOARD.INSURANCE.DIRECT_JOURNEY' |
+                        translate}}</a>
                     </div>
                   </div>
                 </div>

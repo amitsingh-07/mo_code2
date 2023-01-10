@@ -328,7 +328,7 @@ app-refer-a-friend {
                                 background: $white-color;
                                 border: 1px solid $white-smoke-color;
                                 box-sizing: border-box;
-                                box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.25);
+                                box-shadow: 0px 5px 10px $box-shadow-color;
                                 border-radius: 5px;
                                 padding: 20px 40px;
                                 width: 340px;
@@ -413,7 +413,7 @@ app-refer-a-friend {
                         margin-top: 30px;
                         padding: 20px;
                         background: $white-color;
-                        box-shadow: 0px 0px 8px rgba(0, 0, 0, 0.2);
+                        box-shadow: 0px 0px 8px $login-shadow-color;
                         border-radius: 6px;
                         .total-friends {
                             display: flex;
@@ -529,7 +529,7 @@ app-refer-a-friend {
     .new-user {
         padding: 23px 0 22px;
         background: $white-color;
-        box-shadow: 0px 0px 8px rgba(0, 0, 0, 0.2);
+        box-shadow: 0px 0px 8px $login-shadow-color;
         border-radius: 6px;
         text-align: center;
         margin-bottom: 100px;
