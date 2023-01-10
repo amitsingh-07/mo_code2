@@ -394,7 +394,7 @@ export class YourPortfolioComponent implements OnInit, OnDestroy {
   }
 
   goToTopupInstructionLink() {
-    window.open('https://www.moneyowl.com.sg/faq-investment/', '_blank');
+    window.open(MANAGE_INVESTMENTS_CONSTANTS.TOPUP_INSTRUCTION_URL, '_blank');
   }
   showTransferInstructionModal() {
     let pendingBuyRequestCount = 0;
