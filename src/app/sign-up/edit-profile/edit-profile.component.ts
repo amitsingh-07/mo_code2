@@ -96,7 +96,7 @@ export class EditProfileComponent implements OnInit, OnDestroy {
   myInfoStatus2: string;
   isMyInfoEnabled = false;
   ckaInfo: any;
-  displaySingpassLink:boolean;
+  displaySingpassLink: boolean;
 
   constructor(
     private modal: NgbModal,
@@ -668,8 +668,8 @@ export class EditProfileComponent implements OnInit, OnDestroy {
   }
 
   openCKAModal() {
-    this.investmentCommonService.setCKARedirectFromLocation(SIGN_UP_ROUTE_PATHS.EDIT_PROFILE);
-    const ref = this.modal.open(ModelWithButtonComponent, { centered: true , windowClass: 'custom-cka-modal' });
+    this.investmentCommonService.setCKARedirectFromLocation(INVESTMENT_COMMON_CONSTANTS.CKA_REDIRECT_CONSTS.PROFILE);
+    const ref = this.modal.open(ModelWithButtonComponent, { centered: true, windowClass: 'custom-cka-modal' });
     ref.componentInstance.errorTitle = this.translate.instant(
       'OPEN_CKA.TITLE'
     );
@@ -688,22 +688,24 @@ export class EditProfileComponent implements OnInit, OnDestroy {
   }
 
   showUploadDoc() {
-    this.investmentCommonService.setCKARedirectFromLocation(SIGN_UP_ROUTE_PATHS.EDIT_PROFILE);
-    const url = INVESTMENT_ENGAGEMENT_JOURNEY_ROUTE_PATHS.CKA_UPLOAD_DOCUMENT;
-    this.router.navigate([url]);
+    if (this.ckaInfo && typeof this.ckaInfo.ckaretake == 'boolean' && !this.ckaInfo.ckaretake) {
+      this.investmentCommonService.setCKARedirectFromLocation(INVESTMENT_COMMON_CONSTANTS.CKA_REDIRECT_CONSTS.PROFILE);
+      const url = INVESTMENT_ENGAGEMENT_JOURNEY_ROUTE_PATHS.CKA_UPLOAD_DOCUMENT;
+      this.router.navigate([url]);
+    }
   }
 
-  setCPFIABankDetails(){
+  setCPFIABankDetails() {
     this.manageInvestmentsService.getProfileCPFIAccountDetails(true)
-    .pipe(takeUntil(this.ngUnsubscribe))
-    .subscribe((data: any) => {
-      if (data) {
-        this.cpfBankDetails = data;
-      }
-    },
-    () => {
-      this.investmentAccountService.showGenericErrorModal();
-    }
-    );
+      .pipe(takeUntil(this.ngUnsubscribe))
+      .subscribe((data: any) => {
+        if (data) {
+          this.cpfBankDetails = data;
+        }
+      },
+        () => {
+          this.investmentAccountService.showGenericErrorModal();
+        }
+      );
   }
 }

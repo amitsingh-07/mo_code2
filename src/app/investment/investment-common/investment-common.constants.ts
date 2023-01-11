@@ -160,5 +160,10 @@ export let INVESTMENT_COMMON_CONSTANTS = {
   ASSET_ALLOCATION_CONST: {
     MIN_AMOUNT_FOR_ROUNDOFF: 0.05,
     ROUNDOFF_AMOUNT: 0.1
+  },
+  CKA_REDIRECT_CONSTS: {
+    PROFILE: 'profile',
+    PREREQUISITES: 'prerequisites',
+    TOPUP: 'topup'
   }
 };

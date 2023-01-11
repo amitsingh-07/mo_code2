@@ -18,6 +18,9 @@ import { ModelWithButtonComponent } from '../../../shared/modal/model-with-butto
 import { INVESTMENT_ACCOUNT_CONSTANTS } from '../../../investment/investment-account/investment-account.constant';
 import { INVESTMENT_ENGAGEMENT_JOURNEY_ROUTE_PATHS } from '../investment-engagement-journey-routes.constants';
 import { INVESTMENT_COMMON_CONSTANTS } from '../../investment-common/investment-common.constants';
+import { SIGN_UP_ROUTE_PATHS } from '../../../sign-up/sign-up.routes.constants';
+import { MANAGE_INVESTMENTS_ROUTE_PATHS } from '../../manage-investments/manage-investments-routes.constants';
+import { INVESTMENT_COMMON_ROUTE_PATHS } from '../../investment-common/investment-common-routes.constants';
 @Component({
   selector: 'app-cka-upload-document',
   templateUrl: './cka-upload-document.component.html',
@@ -113,9 +116,14 @@ export class CkaUploadDocumentComponent implements OnInit {
   }
 
   goToNext() {
-    const redirectURL = this.investmentCommonService.getCKARedirectFromLocation();
-    this.investmentCommonService.setCKARedirectFromLocation(null);
-    this.router.navigate([redirectURL]);
+    const fromLocation = this.investmentCommonService.getCKARedirectFromLocation();
+    if (fromLocation && fromLocation.includes('profile')) {
+      this.router.navigate([SIGN_UP_ROUTE_PATHS.EDIT_PROFILE]);      
+    } else if (fromLocation && fromLocation.includes('prerequisites')) {
+      this.router.navigate([INVESTMENT_COMMON_ROUTE_PATHS.CPF_PREREQUISITES]);      
+    } else if (fromLocation && fromLocation.includes('topup')) {
+      this.router.navigate([MANAGE_INVESTMENTS_ROUTE_PATHS.TOPUP]);      
+    }
   }
 
   eventTriggered(event) {

@@ -90,7 +90,7 @@
                   [ngClass]="{'inline-error':getInlineErrorStatus(preRequisitesForm.controls.cpfAccountNo)}">
                   <input id="srs-act-num-value" type="text" [textMask]="maskConfig()" placeholder="{{
                   'CPF_PREREQUISITES.CPFIA_NUMBER_PLACEHOLDER'
-                  | translate}}" class="form-control" formControlName="cpfAccountNo" autocomplete="off" [disabled]="showOperatorBank">
+                  | translate}}" class="form-control" formControlName="cpfAccountNo" autocomplete="off" >
                 </div>
               </div>
               <div class="characters" *ngIf="preRequisitesForm.get('cpfOperator').value">
