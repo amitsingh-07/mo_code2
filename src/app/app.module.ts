@@ -93,13 +93,9 @@ import { PaymentEnableGuard } from './payment/payment-enable-guard';
 import {
   LoginCreateAccountModelComponent
 } from './shared/modal/login-create-account-model/login-create-account-model.component';
-import { SuccessModalComponent } from './shared/modal/success-modal/success-modal.component';
 import { SummaryModalComponent } from './shared/modal/summary-modal/summary-modal.component';
 import { TermsModalComponent } from './shared/modal/terms-modal/terms-modal.component';
 import { ToolTipModalComponent } from './shared/modal/tooltip-modal/tooltip-modal.component';
-import {
-  TransactionModalComponent
-} from './shared/modal/transaction-modal/transaction-modal.component';
 import {
   UnsupportedDeviceModalComponent
 } from './shared/modal/unsupported-device-modal/unsupported-device-modal.component';
@@ -152,14 +148,12 @@ export function tokenGetterFn() {
     CreateAccountModelComponent,
     LoginCreateAccountModelComponent,
     ExistingCoverageModalComponent,
-    SuccessModalComponent,
     RestrictAlphabetsDirective,
     HeaderComponent,
     FooterComponent,
     CallBackComponent,
     UrlRedirectComponent,
     TestMyInfoComponent,
-    TransactionModalComponent,
     FundDetailsComponent,
     UnsupportedDeviceModalComponent,
     SummaryModalComponent,
@@ -234,7 +228,7 @@ export function tokenGetterFn() {
   entryComponents: [RefereeComponent,HelpModalComponent, LoaderComponent, ErrorModalComponent, BankDetailsComponent, ToolTipModalComponent, ModelWithButtonComponent,
     LifeProtectionModalComponent, MobileModalComponent, InsuranceResultModalComponent,
     CreateAccountModelComponent, ExistingCoverageModalComponent, RecommendationsModalComponent, TermsModalComponent,
-    SettingsWidgetComponent, ConfirmationModalComponent, TermsComponent, WillDisclaimerComponent, TransactionModalComponent,
+    SettingsWidgetComponent, ConfirmationModalComponent, TermsComponent, WillDisclaimerComponent,
     FundDetailsComponent, UnsupportedDeviceModalComponent, RestrictAddPortfolioModalComponent,
     LoginCreateAccountModelComponent, SummaryModalComponent, PaymentInstructionModalComponent]
 })

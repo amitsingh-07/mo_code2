@@ -12,9 +12,7 @@ export class CopyClipboardDirective {
     @Output('copied')
     public copied: EventEmitter<string> = new EventEmitter<string>();
 
-    constructor(
-        private elementRef: ElementRef
-    ) { }
+    constructor() { }
 
     @HostListener('click', ['$event'])
     public onClick(event: MouseEvent): void {

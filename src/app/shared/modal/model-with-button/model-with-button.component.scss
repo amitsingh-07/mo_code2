@@ -13,9 +13,11 @@
 .toggle-btn {
   flex: 1;
 }
+
 .padding-right-10 {
   padding-right: 10px;
 }
+
 .action-button {
   width: 100%;
   border-radius: 6px;
@@ -33,6 +35,7 @@
   color: $white-color;
   padding: 10px;
   cursor: pointer;
+
   &.secondary-button {
     background-color: $white-color;
     color: $teal-color;
@@ -46,11 +49,13 @@
       border-color: $teal-color;
       color: $teal-color !important;
       -webkit-text-fill-color: $teal-color;
+
       @include allmobiles {
         background-color: $white-color !important;
         color: $teal-color !important;
         -webkit-text-fill-color: $teal-color !important;
       }
+
       @include tablet {
         background-color: $white-color !important;
         color: $teal-color !important;
@@ -64,11 +69,13 @@
     border-color: $action-btn-hover-brdr-color;
     color: $white-color !important;
   }
+
   &:active {
     background-color: $action-btn-active-bg;
     color: $white-color;
   }
 }
+
 .popup-header-icon {
   &.glass {
     width: 100%;
@@ -83,15 +90,19 @@
     }
   }
 }
+
 .modal-body-message {
   margin-bottom: 15px;
-  &.check-box-message{
-  margin-top: -6px;
-  margin-bottom: 20px;
+
+  &.check-box-message {
+    margin-top: -6px;
+    margin-bottom: 20px;
   }
 }
+
 .modal-body {
   padding: 20px;
+
   &.my-info {
     @include desktop {
       width: 375px !important;
@@ -99,16 +110,19 @@
     }
   }
 }
+
 .warning-icon {
   width: 24px;
   height: 24px;
   padding-left: 7px;
+
   img {
     max-width: 100%;
     height: auto;
     margin: 0;
   }
 }
+
 .my_info_details {
   font-family: $muli-regular;
   font-size: 16px;
@@ -120,24 +134,30 @@
 
 .modal-body-title {
   display: flex;
+
   div {
     flex-grow: 0;
     flex-basis: auto;
   }
+
   span.lock {
     padding-left: 10px;
+
     img {
       vertical-align: initial !important;
     }
   }
 }
+
 .journey-wrapper {
   text-align: center;
+
   .img-fluid {
     width: 126px;
     height: 127px;
     text-align: center;
     margin: 10px 0;
+
     @include allmobiles {
       width: 175px;
       height: 165px;
@@ -145,6 +165,7 @@
     }
   }
 }
+
 .investment-img {
   text-align: center;
   padding-bottom: 18px;
@@ -158,15 +179,18 @@
     display: flex;
   }
 }
+
 .hyperlink_color {
   color: $dark-orange-color;
   text-decoration: none;
   cursor: pointer;
+
   &:hover {
     color: $dark-orange-color;
     text-decoration: none;
   }
 }
+
 .email_txt {
   a {
     color: $dark-orange-color;
@@ -175,19 +199,22 @@
     font-family: $muli-regular;
   }
 }
-.modal-disclaimer{
+
+.modal-disclaimer {
   margin-top: 30px;
   font-size: 16px;
   line-height: 1.31;
   letter-spacing: -0.15px;
   color: $silver-grey-color;
   -webkit-text-fill-color: $silver-grey-color;
-  .txt-teal{
+
+  .txt-teal {
     letter-spacing: -0.15px !important;
     color: $teal-color;
     -webkit-text-fill-color: $teal-color;
   }
-  .txt-bold{
+
+  .txt-bold {
     font-family: $muli-bold;
   }
 }

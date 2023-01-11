@@ -4,6 +4,9 @@ import {
 } from '@angular/core';
 import { NavigationEnd, NavigationExtras, Router } from '@angular/router';
 import { NgbDropdownConfig, NgbModal, NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
+import { ViewportScroller } from '@angular/common';
+import { Subject } from 'rxjs';
+import { takeUntil } from 'rxjs/operators';
 
 import { APP_ROUTES } from '../../app-routes.constants';
 import { appConstants } from '../../app.constants';
@@ -11,9 +14,6 @@ import { AppService } from '../../app.service';
 import { ConfigService, IConfig } from '../../config/config.service';
 import { InvestmentAccountService } from '../../investment/investment-account/investment-account-service';
 import { AuthenticationService } from '../../shared/http/auth/authentication.service';
-import {
-  TransactionModalComponent
-} from '../../shared/modal/transaction-modal/transaction-modal.component';
 import { SIGN_UP_CONFIG } from '../../sign-up/sign-up.constant';
 import {
   DASHBOARD_PATH, EDIT_PROFILE_PATH, SIGN_UP_ROUTE_PATHS
@@ -32,9 +32,6 @@ import { NavbarConfig } from './config/presets';
 import { NavbarService } from './navbar.service';
 import { SessionsService } from '../Services/sessions/sessions.service';
 import { MANAGE_INVESTMENTS_ROUTE_PATHS } from '../../investment/manage-investments/manage-investments-routes.constants';
-import { ViewportScroller } from '@angular/common';
-import { Subject } from 'rxjs';
-import { takeUntil } from 'rxjs/operators';
 
 @Component({
   selector: 'app-navbar',
@@ -307,7 +304,7 @@ export class NavbarComponent implements OnInit, AfterViewInit {
       this.matrixResolver(navbarMode);
       // Enabling Notifications
       if (this.navbarConfig.showNotifications) {
-        this.isNotificationEnabled = true; // = this.canActivateNotification();
+        this.isNotificationEnabled = true;
       } else {
         this.isNotificationEnabled = false;
       }
@@ -321,6 +318,11 @@ export class NavbarComponent implements OnInit, AfterViewInit {
       this.showNavShadow = showNavShadow;
       this.cdr.detectChanges();
     });
+  }
+
+  ngOnDestroy() {
+    this.ngUnsubscribe.next(true);
+    this.ngUnsubscribe.unsubscribe();
   }
 
   onPageChanged() {
@@ -368,7 +370,6 @@ export class NavbarComponent implements OnInit, AfterViewInit {
     this.showNotificationClear = false;
     this.showLabel = config.showLabel ? config.showLabel : false;
   }
-
   // End of MATRIX RESOLVER --- DO NOT DELETE IT'S IMPORTANT
 
   openSearchBar(toggle: boolean) {
@@ -498,10 +499,6 @@ export class NavbarComponent implements OnInit, AfterViewInit {
   }
   // End of Notifications
 
-  showFilterModalPopUp(data) {
-    this.modalRef = this.modal.open(TransactionModalComponent, { centered: true });
-  }
-
   // Logout Method
   logout() {
     if (this.authService.isSignedUser()) {
@@ -611,8 +608,8 @@ export class NavbarComponent implements OnInit, AfterViewInit {
   //wiseIncome Dropdown
   wiseIncomeDropDown(event) {
     this.wiseIncomeDropDownShow = !this.wiseIncomeDropDownShow;
-    //event.stopPropagation();
   }
+
   //wiseIncome Dropdown Scroll
   onClickScroll(elementId: string): void {
     this.navbarService.setScrollTo(elementId, this.NavBar.nativeElement.getBoundingClientRect().height);
@@ -626,11 +623,6 @@ export class NavbarComponent implements OnInit, AfterViewInit {
     } else {
       this.currentActive = 0;
     }
-  }
-
-  ngOnDestroy() {
-    this.ngUnsubscribe.next(true);
-    this.ngUnsubscribe.unsubscribe();
   }
 
 }

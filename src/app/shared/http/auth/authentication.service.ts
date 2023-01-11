@@ -3,8 +3,8 @@ import { Injectable } from '@angular/core';
 import { JwtHelperService } from '@auth0/angular-jwt';
 import { EMPTY, throwError, BehaviorSubject } from 'rxjs';
 import { catchError, map } from 'rxjs/operators';
-
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+
 import { RegexConstants } from '../../../shared/utils/api.regex.constants';
 import { ErrorModalComponent } from '../../modal/error-modal/error-modal.component';
 import { Util } from '../../utils/util';
@@ -15,9 +15,6 @@ import { BaseService } from './../base.service';
 import { RequestCache } from './../http-cache.service';
 import { environment } from './../../../../environments/environment';
 
-export const APP_JWT_TOKEN_KEY = 'app-jwt-token';
-const APP_SESSION_ID_KEY = 'app-session-id';
-const APP_ENQUIRY_ID = 'app-enquiry-id';
 const FROM_JOURNEY_HM = 'from_journey';
 const EMAIL = 'email';
 const CORPORATE_DETAILS = 'app_corporate_details';
@@ -139,10 +136,10 @@ export class AuthenticationService {
     const corporateObj = sessionStorage.getItem(CORPORATE_DETAILS);
     this.cache.reset();
     sessionStorage.clear();
-    if(sessionStorage) {
+    if (sessionStorage) {
       sessionStorage.setItem(CORPORATE_DETAILS, (corporateObj))
     }
-    }
+  }
 
   public getToken(): string {
     return sessionStorage.getItem(appConstants.APP_JWT_TOKEN_KEY);
@@ -199,7 +196,7 @@ export class AuthenticationService {
   }
 
   public logout(browserClose?) {
-   const logoutParam = (browserClose === appConstants.BROWSER_CLOSE) ? appConstants.BROWSER_CLOSE : appConstants.LOGOUT_BUTTON
+    const logoutParam = (browserClose === appConstants.BROWSER_CLOSE) ? appConstants.BROWSER_CLOSE : appConstants.LOGOUT_BUTTON
     return this.http.get(apiConstants.endpoint.logout.replace('$LOGOUT_BUTTON$', logoutParam))
       .pipe(
         // tslint:disable-next-line:no-identical-functions
@@ -239,8 +236,8 @@ export class AuthenticationService {
     }
     const decodedInfo = this.jwtHelper.decodeToken(token);
     const isLoggedInToken = decodedInfo.roles.split(',');
-    for(let org_role in appConstants.ORGANISATION_ROLES) {
-      if(isLoggedInToken.includes(org_role)) {
+    for (let org_role in appConstants.ORGANISATION_ROLES) {
+      if (isLoggedInToken.includes(org_role)) {
         return appConstants.ORGANISATION_ROLES[org_role][access_feature];
       }
     }
@@ -427,7 +424,7 @@ export class AuthenticationService {
       enquiryId: enquiryId,
       journeyType: journeyType
     };
-    if(this.getAccessCode()) {
+    if (this.getAccessCode()) {
       validate2faBody['accessCode'] = this.getAccessCode();
     }
     if (isCorporateUserType) {

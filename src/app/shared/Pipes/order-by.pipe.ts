@@ -61,8 +61,8 @@ export class OrderByPipe implements PipeTransform {
                 return input.sort((a: any, b: any) => {
                     return !desc ? OrderByPipe._orderByComparator(
                         OrderByPipe._getObjectByString(a, property), OrderByPipe._getObjectByString(b, property))
-                            : -OrderByPipe._orderByComparator(
-                                OrderByPipe._getObjectByString(a, property), OrderByPipe._getObjectByString(b, property));
+                        : -OrderByPipe._orderByComparator(
+                            OrderByPipe._getObjectByString(a, property), OrderByPipe._getObjectByString(b, property));
                 });
             }
         } else {
@@ -75,7 +75,7 @@ export class OrderByPipe implements PipeTransform {
                         : config[i];
 
                     const comparison = !desc ? OrderByPipe._orderByComparator(a[property], b[property])
-                            : -OrderByPipe._orderByComparator(a[property], b[property]);
+                        : -OrderByPipe._orderByComparator(a[property], b[property]);
 
                     // Don't return 0 yet in case of needing to sort by next property
                     if (comparison !== 0) {

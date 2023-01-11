@@ -7,10 +7,11 @@ app-terms {
     position: absolute !important;
     right: 20px !important;
     top: 20px !important;
+
     @supports (-webkit-touch-callout: none) {
-      /* CSS specific to iOS devices */ 
+      /* CSS specific to iOS devices */
       right: -20px !important;
-    }  
+    }
   }
 
   .bottom-btn {
@@ -37,7 +38,7 @@ app-terms {
     z-index: 1;
     width: 100%;
     height: 200px;
-    background-color: #ffffff;
+    background-color: $white-color;
   }
 
   .white-bg {
@@ -45,6 +46,7 @@ app-terms {
       margin-bottom: 140px !important;
     }
   }
+
   .modal-body {
     padding: 15px 0 !important;
     text-overflow: auto;
@@ -93,7 +95,7 @@ app-terms {
     text-align: center !important;
     letter-spacing: -0.3px;
     font-weight: 600;
-    color: #009999;
+    color: $persian-green-color;
     margin-top: 10px !important;
     margin-bottom: 0px !important;
 
@@ -131,23 +133,26 @@ app-terms {
 .modal-body-message {
   font-size: 13px;
   line-height: 23px;
-  }
+}
+
 .modal-body-title {
   font-size: 18px;
   margin: 10px auto;
-  color: #00a7a7
+  color: $teal-color
 }
 
 .section-container {
   overflow: auto !important;
   padding: 10px;
-  @include allmobiles{
+
+  @include allmobiles {
     margin: 0;
-  } 
+  }
 }
 
 .btn-primary {
   width: 190px;
+
   @include allmobiles {
     width: 100%;
   }
@@ -157,7 +162,7 @@ app-terms {
   overflow: hidden;
 }
 
-.modal-dialog.modal-dialog-centered{
+.modal-dialog.modal-dialog-centered {
   max-width: 790px !important;
 }
 
@@ -166,11 +171,13 @@ app-terms {
     padding-top: 20px;
   }
 }
-@include iPhone11 { 
+
+@include iPhone11 {
   .modal-body {
     padding-bottom: 350px !important;
   }
 }
+
 @include iphone6plus {
   .btn-primary {
     margin-bottom: 0px;

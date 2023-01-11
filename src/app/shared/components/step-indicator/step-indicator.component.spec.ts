@@ -1,4 +1,4 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 
 import { StepIndicatorComponent } from './step-indicator.component';
 
@@ -6,7 +6,7 @@ describe('StepIndicatorComponent', () => {
   let component: StepIndicatorComponent;
   let fixture: ComponentFixture<StepIndicatorComponent>;
 
-  beforeEach(async(() => {
+  beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
       declarations: [ StepIndicatorComponent ]
     })

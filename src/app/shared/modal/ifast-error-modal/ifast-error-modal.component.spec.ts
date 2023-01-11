@@ -1,4 +1,4 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 
 import { IfastErrorModalComponent } from './ifast-error-modal.component';
 
@@ -6,7 +6,7 @@ describe('IfastErrorModalComponent', () => {
   let component: IfastErrorModalComponent;
   let fixture: ComponentFixture<IfastErrorModalComponent>;
 
-  beforeEach(async(() => {
+  beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
       declarations: [IfastErrorModalComponent]
     })

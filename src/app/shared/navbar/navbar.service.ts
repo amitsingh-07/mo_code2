@@ -181,7 +181,7 @@ export class NavbarService {
       this.pageHelpIcon.next(true);
     } else {
       this.pageHelpIcon.next(false);
-    } 
+    }
     if (settingsIcon) {
       this.pageSettingsIcon.next(true);
     } else {
@@ -231,7 +231,7 @@ export class NavbarService {
   unsubscribeClearNotification() {
     this.clearNotificationEvent.next(false);
   }
-  
+
   subscribeBackPress() {
     this.isBackPressSubscribed.next(true);
     return this.currentBackListener;
@@ -267,15 +267,15 @@ export class NavbarService {
   showPromoAppliedToast() {
     this.promoAppliedCardVisibility.next(true);
     // Set timeout to show card for how long
-    setTimeout(()=> {
+    setTimeout(() => {
       this.promoAppliedCardVisibility.next(false);
     }, 3000);
   }
-  
+
   setMenuItemInvestUser(isVisible: boolean) {
     this.menuItemInvestUser.next(isVisible);
   }
-  
+
   /*WiseIncome Dropdown Scroll*/
   setScrollTo(elementName, navBarHeight) {
     let scrollOption = {
@@ -292,7 +292,7 @@ export class NavbarService {
   setPaymentLockIcon(lockIcon: boolean) {
     this.paymentLockIcon.next(lockIcon);
   }
-  
+
   setPromoCodeCpf(promoCode: any) {
     this.setCpfPromoCode.next(promoCode);
   }
@@ -301,10 +301,10 @@ export class NavbarService {
   preventBackButton(): Observable<Event> {
     history.pushState(null, "null", window.location.href);
     return fromEvent(window, 'popstate')
-    .pipe(tap(res => {
-      history.pushState(null, "null", window.location.href);
-     })
-    );
+      .pipe(tap(res => {
+        history.pushState(null, "null", window.location.href);
+      })
+      );
   }
-  
+
 }

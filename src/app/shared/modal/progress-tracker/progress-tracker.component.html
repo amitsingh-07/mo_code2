@@ -8,12 +8,15 @@
     </div>
     <div *ngIf="data.items" class="progress-tracker-accordion mt35">
       <div *ngFor="let item of data.items">
-        <div class="progress-tracker-accordion__heading pointer-cursor {{item.customStyle}}" (click)="navigateOrToggle(item)">
+        <div class="progress-tracker-accordion__heading pointer-cursor {{item.customStyle}}"
+          (click)="navigateOrToggle(item)">
           {{item.title}}
-          <span class=" progress-tracker-accordion__heading__arrow" [ngClass]="{'active': !item.expanded, 'hidden': !item.showArrow }"></span>
+          <span class=" progress-tracker-accordion__heading__arrow"
+            [ngClass]="{'active': !item.expanded, 'hidden': !item.showArrow }"></span>
         </div>
         <div class="progress-tracker-accordion__body" *ngIf="item.expanded">
-          <div *ngIf="(item.subItems.length == 1 && item.subItems[0].title == startRiskProfileTitle); else showSubItems">
+          <div
+            *ngIf="(item.subItems.length == 1 && item.subItems[0].title == startRiskProfileTitle); else showSubItems">
             <a *ngFor="let subItem of item.subItems" (click)="navigate(subItem)" class="start-risk">
               <span *ngIf="subItem.title == startRiskProfileTitle">{{subItem.title}}</span>
             </a>

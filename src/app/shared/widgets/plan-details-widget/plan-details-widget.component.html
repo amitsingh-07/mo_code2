@@ -3,8 +3,10 @@
     <div class="row mt10 mb10">
       <div style="width: 65%; padding-left: 15px;">
         <h4>{{productName}}</h4>
-        <div class="grey subtitle--rider-name text-left" *ngIf="data.rider && data.rider.riderName">with {{data.rider.riderName}}</div>
-        <div class="mt10" [hidden]="type === 'retirement income plan' || type.indexOf('education fund') > -1 || type.indexOf('srs') > -1">
+        <div class="grey subtitle--rider-name text-left" *ngIf="data.rider && data.rider.riderName">with
+          {{data.rider.riderName}}</div>
+        <div class="mt10"
+          [hidden]="type === 'retirement income plan' || type.indexOf('education fund') > -1 || type.indexOf('srs') > -1">
           <h2 [hidden]="frequencyType && frequencyType !== 'monthly'">{{premiumAmount | currency}}
             <span [hidden]="data.premium.premiumFrequency == 'single'" class="text-small">{{ 'SUFFIX.PER_MONTH' |
               translate }}</span>
@@ -20,67 +22,74 @@
       <div class="insurer-logo" style="width: 30%">
         <img [src]="insurerLogo" [alt]="data.insurer.insurerName" />
       </div>
-      <div class="row with-sub-sections col-md-12" [hidden]="type !== 'retirement income plan' && type.indexOf('education fund') < 0 && type.indexOf('srs') < 0">
-          <h2>
-            <div [hidden]="type !== 'retirement income plan'" class="plan-value-sub drp-left" [ngClass]="{'ri-font34': premiumAmountLength == 7 , 'ri-font30': premiumAmountLength >= 8 }">
-              <h2 [hidden]="frequencyType && frequencyType !== 'monthly'">{{premiumAmount | currency}}
-                <br class="hidden-lg" />
-                <span class="text-small unit-label" [hidden]="data.premium.premiumFrequency == 'single'">{{ 'SUFFIX.PER_MONTH' |
-                  translate }}</span>
-                <span [hidden]="data.premium.premiumFrequency != 'single'">{{ 'SUFFIX.SINGLE' |
-                  translate
-                  }}</span>
-                <br />
-                <span class="text-small subtitle">{{ 'COMMON.LBL_PREMIUM' | translate}}</span>
-              </h2>
-              <h2 [hidden]="!frequencyType || frequencyType !== 'yearly'">{{premiumAmountYearly | currency}}
-                <br class="hidden-lg" />
-                <span class="text-small unit-label">{{ 'SUFFIX.PER_YEAR' | translate }}</span>
-                <br />
-                <span class="text-small subtitle">{{ 'COMMON.LBL_PREMIUM' | translate}}</span>
-              </h2>
-            </div>
-            <div class="plan-value-main" [ngClass]="{'prd-left': type === 'retirement income plan' }">{{data.premium.intrestRateOfReturn}}%
-              <span class="text-small">{{ 'COMMON.LBL_PERCENTAGE_PER_ANNUM' | translate}}</span>
+      <div class="row with-sub-sections col-md-12"
+        [hidden]="type !== 'retirement income plan' && type.indexOf('education fund') < 0 && type.indexOf('srs') < 0">
+        <h2>
+          <div [hidden]="type !== 'retirement income plan'" class="plan-value-sub drp-left"
+            [ngClass]="{'ri-font34': premiumAmountLength == 7 , 'ri-font30': premiumAmountLength >= 8 }">
+            <h2 [hidden]="frequencyType && frequencyType !== 'monthly'">{{premiumAmount | currency}}
+              <br class="hidden-lg" />
+              <span class="text-small unit-label" [hidden]="data.premium.premiumFrequency == 'single'">{{
+                'SUFFIX.PER_MONTH' |
+                translate }}</span>
+              <span [hidden]="data.premium.premiumFrequency != 'single'">{{ 'SUFFIX.SINGLE' |
+                translate
+                }}</span>
               <br />
-              <span class="text-small subtitle">{{ 'COMMON.LBL_PROJECTED_RETURN' | translate}}</span>
-            </div>            
-            <div [hidden]="type.indexOf('srs') < 0" class="plan-value-sub">
-              <h2 [hidden]="frequencyType && frequencyType !== 'monthly'">{{premiumAmount | currency}}
-                <br />
-                <span class="text-small">{{ 'COMMON.LBL_SINGLE_PREMIUM' | translate}}</span>
-              </h2>
-              <h2 [hidden]="!frequencyType || frequencyType !== 'yearly'">{{premiumAmountYearly | currency}}
-                <br class="hidden-lg" />
-                <span class="text-small">{{ 'SUFFIX.PER_YEAR' | translate }}</span>
-                <br />
-                <span class="text-small">{{ 'COMMON.LBL_PREMIUM' | translate}}</span>
-              </h2>
-            </div>
-            <div [hidden]="type.indexOf('education fund') < 0" class=" plan-value-sub hidden-sm-md">
-              <h2 [hidden]="frequencyType && frequencyType !== 'monthly'">{{data.premium.totalGuaranteedPayout |
-                currency}}
-                <br />
-                <span class="text-small">{{ 'COMMON.LBL_GUARANTEED_PAYOUT' | translate}}</span>
-              </h2>
-            </div>
-            <div [hidden]="type.indexOf('education fund') < 0" class=" plan-value-sub hidden-sm-md">
-              <h2 [hidden]="frequencyType && frequencyType !== 'monthly'">{{data.premium.totalProjectedPayout475 |
-                currency}}
-                <br />
-                <span class="text-small">{{ 'COMMON.LBL_PROJECTED_PAYOUT' | translate}}</span>
-              </h2>
-            </div>
-          </h2>
-        </div>
+              <span class="text-small subtitle">{{ 'COMMON.LBL_PREMIUM' | translate}}</span>
+            </h2>
+            <h2 [hidden]="!frequencyType || frequencyType !== 'yearly'">{{premiumAmountYearly | currency}}
+              <br class="hidden-lg" />
+              <span class="text-small unit-label">{{ 'SUFFIX.PER_YEAR' | translate }}</span>
+              <br />
+              <span class="text-small subtitle">{{ 'COMMON.LBL_PREMIUM' | translate}}</span>
+            </h2>
+          </div>
+          <div class="plan-value-main" [ngClass]="{'prd-left': type === 'retirement income plan' }">
+            {{data.premium.intrestRateOfReturn}}%
+            <span class="text-small">{{ 'COMMON.LBL_PERCENTAGE_PER_ANNUM' | translate}}</span>
+            <br />
+            <span class="text-small subtitle">{{ 'COMMON.LBL_PROJECTED_RETURN' | translate}}</span>
+          </div>
+          <div [hidden]="type.indexOf('srs') < 0" class="plan-value-sub">
+            <h2 [hidden]="frequencyType && frequencyType !== 'monthly'">{{premiumAmount | currency}}
+              <br />
+              <span class="text-small">{{ 'COMMON.LBL_SINGLE_PREMIUM' | translate}}</span>
+            </h2>
+            <h2 [hidden]="!frequencyType || frequencyType !== 'yearly'">{{premiumAmountYearly | currency}}
+              <br class="hidden-lg" />
+              <span class="text-small">{{ 'SUFFIX.PER_YEAR' | translate }}</span>
+              <br />
+              <span class="text-small">{{ 'COMMON.LBL_PREMIUM' | translate}}</span>
+            </h2>
+          </div>
+          <div [hidden]="type.indexOf('education fund') < 0" class=" plan-value-sub hidden-sm-md">
+            <h2 [hidden]="frequencyType && frequencyType !== 'monthly'">{{data.premium.totalGuaranteedPayout |
+              currency}}
+              <br />
+              <span class="text-small">{{ 'COMMON.LBL_GUARANTEED_PAYOUT' | translate}}</span>
+            </h2>
+          </div>
+          <div [hidden]="type.indexOf('education fund') < 0" class=" plan-value-sub hidden-sm-md">
+            <h2 [hidden]="frequencyType && frequencyType !== 'monthly'">{{data.premium.totalProjectedPayout475 |
+              currency}}
+              <br />
+              <span class="text-small">{{ 'COMMON.LBL_PROJECTED_PAYOUT' | translate}}</span>
+            </h2>
+          </div>
+        </h2>
+      </div>
     </div>
-    <div *ngIf="promoDiscount && !isPromoDiscountHidden" (click)="redirectToPromoPage(data.promotion)" class="insurance-plan-widget__container__discount__block">{{promoDiscount}}</div>
+    <div *ngIf="promoDiscount && !isPromoDiscountHidden" (click)="redirectToPromoPage(data.promotion)"
+      class="insurance-plan-widget__container__discount__block">{{promoDiscount}}</div>
     <div style="margin-bottom: 15px;">
       <div class="insurance-plan-widget__container__rank__wrapper flex-row" style="display: flex; flex: 1">
         <div class="insurance-plan-widget__container__rank-box flex-col-4" *ngIf="canShowRanking">
           <div class="feature-head">#{{data.premium.ranking}}</div>
-          <div [hidden]="data.premium.intrestRateOfReturn > 0" class="feature-caption">{{ 'PRODUCT_DETAILS.LBL_RANKING' | translate }}</div>
-          <div [hidden]="data.premium.intrestRateOfReturn <= 0" class="feature-caption">{{ 'PRODUCT_DETAILS.LBL_RANKING_BY_VALUE' | translate }}</div>
+          <div [hidden]="data.premium.intrestRateOfReturn > 0" class="feature-caption">{{ 'PRODUCT_DETAILS.LBL_RANKING'
+            | translate }}</div>
+          <div [hidden]="data.premium.intrestRateOfReturn <= 0" class="feature-caption">{{
+            'PRODUCT_DETAILS.LBL_RANKING_BY_VALUE' | translate }}</div>
           <div class="help-icon" style="display: none;"></div>
         </div>
         <div class="insurance-plan-widget__container__rank-box flex-col-4" *ngIf="canShowRating">
@@ -94,7 +103,6 @@
           <div class="help-icon" style="display: none;" (click)="openCommissionModal()"></div>
         </div>
       </div>
-
       <div style="padding: 2px;">
         <div *ngFor="let highlight of highlights;">
           <span class="grey mr5">{{highlight.title}}</span>
@@ -109,11 +117,13 @@
         }}</button>
     </div>
     <div class="flex-1 widget-btn-select mb20">
-      <button type="button" (click)="selectPlan()" class="btn btn-select width100" [ngClass]="{'plan-selected': isSelected}">
+      <button type="button" (click)="selectPlan()" class="btn btn-select width100"
+        [ngClass]="{'plan-selected': isSelected}">
         <span *ngIf="!isSelected">{{ 'BUTTON.SELECT_PLAN' | translate }}</span>
         <span *ngIf="isSelected">{{ 'BUTTON.UN_SELECT' | translate }}</span>
       </button>
-      <p class="see-more-details" *ngIf="data.brochureLink !== 'NA'"><a target="_blank" [href]="data.brochureLink">{{ 'PRODUCT_DETAILS.SEE_MORE_DETAILS' | translate}}</a></p>
+      <p class="see-more-details" *ngIf="data.brochureLink !== 'NA'"><a target="_blank" [href]="data.brochureLink">{{
+          'PRODUCT_DETAILS.SEE_MORE_DETAILS' | translate}}</a></p>
     </div>
   </div>
   <div class="row mt20" *ngIf="isDirect" [hidden]="isViewMode">
