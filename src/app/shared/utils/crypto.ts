@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import * as CryptoJS from 'crypto-js';
 import { sha512 } from 'js-sha512';
+
 import { AuthenticationService } from '../http/auth/authentication.service';
 
 @Injectable({

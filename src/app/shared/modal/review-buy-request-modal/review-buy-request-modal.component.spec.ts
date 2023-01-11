@@ -1,11 +1,11 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 import { ReviewBuyRequestModalComponent } from './review-buy-request-modal.component';
 
 describe('ReviewBuyRequestModalComponent', () => {
   let component: ReviewBuyRequestModalComponent;
   let fixture: ComponentFixture<ReviewBuyRequestModalComponent>;
 
-  beforeEach(async(() => {
+  beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
       declarations: [ ReviewBuyRequestModalComponent ]
     })

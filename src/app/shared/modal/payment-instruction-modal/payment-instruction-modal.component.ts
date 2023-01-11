@@ -1,5 +1,4 @@
 import { filter } from 'rxjs/operators';
-
 import { Component, EventEmitter, Input, OnInit, Output, ViewEncapsulation } from '@angular/core';
 import { NavigationEnd, Router } from '@angular/router';
 import { NgbActiveModal, NgbModal } from '@ng-bootstrap/ng-bootstrap';
@@ -13,7 +12,7 @@ import { ErrorModalComponent } from '../error-modal/error-modal.component';
   styleUrls: ['./payment-instruction-modal.component.scss'],
   encapsulation: ViewEncapsulation.None
 })
-export class PaymentInstructionModalComponent implements OnInit {  
+export class PaymentInstructionModalComponent implements OnInit {
   @Input() closeBtn = true;
   activeMode = 'BANK';
 
@@ -23,7 +22,7 @@ export class PaymentInstructionModalComponent implements OnInit {
     public activeModal: NgbActiveModal,
     private router: Router,
     public readonly translate: TranslateService,
-	private modal1: NgbModal) {
+    private modal1: NgbModal) {
     this.translate.use('en');
     this.translate.get('COMMON').subscribe((result: string) => {
     });
@@ -31,20 +30,20 @@ export class PaymentInstructionModalComponent implements OnInit {
 
   ngOnInit() {
     this.router.events
-            .pipe(filter((event) => event instanceof NavigationEnd))
-            .subscribe(({ urlAfterRedirects }: NavigationEnd) => {
-                // dismiss all bootstrap modal dialog
-                this.activeModal.dismiss();
-            });
+      .pipe(filter((event) => event instanceof NavigationEnd))
+      .subscribe(({ urlAfterRedirects }: NavigationEnd) => {
+        // dismiss all bootstrap modal dialog
+        this.activeModal.dismiss();
+      });
   }
   selectFundingMethod(mode) {
     this.activeMode = mode;
   }
   showPopUp() {
     const ref = this.modal1.open(ErrorModalComponent, { centered: true });
-    ref.componentInstance.errorTitle = 
+    ref.componentInstance.errorTitle =
       'FUNDING_INSTRUCTIONS.MODAL.SHOWPOPUP.TITLE';
-    ref.componentInstance.errorMessage = 
+    ref.componentInstance.errorMessage =
       'FUNDING_INSTRUCTIONS.MODAL.SHOWPOPUP.MESSAGE';
   }
   showTipModal() {

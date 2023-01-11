@@ -270,7 +270,8 @@
       "SHOWPOPUP": {
         "TITLE": "Recipient’s / Entity Name",
         "MESSAGE": "iFast Financial Pte Ltd provides custodial services for MoneyOwl. For more information, please refer to our FAQ."
-      }
+      },
+      "VISIT_FAQ": "For more information, visit our FAQs."
     }
   },
   "TOAST_MESSAGES": {

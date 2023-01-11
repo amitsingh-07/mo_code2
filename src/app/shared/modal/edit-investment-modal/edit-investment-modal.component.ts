@@ -3,6 +3,7 @@ import {
 } from '@angular/core';
 import { AbstractControl, FormControl, FormGroup } from '@angular/forms';
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
+
 import {
   IInvestmentCriteria
 } from '../../../investment/investment-common/investment-common-form-data';
@@ -10,7 +11,6 @@ import {
   INVESTMENT_ENGAGEMENT_JOURNEY_CONSTANTS
 } from '../../../investment/investment-engagement-journey/investment-engagement-journey.constants';
 import { InvestmentEngagementJourneyService } from '../../../investment/investment-engagement-journey/investment-engagement-journey.service';
-
 
 @Component({
   selector: 'app-edit-investment-modal',
@@ -77,7 +77,7 @@ export class EditInvestmentModalComponent implements OnInit {
       return { atleastOne: true };
     }
   }
-  
+
   showCPFText() {
     const portfolioSelected = this.investmentEngagementJourneyService.getSelectPortfolioType();
     return portfolioSelected === INVESTMENT_ENGAGEMENT_JOURNEY_CONSTANTS.SELECT_POROFOLIO_TYPE.CPF_PORTFOLIO;

@@ -15,8 +15,7 @@ export class WiseIncomeFundComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  openEditInvestmentModal(){
+  openEditInvestmentModal() {
     this.openModal.emit();
   }
 }
-

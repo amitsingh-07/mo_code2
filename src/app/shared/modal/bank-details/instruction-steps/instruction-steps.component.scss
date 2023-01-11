@@ -1,14 +1,17 @@
 @import '../../../../../variables';
 @import '../../../../../mixins';
+
 app-instruction-steps {
     .instruction-content {
         padding-top: 20px;
         color: $instruction-content-color;
         line-height: 22px;
         letter-spacing: -0.16px;
+
         .qrcode {
             padding: 20px 20px 0 20px;
             text-align: center;
+
             &__title {
                 font-size: 21px;
                 font-weight: bold;
@@ -17,20 +20,24 @@ app-instruction-steps {
                 color: $watercourse-color;
                 font-family: $muli-bold;
             }
+
             &__desc {
                 font-family: $muli-regular;
                 font-size: 16px;
                 letter-spacing: -0.16px;
                 color: $black-color;
             }
+
             &__imgcontainer {
                 padding: 15px 0;
             }
+
             &__refcode {
                 color: $black-color;
                 font-size: 16px;
                 font-family: $muli-regular;
             }
+
             &__refcode-box {
                 cursor: pointer;
                 background-color: $cinderella-color;
@@ -45,22 +52,24 @@ app-instruction-steps {
                 margin: 7px auto;
 
                 @include desktop {
-                  max-width: 243px;
+                    max-width: 243px;
                 }
 
                 @include tablet {
-                  max-width: 243px;
+                    max-width: 243px;
                 }
 
                 @include allmobiles {
-                  max-width: 230px;
+                    max-width: 230px;
                 }
             }
+
             &__refcode-icon {
                 display: inline-block;
                 margin-right: 10px;
                 margin-top: 1px;
             }
+
             &__refcode-num {
                 font-family: $muli-bold;
                 font-size: 18px;
@@ -68,27 +77,33 @@ app-instruction-steps {
                 display: flex;
                 flex-grow: 1;
             }
+
             &__copy-icon {
                 cursor: pointer;
             }
+
             &__refcode-info {
                 width: 230px;
                 margin: auto;
                 text-align: left;
                 letter-spacing: -0.12px;
                 line-height: normal;
+
                 &--text {
                     font-size: 13px;
                     color: $black-color;
+
                     span {
                         color: $dark-red-color;
                         font-family: $muli-bold;
                     }
+
                     span u {
                         text-decoration: underline;
                     }
                 }
             }
+
             &__save-btn {
                 background-color: $teal-color;
                 padding: 10px 20px;
@@ -101,6 +116,7 @@ app-instruction-steps {
                 font-family: $muli-semi-bold;
                 width: 153px;
             }
+
             &__alt-steps {
                 font-size: 16px;
                 font-family: $muli-regular;
@@ -110,6 +126,7 @@ app-instruction-steps {
                 letter-spacing: normal;
             }
         }
+
         .steps-title {
             font-family: $muli-bold;
             font-size: 21px;
@@ -118,16 +135,19 @@ app-instruction-steps {
             color: $instruction-content-title-color;
             padding: 10px 10px 5px 28px;
         }
+
         .list-none {
             padding: 10px 20px;
             margin: 0;
         }
+
         li {
             &:last-child {
                 .section {
                     border-left: none;
                 }
             }
+
             .text-black {
                 .sub-section {
                     color: $black-color;
@@ -139,14 +159,17 @@ app-instruction-steps {
                     width: 100%;
                 }
             }
+
             .section {
                 border-left: 1px solid $instruction-section-brdr-color;
                 margin-left: -10px;
                 padding-bottom: 25px;
                 font-size: 16px;
+
                 .sub-section {
                     margin-left: 19.5px;
                     padding-right: 25px;
+
                     &.step {
                         font-family: $muli-bold;
                         letter-spacing: -0.3px;
@@ -155,14 +178,17 @@ app-instruction-steps {
                         top: -4px;
                         position: relative;
                     }
+
                     span {
                         font-family: $muli-bold;
                     }
+
                     .ref-code-context {
                         color: $ref-code-context-color;
                         letter-spacing: -0.16px;
                         font-family: $muli-regular !important;
                         font-weight: normal !important;
+
                         span {
                             font-family: $muli-bold;
                             color: $ref-code-context-must-color;
@@ -172,6 +198,7 @@ app-instruction-steps {
                 }
             }
         }
+
         .circle {
             width: 20px;
             height: 20px;
@@ -179,48 +206,56 @@ app-instruction-steps {
             border-radius: 50%;
             padding: 10px;
         }
+
         .bank-details {
             margin-left: 19.5px;
             margin-top: 20px;
+
             .flex-col {
                 padding-bottom: 20px;
+
                 div {
                     &:last-child {
                         font-family: $muli-semi-bold;
                     }
                 }
             }
+
             &-title {
                 font-family: $muli-semi-bold;
                 color: $bank-title-color;
                 font-size: 18px;
                 letter-spacing: -0.3px;
             }
+
             &-content {
                 font-family: $muli-semi-bold;
                 font-size: 16px;
                 letter-spacing: -0.3px;
                 color: $bank-centent-color;
                 margin-top: 2px;
+
                 strong {
                     margin-right: 15px;
                     font-weight: 600;
                 }
+
                 img {
                     vertical-align: top;
                     cursor: pointer;
                 }
 
                 .copy-txt {
-                  cursor: pointer;
+                    cursor: pointer;
                 }
-                
+
                 .copy-icon {
                     margin-top: -3px;
                     float: right;
                 }
             }
         }
+
         .ref_code_num_container {
             cursor: pointer;
             display: flex;
@@ -232,15 +267,18 @@ app-instruction-steps {
             border: 1px solid $ref-code-container-brdr-color;
             margin: 20px 20px 10px 20px;
             max-width: 230px;
+
             .info-text {
                 display: flex;
                 margin-right: 10px;
+
                 img {
                     width: 15px;
                     height: 15px;
                     vertical-align: inherit;
                 }
             }
+
             .ref_num {
                 font-family: $muli-semi-bold;
                 font-size: 18px;
@@ -254,6 +292,7 @@ app-instruction-steps {
                 margin-top: -3px;
             }
         }
+
         .ref-code-info {
             display: flex;
             justify-content: space-between;
@@ -267,6 +306,7 @@ app-instruction-steps {
     .faq-link {
         text-align: center;
         padding-bottom: 20px;
+
         a {
             font-family: $muli-bold;
             font-size: 16px;

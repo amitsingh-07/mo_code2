@@ -3,7 +3,7 @@
 
 app-login-create-account-model {
   .selected-count {
-    background-color: #ff872f;
+    background-color: $crusta-orange-color;
     width: 39px;
     height: 26px;
     padding: 0 15px;
@@ -12,14 +12,13 @@ app-login-create-account-model {
     font-size: 18px;
     font-weight: bold;
     letter-spacing: -0.1px;
-    color: #ffffff;
+    color: $white-color;
     padding-bottom: 3px;
     margin-right: 10px;
 
     @include allmobiles {
       float: left;
       margin-left: 10px;
-      //margin-top: 10px;
     }
   }
 
@@ -28,7 +27,7 @@ app-login-create-account-model {
     font-size: 18px;
     line-height: 1.11;
     letter-spacing: -0.2px;
-    color: #5e5e5e;
+    color: $silver-grey-color;
     margin-right: 100px;
 
     @include allmobiles {
@@ -39,7 +38,7 @@ app-login-create-account-model {
   }
 
   .choose_ops_title {
-    color: #5e5e5e;
+    color: $silver-grey-color;
     font-size: 18px;
     text-align: left;
     margin-top: 20px;
@@ -54,7 +53,6 @@ app-login-create-account-model {
     position: inherit;
     background-repeat: no-repeat;
     border: 0;
-    //margin-left: 15px;
     margin-top: 6px;
     cursor: pointer;
   }

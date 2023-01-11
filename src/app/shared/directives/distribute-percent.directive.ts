@@ -38,7 +38,6 @@ export class DistributePercentDirective implements AfterViewInit {
         let currentElement = this.el.nativeElement.value;
         currentElement = currentElement.replace(new RegExp('[,]', 'g'), '');
         if (!isNaN(currentElement) && currentElement != null && currentElement !== '') {
-            const Regexp = new RegExp('[' + this.currencySymbol + ',]', 'g');
             this.el.nativeElement.value = currentElement === '' ? 0 : currentElement;
         } else {
             this.el.nativeElement.value = 0;

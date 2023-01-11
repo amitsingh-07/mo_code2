@@ -7,8 +7,9 @@
                 *ngIf="uploadForm.controls.document.value">
                 <img src="assets/images/close-btn-dark.svg" alt="x" />
             </div>
-            <img #documentThumb class="thumbnail image-fluid" [class.mb20]="!uploadForm.controls.document.value || fileType == 'pdf'"
-               src="assets/images/{{defaultThumb}}" />
+            <img #documentThumb class="thumbnail image-fluid"
+                [class.mb20]="!uploadForm.controls.document.value || fileType == 'pdf'"
+                src="assets/images/{{defaultThumb}}" />
         </div>
         <div class="upload-content">
             <div class="title" *ngIf="documentName">{{ documentName }}</div>

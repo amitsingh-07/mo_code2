@@ -17,9 +17,9 @@
 }
 
 .loader-content-wrapper {
-  background-color: #fff;
+  background-color: $white-color;
   border-radius: 8px;
-  color: #ccc;
+  color: $silver-color;
   width: 300px;
   align-items: center;
   display: flex;
@@ -36,14 +36,14 @@
 
 .loader-content {
    font-family: $muli;
-   color: #5e5e5e;
+   color: $silver-grey-color;
    text-align: center;
    width:inherit;
    padding:0 20px;
   .loader-title {
     font-size: 22px;
     font-weight: 600;
-    color: #009999;
+    color: $persian-green-color;
     margin-bottom: 5px;
 
     .dots {

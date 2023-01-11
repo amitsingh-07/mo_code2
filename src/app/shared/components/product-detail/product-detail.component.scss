@@ -2,8 +2,8 @@
 @import '../../../../mixins';
 
 app-product-detail {
-  background: #fff;
-  color: #000;
+  background: $white-color;
+  color: $black-color;
   border-radius: 8px;
 
   @include allmobiles {
@@ -89,7 +89,7 @@ app-product-detail {
 
     .panel {
       padding-top: 10px 0;
-      border: 1px solid #c2d9ec;
+      border: 1px solid $spindle-color;
       margin-top: -1px;
 
       .panel-heading {
@@ -99,7 +99,7 @@ app-product-detail {
           font-family: $muli-semi-bold;
 
           i {
-            color: #2d8288;
+            color: $fund-details-arrow-color;
             float: right;
             font-size: 16px;
             padding-top: 5px;
@@ -109,7 +109,7 @@ app-product-detail {
 
       .panel-collapse {
         color: $text-color-secondary;
-        border-top: 1px solid #c2d9ec;
+        border-top: 1px solid $spindle-color;
         padding-top: 10px;
         padding-bottom: 10px;
 
