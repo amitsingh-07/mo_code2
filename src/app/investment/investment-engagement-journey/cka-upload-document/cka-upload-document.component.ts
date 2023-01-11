@@ -117,11 +117,11 @@ export class CkaUploadDocumentComponent implements OnInit {
 
   goToNext() {
     const fromLocation = this.investmentCommonService.getCKARedirectFromLocation();
-    if (fromLocation && fromLocation.includes('profile')) {
+    if (fromLocation && fromLocation.includes(INVESTMENT_COMMON_CONSTANTS.CKA_REDIRECT_CONSTS.PROFILE)) {
       this.router.navigate([SIGN_UP_ROUTE_PATHS.EDIT_PROFILE]);      
-    } else if (fromLocation && fromLocation.includes('prerequisites')) {
+    } else if (fromLocation && fromLocation.includes(INVESTMENT_COMMON_CONSTANTS.CKA_REDIRECT_CONSTS.PREREQUISITES)) {
       this.router.navigate([INVESTMENT_COMMON_ROUTE_PATHS.CPF_PREREQUISITES]);      
-    } else if (fromLocation && fromLocation.includes('topup')) {
+    } else if (fromLocation && fromLocation.includes(INVESTMENT_COMMON_CONSTANTS.CKA_REDIRECT_CONSTS.TOPUP)) {
       this.router.navigate([MANAGE_INVESTMENTS_ROUTE_PATHS.TOPUP]);      
     }
   }
