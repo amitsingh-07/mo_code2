@@ -264,10 +264,14 @@ app-referee {
         text-decoration: none;
     }
     .modal-body.white-bg .close {
-        background-image: url('/assets/images/refer-friend/close-btn-dark.svg') !important;
+        background-image: url('./../../../../assets/images/refer-friend/close-btn-dark.svg') !important;
         top: 25px !important;
         right: 25px !important;
         opacity: 0.6 !important;
         z-index: 2 !important;
+        @supports (-webkit-touch-callout: none) {
+            /* CSS specific to iOS devices */ 
+            right: -20px !important;
+        }
     }
 }

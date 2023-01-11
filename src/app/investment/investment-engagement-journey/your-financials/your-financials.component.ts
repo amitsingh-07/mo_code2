@@ -44,6 +44,8 @@ export class YourFinancialsComponent implements IPageComponent, OnInit {
   selectedPortfolioType;
   loaderDescTwo: string;
   userPortfolioType: any;
+  radioLabelValue = [];
+  defaultRadioStyleClass = 'btn-outline-primary fixed-btn--sm';
 
   constructor(
     private router: Router,
@@ -68,6 +70,13 @@ export class YourFinancialsComponent implements IPageComponent, OnInit {
       self.loaderDesc = this.translate.instant('MY_FINANCIALS.RESPONSE_LOADER.DESC');
       self.loaderDescTwo = this.translate.instant('MY_FINANCIALS.RESPONSE_LOADER.DESC_TWO');
       this.setPageTitle(self.pageTitle);
+      this.radioLabelValue = [{
+        name: this.translate.instant('MY_FINANCIALS.LABEL_YES'),
+        value: this.translate.instant('COMMON.LBL_YES_VALUE')
+      }, {
+        name: this.translate.instant('MY_FINANCIALS.LABEL_NO'),
+        value: this.translate.instant('COMMON.LBL_NO_VALUE')
+      }];
     });
     this.userPortfolioType = investmentEngagementJourneyService.getUserPortfolioType();
   }

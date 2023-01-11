@@ -74,7 +74,48 @@ h6 {
   //   }
   // }
 }
+// Added due to upgrade to Bootstrap 5 from Bootstrap 4
+.col-1, .col-2, .col-3, .col-4, .col-5, .col-6, .col-7, .col-8, .col-9, .col-10, .col-11, .col-12, .col,
+.col-auto, .col-sm-1, .col-sm-2, .col-sm-3, .col-sm-4, .col-sm-5, .col-sm-6, .col-sm-7, .col-sm-8, .col-sm-9, .col-sm-10, .col-sm-11, .col-sm-12, .col-sm,
+.col-sm-auto, .col-md-1, .col-md-2, .col-md-3, .col-md-4, .col-md-5, .col-md-6, .col-md-7, .col-md-8, .col-md-9, .col-md-10, .col-md-11, .col-md-12, .col-md,
+.col-md-auto, .col-lg-1, .col-lg-2, .col-lg-3, .col-lg-4, .col-lg-5, .col-lg-6, .col-lg-7, .col-lg-8, .col-lg-9, .col-lg-10, .col-lg-11, .col-lg-12, .col-lg,
+.col-lg-auto, .col-xl-1, .col-xl-2, .col-xl-3, .col-xl-4, .col-xl-5, .col-xl-6, .col-xl-7, .col-xl-8, .col-xl-9, .col-xl-10, .col-xl-11, .col-xl-12, .col-xl,
+.col-xl-auto {
+  position: relative;
+  // width: 100%;
+  padding-right: 15px;
+  padding-left: 15px;
+}
 
+a {
+  text-decoration: none;
+  background-color: transparent;
+
+  &:hover {
+    text-decoration: underline;
+  }
+}
+
+hr{
+  opacity: 1;
+}
+
+.nav-tabs{
+  .nav-link{
+    transition: none;
+  }
+}
+
+.row{
+  margin: 0 -15px;
+}
+label{
+  margin-bottom: 0.5rem;
+}
+.form-group {
+  margin-bottom: 1rem;
+}
+// end
 .navbar {
   padding-left: 0;
   padding-right: 0;
@@ -222,7 +263,7 @@ h6 {
         position: relative;
         display: inline-block;
         float: right;
-        background-image: url("/assets/images/close-btn-white.png");
+        background-image: url("./assets/images/close-btn-white.png");
         background-size: 12px;
         width: 12px;
         height: 12px;
@@ -448,7 +489,7 @@ h6 {
             color: $teal-color;
 
             &:after {
-              background-image: url("/assets/images/nav-dropdown-icon.svg");
+              background-image: url("./assets/images/nav-dropdown-icon.svg");
             }
 
             &:hover {
@@ -483,7 +524,7 @@ h6 {
             background-color: $white-color;
 
             &::after {
-              background-image: url('/assets/images/nav-dropdown-icon.svg');
+              background-image: url('./assets/images/nav-dropdown-icon.svg');
               top: 27px;
             }
           }
@@ -715,7 +756,7 @@ h6 {
           color: $white-color;
           font-family: $muli-bold;
           .logout-white {
-            background: url('assets/images/nav/logout-white.svg') 0 0;
+            background: url('./assets/images/nav/logout-white.svg') 0 0;
             width: 16px;
             height: 16px;
             display: inline-block;
@@ -769,7 +810,7 @@ h6 {
           display: block;
           width: 35px;
           height: 60px;
-          background-image: url('/assets/images/nav/profile-icon.svg');
+          background-image: url('./assets/images/nav/profile-icon.svg');
           background-position-y: 14px;
           background-repeat: no-repeat;
         }
@@ -819,7 +860,7 @@ h6 {
       }
 
       &::after {
-        background-image: url('/assets/images/nav-dropdown-icon.svg');
+        background-image: url('./assets/images/nav-dropdown-icon.svg');
         background-size: 12px 8px;
         background-repeat: no-repeat;
         width: 15px;
@@ -835,7 +876,7 @@ h6 {
           right: 15px;
 
           &:hover {
-            background-image: url('/assets/images/nav-dropdown-icon--white.svg');
+            background-image: url('./assets/images/nav-dropdown-icon--white.svg');
           }
         }
       }
@@ -955,7 +996,7 @@ h6 {
           }
         }
         .logout-black {
-          background: url('assets/images/nav/logout-black.svg') 0 0;
+          background: url('./assets/images/nav/logout-black.svg') 0 0;
           width: 16px;
           height: 16px;
           display: inline-block;
@@ -1063,21 +1104,21 @@ h6 {
 }
 
 .navbar__logo--primary {
-  background-image: url("/assets/images/logo--primary.svg");
+  background-image: url("./assets/images/logo--primary.svg");
   width: 180px;
   height: 45px;
   background-repeat: no-repeat;
 }
 
 .navbar__corp--logo--primary {
-  background-image: url("/assets/images/logo--corporate.svg");
+  background-image: url("./assets/images/logo--corporate.svg");
   width: 187.4px;
   height: 35px;
   background-repeat: no-repeat;
 }
 
 .navbar__logo--secondary {
-  background-image: url("/assets/images/logo--secondary.svg");
+  background-image: url("./assets/images/logo--secondary.svg");
   width: 72px;
   height: 15px;
   margin-top: 18px;
@@ -1108,16 +1149,17 @@ h6 {
   display: block;
   right: 0px;
   cursor: pointer;
+  border: none;
 
   .navbar__menu-icon {
-    background-image: url("/assets/images/nav/hamburger-menu-blue.svg");
+    background-image: url("./assets/images/nav/hamburger-menu-blue.svg");
     display: block;
     width: 24px;
     height: 24px;
   }
 
   .navbar__menu-icon-close {
-    background-image: url("/assets/images/close.svg") !important;
+    background-image: url("./assets/images/close.svg") !important;
     opacity: 0.5;
   }
 }
@@ -1133,19 +1175,19 @@ h6 {
 
 
 .navbar__back-btn--web {
-  background-image: url("/assets/images/back-web.svg");
+  background-image: url("./assets/images/back-web.svg");
   width: 46px;
   height: 38px;
   margin-right: 5px;
   cursor: pointer;
 
   &:hover {
-    background-image: url("/assets/images/back-web-hover.svg");
+    background-image: url("./assets/images/back-web-hover.svg");
   }
 }
 
 .navbar__back-btn--mobile {
-  background-image: url("/assets/images/back-mobile-btn.svg");
+  background-image: url("./assets/images/back-mobile-btn.svg");
   width: 25px;
   height: 25px;
   position: relative;
@@ -1166,6 +1208,7 @@ h6 {
   padding-left: 12px;
   font-size: 16px;
   font-family: $muli-bold;
+  color: $teal-color;
 
   p {
     margin-bottom: 0px;
@@ -1184,7 +1227,7 @@ h6 {
 .navbar__helpIcon--mobile {
   position: absolute;
   display: inline-block;
-  background-image: url("/assets/images/baseline-help-24-px.png");
+  background-image: url("./assets/images/baseline-help-24-px.png");
   width: 20px;
   height: 20px;
   top: 22px;
@@ -1194,12 +1237,12 @@ h6 {
 }
 
 .navbar__helpIcon--mobile-settings {
-  background-image: url("/assets/images/settings-icon.png");
+  background-image: url("./assets/images/settings-icon.png");
   background-repeat: no-repeat;
 }
 
 .navbar__menuItem--journey-map {
-  background-image: url("/assets/images/road-map-icon.svg");
+  background-image: url("./assets/images/road-map-icon.svg");
   background-repeat: no-repeat;
   width: 30px;
   height: 25px;
@@ -1237,7 +1280,7 @@ h6 {
 .navbar__closeIcon {
   position: absolute;
   display: inline-block;
-  background: url("/assets/images/prodInfoSelectClose.svg") !important;
+  background: url("./assets/images/prodInfoSelectClose.svg") !important;
   width: 20px;
   height: 20px;
   top: 22px;
@@ -1246,7 +1289,7 @@ h6 {
   background-repeat: no-repeat;
 
   @include allmobiles {
-    background: url("/assets/images/close-button-dark.svg") !important;
+    background: url("./assets/images/close-button-dark.svg") !important;
     width: 18px;
     height: 18px;
   }
@@ -1442,7 +1485,7 @@ h6 {
       justify-content: flex-start;
       border-bottom: 1px solid $light-teal-color;
 
-      &:last-child() {
+      &:last-child {
         border-bottom: 0px;
       }
     }
@@ -1457,19 +1500,19 @@ h6 {
       margin-right: 10px;
 
       &.chat-icon {
-        background-image: url("/assets/images/chat-icon.svg");
+        background-image: url("./assets/images/chat-icon.svg");
         width: 16px;
         height: 16px;
       }
 
       &.contact-icon {
-        background-image: url("/assets/images/contact-icon.svg");
+        background-image: url("./assets/images/contact-icon.svg");
         width: 16px;
         height: 16px;
       }
 
       &.direction-icon {
-        background-image: url("/assets/images/direction-icon.svg");
+        background-image: url("./assets/images/direction-icon.svg");
         width: 16px;
         height: 16px;
       }
@@ -1630,25 +1673,25 @@ h6 {
           margin-right: 10px;
 
           &.facebook-icon {
-            background-image: url('/assets/images/facebook-icon.svg');
+            background-image: url('./assets/images/facebook-icon.svg');
             width: 16px;
             height: 16px;
           }
 
           &.linkedin-icon {
-            background-image: url('/assets/images/linkedin-icon.svg');
+            background-image: url('./assets/images/linkedin-icon.svg');
             width: 16px;
             height: 16px;
           }
 
           &.instagram-icon {
-            background-image: url('/assets/images/instagram-icon.svg');
+            background-image: url('./assets/images/instagram-icon.svg');
             width: 16px;
             height: 16px;
           }
 
           &.youtube-icon {
-            background-image: url('/assets/images/youtube-icon.svg');
+            background-image: url('./assets/images/youtube-icon.svg');
             width: 16px;
             height: 12px;
             margin-top: 2px;
@@ -1734,10 +1777,11 @@ h6 {
   right: 25px !important;
   top: 15px !important;
   text-shadow: none !important;
-  background: url("/assets/images/close-button-dark.svg") !important;
+  background: url("./assets/images/close-button-dark.svg") !important;
   width: 18px;
   height: 18px;
   background-repeat: no-repeat !important;
+  border: none;
 
   // position: relative;
   // float: right;
@@ -1751,7 +1795,7 @@ h6 {
   }
 
   &.back {
-    background: url("/assets/images/modal-back.png") !important;
+    background: url("./assets/images/modal-back.png") !important;
     opacity: 1 !important;
     width: 16px;
     height: 16px;
@@ -1846,7 +1890,7 @@ a.link-white {
   font-weight: bold;
   letter-spacing: -0.2px;
   text-align: center;
-  color: #00a7a7;
+  color: #00a7a7 !important;
   cursor: pointer;
 
   @include allmobiles {
@@ -1890,8 +1934,20 @@ a.link-white {
 .input-group.date-picker {
   .dropdown-menu.show {
     @include allmobiles {
-      left: inherit !important;
-      right: 0px;
+      left: auto !important;
+      right: -46px !important;
+    }
+    @include min400max425{
+      right: 0 !important;
+    }
+    @include min425max450{
+      right: 0 !important;
+    }
+    @include min450max475{
+      right: 0 !important;
+    }
+    @include min475max568{
+      right: 0 !important;
     }
   }
 }
@@ -1899,7 +1955,6 @@ a.link-white {
 .date-picker-above {
   .dropdown-menu.show {
     @include allmobiles {
-      top: -272px !important;
       z-index: 998 !important;
     }
   }
@@ -2053,12 +2108,12 @@ select:-webkit-autofill:focus {
     height: 82px;
   }
 
-  .datepicker-upside {
-    .dropdown-menu.show {
-      top: -240px !important;
-      transform: none !important;
-    }
-  }
+  // .datepicker-upside {
+  //   .dropdown-menu.show {
+  //      top: -240px !important;
+  //      transform: none !important;
+  //   }
+  // }
 
   .road-map {
     border-left: 3px solid $screen-separator-bar-color;
@@ -2119,7 +2174,7 @@ select:-webkit-autofill:focus {
         }
 
         span {
-          background-image: url(/assets/images/comprehensive/comprehensive-step.svg);
+          background-image: url(./assets/images/comprehensive/comprehensive-step.svg);
           width: 35px;
           height: 35px;
           position: absolute;
@@ -2135,7 +2190,7 @@ select:-webkit-autofill:focus {
         cursor: pointer;
 
         span {
-          background-image: url(/assets/images/comprehensive/step-success.svg);
+          background-image: url(./assets/images/comprehensive/step-success.svg);
           width: 30px;
           height: 30px;
           position: absolute;
@@ -2458,7 +2513,7 @@ select:-webkit-autofill:focus {
     clear: none;
     padding: 0px 0 0px 40px;
     cursor: pointer;
-    background: url("/assets/images/check-box-normal.svg") left top no-repeat;
+    background: url("./assets/images/check-box-normal.svg") left top no-repeat;
   }
   .modal-btn-disabled{
     &[disabled] {
@@ -2541,4 +2596,23 @@ select:-webkit-autofill:focus {
 
 .not-allowed {
   cursor: not-allowed;
+}
+
+// adding styles from _promotion.scss which were removed as part of code clean up
+.disclaimer{
+  font-size: 14px;
+  line-height: 1.29;
+  letter-spacing: -0.1px;
+  color: $black-color;
+  display: flex;
+  padding-top: 20px;
+  font-family: $muli-regular;
+  text-align: left;
+  span{
+      &:first-child{                
+          letter-spacing: -0.1px;
+          padding-right: 5px;
+          font-family: $muli-bold;
+      }
+  }
 }

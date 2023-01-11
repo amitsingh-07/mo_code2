@@ -4,7 +4,7 @@
 app-tax-info {
   .app-tax-info {
     .tooltip-block-icon {
-      background: url('/assets/images/restricted-help-icon.svg') no-repeat;
+      background: url('./../../../../assets/images/restricted-help-icon.svg') no-repeat;
       height: 18px;
       width: 18px;
       cursor: pointer;
@@ -41,6 +41,13 @@ app-tax-info {
     .btn-group--toggle {
       label {
         font-size: 16px;
+      }
+      .btn-outline-primary {
+        &.disabled {
+            cursor: not-allowed;
+            pointer-events: auto !important;
+            border-color: $fixed-btn-brdr-color;
+          }
       }
     }
 
@@ -95,7 +102,7 @@ app-tax-info {
     }
 
     .tooltip-icon {
-      background: url('/assets/images/restricted-help-icon.svg') no-repeat;
+      background: url('./../../../../assets/images/restricted-help-icon.svg') no-repeat;
       height: 18px;
       width: 18px;
       cursor: pointer;

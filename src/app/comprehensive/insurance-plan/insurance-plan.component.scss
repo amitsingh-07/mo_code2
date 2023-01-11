@@ -1,5 +1,6 @@
 @import '../../../variables';
 @import '../../../mixins';
+app-insurance-plan{
 .comprehensive {
   .title {
     font-size: 18px;
@@ -72,19 +73,63 @@
       margin-bottom: 40px!important;
     }
   }
-  .insurance-input-radio{
-    .flex-col-4,.flex-col-6{
-      padding-right: 10px;
-      max-width: 105px;
-      @include iphone5 {
-        max-width: 82px;
+  .btn-group--toggle{
+    .custom-radio-btn{
+       &.insurance-input-radio{
+        &.radio-btn-space {
+          @include allmobiles {
+            justify-content: space-between;
+          }
+        }
+        .flex-col-6{
+           max-width: 110px;
+           @include max360 {
+            max-width: 87px;
+          }
+          @include iphone6 {
+            max-width:110px;
+          }
+          
+          &:last-child {
+            .fixed-btn--sm-comprehensive {
+              margin-left: 10px;
+            }
+          }
+           .fixed-btn--sm-comprehensive{
+             max-width: 105px;
+             @include max360 {
+              max-width: 82px;
+            }
+            @include iphone6{
+              max-width:105px;
+            }
+             &:active{
+               color: $white-color !important;
+             }
+           }
+         }
+        .flex-col-4{
+          max-width: 115px;
+          @include max360 {
+            max-width: 92px;
+          }
+          @include iphone6{
+            max: width 102px;
+          }
+          .fixed-btn--sm-comprehensive{
+            max-width: 105px;
+          @include max360 {
+            max-width: 82px;
+          }
+          @include iphone6 {
+            max-width:92px;
+          }
+            &:active{
+              color: $white-color !important;
+            }
+          }
+        }
       }
-      @include min360{
-        max-width:105px;
-      }
-    }
-    .flex-col-4:last-child,.flex-col-6:last-child {
-      padding-right: 0px;
     }
   }
   .insurancePlanForm{
@@ -100,7 +145,7 @@
   }
 }
 .align-item-start {
-  align-items: flex-start;
+  align-items: flex-start !important;
 }
 .tooltip-icon {
   position: absolute;
@@ -110,5 +155,6 @@
 }
 .pos-relative {
   position: relative;
+}
 }
 }

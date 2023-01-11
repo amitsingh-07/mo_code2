@@ -29,6 +29,10 @@ export class LongTermCareFormComponent implements OnInit, OnDestroy {
   maxDate;
   private userInfoSubscription: Subscription;
   payoutEnabled = false;
+  radioLabelValue = [];
+  radioLabelValuePayoutType = [];
+  defaultRadioStyleClass = 'direct-form-btn--radio btn';
+
 
   constructor(
     private directService: DirectService, private modal: NgbModal,
@@ -38,6 +42,22 @@ export class LongTermCareFormComponent implements OnInit, OnDestroy {
     private config: NgbDatepickerConfig,
 	private aboutAge: AboutAge) {
     this.translate.use('en');
+    this.translate.get('COMMON').subscribe((result: string) => {
+      this.radioLabelValue = [{
+        name: this.translate.instant('COMMON.LBL_MALE'),
+        value: this.translate.instant('COMMON.LBL_MALE_VALUE')
+      }, {
+        name: this.translate.instant('COMMON.LBL_FEMALE'),
+        value: this.translate.instant('COMMON.LBL_FEMALE_VALUE')
+      }];
+      this.radioLabelValuePayoutType = [{
+        name: this.translate.instant('LONG_TERM_CARE.PAYOUT_TYPE_1'),
+        value: this.translate.instant('LONG_TERM_CARE.PAYOUT_TYPE_1')
+      }, {
+        name: this.translate.instant('LONG_TERM_CARE.PAYOUT_TYPE_2'),
+        value: this.translate.instant('LONG_TERM_CARE.PAYOUT_TYPE_2')
+      }];
+    });
     const today: Date = new Date();
     this.minDate = { year: (today.getFullYear() - 100), month: (today.getMonth() + 1), day: today.getDate() };
     this.maxDate = { year: today.getFullYear(), month: (today.getMonth() + 1), day: today.getDate() };

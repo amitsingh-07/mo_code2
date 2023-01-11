@@ -24,6 +24,9 @@ export class PersonalDeclarationComponent implements OnInit {
   pageTitle: string;
   personalDeclarationForm: FormGroup;
   personalDeclarationFormValues: any;
+  radioLabelValueEmploye = [];
+  defaultRadioStyleClass = 'btn-outline-primary fixed-btn--sm';
+
   constructor(
     public headerService: HeaderService,
     public navbarService: NavbarService,
@@ -39,6 +42,13 @@ export class PersonalDeclarationComponent implements OnInit {
       this.pageTitle = this.translate.instant('PERSONAL_DECLARATION.TITLE');
       this.translator = this.translate.instant('PERSONAL_DECLARATION');
       this.setPageTitle(this.pageTitle);
+      this.radioLabelValueEmploye = [{
+        name: this.translate.instant('PERSONAL_DECLARATION.YES_LBL'),
+        value: this.translate.instant('COMMON.LBL_TRUE_VALUE')
+      }, {
+        name: this.translate.instant('PERSONAL_DECLARATION.NO_LBL'),
+        value: this.translate.instant('COMMON.LBL_FALSE_VALUE')
+      }];
     });
   }
   setPageTitle(title: string) {

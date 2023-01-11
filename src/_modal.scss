@@ -281,6 +281,12 @@ body.modal-open::-webkit-scrollbar {
     line-height: 22px;
     letter-spacing: -0.2px;
   }
+
+  &.modal-static {
+     .modal-dialog {
+        transform: scale(1);
+     }
+  }
 }
 
 .modal__icon-container {
@@ -413,7 +419,7 @@ body.modal-open::-webkit-scrollbar {
         app-product-category {
           margin-right: 10px;
 
-          &:last-child() {
+          &:last-child {
             padding-right: 20px;
           }
         }
@@ -423,7 +429,7 @@ body.modal-open::-webkit-scrollbar {
         app-product-category {
           margin-right: 10px;
 
-          &:last-child() {
+          &:last-child {
             padding-right: 20px;
           }
         }
@@ -632,6 +638,16 @@ body.modal-open::-webkit-scrollbar {
 
 .settings-modal-dialog {
   max-height: 100% !important;
+  &.modal {
+    @include allmobiles {
+      .close {
+        @supports (-webkit-touch-callout: none) {
+          /* CSS specific to iOS devices */
+          right: -28px !important;
+        }
+      }
+    }
+  }
 }
 
 .settings-tooltip-dialog {
@@ -667,6 +683,10 @@ body.modal-open::-webkit-scrollbar {
       .close {
         top: 20px !important;
         right: 20px !important;
+        @supports (-webkit-touch-callout: none) {
+          /* CSS specific to iOS devices */ 
+          right: -20px !important;
+        }
       }
     }
   }
@@ -825,6 +845,10 @@ body.modal-open::-webkit-scrollbar {
         .close {
           top: 30px !important;
           right: 20px !important;
+          @supports (-webkit-touch-callout: none) {
+            /* CSS specific to iOS devices */ 
+            right: -20px !important;
+          }
         }
       }
     }
@@ -961,6 +985,7 @@ body.modal-open::-webkit-scrollbar {
   .modal-body {
     width: 375px !important;
     margin: 0 auto;
+    padding-left: 25px !important;
     .modal-body-title {
       width: 310px;
     }
@@ -979,6 +1004,10 @@ body.modal-open::-webkit-scrollbar {
         @include allmobiles {
           top: 25px !important;
           right: 20px !important;
+        }
+        @supports (-webkit-touch-callout: none) {
+          /* CSS specific to iOS devices */ 
+          right: -20px !important;
         }
       }
     }
@@ -1438,7 +1467,7 @@ body.modal-open::-webkit-scrollbar {
   .close{
     width: 16px;
     height: 16px;
-    background-size: cover !important;
+    background-size: auto !important;
   }
 }
 

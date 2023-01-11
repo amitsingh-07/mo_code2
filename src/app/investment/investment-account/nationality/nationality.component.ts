@@ -36,6 +36,7 @@ export class NationalityComponent implements OnInit {
   tooltipDetails: any;
   foreignerModal: any;
   foreignerConfirmModel: any;
+  radioLabelValue = []
 
   constructor(
     public headerService: HeaderService,
@@ -58,6 +59,13 @@ export class NationalityComponent implements OnInit {
       this.tooltipDetails = this.translate.instant('BLOCKED_COUNTRY_TOOLTIP');
       this.foreignerModal = this.translate.instant('SELECT_NATIONALITY.FOREIGNER');
       this.foreignerConfirmModel = this.translate.instant('SELECT_NATIONALITY.FOREIGNER_CONFIRMATION');
+      this.radioLabelValue = [{
+        name: this.translate.instant('SELECT_NATIONALITY.YES_lABEL'),
+        value: this.translate.instant('COMMON.LBL_TRUE_VALUE')
+      }, {
+        name: this.translate.instant('SELECT_NATIONALITY.NO_LABEL'),
+        value: this.translate.instant('COMMON.LBL_FALSE_VALUE')
+      }]
     });
   }
 

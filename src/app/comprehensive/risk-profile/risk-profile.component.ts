@@ -17,7 +17,8 @@ import { LoaderService } from './../../shared/components/loader/loader.service';
 @Component({
   selector: 'app-risk-profile',
   templateUrl: './risk-profile.component.html',
-  styleUrls: ['./risk-profile.component.scss']
+  styleUrls: ['./risk-profile.component.scss'],
+  encapsulation: ViewEncapsulation.None
 })
 export class RiskProfileComponent implements IPageComponent, OnInit {
 

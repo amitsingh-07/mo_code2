@@ -171,7 +171,7 @@
     "TAX_MODEL_DESC": "<p>For Singapore Tax Residents, please note that your NRIC/FIN No. is your Taxpayer Identification No.</p><p>Taxpayer Identification No. is a personal tax account number that has been assigned to you by the country that you are a tax resident of. For more information, please refer to <a  class=\"hyperlink_color\" target='_blank' href='http://www.oecd.org'>http://www.oecd.org</a>.</p>",
     "COUNTRY_TEXT": "Country Of Tax Residence",
     "TIN_QUESTION": "Do you have a Taxpayer Identification Number (TIN) for the above country?",
-    "YES_lABEL": "Yes",
+    "YES_LABEL": "Yes",
     "NO_LABEL": "No",
     "REASON_TEXT": "Reason",
     "TIN_TEXT": "TIN Number",
@@ -248,7 +248,7 @@
     "QUESTION1": "Are you a director, officer, trading representative or employee of SGX trading?",
     "QUESTION2": "Are you a Politically Exposed Person (PEP), close associate of a PEP or family member of a PEP?",
     "QUESTION3": "Is someone else the actual beneficial owner of this account?",
-    "YES_lBL": "Yes",
+    "YES_LBL": "Yes",
     "NO_LBL": "No",
     "CONTINUE": "Continue"
   },

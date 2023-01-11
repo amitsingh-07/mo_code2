@@ -31,6 +31,10 @@ strong {
 }
 .dropdown-control {
   .btn-dropdown {
+    &:active {
+      color: $teal-color;
+      background: $white-color;
+    }
     span.dependent-count {
       color: $app-backgrnd-color;
       margin-right: 4px;
@@ -59,7 +63,7 @@ strong {
   .dropdown-menu.show {
     @include allmobiles {
       left: inherit !important;
-      right: 0px;
+      right: 0px !important;
     }
   }
 }

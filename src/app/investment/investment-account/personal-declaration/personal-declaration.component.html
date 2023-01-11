@@ -55,20 +55,9 @@
                   <!-- Button part -->
                   <div class="flex-row mb15">
                     <div class="flex-col-12">
-                      <div class="btn-group--toggle" ngbRadioGroup name="radioEmploye" formControlName="radioEmploye">
-                        <div class="flex-row">
-                          <div class="flex-col-6">
-                            <label ngbButtonLabel class="btn-outline-primary fixed-btn--sm mr5">
-                              <input ngbButton type="radio" id="empolye_yes" [value]=true> {{
-                          'PERSONAL_DECLARATION.YES_lBL' | translate}}
-                            </label>
-                          </div>
-                          <div class="flex-col-6">
-                            <label ngbButtonLabel class="btn-outline-primary fixed-btn--sm">
-                              <input ngbButton type="radio" id="empolye_no" [value]=false>{{
-                          'PERSONAL_DECLARATION.NO_LBL' | translate}}</label>
-                          </div>
-                        </div>
+                      <div class="btn-group--toggle" name="radioEmploye">
+                        <app-custom-radio-controller formControlName="radioEmploye" name="radioEmploye" [radioLabelValue]="radioLabelValueEmploye"
+                        [defaultLabelStyleClass]="defaultRadioStyleClass" ></app-custom-radio-controller>
                       </div>
                     </div>
                   </div>
@@ -85,20 +74,9 @@
                   <!-- Button part -->
                   <div class="flex-row mb15">
                     <div class="flex-col-12">
-                      <div class="btn-group--toggle" ngbRadioGroup name="radioPEP" formControlName="radioPEP">
-                        <div class="flex-row">
-                          <div class="flex-col-6">
-                            <label ngbButtonLabel class="btn-outline-primary fixed-btn--sm mr5">
-                              <input ngbButton type="radio" id="pep_yes" [value]=true> {{
-                          'PERSONAL_DECLARATION.YES_lBL' | translate}}
-                            </label>
-                          </div>
-                          <div class="flex-col-6">
-                            <label ngbButtonLabel class="btn-outline-primary fixed-btn--sm">
-                              <input ngbButton type="radio" id="pep_no" [value]=false>{{
-                          'PERSONAL_DECLARATION.NO_LBL' | translate}}</label>
-                          </div>
-                        </div>
+                      <div class="btn-group--toggle" name="radioPEP">
+                        <app-custom-radio-controller formControlName="radioPEP" name="radioPEP" [radioLabelValue]="radioLabelValueEmploye"
+                        [defaultLabelStyleClass]="defaultRadioStyleClass" ></app-custom-radio-controller>
                       </div>
                     </div>
                   </div>
@@ -115,20 +93,9 @@
                   <!-- Button part -->
                   <div class="flex-row mb15">
                     <div class="flex-col-12">
-                      <div class="btn-group--toggle" ngbRadioGroup name="radioBeneficial" formControlName="radioBeneficial">
-                        <div class="flex-row">
-                          <div class="flex-col-6">
-                            <label ngbButtonLabel class="btn-outline-primary fixed-btn--sm mr5">
-                              <input (change)="changeBoOption(personalDeclarationForm.controls.radioBeneficial.value)" ngbButton type="radio" id="ben_yes" [value]=true> {{
-                          'PERSONAL_DECLARATION.YES_lBL' | translate}}
-                            </label>
-                          </div>
-                          <div class="flex-col-6">
-                            <label ngbButtonLabel class="btn-outline-primary fixed-btn--sm">
-                              <input (change)="changeBoOption(personalDeclarationForm.controls.radioBeneficial.value)" ngbButton type="radio" id="ben_no" [value]=false>{{
-                          'PERSONAL_DECLARATION.NO_LBL' | translate}}</label>
-                          </div>
-                        </div>
+                      <div class="btn-group--toggle" name="radioBeneficial">
+                        <app-custom-radio-controller formControlName="radioBeneficial" name="radioBeneficial" [radioLabelValue]="radioLabelValueEmploye"
+                        [defaultLabelStyleClass]="defaultRadioStyleClass" (valueChangedEvent)="changeBoOption(personalDeclarationForm.controls.radioBeneficial.value)" flexRowMarPadClass="mb0"></app-custom-radio-controller>
                       </div>
                     </div>
                   </div>

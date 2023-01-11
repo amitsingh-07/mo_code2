@@ -254,6 +254,16 @@ app-my-executor-trustee{
     }
   }
 
+  .dropdown-control{
+    .dropdown{
+        .btn-dropdown{
+            &:active{
+                border: 1px solid $half-baked-blue-color;
+            }
+        }
+    }
+  }
+
   .form-group-single-column .checkbox-button.two-label {
       margin-bottom: 19px;
       @include allmobiles {

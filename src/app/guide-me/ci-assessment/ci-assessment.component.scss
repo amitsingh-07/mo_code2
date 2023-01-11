@@ -28,4 +28,13 @@ app-ci-assessment {
     padding: 20px 0;
     border-bottom: 1px dashed $ci-note-brdr-color;
   }
+  .dropdown {
+    .btn-dropdown {
+      &:active {
+        color: $teal-color;
+        border: 1px solid $half-baked-blue-color;
+        background: $white-color;
+      }
+    }
+  }
 }

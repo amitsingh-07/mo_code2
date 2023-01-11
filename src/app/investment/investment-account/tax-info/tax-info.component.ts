@@ -38,6 +38,8 @@ export class TaxInfoComponent implements OnInit {
   investmentAccountCommon: InvestmentAccountCommon = new InvestmentAccountCommon();
   showNricHint = false;
   tooltipDetails: any;
+  radioLabelValue = [];
+  defaultRadioStyleClass = 'btn-outline-primary fixed-btn--sm';
 
   constructor(
     public headerService: HeaderService,
@@ -57,6 +59,13 @@ export class TaxInfoComponent implements OnInit {
       this.translator = this.translate.instant('TAX_INFO');
       this.tooltipDetails = this.translate.instant('BLOCKED_COUNTRY_TOOLTIP');
       this.setPageTitle(this.pageTitle);
+      this.radioLabelValue = [{
+        name: this.translate.instant('TAX_INFO.YES_LABEL'),
+        value: this.translate.instant('COMMON.LBL_TRUE_VALUE')
+      }, {
+        name: this.translate.instant('TAX_INFO.NO_LABEL'),
+        value: this.translate.instant('COMMON.LBL_FALSE_VALUE')
+      }];
     });
   }
   setPageTitle(title: string) {
@@ -286,9 +295,9 @@ export class TaxInfoComponent implements OnInit {
   setControlEnableDisable(taxInfoItem, controlName, enableFlag) {
     if (taxInfoItem.controls[controlName]) {
       if (enableFlag) {
-        taxInfoItem.controls[controlName].enable(true);
+        (taxInfoItem.controls[controlName] as FormControl).enable();
       } else {
-        taxInfoItem.controls[controlName].disable(true);
+        (taxInfoItem.controls[controlName] as FormControl).disable();
       }
     }
   }

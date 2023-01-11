@@ -71,7 +71,7 @@ app-portfolio-details {
         cursor: pointer;
 
         .edit_button {
-          background: url('/assets/images/edit-icon.svg') no-repeat;
+          background: url('./../../../../assets/images/edit-icon.svg') no-repeat;
           display: inline-flex;
           margin-left: 12px;
           width: 23px;
@@ -131,7 +131,7 @@ app-portfolio-details {
     margin-top: 0 !important;
     font-family: $muli-bold !important;
     font-size: 22px;
-    color: $white-color;
+    color: $white-color !important;
   }
 
   hr {
@@ -159,7 +159,7 @@ app-portfolio-details {
       .btn-primary {
         font-size: 22px;
         padding: 10px 20px;
-        color: $white-color;
+        color: $white-color !important;
       }
     }
 

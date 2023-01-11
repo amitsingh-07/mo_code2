@@ -23,6 +23,12 @@
     }
     .modal .close {
       opacity: 1;
+      right: 6px !important;
+      top: 14px !important;
+      @supports (-webkit-touch-callout: none) {
+        /* CSS specific to iOS devices */ 
+        right: -30px !important;
+      }
     }
 }
 
@@ -57,8 +63,8 @@
       height: 50px;
       width: 50px;
       opacity: 1;
-      right: 46% !important;
-      top: 4% !important;
+      right: 214px !important;
+      top: 8px !important;
       padding: 0px !important;
     }
     button.close span {
@@ -78,6 +84,7 @@
       right: 20% !important;
       top: 0 !important;
       overflow: hidden;
+      margin: 1.75rem auto;
     }
     .help-modal-image {
       background-size: cover !important;
