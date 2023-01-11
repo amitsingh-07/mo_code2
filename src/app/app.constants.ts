@@ -65,5 +65,5 @@ export let appConstants = {
    MYINFO_LINK_INSURANCE: 'insurance',
    MYINFO_INSURANCE_ATTRIBUTES: ['uinfin','cpfbalances'],
    CHECK_MYINFO_INSURANCE_ATTRIBUTES: 'uinfin,cpfbalances',
-   RESTRICTED_HYPERLINK_URL_CONTENTS: ['mailto', 'javascript: void(0)']
+   RESTRICTED_HYPERLINK_URL_CONTENTS: ['mailto', 'javascript: void(0)', 'tel:', 'callto:', '.pdf']
 };
