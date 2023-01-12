@@ -126,7 +126,8 @@ export class AppComponent implements IComponentCanDeactivate, OnInit, AfterViewI
     document.body.addEventListener('click', evt => {
       const anchorEle = evt.target as HTMLAnchorElement;
       let url = anchorEle.getAttribute('href');
-      if (anchorEle.tagName.toLowerCase() === 'a' && appConstants.RESTRICTED_HYPERLINK_URL_CONTENTS.filter(ele => url.includes(ele)).length === 0) {
+      let isRouterLink = anchorEle.getAttribute('ng-reflect-router-link');
+      if (anchorEle.tagName.toLowerCase() === 'a' && !isRouterLink && appConstants.RESTRICTED_HYPERLINK_URL_CONTENTS.filter(ele => url.includes(ele)).length === 0) {
         evt.preventDefault();
         let _target = anchorEle.getAttribute('target');
         Util.openExternalUrl(url, _target);
