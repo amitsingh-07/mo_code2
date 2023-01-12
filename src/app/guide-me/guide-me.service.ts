@@ -8,6 +8,7 @@ import { FormError } from './get-started/get-started-form/form-error';
 import { UserInfo } from './get-started/get-started-form/user-info';
 import { GuideMeFormData } from './guide-me-form-data';
 import { GUIDE_ME_ROUTE_PATHS } from './guide-me-routes.constants';
+import { GUIDE_ME_CONSTANTS } from './guide-me.constants';
 import { HospitalPlan } from './hospital-plan/hospital-plan';
 import { IMyIncome } from './income/income.interface';
 import { IExistingCoverage } from './insurance-results/existing-coverage-modal/existing-coverage.interface';
@@ -22,12 +23,6 @@ import { ProtectionNeeds } from './protection-needs/protection-needs';
 const SESSION_STORAGE_KEY = 'app_guided_session';
 const INSURANCE_RESULTS_COUNTER_KEY = 'insurance_results_counter';
 const GUIDE_ME_FORM_DATA_LOADED = 'app_guided_form_data_loaded';
-
-const PROTECTION_NEEDS_LIFE_PROTECTION_ID = 1;
-const PROTECTION_NEEDS_CRITICAL_ILLNESS_ID = 2;
-const PROTECTION_NEEDS_OCCUPATIONAL_DISABILITY_ID = 3;
-const PROTECTION_NEEDS_LIFE_HOSPITAL_PLAN_ID = 4;
-const PROTECTION_NEEDS_LIFE_LONG_TERM_CARE_ID = 5;
 
 const MYINFO_CPF_BALANCES = 'myinfo_cpf_balances';
 
@@ -364,19 +359,19 @@ export class GuideMeService {
     const protectionNeeds = this.getSelectedProtectionNeedsList();
     for (const thisNeed of protectionNeeds) {
       switch (thisNeed.protectionTypeId) {
-        case PROTECTION_NEEDS_LIFE_PROTECTION_ID:
+        case GUIDE_ME_CONSTANTS.INSURANCE_PLAN_ID.PROTECTION_NEEDS_LIFE_PROTECTION_ID:
           selectedProtectionNeedsPage.push(GUIDE_ME_ROUTE_PATHS.LIFE_PROTECTION);
           break;
-        case PROTECTION_NEEDS_CRITICAL_ILLNESS_ID:
+        case GUIDE_ME_CONSTANTS.INSURANCE_PLAN_ID.PROTECTION_NEEDS_CRITICAL_ILLNESS_ID:
           selectedProtectionNeedsPage.push(GUIDE_ME_ROUTE_PATHS.CRITICAL_ILLNESS);
           break;
-        case PROTECTION_NEEDS_OCCUPATIONAL_DISABILITY_ID:
+        case GUIDE_ME_CONSTANTS.INSURANCE_PLAN_ID.PROTECTION_NEEDS_OCCUPATIONAL_DISABILITY_ID:
           selectedProtectionNeedsPage.push(GUIDE_ME_ROUTE_PATHS.OCCUPATIONAL_DISABILITY);
           break;
-        case PROTECTION_NEEDS_LIFE_HOSPITAL_PLAN_ID:
+        case GUIDE_ME_CONSTANTS.INSURANCE_PLAN_ID.PROTECTION_NEEDS_LIFE_HOSPITAL_PLAN_ID:
           selectedProtectionNeedsPage.push(GUIDE_ME_ROUTE_PATHS.HOSPITAL_PLAN);
           break;
-        case PROTECTION_NEEDS_LIFE_LONG_TERM_CARE_ID:
+        case GUIDE_ME_CONSTANTS.INSURANCE_PLAN_ID.PROTECTION_NEEDS_LIFE_LONG_TERM_CARE_ID:
           selectedProtectionNeedsPage.push(GUIDE_ME_ROUTE_PATHS.LONG_TERM_CARE);
           break;
       }
@@ -436,19 +431,19 @@ export class GuideMeService {
     const protectionNeeds = this.getProtectionNeeds().filter((data) => data.status === false);
     for (const protectionNeed of protectionNeeds) {
       switch (protectionNeed.protectionTypeId) {
-        case PROTECTION_NEEDS_LIFE_PROTECTION_ID:
+        case GUIDE_ME_CONSTANTS.INSURANCE_PLAN_ID.PROTECTION_NEEDS_LIFE_PROTECTION_ID:
           delete this.guideMeFormData.lifeProtectionData;
           break;
-        case PROTECTION_NEEDS_CRITICAL_ILLNESS_ID:
+        case GUIDE_ME_CONSTANTS.INSURANCE_PLAN_ID.PROTECTION_NEEDS_CRITICAL_ILLNESS_ID:
           delete this.guideMeFormData.criticalIllness;
           break;
-        case PROTECTION_NEEDS_OCCUPATIONAL_DISABILITY_ID:
+        case GUIDE_ME_CONSTANTS.INSURANCE_PLAN_ID.PROTECTION_NEEDS_OCCUPATIONAL_DISABILITY_ID:
           delete this.guideMeFormData.occupationalDisability;
           break;
-        case PROTECTION_NEEDS_LIFE_HOSPITAL_PLAN_ID:
+        case GUIDE_ME_CONSTANTS.INSURANCE_PLAN_ID.PROTECTION_NEEDS_LIFE_HOSPITAL_PLAN_ID:
           delete this.guideMeFormData.hospitalPlanData;
           break;
-        case PROTECTION_NEEDS_LIFE_LONG_TERM_CARE_ID:
+        case GUIDE_ME_CONSTANTS.INSURANCE_PLAN_ID.PROTECTION_NEEDS_LIFE_LONG_TERM_CARE_ID:
           delete this.guideMeFormData.longTermCareData;
           break;
       }
@@ -486,15 +481,15 @@ export class GuideMeService {
     this.result_title = data.protectionType;
     this.result_icon = (data.protectionType.replaceAll(' ', '-')) + '-icon.svg';
     switch (data.protectionType) {
-      case 'Life Protection':
+      case GUIDE_ME_CONSTANTS.INSURANCE_PLANS.LIFE_PROTECTION:
         break;
-      case 'Critical Illness':
+      case GUIDE_ME_CONSTANTS.INSURANCE_PLANS.CRITICAL_ILLNESS:
         break;
-      case 'Occupational Disability':
+      case GUIDE_ME_CONSTANTS.INSURANCE_PLANS.OCCUPATIONAL_DISABILITY:
         break;
-      case 'Long Term Care':
+      case GUIDE_ME_CONSTANTS.INSURANCE_PLANS.LONG_TERM_CARE:
         break;
-      case 'Hospital Plan':
+      case GUIDE_ME_CONSTANTS.INSURANCE_PLANS.HOSPITAL_PLAN:
         this.result_value = null;
         break;
     }
@@ -538,17 +533,17 @@ export class GuideMeService {
     const currentLongTerm = this.getLongTermCare();
     let currentValue;
     switch (currentLongTerm.careGiverType) {
-      case 'Nursing Home':
-        currentValue = 2500;
+      case GUIDE_ME_CONSTANTS.HOSPITAL_CARE_TYPES.NURSING_HOME.KEY:
+        currentValue = GUIDE_ME_CONSTANTS.HOSPITAL_CARE_TYPES.NURSING_HOME.VALUE;
         break;
-      case 'Daycare Support':
-        currentValue = 1800;
+      case GUIDE_ME_CONSTANTS.HOSPITAL_CARE_TYPES.DAYCARE_SUPPORT.KEY:
+        currentValue = GUIDE_ME_CONSTANTS.HOSPITAL_CARE_TYPES.DAYCARE_SUPPORT.VALUE;
         break;
-      case 'Domestic Helper':
-        currentValue = 1200;
+      case GUIDE_ME_CONSTANTS.HOSPITAL_CARE_TYPES.DOMESTIC_HELPER.KEY:
+        currentValue = GUIDE_ME_CONSTANTS.HOSPITAL_CARE_TYPES.DOMESTIC_HELPER.VALUE;
         break;
-      case 'Family Member':
-        currentValue = 600;
+      case GUIDE_ME_CONSTANTS.HOSPITAL_CARE_TYPES.FAMILY_MEMBER.KEY:
+        currentValue = GUIDE_ME_CONSTANTS.HOSPITAL_CARE_TYPES.FAMILY_MEMBER.VALUE;
         break;
     }
     return currentValue;
@@ -567,7 +562,7 @@ export class GuideMeService {
     data.userInfo = {
       gender: response.enquiryData.gender,
       dob,
-      smoker: response.enquiryData.smoker ? 'smoker' : 'non-smoker',
+      smoker: response.enquiryData.smoker ? GUIDE_ME_CONSTANTS.SMOKER_TYPE.SMOKER : GUIDE_ME_CONSTANTS.SMOKER_TYPE.NON_SMOKER,
       customDob,
       dependent: response.enquiryData.numberOfDependents
     };

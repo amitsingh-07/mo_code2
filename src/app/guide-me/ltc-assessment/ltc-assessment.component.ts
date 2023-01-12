@@ -1,7 +1,7 @@
 
 
 import { Component, HostListener, OnDestroy, OnInit, ViewEncapsulation } from '@angular/core';
-import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { TranslateService } from '@ngx-translate/core';
@@ -37,7 +37,7 @@ export class LtcAssessmentComponent implements IPageComponent, OnInit, OnDestroy
   private subscription: Subscription;
 
   constructor(
-    private formBuilder: FormBuilder, private router: Router,
+    private router: Router,
     private translate: TranslateService, private guideMeService: GuideMeService,
     public modal: NgbModal, public navbarService: NavbarService,
     private guideMeApiService: GuideMeApiService, private aboutAge: AboutAge

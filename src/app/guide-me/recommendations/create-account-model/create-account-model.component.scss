@@ -9,16 +9,15 @@ app-create-account-model {
     }
   }
   .selected-count {
-    background-color: #ff872f;
+    background-color: $crusta-orange-color;
     width: 39px;
     height: 26px;
     padding: 0 15px;
     border-radius: 13px;
-    font-family: Muli;
+    font-family: $muli-bold;
     font-size: 18px;
-    font-weight: bold;
     letter-spacing: -0.1px;
-    color: #ffffff;
+    color: $white-color;
     padding-bottom: 3px;
     margin-right: 10px;
 
@@ -33,7 +32,7 @@ app-create-account-model {
     font-size: 18px;
     line-height: 1.11;
     letter-spacing: -0.2px;
-    color: #5e5e5e;
+    color: $silver-grey-color;
     margin-right: 0 !important;
 
     @include allmobiles {
@@ -44,7 +43,7 @@ app-create-account-model {
   }
 
   .choose_ops {
-    color: #5e5e5e;
+    color: $silver-grey-color;
     font-family: $muli-bold;
     text-align: center;
     margin-top: 20px;
@@ -75,7 +74,7 @@ app-create-account-model {
     }
 
     .or-block {
-      color: #5e5e5e;
+      color: $silver-grey-color;
       font-family: $muli-regular;
       font-size: 18px;
       line-height: 1.33;

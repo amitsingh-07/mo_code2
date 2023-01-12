@@ -65,8 +65,8 @@ app-recommendations {
   .container-fluid {
     padding-top: 0 !important;
     position: relative;
-    border-top: 1px solid #76adb2;
-    background: #2d8289;
+    border-top: 1px solid $gulf-stream-color;
+    background: $dark-teal-color;
     .carousel-control-prev {
     left: -100px;
     cursor: pointer;
@@ -91,7 +91,7 @@ app-recommendations {
   .plan-type-list {
     display: flex;
     justify-content: center;
-    background-color: #00c5c4;
+    background-color: $robins-egg-blue-color;
     @include allmobiles {
       justify-content: start !important;
     }
@@ -132,7 +132,7 @@ app-recommendations {
   }
 
   .plan-type.active {
-    background-color: #c0eded;
+    background-color: $form-title-backgrnd-color;
     color: $app-backgrnd-color;
     font-size: 18px;
     display: table;
@@ -152,10 +152,10 @@ app-recommendations {
     }
   }
   .carousel-content {
-    background-color: #fff;
+    background-color: $white-color;
     border-radius: 10px;
     padding: 20px;
-    color: #333;
+    color: $bright-grey-color;
     @include allmobiles {
       padding: 0px;
     }
@@ -164,7 +164,7 @@ app-recommendations {
   .plan-type-mobile {
     text-align: center;
     padding: 15px 0px;
-    background-color: #01c5c4;
+    background-color: $robins-egg-red-color;
   }
 
   @media screen and (max-width: 767px) {
@@ -193,7 +193,7 @@ app-recommendations {
   .page-indicator span {
     width: 11px;
     height: 11px;
-    background-color: #73cece;
+    background-color: $downy-color;
     border-radius: 10px;
     margin-right: 10px;
     display: block;
@@ -204,7 +204,7 @@ app-recommendations {
   }
 
   .page-indicator span.active {
-    background-color: #fff;
+    background-color: $white-color;
   }
 
   .carousel-item {
@@ -263,15 +263,12 @@ app-recommendations {
     z-index: 9;
   }
    .coverage-details-wrapper {
-      background: #2d8289;
+      background: $dark-teal-color;
       .coverage-details {
         padding-left: 20px;
         padding-top: 8px;
         padding-bottom: 8px;
         font-size: 16px;
-        //padding-left: 145px !important;
-        //padding-right: 125px !important;
-        //background: #2d8289;
         max-width: 1024px;
         margin: 0 auto;
         @include iPadLandscape {
