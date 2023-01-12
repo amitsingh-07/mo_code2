@@ -688,10 +688,9 @@ export class EditProfileComponent implements OnInit, OnDestroy {
   }
 
   showUploadDoc() {
-    if (this.ckaInfo && typeof this.ckaInfo.ckaretake == 'boolean' && !this.ckaInfo.ckaretake) {
+    if (this.ckaInfo && this.ckaInfo.ckaretake !== null && !this.ckaInfo.ckaretake) {
       this.investmentCommonService.setCKARedirectFromLocation(INVESTMENT_COMMON_CONSTANTS.CKA_REDIRECT_CONSTS.PROFILE);
-      const url = INVESTMENT_ENGAGEMENT_JOURNEY_ROUTE_PATHS.CKA_UPLOAD_DOCUMENT;
-      this.router.navigate([url]);
+      this.router.navigate([INVESTMENT_ENGAGEMENT_JOURNEY_ROUTE_PATHS.CKA_UPLOAD_DOCUMENT]);
     }
   }
 
