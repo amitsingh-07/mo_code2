@@ -129,7 +129,7 @@ export class CpfPrerequisitesComponent implements OnInit {
   }
 
   startAssessment() {
-    this.investmentCommonService.setCKARedirectFromLocation(INVESTMENT_COMMON_ROUTE_PATHS.CPF_PREREQUISITES);
+    this.investmentCommonService.setCKARedirectFromLocation(INVESTMENT_COMMON_CONSTANTS.CKA_REDIRECT_CONSTS.PREREQUISITES);
     const ref = this.modal.open(ModelWithButtonComponent, { centered: true });
     ref.componentInstance.errorTitle = this.translate.instant(
       'OPEN_CKA.TITLE'
@@ -334,7 +334,7 @@ export class CpfPrerequisitesComponent implements OnInit {
   }
 
   uploadCertificate() {
-    this.investmentCommonService.setCKARedirectFromLocation(INVESTMENT_COMMON_ROUTE_PATHS.CPF_PREREQUISITES);
+    this.investmentCommonService.setCKARedirectFromLocation(INVESTMENT_COMMON_CONSTANTS.CKA_REDIRECT_CONSTS.PREREQUISITES);
     const url = INVESTMENT_ENGAGEMENT_JOURNEY_ROUTE_PATHS.CKA_UPLOAD_DOCUMENT;
     this.router.navigate([url]);
   }

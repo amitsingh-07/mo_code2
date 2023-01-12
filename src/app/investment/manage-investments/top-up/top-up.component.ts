@@ -116,7 +116,7 @@ export class TopUpComponent implements OnInit, OnDestroy {
     });
     if (this.formValues['selectedCustomerPortfolio']) {
       this.getMonthlyInvestmentInfo(this.formValues['selectedCustomerPortfolioId'] ? this.formValues['selectedCustomerPortfolioId'] : this.formValues.selectedCustomerPortfolio?.customerPortfolioId);
-      this.getAwaitingOrPendingInfo(this.formValues['selectedCustomerPortfolioId'],
+      this.getAwaitingOrPendingInfo(this.formValues['selectedCustomerPortfolioId'] ? this.formValues['selectedCustomerPortfolioId'] : this.formValues.selectedCustomerPortfolio?.customerPortfolioId,
       this.awaitingOrPendingReq(this.formValues.selectedCustomerPortfolio.fundingTypeValue));
     }
     if (this.formValues['selectedCustomerPortfolio'] &&
@@ -182,9 +182,10 @@ export class TopUpComponent implements OnInit, OnDestroy {
 
   // set the selected portfolio if there when page loaded
   setSelectedPortfolio() {
-    if (this.formValues['selectedCustomerPortfolioId']) {
+    if (this.formValues['selectedCustomerPortfolioId'] || this.formValues['selectedCustomerPortfolio']) {
+      const searchId = this.formValues['selectedCustomerPortfolioId'] ? this.formValues['selectedCustomerPortfolioId'] : this.formValues.selectedCustomerPortfolio?.customerPortfolioId;
       const value = this.portfolioList.find((data) => {
-        return data.customerPortfolioId === this.formValues['selectedCustomerPortfolioId'];
+        return data.customerPortfolioId === searchId;
       });
       this.setDropDownValue('portfolio', value);
     }
@@ -346,7 +347,7 @@ export class TopUpComponent implements OnInit, OnDestroy {
   }
 
   openCKAModal() {
-    this.investmentCommonService.setCKARedirectFromLocation(MANAGE_INVESTMENTS_ROUTE_PATHS.TOPUP);
+    this.investmentCommonService.setCKARedirectFromLocation(INVESTMENT_COMMON_CONSTANTS.CKA_REDIRECT_CONSTS.TOPUP);
     const ref = this.modal.open(ModelWithButtonComponent, { centered: true , windowClass: 'custom-cka-modal' });
     ref.componentInstance.errorTitle = this.translate.instant(
       'OPEN_CKA.TITLE'
