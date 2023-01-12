@@ -7,6 +7,7 @@ import { MultiTranslateHttpLoader } from 'ngx-translate-multi-http-loader';
 
 import { SharedModule } from '../shared/shared.module';
 import { SingPassComponent } from './singpass.component';
+import { SingpassModalComponent } from './singpass-modal/singpass-modal.component';
 
 export function createTranslateLoader(http: HttpClient) {
     return new MultiTranslateHttpLoader(
@@ -32,7 +33,8 @@ export function createTranslateLoader(http: HttpClient) {
     ],
     exports: [SingPassComponent],
     declarations: [
-        SingPassComponent
+        SingPassComponent,
+        SingpassModalComponent
     ],
     entryComponents: [],
     providers: []

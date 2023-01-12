@@ -364,7 +364,7 @@ export class YourPortfolioComponent implements OnInit, OnDestroy {
         break;
       }
       case 6: {
-        window.open('https://www.moneyowl.com.sg/faq-investment/wiseincome-portfolio', '_blank');
+        Util.openExternalUrl('https://www.moneyowl.com.sg/faq-investment/wiseincome-portfolio', '_blank');
         break;
       }
       case 7: {
@@ -394,8 +394,9 @@ export class YourPortfolioComponent implements OnInit, OnDestroy {
   }
 
   goToTopupInstructionLink() {
-    window.open(MANAGE_INVESTMENTS_CONSTANTS.TOPUP_INSTRUCTION_URL, '_blank');
+    Util.openExternalUrl(MANAGE_INVESTMENTS_CONSTANTS.TOPUP_INSTRUCTION_URL, '_blank');
   }
+
   showTransferInstructionModal() {
     let pendingBuyRequestCount = 0;
     if (this.pendingBuyRequests && this.pendingBuyRequests.value) {
@@ -590,16 +591,16 @@ export class YourPortfolioComponent implements OnInit, OnDestroy {
   getCpfIaAccDetails() {
     if (this.portfolio.fundingTypeValue === INVESTMENT_COMMON_CONSTANTS.FUNDING_METHODS.CPF_OA) {
       // this.subscription = this.authService.get2faUpdateEvent.subscribe((token) => {
-        this.manageInvestmentsService.getProfileCPFIAccountDetails(true).subscribe((data) => {
-          if (data) {
-            this.cpfiaAccDetail = data;
-          } else {
-            this.cpfiaAccDetail = null;
-          }
-        },
-          (err) => {
-            this.investmentAccountService.showGenericErrorModal();
-          });
+      this.manageInvestmentsService.getProfileCPFIAccountDetails(true).subscribe((data) => {
+        if (data) {
+          this.cpfiaAccDetail = data;
+        } else {
+          this.cpfiaAccDetail = null;
+        }
+      },
+        (err) => {
+          this.investmentAccountService.showGenericErrorModal();
+        });
       // });
     }
   }
@@ -644,7 +645,7 @@ export class YourPortfolioComponent implements OnInit, OnDestroy {
   }
 
   getPortFolioBadgeData(portfolio: any): string {
-    let textKey = portfolio?.fundingTypeValue == INVESTMENT_COMMON_CONSTANTS.FUNDING_METHODS.SRS ? 'YOUR_INVESTMENT.SRS'  : 'YOUR_INVESTMENT.CPF_OA';
+    let textKey = portfolio?.fundingTypeValue == INVESTMENT_COMMON_CONSTANTS.FUNDING_METHODS.SRS ? 'YOUR_INVESTMENT.SRS' : 'YOUR_INVESTMENT.CPF_OA';
     return this.translate.instant(textKey);
   }
 }

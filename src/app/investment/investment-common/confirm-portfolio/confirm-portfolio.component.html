@@ -56,7 +56,7 @@
                 <app-annual-fees [portfolioType]="portfolio.portfolioType" [feeDetails]="portfolio.feeDetails"></app-annual-fees>
             </div>
             <div *ngIf="!wiseIncomeEnabled" class="faq_link">
-                <a *ngIf="!authService.isUserTypeCorporate" target="_blank" routerLink='/faq' fragment="investment">{{'PORTFOLIO_RECOMMENDATION.FAQ_DESC_TEXT' | translate}}</a>
+                <a *ngIf="!authService.isUserTypeCorporate" target="_blank" href="https://www.moneyowl.com.sg/faq-investment/">{{'PORTFOLIO_RECOMMENDATION.FAQ_DESC_TEXT' | translate}}</a>
                 <a *ngIf="authService.isUserTypeCorporate" target="_blank" routerLink="{{corpFaq}}">{{'PORTFOLIO_RECOMMENDATION.FAQ_DESC_TEXT' | translate}}</a>
             </div>
             
