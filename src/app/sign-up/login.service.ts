@@ -30,6 +30,7 @@ import { ModelWithButtonComponent } from '../shared/modal/model-with-button/mode
 import { CORPBIZ_ROUTES_PATHS } from '../corpbiz-welcome-flow/corpbiz-welcome-flow.routes.constants';
 import { NavbarService } from '../shared/navbar/navbar.service';
 import { Util } from '../shared/utils/util';
+import { SingpassModalComponent } from '../singpass/singpass-modal/singpass-modal.component';
 
 @Injectable({
   providedIn: 'root'
@@ -216,25 +217,26 @@ export class LoginService {
 
   displaySingpassLoginError(data) {
     if (data.responseMessage.responseCode === 5127) {  // Multiple NRIC
-      this.displayErrorModal(this.modalText.SINGPASS_MULTIPLE_ACC_MODAL, false);
+      this.displayErrorModal(this.modalText.SINGPASS_MULTIPLE_ACC_MODAL);
     } else if (data.responseMessage.responseCode === 5128) { // Investment Acc Pending
-      this.displayErrorModal(this.modalText.SINGPASS_INVESTMENT_ACC_PENDING_MODAL, false);
+      this.displayErrorModal(this.modalText.SINGPASS_INVESTMENT_ACC_PENDING_MODAL);
     } else { // SingPass Login Unsuccessful
-      this.displayErrorModal(this.modalText.SINGPASS_LOGIN_FAIL_MODAL, true);
-    }
-  }
-
-  displayErrorModal(modalMsg, withBtn) {
-    const ref = this.modal.open(ModelWithButtonComponent, { centered: true });
-    ref.componentInstance.errorTitle = this.translate.instant(modalMsg.TITLE);
-    ref.componentInstance.errorMessageHTML = this.translate.instant(modalMsg.MESSAGE);
-    if (withBtn) {
-      ref.componentInstance.primaryActionLabel = this.translate.instant(modalMsg.BACK_BTN);
+      const ref = this.modal.open(SingpassModalComponent, { centered: true });
+      ref.componentInstance.title = this.translate.instant(this.modalText.SINGPASS_LOGIN_FAIL_MODAL.TITLE);
+      ref.componentInstance.msgOne = this.translate.instant(this.modalText.SINGPASS_LOGIN_FAIL_MODAL.MESSAGE_1);
+      ref.componentInstance.msgTwo = this.translate.instant(this.modalText.SINGPASS_LOGIN_FAIL_MODAL.MESSAGE_2);
+      ref.componentInstance.primaryActionLabel = this.translate.instant(this.modalText.SINGPASS_LOGIN_FAIL_MODAL.BACK_BTN);
       ref.componentInstance.primaryAction.subscribe(() => {
         this.toogleLoginType.next('PASSWORD');
         this.modal.dismissAll();
       });
     }
+  }
+
+  displayErrorModal(modalMsg) {
+    const ref = this.modal.open(ModelWithButtonComponent, { centered: true });
+    ref.componentInstance.errorTitle = this.translate.instant(modalMsg.TITLE);
+    ref.componentInstance.errorMessageHTML = this.translate.instant(modalMsg.MESSAGE);
   }
 
   setEnquiryIdAndJourneyType() {
