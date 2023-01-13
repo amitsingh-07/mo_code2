@@ -140,21 +140,8 @@ export class TransactionsComponent implements OnInit {
     });
     this.manageInvestmentsService.downloadStatement(params, this.portfolio.customerPortfolioId).subscribe((response) => {
       this.loaderService.hideLoader();
-      const pdfUrl = window.URL.createObjectURL(response);
-      if (iOS) {
-        if (newWindow.document.readyState === 'complete') {
-          newWindow.location.assign(pdfUrl);
-        } else {
-          newWindow.onload = () => {
-            newWindow.location.assign(pdfUrl);
-          };
-        }
-      } else {
-        const blob = new Blob([response], { type: 'application/pdf' });
-        const url = window.URL.createObjectURL(blob);
-        const fileName = month.monthName + '_' + month.year + '_' + '.pdf';
-        this.fileUtil.createDownloadUrl(fileName, url, false);
-      }
+      const fileName = month.monthName + '_' + month.year + '_' + '.pdf';
+      this.fileUtil.downloadPDF(response, newWindow, fileName);
     },
       (err) => {
         this.loaderService.hideLoader();
