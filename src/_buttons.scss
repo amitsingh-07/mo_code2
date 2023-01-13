@@ -39,13 +39,13 @@ button:active:focus {
     }
 
     &:hover {
-      background-color: #0de0de !important;
+      background-color: $bright-turquiose-color !important;
     }
 
     &:focus,
     &:active {
       outline: none !important;
-      background: #00c5c4 !important;
+      background: $robins-egg-blue-color !important;
       border-color: none !important;
       box-shadow: 0 12px 14px 0 rgba(0, 0, 0, 0.21) !important;
     }
@@ -67,13 +67,13 @@ button:active:focus {
     color: $teal-color;
 
     &:hover {
-      background-color: #eafaf9;
+      background-color: $polar-blue-color;
       box-shadow: 0 12px 14px 0 rgba(0, 0, 0, 0.21);
     }
 
     &:focus,
     &:active {
-      background-color: #eafaf9;
+      background-color: $polar-blue-color;
       box-shadow: 0px;
     }
 
@@ -90,32 +90,32 @@ button:active:focus {
     box-shadow: 0 2px 8px 0 rgba(0, 0, 0, 0.18) !important;
 
     &:hover {
-      background-color: #00c5c4;
+      background-color: $robins-egg-blue-color;
     }
 
     &:focus,
     &:active {
       outline: none !important;
-      background: #00c5c4 !important;
+      background: $robins-egg-blue-color !important;
       border-color: none !important;
     }
   }
 
   &.btn-secondary {
     background-color: transparent;
-    border: 1px solid #00c5c4;
+    border: 1px solid $robins-egg-blue-color;
     color: $app-backgrnd-color;
 
     &:hover {
       background-color: transparent;
-      border: 1px solid #00c5c4 !important;
+      border: 1px solid $robins-egg-blue-color !important;
       color: $app-backgrnd-color !important;
     }
 
     &:focus,
     &:active {
       outline: none !important;
-      border: 1px solid #00c5c4 !important;
+      border: 1px solid $robins-egg-blue-color !important;
       color: $app-backgrnd-color !important;
       background-color: transparent !important;
     }
@@ -127,8 +127,8 @@ button:active:focus {
       padding: 5px 10px;
       font-family: $muli-regular;
       font-size: 14px;
-      color: #8cd7d7;
-      border: 1px solid #8cd7d7;
+      color: $intro-block-heading-color;
+      border: 1px solid $intro-block-heading-color;
     }
   }
 
@@ -264,25 +264,25 @@ button:active:focus {
 }
 
 .btn.btn-primary:hover {
-  background-color: #0de0de !important;
+  background-color: $bright-turquiose-color !important;
 
   @include allmobiles {
-    background-color: #00c5c4 !important;
+    background-color: $robins-egg-blue-color !important;
   }
 
   @include tablet {
-    background-color: #00c5c4 !important;
+    background-color: $robins-egg-blue-color !important;
   }
 }
 
 .btn:disabled:hover {
-  background: #009a9a !important;
+  background: $btn-disabled-bg !important;
   cursor: not-allowed;
 }
 
 .btn:disabled:active {
-  background: #009a9a !important;
-  color: #99cfcf;
+  background: $btn-disabled-bg !important;
+  color: $btn-disabled-color;
   cursor: not-allowed;
 }
 /*Fixed button small*/
@@ -338,7 +338,7 @@ button:active:focus {
   border-radius: 8px;
   color: $myinfo-btn-color;
   margin-bottom: 10px;
-  color: #e57300;
+  color: $mango-tango-color;
   cursor: pointer;
 
   .myinfo__block__btn {
@@ -388,7 +388,7 @@ button:active:focus {
   min-width: 337px;
   max-width: 370px;
   box-shadow: 0 8px 12px 0 rgba(0, 0, 0, 0.2);
-  border: solid 1px #ff7f00;
+  border: solid 1px $myinfo-block-btn-bg-color;
 
   @include allmobiles {
     width: 100% !important;
@@ -444,7 +444,7 @@ button:active:focus {
 
 /*Dependentant Count Button Styles*/
 .dependent-count--btn {
-  background: #FFFFFF;
+  background: $white-color;
   padding: 0.90rem;
   text-align: center;
   color: $app-backgrnd-color;

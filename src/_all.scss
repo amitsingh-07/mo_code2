@@ -218,7 +218,7 @@ label{
     .navbar__subtitle--mobile {
       max-width: 346px;
       text-align: center;
-      color: #5e5e5e;
+      color: $silver-grey-color;
       letter-spacing: -0.2px;
       line-height: 1.25;
       font-size: 16px;
@@ -289,7 +289,7 @@ label{
       @include minMobilemaxPhablet {
         width: 100%;
         min-height: 45px;
-        border-bottom: 1px solid #e1e1e1;
+        border-bottom: 1px solid $border-grey-color;
         box-shadow: 0 2px 14px 0 rgba(0, 0, 0, 0.25);
 
         &.navbar--hidden {
@@ -382,7 +382,7 @@ label{
         li {
           &.nav-item {
             &.teal-bg {
-              background: #00a7a7 !important;
+              background: $teal-color !important;
 
               a {
                 color: $white-color !important;
@@ -566,7 +566,7 @@ label{
           padding: 0px;
           border-radius: 0px;
           border: 0px;
-          border-top: 1px solid #e1e1e1;
+          border-top: 1px solid $border-grey-color;
         }
 
         &.form-control {
@@ -907,7 +907,7 @@ label{
         right: 15px;
         transform: rotate(45deg);
         background-color: $white-color;
-        border: 0px solid #e1e1e1;
+        border: 0px solid $border-grey-color;
         z-index: 2;
       }
 
@@ -1024,7 +1024,7 @@ label{
           &.sub {
             font-family: $muli;
             font-size: 13px;
-            color: #9b9b9b;
+            color: $dusty-grey-color;
             letter-spacing: -0.1px;
           }
         }
@@ -1203,7 +1203,7 @@ label{
 
 .navbar__logo__divider {
   padding: 0 5px;
-  color: #8cd7d7;
+  color: $intro-block-heading-color;
 }
 
 .navbar__logo__subtitle {
@@ -1222,7 +1222,7 @@ label{
     font-family: $muli;
     font-size: 13px;
     line-height: 16px;
-    color: #7e8181;
+    color: $gunsmoke-grey-color;
     letter-spacing: -0.1px;
   }
 }
@@ -1270,7 +1270,7 @@ label{
     background-color: $white-color;
     cursor: pointer;
     line-height: 1.1;
-    color: #8cd7d7;
+    color: $intro-block-heading-color;
     padding: 8px 10px;
     outline: none;
 
@@ -1436,7 +1436,7 @@ label{
     &.tertiary {
       background-color: $dark-teal-color;
       color: $white-color;
-      border-bottom: 1px solid #95C0C3;
+      border-bottom: 1px solid $shadow-green-color;
       padding: 20px 45px 25px 45px;
 
       .footer__group--inner {
@@ -1718,7 +1718,7 @@ label{
       position: relative;
       display: flex;
       flex-direction: column;
-      background-color: #227980;
+      background-color: $elm-teal-color;
       padding: 20px 25px;
       margin-top: 60px;
       border-radius: 6px;
@@ -1732,7 +1732,7 @@ label{
         font-family: $muli;
         font-style: italic;
         font-size: 13px;
-        color: #cdeae6;
+        color: $lighter-teal-color;
         margin-bottom: 0px;
 
         &:first-child {
@@ -1770,7 +1770,7 @@ label{
     color: $app-backgrnd-color;
   }
 
-  color: #04a6a7;
+  color: $persian-green-color;
   text-decoration: underline;
   font-family: $muli-bold;
 }
@@ -1877,7 +1877,7 @@ a.link-white {
   font-size: 18px;
   line-height: 1.11;
   letter-spacing: -0.2px;
-  color: #5e5e5e;
+  color: $silver-grey-color;
   margin-right: 100px;
 
   @include allmobiles {
@@ -1893,7 +1893,7 @@ a.link-white {
   font-weight: bold;
   letter-spacing: -0.2px;
   text-align: center;
-  color: #00a7a7 !important;
+  color: $teal-color !important;
   cursor: pointer;
 
   @include allmobiles {
@@ -2017,7 +2017,7 @@ a.link-white {
 
 .title-big {
   font-size: 30px;
-  color: #fff;
+  color: $white-color;
   font-family: $muli-semi-bold;
   margin-bottom: 30px;
 }
@@ -2028,7 +2028,7 @@ a.link-white {
   font-weight: 600;
   letter-spacing: -0.17px;
   text-align: center;
-  color: #a7f3f1;
+  color: $top-up-faq-link-color;
 }
 
 // overriding input autofill colors
@@ -2145,7 +2145,7 @@ select:-webkit-autofill:focus {
     li {
       position: relative;
       margin-bottom: 30px;
-      color: #9fd4d4;
+      color: $incomplete-list;
 
       &:not(:first-child) {
         top: 4px;
@@ -2240,10 +2240,10 @@ select:-webkit-autofill:focus {
       position: relative;
       border-radius: 6px;
       padding: 20px;
-      background: #066360;
+      background: $watercourse-color;
 
       &__title {
-        color: #8d9aa8;
+        color: $teal-grey-color;
       }
 
       &:before {
@@ -2254,7 +2254,7 @@ select:-webkit-autofill:focus {
         border-top: 10px solid transparent;
         border-left: 10px solid transparent;
         border-right: 10px solid transparent;
-        border-bottom: 10px solid #066360;
+        border-bottom: 10px solid $watercourse-color;
       }
 
       @include desktop {
@@ -2264,7 +2264,7 @@ select:-webkit-autofill:focus {
           top: 30px;
           right: -19px;
           border-top: 10px solid transparent;
-          border-left: 10px solid #066360;
+          border-left: 10px solid $watercourse-color;
           border-right: 10px solid transparent;
           border-bottom: 10px solid transparent;
         }
@@ -2382,7 +2382,7 @@ select:-webkit-autofill:focus {
   }
 
   .grey-text {
-    color: #9b9b9b;
+    color: $dusty-grey-color;
   }
 
   .footer-cta {
@@ -2463,12 +2463,11 @@ select:-webkit-autofill:focus {
     }
 
     nouislider .noUi-base {
-      background: #007474 !important;
+      background: $investment-slider-noui-base-bg !important;
       height: 18px !important;
     }
 
     nouislider .noUi-connect {
-      //background: #ff9445 !important;
       height: 18px !important;
     }
 
@@ -2491,7 +2490,7 @@ select:-webkit-autofill:focus {
       }
 
       .noUi-base {
-        background-color: #339090 !important;
+        background-color: $lochinvar-green-colo !important;
       }
     }
   }
