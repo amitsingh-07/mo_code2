@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { NgbModal, NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
+import { TranslateService } from '@ngx-translate/core';
 import { BehaviorSubject } from 'rxjs';
 import { ErrorModalComponent } from '../shared/modal/error-modal/error-modal.component';
 import { CriticalIllnessData } from './ci-assessment/ci-assessment';
@@ -49,19 +50,23 @@ export class GuideMeService {
   myInfoValue: any;
   loadingModalRef: NgbModalRef;
   isMyInfoEnabled = false;
-  // Variables for Insurance Results Generation
-  private result_title: string;
-  private result_icon: string;
-  private result_value;
+  loader: any;
 
   constructor(
     private modal: NgbModal,
+    private translate: TranslateService
   ) {
     this.getGuideMeFormData();
     this.protectionNeedsPageIndex = this.guideMeFormData.protectionNeedsPageIndex;
     if (this.guideMeFormData.existingCoverageValues) {
       this.isExistingCoverAdded = true;
     }
+
+    this.translate.use('en');
+    this.translate.get('COMMON').subscribe((result: string) => {
+      this.loader.title = this.translate.instant('FETCH_MODAL_DATA.TITLE');
+      this.loader.description = this.translate.instant('FETCH_MODAL_DATA.DESCRIPTION');
+    });
   }
 
   commit() {
@@ -390,7 +395,7 @@ export class GuideMeService {
   getEmptyExistingCoverage() {
     const hospitalPlan = {
       hospitalClassId: 0,
-      hospitalClass: 'None',
+      hospitalClass: GUIDE_ME_CONSTANTS.HOSPITAL_CARE_TYPES.NONE.KEY,
       hospitalClassDescription: '',
     } as HospitalPlan;
 
@@ -410,7 +415,7 @@ export class GuideMeService {
     if (!hospitalPlan) {
       hospitalPlan = {
         hospitalClassId: 0,
-        hospitalClass: 'None',
+        hospitalClass: GUIDE_ME_CONSTANTS.HOSPITAL_CARE_TYPES.NONE.KEY,
         hospitalClassDescription: ''
       } as HospitalPlan;
     }
@@ -451,17 +456,6 @@ export class GuideMeService {
     this.commit();
   }
 
-  getProtectionNeedsResults() {
-    let selectedProtectionNeeds = [];
-    selectedProtectionNeeds = this.getProtectionNeeds();
-    if (selectedProtectionNeeds) {
-      selectedProtectionNeeds.forEach((protectionNeed) => {
-        this.protectionNeedsArray.push(this.createProtectionNeedResult(protectionNeed));
-      });
-      return this.protectionNeedsArray;
-    }
-  }
-
   getExistingCoverage(): IExistingCoverage[] {
     return [{
       criticalIllnessCoverage: 0,
@@ -470,29 +464,11 @@ export class GuideMeService {
       occupationalDisabilityCoveragePerMonth: 0,
       selectedHospitalPlan: {
         id: 0,
-        hospitalClass: 'None',
+        hospitalClass: GUIDE_ME_CONSTANTS.HOSPITAL_CARE_TYPES.NONE.KEY,
         hospitalClassDescription: ''
       },
       selectedHospitalPlanId: 0
     }];
-  }
-
-  createProtectionNeedResult(data) {
-    this.result_title = data.protectionType;
-    this.result_icon = (data.protectionType.replaceAll(' ', '-')) + '-icon.svg';
-    switch (data.protectionType) {
-      case GUIDE_ME_CONSTANTS.INSURANCE_PLANS.LIFE_PROTECTION:
-        break;
-      case GUIDE_ME_CONSTANTS.INSURANCE_PLANS.CRITICAL_ILLNESS:
-        break;
-      case GUIDE_ME_CONSTANTS.INSURANCE_PLANS.OCCUPATIONAL_DISABILITY:
-        break;
-      case GUIDE_ME_CONSTANTS.INSURANCE_PLANS.LONG_TERM_CARE:
-        break;
-      case GUIDE_ME_CONSTANTS.INSURANCE_PLANS.HOSPITAL_PLAN:
-        this.result_value = null;
-        break;
-    }
   }
 
   setInsuranceResultsModalCounter(value: number) {
@@ -517,8 +493,8 @@ export class GuideMeService {
 
   openFetchPopup() {
     this.loadingModalRef = this.modal.open(ErrorModalComponent, { centered: true });
-    this.loadingModalRef.componentInstance.errorTitle = 'Fetching Data...';
-    this.loadingModalRef.componentInstance.errorMessage = 'Please be patient while we fetch your required data from Myinfo.';
+    this.loadingModalRef.componentInstance.errorTitle = this.loader.title;
+    this.loadingModalRef.componentInstance.errorMessage = this.loader.description;
   }
 
   closeFetchPopup() {

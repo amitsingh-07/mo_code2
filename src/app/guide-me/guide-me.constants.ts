@@ -22,6 +22,9 @@ export let GUIDE_ME_CONSTANTS = {
         FAMILY_MEMBER: {
             KEY: 'Family Member',
             VALUE: 600
+        },
+        NONE: {
+            KEY: 'None'
         }
     },
     SMOKER_TYPE: {
@@ -57,5 +60,61 @@ export let GUIDE_ME_CONSTANTS = {
     GENDER: {
         MALE: 'Male',
         FEMALE: 'Female'
-    }
+    },
+    EDUCATION_SUM: {
+        0: [
+            44000,
+            48000
+        ],
+        1: [
+            64000,
+            48000
+        ],
+        2: [
+            96000,
+            48000
+        ],
+        3: [
+            163600,
+            116800
+        ],
+        4: [
+            210800,
+            92000
+        ],
+        5: [
+            252800,
+            96400
+        ],
+        6: [
+            160000,
+            60000
+        ],
+        7: [
+            220000,
+            60000
+        ],
+        8: [
+            335000,
+            60000
+        ],
+        9: [
+            489600,
+            175200
+        ],
+        10: [
+            482400,
+            138000
+        ],
+        11: [
+            676800,
+            192800
+        ]
+    },
+    TILL_AGE: 'Till Age ',
+    SALARIED: 'Salaried',
+    EMPLOYEE_TYPE: 'Salaried Employee',
+    COVERAGE_AGE: [75, 65],
+    IS_CHILD: 23,
+    DEPENDENT_COUNT: [0, 1, 2, 3, 4, 5]
 }

@@ -1,5 +1,6 @@
 import { Component, Input, OnInit, ViewEncapsulation } from '@angular/core';
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
+import { GUIDE_ME_CONSTANTS } from '../../guide-me.constants';
 import { GuideMeService } from '../../guide-me.service';
 
 @Component({
@@ -17,7 +18,7 @@ export class InsuranceResultModalComponent implements OnInit {
   ngOnInit() {
     this.isExistingCoverage = this.guideMeService.isExistingCoverAdded;
     // Is Month Enabled
-    if (this.data['title'] === 'Occupational Disability' || this.data['title'] === 'Long-Term Care') {
+    if (this.data['title'] === GUIDE_ME_CONSTANTS.INSURANCE_PLANS.OCCUPATIONAL_DISABILITY || this.data['title'] === GUIDE_ME_CONSTANTS.INSURANCE_PLANS.LONG_TERM_CARE) {
       this.isMonthEnabled = true;
     } else {
       this.isMonthEnabled = false;

@@ -15,8 +15,6 @@ import { MobileModalComponent } from '../mobile-modal/mobile-modal.component';
 import { LongTermCare, LONG_TERM_CARE_SHIELD } from './ltc-assessment';
 import { AboutAge } from '../../shared/utils/about-age.util';
 
-const assetImgPath = './assets/images/';
-
 @Component({
   selector: 'app-ltc-assessment',
   templateUrl: './ltc-assessment.component.html',

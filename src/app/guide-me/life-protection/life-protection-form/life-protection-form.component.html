@@ -24,7 +24,6 @@
   <form id="lifeProtectionForm" name="lifeProtectionForm" [formGroup]="lifeProtectionForm">
     <div class="form-group-with-bg" [class.show]="activeFormIndex == i" formArrayName="dependents" *ngFor="let item of lifeProtectionForm.get('dependents')['controls']; let i = index;">
       <div [formGroupName]="i">
-        <!-- <div class="overlay-block hidden-sm-md" *ngIf="item.controls.educationSupport.value"></div> -->
         <!--Form Header-->
         <div>
           <div class="form-group-with-bg--header">

@@ -28,7 +28,6 @@ import { IExistingCoverage } from './existing-coverage-modal/existing-coverage.i
 import { InsuranceResultModalComponent } from './insurance-result-modal/insurance-result-modal.component';
 import { IResultItem, IResultItemEntry, IResultObject } from './insurance-result/insurance-result';
 
-const assetImgPath = './assets/images/';
 @Component({
   selector: 'app-insurance-results',
   templateUrl: './insurance-results.component.html',

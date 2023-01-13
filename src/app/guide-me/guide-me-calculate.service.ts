@@ -25,41 +25,41 @@ export class GuideMeCalculateService {
 
     if (country && course && nationality) {
       if (country === GUIDE_ME_CONSTANTS.COUNTRY.SINGAPORE && course === GUIDE_ME_CONSTANTS.EDUCATION.NON_MEDICINE && nationality === GUIDE_ME_CONSTANTS.CITIZENSHIP.SINGAPOREAN) {
-        educationSum[0] = 44000;
-        educationSum[1] = 48000;
+        educationSum[0] = GUIDE_ME_CONSTANTS.EDUCATION_SUM[0][0];
+        educationSum[1] = GUIDE_ME_CONSTANTS.EDUCATION_SUM[0][1];
       } else if (country === GUIDE_ME_CONSTANTS.COUNTRY.SINGAPORE && course === GUIDE_ME_CONSTANTS.EDUCATION.NON_MEDICINE && nationality === GUIDE_ME_CONSTANTS.CITIZENSHIP.SINGAPORE_PR) {
-        educationSum[0] = 64000;
-        educationSum[1] = 48000;
+        educationSum[0] = GUIDE_ME_CONSTANTS.EDUCATION_SUM[1][0];
+        educationSum[1] = GUIDE_ME_CONSTANTS.EDUCATION_SUM[1][1];
       } else if (country === GUIDE_ME_CONSTANTS.COUNTRY.SINGAPORE && course === GUIDE_ME_CONSTANTS.EDUCATION.NON_MEDICINE && nationality === GUIDE_ME_CONSTANTS.CITIZENSHIP.FOREIGNER) {
-        educationSum[0] = 96000;
-        educationSum[1] = 48000;
+        educationSum[0] = GUIDE_ME_CONSTANTS.EDUCATION_SUM[2][0];
+        educationSum[1] = GUIDE_ME_CONSTANTS.EDUCATION_SUM[2][1];
       } else if (country === GUIDE_ME_CONSTANTS.COUNTRY.AUSTRALIA && course === GUIDE_ME_CONSTANTS.EDUCATION.NON_MEDICINE) {
-        educationSum[0] = 163600;
-        educationSum[1] = 116800;
+        educationSum[0] = GUIDE_ME_CONSTANTS.EDUCATION_SUM[3][0];
+        educationSum[1] = GUIDE_ME_CONSTANTS.EDUCATION_SUM[3][1];
       } else if (country === GUIDE_ME_CONSTANTS.COUNTRY.UK && course === GUIDE_ME_CONSTANTS.EDUCATION.NON_MEDICINE) {
-        educationSum[0] = 210800;
-        educationSum[1] = 92000;
+        educationSum[0] = GUIDE_ME_CONSTANTS.EDUCATION_SUM[4][0];
+        educationSum[1] = GUIDE_ME_CONSTANTS.EDUCATION_SUM[4][1];
       } else if (country === GUIDE_ME_CONSTANTS.COUNTRY.USA && course === GUIDE_ME_CONSTANTS.EDUCATION.NON_MEDICINE) {
-        educationSum[0] = 252800;
-        educationSum[1] = 96400;
+        educationSum[0] = GUIDE_ME_CONSTANTS.EDUCATION_SUM[5][0];
+        educationSum[1] = GUIDE_ME_CONSTANTS.EDUCATION_SUM[5][1];
       } else if (country === GUIDE_ME_CONSTANTS.COUNTRY.SINGAPORE && course === GUIDE_ME_CONSTANTS.EDUCATION.MEDICINE && nationality === GUIDE_ME_CONSTANTS.CITIZENSHIP.SINGAPOREAN) {
-        educationSum[0] = 160000;
-        educationSum[1] = 60000;
+        educationSum[0] = GUIDE_ME_CONSTANTS.EDUCATION_SUM[6][0];
+        educationSum[1] = GUIDE_ME_CONSTANTS.EDUCATION_SUM[6][1];
       } else if (country === GUIDE_ME_CONSTANTS.COUNTRY.SINGAPORE && course === GUIDE_ME_CONSTANTS.EDUCATION.MEDICINE && nationality === GUIDE_ME_CONSTANTS.CITIZENSHIP.SINGAPORE_PR) {
-        educationSum[0] = 220000;
-        educationSum[1] = 60000;
+        educationSum[0] = GUIDE_ME_CONSTANTS.EDUCATION_SUM[7][0];
+        educationSum[1] = GUIDE_ME_CONSTANTS.EDUCATION_SUM[7][1];
       } else if (country === GUIDE_ME_CONSTANTS.COUNTRY.SINGAPORE && course === GUIDE_ME_CONSTANTS.EDUCATION.MEDICINE && nationality === GUIDE_ME_CONSTANTS.CITIZENSHIP.FOREIGNER) {
-        educationSum[0] = 335000;
-        educationSum[1] = 60000;
+        educationSum[0] = GUIDE_ME_CONSTANTS.EDUCATION_SUM[8][0];
+        educationSum[1] = GUIDE_ME_CONSTANTS.EDUCATION_SUM[8][1];
       } else if (country === GUIDE_ME_CONSTANTS.COUNTRY.AUSTRALIA && course === GUIDE_ME_CONSTANTS.EDUCATION.MEDICINE) {
-        educationSum[0] = 489600;
-        educationSum[1] = 175200;
+        educationSum[0] = GUIDE_ME_CONSTANTS.EDUCATION_SUM[9][0];
+        educationSum[1] = GUIDE_ME_CONSTANTS.EDUCATION_SUM[9][1];
       } else if (country === GUIDE_ME_CONSTANTS.COUNTRY.UK && course === GUIDE_ME_CONSTANTS.EDUCATION.MEDICINE) {
-        educationSum[0] = 482400;
-        educationSum[1] = 138000;
+        educationSum[0] = GUIDE_ME_CONSTANTS.EDUCATION_SUM[10][0];
+        educationSum[1] = GUIDE_ME_CONSTANTS.EDUCATION_SUM[10][1];
       } else if (country === GUIDE_ME_CONSTANTS.COUNTRY.USA && course === GUIDE_ME_CONSTANTS.EDUCATION.MEDICINE) {
-        educationSum[0] = 676800;
-        educationSum[1] = 192800;
+        educationSum[0] = GUIDE_ME_CONSTANTS.EDUCATION_SUM[11][0];
+        educationSum[1] = GUIDE_ME_CONSTANTS.EDUCATION_SUM[11][1];
       }
     }
     return educationSum;
@@ -179,7 +179,7 @@ export class GuideMeCalculateService {
     ciData.ciMultiplier = data.ciMultiplier;
     ciData.isEarlyCriticalIllness = data.isEarlyCriticalIllness;
     ciData.coverageAmount = data.coverageAmount - exCoverage;
-    ciData.coverageYears = 'Till Age ' + data.coverageYears;
+    ciData.coverageYears = GUIDE_ME_CONSTANTS.TILL_AGE + data.coverageYears;
     if (isNaN(ciData.coverageAmount) || ciData.coverageAmount < 0) {
       ciData.coverageAmount = 0;
     }
@@ -196,7 +196,7 @@ export class GuideMeCalculateService {
     } catch (e) { }
 
     const ocpData = this.guideMeService.getMyOcpDisability();
-    ocpData.coverageDuration = 'Till Age ' + ocpData.maxAge;
+    ocpData.coverageDuration = GUIDE_ME_CONSTANTS.TILL_AGE + ocpData.maxAge;
     ocpData.coverageAmount -= exCoverage;
     if (isNaN(ocpData.coverageAmount) || ocpData.coverageAmount < 0) {
       ocpData.coverageAmount = 0;
@@ -204,7 +204,7 @@ export class GuideMeCalculateService {
 
     let empStatusId = 0;
     if (ocpData.selectedEmployee) {
-      empStatusId = (ocpData.selectedEmployee.indexOf('Salaried') >= 0) ? 1 : 2;
+      empStatusId = (ocpData.selectedEmployee.indexOf(GUIDE_ME_CONSTANTS.SALARIED) >= 0) ? 1 : 2;
     }
     const ocpRequestData: IOccupationalDisabilityData = {
       percentageCoverage: ocpData.percentageCoverage,

@@ -230,20 +230,13 @@ export class RecommendationsComponent implements IPageComponent, OnInit, AfterVi
           this.state.ciCoverageAmount = data.premium.ciSumAssured;          
           break;
         case this.state.protectionNeedTypes.LIFE_PROTECTION:
-          //this.coverageAmount = this.calculateService.getLifeProtectionData().coverageAmount + '';
           break;
         case this.state.protectionNeedTypes.CRITICAL_ILLNESS:
-          //const criticalIllnessValues = this.calculateService.getCriticalIllnessData();
-          //this.coverageAmount = criticalIllnessValues.coverageAmount + '';
           break;
         case this.state.protectionNeedTypes.OCCUPATION_DISABILITY:
-          //const ocpData = this.calculateService.getOcpData();
-          //this.coverageAmount = ocpData.coverageAmount + '';
           break;
         case this.state.protectionNeedTypes.LONG_TERM_CARE:
         case this.state.protectionNeedTypes.HOSPITAL_PLAN:
-          //const ltcData = this.calculateService.getLtcData();
-          //this.coverageAmount = ltcData.monthlyPayout + '';
           this.state.premiumFrom = data.premium.premiumAmountYearly;
           this.state.premiumFrequency = this.state.perYear;
           break;

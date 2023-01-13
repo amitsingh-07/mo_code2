@@ -8,6 +8,7 @@ import { IPageComponent } from '../../shared/interfaces/page-component.interface
 import { NavbarService } from '../../shared/navbar/navbar.service';
 import { GuideMeService } from '../guide-me.service';
 import { HelpModalComponent } from '../help-modal/help-modal.component';
+import { GUIDE_ME_CONSTANTS } from '../guide-me.constants';
 
 const assetImgPath = './assets/images/';
 
@@ -25,7 +26,7 @@ export class LifeProtectionComponent implements IPageComponent, OnInit , OnDestr
   modalData: any;
   modalImage: 'occupationdisability_modal.png';
 
-  dependentCountOptions = [0, 1, 2, 3, 4, 5];
+  dependentCountOptions = GUIDE_ME_CONSTANTS.DEPENDENT_COUNT;
 
   constructor(
     public navbarService: NavbarService, private formBuilder: FormBuilder,

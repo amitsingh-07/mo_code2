@@ -29,8 +29,6 @@ export class IncomeComponent implements IPageComponent, OnInit, AfterViewInit {
   incomeFormValues: IMyIncome;
   incomeTotal = 0;
 
-  private el: HTMLInputElement;
-
   constructor(
     private router: Router, public navbarService: NavbarService,
     private translate: TranslateService, private guideMeService: GuideMeService,
