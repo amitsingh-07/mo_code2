@@ -5,7 +5,7 @@ import { NgbActiveModal, NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { TranslateService } from '@ngx-translate/core';
 
 import { ErrorModalComponent } from '../error-modal/error-modal.component';
-
+import { environment } from 'src/environments/environment';
 @Component({
   selector: 'app-payment-instruction-modal',
   templateUrl: './payment-instruction-modal.component.html',
@@ -50,7 +50,7 @@ export class PaymentInstructionModalComponent implements OnInit {
     this.showPopUp();
   }
   getQrCodeImg() {
-    return document.getElementsByTagName('base')[0].href + 'assets/images/comprehensive/qrcode.png';
+    return environment.apiBaseUrl + '/app/assets/images/comprehensive/qrcode.png';
   }
 
   notify(event) {
