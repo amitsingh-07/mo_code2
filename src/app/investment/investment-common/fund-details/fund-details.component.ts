@@ -81,7 +81,6 @@ export class FundDetailsComponent implements OnInit {
     this.fileUtil.createDownloadUrl(highlightSheetFileName, INVESTMENT_ENGAGEMENT_JOURNEY_CONSTANTS.FUND_DOC_PATH + highlightSheetFileName, true);    
   }
   getProspectusLink() {
-    const iOS = /iPad|iPhone|iPod/.test(navigator.userAgent);
     let prospectusFileName;
     if(this.portfolioType.toLowerCase() === INVESTMENT_ENGAGEMENT_JOURNEY_CONSTANTS.SELECT_POROFOLIO_TYPE.INVESTMENT.toLowerCase() || this.portfolioType.toLowerCase() === INVESTMENT_ENGAGEMENT_JOURNEY_CONSTANTS.SELECT_POROFOLIO_TYPE.INVEST_PORTFOLIO.toLowerCase()){
       prospectusFileName = INVESTMENT_ENGAGEMENT_JOURNEY_CONSTANTS.PROSPECTUS_FILE.INVESTMENT;
