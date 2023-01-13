@@ -375,7 +375,7 @@
       "TITLE": "Oops, verify your email to login!",
       "VERIFY_EMAIL_MESSAGE": "You are almost there! An email verification is sent. We need you to verify your email to complete your account creation!"
     },
-    "CLIENT_ASSISTANCE": "If you require any assistance, please contact us at <b class='text-bold'><a href='mailto:clientsupport@moneyowl.com.sg' target='_blank'>clientsupport@moneyowl.com.sg</a></b> or <b class='text-bold'><a href='tel:63299188' target='_blank' class='text-bold'>6329 9188.</a></b> Our operating hours are Monday - Friday, 9am - 6pm.",
+    "CLIENT_ASSISTANCE": "If you require any assistance, please contact us at <b class='text-bold'><a href='mailto:clientsupport@moneyowl.com.sg' target='_blank'>clientsupport@moneyowl.com.sg</a></b> or <b class='text-bold'><a href='tel:63299188' onclick='window.open('tel:63299188')' target='_blank' class='text-bold'>6329 9188.</a></b> Our operating hours are Monday - Friday, 9am - 6pm.",
     "SINGPASS_ACTIVATE_MODAL": {
       "TITLE": "Activate Singpass Login",
       "MESSAGE_1": "If you  <span class='bold-txt'>have</span> a MoneyOwl account,<br>please do a password log in and activate<br>Singpass Login in your Profile page.<br><br> If you <span class='bold-txt'>do not have</span> a MoneyOwl account,<br>",
