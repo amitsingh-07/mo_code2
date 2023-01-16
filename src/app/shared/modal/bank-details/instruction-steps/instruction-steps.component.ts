@@ -4,7 +4,7 @@ import { TranslateService } from '@ngx-translate/core';
 
 import { appConstants } from '../../../../app.constants';
 import { AuthenticationService } from '../../../../shared/http/auth/authentication.service';
-
+import { environment } from '../../../../../environments/environment'
 @Component({
   selector: 'app-instruction-steps',
   templateUrl: './instruction-steps.component.html',
@@ -32,7 +32,7 @@ export class InstructionStepsComponent implements OnInit {
   }
 
   getQrCodeImg() {
-    return document.getElementsByTagName('base')[0].href + 'assets/images/paynow-qrcode.png';
+    return environment.apiBaseUrl + '/app/assets/images/paynow-qrcode.png';
   }
 
   notify(event) {
