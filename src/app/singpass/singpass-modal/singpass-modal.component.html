@@ -1,0 +1,24 @@
+<div class="modal-header">
+  <div class="modal-title popup-header-icon">
+    <img src="assets/images/owl.svg" id="errorModelImage" />
+  </div>
+</div>
+<div class="modal-body white-bg">
+  <div class="modal-body-title" id="errorModeltitle" [innerHTML]="title">
+  </div>
+  <button type="button" class="close" aria-label="Close" (click)="activeModal.dismiss('Cross click')">
+    <span aria-hidden="true" id="errorModelCloseIcon"></span>
+  </button>
+  <div class="modal-body-message">
+    <span [innerHTML]="msgOne"></span>
+    <a class='anchor-txt' href="#" (click)="navigate($event)">{{ 'LOGIN.CLICK_HERE' | translate | lowercase}}</a>
+    <span [innerHTML]="msgTwo"></span>
+  </div>
+  <div class="row">
+    <div class="col-12">
+      <button type="button" class="action-button"  (click)="primaryActionSelected()" id="errorModeButton">
+        {{primaryActionLabel}}
+      </button>
+    </div>
+  </div>
+</div>

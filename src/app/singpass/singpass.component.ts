@@ -3,8 +3,9 @@ import { TranslateService } from '@ngx-translate/core';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { Observable } from 'rxjs/internal/Observable';
 
-import { ModelWithButtonComponent } from '../shared/modal/model-with-button/model-with-button.component';
 import { SingpassService } from './singpass.service';
+import { SingpassModalComponent } from './singpass-modal/singpass-modal.component';
+
 @Component({
   selector: 'app-singpass',
   templateUrl: './singpass.component.html',
@@ -27,9 +28,10 @@ export class SingPassComponent implements OnInit {
   }
 
   openSingpassModal(event) {
-    const ref = this.modal.open(ModelWithButtonComponent, { centered: true,  windowClass: 'open-singpass-modal'});
-    ref.componentInstance.errorTitle = this.translate.instant('LOGIN.SINGPASS_ACTIVATE_MODAL.TITLE');
-    ref.componentInstance.errorMessageHTML = this.translate.instant('LOGIN.SINGPASS_ACTIVATE_MODAL.MESSAGE');
+    const ref = this.modal.open(SingpassModalComponent, { centered: true,  windowClass: 'open-singpass-modal'});
+    ref.componentInstance.title = this.translate.instant('LOGIN.SINGPASS_ACTIVATE_MODAL.TITLE');
+    ref.componentInstance.msgOne = this.translate.instant('LOGIN.SINGPASS_ACTIVATE_MODAL.MESSAGE_1');
+    ref.componentInstance.msgTwo = this.translate.instant('LOGIN.SINGPASS_ACTIVATE_MODAL.MESSAGE_2');
     ref.componentInstance.primaryActionLabel = this.translate.instant('LOGIN.SINGPASS_ACTIVATE_MODAL.BTN_TXT');
     event.stopPropagation();
     event.preventDefault();
