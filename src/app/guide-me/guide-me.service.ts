@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { NgbModal, NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
+import { TranslateService } from '@ngx-translate/core';
 import { BehaviorSubject } from 'rxjs';
 import { ErrorModalComponent } from '../shared/modal/error-modal/error-modal.component';
 import { CriticalIllnessData } from './ci-assessment/ci-assessment';
@@ -8,6 +9,7 @@ import { FormError } from './get-started/get-started-form/form-error';
 import { UserInfo } from './get-started/get-started-form/user-info';
 import { GuideMeFormData } from './guide-me-form-data';
 import { GUIDE_ME_ROUTE_PATHS } from './guide-me-routes.constants';
+import { GUIDE_ME_CONSTANTS } from './guide-me.constants';
 import { HospitalPlan } from './hospital-plan/hospital-plan';
 import { IMyIncome } from './income/income.interface';
 import { IExistingCoverage } from './insurance-results/existing-coverage-modal/existing-coverage.interface';
@@ -22,12 +24,6 @@ import { ProtectionNeeds } from './protection-needs/protection-needs';
 const SESSION_STORAGE_KEY = 'app_guided_session';
 const INSURANCE_RESULTS_COUNTER_KEY = 'insurance_results_counter';
 const GUIDE_ME_FORM_DATA_LOADED = 'app_guided_form_data_loaded';
-
-const PROTECTION_NEEDS_LIFE_PROTECTION_ID = 1;
-const PROTECTION_NEEDS_CRITICAL_ILLNESS_ID = 2;
-const PROTECTION_NEEDS_OCCUPATIONAL_DISABILITY_ID = 3;
-const PROTECTION_NEEDS_LIFE_HOSPITAL_PLAN_ID = 4;
-const PROTECTION_NEEDS_LIFE_LONG_TERM_CARE_ID = 5;
 
 const MYINFO_CPF_BALANCES = 'myinfo_cpf_balances';
 
@@ -54,19 +50,23 @@ export class GuideMeService {
   myInfoValue: any;
   loadingModalRef: NgbModalRef;
   isMyInfoEnabled = false;
-  // Variables for Insurance Results Generation
-  private result_title: string;
-  private result_icon: string;
-  private result_value;
+  loader: any;
 
   constructor(
     private modal: NgbModal,
+    private translate: TranslateService
   ) {
     this.getGuideMeFormData();
     this.protectionNeedsPageIndex = this.guideMeFormData.protectionNeedsPageIndex;
     if (this.guideMeFormData.existingCoverageValues) {
       this.isExistingCoverAdded = true;
     }
+
+    this.translate.use('en');
+    this.translate.get('COMMON').subscribe((result: string) => {
+      this.loader.title = this.translate.instant('FETCH_MODAL_DATA.TITLE');
+      this.loader.description = this.translate.instant('FETCH_MODAL_DATA.DESCRIPTION');
+    });
   }
 
   commit() {
@@ -364,19 +364,19 @@ export class GuideMeService {
     const protectionNeeds = this.getSelectedProtectionNeedsList();
     for (const thisNeed of protectionNeeds) {
       switch (thisNeed.protectionTypeId) {
-        case PROTECTION_NEEDS_LIFE_PROTECTION_ID:
+        case GUIDE_ME_CONSTANTS.INSURANCE_PLAN_ID.PROTECTION_NEEDS_LIFE_PROTECTION_ID:
           selectedProtectionNeedsPage.push(GUIDE_ME_ROUTE_PATHS.LIFE_PROTECTION);
           break;
-        case PROTECTION_NEEDS_CRITICAL_ILLNESS_ID:
+        case GUIDE_ME_CONSTANTS.INSURANCE_PLAN_ID.PROTECTION_NEEDS_CRITICAL_ILLNESS_ID:
           selectedProtectionNeedsPage.push(GUIDE_ME_ROUTE_PATHS.CRITICAL_ILLNESS);
           break;
-        case PROTECTION_NEEDS_OCCUPATIONAL_DISABILITY_ID:
+        case GUIDE_ME_CONSTANTS.INSURANCE_PLAN_ID.PROTECTION_NEEDS_OCCUPATIONAL_DISABILITY_ID:
           selectedProtectionNeedsPage.push(GUIDE_ME_ROUTE_PATHS.OCCUPATIONAL_DISABILITY);
           break;
-        case PROTECTION_NEEDS_LIFE_HOSPITAL_PLAN_ID:
+        case GUIDE_ME_CONSTANTS.INSURANCE_PLAN_ID.PROTECTION_NEEDS_LIFE_HOSPITAL_PLAN_ID:
           selectedProtectionNeedsPage.push(GUIDE_ME_ROUTE_PATHS.HOSPITAL_PLAN);
           break;
-        case PROTECTION_NEEDS_LIFE_LONG_TERM_CARE_ID:
+        case GUIDE_ME_CONSTANTS.INSURANCE_PLAN_ID.PROTECTION_NEEDS_LIFE_LONG_TERM_CARE_ID:
           selectedProtectionNeedsPage.push(GUIDE_ME_ROUTE_PATHS.LONG_TERM_CARE);
           break;
       }
@@ -395,7 +395,7 @@ export class GuideMeService {
   getEmptyExistingCoverage() {
     const hospitalPlan = {
       hospitalClassId: 0,
-      hospitalClass: 'None',
+      hospitalClass: GUIDE_ME_CONSTANTS.HOSPITAL_CARE_TYPES.NONE.KEY,
       hospitalClassDescription: '',
     } as HospitalPlan;
 
@@ -415,7 +415,7 @@ export class GuideMeService {
     if (!hospitalPlan) {
       hospitalPlan = {
         hospitalClassId: 0,
-        hospitalClass: 'None',
+        hospitalClass: GUIDE_ME_CONSTANTS.HOSPITAL_CARE_TYPES.NONE.KEY,
         hospitalClassDescription: ''
       } as HospitalPlan;
     }
@@ -436,35 +436,24 @@ export class GuideMeService {
     const protectionNeeds = this.getProtectionNeeds().filter((data) => data.status === false);
     for (const protectionNeed of protectionNeeds) {
       switch (protectionNeed.protectionTypeId) {
-        case PROTECTION_NEEDS_LIFE_PROTECTION_ID:
+        case GUIDE_ME_CONSTANTS.INSURANCE_PLAN_ID.PROTECTION_NEEDS_LIFE_PROTECTION_ID:
           delete this.guideMeFormData.lifeProtectionData;
           break;
-        case PROTECTION_NEEDS_CRITICAL_ILLNESS_ID:
+        case GUIDE_ME_CONSTANTS.INSURANCE_PLAN_ID.PROTECTION_NEEDS_CRITICAL_ILLNESS_ID:
           delete this.guideMeFormData.criticalIllness;
           break;
-        case PROTECTION_NEEDS_OCCUPATIONAL_DISABILITY_ID:
+        case GUIDE_ME_CONSTANTS.INSURANCE_PLAN_ID.PROTECTION_NEEDS_OCCUPATIONAL_DISABILITY_ID:
           delete this.guideMeFormData.occupationalDisability;
           break;
-        case PROTECTION_NEEDS_LIFE_HOSPITAL_PLAN_ID:
+        case GUIDE_ME_CONSTANTS.INSURANCE_PLAN_ID.PROTECTION_NEEDS_LIFE_HOSPITAL_PLAN_ID:
           delete this.guideMeFormData.hospitalPlanData;
           break;
-        case PROTECTION_NEEDS_LIFE_LONG_TERM_CARE_ID:
+        case GUIDE_ME_CONSTANTS.INSURANCE_PLAN_ID.PROTECTION_NEEDS_LIFE_LONG_TERM_CARE_ID:
           delete this.guideMeFormData.longTermCareData;
           break;
       }
     }
     this.commit();
-  }
-
-  getProtectionNeedsResults() {
-    let selectedProtectionNeeds = [];
-    selectedProtectionNeeds = this.getProtectionNeeds();
-    if (selectedProtectionNeeds) {
-      selectedProtectionNeeds.forEach((protectionNeed) => {
-        this.protectionNeedsArray.push(this.createProtectionNeedResult(protectionNeed));
-      });
-      return this.protectionNeedsArray;
-    }
   }
 
   getExistingCoverage(): IExistingCoverage[] {
@@ -475,29 +464,11 @@ export class GuideMeService {
       occupationalDisabilityCoveragePerMonth: 0,
       selectedHospitalPlan: {
         id: 0,
-        hospitalClass: 'None',
+        hospitalClass: GUIDE_ME_CONSTANTS.HOSPITAL_CARE_TYPES.NONE.KEY,
         hospitalClassDescription: ''
       },
       selectedHospitalPlanId: 0
     }];
-  }
-
-  createProtectionNeedResult(data) {
-    this.result_title = data.protectionType;
-    this.result_icon = (data.protectionType.replaceAll(' ', '-')) + '-icon.svg';
-    switch (data.protectionType) {
-      case 'Life Protection':
-        break;
-      case 'Critical Illness':
-        break;
-      case 'Occupational Disability':
-        break;
-      case 'Long Term Care':
-        break;
-      case 'Hospital Plan':
-        this.result_value = null;
-        break;
-    }
   }
 
   setInsuranceResultsModalCounter(value: number) {
@@ -522,8 +493,8 @@ export class GuideMeService {
 
   openFetchPopup() {
     this.loadingModalRef = this.modal.open(ErrorModalComponent, { centered: true });
-    this.loadingModalRef.componentInstance.errorTitle = 'Fetching Data...';
-    this.loadingModalRef.componentInstance.errorMessage = 'Please be patient while we fetch your required data from Myinfo.';
+    this.loadingModalRef.componentInstance.errorTitle = this.loader.title;
+    this.loadingModalRef.componentInstance.errorMessage = this.loader.description;
   }
 
   closeFetchPopup() {
@@ -538,17 +509,17 @@ export class GuideMeService {
     const currentLongTerm = this.getLongTermCare();
     let currentValue;
     switch (currentLongTerm.careGiverType) {
-      case 'Nursing Home':
-        currentValue = 2500;
+      case GUIDE_ME_CONSTANTS.HOSPITAL_CARE_TYPES.NURSING_HOME.KEY:
+        currentValue = GUIDE_ME_CONSTANTS.HOSPITAL_CARE_TYPES.NURSING_HOME.VALUE;
         break;
-      case 'Daycare Support':
-        currentValue = 1800;
+      case GUIDE_ME_CONSTANTS.HOSPITAL_CARE_TYPES.DAYCARE_SUPPORT.KEY:
+        currentValue = GUIDE_ME_CONSTANTS.HOSPITAL_CARE_TYPES.DAYCARE_SUPPORT.VALUE;
         break;
-      case 'Domestic Helper':
-        currentValue = 1200;
+      case GUIDE_ME_CONSTANTS.HOSPITAL_CARE_TYPES.DOMESTIC_HELPER.KEY:
+        currentValue = GUIDE_ME_CONSTANTS.HOSPITAL_CARE_TYPES.DOMESTIC_HELPER.VALUE;
         break;
-      case 'Family Member':
-        currentValue = 600;
+      case GUIDE_ME_CONSTANTS.HOSPITAL_CARE_TYPES.FAMILY_MEMBER.KEY:
+        currentValue = GUIDE_ME_CONSTANTS.HOSPITAL_CARE_TYPES.FAMILY_MEMBER.VALUE;
         break;
     }
     return currentValue;
@@ -567,7 +538,7 @@ export class GuideMeService {
     data.userInfo = {
       gender: response.enquiryData.gender,
       dob,
-      smoker: response.enquiryData.smoker ? 'smoker' : 'non-smoker',
+      smoker: response.enquiryData.smoker ? GUIDE_ME_CONSTANTS.SMOKER_TYPE.SMOKER : GUIDE_ME_CONSTANTS.SMOKER_TYPE.NON_SMOKER,
       customDob,
       dependent: response.enquiryData.numberOfDependents
     };

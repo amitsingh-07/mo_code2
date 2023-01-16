@@ -8,6 +8,7 @@ import { NgbDateCustomParserFormatter } from '../../../shared/utils/ngb-date-cus
 import { GUIDE_ME_ROUTE_PATHS } from '../../guide-me-routes.constants';
 import { GuideMeService } from '../../guide-me.service';
 import { TranslateService } from '@ngx-translate/core';
+import { GUIDE_ME_CONSTANTS } from '../../guide-me.constants';
 
 @Component({
   selector: 'app-get-started-form',
@@ -17,8 +18,6 @@ import { TranslateService } from '@ngx-translate/core';
   encapsulation: ViewEncapsulation.None
 })
 export class GetStartedFormComponent implements OnInit {
-  // @ViewChild('usrFrmDp') usrFrmDp: ElementRef;
-
   dobValue;
   userInfoForm: FormGroup;
   formValues: any;
@@ -56,8 +55,8 @@ export class GetStartedFormComponent implements OnInit {
 
   ngOnInit() {
     this.formValues = this.guideMeService.getUserInfo();
-    this.formValues.gender = this.formValues.gender ? this.formValues.gender : 'male';
-    this.formValues.smoker = this.formValues.smoker ? this.formValues.smoker : 'non-smoker';
+    this.formValues.gender = this.formValues.gender ? this.formValues.gender : GUIDE_ME_CONSTANTS.GENDER.MALE.toLowerCase();
+    this.formValues.smoker = this.formValues.smoker ? this.formValues.smoker : GUIDE_ME_CONSTANTS.SMOKER_TYPE.NON_SMOKER;
     if (this.formValues.dependent !== undefined) {
       this.selectDependentsCount(this.formValues.dependent);
     }

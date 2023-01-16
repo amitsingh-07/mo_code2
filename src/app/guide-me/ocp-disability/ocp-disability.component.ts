@@ -12,6 +12,7 @@ import { GuideMeService } from '../guide-me.service';
 import { HelpModalComponent } from '../help-modal/help-modal.component';
 import { IMyIncome } from '../income/income.interface';
 import { IMyOcpDisability } from './ocp-disability.interface';
+import { GUIDE_ME_CONSTANTS } from '../guide-me.constants';
 
 const assetImgPath = './assets/images/';
 
@@ -126,7 +127,7 @@ export class OcpDisabilityComponent implements OnInit, AfterViewInit, OnDestroy 
 
   selectEmployeeType(status, setSlider) {
     this.defaultEmployee = status;
-    this.coverageMax = this.defaultEmployee === 'Salaried Employee' ? 75 : 65;
+    this.coverageMax = this.defaultEmployee === GUIDE_ME_CONSTANTS.EMPLOYEE_TYPE ? GUIDE_ME_CONSTANTS[0] : GUIDE_ME_CONSTANTS[1];
     if (setSlider) {
       this.setSliderValues(this.coverageMax);
     }

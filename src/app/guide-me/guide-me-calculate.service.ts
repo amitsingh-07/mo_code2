@@ -1,23 +1,17 @@
-import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 
-import { ApiService } from '../shared/http/api.service';
 import { ICriticalIllnessData, ILongTermCareNeedsData, IOccupationalDisabilityData } from './../shared/interfaces/recommendations.request';
+import { GUIDE_ME_CONSTANTS } from './guide-me.constants';
 import { GuideMeService } from './guide-me.service';
 import { IExistingCoverage } from './insurance-results/existing-coverage-modal/existing-coverage.interface';
 import { ILifeProtectionNeedsData } from './life-protection/life-protection';
-
-const UNIVERSITY_FEES_PERCENTAGE = 4;
-const LIVING_EXPENSES_PERCENTAGE = 3;
-const MALE_AGE_LIMIT = 21;
-const FEMALE_AGE_LIMIT = 19;
 
 @Injectable({
   providedIn: 'root'
 })
 export class GuideMeCalculateService {
   existingCoverage: IExistingCoverage;
-  constructor(private http: HttpClient, private apiService: ApiService, private guideMeService: GuideMeService) {
+  constructor(private guideMeService: GuideMeService) {
     this.existingCoverage = this.guideMeService.getExistingCoverageValues();
   }
   // Support Functions:
@@ -26,54 +20,46 @@ export class GuideMeCalculateService {
   // tslint:disable-next-line:cognitive-complexity
   getEducationSupportAmt(country: string, course: string, nationality: string): number[] {
     let educationSum: number[];
-    const nonmedicine = 'Non-Medicine';
-    const medicine = 'Medicine';
-    const singapore = 'Singapore';
-    const australia = 'Australia';
-    const uk = 'United Kingdom';
-    const usa = 'USA';
-    const singaporean = 'Singaporean';
-    const singaporePR = 'Singapore PR';
-    const foreigner = 'Foreigner';
+    
     educationSum = [];
 
     if (country && course && nationality) {
-      if (country === singapore && course === nonmedicine && nationality === singaporean) {
-        educationSum[0] = 44000;
-        educationSum[1] = 48000;
-      } else if (country === singapore && course === nonmedicine && nationality === singaporePR) {
-        educationSum[0] = 64000;
-        educationSum[1] = 48000;
-      } else if (country === singapore && course === nonmedicine && nationality === foreigner) {
-        educationSum[0] = 96000;
-        educationSum[1] = 48000;
-      } else if (country === australia && course === nonmedicine) {
-        educationSum[0] = 163600;
-        educationSum[1] = 116800;
-      } else if (country === uk && course === nonmedicine) {
-        educationSum[0] = 210800;
-        educationSum[1] = 92000;
-      } else if (country === usa && course === nonmedicine) {
-        educationSum[0] = 252800;
-        educationSum[1] = 96400;
-      } else if (country === singapore && course === medicine && nationality === singaporean) {
-        educationSum[0] = 160000;
-        educationSum[1] = 60000;
-      } else if (country === singapore && course === medicine && nationality === singaporePR) {
-        educationSum[0] = 220000;
-        educationSum[1] = 60000;
-      } else if (country === singapore && course === medicine && nationality === foreigner) {
-        educationSum[0] = 335000;
-        educationSum[1] = 60000;
-      } else if (country === australia && course === medicine) {
-        educationSum[0] = 489600;
-        educationSum[1] = 175200;
-      } else if (country === uk && course === medicine) {
-        educationSum[0] = 482400;
-        educationSum[1] = 138000;
-      } else if (country === usa && course === medicine) {
-        educationSum[0] = 676800;
-        educationSum[1] = 192800;
+      if (country === GUIDE_ME_CONSTANTS.COUNTRY.SINGAPORE && course === GUIDE_ME_CONSTANTS.EDUCATION.NON_MEDICINE && nationality === GUIDE_ME_CONSTANTS.CITIZENSHIP.SINGAPOREAN) {
+        educationSum[0] = GUIDE_ME_CONSTANTS.EDUCATION_SUM[0][0];
+        educationSum[1] = GUIDE_ME_CONSTANTS.EDUCATION_SUM[0][1];
+      } else if (country === GUIDE_ME_CONSTANTS.COUNTRY.SINGAPORE && course === GUIDE_ME_CONSTANTS.EDUCATION.NON_MEDICINE && nationality === GUIDE_ME_CONSTANTS.CITIZENSHIP.SINGAPORE_PR) {
+        educationSum[0] = GUIDE_ME_CONSTANTS.EDUCATION_SUM[1][0];
+        educationSum[1] = GUIDE_ME_CONSTANTS.EDUCATION_SUM[1][1];
+      } else if (country === GUIDE_ME_CONSTANTS.COUNTRY.SINGAPORE && course === GUIDE_ME_CONSTANTS.EDUCATION.NON_MEDICINE && nationality === GUIDE_ME_CONSTANTS.CITIZENSHIP.FOREIGNER) {
+        educationSum[0] = GUIDE_ME_CONSTANTS.EDUCATION_SUM[2][0];
+        educationSum[1] = GUIDE_ME_CONSTANTS.EDUCATION_SUM[2][1];
+      } else if (country === GUIDE_ME_CONSTANTS.COUNTRY.AUSTRALIA && course === GUIDE_ME_CONSTANTS.EDUCATION.NON_MEDICINE) {
+        educationSum[0] = GUIDE_ME_CONSTANTS.EDUCATION_SUM[3][0];
+        educationSum[1] = GUIDE_ME_CONSTANTS.EDUCATION_SUM[3][1];
+      } else if (country === GUIDE_ME_CONSTANTS.COUNTRY.UK && course === GUIDE_ME_CONSTANTS.EDUCATION.NON_MEDICINE) {
+        educationSum[0] = GUIDE_ME_CONSTANTS.EDUCATION_SUM[4][0];
+        educationSum[1] = GUIDE_ME_CONSTANTS.EDUCATION_SUM[4][1];
+      } else if (country === GUIDE_ME_CONSTANTS.COUNTRY.USA && course === GUIDE_ME_CONSTANTS.EDUCATION.NON_MEDICINE) {
+        educationSum[0] = GUIDE_ME_CONSTANTS.EDUCATION_SUM[5][0];
+        educationSum[1] = GUIDE_ME_CONSTANTS.EDUCATION_SUM[5][1];
+      } else if (country === GUIDE_ME_CONSTANTS.COUNTRY.SINGAPORE && course === GUIDE_ME_CONSTANTS.EDUCATION.MEDICINE && nationality === GUIDE_ME_CONSTANTS.CITIZENSHIP.SINGAPOREAN) {
+        educationSum[0] = GUIDE_ME_CONSTANTS.EDUCATION_SUM[6][0];
+        educationSum[1] = GUIDE_ME_CONSTANTS.EDUCATION_SUM[6][1];
+      } else if (country === GUIDE_ME_CONSTANTS.COUNTRY.SINGAPORE && course === GUIDE_ME_CONSTANTS.EDUCATION.MEDICINE && nationality === GUIDE_ME_CONSTANTS.CITIZENSHIP.SINGAPORE_PR) {
+        educationSum[0] = GUIDE_ME_CONSTANTS.EDUCATION_SUM[7][0];
+        educationSum[1] = GUIDE_ME_CONSTANTS.EDUCATION_SUM[7][1];
+      } else if (country === GUIDE_ME_CONSTANTS.COUNTRY.SINGAPORE && course === GUIDE_ME_CONSTANTS.EDUCATION.MEDICINE && nationality === GUIDE_ME_CONSTANTS.CITIZENSHIP.FOREIGNER) {
+        educationSum[0] = GUIDE_ME_CONSTANTS.EDUCATION_SUM[8][0];
+        educationSum[1] = GUIDE_ME_CONSTANTS.EDUCATION_SUM[8][1];
+      } else if (country === GUIDE_ME_CONSTANTS.COUNTRY.AUSTRALIA && course === GUIDE_ME_CONSTANTS.EDUCATION.MEDICINE) {
+        educationSum[0] = GUIDE_ME_CONSTANTS.EDUCATION_SUM[9][0];
+        educationSum[1] = GUIDE_ME_CONSTANTS.EDUCATION_SUM[9][1];
+      } else if (country === GUIDE_ME_CONSTANTS.COUNTRY.UK && course === GUIDE_ME_CONSTANTS.EDUCATION.MEDICINE) {
+        educationSum[0] = GUIDE_ME_CONSTANTS.EDUCATION_SUM[10][0];
+        educationSum[1] = GUIDE_ME_CONSTANTS.EDUCATION_SUM[10][1];
+      } else if (country === GUIDE_ME_CONSTANTS.COUNTRY.USA && course === GUIDE_ME_CONSTANTS.EDUCATION.MEDICINE) {
+        educationSum[0] = GUIDE_ME_CONSTANTS.EDUCATION_SUM[11][0];
+        educationSum[1] = GUIDE_ME_CONSTANTS.EDUCATION_SUM[11][1];
       }
     }
     return educationSum;
@@ -96,10 +82,10 @@ export class GuideMeCalculateService {
     let computedVal: any;
     let finalResult = 0;
     let aboutAge;
-    if ((dependent.gender === 'Male' && dependent.age >= 21) || (dependent.gender === 'Female' && dependent.age >= 19)) {
+    if ((dependent.gender === GUIDE_ME_CONSTANTS.GENDER.MALE && dependent.age >= 21) || (dependent.gender === GUIDE_ME_CONSTANTS.GENDER.FEMALE && dependent.age >= 19)) {
       aboutAge = 0;
     } else {
-      aboutAge = dependent.gender === 'Male' ? MALE_AGE_LIMIT : FEMALE_AGE_LIMIT;
+      aboutAge = dependent.gender === GUIDE_ME_CONSTANTS.GENDER.MALE ? GUIDE_ME_CONSTANTS.MALE_AGE_LIMIT : GUIDE_ME_CONSTANTS.FEMALE_AGE_LIMIT;
       aboutAge = aboutAge - dependent.age;
     }
     if (!isNaN(amount) && !isNaN(percent) && !isNaN(aboutAge)) {
@@ -120,7 +106,7 @@ export class GuideMeCalculateService {
         const course = dependent.eduSupportCourse;
         const nationality = dependent.eduSupportNationality;
         const eduAmt = this.getEducationSupportAmt(country, course, nationality);
-        educationSupportSum += (this.getDependantExpense(eduAmt[0], UNIVERSITY_FEES_PERCENTAGE, dependent) + this.getDependantExpense(eduAmt[1], LIVING_EXPENSES_PERCENTAGE, dependent));
+        educationSupportSum += (this.getDependantExpense(eduAmt[0], GUIDE_ME_CONSTANTS.UNIVERSITY_FEES_PERCENTAGE, dependent) + this.getDependantExpense(eduAmt[1], GUIDE_ME_CONSTANTS.LIVING_EXPENSES_PERCENTAGE, dependent));
       }
     });
     return educationSupportSum;
@@ -146,8 +132,6 @@ export class GuideMeCalculateService {
   }
 
   getLifeProtectionSummary(): number {
-    const dependents = this.guideMeService.getLifeProtection();
-
     let forDependentSum: number;
     let educationSum: number;
     let liabilitiesSum: number;
@@ -195,7 +179,7 @@ export class GuideMeCalculateService {
     ciData.ciMultiplier = data.ciMultiplier;
     ciData.isEarlyCriticalIllness = data.isEarlyCriticalIllness;
     ciData.coverageAmount = data.coverageAmount - exCoverage;
-    ciData.coverageYears = 'Till Age ' + data.coverageYears;
+    ciData.coverageYears = GUIDE_ME_CONSTANTS.TILL_AGE + data.coverageYears;
     if (isNaN(ciData.coverageAmount) || ciData.coverageAmount < 0) {
       ciData.coverageAmount = 0;
     }
@@ -212,7 +196,7 @@ export class GuideMeCalculateService {
     } catch (e) { }
 
     const ocpData = this.guideMeService.getMyOcpDisability();
-    ocpData.coverageDuration = 'Till Age ' + ocpData.maxAge;
+    ocpData.coverageDuration = GUIDE_ME_CONSTANTS.TILL_AGE + ocpData.maxAge;
     ocpData.coverageAmount -= exCoverage;
     if (isNaN(ocpData.coverageAmount) || ocpData.coverageAmount < 0) {
       ocpData.coverageAmount = 0;
@@ -220,7 +204,7 @@ export class GuideMeCalculateService {
 
     let empStatusId = 0;
     if (ocpData.selectedEmployee) {
-      empStatusId = (ocpData.selectedEmployee.indexOf('Salaried') >= 0) ? 1 : 2;
+      empStatusId = (ocpData.selectedEmployee.indexOf(GUIDE_ME_CONSTANTS.SALARIED) >= 0) ? 1 : 2;
     }
     const ocpRequestData: IOccupationalDisabilityData = {
       percentageCoverage: ocpData.percentageCoverage,

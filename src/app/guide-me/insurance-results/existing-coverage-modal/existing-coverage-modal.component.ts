@@ -71,7 +71,6 @@ export class ExistingCoverageModalComponent implements OnInit {
           break;
         case 4:
           this.isHospitalPlan = true;
-          // this.model.hospitalPlanCoverage = protectionNeed.existingCoverage.value;
           // Drop-down will be displayed for Hospitalization
           break;
         case 5:

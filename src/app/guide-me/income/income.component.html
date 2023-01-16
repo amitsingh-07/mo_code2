@@ -10,13 +10,6 @@
         </div>
       </div>
       <div class="col-lg-5 col-md-6">
-<!--         <div class="myinfo__block">
-          <div class="myinfo__block__btn">
-            <span class="myinfo__block__btn--arrow"></span>
-          </div>
-          <div class="myinfo__block--title">{{ 'COMMON.LBL_FILL_VIA_MY_INFO' | translate}}</div>
-          <div class="myinfo__block--sub-title">{{ 'COMMON.LBL_MY_INFO_HELP_DESC' | translate}}</div>
-        </div> -->
           <form id="incomeForm" name="incomeForm" [formGroup]="incomeForm">
               <div  class="form-group-with-bg">
                 <!--Form Header-->
@@ -59,21 +52,14 @@
                       <div class="form-group-with-bg--content-label" for="name">{{ 'MY_INCOME.OTHER_INCOME' | translate}}<div class="form-group-with-bg--content-sub-label">{{ 'MY_INCOME.OTHER_INCOME_HINT' | translate}}</div></div>
                     </div>
                     <div class="flex-col-6">
-                      <!-- <div name="otherIncome" class="input-control" [ngClass]="{'readonly': otherIncome.value != 0}">$<input type="text" class="input-with-suffix" (change)="updateSlider()" appCurrencyInput maxLength="4" #otherIncome formControlName="otherIncome" value="0"><span class="fixed-tenure">{{ 'MY_INCOME.PER_MONTH' | translate}}</span></div> -->
                       <div class="form-control form-control-right">
                           <i>$</i>
                           <input type="text" class="input-control" appCurrencyInput maxLength="4" #otherIncome formControlName="otherIncome" value="0">
                           <i class="right">{{ 'MY_INCOME.PER_MONTH' | translate}}</i>
                         </div>
                     </div>
-                    </div>
-                    
-                   <!--  <nouislider #noUiSlider (slide)="onNoUiSliderChange($event)" [config]="incomeSliderConfig" [min]="0" [max]="9999" [step]="50" [tooltips]="[ false ]"></nouislider> -->
-                      
+                    </div>  
                   </div>
-                  <!-- <jqxSlider #incomeSlider (onChange)="onSliderChange()" [height]='60' [width]='"100%"' [min]='0' [max]='9999' [value]='0'
-                    [step]='50' [tooltip]='false' [showTicks]='false' [showButtons]='false' [ticksFrequency]='50' [mode]='"fixed"'>
-                  </jqxSlider> -->
                 </div>
                 <button type="button" (click)="goToNext(incomeForm)" class="btn btn__footer--fixed btn-primary width100"
                 id="incomeBtn">{{ 'LABEL.CONTINUE' | translate}}</button>
