@@ -51,6 +51,7 @@ export class MyExecutorTrusteeComponent implements OnInit, OnDestroy {
   formName: string[] = [];
 
   fromConfirmationPage = this.willWritingService.fromConfirmationPage;
+  errorMsgTitle: string;
 
   constructor(
     private formBuilder: FormBuilder,
@@ -73,6 +74,7 @@ export class MyExecutorTrusteeComponent implements OnInit, OnDestroy {
       this.unsavedMsg = this.translate.instant('WILL_WRITING.COMMON.UNSAVED');
       this.toolTip = this.translate.instant('WILL_WRITING.COMMON.ID_TOOLTIP');
       this.errorMsg = this.translate.instant('WILL_WRITING.MY_EXECUTOR_TRUSTEE.ERROR_MSG');
+      this.errorMsgTitle = this.translate.instant('WILL_WRITING.MY_EXECUTOR_TRUSTEE.ERROR_TITLE');
       this.setPageTitle(this.pageTitle);
     });
   }
@@ -275,7 +277,7 @@ export class MyExecutorTrusteeComponent implements OnInit, OnDestroy {
       });
     }
     if (errors.errorMessages.length > 0) {
-      this.willWritingService.openErrorModal('Oops! Please take note of the following:', errors.errorMessages, true);
+      this.willWritingService.openErrorModal(this.errorMsg.ERROR_TITLE, errors.errorMessages, true);
       return false;
     }
     return true;

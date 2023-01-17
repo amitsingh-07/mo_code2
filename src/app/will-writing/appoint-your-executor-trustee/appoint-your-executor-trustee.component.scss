@@ -27,7 +27,7 @@ app-appoint-your-executor-trustee{
             }
             &.active-prev {
                 opacity:1 !important;
-                background-color: #02908e !important;
+                background-color: $blue-lagoon-color !important;
             }
         }
     }
@@ -72,7 +72,7 @@ app-appoint-your-executor-trustee{
         font-size: 36px;
         letter-spacing: -0.4px;
         text-align: center;
-        color: #ffffff;
+        color: $white-color;
         margin-top: 30px;
         margin-bottom: 13px;
         @include allmobiles {
@@ -85,7 +85,7 @@ app-appoint-your-executor-trustee{
         font-size: 24px;
         letter-spacing: -0.3px;
         text-align: center;
-        color: #ffffff;
+        color: $white-color;
         line-height: normal;
         margin-bottom: 12px;
         @include allmobiles {
@@ -99,7 +99,7 @@ app-appoint-your-executor-trustee{
         line-height: 1.22;
         letter-spacing: -0.2px;
         text-align: center;
-        color: #ffffff;
+        color: $white-color;
         @include allmobiles{
             width: 303px;
             margin: 0 auto;

@@ -26,7 +26,7 @@ app-review-your-details{
             }
             &.active-prev {
                 opacity:1 !important;
-                background-color: #02908e !important;
+                background-color: $blue-lagoon-color !important;
             }
         }
     }
@@ -77,7 +77,7 @@ app-review-your-details{
         font-size: 36px;
         letter-spacing: -0.4px;
         text-align: center;
-        color: #ffffff;
+        color: $white-color;
         margin-top: 30px;
         @include allmobiles{
             margin-top: 0 !important;
@@ -88,7 +88,7 @@ app-review-your-details{
         font-size: 24px;
         letter-spacing: -0.3px;
         text-align: center;
-        color: #ffffff;
+        color: $white-color;
     }
     .intro-block__content__sub-title {
         font-family: $muli-regular;
@@ -96,7 +96,7 @@ app-review-your-details{
         line-height: 1.22;
         letter-spacing: -0.2px;
         text-align: center;
-        color: #ffffff;
+        color: $white-color;
         @include allmobiles{
             width: 219px;
             margin: 0 auto;
