@@ -78,9 +78,9 @@ export class FinancialDetailsComponent implements OnInit {
     this.investmentAccountService.getAllDropDownList().subscribe((data) => {
       this.annualHouseHoldIncomeRanges = data.objectList.incomeRange;
     },
-    (err) => {
-      this.investmentAccountService.showGenericErrorModal();
-    });
+      (err) => {
+        this.investmentAccountService.showGenericErrorModal();
+      });
   }
   setAnnualHouseHoldIncomeRange(annualHouseHoldIncome) {
     this.financialDetails.controls['annualHouseHoldIncomeRange'].setValue(

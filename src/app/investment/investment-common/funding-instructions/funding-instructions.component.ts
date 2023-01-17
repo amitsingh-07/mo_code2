@@ -57,7 +57,6 @@ export class FundingInstructionsComponent implements OnInit {
 
   constructor(
     public readonly translate: TranslateService,
-    private formBuilder: FormBuilder,
     private router: Router,
     public headerService: HeaderService,
     private modal: NgbModal,
@@ -93,17 +92,18 @@ export class FundingInstructionsComponent implements OnInit {
       this.navbarService.setNavbarMode(105);
     } else {
       this.navbarService.setNavbarMode(103);
-    } 
+    }
     this.footerService.setFooterVisibility(false);
     this.getBankDetailsList();
     this.getTransferDetails();
     this.portfolioCatagories = INVESTMENT_COMMON_CONSTANTS.PORTFOLIO_CATEGORY;
     if (this.fundDetails.portfolio.riskProfile) {
-      if(this.fundDetails.portfolio.portfolioCategory === this.portfolioCatagories.WISESAVER) {
+      if (this.fundDetails.portfolio.portfolioCategory === this.portfolioCatagories.WISESAVER) {
         this.riskProfileImg = ProfileIcons[6]['icon'];
-      } else { ProfileIcons[this.fundDetails.portfolio.riskProfile.id - 1]['icon'];
+      } else {
+        ProfileIcons[this.fundDetails.portfolio.riskProfile.id - 1]['icon'];
         this.riskProfileImg = this.investmentEngagementJourneyService.getRiskProfileIcon(this.fundDetails.portfolio.riskProfile.type, false);
-      }        
+      }
     }
     this.PortfolioName = this.investmentCommonService.getConfirmPortfolioName();
   }
@@ -269,8 +269,8 @@ export class FundingInstructionsComponent implements OnInit {
               this.investmentAccountService.showGenericErrorModal();
             }
           } else {
-             // On success remove the applied promo code
-             this.promoCodeService.removeAppliedPromo();
+            // On success remove the applied promo code
+            this.promoCodeService.removeAppliedPromo();
             if (!this.fundDetails.isAmountExceedBalance) {
               this.router.navigate([
                 MANAGE_INVESTMENTS_ROUTE_PATHS.TOPUP_STATUS + '/success'

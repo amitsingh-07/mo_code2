@@ -1,5 +1,5 @@
 
-import {map} from 'rxjs/operators';
+import { map } from 'rxjs/operators';
 import { Injectable } from '@angular/core';
 import { CanActivate, Router } from '@angular/router';
 
@@ -30,7 +30,7 @@ export class InvestmentAccountGuardService implements CanActivate {
       }));
     } else {
       if (this.appService.getCorporateDetails() && this.appService.getCorporateDetails().organisationEnabled) {
-        this.route.navigate([SIGN_UP_ROUTE_PATHS.CORPORATE_LOGIN], { queryParams: {orgID: this.appService.getCorporateDetails().uuid}});
+        this.route.navigate([SIGN_UP_ROUTE_PATHS.CORPORATE_LOGIN], { queryParams: { orgID: this.appService.getCorporateDetails().uuid } });
       } else {
         this.route.navigate([SIGN_UP_ROUTE_PATHS.LOGIN]);
       }

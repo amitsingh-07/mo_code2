@@ -4,24 +4,24 @@ import { RouterModule, Routes } from '@angular/router';
 import { AuthGuardService as AuthGuard } from '../../sign-up/auth-guard.service';
 import { AccountStatusComponent } from './account-status/account-status.component';
 import {
-    AdditionalDeclarationInfoComponent
+  AdditionalDeclarationInfoComponent
 } from './additional-declaration-info/additional-declaration-info.component';
 import {
-    AdditionalDeclaration1Component
+  AdditionalDeclaration1Component
 } from './additional-declaration1/additional-declaration1.component';
 import {
-    AdditionalDeclaration2Component
+  AdditionalDeclaration2Component
 } from './additional-declaration2/additional-declaration2.component';
 import { EmploymentDetailsComponent } from './employment-details/employment-details.component';
 import { FinancialDetailsComponent } from './financial-details/financial-details.component';
 
 import {
-    InvestmentAccountGuardService as InvestmentAccountGuard
+  InvestmentAccountGuardService as InvestmentAccountGuard
 } from './investment-account-guard.service';
 import { INVESTMENT_ACCOUNT_ROUTES } from './investment-account-routes.constants';
 import { NationalityComponent } from './nationality/nationality.component';
 import {
-    PersonalDeclarationComponent
+  PersonalDeclarationComponent
 } from './personal-declaration/personal-declaration.component';
 import { PersonalInfoComponent } from './personal-info/personal-info.component';
 import { ResidentialAddressComponent } from './residential-address/residential-address.component';
@@ -113,4 +113,4 @@ const routes: Routes = [
   imports: [RouterModule.forChild(routes)],
   exports: [RouterModule]
 })
-export class InvestmentAccountRoutingModule {}
+export class InvestmentAccountRoutingModule { }

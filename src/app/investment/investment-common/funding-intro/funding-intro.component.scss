@@ -61,22 +61,19 @@ app-funding-intro {
     @extend .align-center;
     flex-direction: column;
     height: 100%;
-    @include allmobiles{
+
+    @include allmobiles {
       top: 105px;
       justify-content: flex-start;
     }
   }
 
   .custom-modal--content {
-    // img {
-    //   width: 100%;
-    //   height: 100%;
-    // }
-    .btn{
+    .btn {
       &.btn-primary {
         width: 320px !important;
         margin-top: 68px;
-  
+
         @include allmobiles {
           position: fixed !important;
           bottom: 30px;
@@ -181,12 +178,13 @@ app-funding-intro {
 
 
     .btn-proceed {
-      font-family: $muli-bold;      
+      font-family: $muli-bold;
       font-size: 22px;
       width: 337px;
-      background: #ffffff;
+      background: $white-color;
       box-shadow: 0 6px 7px 0 rgba(0, 0, 0, 0.21) !important;
       color: $teal-color !important;
+
       @include allmobiles {
         width: 100%;
       }

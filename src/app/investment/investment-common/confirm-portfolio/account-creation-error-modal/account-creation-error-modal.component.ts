@@ -16,12 +16,11 @@ export class AccountCreationErrorModalComponent implements OnInit {
 
   constructor(
     public activeModal: NgbActiveModal,
-    private router: Router,
     public readonly translate: TranslateService
   ) {
     this.translate.use('en');
-    this.translate.get('COMMON').subscribe((result: string) => {});
+    this.translate.get('COMMON').subscribe((result: string) => { });
   }
 
-  ngOnInit() {}
+  ngOnInit() { }
 }

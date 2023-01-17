@@ -1,5 +1,5 @@
 
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { waitForAsync, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { TaxInfoComponent } from './tax-info.component';
 
@@ -7,11 +7,11 @@ describe('TaxInfoComponent', () => {
   let component: TaxInfoComponent;
   let fixture: ComponentFixture<TaxInfoComponent>;
 
-  beforeEach(async(() => {
+  beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
-      declarations: [ TaxInfoComponent ]
+      declarations: [TaxInfoComponent]
     })
-    .compileComponents();
+      .compileComponents();
   }));
 
   beforeEach(() => {

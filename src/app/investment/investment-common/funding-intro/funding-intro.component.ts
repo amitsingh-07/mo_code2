@@ -1,5 +1,5 @@
 import {
-    AfterViewInit, ChangeDetectorRef, Component, OnInit, ViewEncapsulation
+  AfterViewInit, ChangeDetectorRef, Component, OnInit, ViewEncapsulation
 } from '@angular/core';
 import { Router } from '@angular/router';
 import { TranslateService } from '@ngx-translate/core';
@@ -42,9 +42,9 @@ export class FundingIntroComponent implements OnInit, AfterViewInit {
     this.footerService.setFooterVisibility(false);
     this.investmentAccountService.deactivateReassess();
     this.investmentAccountService.clearInvestmentAccountFormData();
-    this.investmentAccountService.restrictBackNavigation();      
+    this.investmentAccountService.restrictBackNavigation();
   }
-  
+
   ngAfterViewInit() {
     this.cd.detectChanges();
   }

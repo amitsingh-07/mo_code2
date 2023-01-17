@@ -1,5 +1,5 @@
 import { HttpClientTestingModule } from '@angular/common/http/testing';
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { waitForAsync, ComponentFixture, TestBed } from '@angular/core/testing';
 import { Router } from '@angular/router';
 import { RouterTestingModule } from '@angular/router/testing';
 import { JwtHelperService, JwtModule } from '@auth0/angular-jwt';
@@ -19,14 +19,14 @@ describe('AdditionalDeclarationInfoComponent', () => {
   let footerService: FooterService;
   let investAccountService: InvestmentAccountService;
 
-  beforeEach(async(() => {
+  beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
       imports: [TranslateModule.forRoot(), RouterTestingModule.withRoutes([]), NgbModule, HttpClientTestingModule,
-      JwtModule.forRoot({config: {}})],
-      declarations: [ AdditionalDeclarationInfoComponent ],
-      providers: [ JwtHelperService ]
+      JwtModule.forRoot({ config: {} })],
+      declarations: [AdditionalDeclarationInfoComponent],
+      providers: [JwtHelperService]
     })
-    .compileComponents();
+      .compileComponents();
   }));
 
   beforeEach(() => {
@@ -52,20 +52,20 @@ describe('AdditionalDeclarationInfoComponent', () => {
     const setNavbarModeSpy = spyOn(navbarService, 'setNavbarMode');
     const setNavbarMobileVisibilitySpy = spyOn(navbarService, 'setNavbarMobileVisibility');
     const setFooterVisibilitySpy = spyOn(footerService, 'setFooterVisibility');
-    spyOn(investAccountService, 'getInvestmentAccountFormData').and.returnValue({pep: ''});
+    spyOn(investAccountService, 'getInvestmentAccountFormData').and.returnValue({ pep: '' });
     component.ngOnInit();
     expect(setNavbarModeSpy).toHaveBeenCalledWith(6);
     expect(setNavbarMobileVisibilitySpy).toHaveBeenCalledWith(false);
     expect(setFooterVisibilitySpy).toHaveBeenCalledWith(false);
-    expect(component.addInfoFormValues).toEqual({pep: ''});
+    expect(component.addInfoFormValues).toEqual({ pep: '' });
   });
 
   it('should navigate to additional declaration step 1 if pep detail exist, else step 2', () => {
     const navigateSpy = spyOn(router, 'navigate');
-    component.addInfoFormValues = {pep: '123'};
+    component.addInfoFormValues = { pep: '123' };
     component.goNext();
     expect(navigateSpy).toHaveBeenCalledWith(['../investment/account/additional-declaration/1']);
-    component.addInfoFormValues = {pep: ''};
+    component.addInfoFormValues = { pep: '' };
     component.goNext();
     expect(navigateSpy).toHaveBeenCalledWith(['../investment/account/additional-declaration/2']);
   });
