@@ -12,7 +12,8 @@
                     <p>{{'START.DESC1' | translate}}</p>
                     <p>{{'START.DESC2' | translate}}</p>
                     <p>{{'START.DESC3' | translate}}</p>
-                    <button type="button" [ngClass]="{'btn__footer--fixed' : authService.isUserTypeCorporate}" class="btn btn-primary" (click)="goNext()">{{'START.GETSTARTED' | translate}}</button>
+                    <button type="button" [ngClass]="{'btn__footer--fixed' : authService.isUserTypeCorporate}"
+                        class="btn btn-primary" (click)="goNext()">{{'START.GETSTARTED' | translate}}</button>
                     <div *ngIf="!authService.isUserTypeCorporate" class="journey-content-text">
                         <div class="ja-desc-text">{{'START.JA_DESC1' | translate}}</div>
                         <div class="ja-desc-sub-text">{{'START.JA_DESC2' | translate}}</div>

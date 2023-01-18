@@ -38,7 +38,7 @@ export class FundingMethodComponent implements OnInit {
   loaderDesc: string;
   selectedPortfolioType;
   checkFund;
-  
+
   constructor(
     public readonly translate: TranslateService,
     public authService: AuthenticationService,

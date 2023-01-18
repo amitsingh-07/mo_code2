@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewEncapsulation} from '@angular/core';
+import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { TranslateService } from '@ngx-translate/core';
 import { Router } from '@angular/router';
 import { INVESTMENT_ENGAGEMENT_JOURNEY_ROUTE_PATHS } from '../investment-engagement-journey-routes.constants';
@@ -27,7 +27,7 @@ export class CkaAssessmentComponent implements OnInit {
       this.pageTitle = this.translate.instant('CKA_ASSESSMENT.PAGE_TITLE');
       this.setPageTitle(this.pageTitle);
     });
-   }
+  }
 
   ngOnInit(): void {
     this.navbarService.setNavbarMobileVisibility(true);

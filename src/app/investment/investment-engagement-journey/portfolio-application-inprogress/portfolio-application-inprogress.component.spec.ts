@@ -1,4 +1,4 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { waitForAsync, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { PortfolioApplicationInprogressComponent } from './portfolio-application-inprogress.component';
 
@@ -6,11 +6,11 @@ describe('PortfolioApplicationInprogressComponent', () => {
   let component: PortfolioApplicationInprogressComponent;
   let fixture: ComponentFixture<PortfolioApplicationInprogressComponent>;
 
-  beforeEach(async(() => {
+  beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
-      declarations: [ PortfolioApplicationInprogressComponent ]
+      declarations: [PortfolioApplicationInprogressComponent]
     })
-    .compileComponents();
+      .compileComponents();
   }));
 
   beforeEach(() => {

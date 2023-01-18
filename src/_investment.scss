@@ -361,7 +361,7 @@
     background: $white-color;
     padding: 20px;
     background-color: $serenade-color;
-    font-family: "Muli Bold", sans-serif;
+    font-family: $muli-bold;
     font-size: 15px;
     line-height: 19px;
     display: flex;
@@ -422,7 +422,7 @@
     background: $white-color;
     padding: 19px;
     background-color: $serenade-color;
-    font-family: "Muli Bold", sans-serif;
+    font-family: $muli-bold;
     font-size: 15px;
     line-height: 19px;
     display: flex;

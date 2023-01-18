@@ -1,7 +1,7 @@
 
 import { YourInvestmentAmountComponent } from './your-investment-amount.component';
 
-import { async, ComponentFixture, TestBed, getTestBed } from '@angular/core/testing';
+import { waitForAsync, ComponentFixture, TestBed, getTestBed } from '@angular/core/testing';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { RouterTestingModule } from '@angular/router/testing';
 import { JwtModule } from '@auth0/angular-jwt';
@@ -53,7 +53,7 @@ describe('YourInvestmentAmountComponent', () => {
     "monthlyInvestmentMinimum": 50
   }
 
-  beforeEach(async(() => {
+  beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
       declarations: [YourInvestmentAmountComponent],
       imports: [BrowserAnimationsModule, FormsModule, TranslateModule.forRoot(), HttpClientModule, RouterTestingModule.withRoutes([]),
