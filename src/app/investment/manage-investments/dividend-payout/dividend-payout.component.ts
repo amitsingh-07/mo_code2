@@ -1,5 +1,4 @@
 import { Component, OnInit, Renderer2, ViewEncapsulation } from '@angular/core';
-import { Router } from '@angular/router';
 import { TranslateService } from '@ngx-translate/core';
 import { FooterService } from '../../../shared/footer/footer.service';
 import { NavbarService } from '../../../shared/navbar/navbar.service';
@@ -21,7 +20,6 @@ export class DividendPayoutComponent implements OnInit {
   portfolioName: any;
 
   constructor(
-    private router: Router,
     public footerService: FooterService,
     public navbarService: NavbarService,
     private translate: TranslateService,

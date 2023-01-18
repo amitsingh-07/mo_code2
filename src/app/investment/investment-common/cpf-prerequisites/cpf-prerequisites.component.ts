@@ -1,6 +1,6 @@
 import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { Router, ActivatedRoute } from '@angular/router';
+import { Router } from '@angular/router';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { TranslateService } from '@ngx-translate/core';
 import { RegexConstants } from '../../../shared/utils/api.regex.constants';
@@ -10,13 +10,11 @@ import { NavbarService } from '../../../shared/navbar/navbar.service';
 import { INVESTMENT_ENGAGEMENT_JOURNEY_ROUTE_PATHS } from '../../investment-engagement-journey/investment-engagement-journey-routes.constants';
 import { INVESTMENT_COMMON_CONSTANTS } from '../investment-common.constants';
 import { ModelWithButtonComponent } from '../../../shared/modal/model-with-button/model-with-button.component';
-import { SignUpService } from '../../../sign-up/sign-up.service';
 import { InvestmentCommonService } from '../investment-common.service';
 import { INVESTMENT_COMMON_ROUTE_PATHS } from '../investment-common-routes.constants';
 import { InvestmentAccountService } from '../../investment-account/investment-account-service';
 import { LoaderService } from '../../../shared/components/loader/loader.service';
 import { CpfiaTooltipComponent } from './cpfia-tooltip/cpfia-tooltip.component';
-import { InvestmentEngagementJourneyService } from '../../investment-engagement-journey/investment-engagement-journey.service';
 import { Util } from '../../../shared/utils/util';
 
 @Component({

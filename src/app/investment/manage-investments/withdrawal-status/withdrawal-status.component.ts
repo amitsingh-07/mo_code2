@@ -1,5 +1,4 @@
 import { Component, OnDestroy, OnInit, ViewEncapsulation } from '@angular/core';
-import { FormBuilder } from '@angular/forms';
 import { Router } from '@angular/router';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { TranslateService } from '@ngx-translate/core';
@@ -28,7 +27,6 @@ export class WithdrawalStatusComponent implements OnInit, OnDestroy {
 
   constructor(
     public readonly translate: TranslateService,
-    private formBuilder: FormBuilder,
     private router: Router,
     public headerService: HeaderService,
     private modal: NgbModal,
@@ -48,7 +46,7 @@ export class WithdrawalStatusComponent implements OnInit, OnDestroy {
     this.navbarService.setNavbarMobileVisibility(false);
     this.refreshUserProfileInfo();
     // Fix for sticky hover on iOS
-    document.addEventListener('touchend', () => {});
+    document.addEventListener('touchend', () => { });
   }
 
   ngOnDestroy() {

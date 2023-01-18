@@ -4,6 +4,7 @@
 .transfer-success-body {
   background-color: $dark-teal-color !important;
 }
+
 app-transfer-status {
   .content {
     min-height: 100vh;
@@ -21,6 +22,7 @@ app-transfer-status {
     .success-page-content {
       position: relative;
       top: 100px;
+
       @include allmobiles {
         top: 100px;
       }
@@ -32,13 +34,16 @@ app-transfer-status {
       @include phablet {
         top: 20px;
       }
+
       @include desktop {
         top: 80px;
       }
+
       @include iPadLandscape {
         top: 190px;
       }
     }
+
     .transfer-buttons {
       position: absolute;
       bottom: 60px;
@@ -46,11 +51,13 @@ app-transfer-status {
       left: 0px;
       max-width: 374px;
       margin: auto;
+
       @include desktop {
         position: relative;
         bottom: 0;
         margin-top: 150px;
       }
+
       @include desktop {
         bottom: -50px;
       }
@@ -67,11 +74,11 @@ app-transfer-status {
         bottom: 100px;
         padding: 10px;
       }
-      
+
       @include iPhone11 {
         bottom: 220px !important;
-      } 
-      
+      }
+
       @include iPadLandscape {
         bottom: 160px;
       }
@@ -80,6 +87,7 @@ app-transfer-status {
         top: 200px;
       }
     }
+
     .custom-modal--title {
       font-family: $muli-bold;
       font-size: 28px;
@@ -88,6 +96,7 @@ app-transfer-status {
       text-align: center;
       color: $white-color;
       margin-top: 20px;
+
       @include iphone5 {
         font-size: 20px;
       }
@@ -98,11 +107,13 @@ app-transfer-status {
         margin-top: 10px !important;
         margin-bottom: 30px;
         width: 82%;
+
         @include allmobiles {
           margin-bottom: 0px;
           width: 100%;
         }
       }
+
       &.special-btn {
         background-color: $dark-teal-color;
         border: 1px solid $white-color;
@@ -125,6 +136,7 @@ app-transfer-status {
       }
     }
   }
+
   img {
     width: 117px;
     height: 120px;

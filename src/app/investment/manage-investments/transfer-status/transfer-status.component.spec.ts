@@ -1,4 +1,4 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { waitForAsync, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { TransferStatusComponent } from './transfer-status.component';
 
@@ -6,11 +6,11 @@ describe('TransferStatusComponent', () => {
   let component: TransferStatusComponent;
   let fixture: ComponentFixture<TransferStatusComponent>;
 
-  beforeEach(async(() => {
+  beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
-      declarations: [ TransferStatusComponent ]
+      declarations: [TransferStatusComponent]
     })
-    .compileComponents();
+      .compileComponents();
   }));
 
   beforeEach(() => {
