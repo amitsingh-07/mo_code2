@@ -1,8 +1,6 @@
-import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 
 import { Util } from '../shared/utils/util';
-import { AppService } from '../app.service';
 import { ApiService } from '../shared/http/api.service';
 import { AuthenticationService } from '../shared/http/auth/authentication.service';
 import { IWill, IwillProfile, IWillProfileMembers } from './will-writing-types';
@@ -37,9 +35,7 @@ export class WillWritingApiService {
     ]);
 
     constructor(
-        private appService: AppService,
         private authService: AuthenticationService,
-        private http: HttpClient,
         private apiService: ApiService,
         private willWritingService: WillWritingService
     ) {

@@ -45,7 +45,7 @@ app-my-child-guardian{
         position: absolute;
         right: -6px;
         bottom: 15px;
-        background-color: #fff;
+        background-color: $white-color;
         border-radius: 50%;
     }
 }
@@ -68,12 +68,12 @@ app-my-child-guardian{
 }
 .header-section {
     @include allmobiles{
-        background-color: #ffffff;
+        background-color: $white-color;
         font-family: $muli-semi-bold;
         font-size: 16px;
         letter-spacing: -0.2px;
         text-align: center;
-        color: #333846;
+        color: $bright-grey-color;
         padding: 12px 15px;
         margin-top:-10px;
     }
@@ -101,18 +101,18 @@ app-my-child-guardian{
 }
 
 .myChildGuardian {
-        background-color: #f4fafb;
+        background-color: $black-squeeze-grey-color;
         border-radius: 6px;
         box-shadow: 0 8px 10px 0 rgba(0, 0, 0, 0.25);
         font-size: 18px;
         letter-spacing: -0.3px;
         line-height: normal;
-        color: #2d8289;
+        color: $dark-teal-color;
         .flex-row{
             padding: 0 19px 22px; 
             .form-control{
                 font-family: $muli-regular;
-                color: #00a7a7;
+                color: $teal-color;
             }
         }
         .title {
@@ -120,7 +120,7 @@ app-my-child-guardian{
             font-family: $muli-bold;
             font-size: 20px;
             letter-spacing: -0.4px;
-            color: #066360;
+            color: $watercourse-color;
             margin-bottom: 19px;
             padding: 17px 19px; 
             border-radius: 6px;
@@ -130,7 +130,7 @@ app-my-child-guardian{
             font-family: $muli-regular;
             font-size: 16px;
             letter-spacing: -0.3px;
-            color: #2d8289;
+            color: $dark-teal-color;
             font-weight: normal;
         }
     .addGuardian{
@@ -138,16 +138,16 @@ app-my-child-guardian{
         justify-content: flex-end;
         margin-right: 20px;
         .btn{
-                background-color: #f4fafb;
-                color: #00a7a7;
+                background-color: $black-squeeze-grey-color;
+                color: $teal-color;
                 font-family: $muli-semi-bold;
                 font-size: 16px;
                 letter-spacing: -0.1px;
                 text-align: center;
         }
         .btn-primary{
-                background-color: #00a7a7 !important;
-                color: #fff !important;
+                background-color: $teal-color !important;
+                color: $white-color !important;
                 padding: 10px 10px;
         }
 
@@ -158,7 +158,7 @@ app-my-child-guardian{
         font-family: $muli-regular;
         font-size: 14px;
         letter-spacing: -0.3px;
-        color: #2d8289;
+        color: $dark-teal-color;
         font-weight: 100;
 }
 .add-guardian{
@@ -178,7 +178,7 @@ app-my-child-guardian{
     font-size: 14px;
     letter-spacing: -0.1px;
     font-weight: 100;
-    color: #2d8289;
+    color: $dark-teal-color;
     padding-bottom: 16px !important
   }
 
@@ -188,7 +188,7 @@ app-my-child-guardian{
     font-weight: 100;
     letter-spacing: -0.3px;
     text-align: right;
-    color: #00a7a7;
+    color: $teal-color;
     cursor: pointer;
     padding-top: 5px;
 }
@@ -219,7 +219,7 @@ app-my-child-guardian{
     font-stretch: normal;
     line-height: normal;
     letter-spacing: -0.3px;
-    color: #2d8289;
+    color: $dark-teal-color;
   }
   .default {
     font-family: $muli-regular;
@@ -229,7 +229,7 @@ app-my-child-guardian{
     font-stretch: normal;
     line-height: normal;
     letter-spacing: -0.3px;
-    color: #d8d8d8;
+    color: $slick-dot-inactive-color;
   }
 
   .form-group-single-column .checkbox-button {
@@ -250,7 +250,7 @@ app-my-child-guardian{
     @include allmobiles {
         .show {
             &.dropdown {
-                border: 1px solid #00a7a7 !important;
+                border: 1px solid $teal-color !important;
                 border-radius:  6px;
             }
         }

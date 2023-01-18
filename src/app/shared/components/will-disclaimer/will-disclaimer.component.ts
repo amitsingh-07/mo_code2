@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
@@ -6,11 +6,11 @@ import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
   templateUrl: './will-disclaimer.component.html',
   styleUrls: ['./will-disclaimer.component.scss']
 })
-export class WillDisclaimerComponent implements OnInit {
+export class WillDisclaimerComponent {
+  @Input() title: string;
+  @Input() message: string;
+  @Input() agree: string;
 
   constructor(public activeModal: NgbActiveModal) { }
-
-  ngOnInit() {
-  }
 
 }
