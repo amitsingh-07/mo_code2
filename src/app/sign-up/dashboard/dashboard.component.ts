@@ -560,6 +560,14 @@ export class DashboardComponent implements OnInit {
   openInvestMenuModal() {
     this.modal.open(InvestModalComponent, { centered: true });
   }
+
+  goToInsuranceJourney(page: string){
+    if (page === 'direct') {
+      this.router.navigate(['/direct']);
+    } else {
+      this.router.navigate(['/guideme']);
+    }
+  }
 }
 
 

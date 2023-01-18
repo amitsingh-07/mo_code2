@@ -78,11 +78,10 @@
               'COMMON.LOGIN' | translate }}</button>
             <!-- FORGOT -->
             <div class="forgot-link mt30" *ngIf="!hideForgotPassword">
-              <a id="login_forgotpwd_link" [routerLink]="'/accounts/forgot-password'">{{ 'LOGIN.FORGOT_PASSWORD' |
+              <a class="login_forgotpwd_link" (click)="navigateForgotPassword()">{{ 'LOGIN.FORGOT_PASSWORD' |
                 translate}}</a>
             </div>
-            <div class="start-link mt10"><a id="login_signup_link"
-                [routerLink]="finlitEnabled ? '/accounts/finlit/sign-up':'/accounts/sign-up'  ">{{'LOGIN.DON_T_HAVE_AN_ACCOUNT'
+            <div class="start-link mt10"><a class="login_signup_link" (click)="navigateSignUp()">{{'LOGIN.DON_T_HAVE_AN_ACCOUNT'
                 |
                 translate}}</a></div>
           </form>
@@ -182,12 +181,10 @@
             </div>
             <!-- FORGOT -->
             <div class="forgot-link" *ngIf="!hideForgotPassword">
-              <a id="login_forgotpwd_link"
-                [routerLink]="organisationEnabled ? '/accounts/corp/forgot-password' : '/accounts/forgot-password'">{{
+              <a class="login_forgotpwd_link" (click)="navigateForgotPassword()">{{
                 'LOGIN.FORGOT_PASSWORD' | translate}}</a>
             </div>
-            <div class="start-link"><a id="login_signup_link"
-                [routerLink]="finlitEnabled ? '/accounts/finlit/sign-up' : organisationEnabled ? '/accounts/corp/sign-up' : '/accounts/sign-up'  ">{{
+            <div class="start-link"><a class="login_signup_link" (click)="navigateSignUp()">">{{
                 'LOGIN.DON_T_HAVE_AN_ACCOUNT' | translate}}</a></div>
             <button id="login_submit_btn" (click)="doLogin(loginForm)" type="button"
               class="btn btn__footer--fixed btn-primary width100 ">{{
