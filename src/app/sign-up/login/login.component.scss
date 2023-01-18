@@ -44,6 +44,7 @@ app-login {
       color: $white-color;
       font-family: $muli-bold;
       font-size: 16px;
+      cursor: pointer;
     }
 
     a span {
@@ -62,6 +63,7 @@ app-login {
       text-decoration: underline;
       font-weight: 300;
       letter-spacing: -0.17px;
+      cursor: pointer;
     }
   }
 

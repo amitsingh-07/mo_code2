@@ -481,4 +481,22 @@ export class LoginComponent implements OnInit, AfterViewInit, OnDestroy {
       this.loginForm.controls[key].setValue(emailValue);
     }
   }
+
+  navigateForgotPassword(){
+    if(this.organisationEnabled){
+      this.router.navigate(['/accounts/corp/forgot-password']);
+    } else {
+      this.router.navigate(['/accounts/forgot-password']);
+    }
+  }
+
+  navigateSignUp(){
+    if(this.finlitEnabled){
+      this.router.navigate(['/accounts/finlit/sign-up']);
+    } else if(this.organisationEnabled){
+      this.router.navigate(['/accounts/corp/forgot-password']);
+    } else {
+      this.router.navigate(['/accounts/sign-up']);
+    }
+  }
 }
