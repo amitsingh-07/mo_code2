@@ -9,7 +9,6 @@ import { BaseService } from '../shared/http/base.service';
 import { IServerResponse } from '../shared/http/interfaces/server-response.interface';
 import { environment } from './../../environments/environment';
 
-const newLocal = 'EnquiryId';
 
 @Injectable({
   providedIn: 'root'

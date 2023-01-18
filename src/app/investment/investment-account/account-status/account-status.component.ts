@@ -1,6 +1,6 @@
 import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { Router } from '@angular/router';
-import { NgbActiveModal, NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 import { TranslateService } from '@ngx-translate/core';
 
 import { FooterService } from '../../../shared/footer/footer.service';
@@ -8,11 +8,11 @@ import { HeaderService } from '../../../shared/header/header.service';
 import { NavbarService } from '../../../shared/navbar/navbar.service';
 import { SIGN_UP_ROUTE_PATHS } from '../../../sign-up/sign-up.routes.constants';
 import {
-    INVESTMENT_COMMON_ROUTE_PATHS
+  INVESTMENT_COMMON_ROUTE_PATHS
 } from '../../investment-common/investment-common-routes.constants';
 import { InvestmentCommonService } from '../../investment-common/investment-common.service';
 import {
-    MANAGE_INVESTMENTS_ROUTE_PATHS
+  MANAGE_INVESTMENTS_ROUTE_PATHS
 } from '../../manage-investments/manage-investments-routes.constants';
 import { ManageInvestmentsService } from '../../manage-investments/manage-investments.service';
 import { InvestmentAccountService } from '../investment-account-service';
@@ -40,14 +40,13 @@ export class AccountStatusComponent implements OnInit {
     public activeModal: NgbActiveModal,
     private router: Router,
     private investmentAccountService: InvestmentAccountService,
-    private modal: NgbModal,
     public footerService: FooterService,
     public readonly translate: TranslateService,
     private investmentCommonService: InvestmentCommonService,
     private manageInvestmentsService: ManageInvestmentsService
   ) {
     this.translate.use('en');
-    this.translate.get('COMMON').subscribe(() => {});
+    this.translate.get('COMMON').subscribe(() => { });
   }
 
   ngOnInit() {
@@ -97,7 +96,7 @@ export class AccountStatusComponent implements OnInit {
         this.pageDesc = this.translate.instant(
           'ACCOUNT_CREATION_STATUS.DOCUMENTS_PENDING.DESC'
         );
-        } else {
+      } else {
         this.showAccountCreationPending = true;
         this.pageTitle = this.translate.instant(
           'ACCOUNT_CREATION_STATUS.ADDITIONAL_DECLARATION_SUBMITTED.TITLE'

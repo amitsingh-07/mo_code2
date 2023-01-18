@@ -61,9 +61,9 @@ export class PersonalDeclarationComponent implements OnInit {
     this.investmentAccountService.getAllDropDownList().subscribe((data) => {
       this.sourceOfIncomeList = data.objectList.investmentSource;
     },
-    (err) => {
-      this.investmentAccountService.showGenericErrorModal();
-    });
+      (err) => {
+        this.investmentAccountService.showGenericErrorModal();
+      });
   }
   ngOnInit() {
     this.navbarService.setNavbarMobileVisibility(true);

@@ -1,5 +1,5 @@
 
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { waitForAsync, ComponentFixture, TestBed } from '@angular/core/testing';
 
 
 import { ConfirmPortfolioComponent } from './confirm-portfolio.component';
@@ -8,11 +8,11 @@ describe('ConfirmPortfolioComponent', () => {
   let component: ConfirmPortfolioComponent;
   let fixture: ComponentFixture<ConfirmPortfolioComponent>;
 
-  beforeEach(async(() => {
+  beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
-      declarations: [ ConfirmPortfolioComponent ]
+      declarations: [ConfirmPortfolioComponent]
     })
-    .compileComponents();
+      .compileComponents();
   }));
 
   beforeEach(() => {

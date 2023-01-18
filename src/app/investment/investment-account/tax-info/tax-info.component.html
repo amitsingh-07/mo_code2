@@ -26,9 +26,9 @@
                   <div class="widget-body" [formGroupName]="x">
                     <div class="flex-row">
                       <div class="flex-col-4">
-                        <label for="name" 
-                          id="tax-info-label">{{ 'TAX_INFO.COUNTRY_TEXT' | translate}}
-                          <i class="tooltip-block-icon" id="countryHelpIcon" (click)="showHelpModalCountry()"></i></label>
+                        <label for="name" id="tax-info-label">{{ 'TAX_INFO.COUNTRY_TEXT' | translate}}
+                          <i class="tooltip-block-icon" id="countryHelpIcon"
+                            (click)="showHelpModalCountry()"></i></label>
                       </div>
                       <div class="flex-col-8">
                         <div class="dropdown-control"
@@ -56,18 +56,21 @@
                     <!-- Button part -->
                     <div class="flex-row">
                       <div class="flex-col-12 mb15">
-                        <div class="btn-group--toggle" name="radioTin">            
-                          <app-custom-radio-controller formControlName="radioTin" name="radioTin" [radioLabelValue]="radioLabelValue" [disabled]="taxInfoItem.get('radioTin').disabled"
-                          (valueChangedEvent)="isTinNumberAvailChanged($event, taxInfoItem, null)" [defaultLabelStyleClass]="defaultRadioStyleClass"></app-custom-radio-controller>
-                      </div>
+                        <div class="btn-group--toggle" name="radioTin">
+                          <app-custom-radio-controller formControlName="radioTin" name="radioTin"
+                            [radioLabelValue]="radioLabelValue" [disabled]="taxInfoItem.get('radioTin').disabled"
+                            (valueChangedEvent)="isTinNumberAvailChanged($event, taxInfoItem, null)"
+                            [defaultLabelStyleClass]="defaultRadioStyleClass"></app-custom-radio-controller>
+                        </div>
                       </div>
                     </div>
                     <!-- Second Dropdown -->
                     <div class="flex-row"
                       *ngIf="taxInfoItem.controls.radioTin.value === false && taxInfoItem.get('noTinReason')">
                       <div class="flex-col-4">
-                        <label class="tin_question_text pb10" for="name" id="tax-info-reason_label">{{ 'TAX_INFO.REASON_TEXT' |
-                        translate}}</label>
+                        <label class="tin_question_text pb10" for="name" id="tax-info-reason_label">{{
+                          'TAX_INFO.REASON_TEXT' |
+                          translate}}</label>
                       </div>
                       <div class="flex-col-8 flex-col-moz">
                         <div class="dropdown-control"
@@ -96,8 +99,9 @@
                     <div class="flex-row"
                       *ngIf="taxInfoItem.controls.radioTin.value === true && taxInfoItem.get('tinNumber')">
                       <div class="flex-col-4">
-                        <label class="tin_question_text pb10" for="name" id="tax-info-reason_label">{{ 'TAX_INFO.TIN_TEXT' |
-                        translate}}</label>
+                        <label class="tin_question_text pb10" for="name" id="tax-info-reason_label">{{
+                          'TAX_INFO.TIN_TEXT' |
+                          translate}}</label>
                       </div>
                       <div class="flex-col-8">
                         <div class="dropdown-control"
@@ -123,8 +127,8 @@
               </form>
               <div class="text-center">
                 <button type="button" id="personalInforNextBtn" (click)="goToNext(taxInfoForm)"
-                  class="btn btn__footer--fixed btn-ftr-get-started btn-primary"
-                  id="getStrdBtn3">{{ 'TAX_INFO.CONTINUE' | translate}}</button>
+                  class="btn btn__footer--fixed btn-ftr-get-started btn-primary" id="getStrdBtn3">{{ 'TAX_INFO.CONTINUE'
+                  | translate}}</button>
               </div>
             </div>
           </div>

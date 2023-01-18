@@ -12,10 +12,10 @@ export class InvestmentCommonFormData {
     fundingType: string;
     srsOperatorBank: any;
     srsAccountNumber: string;
-    portfolioType:any;
+    portfolioType: any;
     initialWiseIncomePayoutTypeId: number;
     wiseIncomeActiveTabId: number;
-    portfolioDetails :any;
+    portfolioDetails: any;
     ckaStatus: any;
     ckaRedirectFromLocation: any;
 }

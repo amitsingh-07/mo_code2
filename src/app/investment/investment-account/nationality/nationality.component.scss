@@ -33,16 +33,20 @@ app-nationality {
   .flex-row {
     align-items: center;
   }
-  .restrict-notice{
-    align-items: flex-start!important;
+
+  .restrict-notice {
+    align-items: flex-start !important;
     font-size: 13px;
+
     strong {
       font-family: $muli-bold;
     }
-    .pl-2{
+
+    .pl-2 {
       padding-left: 0.5rem;
     }
   }
+
   label {
     font-family: $muli-semi-bold;
     font-size: 18px;
@@ -70,7 +74,8 @@ app-nationality {
       }
     }
   }
-  .country-list{
+
+  .country-list {
     cursor: pointer;
   }
 

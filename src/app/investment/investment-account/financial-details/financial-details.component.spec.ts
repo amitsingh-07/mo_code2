@@ -1,5 +1,5 @@
 
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { waitForAsync, ComponentFixture, TestBed } from '@angular/core/testing';
 import { ReactiveFormsModule } from '@angular/forms';
 import { Router } from '@angular/router';
 import { RouterTestingModule } from '@angular/router/testing';
@@ -41,30 +41,29 @@ describe('FinancialDetailsComponent', () => {
   let injector: Injector;
   let ngbModalService: NgbModal;
   let ngbModalRef: NgbModalRef;
-  let investmentEngagementJourneyService :InvestmentEngagementJourneyService;
+  let investmentEngagementJourneyService: InvestmentEngagementJourneyService;
 
   let translations = require('../../../../assets/i18n/investment-account/en.json');
 
-  beforeEach(async(() => {  
-  TestBed.configureTestingModule({
-    declarations: [FinancialDetailsComponent],
-    imports: [TranslateModule.forRoot(), HttpClientModule, RouterTestingModule.withRoutes([]),
-      ReactiveFormsModule, JwtModule.forRoot({ config: {} })],
-    providers: [NgbActiveModal, AuthenticationService, DatePipe, TranslateService,
-      InvestmentAccountService,
-      LoaderService,
-      {
-        provide: InvestmentAccountService
-        //useClass: mockInvestmentEngagementJourneyService 
-      }],
-  })
-    .overrideModule(BrowserDynamicTestingModule, { set: { entryComponents: [] } })
-    .compileComponents();
-}));
+  beforeEach(waitForAsync(() => {
+    TestBed.configureTestingModule({
+      declarations: [FinancialDetailsComponent],
+      imports: [TranslateModule.forRoot(), HttpClientModule, RouterTestingModule.withRoutes([]),
+        ReactiveFormsModule, JwtModule.forRoot({ config: {} })],
+      providers: [NgbActiveModal, AuthenticationService, DatePipe, TranslateService,
+        InvestmentAccountService,
+        LoaderService,
+        {
+          provide: InvestmentAccountService
+        }],
+    })
+      .overrideModule(BrowserDynamicTestingModule, { set: { entryComponents: [] } })
+      .compileComponents();
+  }));
 
   beforeEach(() => {
     fixture = TestBed.createComponent(FinancialDetailsComponent);
-    component = fixture.componentInstance;      
+    component = fixture.componentInstance;
     investAccountService = TestBed.get(InvestmentAccountService);
     navbarService = TestBed.get(NavbarService);
     footerService = TestBed.get(FooterService);
@@ -97,13 +96,10 @@ describe('FinancialDetailsComponent', () => {
     const setNavbarMobileVisibilitySpy = spyOn(navbarService, 'setNavbarMobileVisibility');
     const setFooterVisibilitySpy = spyOn(footerService, 'setFooterVisibility');
     component.ngOnInit();
- // spyOn(investmentEngagementJourneyService, 'getPortfolioFormData').and.returnValue({});
-   // spyOn(investAccountService, 'getInvestmentAccountFormData').and.returnValue({});
     const loadDDCRoadmapSpy = spyOn(investAccountService, 'loadDDCRoadmap');
     expect(setNavbarModeSpy).toHaveBeenCalledWith(6);
     expect(setNavbarMobileVisibilitySpy).toHaveBeenCalledWith(true);
     expect(setFooterVisibilitySpy).toHaveBeenCalledWith(false);
-   // expect(loadDDCRoadmapSpy).toHaveBeenCalled();
 
     let errors = {};
     let annualHouseHoldIncomeRange = component.financialDetails.controls['annualHouseHoldIncomeRange'];
@@ -111,21 +107,21 @@ describe('FinancialDetailsComponent', () => {
     errors = annualHouseHoldIncomeRange.errors || {};
     expect(errors['required']).toBeTruthy();
     annualHouseHoldIncomeRange.setValue(6);
-   
+
 
     let numberOfHouseHoldMembers = component.financialDetails.controls['numberOfHouseHoldMembers'];
     expect(numberOfHouseHoldMembers.valid).toBeFalsy();
     errors = numberOfHouseHoldMembers.errors || {};
     expect(errors['required']).toBeTruthy();
     numberOfHouseHoldMembers.setValue(3);
-   
+
   });
- 
+
 
   it('should navigate to Funding method Step1 if investment portfolio,', () => {
     spyOn(router, 'navigate');
     component.goToNext(component.financialDetails);
-   expect(router.navigate).toHaveBeenCalledWith['../investment/account/tax-info'];
+    expect(router.navigate).toHaveBeenCalledWith['../investment/account/tax-info'];
   });
-  
+
 });

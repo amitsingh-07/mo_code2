@@ -7,7 +7,7 @@
   <div class="container-fluid ja-withdrawal">
     <div class="hidden-sm-md page-details">
       <div *ngIf="!navigationType">{{ 'CONFIRM_WITHDRAWAL.STEP_NO' | translate}}</div>
-      <div class="page-title">{{ navigationType ? ('CONFIRM_WITHDRAWAL.EDIT_PAGE_TITLE' | translate) : 
+      <div class="page-title">{{ navigationType ? ('CONFIRM_WITHDRAWAL.EDIT_PAGE_TITLE' | translate) :
         ('CONFIRM_WITHDRAWAL.PAGE_TITLE' | translate)}}</div>
     </div>
 
@@ -39,7 +39,7 @@
 
           <div class="note-info pb30">
             <span>{{
-                'CONFIRM_WITHDRAWAL.WITHDRAWAL_BANK_DETAILS.ACCOUNT_DETAILS_DESC' | translate}}</span>
+              'CONFIRM_WITHDRAWAL.WITHDRAWAL_BANK_DETAILS.ACCOUNT_DETAILS_DESC' | translate}}</span>
           </div>
 
           <div class="bank-details">
@@ -55,8 +55,8 @@
                     <div class="dropdown-control">
                       <div ngbDropdown>
                         <button class="btn btn-dropdown" id="residentialAddress-country-drpdown" ngbDropdownToggle>
-                          <span
-                            *ngIf="!withdrawalAccountForm.controls.bank.value">{{ 'CONFIRM_WITHDRAWAL.WITHDRAWAL_BANK_DETAILS.BANK_NAME_PLACEHOLDER' | translate}}</span>
+                          <span *ngIf="!withdrawalAccountForm.controls.bank.value">{{
+                            'CONFIRM_WITHDRAWAL.WITHDRAWAL_BANK_DETAILS.BANK_NAME_PLACEHOLDER' | translate}}</span>
                           <span
                             *ngIf="withdrawalAccountForm.controls.bank.value">{{withdrawalAccountForm.controls.bank.value.key}}</span>
                         </button>
@@ -97,7 +97,7 @@
     <div class="text-center mt30">
       <button type="button" (click)="goToNext()" [disabled]="!withdrawalAccountForm.valid"
         class="btn btn__footer--fixed btn-primary width100">{{ navigationType ?
-  ('CONFIRM_WITHDRAWAL.SAVE' | translate) : ('CONFIRM_WITHDRAWAL.CONTINUE' | translate)}}</button>
+        ('CONFIRM_WITHDRAWAL.SAVE' | translate) : ('CONFIRM_WITHDRAWAL.CONTINUE' | translate)}}</button>
     </div>
   </div>
 </div>

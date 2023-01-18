@@ -1,4 +1,4 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { waitForAsync, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { CpfPrerequisitesComponent } from './cpf-prerequisites.component';
 
@@ -6,11 +6,11 @@ describe('CpfPrerequisitesComponent', () => {
   let component: CpfPrerequisitesComponent;
   let fixture: ComponentFixture<CpfPrerequisitesComponent>;
 
-  beforeEach(async(() => {
+  beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
-      declarations: [ CpfPrerequisitesComponent ]
+      declarations: [CpfPrerequisitesComponent]
     })
-    .compileComponents();
+      .compileComponents();
   }));
 
   beforeEach(() => {
