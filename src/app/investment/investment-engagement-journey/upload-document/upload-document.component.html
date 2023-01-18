@@ -3,7 +3,7 @@
     <div class="content">
       <div class="row">
         <div class="col-md-6 hidden-sm-md">
-          <h2>{{navigationType ? ('UPLOAD_DOCUMENTS.EDIT_PAGE_TITLE' | translate) 
+          <h2>{{navigationType ? ('UPLOAD_DOCUMENTS.EDIT_PAGE_TITLE' | translate)
             : ('UPLOAD_DOCUMENTS.PAGE_TITLE' | translate)}}</h2>
           <div class="banner-image">
             <img src="assets/images/investment-account/secondary-holder-banner.svg" />
@@ -16,15 +16,15 @@
                 <div class="flex-row">
                   <div class="flex-col-5">
                     <label for="salutation-drpdown" class="mb0" id="salutation-lbl">{{
-                'UPLOAD_DOCUMENTS.TITLE'
-                | translate}}</label>
+                      'UPLOAD_DOCUMENTS.TITLE'
+                      | translate}}</label>
                   </div>
                   <div class="flex-col-7">
                     <div class="dropdown-control">
                       <div ngbDropdown>
                         <button class="btn btn-dropdown without-border" id="salutation-drpdown" ngbDropdownToggle>
                           <span *ngIf="!uploadForm.controls.uploadDocument.value">
-                            {{'UPLOAD_DOCUMENTS.DROP_DOWN_TITLE'  | translate}}
+                            {{'UPLOAD_DOCUMENTS.DROP_DOWN_TITLE' | translate}}
                           </span>
                           <span *ngIf="uploadForm.controls.uploadDocument.value">
                             {{uploadForm.controls.uploadDocument.value.name}}
@@ -40,14 +40,14 @@
                     </div>
                   </div>
                 </div>
-                <div *ngIf="uploadContent"> 
+                <div *ngIf="uploadContent">
                   <div class="col-12 doc-upload-instructions mt20">
                     <div class="sub-title">
                       {{ 'UPLOAD_DOCUMENTS.SPECIFICATION' | translate}}</div>
                     <div class="file-logs"><span>{{ 'UPLOAD_DOCUMENTS.FILE_LESS-THAN' | translate}}</span><span>{{
-              'UPLOAD_DOCUMENTS.TEN_MB' | translate}}</span></div>
+                        'UPLOAD_DOCUMENTS.TEN_MB' | translate}}</span></div>
                     <div class="file-logs"><span>{{ 'UPLOAD_DOCUMENTS.FILE_TYPE' | translate}}</span><span>{{
-              'UPLOAD_DOCUMENTS.SUPPORTED_FILES' | translate}}</span></div>
+                        'UPLOAD_DOCUMENTS.SUPPORTED_FILES' | translate}}</span></div>
                   </div>
                   <!--NRIC-->
                   <div *ngIf="nricDiv" class="upload-doc">
@@ -87,7 +87,7 @@
                       <div class="upload-content">
                         <div class="title">{{ 'UPLOAD_DOCUMENTS.BACK_NRIC' | translate}}</div>
                         <div class="sub-text" *ngIf="!uploadForm.controls.nricBackImage.value">{{
-                  'UPLOAD_DOCUMENTS.TAP_TO_UPLOAD' | translate}}</div>
+                          'UPLOAD_DOCUMENTS.TAP_TO_UPLOAD' | translate}}</div>
                         <div class="sub-text" *ngIf="uploadForm.controls.nricBackImage.value"
                           [innerHtml]="getFileName(nricBack)"></div>
                         <input type="file" #nricBack
@@ -116,7 +116,7 @@
                       <div class="upload-content">
                         <div class="title">{{ 'UPLOAD_DOCUMENTS.BIRTH_CERTIFICATE' | translate}}</div>
                         <div class="sub-text" *ngIf="!uploadForm.controls.birthCertificateImage.value">{{
-                  'UPLOAD_DOCUMENTS.TAP_TO_UPLOAD' | translate}}</div>
+                          'UPLOAD_DOCUMENTS.TAP_TO_UPLOAD' | translate}}</div>
                         <div class="sub-text" *ngIf="uploadForm.controls.birthCertificateImage.value"
                           [innerHtml]="getFileName(birthCertificate)"></div>
                         <input type="file" #birthCertificate
@@ -143,7 +143,7 @@
                       <div class="upload-content">
                         <div class="title">{{ 'UPLOAD_DOCUMENTS.PASSPORT' | translate}}</div>
                         <div class="sub-text" *ngIf="!uploadForm.controls.passportImage.value">{{
-                  'UPLOAD_DOCUMENTS.TAP_TO_UPLOAD' | translate}}</div>
+                          'UPLOAD_DOCUMENTS.TAP_TO_UPLOAD' | translate}}</div>
                         <div class="sub-text" *ngIf="uploadForm.controls.passportImage.value"
                           [innerHtml]="getFileName(passport)"></div>
                         <input type="file" #passport
@@ -162,10 +162,11 @@
                   </p>
                 </div>
               </form>
-              <div  class="text-center">
+              <div class="text-center">
                 <button type="button" id="uploadDocumentNextBtn" [disabled]="!uploadForm.valid"
-                  (click)="goToNext(uploadForm)" class="btn btn__footer--fixed btn-ftr-get-started btn-primary width100 mt30"
-                  id="uploadDocument_submit_btn">{{ navigationType ? ('UPLOAD_DOCUMENTS.SAVE' | translate) 
+                  (click)="goToNext(uploadForm)"
+                  class="btn btn__footer--fixed btn-ftr-get-started btn-primary width100 mt30"
+                  id="uploadDocument_submit_btn">{{ navigationType ? ('UPLOAD_DOCUMENTS.SAVE' | translate)
                   : ('UPLOAD_DOCUMENTS.CONTINUE' | translate)}}</button>
               </div>
             </div>

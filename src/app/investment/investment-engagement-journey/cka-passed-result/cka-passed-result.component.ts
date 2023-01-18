@@ -26,7 +26,7 @@ export class CkaPassedResultComponent implements OnInit {
     private investmentCommonService: InvestmentCommonService
   ) {
     this.translate.use('en');
-   }
+  }
 
   ngOnInit(): void {
     this.navbarService.setNavbarMode(6);

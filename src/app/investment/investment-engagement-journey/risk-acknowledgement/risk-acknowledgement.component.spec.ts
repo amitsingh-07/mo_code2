@@ -1,17 +1,17 @@
 
 
 import { RiskAcknowledgementComponent } from './risk-acknowledgement.component';
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { waitForAsync, ComponentFixture, TestBed } from '@angular/core/testing';
 
 describe('RiskAcknowledgementComponent', () => {
   let component: RiskAcknowledgementComponent;
   let fixture: ComponentFixture<RiskAcknowledgementComponent>;
 
-  beforeEach(async(() => {
+  beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
-      declarations: [ RiskAcknowledgementComponent ]
+      declarations: [RiskAcknowledgementComponent]
     })
-    .compileComponents();
+      .compileComponents();
   }));
 
   beforeEach(() => {

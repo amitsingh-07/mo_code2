@@ -9,8 +9,8 @@
         <h6 class="question-title">{{currentQuestion.description}}</h6>
         <div class="banner-image">
           <!-- <img src="assets/images/investment-account/qn-1.svg"/> -->
-          <img  src={{iconImage}}/>
-          
+          <img src={{iconImage}} />
+
         </div>
       </div>
       <div class="col-lg-5 col-md-6" *ngIf="currentQuestion">
@@ -26,7 +26,8 @@
                   <input id="risk-assessment_option{{i+1}}_radio" name="questSelOption" formControlName="questSelOption"
                     type="radio" class="field radio" value="{{option.questionOptionId}}" tabindex="{{i+1}}">
                   <label for="risk-assessment_option{{i+1}}_radio" id="riskAssessLbl_{{i}}">
-                    <div><span id="risk-assessment_option-text{{i+1}}_lbl" class="input-label-grey">{{option.text}}</span></div>
+                    <div><span id="risk-assessment_option-text{{i+1}}_lbl"
+                        class="input-label-grey">{{option.text}}</span></div>
                   </label>
                 </div>
               </div>
@@ -51,15 +52,17 @@
                   <input id="risk-assessment_option{{i+1}}_radio" name="questSelOption" formControlName="questSelOption"
                     type="radio" class="field radio" value="{{option.questionOptionId}}" tabindex="{{i+1}}">
                   <label for="risk-assessment_option{{i+1}}_radio" id="riskAssessLbl_{{i}}">
-                    <div><span id="risk-assessment_option-text{{i+1}}_lbl" class="input-label-grey">{{option.text}}</span></div>
+                    <div><span id="risk-assessment_option-text{{i+1}}_lbl"
+                        class="input-label-grey">{{option.text}}</span></div>
                   </label>
                 </div>
                 <div class="table-cell">{{option.additionalInfo.optimisticProjection}}</div>
                 <div class="table-cell">{{option.additionalInfo.pessimisticProjection}}</div>
               </div>
             </div>
-            <button type="button" [disabled]="!riskAssessmentForm.valid" (click)="goToNext(riskAssessmentForm)" class="btn btn-primary btn__footer--fixed width100"
-              id="prfBtn1">{{ 'LABEL.CONTINUE' | translate}}</button>
+            <button type="button" [disabled]="!riskAssessmentForm.valid" (click)="goToNext(riskAssessmentForm)"
+              class="btn btn-primary btn__footer--fixed width100" id="prfBtn1">{{ 'LABEL.CONTINUE' |
+              translate}}</button>
           </div>
         </form>
       </div>

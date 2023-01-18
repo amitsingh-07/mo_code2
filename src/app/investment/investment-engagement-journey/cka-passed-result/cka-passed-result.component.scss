@@ -1,71 +1,86 @@
 @import "../../../../_variables.scss";
 @import "../../../../_mixins.scss";
-app-cka-passed-result{
-.cka-result {
-    background-color: $dark-teal-color;
-    min-height: calc(100vh - 45px);
-}
-.cka-result__content {
-    @include desktop {
-        margin: 0 auto;
-        text-align: center;
-        max-width: 430px;
-        .btn__footer--fixed {
-            width: 337px;
-        }
+
+app-cka-passed-result {
+    .cka-result {
+        background-color: $dark-teal-color;
+        min-height: calc(100vh - 45px);
     }
-}
-.cka-result__content__title {
-    font-family: $muli-semi-bold;
-    font-size: 24px;
-    @include desktop {
-        font-size: 30px;
-    }
-    letter-spacing: -0.18px;
-    text-align: center;
-    margin-top: 25px;
-}
-.cka-result__content__sub-title {
-    font-size: 16px;
-    line-height: 1.22;
-    letter-spacing: -0.12px;
-    text-align: center;
-    font-family: $muli-regular;
-    padding: 0 5px;
-}
-.banner-image {
-    position: relative;
-    padding-top: 20px;
-    img {
-        padding-top: 0 !important;
-        width: 180px;
-        height: 180px;
-    }
-    .tick-icon {
-        position: absolute;
-        top: -20px;
-        right: 65px;
-        img {
-            width: 80px;
-            height: 80px;
-        }
-    }
-    @include desktop {
-        padding-top: 80px;
-        img {
-            width: 220px;
-            height: 220px;
-            padding-top: 0 !important;
-        }
-        .tick-icon {
-            img {
-                width: 60px;
-                height: 60px;
+
+    .cka-result__content {
+        @include desktop {
+            margin: 0 auto;
+            text-align: center;
+            max-width: 430px;
+
+            .btn__footer--fixed {
+                width: 337px;
             }
-            position: absolute;
-            top: 60px;
-            right: 125px
         }
     }
-}
+
+    .cka-result__content__title {
+        font-family: $muli-semi-bold;
+        font-size: 24px;
+
+        @include desktop {
+            font-size: 30px;
+        }
+
+        letter-spacing: -0.18px;
+        text-align: center;
+        margin-top: 25px;
+    }
+
+    .cka-result__content__sub-title {
+        font-size: 16px;
+        line-height: 1.22;
+        letter-spacing: -0.12px;
+        text-align: center;
+        font-family: $muli-regular;
+        padding: 0 5px;
+    }
+
+    .banner-image {
+        position: relative;
+        padding-top: 20px;
+
+        img {
+            padding-top: 0 !important;
+            width: 180px;
+            height: 180px;
+        }
+
+        .tick-icon {
+            position: absolute;
+            top: -20px;
+            right: 65px;
+
+            img {
+                width: 80px;
+                height: 80px;
+            }
+        }
+
+        @include desktop {
+            padding-top: 80px;
+
+            img {
+                width: 220px;
+                height: 220px;
+                padding-top: 0 !important;
+            }
+
+            .tick-icon {
+                img {
+                    width: 60px;
+                    height: 60px;
+                }
+
+                position: absolute;
+                top: 60px;
+                right: 125px
+            }
+        }
+    }
 }

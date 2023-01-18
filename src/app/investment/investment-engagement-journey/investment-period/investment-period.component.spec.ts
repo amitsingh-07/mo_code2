@@ -1,5 +1,5 @@
 import { InvestmentPeriodComponent } from './investment-period.component';
-import { async, ComponentFixture, TestBed, getTestBed } from '@angular/core/testing';
+import { waitForAsync, ComponentFixture, TestBed, getTestBed } from '@angular/core/testing';
 import { ReactiveFormsModule } from '@angular/forms';
 import { RouterTestingModule } from '@angular/router/testing';
 import { JwtModule } from '@auth0/angular-jwt';
@@ -35,7 +35,7 @@ describe('InvestmentPeriodComponent', () => {
   let translations = require('../../../../assets/i18n/investment-engagement-journey/en.json');
 
 
-  beforeEach(async(() => {
+  beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
       declarations: [InvestmentPeriodComponent, NouisliderComponent],
       imports: [TranslateModule.forRoot(), RouterTestingModule.withRoutes([]),

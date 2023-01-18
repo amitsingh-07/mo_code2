@@ -40,20 +40,22 @@ app-your-investment-amount {
       }
     }
   }
+
   .btn {
     &:disabled {
       background-color: $btn-disabled-light-bg;
       color: $btn-disabled-teal-color;
       cursor: pointer;
-  
+
       &:hover {
         background-color: $btn-disabled-light-bg !important;
         color: $btn-disabled-teal-color;
-  
+
       }
     }
   }
-  .cpf-note{
+
+  .cpf-note {
     font-size: 16px;
     line-height: normal;
     letter-spacing: -0.16px;
