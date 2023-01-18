@@ -28,7 +28,6 @@ export class IntroductionComponent implements OnInit {
   promoCodeForm: FormGroup;
   faqLink: string;
   getNowLink: string;
-  private el: ElementRef;
   promoCode;
   isPromoCodeValid: boolean;
   isDisabled: boolean;

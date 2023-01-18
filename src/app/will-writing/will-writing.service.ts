@@ -1,4 +1,3 @@
-import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { Util } from '../shared/utils/util';
@@ -58,7 +57,6 @@ export class WillWritingService {
   ]);
 
   constructor(
-    private http: HttpClient,
     private modal: NgbModal,
     private signUpService: SignUpService,
   ) {
