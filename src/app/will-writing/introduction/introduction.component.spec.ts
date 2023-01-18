@@ -1,4 +1,4 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { waitForAsync, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { DebugElement } from '@angular/core';
 import { By } from '@angular/platform-browser';
@@ -10,7 +10,7 @@ describe('IntroductionComponent', () => {
   let de: DebugElement;
   let el: HTMLElement;
 
-  beforeEach(async(() => {
+  beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
       declarations: [ IntroductionComponent ]
     })
@@ -25,25 +25,25 @@ describe('IntroductionComponent', () => {
     el = de.nativeElement;
   });
 
-  it('should have the text contact', async () => {
+  it('should have the text contact', waitForAsync(() => {
     expect(component.pageTitle).toEqual('Introduction');
-  });
+  }));
 
-  it('should be invalid', async () => {
+  it('should be invalid', waitForAsync(() => {
     component.promoCodeForm.controls['promoCode'].setValue('');
     expect(component.promoCodeForm.valid).toBeFalsy();
-  });
+  }));
 
-  it('should call save button', async () => {
+  it('should call save button', waitForAsync(() => {
     fixture.detectChanges();
     spyOn(component, 'save');
     el = fixture.debugElement.query(By.css('button')).nativeElement;
     el.click();
     expect(component.save).toBeTruthy();
-  });
+  }));
 
-  it('should be valid', async () => {
+  it('should be valid', waitForAsync(() => {
     component.promoCodeForm.controls['promoCode'].setValue('ABC123');
     expect(component.promoCodeForm.valid).toBeTruthy();
-  });
+  }));
 });
