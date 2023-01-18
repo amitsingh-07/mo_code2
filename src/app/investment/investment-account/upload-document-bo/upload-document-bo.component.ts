@@ -9,7 +9,7 @@ import { FooterService } from '../../../shared/footer/footer.service';
 import { HeaderService } from '../../../shared/header/header.service';
 import { ErrorModalComponent } from '../../../shared/modal/error-modal/error-modal.component';
 import {
-    ModelWithButtonComponent
+  ModelWithButtonComponent
 } from '../../../shared/modal/model-with-button/model-with-button.component';
 import { NavbarService } from '../../../shared/navbar/navbar.service';
 import { InvestmentAccountCommon } from '../investment-account-common';
@@ -33,7 +33,6 @@ export class UploadDocumentBOComponent implements OnInit {
   formValues: any;
   constructor(
     public readonly translate: TranslateService,
-    private formBuilder: FormBuilder,
     private router: Router,
     public headerService: HeaderService,
     private modal: NgbModal,

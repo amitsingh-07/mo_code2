@@ -2,13 +2,14 @@
 @import '../../../../mixins';
 
 app-cka-method-qna {
-  .container-fluid{
-    &.max-width--1024{
-        @include min568max767{
-            padding-top: 65px;
-        }
+  .container-fluid {
+    &.max-width--1024 {
+      @include min568max767 {
+        padding-top: 65px;
+      }
     }
   }
+
   .text-lyt {
     font-size: 18px;
     line-height: 22px;

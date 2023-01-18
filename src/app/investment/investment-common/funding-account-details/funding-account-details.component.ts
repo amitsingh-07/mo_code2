@@ -73,7 +73,7 @@ export class FundingAccountDetailsComponent implements OnInit {
     public investmentAccountService: InvestmentAccountService,
     public manageInvestmentsService: ManageInvestmentsService,
     public loaderService: LoaderService,
-    public authService : AuthenticationService
+    public authService: AuthenticationService
   ) {
     this.navigationType = this.investmentCommonService.setNavigationType(this.router.url, INVESTMENT_COMMON_ROUTES.EDIT_FUNDING_ACCOUNT_DETAILS,
       INVESTMENT_ENGAGEMENT_JOURNEY_CONSTANTS.NAVIGATION_TYPE.EDIT);
@@ -317,7 +317,7 @@ export class FundingAccountDetailsComponent implements OnInit {
     if (this.fundingAccountDetailsForm.get('srsFundingDetails').get('srsOperatorBank').value) {
       const accNo = this.fundingAccountDetailsForm.get('srsFundingDetails').get('srsAccountNumber').value;
       if (accNo) {
-        if(accNo.indexOf('*') >= 0) {
+        if (accNo.indexOf('*') >= 0) {
           return accNo.replace(/\-/g, '').length;
         }
         return accNo.match(/\d/g).join('').length;
@@ -514,7 +514,7 @@ export class FundingAccountDetailsComponent implements OnInit {
     if (this.fundingAccountDetailsForm.get('cpfIADetails').get('cpfOperatorBank').value) {
       const accNo = this.fundingAccountDetailsForm.get('cpfIADetails').get('cpfAccountNumber').value;
       if (accNo) {
-        if(accNo.indexOf('*') >= 0) {
+        if (accNo.indexOf('*') >= 0) {
           return accNo.replace(/\-/g, '').length;
         }
         return accNo.match(/\d/g).join('').length;
@@ -588,8 +588,8 @@ export class FundingAccountDetailsComponent implements OnInit {
     ref.componentInstance.errorTitle = this.translate.instant(
       'CONFIRM_ACCOUNT_DETAILS.CPF_TOOLTIP.TITLE'
     );
-    ref.componentInstance.errorMessage = this.organisationEnabled ? this.translate.instant('CONFIRM_ACCOUNT_DETAILS.CPF_TOOLTIP.CORP_DESC') : 
-    this.translate.instant('CONFIRM_ACCOUNT_DETAILS.CPF_TOOLTIP.DESC');
+    ref.componentInstance.errorMessage = this.organisationEnabled ? this.translate.instant('CONFIRM_ACCOUNT_DETAILS.CPF_TOOLTIP.CORP_DESC') :
+      this.translate.instant('CONFIRM_ACCOUNT_DETAILS.CPF_TOOLTIP.DESC');
     ref.componentInstance.primaryActionLabel = this.translate.instant(
       'CONFIRM_ACCOUNT_DETAILS.CPF_TOOLTIP.BTN'
     );

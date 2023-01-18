@@ -2,7 +2,7 @@
 @import '../../../../mixins';
 
 app-funding-instructions {
-  
+
   .toast-msg-fixed-block {
     @include desktop {
       top: 100px;
@@ -376,15 +376,18 @@ app-funding-instructions {
     .cash-account {
       margin: 20px 0;
       color: $fund-cash-account-color;
-      .transfer-instruction-lbl{
+
+      .transfer-instruction-lbl {
         text-align: center;
         line-height: 22px;
         letter-spacing: -0.15px;
-        @include allmobiles{
+
+        @include allmobiles {
           text-align: left;
           padding: 0 20px;
         }
       }
+
       .cash-account-content {
         .investment-value {
           font-family: $muli-bold;
@@ -450,7 +453,8 @@ app-funding-instructions {
           span {
             font-family: $muli-bold;
           }
-          @include allmobiles{
+
+          @include allmobiles {
             line-height: normal;
           }
         }
@@ -463,6 +467,7 @@ app-funding-instructions {
     max-width: 200px;
     letter-spacing: -0.16px;
     text-transform: capitalize;
+
     @include allmobiles {
       overflow: hidden;
       text-overflow: ellipsis;
@@ -476,4 +481,3 @@ app-funding-instructions {
     }
   }
 }
-

@@ -1,5 +1,5 @@
 import { HttpClientTestingModule } from '@angular/common/http/testing';
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { waitForAsync, ComponentFixture, TestBed } from '@angular/core/testing';
 import { Router } from '@angular/router';
 import { RouterTestingModule } from '@angular/router/testing';
 import { JwtHelperService, JwtModule } from '@auth0/angular-jwt';
@@ -23,10 +23,10 @@ describe('AccountStatusComponent', () => {
   let getAccountCreationStatusSpy: any;
   let getConfirmedFundingMethodNameSpy: any;
 
-  beforeEach(async(() => {
+  beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
       imports: [TranslateModule.forRoot(), RouterTestingModule.withRoutes([]), NgbModule, HttpClientTestingModule,
-         JwtModule.forRoot({config: {}})],
+      JwtModule.forRoot({ config: {} })],
       declarations: [AccountStatusComponent],
       providers: [NgbActiveModal, JwtHelperService, InvestmentAccountService, InvestmentCommonService]
     })

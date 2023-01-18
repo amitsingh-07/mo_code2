@@ -36,16 +36,13 @@ export class CpfPrerequisitesComponent implements OnInit {
 
   constructor(
     private router: Router,
-    private route: ActivatedRoute,
     public navbarService: NavbarService,
     public footerService: FooterService,
     public readonly translate: TranslateService,
     public headerService: HeaderService,
     private modal: NgbModal,
-    private signUpService: SignUpService,
     private investmentCommonService: InvestmentCommonService,
     private investmentAccountService: InvestmentAccountService,
-    private investmentEngagementJourneyService: InvestmentEngagementJourneyService,
     private loaderService: LoaderService
   ) {
     this.translate.use('en');
@@ -76,7 +73,7 @@ export class CpfPrerequisitesComponent implements OnInit {
 
   getCPFBankOptionList() {
     this.showLoader();
-    this.investmentAccountService.getSpecificDropList('cpfAgentBank').subscribe((resp: any) => { 
+    this.investmentAccountService.getSpecificDropList('cpfAgentBank').subscribe((resp: any) => {
       this.loaderService.hideLoaderForced();
       if (resp.responseMessage.responseCode >= 6000 && resp.objectList) {
         this.cpfBankOperators = resp.objectList.cpfAgentBank;
@@ -84,7 +81,7 @@ export class CpfPrerequisitesComponent implements OnInit {
     }, () => {
       this.loaderService.hideLoaderForced();
     });
-    
+
     this.getCKAAssessmentData();
   }
 
@@ -212,7 +209,7 @@ export class CpfPrerequisitesComponent implements OnInit {
       this.saveCPFAccountDetails(this.preRequisitesForm);
     }
   }
-  
+
   saveCPFAccountDetails(form) {
     const params = this.constructCpfAccountParams(form.value);
     this.investmentCommonService.saveCKABankAccount(params).subscribe((data) => {
@@ -228,7 +225,7 @@ export class CpfPrerequisitesComponent implements OnInit {
     let reqParams = {
       accountNumber: data.cpfAccountNo ? data.cpfAccountNo.replace(/[-]/g, '') : null,
       bankOperatorId: data.cpfOperator ? data.cpfOperator.id : null
-    };  
+    };
     return reqParams;
   }
 
@@ -295,7 +292,7 @@ export class CpfPrerequisitesComponent implements OnInit {
   }
 
   showTooltip() {
-    const ref = this.modal.open(CpfiaTooltipComponent, { centered: true });
+    this.modal.open(CpfiaTooltipComponent, { centered: true });
   }
 
   disableContinue() {

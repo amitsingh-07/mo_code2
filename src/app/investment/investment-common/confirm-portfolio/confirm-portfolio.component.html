@@ -12,15 +12,23 @@
         <div class="accept-holder" *ngIf="isAcceptPortfolio">
             <h2 class="hidden-sm-md mb30 mt15">{{ 'PORTFOLIO_RECOMMENDATION.JOINT_ACCOUNT_LBL' | translate}}</h2>
             <div class="ja-sub-lbl txt-bold">{{ 'PORTFOLIO_RECOMMENDATION.JA_SUB_LBL' | translate}}</div>
-            <div class="desc-lbl" [innerHTML]="'PORTFOLIO_RECOMMENDATION.JA_DESC_LBL' | translate : primaryHolderName"></div>
+            <div class="desc-lbl" [innerHTML]="'PORTFOLIO_RECOMMENDATION.JA_DESC_LBL' | translate : primaryHolderName">
+            </div>
         </div>
         <div class="portfolio-allocation-details" [ngClass]="{'ja-type': isJAEnabled || isAcceptPortfolio}">
             <div class="flex-col-12 portfolio-allocation-details__container" *ngIf="!wiseIncomeEnabled">
                 <div class="portfolio-allocation-details__content white-bg">
                     <div class="flex-col-12 portfolio-allocation-details__content__desc">
-                        <div class="portfolio_img hidden-sm" *ngIf="investmentEnabled || cpfEnabled"><img src={{iconImage}} id="riskProfileImg" /></div>
-                        <div class="flex-col-12 portfolio-allocation-details__content__block" *ngIf="investmentEnabled || cpfEnabled" [innerHTML]="'PORTFOLIO_RECOMMENDATION.USER_INPUT_SUB_TEXT' | translate:userInputSubtext"></div>
-                        <div class="flex-col-12 portfolio-allocation-details__content__block wisesaver" *ngIf="wiseSaverEnabled" [innerHTML]="'PORTFOLIO_RECOMMENDATION.WISE_SAVER_USER_INPUT_SUB_TEXT' | translate:userInputSubtext"></div>
+                        <div class="portfolio_img hidden-sm" *ngIf="investmentEnabled || cpfEnabled"><img
+                                src={{iconImage}} id="riskProfileImg" /></div>
+                        <div class="flex-col-12 portfolio-allocation-details__content__block"
+                            *ngIf="investmentEnabled || cpfEnabled"
+                            [innerHTML]="'PORTFOLIO_RECOMMENDATION.USER_INPUT_SUB_TEXT' | translate:userInputSubtext">
+                        </div>
+                        <div class="flex-col-12 portfolio-allocation-details__content__block wisesaver"
+                            *ngIf="wiseSaverEnabled"
+                            [innerHTML]="'PORTFOLIO_RECOMMENDATION.WISE_SAVER_USER_INPUT_SUB_TEXT' | translate:userInputSubtext">
+                        </div>
                     </div>
                 </div>
                 <app-portfolio-info [portfolio]="portfolio" [wiseSaverDetails]="wiseSaverDetails"></app-portfolio-info>
@@ -28,65 +36,82 @@
                 <div class="portfolio-allocation-details__content">
                     <div class="flex-col-12 portfolio-allocation-details__content__desc">
                         <div class="flex-row review-edit" (click)="openEditInvestmentModal()"><span>{{
-              'PORTFOLIO_RECOMMENDATION.REVIEW_INPUTS' | translate}}</span><span class="edit_button"></span></div>
+                                'PORTFOLIO_RECOMMENDATION.REVIEW_INPUTS' | translate}}</span><span
+                                class="edit_button"></span></div>
                     </div>
                 </div>
             </div>
-    
+
             <div class="flex-col-12 wise-income-payout" *ngIf="wiseIncomeEnabled && portfolio.payoutType">
-              <!-- payout -->
-              <app-wise-income-payout-type [portfolio]="portfolio" [payoutType]="portfolio.payoutType"></app-wise-income-payout-type>
+                <!-- payout -->
+                <app-wise-income-payout-type [portfolio]="portfolio"
+                    [payoutType]="portfolio.payoutType"></app-wise-income-payout-type>
             </div>
-            
+
             <div class="flex-col-12 wise-income-fund" *ngIf="wiseIncomeEnabled">
-              <div class="wise-income-title">{{ 'PORTFOLIO_RECOMMENDATION.WISE_INCOME_PORTFOLIO.FUNDING' | translate}}</div>
-              <!-- Fund -->
-              <app-wise-income-fund  [portfolio]="portfolio" [investmentInput]="userInputSubtext" (openModal)="openEditInvestmentModal()"></app-wise-income-fund>
+                <div class="wise-income-title">{{ 'PORTFOLIO_RECOMMENDATION.WISE_INCOME_PORTFOLIO.FUNDING' | translate}}
+                </div>
+                <!-- Fund -->
+                <app-wise-income-fund [portfolio]="portfolio" [investmentInput]="userInputSubtext"
+                    (openModal)="openEditInvestmentModal()"></app-wise-income-fund>
             </div>
-        
+
 
             <div class="flex-col-12 asset-allocation">
-                <div class="title" *ngIf="!wiseIncomeEnabled">{{ 'PORTFOLIO_RECOMMENDATION.ASSET_ALLOCATION' | translate}}</div>
-                <div class="title" *ngIf="wiseIncomeEnabled">{{ 'PORTFOLIO_RECOMMENDATION.FUND_ASSET_ALLOCATION_LBL' | translate}}</div>
+                <div class="title" *ngIf="!wiseIncomeEnabled">{{ 'PORTFOLIO_RECOMMENDATION.ASSET_ALLOCATION' |
+                    translate}}</div>
+                <div class="title" *ngIf="wiseIncomeEnabled">{{ 'PORTFOLIO_RECOMMENDATION.FUND_ASSET_ALLOCATION_LBL' |
+                    translate}}</div>
                 <!-- bonds -->
-                <app-allocation [portfolioType]="portfolio.portfolioType" [assets]="portfolio.sectorAllocations" [funds]="portfolio.funds" [colors]="colors"></app-allocation>
+                <app-allocation [portfolioType]="portfolio.portfolioType" [assets]="portfolio.sectorAllocations"
+                    [funds]="portfolio.funds" [colors]="colors"></app-allocation>
             </div>
             <div class="flex-col-12 annual-fees mt0">
                 <div class="title">{{ 'PORTFOLIO_RECOMMENDATION.ANNUAL_FEES' | translate}}</div>
-                <app-annual-fees [portfolioType]="portfolio.portfolioType" [feeDetails]="portfolio.feeDetails"></app-annual-fees>
+                <app-annual-fees [portfolioType]="portfolio.portfolioType"
+                    [feeDetails]="portfolio.feeDetails"></app-annual-fees>
             </div>
             <div *ngIf="!wiseIncomeEnabled" class="faq_link">
-                <a *ngIf="!authService.isUserTypeCorporate" target="_blank" href="https://www.moneyowl.com.sg/faq-investment/">{{'PORTFOLIO_RECOMMENDATION.FAQ_DESC_TEXT' | translate}}</a>
-                <a *ngIf="authService.isUserTypeCorporate" target="_blank" routerLink="{{corpFaq}}">{{'PORTFOLIO_RECOMMENDATION.FAQ_DESC_TEXT' | translate}}</a>
+                <a *ngIf="!authService.isUserTypeCorporate" target="_blank"
+                    href="https://www.moneyowl.com.sg/faq-investment/">{{'PORTFOLIO_RECOMMENDATION.FAQ_DESC_TEXT' |
+                    translate}}</a>
+                <a *ngIf="authService.isUserTypeCorporate" target="_blank"
+                    routerLink="{{corpFaq}}">{{'PORTFOLIO_RECOMMENDATION.FAQ_DESC_TEXT' | translate}}</a>
             </div>
-            
+
             <div *ngIf="wiseIncomeEnabled" class="faq_link">
-                <a target="_blank" routerLink="{{authService.isUserTypeCorporate ? corpFaq : '/faq-investment-wiseincome'}}">{{ 'PORTFOLIO_RECOMMENDATION.FAQ_DESC_TEXT' | translate}}</a>
+                <a target="_blank"
+                    routerLink="{{authService.isUserTypeCorporate ? corpFaq : '/faq-investment-wiseincome'}}">{{
+                    'PORTFOLIO_RECOMMENDATION.FAQ_DESC_TEXT' | translate}}</a>
             </div>
             <div class="withdraw-bank-details" *ngIf="isAcceptPortfolio">
                 <div class="title">{{'PORTFOLIO_RECOMMENDATION.WITHDRAWAL_BANK_DETAILS.CARD_TITLE' | translate}}</div>
-                  <app-ja-bank-details [bankDetails]="bankDetails"></app-ja-bank-details>
+                <app-ja-bank-details [bankDetails]="bankDetails"></app-ja-bank-details>
             </div>
             <div class="ja-disclaimer" [innerHTML]="'PORTFOLIO_RECOMMENDATION.JA_DISCLAIMER' | translate"></div>
             <form name="tncCheckboxForm" [formGroup]="tncCheckboxForm" id="tncCheckboxForm">
-                <div class="checkbox-button one-label tnc-checkbox" >
+                <div class="checkbox-button one-label tnc-checkbox">
                     <input id="tncCheckboxFlag" name="tncCheckboxFlag" formControlName="tncCheckboxFlag" type="checkbox"
                         class="field checkbox" #tncChkBox>
                     <label for="tncCheckboxFlag">
-                       <span id="iAgree" class="title">{{ 'PORTFOLIO_RECOMMENDATION.I_AGREE' | translate}}</span>
-                       <span id="tAndC" class="show-terms" (click)="showTncModal()">{{ 'PORTFOLIO_RECOMMENDATION.TNC' | translate}}</span>
+                        <span id="iAgree" class="title">{{ 'PORTFOLIO_RECOMMENDATION.I_AGREE' | translate}}</span>
+                        <span id="tAndC" class="show-terms" (click)="showTncModal()">{{ 'PORTFOLIO_RECOMMENDATION.TNC' |
+                            translate}}</span>
                     </label>
                 </div>
             </form>
         </div>
         <div class="text-center" *ngIf="!isAcceptPortfolio">
-            <button type="button" [disabled]="!tncChkBox.checked" (click)="showPayoutModal()" class="btn btn__footer--fixed btn-primary width100">{{
-            'PORTFOLIO_RECOMMENDATION.CONTINUE' | translate}}</button>
+            <button type="button" [disabled]="!tncChkBox.checked" (click)="showPayoutModal()"
+                class="btn btn__footer--fixed btn-primary width100">{{
+                'PORTFOLIO_RECOMMENDATION.CONTINUE' | translate}}</button>
         </div>
         <div class="text-center flex accept-holder-btn-block" *ngIf="isAcceptPortfolio">
-            <button type="button" [disabled]="!tncChkBox.checked" (click)="acceptToJoin(portfolio.portfolioName, portfolio.customerPortfolioId)" class="btn btn-orange">{{
-            'PORTFOLIO_RECOMMENDATION.ACCEPT' | translate}}</button>
-            <button type="button" (click)="decline(portfolio.portfolioName, portfolio.customerPortfolioId)" class="btn btn-primary btn-outline-primary">{{
+            <button type="button" [disabled]="!tncChkBox.checked"
+                (click)="acceptToJoin(portfolio.portfolioName, portfolio.customerPortfolioId)" class="btn btn-orange">{{
+                'PORTFOLIO_RECOMMENDATION.ACCEPT' | translate}}</button>
+            <button type="button" (click)="decline(portfolio.portfolioName, portfolio.customerPortfolioId)"
+                class="btn btn-primary btn-outline-primary">{{
                 'PORTFOLIO_RECOMMENDATION.DECLINE' | translate}}</button>
         </div>
     </div>

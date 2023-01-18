@@ -1,5 +1,5 @@
 
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { waitForAsync, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { SingPassComponent } from './sing-pass.component';
 
@@ -7,11 +7,11 @@ describe('SingPassComponent', () => {
   let component: SingPassComponent;
   let fixture: ComponentFixture<SingPassComponent>;
 
-  beforeEach(async(() => {
+  beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
-      declarations: [ SingPassComponent ]
+      declarations: [SingPassComponent]
     })
-    .compileComponents();
+      .compileComponents();
   }));
 
   beforeEach(() => {

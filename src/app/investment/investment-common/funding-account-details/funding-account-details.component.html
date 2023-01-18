@@ -9,9 +9,9 @@
     <div class="content">
       <div class="hidden-sm-md page-details">
         <div *ngIf="!navigationType">{{
-          isJAEnabled ? ('CONFIRM_ACCOUNT_DETAILS.STEP_3' | translate) 
+          isJAEnabled ? ('CONFIRM_ACCOUNT_DETAILS.STEP_3' | translate)
           : ('CONFIRM_ACCOUNT_DETAILS.STEP_2' | translate)}}</div>
-        <div class="page-title">{{navigationType ? ('CONFIRM_ACCOUNT_DETAILS.EDIT_TITLE' | translate) 
+        <div class="page-title">{{navigationType ? ('CONFIRM_ACCOUNT_DETAILS.EDIT_TITLE' | translate)
           : ('CONFIRM_ACCOUNT_DETAILS.TITLE' | translate)}}</div>
       </div>
       <div class="row" *ngIf="fundingMethods">
@@ -34,7 +34,8 @@
                       </button>
                       <button *ngIf="this.fundingAccountDetailsForm.controls.confirmedFundingMethodId.value"
                         class="btn btn-dropdown" id="additional_declaration_sourse-drpdown" ngbDropdownToggle>
-                        {{getFundingMethodNameById(this.fundingAccountDetailsForm.controls.confirmedFundingMethodId.value, fundingMethods) }}
+                        {{getFundingMethodNameById(this.fundingAccountDetailsForm.controls.confirmedFundingMethodId.value,
+                        fundingMethods) }}
                       </button>
                       <div class="dropdown" ngbDropdownMenu aria-labelledby="courseDropdown">
                         <div *ngFor="let fundingMethod of fundingMethods; let i = index;">
@@ -79,8 +80,8 @@
                           <button [disabled]=isSrsAccountAvailable class="btn btn-dropdown"
                             id="additional_declaration_sourse-drpdown" ngbDropdownToggle>
                             {{fundingAccountDetailsForm.controls.srsFundingDetails.controls.srsOperatorBank.value ?
-                              fundingAccountDetailsForm.controls.srsFundingDetails.controls.srsOperatorBank.value.name :
-                              'Select SRS Operator'}}
+                            fundingAccountDetailsForm.controls.srsFundingDetails.controls.srsOperatorBank.value.name :
+                            'Select SRS Operator'}}
                           </button>
                           <div class="dropdown" ngbDropdownMenu aria-labelledby="courseDropdown">
                             <button class="dropdown-item" *ngFor="let srsOperator of srsAgentBankList; let i = index;"
@@ -142,8 +143,8 @@
                           <button [disabled]="checkIfCPFDisabled()" class="btn btn-dropdown" id="cpf_source-drpdown"
                             ngbDropdownToggle>
                             {{fundingAccountDetailsForm.controls.cpfIADetails.controls.cpfOperatorBank.value ?
-                              fundingAccountDetailsForm.controls.cpfIADetails.controls.cpfOperatorBank.value.name :
-                              'Select CPF Operator'}}
+                            fundingAccountDetailsForm.controls.cpfIADetails.controls.cpfOperatorBank.value.name :
+                            'Select CPF Operator'}}
                           </button>
                           <div class="dropdown" ngbDropdownMenu aria-labelledby="courseDropdown">
                             <button class="dropdown-item" *ngFor="let cpfOperator of cpfAgentBankList; let i = index;"
@@ -195,8 +196,9 @@
             <div class="text-center mt15">
               <button type="button" id="personalInforNextBtn" (click)="goToNext(fundingAccountDetailsForm)"
                 class="btn btn__footer--fixed btn-ftr-get-started btn-primary width100"
-                [disabled]="!fundingAccountDetailsForm.valid" id="getStrdBtn3">{{ navigationType ? ('CONFIRM_ACCOUNT_DETAILS.SAVE' | translate)
-                  : ('CONFIRM_ACCOUNT_DETAILS.CONTINUE' | translate)}}</button>
+                [disabled]="!fundingAccountDetailsForm.valid" id="getStrdBtn3">{{ navigationType ?
+                ('CONFIRM_ACCOUNT_DETAILS.SAVE' | translate)
+                : ('CONFIRM_ACCOUNT_DETAILS.CONTINUE' | translate)}}</button>
             </div>
           </form>
         </div>

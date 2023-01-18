@@ -150,7 +150,7 @@ export let INVESTMENT_COMMON_CONSTANTS = {
     OCBC: 'OCBC',
     UOB: 'UOB',
   },
-  ASSET_TYPE:{
+  ASSET_TYPE: {
     EQUITIES: 'Equities',
     FIXED_INCOME: 'Fixed Income',
     BONDS: 'Bonds'

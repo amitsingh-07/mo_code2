@@ -63,7 +63,7 @@ export class InvestmentAccountCommon {
     const fileSize: number = selectedFile.size / 1024 / 1024; // in MB
     const fileType = selectedFile.name
       .split('.')
-      [selectedFile.name.split('.').length - 1].toUpperCase();
+    [selectedFile.name.split('.').length - 1].toUpperCase();
     const isValidFileSize =
       fileSize <= INVESTMENT_ACCOUNT_CONSTANTS.upload_documents.max_file_size;
     const isValidFileType = INVESTMENT_ACCOUNT_CONSTANTS.upload_documents.file_types.indexOf(
