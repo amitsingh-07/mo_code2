@@ -560,6 +560,10 @@ export class DashboardComponent implements OnInit {
   openInvestMenuModal() {
     this.modal.open(InvestModalComponent, { centered: true });
   }
+
+  navigateDirectJourney(){
+    this.router.navigate(['/direct']);
+  }
 }
 
 
