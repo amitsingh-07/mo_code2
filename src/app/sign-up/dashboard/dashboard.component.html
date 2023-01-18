@@ -473,16 +473,16 @@
                     </div>
                     <div class="flex">
                       <button type="button" class="btn btn-primary col-12" *ngIf="!insurance.isGuidedJourney"
-                        routerLink="/guideme">
+                      (click)="goToInsuranceJourney()">
                         <div>{{'DASHBOARD.INSURANCE.ASSESS_MY_NEEDS' | translate}}</div>
                         <div>{{'DASHBOARD.INSURANCE.ESTIMATED_MINS' | translate}}</div>
                       </button>
                       <button type="button" class="btn btn-ghost col-12" *ngIf="insurance.isGuidedJourney"
-                        routerLink="/guideme">
+                      (click)="goToInsuranceJourney()">
                         {{'DASHBOARD.INSURANCE.REASSESS_MY_NEEDS' | translate}}
                       </button>
                     </div>
-                    <div class="find-plan"><a (click)="navigateDirectJourney()">{{'DASHBOARD.INSURANCE.DIRECT_JOURNEY' |
+                    <div class="find-plan"><a (click)="goToInsuranceJourney('direct')">{{'DASHBOARD.INSURANCE.DIRECT_JOURNEY' |
                         translate}}</a>
                     </div>
                   </div>

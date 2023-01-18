@@ -561,8 +561,12 @@ export class DashboardComponent implements OnInit {
     this.modal.open(InvestModalComponent, { centered: true });
   }
 
-  navigateDirectJourney(){
-    this.router.navigate(['/direct']);
+  goToInsuranceJourney(page: string){
+    if (page === 'direct') {
+      this.router.navigate(['/direct']);
+    } else {
+      this.router.navigate(['/guideme']);
+    }
   }
 }
 
