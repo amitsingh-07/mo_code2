@@ -31,6 +31,7 @@ app-portfolio-summary {
 
       .portfolio-naming {
         margin: 0 auto;
+
         .title {
           padding-bottom: 0 !important;
         }
@@ -174,6 +175,7 @@ app-portfolio-summary {
 
       img {
         width: 100%;
+
         @include allmobiles {
           width: 100%;
         }

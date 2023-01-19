@@ -53,9 +53,9 @@ export class CreateAccountMyinfoComponent implements OnInit {
     private myInfoService: MyInfoService,
     public readonly translate: TranslateService,
     private signUpService: SignUpService,
-    private route: ActivatedRoute,    
+    private route: ActivatedRoute,
     public navbarService: NavbarService,
-    public footerService: FooterService,    
+    public footerService: FooterService,
     private authService: AuthenticationService,
     private appService: AppService
   ) {
@@ -98,7 +98,7 @@ export class CreateAccountMyinfoComponent implements OnInit {
     }, this.loader2StartTime);
   }
 
-  ngOnInit(): void {    
+  ngOnInit(): void {
     if (!this.authService.isAuthenticated()) {
       this.authService.authenticate().subscribe((token) => {
       });
@@ -135,7 +135,7 @@ export class CreateAccountMyinfoComponent implements OnInit {
       if (data.responseMessage.responseCode === 6000 && data && data.objectList[0]) {
         this.closeMyInfoPopup(false);
         this.signUpService.setCreateAccountMyInfoFormData(data.objectList[0]);
-        if(this.finlitEnabled) {
+        if (this.finlitEnabled) {
           this.router.navigate([SIGN_UP_ROUTE_PATHS.FINLIT_CREATE_ACCOUNT + this.referralCode]);
         } else {
           this.organisationEnabled ? this.router.navigate([SIGN_UP_ROUTE_PATHS.CORPORATE_CREATE_ACCOUNT]) : this.router.navigate([SIGN_UP_ROUTE_PATHS.CREATE_ACCOUNT + this.referralCode]);
@@ -208,20 +208,20 @@ export class CreateAccountMyinfoComponent implements OnInit {
   }
 
   backToLogin() {
-    if(this.finlitEnabled) {
+    if (this.finlitEnabled) {
       this.router.navigate([SIGN_UP_ROUTE_PATHS.FINLIT_LOGIN]);
     } else if (this.organisationEnabled) {
-      this.router.navigate([SIGN_UP_ROUTE_PATHS.CORPORATE_LOGIN], { queryParams: {orgID: this.appService.getCorporateDetails().uuid}});
+      this.router.navigate([SIGN_UP_ROUTE_PATHS.CORPORATE_LOGIN], { queryParams: { orgID: this.appService.getCorporateDetails().uuid } });
     } else {
       this.router.navigate([SIGN_UP_ROUTE_PATHS.LOGIN]);
     }
   }
 
   skipMyInfo() {
-    this.signUpService.setMyInfoStatus(false);    
-    if(this.finlitEnabled) {
+    this.signUpService.setMyInfoStatus(false);
+    if (this.finlitEnabled) {
       this.router.navigate([SIGN_UP_ROUTE_PATHS.FINLIT_CREATE_ACCOUNT + this.referralCode]);
-    } else if(this.organisationEnabled) {
+    } else if (this.organisationEnabled) {
       this.router.navigate([SIGN_UP_ROUTE_PATHS.CORPORATE_CREATE_ACCOUNT]);
     } else {
       this.router.navigate([SIGN_UP_ROUTE_PATHS.CREATE_ACCOUNT + this.referralCode]);

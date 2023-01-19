@@ -1,6 +1,6 @@
 import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { ActivatedRoute, Router } from '@angular/router';
+import { Router } from '@angular/router';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { TranslateService } from '@ngx-translate/core';
 import { AuthenticationService } from '../../shared/http/auth/authentication.service';
@@ -9,7 +9,6 @@ import { HeaderService } from '../../shared/header/header.service';
 import { ErrorModalComponent } from '../../shared/modal/error-modal/error-modal.component';
 import { NavbarService } from '../../shared/navbar/navbar.service';
 import { RegexConstants } from '../../shared/utils/api.regex.constants';
-import { SignUpApiService } from '../sign-up.api.service';
 import { SIGN_UP_ROUTE_PATHS } from '../sign-up.routes.constants';
 import { SignUpService } from '../sign-up.service';
 import { environment } from './../../../environments/environment';
@@ -34,9 +33,7 @@ export class EditPasswordComponent implements OnInit {
     public headerService: HeaderService,
     private footerService: FooterService,
     public navbarService: NavbarService,
-    private signUpApiService: SignUpApiService,
     private signUpService: SignUpService,
-    private route: ActivatedRoute,
     private router: Router,
     private translate: TranslateService,
     private authService: AuthenticationService) {

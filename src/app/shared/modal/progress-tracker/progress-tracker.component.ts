@@ -66,7 +66,7 @@ export class ProgressTrackerComponent implements OnInit {
             this.progressService.navigate(subItem.path);
         }
     }
- 
+
     /**
     * Set Risk Profile Flag.
     */
@@ -80,7 +80,7 @@ export class ProgressTrackerComponent implements OnInit {
     * Navigate to the selected component or toggle the accordion.
     */
     public navigateOrToggle(item) {
-        if (item.title == COMPREHENSIVE_CONST.PROGRESS_TRACKER.STEPS.REVIEW_INPUTS.TITLE && this.comprehensiveService.checkResultData() 
+        if (item.title == COMPREHENSIVE_CONST.PROGRESS_TRACKER.STEPS.REVIEW_INPUTS.TITLE && this.comprehensiveService.checkResultData()
             && this.comprehensiveService.getMySteps() == COMPREHENSIVE_CONST.PROGRESS_TRACKER.STEPS.REVIEW_INPUTS.NO) {
             this.progressService.hide();
             this.progressService.navigate(item.path);

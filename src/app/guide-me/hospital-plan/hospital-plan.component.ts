@@ -12,8 +12,6 @@ import { GuideMeApiService } from '../guide-me.api.service';
 import { GuideMeService } from '../guide-me.service';
 import { HospitalPlan } from './hospital-plan';
 
-const assetImgPath = './assets/images/';
-
 @Component({
   selector: 'app-hospital-plan',
   templateUrl: './hospital-plan.component.html',

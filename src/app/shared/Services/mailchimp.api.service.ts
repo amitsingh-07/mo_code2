@@ -37,7 +37,7 @@ export class MailchimpApiService {
       emailAddress: subscriber_data.email,
       firstName: subscriber_data.firstName,
       lastName: subscriber_data.lastName
-      };
+    };
     this.apiService.subscribeNewsletter(payload).subscribe((data) => {
       this.handleSubscribeResponse(data);
     });
@@ -48,9 +48,9 @@ export class MailchimpApiService {
       if (data.status === 400 || data.status === 500) {
         this.handleSubscribeError(data);
       } else
-      if (data.status === 'pending') {
-        this.subscribeMessage.next('To confirm your subscription, please click on the verification link sent to your email.');
-      }
+        if (data.status === 'pending') {
+          this.subscribeMessage.next('To confirm your subscription, please click on the verification link sent to your email.');
+        }
     }
   }
 
@@ -58,13 +58,13 @@ export class MailchimpApiService {
     const errorMap = this.formError.subscribeFormErrors;
     let message = '';
     try {
-      if ( errorMap[data.status] ) {
+      if (errorMap[data.status]) {
         const errorList = errorMap[data.status];
         const detail = data.detail;
         errorList.forEach((element) => {
           const regex = element.errorRegex;
           const res = detail.match(regex);
-          if ( res ) {
+          if (res) {
             message = element.errorMessage;
           }
         });

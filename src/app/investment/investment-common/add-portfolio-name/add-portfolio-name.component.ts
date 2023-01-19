@@ -90,7 +90,7 @@ export class AddPortfolioNameComponent implements OnInit, OnDestroy {
     this.footerService.setFooterVisibility(false);
     this.formValues = this.investmentAccountService.getInvestmentAccountFormData();
     this.fundingMethod = this.investmentCommonService.getConfirmedFundingMethodName();
-    if(this.formValues.recommendedRiskProfileId == 7 || this.formValues.recommendedRiskProfileId == 9) {
+    if (this.formValues.recommendedRiskProfileId == 7 || this.formValues.recommendedRiskProfileId == 9) {
       this.riskProfileIcon = ProfileIcons[this.formValues.recommendedRiskProfileId - 1]['icon'];
     } else {
       this.riskProfileIcon = this.investmentEngagementService.getRiskProfileIcon(this.formValues.recommendedRiskProfileId.type, false);
@@ -103,14 +103,14 @@ export class AddPortfolioNameComponent implements OnInit, OnDestroy {
   submitForm() {
     if (this.form.valid) {
       this.isCpfEnabled = this.investmentCommonService.getInvestmentCommonFormData().portfolioDetails.fundingTypeValue === INVESTMENT_COMMON_CONSTANTS.FUNDING_METHODS.CPF_OA;
-      if(this.isCpfEnabled) {
+      if (this.isCpfEnabled) {
         this.investmentCommonService.getCKAAssessmentStatus().subscribe((res) => {
-          if((res.responseMessage.responseCode === 6000)) {
+          if ((res.responseMessage.responseCode === 6000)) {
             this.cpfStatus = (res.objectList && res.objectList.cKAStatusMessage) ? res.objectList.cKAStatusMessage : '';
-            if (this.cpfStatus  === INVESTMENT_COMMON_CONSTANTS.CKA.CKA_BE_CERTIFICATE_UPLOADED || this.cpfStatus  === INVESTMENT_COMMON_CONSTANTS.CKA.CKA_PASSED_STATUS) {
+            if (this.cpfStatus === INVESTMENT_COMMON_CONSTANTS.CKA.CKA_BE_CERTIFICATE_UPLOADED || this.cpfStatus === INVESTMENT_COMMON_CONSTANTS.CKA.CKA_PASSED_STATUS) {
               this.continueIfastAccCreation();
             } else {
-              this.clearData();              
+              this.clearData();
               this.router.navigate([SIGN_UP_ROUTE_PATHS.DASHBOARD]);
             }
           }
@@ -201,7 +201,7 @@ export class AddPortfolioNameComponent implements OnInit, OnDestroy {
       autoHide: false
     });
     const param = this.constructUpdatePortfolioAccountStatusParams();
-        
+
     this.investmentCommonService.updatePortfolioStatus(param).subscribe((response) => {
       this.loaderService.hideLoaderForced();
       if (response.responseMessage.responseCode === 6000) {
@@ -236,7 +236,7 @@ export class AddPortfolioNameComponent implements OnInit, OnDestroy {
       } else if (this.investmentCommonService.isUsersFirstPortfolio(data)) { /* FIRST TIME PORTFOLIO */
         this.verifyAML();
       } else { /* SUBSEQUENT PORTFOLIO */
-        if(this.isCpfEnabled && this.cpfStatus === INVESTMENT_COMMON_CONSTANTS.CKA.CKA_BE_CERTIFICATE_UPLOADED) {
+        if (this.isCpfEnabled && this.cpfStatus === INVESTMENT_COMMON_CONSTANTS.CKA.CKA_BE_CERTIFICATE_UPLOADED) {
           this.updatePortfolioAccountStatus();
         } else {
           this.isSubsequentPortfolio = true;
@@ -290,7 +290,7 @@ export class AddPortfolioNameComponent implements OnInit, OnDestroy {
             response.objectList.status.toUpperCase() === INVESTMENT_ACCOUNT_CONSTANTS.status.aml_cleared.toUpperCase() &&
             !pepData
           ) {
-            if(this.isCpfEnabled && this.cpfStatus === INVESTMENT_COMMON_CONSTANTS.CKA.CKA_BE_CERTIFICATE_UPLOADED) {
+            if (this.isCpfEnabled && this.cpfStatus === INVESTMENT_COMMON_CONSTANTS.CKA.CKA_BE_CERTIFICATE_UPLOADED) {
               this.updatePortfolioAccountStatus();
             } else {
               this.createInvestmentAccount(false);

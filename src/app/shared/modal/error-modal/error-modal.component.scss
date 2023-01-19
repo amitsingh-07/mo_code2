@@ -11,69 +11,79 @@
 }
 
 .label {
-    color: #2d8289;
+    color: $dark-teal-color;
     font-size: 17px;
     font-family: "Muli Semi Bold", sans-serif;
     word-break: break-word;
 }
-.promo-success{
-    color: #5e5e5e;
+
+.promo-success {
+    color: $silver-grey-color;
     font-size: 16px;
     font-family: $muli-regular, sans-serif;
 }
-#success_promo{
+
+#success_promo {
     font-size: 18px;
 }
-.email-promo{
-    color: #00aaa8;
+
+.email-promo {
+    color: $custom-modal-title-color;
     font-family: $muli-bold;
 }
+
 .yes_r_no {
     display: flex;
     justify-content: space-between;
-    .btn{
-        background-color: #fff;
-        color: #00a7a7;
+
+    .btn {
+        background-color: $white-color;
+        color: $teal-color;
         font-family: $muli-regular;
         font-weight: 100;
         font-size: 22px;
         letter-spacing: -0.2px;
     }
+
     .btn-primary {
-        background-color: #00a7a7;
-        color: #fff;
+        background-color: $teal-color;
+        color: $white-color;
     }
 }
 
-.confirmation-warning{
-    span{
+.confirmation-warning {
+    span {
         line-height: 1.31;
         letter-spacing: -0.2px;
-        color: #5e5e5e;
-        &:first-child{
+        color: $silver-grey-color;
+
+        &:first-child {
             font-family: $muli-semi-bold;
-            font-size: 18px; 
-            color: #009999;
+            font-size: 18px;
+            color: $persian-green-color;
         }
     }
 }
-.hyperlink_color{
+
+.hyperlink_color {
     font-weight: bold;
-    color: #ff9c39;
+    color: $orange-color;
 }
 
-.login-mail{
+.login-mail {
     line-height: 20px;
     text-align: center;
     color: $teal-color;
     margin-top: 20px;
     letter-spacing: -0.16px;
-    a{
+
+    a {
         text-decoration: underline !important;
         cursor: pointer;
     }
 }
-.enter-mail{
+
+.enter-mail {
     margin-top: 5px;
 }
 
@@ -81,8 +91,9 @@
     text-align: center;
     font-weight: bolder;
 }
+
 .tooltipButtonLabel {
-    font-family: $muli-bold!important;
+    font-family: $muli-bold !important;
     font-size: 22px;
     font-weight: bold;
     font-stretch: normal;
@@ -90,9 +101,9 @@
     line-height: normal;
     letter-spacing: -0.17px;
     text-align: center;
-    color: #ffffff;
+    color: $white-color;
     border-radius: 6px;
-    box-shadow: 0 4px 6px 0 rgba(0, 0, 0, 0.15)!important;
-    border: solid 1px #00a7a7!important;
-    background-color: #00a7a7!important;
+    box-shadow: 0 4px 6px 0 rgba(0, 0, 0, 0.15) !important;
+    border: solid 1px $teal-color !important;
+    background-color: $teal-color !important;
 }

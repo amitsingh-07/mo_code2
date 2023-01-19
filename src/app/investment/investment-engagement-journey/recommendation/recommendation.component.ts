@@ -143,7 +143,6 @@ export class RecommendationComponent implements OnInit, AfterViewInit {
     if (this.selectedRiskProfile.riskProfileId === INVESTMENT_ENGAGEMENT_JOURNEY_CONSTANTS.risk_profile.should_not_invest_id) {
       this.showNoPortfolio = true;
     } else if (this.selectedRiskProfile.riskProfileId && this.selectedRiskProfile.alternateRiskProfileId) {
-      // #this.showTwoPortfolio = true;
       this.showSinglePortfolio = true;
     } else {
       this.showSinglePortfolio = true;

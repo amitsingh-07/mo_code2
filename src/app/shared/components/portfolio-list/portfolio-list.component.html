@@ -1,4 +1,3 @@
-<!-- Widget Content-->
 <div class="multiple-portfolio-container" *ngIf="totalPortfoliosLength > 0; else noFilteredPortfolios">
     <div class="container-fluid max-width--1024">
         <div class="multiple-portfolio-block">
@@ -21,21 +20,31 @@
                             <div class="portfolio-details">
                                 <div class="portfolio-name">
                                     <span class="portfolio-lbl flex-col-10">{{portfolio?.portfolioName}}</span>
-                                    <span [ngClass]="portfolio?.fundingTypeValue == fundingMethods.SRS ? 'portfolio-fund-type' : 'portfolio-fund-type-cpf-oa'">
-                                         {{getPortFolioBadgeData(portfolio)}}
+                                    <span
+                                        [ngClass]="portfolio?.fundingTypeValue == fundingMethods.SRS ? 'portfolio-fund-type' : 'portfolio-fund-type-cpf-oa'">
+                                        {{getPortFolioBadgeData(portfolio)}}
                                     </span>
                                 </div>
                                 <div class="ja-logo" *ngIf="portfolio?.entitlements?.jointAccount"><span
                                         class="ja-icon"><img
-                                            src="assets/images/investment-account/ja-icon.svg" /></span><span>{{ (portfolio.primaryHolder) ? (portfolio.secondaryHolderName | titlecase) : (portfolio.primaryHolderName | titlecase) }}</span>
+                                            src="assets/images/investment-account/ja-icon.svg" /></span><span>{{
+                                        (portfolio.primaryHolder) ? (portfolio.secondaryHolderName | titlecase) :
+                                        (portfolio.primaryHolderName | titlecase) }}</span>
                                 </div>
                                 <div class="ja-investment mt10">
-                                    {{ ((portfolio.portfolioCategory && portfolioTypes.INVESTMENT === portfolio.portfolioCategory.toUpperCase()) || portfolio?.fundingTypeValue == fundingMethods.CPF_OA) ? portfolio.riskProfileType : ((portfolio.portfolioCategory && portfolioTypes.WISEINCOME === portfolio.portfolioCategory.toUpperCase()) ? (portfolio.portfolioCategory + ' - ' + portfolio.payoutTypeValue)  : portfolio.portfolioCategory ) }}
+                                    {{ ((portfolio.portfolioCategory && portfolioTypes.INVESTMENT ===
+                                    portfolio.portfolioCategory.toUpperCase()) || portfolio?.fundingTypeValue ==
+                                    fundingMethods.CPF_OA) ? portfolio.riskProfileType : ((portfolio.portfolioCategory
+                                    && portfolioTypes.WISEINCOME === portfolio.portfolioCategory.toUpperCase()) ?
+                                    (portfolio.portfolioCategory + ' - ' + portfolio.payoutTypeValue) :
+                                    portfolio.portfolioCategory ) }}
                                 </div>
-                                <div class="ja-investment">{{'YOUR_INVESTMENT.ONE_TIME_AMOUNT' | translate}} {{ (portfolio.initialInvestment ? portfolio.initialInvestment : 0) |
-                                currency:'USD':'symbol-narrow':'1.2-2'}} </div>
-                                <div class="ja-investment">{{'YOUR_INVESTMENT.MONTHLY_AMOUNT' | translate}} {{ (portfolio.monthlyInvestment ? portfolio.monthlyInvestment : 0) |
-                                currency:'USD':'symbol-narrow':'1.2-2'}}</div>
+                                <div class="ja-investment">{{'YOUR_INVESTMENT.ONE_TIME_AMOUNT' | translate}} {{
+                                    (portfolio.initialInvestment ? portfolio.initialInvestment : 0) |
+                                    currency:'USD':'symbol-narrow':'1.2-2'}} </div>
+                                <div class="ja-investment">{{'YOUR_INVESTMENT.MONTHLY_AMOUNT' | translate}} {{
+                                    (portfolio.monthlyInvestment ? portfolio.monthlyInvestment : 0) |
+                                    currency:'USD':'symbol-narrow':'1.2-2'}}</div>
                             </div>
                         </div>
                     </div>
@@ -45,8 +54,9 @@
                             ({{ filteredCpfProgressList.length - 5}})<img
                                 src="assets/images/investment-account/list-down.svg" /></span>
                         <span *ngIf="showAllForCpfProgress"
-                            (click)="showHideToggle('showAllForCpfProgress')">{{'YOUR_INVESTMENT.SHOW_LESS' | translate}}<img
-                                class="show-less" src="assets/images/investment-account/list-down.svg" /></span>
+                            (click)="showHideToggle('showAllForCpfProgress')">{{'YOUR_INVESTMENT.SHOW_LESS' |
+                            translate}}<img class="show-less"
+                                src="assets/images/investment-account/list-down.svg" /></span>
                     </div>
                 </div>
 
@@ -56,38 +66,52 @@
                     <div class="portfolio-list" *ngFor="let portfolio of filteredAwaitingList; let i = index;">
                         <div *ngIf="(i <= 4) || showAllForAwaited" class="portfolio">
                             <div class="portfolio-icon" [ngClass]="setBorderClass(portfolio)"><img
-                                    [src]="getImg(portfolio?.riskProfileId, portfolio?.portfolioCategory, portfolio?.riskProfileType, false)" /></div>
+                                    [src]="getImg(portfolio?.riskProfileId, portfolio?.portfolioCategory, portfolio?.riskProfileType, false)" />
+                            </div>
                             <div class="portfolio-details">
                                 <div class="portfolio-name">
                                     <span class="portfolio-lbl flex-col-11">{{portfolio?.portfolioName}}</span>
-                                    <span *ngIf="portfolio?.fundingTypeValue == fundingMethods.SRS || portfolio?.fundingTypeValue == fundingMethods.CPF_OA" [ngClass]="portfolio?.fundingTypeValue == fundingMethods.SRS ? 'portfolio-fund-type' : 'portfolio-fund-type-cpf-oa'">
-                                         {{getPortFolioBadgeData(portfolio)}}
+                                    <span
+                                        *ngIf="portfolio?.fundingTypeValue == fundingMethods.SRS || portfolio?.fundingTypeValue == fundingMethods.CPF_OA"
+                                        [ngClass]="portfolio?.fundingTypeValue == fundingMethods.SRS ? 'portfolio-fund-type' : 'portfolio-fund-type-cpf-oa'">
+                                        {{getPortFolioBadgeData(portfolio)}}
                                     </span>
                                 </div>
                                 <div class="ja-logo" *ngIf="portfolio?.entitlements?.jointAccount"><span
                                         class="ja-icon"><img
-                                            src="assets/images/investment-account/ja-icon.svg" /></span><span>{{ (portfolio.primaryHolder) ? (portfolio.secondaryHolderName | titlecase) : (portfolio.primaryHolderName | titlecase) }}</span>
+                                            src="assets/images/investment-account/ja-icon.svg" /></span><span>{{
+                                        (portfolio.primaryHolder) ? (portfolio.secondaryHolderName | titlecase) :
+                                        (portfolio.primaryHolderName | titlecase) }}</span>
                                 </div>
                                 <div class="ja-investment mt10">
-                                    {{ (portfolio.portfolioCategory && portfolioTypes.INVESTMENT === portfolio.portfolioCategory.toUpperCase())? portfolio.riskProfileType : ((portfolio.portfolioCategory && portfolioTypes.WISEINCOME === portfolio.portfolioCategory.toUpperCase()) ? (portfolio.portfolioCategory + ' - ' + portfolio.payoutTypeValue)  : portfolio.portfolioCategory ) }}
+                                    {{ (portfolio.portfolioCategory && portfolioTypes.INVESTMENT ===
+                                    portfolio.portfolioCategory.toUpperCase())? portfolio.riskProfileType :
+                                    ((portfolio.portfolioCategory && portfolioTypes.WISEINCOME ===
+                                    portfolio.portfolioCategory.toUpperCase()) ? (portfolio.portfolioCategory + ' - ' +
+                                    portfolio.payoutTypeValue) : portfolio.portfolioCategory ) }}
                                 </div>
-                                <div class="ja-investment">{{'YOUR_INVESTMENT.ONE_TIME_AMOUNT' | translate}} {{ (portfolio.initialInvestment ? portfolio.initialInvestment : 0) |
+                                <div class="ja-investment">{{'YOUR_INVESTMENT.ONE_TIME_AMOUNT' | translate}} {{
+                                    (portfolio.initialInvestment ? portfolio.initialInvestment : 0) |
                                     currency:'USD':'symbol-narrow':'1.2-2'}} </div>
-                                <div class="ja-investment">{{'YOUR_INVESTMENT.MONTHLY_AMOUNT' | translate}} {{ (portfolio.monthlyInvestment ? portfolio.monthlyInvestment : 0) |
+                                <div class="ja-investment">{{'YOUR_INVESTMENT.MONTHLY_AMOUNT' | translate}} {{
+                                    (portfolio.monthlyInvestment ? portfolio.monthlyInvestment : 0) |
                                     currency:'USD':'symbol-narrow':'1.2-2'}}</div>
                                 <div class="flex-row">
                                     <div class="col-md-6 awaiting-period mt10 pl0 pr0">{{ portfolio.awaitingPeriod }}
                                         {{'YOUR_INVESTMENT.PRIMARY_AWAITING_PERIOD' | translate}}</div>
                                     <div class="col-md-6 ja-btn-group" *ngIf='portfolio.primaryHolder'>
                                         <button class="send-reminder-btn cursorPointer"
-                                            (click)="sendReminderModal(portfolio.customerPortfolioId, portfolio.secondaryHolderName)">{{'YOUR_INVESTMENT.SEND_REMINDER' | translate}}</button>
+                                            (click)="sendReminderModal(portfolio.customerPortfolioId, portfolio.secondaryHolderName)">{{'YOUR_INVESTMENT.SEND_REMINDER'
+                                            | translate}}</button>
                                         <button class="withdraw-btn cursorPointer ml10"
-                                            (click)="withDrawModal(portfolio.portfolioName, portfolio.customerPortfolioId)">{{'YOUR_INVESTMENT.WITHDRAW' | translate}}</button>
+                                            (click)="withDrawModal(portfolio.portfolioName, portfolio.customerPortfolioId)">{{'YOUR_INVESTMENT.WITHDRAW'
+                                            | translate}}</button>
                                     </div>
                                     <div class="col-md-6 flex justify-right plo pr0" *ngIf='!portfolio.primaryHolder'
                                         (click)="acceptJAPortfolio(portfolio.customerPortfolioId)">
                                         <button
-                                            class="accept-decline-btn cursorPointer">{{'YOUR_INVESTMENT.ACCEPT_DECLINE' | translate}}</button>
+                                            class="accept-decline-btn cursorPointer">{{'YOUR_INVESTMENT.ACCEPT_DECLINE'
+                                            | translate}}</button>
                                     </div>
                                 </div>
                             </div>
@@ -99,8 +123,9 @@
                             ({{ filteredAwaitingList.length - 5}})<img
                                 src="assets/images/investment-account/list-down.svg" /></span>
                         <span *ngIf="showAllForAwaited"
-                            (click)="showHideToggle('showAllForAwaited')">{{'YOUR_INVESTMENT.SHOW_LESS' | translate}}<img
-                                class="show-less" src="assets/images/investment-account/list-down.svg" /></span>
+                            (click)="showHideToggle('showAllForAwaited')">{{'YOUR_INVESTMENT.SHOW_LESS' |
+                            translate}}<img class="show-less"
+                                src="assets/images/investment-account/list-down.svg" /></span>
                     </div>
                 </div>
 
@@ -111,31 +136,43 @@
                         *ngFor="let portfolio of filteredWithdrawnList; let i = index;">
                         <div *ngIf="(i <= 4) || showAllForWithdrawn" class="portfolio">
                             <div class="portfolio-icon" [ngClass]="setBorderClass(portfolio)"><img
-                                    [src]="getImg(portfolio?.riskProfileId, portfolio?.portfolioCategory, portfolio?.riskProfileType, false)" /></div>
+                                    [src]="getImg(portfolio?.riskProfileId, portfolio?.portfolioCategory, portfolio?.riskProfileType, false)" />
+                            </div>
                             <div class="portfolio-details">
                                 <div class="portfolio-name">
                                     <span class="portfolio-lbl flex-col-11">{{portfolio?.portfolioName}}</span>
-                                    <span *ngIf="portfolio?.fundingTypeValue == fundingMethods.SRS || portfolio?.fundingTypeValue == fundingMethods.CPF_OA" [ngClass]="portfolio?.fundingTypeValue == fundingMethods.SRS ? 'portfolio-fund-type' : 'portfolio-fund-type-cpf-oa'">
-                                         {{getPortFolioBadgeData(portfolio)}}
+                                    <span
+                                        *ngIf="portfolio?.fundingTypeValue == fundingMethods.SRS || portfolio?.fundingTypeValue == fundingMethods.CPF_OA"
+                                        [ngClass]="portfolio?.fundingTypeValue == fundingMethods.SRS ? 'portfolio-fund-type' : 'portfolio-fund-type-cpf-oa'">
+                                        {{getPortFolioBadgeData(portfolio)}}
                                     </span>
                                 </div>
                                 <div class="ja-logo" *ngIf="portfolio?.entitlements?.jointAccount"><span
                                         class="ja-icon"><img
-                                            src="assets/images/investment-account/ja-icon.svg" /></span><span>{{ (portfolio.primaryHolder) ? (portfolio.secondaryHolderName | titlecase) : (portfolio.primaryHolderName | titlecase) }}</span>
+                                            src="assets/images/investment-account/ja-icon.svg" /></span><span>{{
+                                        (portfolio.primaryHolder) ? (portfolio.secondaryHolderName | titlecase) :
+                                        (portfolio.primaryHolderName | titlecase) }}</span>
                                 </div>
                                 <div class="flex-row">
                                     <div class="col-md-6 pl0 pr0">
                                         <div class="ja-investment mt10">
-                                            {{ (portfolio.portfolioCategory && portfolioTypes.INVESTMENT === portfolio.portfolioCategory.toUpperCase())? portfolio.riskProfileType : ((portfolio.portfolioCategory && portfolioTypes.WISEINCOME === portfolio.portfolioCategory.toUpperCase()) ? (portfolio.portfolioCategory + ' - ' + portfolio.payoutTypeValue)  : portfolio.portfolioCategory ) }}
+                                            {{ (portfolio.portfolioCategory && portfolioTypes.INVESTMENT ===
+                                            portfolio.portfolioCategory.toUpperCase())? portfolio.riskProfileType :
+                                            ((portfolio.portfolioCategory && portfolioTypes.WISEINCOME ===
+                                            portfolio.portfolioCategory.toUpperCase()) ? (portfolio.portfolioCategory +
+                                            ' - ' + portfolio.payoutTypeValue) : portfolio.portfolioCategory ) }}
                                         </div>
-                                        <div class="ja-investment">{{'YOUR_INVESTMENT.ONE_TIME_AMOUNT' | translate}} {{ (portfolio.initialInvestment ? portfolio.initialInvestment : 0) |
+                                        <div class="ja-investment">{{'YOUR_INVESTMENT.ONE_TIME_AMOUNT' | translate}} {{
+                                            (portfolio.initialInvestment ? portfolio.initialInvestment : 0) |
                                             currency:'USD':'symbol-narrow':'1.2-2'}} </div>
-                                        <div class="ja-investment">{{'YOUR_INVESTMENT.MONTHLY_AMOUNT' | translate}} {{ (portfolio.monthlyInvestment ? portfolio.monthlyInvestment : 0) |
+                                        <div class="ja-investment">{{'YOUR_INVESTMENT.MONTHLY_AMOUNT' | translate}} {{
+                                            (portfolio.monthlyInvestment ? portfolio.monthlyInvestment : 0) |
                                             currency:'USD':'symbol-narrow':'1.2-2'}}</div>
                                     </div>
                                     <div class="col-md-6 flex justify-right align-items-end pl0 pr0">
                                         <button class="delete-btn cursorPointer"
-                                            (click)="deleteByHolder(portfolio.portfolioName, portfolio.customerPortfolioId)">{{'YOUR_INVESTMENT.APPLICATION_DELETE' | translate}}</button>
+                                            (click)="deleteByHolder(portfolio.portfolioName, portfolio.customerPortfolioId)">{{'YOUR_INVESTMENT.APPLICATION_DELETE'
+                                            | translate}}</button>
                                     </div>
                                 </div>
                             </div>
@@ -147,8 +184,9 @@
                             ({{ filteredWithdrawnList.length - 5}})<img
                                 src="assets/images/investment-account/list-down.svg" /></span>
                         <span *ngIf="showAllForWithdrawn"
-                            (click)="showHideToggle('showAllForWithdrawn')">{{'YOUR_INVESTMENT.SHOW_LESS' | translate}}<img
-                                class="show-less" src="assets/images/investment-account/list-down.svg" /></span>
+                            (click)="showHideToggle('showAllForWithdrawn')">{{'YOUR_INVESTMENT.SHOW_LESS' |
+                            translate}}<img class="show-less"
+                                src="assets/images/investment-account/list-down.svg" /></span>
                     </div>
                 </div>
 
@@ -159,31 +197,43 @@
                         *ngFor="let portfolio of filteredDeclinedList; let i = index;">
                         <div *ngIf="(i <= 4) || showAllForDeclined" class="portfolio">
                             <div class="portfolio-icon" [ngClass]="setBorderClass(portfolio)"><img
-                                    [src]="getImg(portfolio?.riskProfileId, portfolio?.portfolioCategory, portfolio?.riskProfileType, false)" /></div>
+                                    [src]="getImg(portfolio?.riskProfileId, portfolio?.portfolioCategory, portfolio?.riskProfileType, false)" />
+                            </div>
                             <div class="portfolio-details">
                                 <div class="portfolio-name">
                                     <span class="portfolio-lbl flex-col-11">{{portfolio?.portfolioName}}</span>
-                                    <span *ngIf="portfolio?.fundingTypeValue == fundingMethods.SRS || portfolio?.fundingTypeValue == fundingMethods.CPF_OA" [ngClass]="portfolio?.fundingTypeValue == fundingMethods.SRS ? 'portfolio-fund-type' : 'portfolio-fund-type-cpf-oa'">
-                                         {{getPortFolioBadgeData(portfolio)}}
+                                    <span
+                                        *ngIf="portfolio?.fundingTypeValue == fundingMethods.SRS || portfolio?.fundingTypeValue == fundingMethods.CPF_OA"
+                                        [ngClass]="portfolio?.fundingTypeValue == fundingMethods.SRS ? 'portfolio-fund-type' : 'portfolio-fund-type-cpf-oa'">
+                                        {{getPortFolioBadgeData(portfolio)}}
                                     </span>
                                 </div>
                                 <div class="ja-logo" *ngIf="portfolio?.entitlements?.jointAccount"><span
                                         class="ja-icon"><img
-                                            src="assets/images/investment-account/ja-icon.svg" /></span><span>{{ (portfolio.primaryHolder) ? (portfolio.secondaryHolderName | titlecase) : (portfolio.primaryHolderName | titlecase) }}</span>
+                                            src="assets/images/investment-account/ja-icon.svg" /></span><span>{{
+                                        (portfolio.primaryHolder) ? (portfolio.secondaryHolderName | titlecase) :
+                                        (portfolio.primaryHolderName | titlecase) }}</span>
                                 </div>
                                 <div class="flex-row">
                                     <div class="col-md-6 pl0 pr0">
                                         <div class="ja-investment mt10">
-                                            {{ (portfolio.portfolioCategory && portfolioTypes.INVESTMENT === portfolio.portfolioCategory.toUpperCase())? portfolio.riskProfileType : ((portfolio.portfolioCategory && portfolioTypes.WISEINCOME === portfolio.portfolioCategory.toUpperCase()) ? (portfolio.portfolioCategory + ' - ' + portfolio.payoutTypeValue)  : portfolio.portfolioCategory ) }}
+                                            {{ (portfolio.portfolioCategory && portfolioTypes.INVESTMENT ===
+                                            portfolio.portfolioCategory.toUpperCase())? portfolio.riskProfileType :
+                                            ((portfolio.portfolioCategory && portfolioTypes.WISEINCOME ===
+                                            portfolio.portfolioCategory.toUpperCase()) ? (portfolio.portfolioCategory +
+                                            ' - ' + portfolio.payoutTypeValue) : portfolio.portfolioCategory ) }}
                                         </div>
-                                        <div class="ja-investment">{{'YOUR_INVESTMENT.ONE_TIME_AMOUNT' | translate}} {{ (portfolio.initialInvestment ? portfolio.initialInvestment : 0) |
+                                        <div class="ja-investment">{{'YOUR_INVESTMENT.ONE_TIME_AMOUNT' | translate}} {{
+                                            (portfolio.initialInvestment ? portfolio.initialInvestment : 0) |
                                             currency:'USD':'symbol-narrow':'1.2-2'}} </div>
-                                        <div class="ja-investment">{{'YOUR_INVESTMENT.MONTHLY_AMOUNT' | translate}} {{ (portfolio.monthlyInvestment ? portfolio.monthlyInvestment : 0) |
+                                        <div class="ja-investment">{{'YOUR_INVESTMENT.MONTHLY_AMOUNT' | translate}} {{
+                                            (portfolio.monthlyInvestment ? portfolio.monthlyInvestment : 0) |
                                             currency:'USD':'symbol-narrow':'1.2-2'}}</div>
                                     </div>
                                     <div class="col-md-6 flex justify-right align-items-end pl0 pr0">
                                         <button class="delete-btn cursorPointer"
-                                            (click)="deleteByHolder(portfolio.portfolioName, portfolio.customerPortfolioId)">{{'YOUR_INVESTMENT.APPLICATION_DELETE' | translate}}</button>
+                                            (click)="deleteByHolder(portfolio.portfolioName, portfolio.customerPortfolioId)">{{'YOUR_INVESTMENT.APPLICATION_DELETE'
+                                            | translate}}</button>
                                     </div>
                                 </div>
                             </div>
@@ -195,8 +245,9 @@
                             ({{ filteredDeclinedList.length - 5}})<img
                                 src="assets/images/investment-account/list-down.svg" /></span>
                         <span *ngIf="showAllForDeclined"
-                            (click)="showHideToggle('showAllForDeclined')">{{'YOUR_INVESTMENT.SHOW_LESS' | translate}}<img
-                                class="show-less" src="assets/images/investment-account/list-down.svg" /></span>
+                            (click)="showHideToggle('showAllForDeclined')">{{'YOUR_INVESTMENT.SHOW_LESS' |
+                            translate}}<img class="show-less"
+                                src="assets/images/investment-account/list-down.svg" /></span>
                     </div>
                 </div>
 
@@ -207,31 +258,43 @@
                         *ngFor="let portfolio of filteredExpiredList; let i = index;">
                         <div *ngIf="(i <= 4) || showAllForExpired" class="portfolio">
                             <div class="portfolio-icon" [ngClass]="setBorderClass(portfolio)"><img
-                                    [src]="getImg(portfolio?.riskProfileId, portfolio?.portfolioCategory, portfolio?.riskProfileType, false)" /></div>
+                                    [src]="getImg(portfolio?.riskProfileId, portfolio?.portfolioCategory, portfolio?.riskProfileType, false)" />
+                            </div>
                             <div class="portfolio-details">
                                 <div class="portfolio-name">
                                     <span class="portfolio-lbl flex-col-11">{{portfolio?.portfolioName}}</span>
-                                    <span *ngIf="portfolio?.fundingTypeValue == fundingMethods.SRS || portfolio?.fundingTypeValue == fundingMethods.CPF_OA" [ngClass]="portfolio?.fundingTypeValue == fundingMethods.SRS ? 'portfolio-fund-type' : 'portfolio-fund-type-cpf-oa'">
-                                         {{getPortFolioBadgeData(portfolio)}}
+                                    <span
+                                        *ngIf="portfolio?.fundingTypeValue == fundingMethods.SRS || portfolio?.fundingTypeValue == fundingMethods.CPF_OA"
+                                        [ngClass]="portfolio?.fundingTypeValue == fundingMethods.SRS ? 'portfolio-fund-type' : 'portfolio-fund-type-cpf-oa'">
+                                        {{getPortFolioBadgeData(portfolio)}}
                                     </span>
                                 </div>
                                 <div class="ja-logo" *ngIf="portfolio?.entitlements?.jointAccount"><span
                                         class="ja-icon"><img
-                                            src="assets/images/investment-account/ja-icon.svg" /></span><span>{{ (portfolio.primaryHolder) ? (portfolio.secondaryHolderName | titlecase) : (portfolio.primaryHolderName | titlecase) }}</span>
+                                            src="assets/images/investment-account/ja-icon.svg" /></span><span>{{
+                                        (portfolio.primaryHolder) ? (portfolio.secondaryHolderName | titlecase) :
+                                        (portfolio.primaryHolderName | titlecase) }}</span>
                                 </div>
                                 <div class="flex-row">
                                     <div class="col-md-6 pl0 pr0">
                                         <div class="ja-investment mt10">
-                                            {{ (portfolio.portfolioCategory && portfolioTypes.INVESTMENT === portfolio.portfolioCategory.toUpperCase())? portfolio.riskProfileType : ((portfolio.portfolioCategory && portfolioTypes.WISEINCOME === portfolio.portfolioCategory.toUpperCase()) ? (portfolio.portfolioCategory + ' - ' + portfolio.payoutTypeValue)  : portfolio.portfolioCategory ) }}
+                                            {{ (portfolio.portfolioCategory && portfolioTypes.INVESTMENT ===
+                                            portfolio.portfolioCategory.toUpperCase())? portfolio.riskProfileType :
+                                            ((portfolio.portfolioCategory && portfolioTypes.WISEINCOME ===
+                                            portfolio.portfolioCategory.toUpperCase()) ? (portfolio.portfolioCategory +
+                                            ' - ' + portfolio.payoutTypeValue) : portfolio.portfolioCategory ) }}
                                         </div>
-                                        <div class="ja-investment">{{'YOUR_INVESTMENT.ONE_TIME_AMOUNT' | translate}} {{ (portfolio.initialInvestment ? portfolio.initialInvestment : 0) |
+                                        <div class="ja-investment">{{'YOUR_INVESTMENT.ONE_TIME_AMOUNT' | translate}} {{
+                                            (portfolio.initialInvestment ? portfolio.initialInvestment : 0) |
                                             currency:'USD':'symbol-narrow':'1.0-2'}} </div>
-                                        <div class="ja-investment">{{'YOUR_INVESTMENT.MONTHLY_AMOUNT' | translate}} {{ (portfolio.monthlyInvestment ? portfolio.monthlyInvestment : 0) |
+                                        <div class="ja-investment">{{'YOUR_INVESTMENT.MONTHLY_AMOUNT' | translate}} {{
+                                            (portfolio.monthlyInvestment ? portfolio.monthlyInvestment : 0) |
                                             currency:'USD':'symbol-narrow':'1.0-2'}}</div>
                                     </div>
                                     <div class="col-md-6 flex justify-right align-items-end pl0 pr0">
                                         <button class="delete-btn cursorPointer"
-                                            (click)="deleteByHolder(portfolio.portfolioName, portfolio.customerPortfolioId)">{{'YOUR_INVESTMENT.APPLICATION_DELETE' | translate}}</button>
+                                            (click)="deleteByHolder(portfolio.portfolioName, portfolio.customerPortfolioId)">{{'YOUR_INVESTMENT.APPLICATION_DELETE'
+                                            | translate}}</button>
                                     </div>
                                 </div>
                             </div>
@@ -243,8 +306,9 @@
                             ({{ filteredExpiredList.length - 5}})<img
                                 src="assets/images/investment-account/list-down.svg" /></span>
                         <span *ngIf="showAllForExpired"
-                            (click)="showHideToggle('showAllForExpired')">{{'YOUR_INVESTMENT.SHOW_LESS' | translate}}<img
-                                class="show-less" src="assets/images/investment-account/list-down.svg" /></span>
+                            (click)="showHideToggle('showAllForExpired')">{{'YOUR_INVESTMENT.SHOW_LESS' |
+                            translate}}<img class="show-less"
+                                src="assets/images/investment-account/list-down.svg" /></span>
                     </div>
                 </div>
 
@@ -254,25 +318,36 @@
                     <div class="portfolio-list" *ngFor="let portfolio of filteredProgressList; let i = index;">
                         <div *ngIf="(i <= 4) || showAllForProgress" class="portfolio">
                             <div class="portfolio-icon" [ngClass]="setBorderClass(portfolio)"><img
-                                    [src]="getImg(portfolio?.riskProfileId, portfolio?.portfolioCategory, portfolio?.riskProfileType, false)" /></div>
+                                    [src]="getImg(portfolio?.riskProfileId, portfolio?.portfolioCategory, portfolio?.riskProfileType, false)" />
+                            </div>
                             <div class="portfolio-details">
                                 <div class="portfolio-name">
                                     <span class="portfolio-lbl flex-col-11">{{portfolio?.portfolioName}}</span>
-                                    <span *ngIf="portfolio?.fundingTypeValue == fundingMethods.SRS || portfolio?.fundingTypeValue == fundingMethods.CPF_OA" [ngClass]="portfolio?.fundingTypeValue == fundingMethods.SRS ? 'portfolio-fund-type' : 'portfolio-fund-type-cpf-oa'">
-                                         {{getPortFolioBadgeData(portfolio)}}
+                                    <span
+                                        *ngIf="portfolio?.fundingTypeValue == fundingMethods.SRS || portfolio?.fundingTypeValue == fundingMethods.CPF_OA"
+                                        [ngClass]="portfolio?.fundingTypeValue == fundingMethods.SRS ? 'portfolio-fund-type' : 'portfolio-fund-type-cpf-oa'">
+                                        {{getPortFolioBadgeData(portfolio)}}
                                     </span>
                                 </div>
                                 <div class="ja-logo" *ngIf="portfolio?.entitlements?.jointAccount"><span
                                         class="ja-icon"><img
-                                            src="assets/images/investment-account/ja-icon.svg" /></span><span>{{ (portfolio.primaryHolder) ? (portfolio.secondaryHolderName | titlecase) : (portfolio.primaryHolderName | titlecase) }}</span>
+                                            src="assets/images/investment-account/ja-icon.svg" /></span><span>{{
+                                        (portfolio.primaryHolder) ? (portfolio.secondaryHolderName | titlecase) :
+                                        (portfolio.primaryHolderName | titlecase) }}</span>
                                 </div>
                                 <div class="ja-investment mt10">
-                                    {{ (portfolio.portfolioCategory && portfolioTypes.INVESTMENT === portfolio.portfolioCategory.toUpperCase())? portfolio.riskProfileType : ((portfolio.portfolioCategory && portfolioTypes.WISEINCOME === portfolio.portfolioCategory.toUpperCase()) ? (portfolio.portfolioCategory + ' - ' + portfolio.payoutTypeValue)  : portfolio.portfolioCategory ) }}
+                                    {{ (portfolio.portfolioCategory && portfolioTypes.INVESTMENT ===
+                                    portfolio.portfolioCategory.toUpperCase())? portfolio.riskProfileType :
+                                    ((portfolio.portfolioCategory && portfolioTypes.WISEINCOME ===
+                                    portfolio.portfolioCategory.toUpperCase()) ? (portfolio.portfolioCategory + ' - ' +
+                                    portfolio.payoutTypeValue) : portfolio.portfolioCategory ) }}
                                 </div>
-                                <div class="ja-investment">{{'YOUR_INVESTMENT.ONE_TIME_AMOUNT' | translate}} {{ (portfolio.initialInvestment ? portfolio.initialInvestment : 0) |
-                                currency:'USD':'symbol-narrow':'1.2-2'}} </div>
-                                <div class="ja-investment">{{'YOUR_INVESTMENT.MONTHLY_AMOUNT' | translate}} {{ (portfolio.monthlyInvestment ? portfolio.monthlyInvestment : 0) |
-                                currency:'USD':'symbol-narrow':'1.2-2'}}</div>
+                                <div class="ja-investment">{{'YOUR_INVESTMENT.ONE_TIME_AMOUNT' | translate}} {{
+                                    (portfolio.initialInvestment ? portfolio.initialInvestment : 0) |
+                                    currency:'USD':'symbol-narrow':'1.2-2'}} </div>
+                                <div class="ja-investment">{{'YOUR_INVESTMENT.MONTHLY_AMOUNT' | translate}} {{
+                                    (portfolio.monthlyInvestment ? portfolio.monthlyInvestment : 0) |
+                                    currency:'USD':'symbol-narrow':'1.2-2'}}</div>
                             </div>
                         </div>
                     </div>
@@ -282,8 +357,9 @@
                             ({{ filteredProgressList.length - 5}})<img
                                 src="assets/images/investment-account/list-down.svg" /></span>
                         <span *ngIf="showAllForProgress"
-                            (click)="showHideToggle('showAllForProgress')">{{'YOUR_INVESTMENT.SHOW_LESS' | translate}}<img
-                                class="show-less" src="assets/images/investment-account/list-down.svg" /></span>
+                            (click)="showHideToggle('showAllForProgress')">{{'YOUR_INVESTMENT.SHOW_LESS' |
+                            translate}}<img class="show-less"
+                                src="assets/images/investment-account/list-down.svg" /></span>
                     </div>
                 </div>
 
@@ -293,33 +369,46 @@
                     <div class="portfolio-list" *ngFor="let portfolio of filteredVerifyList; let i = index;">
                         <div *ngIf="(i <= 4) || showAllForVerify" class="portfolio">
                             <div class="portfolio-icon" [ngClass]="setBorderClass(portfolio)"><img
-                                    [src]="getImg(portfolio?.riskProfileId, portfolio?.portfolioCategory, portfolio?.riskProfileType, false)" /></div>
+                                    [src]="getImg(portfolio?.riskProfileId, portfolio?.portfolioCategory, portfolio?.riskProfileType, false)" />
+                            </div>
                             <div class="portfolio-details">
                                 <div class="portfolio-name">
                                     <span class="portfolio-lbl flex-col-11">{{portfolio?.portfolioName}}</span>
-                                    <span *ngIf="portfolio?.fundingTypeValue == fundingMethods.SRS || portfolio?.fundingTypeValue == fundingMethods.CPF_OA" [ngClass]="portfolio?.fundingTypeValue == fundingMethods.SRS ? 'portfolio-fund-type' : 'portfolio-fund-type-cpf-oa'">
-                                         {{getPortFolioBadgeData(portfolio)}}
+                                    <span
+                                        *ngIf="portfolio?.fundingTypeValue == fundingMethods.SRS || portfolio?.fundingTypeValue == fundingMethods.CPF_OA"
+                                        [ngClass]="portfolio?.fundingTypeValue == fundingMethods.SRS ? 'portfolio-fund-type' : 'portfolio-fund-type-cpf-oa'">
+                                        {{getPortFolioBadgeData(portfolio)}}
                                     </span>
                                 </div>
                                 <div class="ja-logo" *ngIf="portfolio?.entitlements?.jointAccount"><span
                                         class="ja-icon"><img
-                                            src="assets/images/investment-account/ja-icon.svg" /></span><span>{{ (portfolio.primaryHolder) ? (portfolio.secondaryHolderName | titlecase) : (portfolio.primaryHolderName | titlecase) }}</span>
+                                            src="assets/images/investment-account/ja-icon.svg" /></span><span>{{
+                                        (portfolio.primaryHolder) ? (portfolio.secondaryHolderName | titlecase) :
+                                        (portfolio.primaryHolderName | titlecase) }}</span>
                                 </div>
                                 <div class="flex-row">
                                     <div class="col-md-6 pl0 pr0">
                                         <div class="ja-investment mt10">
-                                            {{ (portfolio.portfolioCategory && portfolioTypes.INVESTMENT === portfolio.portfolioCategory.toUpperCase())? portfolio.riskProfileType : ((portfolio.portfolioCategory && portfolioTypes.WISEINCOME === portfolio.portfolioCategory.toUpperCase()) ? (portfolio.portfolioCategory + ' - ' + portfolio.payoutTypeValue)  : portfolio.portfolioCategory ) }}
+                                            {{ (portfolio.portfolioCategory && portfolioTypes.INVESTMENT ===
+                                            portfolio.portfolioCategory.toUpperCase())? portfolio.riskProfileType :
+                                            ((portfolio.portfolioCategory && portfolioTypes.WISEINCOME ===
+                                            portfolio.portfolioCategory.toUpperCase()) ? (portfolio.portfolioCategory +
+                                            ' - ' + portfolio.payoutTypeValue) : portfolio.portfolioCategory ) }}
                                         </div>
-                                        <div class="ja-investment">{{'YOUR_INVESTMENT.ONE_TIME_AMOUNT' | translate}} {{ (portfolio.initialInvestment ? portfolio.initialInvestment : 0) |
-                                    currency:'USD':'symbol-narrow':'1.2-2'}} </div>
-                                        <div class="ja-investment">{{'YOUR_INVESTMENT.MONTHLY_AMOUNT' | translate}} {{ (portfolio.monthlyInvestment ? portfolio.monthlyInvestment : 0) |
-                                    currency:'USD':'symbol-narrow':'1.2-2'}}</div>
+                                        <div class="ja-investment">{{'YOUR_INVESTMENT.ONE_TIME_AMOUNT' | translate}} {{
+                                            (portfolio.initialInvestment ? portfolio.initialInvestment : 0) |
+                                            currency:'USD':'symbol-narrow':'1.2-2'}} </div>
+                                        <div class="ja-investment">{{'YOUR_INVESTMENT.MONTHLY_AMOUNT' | translate}} {{
+                                            (portfolio.monthlyInvestment ? portfolio.monthlyInvestment : 0) |
+                                            currency:'USD':'symbol-narrow':'1.2-2'}}</div>
                                     </div>
                                     <div class="col-md-6 ja-btn-group verify-btn-align" *ngIf='portfolio.primaryHolder'>
                                         <button class="send-reminder-btn cursorPointer"
-                                            (click)="verify(portfolio.customerPortfolioId)">{{'YOUR_INVESTMENT.APPLICATION_VERIFY' | translate}}</button>
+                                            (click)="verify(portfolio.customerPortfolioId)">{{'YOUR_INVESTMENT.APPLICATION_VERIFY'
+                                            | translate}}</button>
                                         <button class="withdraw-btn cursorPointer ml10"
-                                            (click)="withDrawModal(portfolio.portfolioName, portfolio.customerPortfolioId)">{{'YOUR_INVESTMENT.WITHDRAW' | translate}}</button>
+                                            (click)="withDrawModal(portfolio.portfolioName, portfolio.customerPortfolioId)">{{'YOUR_INVESTMENT.WITHDRAW'
+                                            | translate}}</button>
                                     </div>
                                 </div>
                             </div>
@@ -342,11 +431,14 @@
                         <div (click)="detail(portfolio)" class="portfolio cursorPointer"
                             *ngIf="(i <= 4) || showAllForNotInvested">
                             <div class="portfolio-icon" [ngClass]="setBorderClass(portfolio)"><img
-                                    [src]="getImg(portfolio?.riskProfileId, portfolio?.portfolioCategory, portfolio?.riskProfileType, false)" /></div>
+                                    [src]="getImg(portfolio?.riskProfileId, portfolio?.portfolioCategory, portfolio?.riskProfileType, false)" />
+                            </div>
                             <div class="portfolio-details">
                                 <div class="portfolio-name">
                                     <span class="portfolio-lbl flex-col-10">{{portfolio?.portfolioName}}</span>
-                                    <span *ngIf="portfolio?.fundingTypeValue == fundingMethods.SRS || portfolio?.fundingTypeValue == fundingMethods.CPF_OA" [ngClass]="portfolio?.fundingTypeValue == fundingMethods.SRS ? 'portfolio-fund-type' : 'portfolio-fund-type-cpf-oa'">
+                                    <span
+                                        *ngIf="portfolio?.fundingTypeValue == fundingMethods.SRS || portfolio?.fundingTypeValue == fundingMethods.CPF_OA"
+                                        [ngClass]="portfolio?.fundingTypeValue == fundingMethods.SRS ? 'portfolio-fund-type' : 'portfolio-fund-type-cpf-oa'">
                                         {{getPortFolioBadgeData(portfolio)}}
                                     </span>
                                 </div>
@@ -354,12 +446,14 @@
                                 </div>
                                 <div class="ja-logo" *ngIf="portfolio?.entitlements?.jointAccount"><span
                                         class="ja-icon"><img
-                                            src="assets/images/investment-account/ja-icon.svg" /></span><span>{{ (portfolio.primaryHolder) ? (portfolio.secondaryHolderName | titlecase) : (portfolio.primaryHolderName | titlecase) }}</span>
+                                            src="assets/images/investment-account/ja-icon.svg" /></span><span>{{
+                                        (portfolio.primaryHolder) ? (portfolio.secondaryHolderName | titlecase) :
+                                        (portfolio.primaryHolderName | titlecase) }}</span>
                                 </div>
                                 <div class="portfolio-value">
                                     <span *ngIf="!portfolio?.portfolioValue">$0</span>
-                                    <span
-                                        *ngIf="portfolio?.portfolioValue">{{portfolio?.portfolioValue | formatCurrency}}</span>
+                                    <span *ngIf="portfolio?.portfolioValue">{{portfolio?.portfolioValue |
+                                        formatCurrency}}</span>
                                     <span *ngIf="portfolio?.buyRequestCount" class="buy-request cursorPointer"
                                         (click)="gotoBuyRequest()">
                                         {{portfolio?.buyRequestCount}}
@@ -389,7 +483,8 @@
                             ({{ filteredNotInvestedList.length - 5 }})<img
                                 src="assets/images/investment-account/list-down.svg" /></span>
                         <span *ngIf="showAllForNotInvested"
-                            (click)="showHideToggle('showAllForNotInvested')">{{'YOUR_INVESTMENT.SHOW_LESS' | translate}}
+                            (click)="showHideToggle('showAllForNotInvested')">{{'YOUR_INVESTMENT.SHOW_LESS' |
+                            translate}}
                             <img class="show-less" src="assets/images/investment-account/list-down.svg" /></span>
                     </div>
                 </div>
@@ -399,11 +494,14 @@
                         *ngFor="let portfolio of filteredInvestedList; let i = index;">
                         <div *ngIf="(i <= 4) || showAllForInvested" class="portfolio cursorPointer">
                             <div class="portfolio-icon" [ngClass]="setBorderClass(portfolio)"><img
-                                    [src]="getImg(portfolio?.riskProfileId, portfolio?.portfolioCategory, portfolio?.riskProfileType, false)" /></div>
+                                    [src]="getImg(portfolio?.riskProfileId, portfolio?.portfolioCategory, portfolio?.riskProfileType, false)" />
+                            </div>
                             <div class="portfolio-details">
                                 <div class="portfolio-name">
                                     <span class="portfolio-lbl flex-col-10">{{portfolio?.portfolioName}}</span>
-                                    <span *ngIf="portfolio?.fundingTypeValue == fundingMethods.SRS || portfolio?.fundingTypeValue == fundingMethods.CPF_OA" [ngClass]="portfolio?.fundingTypeValue == fundingMethods.SRS ? 'portfolio-fund-type' : 'portfolio-fund-type-cpf-oa'">
+                                    <span
+                                        *ngIf="portfolio?.fundingTypeValue == fundingMethods.SRS || portfolio?.fundingTypeValue == fundingMethods.CPF_OA"
+                                        [ngClass]="portfolio?.fundingTypeValue == fundingMethods.SRS ? 'portfolio-fund-type' : 'portfolio-fund-type-cpf-oa'">
                                         {{getPortFolioBadgeData(portfolio)}}
                                     </span>
                                 </div>
@@ -411,12 +509,14 @@
                                 </div>
                                 <div class="ja-logo" *ngIf="portfolio?.entitlements?.jointAccount"><span
                                         class="ja-icon"><img
-                                            src="assets/images/investment-account/ja-icon.svg" /></span><span>{{ (portfolio.primaryHolder) ? (portfolio.secondaryHolderName | titlecase) : (portfolio.primaryHolderName | titlecase) }}</span>
+                                            src="assets/images/investment-account/ja-icon.svg" /></span><span>{{
+                                        (portfolio.primaryHolder) ? (portfolio.secondaryHolderName | titlecase) :
+                                        (portfolio.primaryHolderName | titlecase) }}</span>
                                 </div>
                                 <div class="portfolio-value">
                                     <span *ngIf="!portfolio?.portfolioValue">$0</span>
-                                    <span
-                                        *ngIf="portfolio?.portfolioValue">{{portfolio?.portfolioValue | formatCurrency}}</span>
+                                    <span *ngIf="portfolio?.portfolioValue">{{portfolio?.portfolioValue |
+                                        formatCurrency}}</span>
                                     <span class="buy-request cursorPointer" *ngIf="portfolio?.buyRequestCount"
                                         (click)="gotoBuyRequest()">{{portfolio?.buyRequestCount}}
                                         <span *ngIf="portfolio?.buyRequestCount == 1">
@@ -430,11 +530,13 @@
                                         class="total-returns">0%</span>
                                     <span *ngIf="portfolio?.simpleReturns && showTotalReturn"
                                         [class.negativeValue]="portfolio?.simpleReturns < 0"
-                                        class="total-returns">{{formatReturns(portfolio?.simpleReturns)}}{{portfolio?.simpleReturns | number : '1.0-2'}}%</span>
+                                        class="total-returns">{{formatReturns(portfolio?.simpleReturns)}}{{portfolio?.simpleReturns
+                                        | number : '1.0-2'}}%</span>
                                     <span
                                         *ngIf="!portfolio?.cashAccountBalance && portfolio?.fundingTypeValue !== fundingMethods.SRS && portfolio?.fundingTypeValue !== fundingMethods.CPF_OA"
                                         class="cash-account-value">{{'YOUR_INVESTMENT.CA_LABEL' | translate}} $0</span>
-                                    <span *ngIf="portfolio?.cashAccountBalance && portfolio?.fundingTypeValue !== fundingMethods.SRS && portfolio?.fundingTypeValue !== fundingMethods.CPF_OA"
+                                    <span
+                                        *ngIf="portfolio?.cashAccountBalance && portfolio?.fundingTypeValue !== fundingMethods.SRS && portfolio?.fundingTypeValue !== fundingMethods.CPF_OA"
                                         class="cash-account-value">{{'YOUR_INVESTMENT.CA_LABEL' | translate}}
                                         {{portfolio?.cashAccountBalance | formatCurrency}}</span>
                                 </div>
@@ -453,8 +555,9 @@
                             ({{ filteredInvestedList.length - 5}})<img
                                 src="assets/images/investment-account/list-down.svg" /></span>
                         <span *ngIf="showAllForInvested"
-                            (click)="showHideToggle('showAllForInvested')">{{'YOUR_INVESTMENT.SHOW_LESS' | translate}}<img
-                                class="show-less" src="assets/images/investment-account/list-down.svg" /></span>
+                            (click)="showHideToggle('showAllForInvested')">{{'YOUR_INVESTMENT.SHOW_LESS' |
+                            translate}}<img class="show-less"
+                                src="assets/images/investment-account/list-down.svg" /></span>
                     </div>
                 </div>
             </div>
@@ -474,4 +577,3 @@
         </div>
     </div>
 </ng-template>
-<!-- / Widget Content-->

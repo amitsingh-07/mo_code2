@@ -1,5 +1,6 @@
 @import '../../../../variables';
 @import '../../../../mixins';
+
 .risk-title {
     font-family: $muli-bold;
     font-size: 21px;
@@ -15,6 +16,7 @@
     left: 20px;
     background-repeat: no-repeat;
     z-index: 3;
+    margin: env(safe-area-inset-top) env(safe-area-inset-right) env(safe-area-inset-left);
 }
 
 .intro-block__content {
@@ -26,13 +28,14 @@
 .risk-acknlg-desc-wrapper {
     display: flex;
     justify-content: center;
+
     .risk-acknlg-desc {
         text-align: center;
         padding: 0 30px;
         font-size: 18px;
-        //padding: 0 35%;
         position: absolute;
         bottom: 75px;
+
         @include allmobiles {
             position: fixed;
             bottom: 100px;

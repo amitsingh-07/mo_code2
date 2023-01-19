@@ -119,11 +119,11 @@ export class CkaUploadDocumentComponent implements OnInit {
   }
 
   eventTriggered(event) {
-    if (event && event.clearBtn) {        
+    if (event && event.clearBtn) {
       this.ckaUploadForm.get('tncCheckboxFlag').setValue(false);
     }
-    
-    if (event && event.fileSelected) {        
+
+    if (event && event.fileSelected) {
       this.uploadDoc = true;
     }
   }
@@ -166,7 +166,7 @@ export class CkaUploadDocumentComponent implements OnInit {
   }
 
   private gentleReminderPopup() {
-    const ref = this.modal.open(ModelWithButtonComponent, { centered: true , windowClass: 'custom-cka-upload'});
+    const ref = this.modal.open(ModelWithButtonComponent, { centered: true, windowClass: 'custom-cka-upload' });
     ref.componentInstance.imgType = 1;
     ref.componentInstance.errorTitle = this.translate.instant('CKA_UPLOAD_DOCUMENT.GENTLE_REMINDER_TITLE');
     ref.componentInstance.errorMessageHTML = this.translate.instant('CKA_UPLOAD_DOCUMENT.GENTLE_REMINDER_DESC');

@@ -178,7 +178,8 @@
       "FORM_TITLE_WITHOUT_SPOUSE": "My children’s guardian is",
       "FORM_TITLE_WITH_SPOUSE": "My children’s guardian is",
       "TOOLTIP_TITLE": "Role Of A Guardian ",
-      "TOOLTIP_MESSAGE": "<p>The role of a guardian is to raise your children after you have passed on, until they reach the age of 21.</p><p>Taking over your role as the “parent”, the guardian will have the ability to make decisions that affect your children, including their day-to-day care to their moral upbringing.</p><p>It is also important that you speak with your children’s guardian to seek their agreement.</p>"
+      "TOOLTIP_MESSAGE": "<p>The role of a guardian is to raise your children after you have passed on, until they reach the age of 21.</p><p>Taking over your role as the “parent”, the guardian will have the ability to make decisions that affect your children, including their day-to-day care to their moral upbringing.</p><p>It is also important that you speak with your children’s guardian to seek their agreement.</p>",
+      "DEFAULT": "Default"
     },
     "DISTRIBUTE_YOUR_ESTATE": {
       "TITLE": "Distribute Your Estate",
@@ -231,7 +232,8 @@
         "DUPLICATE_IDENTIFIER": "The Main and Alternative Executor and Trustee should not have the same Identification Number.",
         "MULTIPLE_SPOUSE": "Appointment of multiple spouses as Executor and Trustee is not allowed.",
         "NO_SPOUSE": "Spouse cannot be appointed as Executor and Trustee due to conflicting marital status \"<Marital Status>\". Please amend your marital status OR select a different relationship option.",
-        "NO_CHILD": "The child, <Full Name> (<ID>), cannot be appointed as Executor and Trustee as no child is specified in About Me section. Please amend the number of children you have OR select a different relationship option."
+        "NO_CHILD": "The child, <Full Name> (<ID>), cannot be appointed as Executor and Trustee as no child is specified in About Me section. Please amend the number of children you have OR select a different relationship option.",
+        "ERROR_TITLE": "Oops! Please take note of the following:"
       }
     },
     "MY_BENEFICIARY": {
@@ -261,7 +263,9 @@
       "TITLE": "Confirmation",
       "SUB_TITLE": "Please check that all details <i>(especially Full Name and Identification Number)</i> provided are accurate as they will be reflected in your will.",
       "DUPLICATE_ERROR": "Oops! A will has already been drafted for this identification number. If you wish to edit or download your will, please log in to your account.",
-      "REMINDER": "<strong>Reminder</strong>: Please check that all details <i>(especially Full Name and Identification Number)</i> provided are accurate as they will be reflected in your will."
+      "REMINDER": "<strong>Reminder</strong>: Please check that all details <i>(especially Full Name and Identification Number)</i> provided are accurate as they will be reflected in your will.",
+      "ALMOST_THERE": "Almost there!",
+      "EDIT": "Edit"
     },
     "SIGN_UP": {
       "DESCRIPTION": "To view your will, please login to your account.",
@@ -279,6 +283,11 @@
       "DOWNLOAD_WILL": "Download Will",
       "WILLS_PDF_NAME": "MoneyOwl Will Writing.pdf",
       "EDIT_YOUR_WILL": "Back to Dashboard"
+    },
+    "DISCLAIMER": {
+      "TITLE": "Disclaimer",
+      "MESSAGE": "<div class='t-c-content'><p>By using this service, you acknowledge that the information, materials and content provided is for information purposes only and should not be construed as legal advice and should not be relied upon by you as legal advice. This service is meant as a publishing service, and all documents provided and produced through this service are meant to provide a guideline for common and standard situations.</p><p>Please note that each person’s situation is unique and your use of this service and the Will(s) produced for your use, may not necessarily fit your particular circumstances. If you have any legal questions or if you are unsure whether the service will be suitable to meet your needs, you are advised to seek specific legal or professional advice.</p><p>If you disagree with the above, please do not proceed any further.</p></div>",
+      "AGREE": "I Agree"
     }
   }
 }

@@ -63,9 +63,9 @@
                       <button [disabled]="showOperatorBank" class="btn btn-dropdown"
                         id="additional_declaration_sourse-drpdown" ngbDropdownToggle>
                         {{preRequisitesForm.controls.cpfOperator.value ?
-                          preRequisitesForm.controls.cpfOperator.value.name :
-                            'CPF_PREREQUISITES.CPFIA_OPERATOR_PLACEHOLDER'
-                            | translate}}
+                        preRequisitesForm.controls.cpfOperator.value.name :
+                        'CPF_PREREQUISITES.CPFIA_OPERATOR_PLACEHOLDER'
+                        | translate}}
                       </button>
                       <div class="dropdown" ngbDropdownMenu aria-labelledby="courseDropdown">
                         <button class="dropdown-item" *ngFor="let cpfBankOperator of cpfBankOperators; let i = index;"

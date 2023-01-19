@@ -1,5 +1,5 @@
 
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { waitForAsync, ComponentFixture, TestBed } from '@angular/core/testing';
 import { ReactiveFormsModule } from '@angular/forms';
 import { Router } from '@angular/router';
 import { RouterTestingModule } from '@angular/router/testing';
@@ -50,7 +50,7 @@ describe('NationalityComponent', () => {
   let translations = require('../../../../assets/i18n/investment-account/en.json');
 
 
-  beforeEach(async(() => {
+  beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
       declarations: [NationalityComponent],
       imports: [TranslateModule.forRoot(), HttpClientModule, RouterTestingModule.withRoutes([]),
@@ -153,9 +153,8 @@ describe('NationalityComponent', () => {
     expect(router.navigate).toHaveBeenCalledWith[SIGN_UP_ROUTE_PATHS.DASHBOARD];
   });
   // () {
-    it('should buildAdditionalControls', () => {
-      spyOn(component, 'buildAdditionalControls').and.returnValue({});
-      component.buildAdditionalControls();
-      // expect(loadDDCRoadmapSpy).toHaveBeenCalled();
-    });
+  it('should buildAdditionalControls', () => {
+    spyOn(component, 'buildAdditionalControls').and.returnValue({});
+    component.buildAdditionalControls();
+  });
 });

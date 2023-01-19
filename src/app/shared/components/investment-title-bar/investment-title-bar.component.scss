@@ -4,8 +4,8 @@
 // robo2-web
 .invest-title{
   padding: 10px;
-  background: #fff;
-  color: #00a7a7;
+  background: $white-color;
+  color: $teal-color;
   text-align: center;
   height: 76px;
   position: fixed;
@@ -17,7 +17,7 @@
   align-items: center;
   flex-direction: column;
   font-family: $muli-semi-bold;
-  border-bottom: 1px solid #e1e1e1;
+  border-bottom: 1px solid $border-grey-color;
   .super-title{
     font-size: 18px;
     margin-bottom: -8px;

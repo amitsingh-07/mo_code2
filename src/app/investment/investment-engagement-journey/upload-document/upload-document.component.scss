@@ -5,30 +5,37 @@ app-upload-document {
   .upload-doc-nric {
     .upload-form {
       float: right;
+
       @include allmobiles {
         float: none;
       }
     }
+
     .col-md-12 {
       width: 367px;
+
       @include allmobiles {
         width: 100%;
       }
+
       .flex-row {
         align-items: center;
         justify-content: space-between;
       }
     }
+
     .flex-col-5 {
       label {
         font-family: $muli-semi-bold;
         letter-spacing: -0.3px;
         font-size: 18px;
+
         @include allmobiles {
           padding-right: 10px;
         }
       }
     }
+
     .flex-col-7 {
       max-width: 188px;
     }
@@ -40,6 +47,7 @@ app-upload-document {
       margin-bottom: 21px;
       font-family: $muli-bold;
       line-height: 18px;
+
       @include allmobiles {
         font-family: $muli-regular;
         background: $persian-dark-green-color;
@@ -50,6 +58,7 @@ app-upload-document {
         letter-spacing: -0.3px;
         margin-bottom: 3px;
         font-family: $muli-bold;
+
         @include allmobiles {
           font-family: $muli-semi-bold;
         }
@@ -64,6 +73,7 @@ app-upload-document {
           &:first-child {
             font-family: $muli-semi-bold;
             padding-right: 4px;
+
             @include allmobiles {
               font-family: $muli-regular;
             }
@@ -145,6 +155,7 @@ app-upload-document {
             &.sub-text {
               color: $white-color;
               word-break: break-all;
+
               @include allmobiles {
                 padding-top: 8px;
               }
@@ -177,6 +188,7 @@ app-upload-document {
             display: flex;
             align-items: center;
             justify-content: center;
+
             @include allmobiles {
               width: 16px;
               height: 16px;
@@ -185,7 +197,8 @@ app-upload-document {
             img {
               width: 12px;
               height: 12px;
-              @include allmobiles{
+
+              @include allmobiles {
                 width: 8px;
                 height: 8px;
               }
@@ -204,9 +217,11 @@ app-upload-document {
       font-size: 13px;
       max-width: 340px;
       margin: 0;
+
       @include allmobiles {
         margin-bottom: 16px;
       }
+
       a {
         color: $white-color;
         text-decoration: underline;

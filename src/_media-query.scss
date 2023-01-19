@@ -213,7 +213,7 @@
 
     .modal-body {
       border-radius: 0px !important;
-      color: #000;
+      color: $black-color;
       padding: 30px 25px;
       background: $module-fill-color;
 
@@ -223,9 +223,9 @@
     }
 
     .help-modal-body {
-      background: #ffffff;
+      background: $white-color;
       border-radius: 0px !important;
-      color: #000;
+      color: $black-color;
       padding: 25px 25px 25px 25px !important;
 
       b {

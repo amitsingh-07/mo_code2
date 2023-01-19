@@ -2,27 +2,32 @@
 @import "../../../../_mixins.scss";
 
 app-cka-upload-document {
-  .container-fluid{
-    &.max-width--1024{
-        @include min568max767{
-            padding-top: 65px;
-        }
+  .container-fluid {
+    &.max-width--1024 {
+      @include min568max767 {
+        padding-top: 65px;
+      }
     }
   }
+
   .text-lyt {
     font-size: 18px;
     line-height: 22px;
     letter-spacing: -0.18px;
   }
+
   .tiles {
     max-width: 335px;
     margin-left: auto;
+
     @include allmobiles {
       max-width: 100%;
     }
+
     @include minMobilemaxPhablet {
       margin-right: auto;
     }
+
     .tile {
       background-color: $aqua-squeeze-color;
       color: $blue-stone-color;
@@ -42,12 +47,14 @@ app-cka-upload-document {
         color: $teal-color;
         margin-bottom: 10px;
       }
+
       .icon-block {
         width: 24px;
         height: 24px;
         border: none;
         display: flex;
       }
+
       .reselect-option {
         padding-top: 20px;
         font-family: $muli-semi-bold;
@@ -58,6 +65,7 @@ app-cka-upload-document {
         cursor: pointer;
       }
     }
+
     .tile-content {
       padding: 20px 20px 0;
       background-color: $white-color;
@@ -70,47 +78,57 @@ app-cka-upload-document {
       border-bottom-right-radius: 6px;
       margin-bottom: 16px;
       letter-spacing: -0.26px;
+
       @include allmobiles {
         margin-bottom: 10px;
       }
+
       .text-bold {
         font-family: $muli-bold;
         color: $silver-grey-color;
       }
+
       .steps {
         .step {
           padding-bottom: 15px;
+
           .text-semi-bold {
             color: $boulder-grey-color;
             font-family: $muli-semi-bold;
           }
+
           .hyperlink_color {
             font-family: $muli-bold;
             color: $crusta-orange-color;
             cursor: pointer;
+
             &:hover {
               text-decoration: none;
             }
           }
         }
       }
+
       .sample-img-block {
         width: 120px;
         height: 90px;
         display: flex;
         display: -webkit-flex;
         margin: 0 auto 20px;
-        img{
+
+        img {
           width: 120px;
           height: 90px;
         }
       }
+
       .note-icon {
         width: 25px;
         height: 25px;
         margin-right: 15px;
         display: flex;
       }
+
       .note {
         font-family: $muli-regular;
         font-size: 13px;
@@ -127,7 +145,8 @@ app-cka-upload-document {
         line-height: normal;
         letter-spacing: -0.26px;
         color: $boulder-grey-color;
-        input[type="checkbox"] + label {
+
+        input[type="checkbox"]+label {
           background-position-y: top;
         }
       }

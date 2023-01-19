@@ -35,19 +35,20 @@
               <div class="flex-row">
                 <div class="flex-col-5">
                   <div class="value_lab text_bold" for="total return" id="investment_overview_total_returns_labl">{{
-                  'HOLDINGS.TOTAL_VALUE' | translate}}
+                    'HOLDINGS.TOTAL_VALUE' | translate}}
                   </div>
                 </div>
                 <div class="flex-col-7">
-                  <div class="value" for="total value" id="investment_overview_total_returns_value">{{holding.currentValue
-                  | formatCurrency}}
+                  <div class="value" for="total value" id="investment_overview_total_returns_value">
+                    {{holding.currentValue
+                    | formatCurrency}}
                   </div>
                 </div>
               </div>
               <div class="flex-row">
                 <div class="flex-col-5">
                   <div class="value_lab " for="name" id="investment_overview_investment_start_labl">{{
-                  'HOLDINGS.NUMBER_OF_VALUE' | translate}}
+                    'HOLDINGS.NUMBER_OF_VALUE' | translate}}
                   </div>
                 </div>
                 <div class="flex-col-7">
@@ -61,13 +62,13 @@
               <div class="flex-row">
                 <div class="flex-col-5">
                   <div class="value_lab" for="total" id="investment_overview_total_invested_lbl">{{ 'HOLDINGS.NAV' |
-                  translate}}
+                    translate}}
                   </div>
                 </div>
                 <div class="flex-col-7">
                   <div *ngIf="holding.indicativePrice" class="value" for="name"
                     id="investment_overview_total_invested__value">{{holding.indicativePrice
-                  | formatCurrency}}
+                    | formatCurrency}}
                   </div>
                   <div *ngIf="!holding.indicativePrice" class="value" for="name"
                     id="investment_overview_total_invested__value">$0</div>

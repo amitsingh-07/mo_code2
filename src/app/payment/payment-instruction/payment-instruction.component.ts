@@ -11,6 +11,7 @@ import { SignUpService } from '../../sign-up/sign-up.service';
 import { COMPREHENSIVE_CONST } from './../../comprehensive/comprehensive-config.constants';
 import { AuthenticationService } from './../../shared/http/auth/authentication.service';
 import { appConstants } from '../../app.constants';
+import { environment } from '../../../environments/environment'
 @Component({
   selector: 'app-payment-instruction',
   templateUrl: './payment-instruction.component.html',
@@ -81,7 +82,7 @@ export class PaymentInstructionComponent implements OnInit, OnDestroy {
     this.navbarService.setPaymentLockIcon(true);
   }
   getQrCodeImg() {
-    return document.getElementsByTagName('base')[0].href + 'assets/images/comprehensive/qrcode.png';
+    return environment.apiBaseUrl + '/app/assets/images/comprehensive/qrcode.png';
   }
 
   backToDashboard() {

@@ -153,7 +153,7 @@
 
 .section {
   border-radius: 6px;
-  background-color: #005960;
+  background-color: $blue-stone-color;
   padding: 10px;
   width: 588px;
   padding-left: 44px;
@@ -167,7 +167,7 @@
   font-stretch: normal;
   line-height: 22px;
   letter-spacing: -0.14px;
-  color: #e8e8e8;
+  color: $unicorn-silver-color;
   margin-bottom: 16px;
 
   ol {
@@ -177,7 +177,7 @@
       span {
         font-family: $muli-bold;
         font-weight: bold;
-        color: #ff9600;
+        color: $brdr-dark-color;
         text-decoration: underline;
       }
     }
@@ -206,7 +206,7 @@
 
   .title {
     font-size: 18px;
-    color: #ffffff;
+    color: $white-color;
     text-decoration: underline;
     font-family: $muli-semi-bold;
     line-height: 24px;
@@ -221,11 +221,11 @@
     font-family: $muli-bold;
     line-height: 24px;
     font-weight: bold;
-    color: #e8e8e8;
+    color: $unicorn-silver-color;
   }
 
   .description {
-    color: #e8e8e8;
+    color: $unicorn-silver-color;
   }
 }
 

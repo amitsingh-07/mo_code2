@@ -1,10 +1,10 @@
-import { CurrencyPipe, DecimalPipe } from '@angular/common';
+import { DecimalPipe } from '@angular/common';
 import { AfterViewInit, Directive, ElementRef, HostListener, Input } from '@angular/core';
 import { NgControl } from '@angular/forms';
 
 @Directive({
     selector: '[appCurrencyInputPortfolio]',
-    providers: [CurrencyPipe, DecimalPipe]
+    providers: [DecimalPipe]
 })
 
 export class CurrencyInputPortfolioDirective implements AfterViewInit {
@@ -13,7 +13,7 @@ export class CurrencyInputPortfolioDirective implements AfterViewInit {
     @Input() allowDecimal;
 
     constructor(
-        private el: ElementRef, private currencyPipe: CurrencyPipe,
+        private el: ElementRef,
         private control: NgControl,
         private decimalPipe: DecimalPipe) {
         this.el.nativeElement.type = 'tel'; // workaround for predictive text keyboard issue in samsung devices

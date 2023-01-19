@@ -75,7 +75,7 @@ export class PlanDetailsWidgetComponent implements DoCheck, OnInit, AfterViewChe
       this.icon = this.data.icon;
       this.insurerLogo = 'assets/images/' + this.data.insurer.logoName;
       this.premiumAmount = this.data.premium.premiumAmount;
-      if(this.premiumAmount > 0){
+      if (this.premiumAmount > 0) {
         const tempValue = this.premiumAmount.toFixed(2);
         this.premiumAmountLength = tempValue.toString().length;
       }
@@ -87,7 +87,7 @@ export class PlanDetailsWidgetComponent implements DoCheck, OnInit, AfterViewChe
       this.coverageDuration = this.data.premium.durationName;
       this.premiumDuration = this.data.premium.premiumTerm;
       this.premiumAmountYearly = this.data.premium.premiumAmountYearly;
-      if(this.premiumAmountYearly > 0 && this.frequencyType == "yearly"){
+      if (this.premiumAmountYearly > 0 && this.frequencyType == "yearly") {
         const tempValue = this.premiumAmountYearly.toFixed(2);
         this.premiumAmountLength = tempValue.toString().length;
       }

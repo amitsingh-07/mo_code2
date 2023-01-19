@@ -135,7 +135,7 @@ export class CkaMethodQnaComponent implements OnInit {
     this.methodForm.controls[control].setValue(event);
     this.addOrRemoveOthersTextbox(event);
   }
-  
+
   selectedQuestion1(event, control) {
     this.methodForm.controls[control].setValue(event);
     if (this.ckaMethodName !== INVESTMENT_COMMON_CONSTANTS.CKA.METHODS[2]) {

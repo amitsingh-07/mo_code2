@@ -6,11 +6,11 @@ import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { TranslateService } from '@ngx-translate/core';
 
 import { ErrorModalComponent } from '../../../shared/modal/error-modal/error-modal.component';
+import { GUIDE_ME_CONSTANTS } from '../../guide-me.constants';
 import { GuideMeService } from '../../guide-me.service';
 import { IDependent } from './dependent.interface';
 import { LifeProtectionModalComponent } from './life-protection-modal/life-protection-modal.component';
 
-const Regexp = new RegExp('[,]', 'g');
 const MAX_YEARS_NEEDED = 100;
 const MAX_AGE = 100;
 
@@ -35,7 +35,7 @@ export class LifeProtectionFormComponent implements OnInit, OnChanges {
   activeFormIndex;
   isNavPrevEnabled;
   isNavNextEnabled;
-  dependentCountOptions = [0, 1, 2, 3, 4, 5];
+  dependentCountOptions = GUIDE_ME_CONSTANTS.DEPENDENT_COUNT;
   genderOptions = [];
   relationshipOptions = [];
   ageOptions = [];
@@ -235,6 +235,6 @@ export class LifeProtectionFormComponent implements OnInit, OnChanges {
   }
 
   isChild(age) {
-    return age <= 23;
+    return age <= GUIDE_ME_CONSTANTS.IS_CHILD;
   }
 }

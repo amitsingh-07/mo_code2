@@ -24,8 +24,8 @@ app-my-estate-distribution{
 }
 .instructions {
     border-radius: 6px;
-    background-color: #fff;
-    box-shadow: 0 8px 12px 0 rgba(0, 0, 0, 0.25);   
+    background-color: $white-color;
+    box-shadow: 0 8px 12px 0 $box-shadow-color;   
     @include allmobiles{
         margin: 0 16px !important;
     }
@@ -35,7 +35,7 @@ app-my-estate-distribution{
     flex-direction: column;
     justify-content: space-around;
     letter-spacing: -0.3px;
-    color: #626362;
+    color: $corduroy-color;
     padding: 30px 25px;
     div{
         margin-bottom: 15px;
@@ -48,7 +48,7 @@ app-my-estate-distribution{
     border-radius: 7px;
     display: flex;
     flex-direction: column;
-    background-color: #2d8289;
+    background-color: $dark-teal-color;
     justify-content: center;
     align-items: center;
     input{
@@ -58,7 +58,7 @@ app-my-estate-distribution{
         border: none;
     }
     .instruction-content{
-        color: #fff;
+        color: $white-color;
         justify-content: space-around;
         align-items: center;
         @include allmobiles{
@@ -81,7 +81,7 @@ app-my-estate-distribution{
         button{
             font-family: $muli-bold;
             font-size: 16px;
-            background-color: #00c5c4;
+            background-color: $robins-egg-blue-color;
             color: $white-color;
             @include allmobiles{
                 width: 166px;
@@ -93,7 +93,7 @@ app-my-estate-distribution{
     }
 }
 .mask {
-    background-color: #2d8289;
+    background-color: $dark-teal-color;
     font-size: 22px;
     font-family: $muli-bold;
     border-top-left-radius: 6px;
@@ -112,7 +112,7 @@ app-my-estate-distribution{
         margin-top: 16px;
         font-size: 14px;
         text-align: center;
-        color: #00c5c4;
+        color: $robins-egg-blue-color;
     }
     .offer-code{
         font-family: $muli-semi-bold;
@@ -120,16 +120,16 @@ app-my-estate-distribution{
         line-height: 2.5;
         letter-spacing: -0.2px;
         text-align: center;
-        color: #2d8289;
+        color: $dark-teal-color;
         .brdr-btm{
-            border: solid 0.5px #00a7a7;
+            border: solid 0.5px $teal-color;
         }
         .time-period {
             position: relative;
             top: 26px;
             width: 70%;
             padding: 5px 10px;
-            background: #fff;
+            background: $white-color;
             margin: 0 auto;
             @include allmobiles{
                 position: none;
@@ -143,18 +143,18 @@ app-my-estate-distribution{
             font-style: italic;
             letter-spacing: -0.2px;
             text-align: center;
-            color: #a4a4a4;
+            color: $silver-chalice-color;
             border-radius: 6px;
-            border: solid 1px #c2d9ec;
+            border: solid 1px $spindle-color;
             font-size: 16px;  
         }
         input::placeholder{
-            color: #a4a4a4;
+            color: $silver-chalice-color;
         }
         div{
             &:last-child{
                 font-family: $muli-regular;
-                color: #2d8289;
+                color: $dark-teal-color;
                 font-size: 16px;
                 span{
                     font-family: $muli-bold;
@@ -167,7 +167,7 @@ app-my-estate-distribution{
     display: flex;
     flex-direction: column;
     .sub-title{
-        color: #333846 !important;
+        color: $bright-grey-color !important;
         font-family: $muli-regular;
         font-size: 16px;
         letter-spacing: -0.2px;
@@ -225,7 +225,7 @@ input[type='checkbox']+label {
         width: 100%;
     }
     .mobile-header {
-            background-color: #00a7a7;
+            background-color: $app-backgrnd-color;
             position: relative;
             h6 {
                 @include allmobiles {
@@ -241,7 +241,7 @@ input[type='checkbox']+label {
                 font-size: 18px;
                 font-weight: 300;
                 letter-spacing: -0.2px;
-                color: #ffffff;
+                color: $white-color;
             }
         @include allmobiles {
             display: flex;
@@ -249,14 +249,14 @@ input[type='checkbox']+label {
             align-items: center;
             margin-top: -10px;
             padding-bottom: 80px;
-            color: #333846 !important;
-            background-color: #fff;
+            color: $bright-grey-color !important;
+            background-color: $white-color;
         }  
     }
 }
 .add-beneficiaries-container {
-    background-color: #fff;
-    color:#2d8289;
+    background-color: $white-color;
+    color: $dark-teal-color;
     padding-top: 30px;
     padding-bottom: 30px;
     margin-bottom: 20px;
@@ -268,12 +268,12 @@ input[type='checkbox']+label {
     .btn {
         padding: 8px !important;
         font-family: $muli-regular !important;
-        color:#2d8289;
-        background-color: #fff;
+        color: $dark-teal-color;
+        background-color: $white-color;
     }
     .btn-primary{
-        background-color: #00a7a7;
-        color: #fff !important;
+        background-color: $app-backgrnd-color;
+        color: $white-color !important;
         font-family: $muli-regular !important;
     }
 }
@@ -282,7 +282,7 @@ input[type='checkbox']+label {
     font-family: $muli-semi-bold;
     font-size: 18px;
     letter-spacing: -0.3px;
-    color: #ffffff;
+    color: $white-color;
     padding:20px !important;
   }
   .add-beneficiary{
@@ -330,7 +330,7 @@ input[type='checkbox']+label {
                 font-size: 16px;
             }
         }
-        color: #ffffff;
+        color: $white-color;
         display: flex;
         position: absolute;
         top: 12%;
@@ -345,7 +345,7 @@ input[type='checkbox']+label {
       }
   }
   .estate-distribution-form{
-      background-color: #fff;
+      background-color: $white-color;
       padding-top: 20px;
       padding-bottom: 20px;
       border-radius: 6px;
@@ -353,20 +353,20 @@ input[type='checkbox']+label {
         font-family: $muli-semi-bold;
         font-size: 18px;
         letter-spacing: -0.3px;
-        color: #000000;
+        color: $black-color;
       }
       .input-label-normal {
         font-family: $muli-regular;
         font-size: 16px;
         line-height: 1.25;
         letter-spacing: -0.2px;
-        color: #5e5e5e;
+        color: $silver-grey-color;
       }
       .form-title {
         font-family: $muli-bold;
         font-size: 20px;
         letter-spacing: -0.4px;
-        color: #066360;
+        color: $watercourse-color;
         padding-left: 21px;
         padding-bottom: 20px;
       }
@@ -402,9 +402,6 @@ input[type='checkbox']+label {
             margin-top: 0px;
             width: 100%;
         }
-        .btn{
-            //margin-top: 30px !important;
-        }
     }
 .message-block{ 
     margin-top: 20px;
@@ -429,7 +426,7 @@ input[type='checkbox']+label {
         font-stretch: normal;
         line-height: normal;
         letter-spacing: -0.1px;
-        color: #333846;
+        color: $bright-grey-color;
         font-family: $muli-semi-bold;
         @include allmobiles {
             bottom: 12%;
@@ -444,7 +441,7 @@ input[type='checkbox']+label {
     }
 }
 .error-text{
-    color: red !important;
+    color: $red-color !important;
 }
 .input-label-black {
     word-break: break-word;

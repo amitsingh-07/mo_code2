@@ -22,7 +22,7 @@ export class PortfolioApplicationInprogressComponent implements OnInit {
     private _location: Location,
     public navbarService: NavbarService,
     public headerService: HeaderService,
-    public footerService: FooterService, 
+    public footerService: FooterService,
     private investmentAccountService: InvestmentAccountService
   ) {
     this.translate.use('en');

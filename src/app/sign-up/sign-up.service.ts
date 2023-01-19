@@ -84,7 +84,7 @@ export class SignUpService {
   /**
    * save corpbiz user MyInfo data in session storage.
    */
-   commitCorpBizUserInfo() {
+  commitCorpBizUserInfo() {
     if (window.sessionStorage) {
       sessionStorage.setItem(CORP_BIZ_USER_MYINFO_SESSION_STORAGE_KEY, JSON.stringify(this.corpBizUserMyInfoData));
     }

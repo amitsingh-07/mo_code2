@@ -1,6 +1,6 @@
 
 import { NO_ERRORS_SCHEMA } from '@angular/core';
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { waitForAsync, ComponentFixture, TestBed } from '@angular/core/testing';
 import { ReactiveFormsModule } from '@angular/forms';
 import { Router } from '@angular/router';
 import { RouterTestingModule } from '@angular/router/testing';
@@ -42,36 +42,23 @@ describe('PersonalDeclarationComponent', () => {
   let ngbModalRef: NgbModalRef;
   let investmentEngagementJourneyService: InvestmentEngagementJourneyService;
   let translations = require('../../../../assets/i18n/investment-account/en.json');
-  beforeEach(async(() => {
+  beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
       declarations: [PersonalDeclarationComponent],
       imports: [TranslateModule.forRoot(), HttpClientModule, RouterTestingModule.withRoutes([]),
         ReactiveFormsModule, JwtModule.forRoot({ config: {} })],
-        schemas: [NO_ERRORS_SCHEMA],
-        providers: [
-          NgbActiveModal, 
-          AuthenticationService, 
-          DatePipe, 
-          TranslateService,
-          InvestmentAccountService,
-          LoaderService,
-        
-          //   {
-          //     provide: NG_VALUE_ACCESSOR,
-          //   //  multi: true,
-          //     useExisting: undefined
-          //     //useExisting: forwardRef(() => IntPhonePrefixComponent),
-          //   },
-          //   {
-          //     provide: AMBIENT_CART,
-          //     useValue: undefined
-          // }
-        // {
-        //   provide: InvestmentAccountService,
-        //   useClass: MockInvestmentAccountService 
-        // }
+      schemas: [NO_ERRORS_SCHEMA],
+      providers: [
+        NgbActiveModal,
+        AuthenticationService,
+        DatePipe,
+        TranslateService,
+        InvestmentAccountService,
+        LoaderService,
+
+    
       ],
-        
+
     })
       .overrideModule(BrowserDynamicTestingModule, { set: { entryComponents: [] } })
       .compileComponents();
@@ -116,7 +103,7 @@ describe('PersonalDeclarationComponent', () => {
     expect(setNavbarMobileVisibilitySpy).toHaveBeenCalledWith(true);
     expect(setFooterVisibilitySpy).toHaveBeenCalledWith(false);
     const getSourceListSpy = spyOn(component, 'getSourceList');
-    
+
     expect(setFooterVisibilitySpy).toHaveBeenCalledWith(false);
     // const getAllDropDownListSpy = spyOn(component, 'getAllDropDownList');
     // expect(getAllDropDownListSpy).toHaveBeenCalledWith({});
@@ -124,7 +111,7 @@ describe('PersonalDeclarationComponent', () => {
     let radioEmploye = component.personalDeclarationForm.controls['radioEmploye'];
     expect(radioEmploye.valid).toBeFalsy();
     radioEmploye.setValue(false);
-   
+
 
     let radioPEP = component.personalDeclarationForm.controls['radioPEP'];
     expect(radioPEP.valid).toBeFalsy();
@@ -143,13 +130,12 @@ describe('PersonalDeclarationComponent', () => {
     errors = radioBeneficial.errors || {};
     expect(errors['required']).toBeTruthy();
     radioBeneficial.setValue(false);
-   
+
   });
- 
+
   it('should navigate to Funding method Step1 if investment portfolio,', () => {
     spyOn(router, 'navigate');
     component.goToNext(component.personalDeclarationForm);
-   //expect(router.navigate).toHaveBeenCalledWith['../investment/account/tax-info'];
   });
 
 });

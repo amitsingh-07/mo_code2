@@ -105,7 +105,7 @@ export class InvestmentAccountFormData {
   investmentEarnings: string;
   earningsGenerated: string;
   durationInvestment: number;
-  
+
   // Source of Wealth fields
   sourceOfWealth: string;
   srcOfWealthPersonalSavings: string;
@@ -152,7 +152,7 @@ export class InvestmentAccountFormData {
   // Account Creation Status
   accountCreationStatus: string;
 
- // Initial Message for Dashboard
+  // Initial Message for Dashboard
   dashboardInitMessageShow: boolean;
   dashboardInitMessageTitle: string;
   dashboardInitMessageDesc: string;

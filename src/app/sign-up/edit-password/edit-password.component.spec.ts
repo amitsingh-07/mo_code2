@@ -1,4 +1,4 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { waitForAsync, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { EditPasswordComponent } from './edit-password.component';
 
@@ -6,11 +6,11 @@ describe('EditPasswordComponent', () => {
   let component: EditPasswordComponent;
   let fixture: ComponentFixture<EditPasswordComponent>;
 
-  beforeEach(async(() => {
+  beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
-      declarations: [ EditPasswordComponent ]
+      declarations: [EditPasswordComponent]
     })
-    .compileComponents();
+      .compileComponents();
   }));
 
   beforeEach(() => {

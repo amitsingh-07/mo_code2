@@ -15,7 +15,7 @@ export class SpinnerComponent implements OnInit {
 
   @Input('showSpinner') showSpinner: boolean = false;
 
-  constructor() {}
+  constructor() { }
 
   ngOnInit() {
     this.createAnimation();

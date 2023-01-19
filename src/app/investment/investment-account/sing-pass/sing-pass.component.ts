@@ -145,9 +145,9 @@ export class SingPassComponent implements OnInit, OnDestroy {
   getMyInfoData() {
     this.showFetchPopUp();
     this.myInfoSubscription = this.myInfoService.getMyInfoData().subscribe((data) => {
-      if (data && data.objectList[0]) { 
-        this.investmentCommonService.getUserNricValidation(data.objectList[0].uin , INVESTMENT_ACCOUNT_CONSTANTS.VALIDATE_SOURCE.MYINFO).subscribe((response) => {
-          if(response.responseMessage.responseCode === 6013){
+      if (data && data.objectList[0]) {
+        this.investmentCommonService.getUserNricValidation(data.objectList[0].uin, INVESTMENT_ACCOUNT_CONSTANTS.VALIDATE_SOURCE.MYINFO).subscribe((response) => {
+          if (response.responseMessage.responseCode === 6013) {
             this.investmentAccountService.setMyInfoFormData(data.objectList[0]);
             this.myInfoService.isMyInfoEnabled = false;
             this.closeMyInfoPopup(false);
@@ -162,7 +162,7 @@ export class SingPassComponent implements OnInit, OnDestroy {
               });
             }
           }
-          else if(response.responseMessage.responseCode === 6014){
+          else if (response.responseMessage.responseCode === 6014) {
             this.closeMyInfoPopup(false);
             this.router.navigate([INVESTMENT_ACCOUNT_ROUTE_PATHS.START]);
             const ref = this.modal.open(ModelWithButtonComponent, { centered: true });
@@ -176,7 +176,7 @@ export class SingPassComponent implements OnInit, OnDestroy {
               'INVESTMENT_ACCOUNT_MYINFO.NRIC_VALIDATION_ERROR.BTN-TEXT'
             );
           }
-          else if(response.responseMessage.responseCode === 6015){
+          else if (response.responseMessage.responseCode === 6015) {
             this.closeMyInfoPopup(false);
             this.router.navigate([INVESTMENT_ACCOUNT_ROUTE_PATHS.START]);
             const ref = this.modal.open(ModelWithButtonComponent, { centered: true });

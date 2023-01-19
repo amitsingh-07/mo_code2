@@ -71,7 +71,7 @@ body.modal-open::-webkit-scrollbar {
   right: 0;
   bottom: 0;
   left: 0;
-  background-color: #000;
+  background-color: $black-color;
 }
 
 .position-bottom {
@@ -141,14 +141,14 @@ body.modal-open::-webkit-scrollbar {
 
     .flex-col-7,
     .flex-col-6:first-child {
-      color: #2d8289;
+      color: $dark-teal-color;
       font-family: $muli-semi-bold;
       font-size: 18px;
     }
 
     .flex-col-5,
     .flex-col-6:last-child {
-      color: #00a7a7;
+      color: $teal-color;
       ;
       font-family: $muli-regular;
       font-size: 16px;
@@ -197,7 +197,7 @@ body.modal-open::-webkit-scrollbar {
   font-stretch: normal;
   line-height: normal;
   letter-spacing: -0.2px;
-  color: #009999;
+  color: $persian-green-color;
   margin-bottom: 10px;
   margin-right: 30px;
   word-break: break-word;
@@ -215,12 +215,12 @@ body.modal-open::-webkit-scrollbar {
   font-stretch: normal;
   line-height: 1.31;
   letter-spacing: -0.2px;
-  color: #5e5e5e;
+  color: $silver-grey-color;
   padding: 0 0px 0 0;
 
   .modal-text-secondary {
     font-weight: 600;
-    color: #00a7a7;
+    color: $teal-color;
   }
 
   .teal-txt {
@@ -277,7 +277,7 @@ body.modal-open::-webkit-scrollbar {
   .help-modal-body {
     padding: 0px 25px 25px 0px;
     background: $module-fill-color;
-    color: #5e5e5e;
+    color: $silver-grey-color;
     line-height: 22px;
     letter-spacing: -0.2px;
   }
@@ -404,6 +404,7 @@ body.modal-open::-webkit-scrollbar {
 
       @include allmobiles {
         padding: 15px 7px 50px 7px;
+        margin: env(safe-area-inset-top) env(safe-area-inset-right) env(safe-area-inset-left);
       }
     }
 
@@ -518,6 +519,7 @@ body.modal-open::-webkit-scrollbar {
         flex-direction: column;
         justify-content: flex-start;
         z-index: 0;
+        margin: env(safe-area-inset-top) env(safe-area-inset-right) env(safe-area-inset-left);
       }
     }
   }
@@ -533,7 +535,7 @@ body.modal-open::-webkit-scrollbar {
   padding-top: 15px;
   padding-bottom: 20px;
   box-shadow: 0 8px 6px -6px rgba(138, 155, 169, 0.3);
-  border-top: 1px solid #e1e1e1;
+  border-top: 1px solid $border-grey-color;
   text-overflow: ellipsis;
   z-index: 130;
 
@@ -544,7 +546,7 @@ body.modal-open::-webkit-scrollbar {
   @include minMobilemaxPhablet {
     margin-top: 60px;
     padding-top: 15px;
-    border-top: #89d0cf 1px solid;
+    border-top: $monte-carlo-color 1px solid;
     padding-bottom: 20px;
     box-shadow: none;
   }
@@ -557,7 +559,7 @@ body.modal-open::-webkit-scrollbar {
   height: 100%;
   top: 0px;
   left: 0px;
-  background-color: #000000;
+  background-color: $black-color;
   opacity: 0;
   z-index: -2;
 

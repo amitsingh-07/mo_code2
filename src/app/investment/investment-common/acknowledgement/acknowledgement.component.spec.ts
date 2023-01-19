@@ -1,6 +1,6 @@
 
 
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { waitForAsync, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { AcknowledgementComponent } from './acknowledgement.component';
 
@@ -8,11 +8,11 @@ describe('AcknowledgementComponent', () => {
   let component: AcknowledgementComponent;
   let fixture: ComponentFixture<AcknowledgementComponent>;
 
-  beforeEach(async(() => {
+  beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
-      declarations: [ AcknowledgementComponent ]
+      declarations: [AcknowledgementComponent]
     })
-    .compileComponents();
+      .compileComponents();
   }));
 
   beforeEach(() => {

@@ -1,5 +1,5 @@
 import { Component, HostListener, OnInit, ViewEncapsulation } from '@angular/core';
-import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { NgbActiveModal, NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { TranslateService } from '@ngx-translate/core';
@@ -36,7 +36,6 @@ export class AdditionalDeclaration1Component implements OnInit {
     public headerService: HeaderService,
     public navbarService: NavbarService,
     public footerService: FooterService,
-    private formBuilder: FormBuilder,
     public activeModal: NgbActiveModal,
     private router: Router,
     private investmentAccountService: InvestmentAccountService,
@@ -292,7 +291,7 @@ export class AdditionalDeclaration1Component implements OnInit {
   }
 
   onKeyPressEvent(event: any, content: any) {
-    this.investmentAccountService.onKeyPressEvent(event , content);
+    this.investmentAccountService.onKeyPressEvent(event, content);
   }
 
   @HostListener('input', ['$event'])

@@ -94,7 +94,7 @@ export class SelectPortfolioComponent implements OnInit {
     this.navbarService.setNavbarMobileVisibility(true);
     this.navbarService.setNavbarMode(6);
     this.footerService.setFooterVisibility(false);
-    this.getCKAData(); 
+    this.getCKAData();
     this.selectedPortfolioType = this.investmentEngagementJourneyService.getSelectPortfolioType();
     this.selectPortfolioForm = new FormGroup({
       selectPortfolioType: new FormControl(
@@ -114,7 +114,7 @@ export class SelectPortfolioComponent implements OnInit {
     this.appService.setJourneyType(appConstants.JOURNEY_TYPE_INVESTMENT);
     this.router.navigate([INVESTMENT_ENGAGEMENT_JOURNEY_ROUTE_PATHS.SELECT_PORTFOLIO_GOAL_MORE_INFO]);
   }
-  setSelectPortfolioType(value,form) {
+  setSelectPortfolioType(value, form) {
     this.selectPortfolioForm.controls.selectPortfolioType.setValue(value);
     if (value === INVESTMENT_ENGAGEMENT_JOURNEY_CONSTANTS.SELECT_POROFOLIO_TYPE.INVEST_PORTFOLIO) {
       this.investmentEnabled = !this.investmentEnabled;
@@ -142,7 +142,7 @@ export class SelectPortfolioComponent implements OnInit {
     }
     this.goNext(form);
   }
-  isJointAccount(){
+  isJointAccount() {
     const userPortfolioType = this.investmentEngagementJourneyService.getUserPortfolioType();
     return userPortfolioType === INVESTMENT_ENGAGEMENT_JOURNEY_CONSTANTS.PORTFOLIO_TYPE.JOINT_ACCOUNT_ID;
   }
@@ -159,12 +159,12 @@ export class SelectPortfolioComponent implements OnInit {
       this.loaderService.hideLoaderForced();
       const responseMessage = data.responseMessage;
       if (responseMessage && responseMessage.responseCode === 6000) {
-          if(data.objectList) {
-            this.cpfProgressAvailable = data.objectList.cpfProgressAvailable;
-          } else {
-            this.cpfProgressAvailable = false;
-          }
+        if (data.objectList) {
+          this.cpfProgressAvailable = data.objectList.cpfProgressAvailable;
+        } else {
+          this.cpfProgressAvailable = false;
         }
+      }
     }, () => {
       this.loaderService.hideLoaderForced();
       this.investmentAccountService.showGenericErrorModal();

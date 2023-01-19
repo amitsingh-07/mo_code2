@@ -1,6 +1,4 @@
-import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { MyInfoService } from '../shared/Services/my-info.service';
 import { appConstants } from './../app.constants';
 import { ApiService } from '../shared/http/api.service';
 import { AuthenticationService } from '../shared/http/auth/authentication.service';
@@ -25,8 +23,8 @@ import { HubspotService } from '../shared/analytics/hubspot.service';
 export class GuideMeApiService {
     existingCoverage: IExistingCoverage;
     constructor(
-        private http: HttpClient, private apiService: ApiService,
-        private myInfoService: MyInfoService, private hubspotService: HubspotService,
+        private apiService: ApiService,
+        private hubspotService: HubspotService,
         private authService: AuthenticationService, private guideMeService: GuideMeService,
         private calculateService: GuideMeCalculateService,
         private selectedPlansService: SelectedPlansService) {

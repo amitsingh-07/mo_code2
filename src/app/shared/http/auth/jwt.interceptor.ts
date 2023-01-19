@@ -1,6 +1,6 @@
 
-import {of as observableOf,  Observable ,  EMPTY } from 'rxjs';
-import {tap} from 'rxjs/operators';
+import { of as observableOf, Observable, EMPTY } from 'rxjs';
+import { tap } from 'rxjs/operators';
 import {
     HttpErrorResponse, HttpEvent, HttpHandler, HttpHeaders, HttpInterceptor, HttpRequest,
     HttpResponse
@@ -22,7 +22,7 @@ export class JwtInterceptor implements HttpInterceptor {
 
     constructor(
         public auth: AuthenticationService, public cache: RequestCache, public errorHandler: CustomErrorHandlerService,
-        public router: Router, private navbarService: NavbarService, private sessionsService: SessionsService) {}
+        public router: Router, private navbarService: NavbarService, private sessionsService: SessionsService) { }
 
     intercept(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
         if (!request.url) {
@@ -105,9 +105,9 @@ export class JwtInterceptor implements HttpInterceptor {
                     if (err.message.match('I/O error on PUT request')) {
                         this.errorHandler.handleSubscribeError(err);
                     }
-                } else {
-                    this.errorHandler.handleError(err);
-                }
+            } else {
+                this.errorHandler.handleError(err);
+            }
         }));
     }
 

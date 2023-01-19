@@ -1,28 +1,36 @@
 @import '../../../variables';
 @import '../../../mixins';
+
 .container-fluid {
     padding: 0;
-    @include allmobiles{
+
+    @include allmobiles {
         padding: 60px 0 0 !important;
         min-height: 100vh;
     }
-    @include phablet{
+
+    @include phablet {
         padding: 60px 0 0 !important;
         min-height: calc(100vh - 45px);
     }
+
     background: $black-squeeze-grey-color;
+
     @include desktop {
         height: 100vh;
     }
 }
-.notification-panel{
+
+.notification-panel {
     min-height: 100vh;
     background: $notification-title-bg;
     overflow-y: scroll;
-    @include desktop{
+
+    @include desktop {
         padding: 0 75px;
     }
-    .web_title{
+
+    .web_title {
         color: $teal-color;
         padding: 28px 0 18px;
         text-align: center;
@@ -31,50 +39,56 @@
         font-size: 24px;
         font-weight: 600;
         letter-spacing: -0.25px;
-        border-bottom: 1px solid #edeff1;
+        border-bottom: 1px solid $fund-details-title-brdr;
         position: relative;
-        button{
+
+        button {
             position: absolute;
-            font-family: "Muli", sans-serif;
+            font-family: $muli;
             font-size: 14px;
-            border: 1px solid #00a7a7;
+            border: 1px solid $teal-color;
             border-radius: 5px;
-            background-color: #ffffff;
+            background-color: $white-color;
             cursor: pointer;
             line-height: 1.1;
-            color: #8cd7d7;
+            color: $intro-block-heading-color;
             padding: 8px 10px;
             outline: none;
             top: 31px;
             right: 20px;
         }
     }
+
     .notifications-block {
         background-color: $white-color;
     }
 }
+
 .notifications-container {
     &__header {
-        background-color: #e3f5f5;
+        background-color: $intro-block-heading-color;
         padding: 10px;
         text-align: center;
-        color: #00a7a7;
+        color: $teal-color;
         font-size: 14px;
         letter-spacing: -0.1px;
         font-family: $muli-regular;
     }
+
     &__lists {
         padding: 23px 20px;
-        border-bottom: 2px solid #f4fafb;
+        border-bottom: 2px solid $black-squeeze-grey-color;
         position: relative;
     }
+
     &__lists--close {
         position: absolute;
         right: 20px;
-        color: #dbdbdb;
+        color: $gainsboro-color;
         font-size: 18px;
         font-family: $muli-regular;
         top: 45%;
+
         img {
             left: 0;
             right: 0;
@@ -83,32 +97,36 @@
             height: 12px;
         }
     }
+
     &__lists--desc {
         font-family: $muli-regular;
         font-size: 18px;
         line-height: 1.17;
         letter-spacing: -0.2px;
-        color: #00a7a7;
+        color: $teal-color;
         padding-right: 55px;
         word-break: break-word;
     }
+
     &__lists--duration {
         font-family: $muli-regular;
         font-size: 14px;
         line-height: normal;
         letter-spacing: -0.1px;
-        color: #5e5e5e;
+        color: $silver-grey-color;
         margin-top: 10px;
     }
+
     &__no-notification {
-        background: #f4fafb;
+        background: $black-squeeze-grey-color;
         font-size: 18px;
         font-family: $muli-bold;
         text-align: center;
-        color: #00a7a7;
+        color: $teal-color;
         height: calc(100vh - 45px);
-        .pt50{
-            padding-top:80px!important;
+
+        .pt50 {
+            padding-top: 80px !important;
         }
     }
 }

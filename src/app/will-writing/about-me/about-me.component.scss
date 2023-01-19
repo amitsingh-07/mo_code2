@@ -17,12 +17,12 @@ app-about-me{
 }
 
 .aboutMe {
-    background-color: #f4fafb;
+    background-color: $black-squeeze-grey-color;
     border-radius: 6px;
-    box-shadow: 0 8px 10px 0 rgba(0, 0, 0, 0.25);
+    box-shadow: 0 8px 10px 0 $box-shadow-color;
     font-size: 18px;
     letter-spacing: -0.3px;
-    color: #2d8289;
+    color: $dark-teal-color;
     margin-top: 70px;
     @include allmobiles {
         margin-top: 25px;
@@ -34,7 +34,7 @@ app-about-me{
             font-family: $muli-bold;
             font-size: 20px;
             letter-spacing: -0.4px;
-            color: #066360;
+            color: $watercourse-color;
             border-radius: 6px;
             background: $white-color;
             padding: 17px 20px;
@@ -47,11 +47,11 @@ app-about-me{
         font-family: $muli-regular;
         font-size: 16px;
         letter-spacing: -0.3px;
-        color: #2d8289;
+        color: $dark-teal-color;
         font-weight: normal;
     }
     input{
-        color:#00a7a7;
+        color:$teal-color;
     }
     .direct-form-grp {
         .btn-group--toggle{
@@ -79,15 +79,10 @@ app-about-me{
             }
             @include allmobiles{
                 background: $white-color;
-                color: #00a7a7;
+                color: $teal-color;
                 &.active{
-                    background: #00a7a7;
-                    color: #fff;
-                }
-            }
-            &.btn{ 
-                @include allmobiles{
-                    //margin: 0 !important;
+                    background: $teal-color;
+                    color: $white-color;
                 }
             }
         }
@@ -98,7 +93,7 @@ app-about-me{
     font-size: 18px;
     font-weight: 300;
     letter-spacing: -0.2px;
-    color: #ffffff;
+    color: $white-color;
 }
 .autofill-link {
     @include allmobiles {
@@ -110,7 +105,7 @@ app-about-me{
 .autofill-text{
     font-size: 36px;
     letter-spacing: -0.4px;
-    color: #ffffff;  
+    color: $white-color;  
 }
 
 .sub-title {
@@ -118,11 +113,11 @@ app-about-me{
     font-size: 18px;
     line-height: 1.22;
     letter-spacing: -0.2px;
-    color: #ffffff;
+    color: $white-color;
     padding-right: 65px;
     padding-bottom: 26px;
     @include allmobiles{
-        color: #333846;
+        color: $bright-grey-color;
         text-align: center;
         width: 300px;
         padding:0;
@@ -144,7 +139,7 @@ app-about-me{
     @include allmobiles {
         .show {
             &.dropdown {
-                border: 1px solid #00a7a7 !important;
+                border: 1px solid $teal-color !important;
                 border-radius:  6px;
             }
         }
@@ -186,7 +181,7 @@ app-about-me{
     font-stretch: normal;
     line-height: normal;
     letter-spacing: -0.3px;
-    color: #2d8289;
+    color: $dark-teal-color;
   }
 
   .inline-error{

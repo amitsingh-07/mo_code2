@@ -1,67 +1,84 @@
 @import "../../../_variables.scss";
 @import "../../../_mixins.scss";
+
 app-dashboard {
     .toast-msg-top-space-dashboard {
         .toast-msg-container {
-          box-shadow: 0 5px 10px 0 rgba(0, 0, 0, 0.3);
-          background-color: $light-green-color;
-          color: $white-color;
-          min-width: 280px;
-          @include desktop{
-            right: 0;
-          }
-          .toast-msg {
-            margin-left: 25px;
-            @include allmobiles{
-              margin-left: 15px;
+            box-shadow: 0 5px 10px 0 rgba(0, 0, 0, 0.3);
+            background-color: $light-green-color;
+            color: $white-color;
+            min-width: 280px;
+
+            @include desktop {
+                right: 0;
             }
-          }
+
+            .toast-msg {
+                margin-left: 25px;
+
+                @include allmobiles {
+                    margin-left: 15px;
+                }
+            }
         }
+
         @include desktop {
-          top: 104px;
-          right: 30px;
+            top: 104px;
+            right: 30px;
         }
+
         @include tablet {
-          top: 104px;
-          right: 15px;
+            top: 104px;
+            right: 15px;
         }
+
         @include phablet {
-          top: 56px;
-          right: 15px;
+            top: 56px;
+            right: 15px;
         }
-      }
+    }
+
     .post-login-dashboard {
         @include allmobiles {
             padding: 0 !important;
         }
+
         .widget-block {
             padding: 0 15px 25px;
+
             @include allmobiles {
                 padding-top: 35px;
             }
         }
+
         .user-profile-bg {
             padding-left: 4px;
+
             @include desktop {
                 padding-left: 0;
             }
+
             font-family: $muli-extra-light;
             font-size: 22px;
             font-weight: 200;
             line-height: 34px;
             letter-spacing: -0.22px;
+
             @include allmobiles {
                 padding-left: 0;
             }
+
             @include iPadLandscape {
                 padding-left: 18px;
             }
+
             .user_name {
                 font-family: $muli-semi-bold;
                 font-weight: 600;
                 font-size: 24px;
                 letter-spacing: -0.2px;
             }
+
             .txt-lyt {
                 font-family: $muli-light;
                 font-size: 14px;
@@ -69,6 +86,7 @@ app-dashboard {
                 font-weight: 300;
                 cursor: pointer;
             }
+
             .user-edit-img {
                 margin-right: 11.5px;
                 width: 5px;
@@ -76,53 +94,61 @@ app-dashboard {
                 cursor: pointer;
             }
         }
+
         .advisor-profile-bg {
             border-radius: 6px;
             padding: 15px 4px 13px;
             font-family: $muli-regular;
             letter-spacing: -0.1px;
-            color: #004864;
+            color: $prussian-blue-color;
             background: $white-color;
             display: flex;
             align-items: center;
+
             .advisor-details {
                 margin-left: 10px;
+
                 @include min300max325 {
                     margin-left: 4px;
                 }
+
                 div {
                     &:last-child {
                         font-family: $muli-semi-bold;
                         font-size: 16px;
                         font-weight: 600;
                         letter-spacing: -0.3px;
-                        color: #004865;
+                        color: $prussian-blue-color;
                     }
                 }
             }
         }
+
         .widgets {
             .widget {
                 position: relative;
                 background: $white-color;
                 margin: 20px 15px 20px 15px;
                 border-radius: 6px;
-                box-shadow: 0 8px 12px 0 rgba(0, 0, 0, 0.25);
+                box-shadow: 0 8px 12px 0 $box-shadow-color;
+
                 .widget-title {
                     position: relative;
                     font-family: $muli-bold;
                     font-size: 22px;
                     letter-spacing: -0.2px;
-                    color: #00a7a7;
+                    color: $teal-color;
                     padding: 20px;
                     display: flex;
                     justify-content: space-between;
                     align-items: baseline;
+
                     img {
                         margin-top: 5px;
                         margin-left: 6px;
                     }
                 }
+
                 .widget-body {
                     display: flex;
                     align-items: center;
@@ -131,11 +157,14 @@ app-dashboard {
                     font-weight: normal;
                     letter-spacing: -0.1px;
                     padding: 0 0 15px;
+
                     .scenarios {
                         padding: 0 5px;
+
                         .primary {
                             align-items: center;
                         }
+
                         .warning-txt {
                             display: flex;
                             justify-content: space-between;
@@ -144,54 +173,64 @@ app-dashboard {
                             font-size: 15px;
                             line-height: 1.5;
                             letter-spacing: -0.15px;
-                            color: #2d8289;
+                            color: $dark-teal-color;
+
                             .investment_icon {
                                 display: flex;
                                 justify-content: flex-end;
                                 align-items: flex-end;
+
                                 img {
                                     max-width: 100%;
                                     height: auto;
                                     margin: 0;
                                 }
                             }
+
                             a {
-                                color: #ff9c39;
+                                color: $orange-color;
                             }
                         }
+
                         .portfolio {
                             font-family: $muli-regular;
                             font-size: 16px;
                             line-height: 1.31;
                             letter-spacing: -0.1px;
-                            color: #8a9ba9;
+                            color: $regent-grey-color;
                             padding: 0 12px;
                             display: flex;
                             align-items: center;
                             justify-content: space-between;
+
                             .portfolio_value {
-                                color: #2d8289;
+                                color: $dark-teal-color;
+
                                 .value {
                                     font-family: $muli-bold;
                                     font-size: 18px;
                                     letter-spacing: -0.3px;
-                                    color: #00a7a7;
+                                    color: $teal-color;
                                     margin-bottom: 11px;
                                 }
                             }
+
                             .portfolio_footer {
                                 display: flex;
                                 justify-content: space-between;
-                                color: #2d8289;
+                                color: $dark-teal-color;
+
                                 .flex-col {
                                     &.col-5 {
                                         .portfolio_footer_value {
-                                            color: #11b600;
+                                            color: $light-green-color;
                                         }
+
                                         .negativeValue {
                                             color: $red-color;
                                         }
                                     }
+
                                     .portfolio_ref_code {
                                         cursor: pointer;
                                         text-decoration: underline;
@@ -199,43 +238,48 @@ app-dashboard {
                                         font-size: 14px;
                                         font-family: $muli;
                                     }
+
                                     .portfolio_footer_value {
                                         font-family: $muli-bold;
                                         font-size: 18px;
                                         letter-spacing: -0.2px;
-                                        color: #00a7a7;
+                                        color: $teal-color;
                                         padding-top: 3px;
                                     }
                                 }
                             }
                         }
+
                         .btn-ghost {
                             font-family: $muli-bold;
                             font-size: 18px;
                             letter-spacing: -0.1px;
-                            border: 1px solid #00c5c4;
-                            background-color: #ffffff !important;
+                            border: 1px solid $robins-egg-blue-color;
+                            background-color: $white-color !important;
                             margin: 18px 0 0;
-                            color: #00a7a7;
+                            color: $teal-color;
+
                             div {
                                 &:last-child {
                                     font-family: $muli-regular;
                                     font-size: 13px;
                                     font-weight: normal;
-                                    color: #9b9b9b;
+                                    color: $dusty-grey-color;
                                 }
                             }
                         }
+
                         .btn-primary {
                             font-family: $muli-bold;
                             font-size: 18px;
                             letter-spacing: -0.1px;
                             text-align: center;
-                            color: #ffffff;
+                            color: $white-color;
                             margin: 18px 0 0;
                             box-shadow: 0 4px 6px 0 rgba(0, 0, 0, 0.15) !important;
-                            background-color: #00a7a7;
+                            background-color: $teal-color;
                             border: none;
+
                             div {
                                 &:last-child {
                                     font-family: $muli-regular;
@@ -245,17 +289,20 @@ app-dashboard {
                             }
                         }
                     }
+
                     .flex-col-8 {
                         div {
-                            color: #5e5e5e;
+                            color: $silver-grey-color;
+
                             &:first-child {
                                 font-family: $muli-bold;
                                 font-size: 18px;
                                 letter-spacing: -0.3px;
-                                color: #00a7a7;
+                                color: $teal-color;
                                 margin-bottom: 10px;
                             }
                         }
+
                         .time-lapse {
                             font-family: Muli;
                             font-size: 18px;
@@ -265,19 +312,23 @@ app-dashboard {
                             justify-content: space-between;
                             align-items: center;
                             margin-top: 10px;
+
                             div {
-                                color: #00a7a7;
+                                color: $teal-color;
+
                                 &:first-child {
-                                    color: #ec681c;
+                                    color: $accordion-link-color;
                                     margin-bottom: 0;
                                 }
                             }
+
                             .flex-row {
                                 justify-content: space-between;
                                 align-items: center;
                             }
                         }
                     }
+
                     .find-plan {
                         font-family: $muli-regular;
                         font-size: 14px;
@@ -285,26 +336,32 @@ app-dashboard {
                         text-align: center;
                         color: $teal-color;
                         margin-top: 12px;
+
                         a {
                             text-decoration: underline;
                             color: $teal-color;
+                            cursor: pointer;
                         }
                     }
                 }
+
                 .loader-div {
                     min-height: 200px;
                     display: flex;
                     align-items: center;
                     justify-content: center;
                 }
+
                 .alert-img-container {
                     display: flex;
                     justify-content: flex-end;
                     margin-top: -9px;
+
                     img {
                         margin: 0 56px 6px 0;
                     }
                 }
+
                 .view_all {
                     font-family: $muli-regular;
                     font-size: 16px;
@@ -312,6 +369,7 @@ app-dashboard {
                     cursor: pointer;
                     width: 28px;
                     height: 28px;
+
                     img {
                         margin-top: 0;
                         margin-left: 0;
@@ -320,24 +378,28 @@ app-dashboard {
                     }
                 }
             }
+
             .investment-widget {
-                margin: 20px 15px 20px!important;
+                margin: 20px 15px 20px !important;
             }
+
             .circle {
                 width: 18px;
                 height: 18px;
                 border-radius: 50%;
-                border: solid 1px #00a7a7;
+                border: solid 1px $teal-color;
                 margin-left: 10px;
-                background-image: linear-gradient(8deg, #98dfdf 50%, transparent 50%), linear-gradient(-90deg, #98dfdf 50%, transparent 50%);
+                background-image: linear-gradient(8deg, $morning-glory-color 50%, transparent 50%), linear-gradient(-90deg, $morning-glory-color 50%, transparent 50%);
             }
-            .dropdown-toggle{
+
+            .dropdown-toggle {
                 &.btn-with-icon {
-                    &::after{
+                    &::after {
                         display: none;
                     }
                 }
             }
+
             .btn-with-icon {
                 border-radius: 25px;
                 box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.3) !important;
@@ -356,79 +418,97 @@ app-dashboard {
                 justify-content: center;
                 align-items: center;
                 cursor: pointer;
-                &.disabled{
+
+                &.disabled {
                     cursor: not-allowed;
                 }
+
                 .invest-btn-img {
                     height: 9.3px;
                     width: 9.3px;
                     margin-left: 13px;
                     display: flex;
+
                     img {
                         width: 100%;
                         height: auto;
                         margin: 0;
                     }
                 }
-                &:hover{
+
+                &:hover {
                     outline: none;
                     background-color: $btn-primary-backgrnd-color;
                 }
-                &:active{
+
+                &:active {
                     outline: none;
                     background-color: $btn-primary-backgrnd-color;
                 }
             }
-    
-                .dropdown-menu{
-                    padding: 8px 16px;
-                    font-size: 16px;
-                    font-family: $muli-bold;
-                    line-height: 24px;
-                    color: $black-color;
-                    box-shadow: 0px 4px 8px -2px rgba(16, 24, 40, 0.1), 0px 2px 4px -2px rgba(16, 24, 40, 0.06);
-                    border-radius: 6px;
-                    min-width: 375px;
-                    cursor: pointer;
-                    &.show{
-                        top: 14px !important;
-                    }
-                    .dropdown-item{
-                        padding: 0;
+
+            .dropdown-menu {
+                padding: 8px 16px;
+                font-size: 16px;
+                font-family: $muli-bold;
+                line-height: 24px;
+                color: $black-color;
+                box-shadow: 0px 4px 8px -2px rgba(16, 24, 40, 0.1), 0px 2px 4px -2px rgba(16, 24, 40, 0.06);
+                border-radius: 6px;
+                min-width: 375px;
+                cursor: pointer;
+
+                &.show {
+                    top: 14px !important;
+                }
+
+                .dropdown-item {
+                    padding: 0;
+                    color: $black-color !important;
+
+                    &:hover,
+                    &:focus,
+                    &:active,
+                    &:focus-within,
+                    &:focus-visible {
+                        outline: none;
+                        background: $white-color !important;
                         color: $black-color !important;
-                        &:hover, &:focus, &:active, &:focus-within, &:focus-visible{
-                            outline: none;
-                            background: $white-color !important;
-                            color: $black-color !important;
-                        }
-                    }
-                    .btn-menu-item{
-                        width: 100%;
-                        padding: 16px 0;
-                    }
-                    .menu-icon{
-                        width: 48px;
-                        height: 48px;
-                        display: flex;
-                        margin-right: 20px;
-                        img{
-                            margin: 0;
-                        }
-                    }
-                    .dropdown-divider{
-                        margin: 0;
-                        border-color: $mercury-smoke-color;
-                    }
-                    .sub-text{
-                        font-family: $muli-regular;
-                        font-size: 14px;
-                        color: $silver-grey-color;
-                    }
-                    @include allmobiles{
-                        display: none !important;
                     }
                 }
-            
+
+                .btn-menu-item {
+                    width: 100%;
+                    padding: 16px 0;
+                }
+
+                .menu-icon {
+                    width: 48px;
+                    height: 48px;
+                    display: flex;
+                    margin-right: 20px;
+
+                    img {
+                        margin: 0;
+                    }
+                }
+
+                .dropdown-divider {
+                    margin: 0;
+                    border-color: $mercury-smoke-color;
+                }
+
+                .sub-text {
+                    font-family: $muli-regular;
+                    font-size: 14px;
+                    color: $silver-grey-color;
+                }
+
+                @include allmobiles {
+                    display: none !important;
+                }
+            }
+
             .total-portfolio-title {
                 height: 16px;
                 font-family: $muli-regular;
@@ -438,20 +518,24 @@ app-dashboard {
                 font-style: normal;
                 line-height: 1.25;
                 letter-spacing: -0.24px;
-                color: #000000;
+                color: $black-color;
+
                 img {
                     cursor: pointer;
-                    margin-left:5px;
+                    margin-left: 5px;
                 }
-              }
-              .total-portfolio-title-width {
+            }
+
+            .total-portfolio-title-width {
                 width: 140px;
-                @include min300max350{
+
+                @include min300max350 {
                     width: 100%;
                     height: auto;
                 }
-              }
-              .total-portfolio-value{
+            }
+
+            .total-portfolio-value {
                 width: 93px;
                 height: 20px;
                 font-family: $muli;
@@ -461,60 +545,73 @@ app-dashboard {
                 font-style: normal;
                 line-height: normal;
                 letter-spacing: -0.17px;
-                color: #00a7a7;
+                color: $teal-color;
                 cursor: pointer;
+
                 img {
                     cursor: pointer;
-                    margin-left:5px;
-                    margin-top:5px;
+                    margin-left: 5px;
+                    margin-top: 5px;
                 }
-              }
-              .border-portfolio-section {
+            }
+
+            .border-portfolio-section {
                 border-right: 1px solid $border-light;
-              }
-              .widget-portfolio-title {
-                padding:20px 18px 5px;
-                align-items: self-start!important;
+            }
+
+            .widget-portfolio-title {
+                padding: 20px 18px 5px;
+                align-items: self-start !important;
                 line-height: 1.25;
                 position: relative;
-              }
-              div.reward-points + .widget-portfolio-title {
+            }
+
+            div.reward-points+.widget-portfolio-title {
                 @include allmobiles {
                     width: 68%;
                 }
-              }
-              div.reward-points ~ .invest-btn {
-                @include allmobiles {  
+            }
+
+            div.reward-points~.invest-btn {
+                @include allmobiles {
                     margin-top: -37px !important;
                 }
-                @include iPhone13ProMax{
+
+                @include iPhone13ProMax {
                     margin-top: -11px !important;
                 }
-                @include min450max475 {  
+
+                @include min450max475 {
                     margin-top: -15px !important;
                 }
-                @include min475max568 {  
+
+                @include min475max568 {
                     margin-top: -15px !important;
                 }
-              }
-              .reward-points ~ .investment-card {
-                  @include desktop {
-                      margin-top: -50px !important;
-                  }
-              }
-              .widget-portfolio-body {
-                padding:0px 18px 11px;
+            }
+
+            .reward-points~.investment-card {
+                @include desktop {
+                    margin-top: -50px !important;
+                }
+            }
+
+            .widget-portfolio-body {
+                padding: 0px 18px 11px;
                 z-index: 99;
-              }
-              @-moz-document url-prefix() {
+            }
+
+            @-moz-document url-prefix() {
                 .widget-portfolio-body {
                     min-width: 350px;
                 }
-              }  
-              .widget-portfolio-right-section {
-                padding-left:15px;
-              }
-              .portfolio-type-box {
+            }
+
+            .widget-portfolio-right-section {
+                padding-left: 15px;
+            }
+
+            .portfolio-type-box {
                 border-radius: 6px;
                 box-shadow: 0 4px 5px 0 rgba(0, 0, 0, 0.21);
                 border: solid 1px $border-light;
@@ -525,8 +622,9 @@ app-dashboard {
                 margin-bottom: 15px;
                 cursor: pointer;
                 height: 120px;
-              }
-              .portfolio-type-box-title {
+            }
+
+            .portfolio-type-box-title {
                 height: 20px;
                 font-family: $muli;
                 font-size: 16px;
@@ -537,9 +635,9 @@ app-dashboard {
                 letter-spacing: -0.17px;
                 color: $black-color;
                 margin-bottom: 10px;
-              }
+            }
 
-              .portfolio-type-box-value {
+            .portfolio-type-box-value {
                 height: 20px;
                 font-family: $muli;
                 font-size: 16px;
@@ -549,24 +647,28 @@ app-dashboard {
                 line-height: normal;
                 letter-spacing: -0.17px;
                 color: $teal-color;
-                margin-bottom:0;
-              }
-              .widget-portfolio-type-content{
-                padding:0px 18px 10px 18px;
-                .col-md-6{
-                    &:nth-child(2){
-                        @media (min-width: 768px){
+                margin-bottom: 0;
+            }
+
+            .widget-portfolio-type-content {
+                padding: 0px 18px 10px 18px;
+
+                .col-md-6 {
+                    &:nth-child(2) {
+                        @media (min-width: 768px) {
                             padding: 0px 18px 0px 0px;
-                        } 
+                        }
                     }
-                    &:nth-child(4){
-                        @media (min-width: 768px){
+
+                    &:nth-child(4) {
+                        @media (min-width: 768px) {
                             padding: 0px 18px 0px 0px;
-                        } 
+                        }
                     }
                 }
-              }
-              .portfolio-type-cash-balance {
+            }
+
+            .portfolio-type-cash-balance {
                 height: 16px;
                 font-family: $muli;
                 font-size: 13px;
@@ -578,40 +680,53 @@ app-dashboard {
                 text-align: right;
                 color: $dusty-grey-color;
                 margin-bottom: 0;
-              }
-              .dashboard-invest-portfolio,  .dashboard-wise-income-portfolio, .dashboard-wise-portfolio, .dashboard-cpf-portfolio {    
+            }
+
+            .dashboard-invest-portfolio,
+            .dashboard-wise-income-portfolio,
+            .dashboard-wise-portfolio,
+            .dashboard-cpf-portfolio {
                 width: 55px;
+
                 @include desktop {
                     width: 71px;
                 }
+
                 height: 6px;
                 position: absolute;
                 top: 0;
                 left: 0;
                 border-radius: 10px;
-              }
-              .dashboard-invest-portfolio {
+            }
+
+            .dashboard-invest-portfolio {
                 background-color: $dashboard-portfolio-card-investment;
-              }
-              .dashboard-cpf-portfolio {
+            }
+
+            .dashboard-cpf-portfolio {
                 background-color: $dashboard-portfolio-card-cpf;
-              }
-              .dashboard-wise-income-portfolio {   
+            }
+
+            .dashboard-wise-income-portfolio {
                 background-color: $dashboard-portfolio-card-wiseincome;
-              } 
-              .dashboard-wise-portfolio{   
+            }
+
+            .dashboard-wise-portfolio {
                 background-color: $dashboard-portfolio-card-wisesaver;
-              }              
+            }
+
             .alert-img-container {
                 display: flex;
                 justify-content: flex-end;
                 margin-top: -9px;
+
                 img {
                     margin: 0 56px 6px 0;
                 }
             }
         }
     }
+
     .announce-reward-wrapper {
         @include desktop {
             display: flex;
@@ -620,26 +735,31 @@ app-dashboard {
             padding: 0 15px;
         }
     }
+
     .announcement-div {
         display: flex;
         flex: 1;
         align-items: center;
         margin-top: 21px;
         padding: 13px 16px 14px 16px;
+
         @include desktop {
             padding: 0 20px;
             margin-top: 0;
             height: 80px;
         }
+
         border-radius: 6px;
-        border: solid 3px #ffa32c;
+        border: solid 3px $deep-safron-color;
         background-color: rgba(0, 89, 96, 0.3);
         cursor: pointer;
+
         .announcement-img {
             width: 40px;
             height: auto;
             margin-right: 8px;
         }
+
         .announcement-txt {
             font-family: $muli-semi-bold;
             font-size: 16px;
@@ -648,34 +768,42 @@ app-dashboard {
             color: $white-color;
         }
     }
+
     /*Welcome Reward Box*/
     .welcome-reward-box {
         display: flex;
         flex: 1;
         justify-content: space-between;
-        background: #FFD052;
+        background: $reward-points-bg-color;
         border-radius: 6px;
         margin-top: 10px;
+
         @include allmobiles {
             margin-bottom: -10px;
         }
+
         @include desktop {
             margin-top: 0;
             height: 80px;
             margin-left: 20px;
         }
+
         align-items: center;
         position: relative;
         padding: 20px;
         cursor: pointer;
-        @include iphone5{
+
+        @include iphone5 {
             padding: 20px 15px;
         }
+
         &__left {
-            color: #005960;
-            @include iphone5{
+            color: $blue-stone-color;
+
+            @include iphone5 {
                 max-width: 75%;
             }
+
             p:nth-child(1) {
                 font-family: $muli-bold;
                 font-size: 16px;
@@ -683,6 +811,7 @@ app-dashboard {
                 letter-spacing: -0.2px;
                 line-height: 20px;
             }
+
             p:nth-child(2) {
                 font-family: $muli-regular;
                 font-size: 14px;
@@ -691,15 +820,19 @@ app-dashboard {
                 line-height: 16px;
             }
         }
+
         &__gift-box {
             position: absolute;
             right: 57px;
+
             @include max360 {
                 right: 50px;
             }
+
             bottom: 0;
         }
     }
+
     .reward-points {
         position: absolute;
         background: $reward-points-bg-color;
@@ -715,14 +848,17 @@ app-dashboard {
         font-family: $muli-bold;
         font-size: 16px;
         color: $portfolio-card-text-color;
+
         img {
             vertical-align: top;
             padding-right: 9px;
         }
     }
-    div.reward-points + div.view_all {
+
+    div.reward-points+div.view_all {
         top: 40px !important;
     }
+
     .reward-points.grey {
         @extend .reward-points;
         background: $reward-points-bg-color-grey;
@@ -730,19 +866,22 @@ app-dashboard {
         border-bottom-left-radius: 20px;
         color: $dusty-grey-color;
     }
+
     .invest-btn {
         display: flex;
         justify-content: flex-end;
         padding-right: 20px;
         margin: -10px 0 15px 0;
     }
+
     strong.text-bold-black {
         font-family: $muli-bold;
         color: $black-color;
     }
+
     // card
-    .recommended-card-container{
-        .recommended-card-title{
+    .recommended-card-container {
+        .recommended-card-title {
             font-family: $muli-bold;
             font-size: 16px;
             line-height: 20px;
@@ -750,13 +889,15 @@ app-dashboard {
             color: $white-color;
             padding-bottom: 16px;
             padding-top: 10px;
-            @include allmobiles{
+
+            @include allmobiles {
                 padding-top: 20px;
             }
-            .circle{
+
+            .circle {
                 width: 20px;
                 height: 20px;
-                background: rgba(0, 0, 0, 0.2);
+                background: $login-shadow-color;
                 border-radius: 50%;
                 margin-left: 10px;
                 padding: 6px;

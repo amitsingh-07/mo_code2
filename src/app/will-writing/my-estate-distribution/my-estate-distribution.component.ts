@@ -144,7 +144,6 @@ export class MyEstateDistributionComponent implements OnInit, OnDestroy {
   validateBeneficiaryForm() {
     const estateDistList = this.beneficiaryList.filter((checked) => checked.selected === true);
     const filteredArr = estateDistList.filter((greater) => greater.distPercentage < 1);
-    const joinedArray = [];
     if (this.remainingPercentage < 0) {
       this.willWritingService.openToolTipModal(this.errorMsg.MAX_PERCENTAGE, '');
       return false;
