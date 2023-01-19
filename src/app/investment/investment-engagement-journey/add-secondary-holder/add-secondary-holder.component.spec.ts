@@ -1,4 +1,4 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { waitForAsync, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { AddSecondaryHolderComponent } from './add-secondary-holder.component';
 
@@ -6,11 +6,11 @@ describe('AddSecondaryHolderComponent', () => {
   let component: AddSecondaryHolderComponent;
   let fixture: ComponentFixture<AddSecondaryHolderComponent>;
 
-  beforeEach(async(() => {
+  beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
-      declarations: [ AddSecondaryHolderComponent ]
+      declarations: [AddSecondaryHolderComponent]
     })
-    .compileComponents();
+      .compileComponents();
   }));
 
   beforeEach(() => {

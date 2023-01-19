@@ -14,9 +14,12 @@
                     <div class="row">
                         <div class="col-12">
                             <div class="checkbox-button one-label order{{i+1}}"
-                                *ngFor="let wiseIncomePayOut of wiseIncomePayOutTypes; let i = index" (click)="nav.select(i+1)">
+                                *ngFor="let wiseIncomePayOut of wiseIncomePayOutTypes; let i = index"
+                                (click)="nav.select(i+1)">
                                 <input id="wise-income-payout_option{{i+1}}_radio" type="radio" class="field radio"
-                                name="initialWiseIncomePayoutTypeId" formControlName="initialWiseIncomePayoutTypeId" [value]=wiseIncomePayOut.id tabindex="{{i+1}}" (click)="openImpNoteModal(wiseIncomePayOut)">
+                                    name="initialWiseIncomePayoutTypeId" formControlName="initialWiseIncomePayoutTypeId"
+                                    [value]=wiseIncomePayOut.id tabindex="{{i+1}}"
+                                    (click)="openImpNoteModal(wiseIncomePayOut)">
                                 <label for="wise-income-payout_option{{i+1}}_radio">
                                     <div class="payout-type">
                                         <span class="payout-icon">
@@ -36,8 +39,9 @@
                         </div>
                     </div>
                     <button type="button" class="btn btn-primary btn__footer--fixed width100"
-                    [disabled]="(!wiseIncomePayOutTypeForm.controls.initialWiseIncomePayoutTypeId.value)"
-                    (click)="goToNext(wiseIncomePayOutTypeForm)">{{'WISE_INCOME_PAYOUT.CONTINUE' | translate}}</button>
+                        [disabled]="(!wiseIncomePayOutTypeForm.controls.initialWiseIncomePayoutTypeId.value)"
+                        (click)="goToNext(wiseIncomePayOutTypeForm)">{{'WISE_INCOME_PAYOUT.CONTINUE' |
+                        translate}}</button>
                 </div>
             </form>
         </div>
@@ -99,7 +103,7 @@
                         </div>
                     </ng-template>
                 </ng-container>
-                <ng-container  [ngbNavItem]="2">
+                <ng-container [ngbNavItem]="2">
                     <a class="flex-col-4" ngbNavLink>{{'WISE_INCOME_PAYOUT.TAB_TITLE_LBL_2' | translate}} </a>
                     <ng-template ngbNavContent>
                         <div class="pannel-tab-content">
@@ -147,7 +151,7 @@
                         </div>
                     </ng-template>
                 </ng-container>
-                <ng-container  [ngbNavItem]="3">
+                <ng-container [ngbNavItem]="3">
                     <a class="flex-col-4" ngbNavLink>{{'WISE_INCOME_PAYOUT.TAB_TITLE_LBL_3' | translate}}</a>
                     <ng-template ngbNavContent>
                         <div class="pannel-tab-content">
@@ -268,7 +272,7 @@
                                                 <div>{{'WISE_INCOME_PAYOUT.RETURNS_VALUE' | translate}}</div>
                                             </div>
                                         </div>
-                                        
+
                                         <div class="flex-row preference-payout-block">
                                             <div class="preference-payout-block-item">
                                                 <label>{{'WISE_INCOME_PAYOUT.DEVIATION_LBL' | translate}}</label>
@@ -298,14 +302,17 @@
                         </ng-template>
                         <ng-template ngbPanelContent>
                             <div>
-                                <div class="pannel-tab-content asset-allocation" *ngIf='activeTabId == 1' > 
-                                    <app-allocation [portfolioType]="selectedPortfolioType" [funds]="payoutFundList.GROW"></app-allocation>
+                                <div class="pannel-tab-content asset-allocation" *ngIf='activeTabId == 1'>
+                                    <app-allocation [portfolioType]="selectedPortfolioType"
+                                        [funds]="payoutFundList.GROW"></app-allocation>
                                 </div>
-                                <div class="pannel-tab-content asset-allocation" *ngIf='activeTabId == 2'> 
-                                    <app-allocation [portfolioType]="selectedPortfolioType" [funds]="payoutFundList.FOUR_PERCENT"></app-allocation>
+                                <div class="pannel-tab-content asset-allocation" *ngIf='activeTabId == 2'>
+                                    <app-allocation [portfolioType]="selectedPortfolioType"
+                                        [funds]="payoutFundList.FOUR_PERCENT"></app-allocation>
                                 </div>
                                 <div class="pannel-tab-content asset-allocation" *ngIf='activeTabId == 3'>
-                                    <app-allocation [portfolioType]="selectedPortfolioType" [funds]="payoutFundList.EIGHT_PERCENT"></app-allocation>
+                                    <app-allocation [portfolioType]="selectedPortfolioType"
+                                        [funds]="payoutFundList.EIGHT_PERCENT"></app-allocation>
                                 </div>
                             </div>
                         </ng-template>
@@ -313,7 +320,7 @@
                 </ngb-accordion>
             </div>
 
-            
+
             <div class="learn-more-option-item">
                 <div>
                     <a target="_blank" href="https://www.moneyowl.com.sg/faq-investment/wiseincome-portfolio">

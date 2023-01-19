@@ -1,7 +1,7 @@
 
 
 import { YourFinancialsComponent } from './your-financials.component';
-import { async, ComponentFixture, TestBed, getTestBed } from '@angular/core/testing';
+import { waitForAsync, ComponentFixture, TestBed, getTestBed } from '@angular/core/testing';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { RouterTestingModule } from '@angular/router/testing';
 import { JwtModule } from '@auth0/angular-jwt';
@@ -54,7 +54,7 @@ describe('YourFinancialsComponent', () => {
   INVESTMENT_ENGAGEMENT_JOURNEY_CONSTANTS.my_financials.sufficient_emergency_fund
   let translations = require('../../../../assets/i18n/investment-engagement-journey/en.json');
 
-  beforeEach(async(() => {
+  beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
       declarations: [YourFinancialsComponent, SrsTooltipComponent],
       imports: [BrowserAnimationsModule, FormsModule, TranslateModule.forRoot(), HttpClientModule, RouterTestingModule.withRoutes([]),
@@ -116,14 +116,14 @@ describe('YourFinancialsComponent', () => {
     spyOn(component, 'buildFrom').and.returnValue({});
     component.buildFrom();
   });
-  
+
 
   it('should gotoNexts', () => {
     component.goBack(component.myFinancialForm);
     spyOn(router, 'navigate');
-   // expect(router.navigate).toHaveBeenCalledWith('../investment/engagement/investment-amount');
+    // expect(router.navigate).toHaveBeenCalledWith('../investment/engagement/investment-amount');
   });
-  
+
 
   it('should call show error modal', () => {
     ngbModalRef = ngbModalService.open(ErrorModalComponent);
@@ -140,15 +140,15 @@ describe('YourFinancialsComponent', () => {
     const showModal = component.showEmergencyFundModal();
     expect(ngbModalService.open).toHaveBeenCalled();
     expect('MY_FINANCIALS.modalData').toEqual('MY_FINANCIALS.modalData');
-   });
+  });
 
-   it('should call getFinancialDetails()', () => {
-     component.getFinancialDetails();
-   });
-   it('should call isFirstTimeUser()', () => {
+  it('should call getFinancialDetails()', () => {
+    component.getFinancialDetails();
+  });
+  it('should call isFirstTimeUser()', () => {
     component.isFirstTimeUser();
     component.isLoggedInUser();
-   });
-   
+  });
+
 
 });

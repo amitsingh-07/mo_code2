@@ -1,5 +1,5 @@
 
-import {map} from 'rxjs/operators';
+import { map } from 'rxjs/operators';
 import { Injectable } from '@angular/core';
 import { CanActivateChild, Router } from '@angular/router';
 import { Observable } from 'rxjs';
@@ -16,8 +16,8 @@ export class InvestmentChildEnableGuard implements CanActivateChild {
     return this.configService.getConfig().pipe(map((config: IConfig) => {
       // Check if iFast is in maintenance
       if (config.iFastMaintenance && this.configService.checkIFastStatus(config.maintenanceStartTime, config.maintenanceEndTime)) {
-          this.router.navigate([APP_ROUTES.INVEST_MAINTENANCE]);
-          return false;
+        this.router.navigate([APP_ROUTES.INVEST_MAINTENANCE]);
+        return false;
       } else {
         if (config.investmentEngagementEnabled) {
           return true;

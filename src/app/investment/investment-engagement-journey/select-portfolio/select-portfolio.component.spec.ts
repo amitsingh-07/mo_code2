@@ -1,5 +1,5 @@
 import { SelectPortfolioComponent } from './select-portfolio.component';
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { waitForAsync, ComponentFixture, TestBed } from '@angular/core/testing';
 import { ReactiveFormsModule } from '@angular/forms';
 import { RouterTestingModule } from '@angular/router/testing';
 import { JwtModule } from '@auth0/angular-jwt';
@@ -18,7 +18,8 @@ import { SignUpService } from '../../../sign-up/sign-up.service';
 import { AuthenticationService } from '../../../shared/http/auth/authentication.service';
 import { DatePipe } from '@angular/common';
 import { CurrencyPipe } from '@angular/common';
-import { Injector
+import {
+  Injector
 } from '@angular/core';
 import { AppService } from '../../../app.service';
 import { InvestmentEngagementJourneyService } from '../investment-engagement-journey.service';
@@ -44,7 +45,7 @@ describe('SelectPortfolioComponent', () => {
     }
   };
 
-  beforeEach(async(() => {
+  beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
       declarations: [SelectPortfolioComponent, SlickCarouselComponent],
       imports: [TranslateModule.forRoot(), HttpClientModule, RouterTestingModule.withRoutes([]),

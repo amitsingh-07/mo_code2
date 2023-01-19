@@ -52,9 +52,9 @@ export class GetStartedStep1Component implements OnInit {
     if (!this.authService.isAuthenticated()) {
       this.authService.authenticate().subscribe((token) => {
       },
-      (err) => {
-        this.investmentAccountService.showGenericErrorModal();
-      });
+        (err) => {
+          this.investmentAccountService.showGenericErrorModal();
+        });
     }
   }
   goBack() {

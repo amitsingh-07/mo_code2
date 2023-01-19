@@ -761,13 +761,12 @@ export class InvestmentEngagementJourneyService {
   }
   //Get Risk Profile icon
   getRiskProfileIcon(riskProfileType: string, isBalancedCpf: boolean) {
-    if(isBalancedCpf) {
+    if (isBalancedCpf) {
       return INVESTMENT_ENGAGEMENT_JOURNEY_CONSTANTS.riskProfileIcon['balanced-cpfis-icon'];
-    } else if(!Util.isEmptyOrNull(riskProfileType)) {
+    } else if (!Util.isEmptyOrNull(riskProfileType)) {
       return INVESTMENT_ENGAGEMENT_JOURNEY_CONSTANTS.riskProfileIcon[riskProfileType.toLowerCase()];
     } else {
       return '';
     }
   }
 }
- 

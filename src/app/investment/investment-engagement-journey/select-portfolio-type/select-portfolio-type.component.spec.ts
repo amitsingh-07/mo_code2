@@ -1,4 +1,4 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { waitForAsync, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { SelectPortfolioTypeComponent } from './select-portfolio-type.component';
 
@@ -6,11 +6,11 @@ describe('SelectPortfolioTypeComponent', () => {
   let component: SelectPortfolioTypeComponent;
   let fixture: ComponentFixture<SelectPortfolioTypeComponent>;
 
-  beforeEach(async(() => {
+  beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
-      declarations: [ SelectPortfolioTypeComponent ]
+      declarations: [SelectPortfolioTypeComponent]
     })
-    .compileComponents();
+      .compileComponents();
   }));
 
   beforeEach(() => {
