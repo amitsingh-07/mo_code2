@@ -15,7 +15,6 @@ import {
 import { CheckEligibilityComponent } from './check-eligibility/check-eligibility.component';
 import { ConfirmationComponent } from './confirmation/confirmation.component';
 import { DistributeYourEstateComponent } from './distribute-your-estate/distribute-your-estate.component';
-import { HowItWorksComponent } from './how-it-works/how-it-works.component';
 import { IntroductionComponent } from './introduction/introduction.component';
 import { MyBeneficiariesComponent } from './my-beneficiaries/my-beneficiaries.component';
 import { MyChildGuardianComponent } from './my-child-guardian/my-child-guardian.component';
@@ -59,7 +58,6 @@ export function createTranslateLoader(http: HttpClient) {
     AboutMeComponent,
     CheckEligibilityComponent,
     DistributeYourEstateComponent,
-    HowItWorksComponent,
     IntroductionComponent,
     MyChildGuardianComponent,
     MyFamilyComponent,
