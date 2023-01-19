@@ -6,7 +6,6 @@ import { FormArray, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { NgbDateParserFormatter, NgbDatepickerConfig, NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { TranslateService } from '@ngx-translate/core';
-
 import { FooterService } from '../../shared/footer/footer.service';
 import { ErrorModalComponent } from '../../shared/modal/error-modal/error-modal.component';
 import { NavbarService } from '../../shared/navbar/navbar.service';
@@ -31,7 +30,6 @@ export class MyFamilyComponent implements OnInit, OnDestroy {
   pageTitle: string;
   step: string;
   private confirmModal = {};
-
   myFamilyForm: FormGroup;
   childrenFormValues: IChild[];
   spouseFormValues: ISpouse[];
@@ -43,7 +41,6 @@ export class MyFamilyComponent implements OnInit, OnDestroy {
   formName: string[] = [];
   minDate;
   maxDate;
-
   fromConfirmationPage = this.willWritingService.fromConfirmationPage;
 
   constructor(
@@ -247,5 +244,4 @@ export class MyFamilyComponent implements OnInit, OnDestroy {
       }
     }
   }
-
 }

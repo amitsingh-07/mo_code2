@@ -2,7 +2,6 @@ import { Location } from '@angular/common';
 import { Component, OnDestroy, OnInit, ViewEncapsulation } from '@angular/core';
 import { Router } from '@angular/router';
 import { TranslateService } from '@ngx-translate/core';
-
 import { FooterService } from '../../shared/footer/footer.service';
 import { NavbarService } from '../../shared/navbar/navbar.service';
 import { SIGN_UP_ROUTE_PATHS } from '../../sign-up/sign-up.routes.constants';
@@ -48,5 +47,4 @@ export class SignUpComponent implements OnInit, OnDestroy {
   goBack() {
     this._location.back();
   }
-
 }
