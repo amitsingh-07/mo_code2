@@ -92,11 +92,11 @@ export let MANAGE_INVESTMENTS_CONSTANTS = {
 
     ],
     TRANSACTIONS: 'Transactions',
-    WITHDRAWAL: 'Withdrawal',  
+    WITHDRAWAL: 'Withdrawal',
     WISE_INCOME_TIME_INTERVALS: [
-      { startTime: "2021-07-01T16:00:00.000+08:00", endTime: "2021-08-02T23:59:59.000+08:00" , month:"August."},
-      { startTime: "2021-10-01T16:00:00.000+08:00", endTime: "2021-11-01T23:59:59.000+08:00" , month:"November."},
-      { startTime: "2022-01-03T16:00:00.000+08:00", endTime: "2022-02-01T23:59:59.000+08:00" , month:"February."}
+      { startTime: "2021-07-01T16:00:00.000+08:00", endTime: "2021-08-02T23:59:59.000+08:00", month: "August." },
+      { startTime: "2021-10-01T16:00:00.000+08:00", endTime: "2021-11-01T23:59:59.000+08:00", month: "November." },
+      { startTime: "2022-01-03T16:00:00.000+08:00", endTime: "2022-02-01T23:59:59.000+08:00", month: "February." }
     ]
   },
   TRANSFER_INSTRUCTION: {
@@ -115,8 +115,7 @@ export let MANAGE_INVESTMENTS_CONSTANTS = {
     EIGHT_PAYOUT: '8% p.a. income payout',
     REINVEST: 'Grow & invest payout'
   },
-  // CHANGING DATE FOR Q4 OF 2021 
-  WISE_INCOME_DELETE_PORTFOLIO_START_TIME :"2021-12-31T16:00:00.000+08:00",
+  WISE_INCOME_DELETE_PORTFOLIO_START_TIME: "2021-12-31T16:00:00.000+08:00",
   WISE_INCOME_DELETE_PORTFOLIO_END_TIME: "2022-02-01T23:59:59.000+08:00",
   JOINT_ACCOUNT: {
     REFRESH: "Refresh",
@@ -126,7 +125,7 @@ export let MANAGE_INVESTMENTS_CONSTANTS = {
     ERROR_CODES: {
       ONE_REMINDER_PER_DAY: 5130
     }
-  }  
+  }
 };
 
 export let PORTFOLIO_WITHDRAWAL_KEYS = [

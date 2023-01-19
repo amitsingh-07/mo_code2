@@ -6,7 +6,6 @@ import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 
 import { RegexConstants } from '../../../../shared/utils/api.regex.constants';
 import { SignUpService } from '../../../../sign-up/sign-up.service';
-import { ManageInvestmentsService } from '../../manage-investments.service';
 
 @Component({
   selector: 'app-add-bank-modal',
@@ -23,7 +22,6 @@ export class AddBankModalComponent implements OnInit {
 
   constructor(
     public activeModal: NgbActiveModal,
-    private manageInvestmentsService: ManageInvestmentsService,
     private signUpService: SignUpService
   ) { }
 

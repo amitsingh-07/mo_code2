@@ -3,8 +3,6 @@ import {
 } from '@angular/core';
 import { FormGroup } from '@angular/forms';
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
-import { SignUpService } from '../../../../sign-up/sign-up.service';
-import { ManageInvestmentsService } from '../../manage-investments.service';
 
 @Component({
   selector: 'app-restrict-add-portfolio-modal',
@@ -23,12 +21,10 @@ export class RestrictAddPortfolioModalComponent implements OnInit {
 
   constructor(
     public activeModal: NgbActiveModal,
-    private manageInvestmentsService: ManageInvestmentsService,
-    private signUpService: SignUpService
   ) { }
 
   ngOnInit() {
-    
+
   }
 
 }

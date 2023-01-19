@@ -118,7 +118,7 @@ export class TopUpComponent implements OnInit, OnDestroy {
     if (this.formValues['selectedCustomerPortfolio']) {
       this.getMonthlyInvestmentInfo(this.formValues['selectedCustomerPortfolioId']);
       this.getAwaitingOrPendingInfo(this.formValues['selectedCustomerPortfolioId'],
-      this.awaitingOrPendingReq(this.formValues.selectedCustomerPortfolio.fundingTypeValue));
+        this.awaitingOrPendingReq(this.formValues.selectedCustomerPortfolio.fundingTypeValue));
     }
     if (this.formValues['selectedCustomerPortfolio'] &&
       (this.formValues['selectedCustomerPortfolio'].fundingTypeValue === MANAGE_INVESTMENTS_CONSTANTS.TOPUP.FUNDING_METHODS.SRS)) {
@@ -129,7 +129,7 @@ export class TopUpComponent implements OnInit, OnDestroy {
       this.getCpfIaAccDetails();
     }
     this.buildFormInvestment();
-    this.setSelectedPortfolio(); 
+    this.setSelectedPortfolio();
   }
 
   ngOnDestroy() {
@@ -161,7 +161,7 @@ export class TopUpComponent implements OnInit, OnDestroy {
     });
   }
 
-  getCpfIaAccDetails() {     
+  getCpfIaAccDetails() {
     this.subscription = this.authService.get2faUpdateEvent.subscribe((token) => {
       if (!token) {
         this.manageInvestmentsService.getProfileCPFIAccountDetails(true).subscribe((data) => {
@@ -179,7 +179,7 @@ export class TopUpComponent implements OnInit, OnDestroy {
           });
       }
     });
-    }
+  }
 
   // set the selected portfolio if there when page loaded
   setSelectedPortfolio() {
@@ -202,10 +202,10 @@ export class TopUpComponent implements OnInit, OnDestroy {
       this.awaitingOrPendingReq(value.fundingTypeValue));
     if (value.fundingTypeValue.toUpperCase() === MANAGE_INVESTMENTS_CONSTANTS.TOPUP.FUNDING_METHODS.SRS) {
       this.getSrsAccountDetails();
-    } 
+    }
     if (value.fundingTypeValue.toUpperCase() === MANAGE_INVESTMENTS_CONSTANTS.TOPUP.FUNDING_METHODS.CPF) {
       this.getCpfIaAccDetails();
-    } 
+    }
   }
 
   getInvestmentCriteria(portfolioType) {
@@ -223,7 +223,7 @@ export class TopUpComponent implements OnInit, OnDestroy {
       this.isAmountExceedBalance = false;
     }
   }
-  
+
   selectedInvestment(investmentType, amount) {
     if (amount) {
       const minAmount = investmentType === MANAGE_INVESTMENTS_CONSTANTS.TOPUP.TOPUP_TYPES.ONE_TIME.VALUE ? amount.oneTimeInvestmentMinimum
@@ -317,37 +317,37 @@ export class TopUpComponent implements OnInit, OnDestroy {
       }
     }
   }
- 
+
   saveAndProceed(form: any) {
     form.value.topupAmount = this.topupAmount;
     this.manageInvestmentsService.setTopUp(form.value);
     this.isCPF = this.manageInvestmentsService.getTopUpFormData().portfolio['portfolioCategory'];
     // Save all the details of the top up before proceed
     this.saveFundingDetails();
-    if ( this.isCPF === this.translate.instant('YOUR_INVESTMENT.CPF') && this.ckaInfo.isCKAExpired === this.translate.instant('COMMON.LBL_TRUE_VALUE')) {
-    const ref = this.modal.open(ModelWithButtonComponent, { centered: true , windowClass: 'cka-expiry-modal , limited-width' });
-    ref.componentInstance.errorTitle = this.translate.instant(
-      'TOPUP.CKA_EXPIRY_MODAL.TITLE'
-    );
-    ref.componentInstance.errorMessage = this.translate.instant(
-      'TOPUP.CKA_EXPIRY_MODAL.TITLE_DESC'
-    );
-    ref.componentInstance.primaryActionLabel = this.translate.instant(
-      'TOPUP.CKA_EXPIRY_MODAL.BTN-TEXT'
-    );
-    ref.componentInstance.primaryAction.subscribe(() => {
-      this.openCKAModal()
-    });
-    ref.componentInstance.closeBtn = true;
+    if (this.isCPF === this.translate.instant('YOUR_INVESTMENT.CPF') && this.ckaInfo.isCKAExpired === this.translate.instant('COMMON.LBL_TRUE_VALUE')) {
+      const ref = this.modal.open(ModelWithButtonComponent, { centered: true, windowClass: 'cka-expiry-modal , limited-width' });
+      ref.componentInstance.errorTitle = this.translate.instant(
+        'TOPUP.CKA_EXPIRY_MODAL.TITLE'
+      );
+      ref.componentInstance.errorMessage = this.translate.instant(
+        'TOPUP.CKA_EXPIRY_MODAL.TITLE_DESC'
+      );
+      ref.componentInstance.primaryActionLabel = this.translate.instant(
+        'TOPUP.CKA_EXPIRY_MODAL.BTN-TEXT'
+      );
+      ref.componentInstance.primaryAction.subscribe(() => {
+        this.openCKAModal()
+      });
+      ref.componentInstance.closeBtn = true;
     } else {
-    // Open up show review buy request pop up
-    this.showReviewBuyRequestModal(form);
+      // Open up show review buy request pop up
+      this.showReviewBuyRequestModal(form);
     }
   }
 
   openCKAModal() {
     this.investmentCommonService.setCKARedirectFromLocation(MANAGE_INVESTMENTS_ROUTE_PATHS.TOPUP);
-    const ref = this.modal.open(ModelWithButtonComponent, { centered: true , windowClass: 'custom-cka-modal' });
+    const ref = this.modal.open(ModelWithButtonComponent, { centered: true, windowClass: 'custom-cka-modal' });
     ref.componentInstance.errorTitle = this.translate.instant(
       'OPEN_CKA.TITLE'
     );
@@ -463,12 +463,12 @@ export class TopUpComponent implements OnInit, OnDestroy {
       this.checkIfExistingBuyRequest(form);
     });
     this.reviewBuyRequestModal.componentInstance.closeAction.subscribe((emittedValue) => {
-      if(this.showOnetimeInvestmentAmount){
+      if (this.showOnetimeInvestmentAmount) {
         this.topForm.controls['oneTimeInvestmentAmount'].setValue(0);
-      } 
-      if(this.showMonthlyInvestmentAmount){
+      }
+      if (this.showMonthlyInvestmentAmount) {
         this.topForm.controls['MonthlyInvestmentAmount'].setValue(0);
-      } 
+      }
     });
   }
 

@@ -463,12 +463,12 @@ export class InvestmentOverviewComponent implements OnInit, OnDestroy {
         this.scrollFilterIntoView(INVESTMENT_COMMON_CONSTANTS.PORTFOLIO_CATEGORY.WISESAVER);
         break;
       case INVESTMENT_COMMON_CONSTANTS.PORTFOLIO_CATEGORY.CPF:
-          this.cashAccountBalance = this.investmentoverviewlist['cpfTotalCashAccountBalance']
-            ? this.investmentoverviewlist['cpfTotalCashAccountBalance'] : 0;
-          this.totalValue = this.investmentoverviewlist['cpfTotalValue']
-            ? this.investmentoverviewlist['cpfTotalValue'] : 0;
-          this.scrollFilterIntoView(INVESTMENT_COMMON_CONSTANTS.PORTFOLIO_CATEGORY.CPF);
-          break;
+        this.cashAccountBalance = this.investmentoverviewlist['cpfTotalCashAccountBalance']
+          ? this.investmentoverviewlist['cpfTotalCashAccountBalance'] : 0;
+        this.totalValue = this.investmentoverviewlist['cpfTotalValue']
+          ? this.investmentoverviewlist['cpfTotalValue'] : 0;
+        this.scrollFilterIntoView(INVESTMENT_COMMON_CONSTANTS.PORTFOLIO_CATEGORY.CPF);
+        break;
     }
   }
   // Auto scroll the category filter into view
@@ -492,7 +492,7 @@ export class InvestmentOverviewComponent implements OnInit, OnDestroy {
   }
 
   emitToastMessage($event) {
-    if ($event) { 
+    if ($event) {
       if (environment.hideHomepage) {
         this.navbarService.setNavbarMode(105);
       } else {
@@ -506,7 +506,7 @@ export class InvestmentOverviewComponent implements OnInit, OnDestroy {
   }
 
   emitMessage(event) {
-    if (event.action == MANAGE_INVESTMENTS_CONSTANTS.JOINT_ACCOUNT.REFRESH) {      
+    if (event.action == MANAGE_INVESTMENTS_CONSTANTS.JOINT_ACCOUNT.REFRESH) {
       if (environment.hideHomepage) {
         this.navbarService.setNavbarMode(105);
       } else {
@@ -518,9 +518,9 @@ export class InvestmentOverviewComponent implements OnInit, OnDestroy {
 
   checkIfInvestedWiseIncomePortfolio(wiseIncPortfolio) {
     let showWIBanner = false;
-    if(wiseIncPortfolio && wiseIncPortfolio.length) {
+    if (wiseIncPortfolio && wiseIncPortfolio.length) {
       for (const portfolio of wiseIncPortfolio) {
-        if(!Util.isEmptyOrNull(portfolio.wiPayoutEligible) && portfolio.wiPayoutEligible) {
+        if (!Util.isEmptyOrNull(portfolio.wiPayoutEligible) && portfolio.wiPayoutEligible) {
           showWIBanner = true;
           break;
         }

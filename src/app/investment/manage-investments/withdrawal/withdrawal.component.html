@@ -9,12 +9,14 @@
             <img src="assets/images/investment-account/withdraw.svg" />
           </div>
           <div class="faq_link">
-            <a *ngIf="!authService.isUserTypeCorporate" target="_blank" routerLink='/faq' fragment="investment">{{ 'ASSET_ALLOCATION.FAQ_DESC_TEXT' | translate}}</a>
-            <a *ngIf="authService.isUserTypeCorporate" target="_blank" routerLink="{{corpFaq}}">{{ 'ASSET_ALLOCATION.FAQ_DESC_TEXT' | translate}}</a>
+            <a *ngIf="!authService.isUserTypeCorporate" target="_blank" routerLink='/faq' fragment="investment">{{
+              'ASSET_ALLOCATION.FAQ_DESC_TEXT' | translate}}</a>
+            <a *ngIf="authService.isUserTypeCorporate" target="_blank" routerLink="{{corpFaq}}">{{
+              'ASSET_ALLOCATION.FAQ_DESC_TEXT' | translate}}</a>
           </div>
         </div>
         <div class="max-width col-lg-6 col-md-6">
-          <!-- HOLIDAY AND OTHER IMPORTANT NOTE --> 
+          <!-- HOLIDAY AND OTHER IMPORTANT NOTE -->
           <app-notes category="withdraw" [noteInSession]="formValues?.investmentNote"></app-notes>
           <form id="withdraw_form" name="withdrawForm" [formGroup]="withdrawForm">
             <!-- PORTFOLIO -->
@@ -39,7 +41,7 @@
                       </button>
                       <div class="dropdown" ngbDropdownMenu aria-labelledby="withdrawDropDown">
                         <button class="dropdown-item capital-letter"
-                        [class.hide]="(portfolio.portfolioType === fundingMethods.SRS && !portfolio.entitlements.showWithdrawPvToSRS)
+                          [class.hide]="(portfolio.portfolioType === fundingMethods.SRS && !portfolio.entitlements.showWithdrawPvToSRS)
                         || (portfolio.portfolioType === fundingMethods.CPF && !portfolio.entitlements.showWithdrawPvToCPF)"
                           *ngFor="let portfolio of portfolioList; let i = index;"
                           (click)="setDropDownValue('withdrawPortfolio',portfolio)"
@@ -71,8 +73,7 @@
                       </button>
                       <div class="dropdown" ngbDropdownMenu aria-labelledby="withdrawDropDown">
                         <ng-container *ngFor="let type of withdrawalTypes; let i = index">
-                          <button class="dropdown-item"
-                            [class.hide]="(type.value === 'PORTFOLIO_TO_BANK_ACCOUNT' && !entitlements.showWithdrawPvToBa)
+                          <button class="dropdown-item" [class.hide]="(type.value === 'PORTFOLIO_TO_BANK_ACCOUNT' && !entitlements.showWithdrawPvToBa)
                             || (type.value === 'PORTFOLIO_TO_CASH_ACCOUNT' && !entitlements.showWithdrawPvToCa)
                             || (type.value === 'CASH_TO_BANK_ACCOUNT' && !entitlements.showWithdrawCaToBa)
                             || (type.value === 'PORTFOLIO_TO_SRS_ACCOUNT' && !entitlements.showWithdrawPvToSRS)

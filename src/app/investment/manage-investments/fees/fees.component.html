@@ -55,8 +55,10 @@
                         </div>
                         <hr>
                     </div>
-                    <div *ngIf="!authService.isUserTypeCorporate" class="faq_dec" innerHTML="{{'FEES.FAQ_DESC_PUBLIC'|translate}}"></div>
-                    <div *ngIf="authService.isUserTypeCorporate" class="faq_dec" innerHTML="{{'FEES.FAQ_DESC_CORP'|translate}}"></div>
+                    <div *ngIf="!authService.isUserTypeCorporate" class="faq_dec"
+                        innerHTML="{{'FEES.FAQ_DESC_PUBLIC'|translate}}"></div>
+                    <div *ngIf="authService.isUserTypeCorporate" class="faq_dec"
+                        innerHTML="{{'FEES.FAQ_DESC_CORP'|translate}}"></div>
                 </div>
             </div>
         </div>
