@@ -1,7 +1,10 @@
 
+@import '../../../variables';
+@import '../../../mixins';
+
 .outer {
   height: 100vh;
-  background: #f6f6f6;
+  background: $wild-sand-color;
 }
 .enquiry-wrapper {
   background-image: url("../../../assets/images/comprehensive/thankyou-bg.svg");
@@ -12,32 +15,32 @@
 }
 .enquiry {
   box-shadow: 0 8px 16px 2px rgba(0, 0, 0, 0.14);
-  background-color: #ffffff;
+  background-color: $white-color;
   border-radius: 6px;
   padding: 20px;
   margin: 15px;
 
   .header {
     font-size: 36px;
-    font-family: Muli bold;
-    color: #066360;
+    font-family: $muli-bold;
+    color: $watercourse-color;
   }
   .desc{
    font-size: 14px;
-   color: #066360;
+   color: $watercourse-color;
 
   }
   .contact{
     border-radius: 6px;
     font-size: 14px;
-    background-color: #f7f5f5;
+    background-color: $gloss-varnish-color;
     padding: 20px;
     .sub-desc{
-        color: #066360;
+        color: $watercourse-color;
 
     }
     .phone_no,.email{
-        color:#00a6a6;
+        color:$persian-lite-teal-color;
     }
     .phone-email-wrapper {
       margin: 0 auto;

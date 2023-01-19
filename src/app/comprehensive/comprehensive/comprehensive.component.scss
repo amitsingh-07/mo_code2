@@ -2,34 +2,6 @@
 @import '../../../mixins';
 
 app-comprehensive {
-  .marquee-wrapper {
-    position: relative;
-    display: flex;
-    width: 100%;
-    z-index: 500;
-    background-color: $app-backgrnd-color;
-    flex-direction: row;
-    justify-content: center;
-    align-content: center;
-    min-height: 45px;
-    padding: 12px 0px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, .2);
-
-    @include minMobilemaxPhablet {
-      padding: 5px 0px;
-    }
-  }
-
-  @keyframes marquee {
-    0% {
-      transform: translate(0, 0)
-    }
-
-    100% {
-      transform: translate(-2521.16px, 0)
-    }
-  }
-
   .container-fluid {
     background-color: $white-color;
     padding: 87px 105px 65px;

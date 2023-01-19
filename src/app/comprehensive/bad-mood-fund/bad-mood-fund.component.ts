@@ -17,6 +17,7 @@ import { ProgressTrackerService } from './../../shared/modal/progress-tracker/pr
 import { NavbarService } from './../../shared/navbar/navbar.service';
 import { ComprehensiveService } from './../comprehensive.service';
 
+const TOTAL_ANNUAL_INCOME_BUCKET_MONTHS = 12;
 @Component({
   selector: 'app-bad-mood-fund',
   templateUrl: './bad-mood-fund.component.html',
@@ -80,7 +81,7 @@ export class BadMoodFundComponent implements OnInit, OnDestroy, AfterViewInit {
   }
   onSliderChange(value): void {
     this.sliderValue = value;
-    this.totalAnnualIncomeBucket = this.sliderValue * 12;
+    this.totalAnnualIncomeBucket = this.sliderValue * TOTAL_ANNUAL_INCOME_BUCKET_MONTHS;
   }
   ngOnInit() {
     this.updateProgressTracker();
@@ -127,7 +128,7 @@ export class BadMoodFundComponent implements OnInit, OnDestroy, AfterViewInit {
     }
     if (this.maxBadMoodFund > 0) {
       this.hasBadMoodFund = true;
-      this.totalAnnualIncomeBucket = this.downOnLuck.badMoodMonthlyAmount ? this.downOnLuck.badMoodMonthlyAmount * 12 : 0;
+      this.totalAnnualIncomeBucket = this.downOnLuck.badMoodMonthlyAmount ? this.downOnLuck.badMoodMonthlyAmount * TOTAL_ANNUAL_INCOME_BUCKET_MONTHS : 0;
 
     }
 

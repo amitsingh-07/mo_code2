@@ -1,7 +1,7 @@
 @import '../../../variables';
 @import '../../../mixins';
 .comprehensive {
-    $minus-content-color:#ff872f;
+    $minus-content-color:$crusta-orange-color;
     .title {
       font-size: 18px;
     }
@@ -13,7 +13,7 @@
       justify-content: space-between;
     }
     .min-val, .max-val {
-      color: #aeaeae;
+      color: $lite-silver-chalice-color;
       font-family: $muli-semi-bold;
       font-size: 14px;
     }
@@ -21,16 +21,16 @@
       text-align: right;
     }
     .min-text, .max-text {
-      color: #bdbdbd;
+      color: $dark-silver-color;
       font-family: $muli-regular;
       font-size: 12px;
       display: block;
     }
     .mnth-amt {
-      color: #5e5e5e;
+      color: $silver-grey-color;
     }
     .income-value{
-      background:#00c5c4;
+      background:$robins-egg-blue-color;
     }
     .flex__box--sm-horz {
       margin: 0 -10px 20px -10px !important;

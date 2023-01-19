@@ -1,9 +1,8 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { ActivatedRoute, Router } from '@angular/router';
+import { Router } from '@angular/router';
 import { TranslateService } from '@ngx-translate/core';
 import { Subscription } from 'rxjs';
-
 import { ComprehensiveApiService } from '../comprehensive-api.service';
 import { COMPREHENSIVE_ROUTE_PATHS } from '../comprehensive-routes.constants';
 import { ComprehensiveService } from '../comprehensive.service';
@@ -40,7 +39,7 @@ export class DependantEducationSelectionComponent implements OnInit, OnDestroy {
   viewMode: boolean;
   saveData: any;
   constructor(
-    private route: ActivatedRoute, private router: Router, public navbarService: NavbarService,
+    private router: Router, public navbarService: NavbarService,
     private translate: TranslateService, private formBuilder: FormBuilder,
     private configService: ConfigService, private comprehensiveService: ComprehensiveService,
     private aboutAge: AboutAge, private comprehensiveApiService: ComprehensiveApiService,
@@ -98,10 +97,8 @@ export class DependantEducationSelectionComponent implements OnInit, OnDestroy {
   }
 
   dependantSelection() {
-
     this.childEndowmentArray = [];
     this.childEndowmentFormGroupArray = [];
-
     this.comprehensiveService.updateComprehensiveSummary();
     this.hasEndowments = this.comprehensiveService.hasEndowment();
     this.hasEndowments === '0' ? this.education_plan_selection = true : this.education_plan_selection = false;
@@ -155,7 +152,6 @@ export class DependantEducationSelectionComponent implements OnInit, OnDestroy {
 
   // tslint:disable-next-line:cognitive-complexity
   buildChildEndowmentFormArray() {
-
     const tempChildEndowmentArray: IChildEndowment[] = [];
     this.childEndowmentFormGroupArray = [];
     this.dependantDetailsArray.forEach((dependant: IDependantDetail) => {
@@ -173,7 +169,6 @@ export class DependantEducationSelectionComponent implements OnInit, OnDestroy {
             }
             break;
           }
-
         }
 
         // Filter the array to avoid duplicates

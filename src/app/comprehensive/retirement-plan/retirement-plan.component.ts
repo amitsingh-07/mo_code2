@@ -1,22 +1,10 @@
-import {
-  AfterViewInit,
-  Component,
-  OnDestroy,
-  OnInit,
-  ViewChild,
-  ViewEncapsulation
-} from '@angular/core';
-import {
-  FormArray,
-  FormBuilder,
-  FormGroup
-} from '@angular/forms';
+import { AfterViewInit, Component, OnDestroy, OnInit, ViewChild, ViewEncapsulation } from '@angular/core';
+import { FormArray, FormBuilder, FormGroup } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { TranslateService } from '@ngx-translate/core';
 import { NouisliderComponent } from 'ng2-nouislider';
 import { Subscription } from 'rxjs';
-
 import { ConfigService } from '../../config/config.service';
 import { ErrorModalComponent } from '../../shared/modal/error-modal/error-modal.component';
 import { ProgressTrackerService } from '../../shared/modal/progress-tracker/progress-tracker.service';
@@ -29,7 +17,6 @@ import { ComprehensiveService } from '../comprehensive.service';
 import { AboutAge } from './../../shared/utils/about-age.util';
 import { COMPREHENSIVE_CONST } from './../comprehensive-config.constants';
 import { LoaderService } from './../../shared/components/loader/loader.service';
-
 @Component({
   selector: 'app-retirement-plan',
   templateUrl: './retirement-plan.component.html',
@@ -174,7 +161,6 @@ export class RetirementPlanComponent
   }
   buildRetirementPlanForm() {
     const retirementIncomeSet = [];
-
     if (
       this.retirementDetails &&
       this.retirementDetails.retirementIncomeSet.length > 0
@@ -285,7 +271,6 @@ export class RetirementPlanComponent
     this.sliderValue = value;
     this.retirementValueChanges = true;
     if (this.sliderValue >= COMPREHENSIVE_CONST.RETIREMENT_PLAN.MIN_AGE && this.sliderValue < this.userAge) {
-      //this.sliderValue = Math.ceil(this.userAge / 5) * 5;
       this.sliderValue = this.userAge;
       this.ciMultiplierSlider.writeValue(this.sliderValue);
     }
@@ -408,10 +393,8 @@ export class RetirementPlanComponent
       });
       return false;
     }
-
   }
   deleteRetirementDetails(i, array) {
-
     const retirementIncomeDetails = this.retirementPlanForm.get(
       array
     ) as FormArray;
@@ -431,7 +414,6 @@ export class RetirementPlanComponent
     if (parseInt(form.value) < 100 && parseInt(form.value) >= 0) {
       return null;
     }
-
     return { pattern: true };
   }
   payOffYearValid(payOffYearVal) {

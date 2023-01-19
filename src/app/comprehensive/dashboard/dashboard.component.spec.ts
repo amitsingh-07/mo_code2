@@ -1,5 +1,5 @@
 
-import { async, ComponentFixture, getTestBed, TestBed } from '@angular/core/testing';
+import { waitForAsync, ComponentFixture, getTestBed, TestBed } from '@angular/core/testing';
 import { FormBuilder, ReactiveFormsModule } from '@angular/forms';
 import { Location, DatePipe, CurrencyPipe } from '@angular/common';
 import { HttpClient } from '@angular/common/http';
@@ -20,28 +20,15 @@ import { ComprehensiveService } from '../comprehensive.service';
 import { FooterService } from './../../shared/footer/footer.service';
 import { AuthenticationService } from './../../shared/http/auth/authentication.service';
 import { NavbarService } from './../../shared/navbar/navbar.service';
-
-
-
-
-import { tokenGetterFn, mockCurrencyPipe } from
-  '../../../assets/mocks/service/shared-service';
-
-
+import { tokenGetterFn, mockCurrencyPipe } from '../../../assets/mocks/service/shared-service';
 import { HeaderService } from './../../shared/header/header.service';
 import { createTranslateLoader } from '../comprehensive.module';
-
 import { ApiService } from './../../shared/http/api.service';
-
 import { StepIndicatorComponent } from './../../shared/components/step-indicator/step-indicator.component';
 import { AboutAge } from './../../shared/utils/about-age.util';
 import { RoutingService } from './../../shared/Services/routing.service';
-
-
-
 import { ComprehensiveDashboardComponent } from './dashboard.component';
 import { FileUtil } from './../../shared/utils/file.util';
-
 
 class MockRouter {
   navigateByUrl(url: string) { return url; }
@@ -54,7 +41,6 @@ describe('DashboardComponent', () => {
   let ngbModalService: NgbModal;
   let ngbModalRef: NgbModalRef;
   let formBuilder: FormBuilder;
-
   let footerService: FooterService;
   let translateService: TranslateService;
   let http: HttpTestingController;
@@ -74,13 +60,12 @@ describe('DashboardComponent', () => {
       return true;
     }
   };
-  //let translations: any = '';
   let translations = require('../../../assets/i18n/app/en.json');
   const routerStub = {
     navigate: jasmine.createSpy('navigate'),
     navigateByUrl: jasmine.createSpy('navigateByUrl')
   };
-  beforeEach(async(() => {
+  beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
       declarations: [ComprehensiveDashboardComponent, ErrorModalComponent, StepIndicatorComponent],
       imports: [
@@ -99,9 +84,7 @@ describe('DashboardComponent', () => {
           }
         }),
         HttpClientTestingModule,
-        //RouterTestingModule.withRoutes(routes),
         RouterTestingModule.withRoutes([]),
-        //RouterModule.forRoot(routes)
       ],
       schemas: [NO_ERRORS_SCHEMA],
       providers: [
@@ -126,23 +109,16 @@ describe('DashboardComponent', () => {
         RoutingService,
         JwtHelperService,
         FileUtil,
-
-        // { provide: APP_BASE_HREF, useValue: '/' },
-        // { provide: Router, useClass: RouterStub },
-
         { provide: ActivatedRoute, useValue: route }
       ]
     })
       .overrideModule(BrowserDynamicTestingModule, { set: { entryComponents: [ErrorModalComponent, StepIndicatorComponent] } })
       .compileComponents();
-    router = TestBed.get(Router);
-    //router.initialNavigation();
-    //spyOn(router, 'navigateByUrl');
+      router = TestBed.get(Router);
   }));
   beforeEach(() => {
     fixture = TestBed.createComponent(ComprehensiveDashboardComponent);
     component = fixture.componentInstance;
-
     ngbModalService = TestBed.get(NgbModal);
     injector = getTestBed();
     loader = TestBed.get(LoaderService);
@@ -155,35 +131,22 @@ describe('DashboardComponent', () => {
     navbarService = TestBed.get(NavbarService);
     footerService = TestBed.get(FooterService);
     translateService = injector.get(TranslateService);
-    //translateService.use('en');
     comprehensiveService = TestBed.get(ComprehensiveService);
     comprehensiveAPiService = TestBed.get(comprehensiveAPiService);
-
-    //router = new RouterStub();
     httpClientSpy = jasmine.createSpyObj('HttpClient', ['post']);
-
-
     translateService.setTranslation('en', translations);
     translateService.use('en');
     fixture.detectChanges();
   });
 
-  
-
   it('should create', () => {
     expect(component).toBeTruthy();
   });
-
-
-
   afterEach(() => {
     TestBed.resetTestingModule();
     spyOn(appService, 'clearPromoCode');
     component.comprehensivePlanning=4;
-
     component.setComprehensivePlan(true);
-   
-   
   });
   it('ngOnInit', () => {
     component.showFixedToastMessage = true;
@@ -192,7 +155,6 @@ describe('DashboardComponent', () => {
   });
   it('generateReport', () => {
     component.generateReport();
-
   });
   it('downloadComprehensiveReport', () => {
     component.downloadComprehensiveReport();
@@ -232,7 +194,7 @@ describe('DashboardComponent', () => {
     }, 3000);
   });
   
-  it('testing the proceed button', async(() => {
+  it('testing the proceed button', waitForAsync(() => {
     spyOn(component, 'setComprehensiveDashboard');
   }));
 

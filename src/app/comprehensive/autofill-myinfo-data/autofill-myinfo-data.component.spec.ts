@@ -1,4 +1,4 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { waitForAsync, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { AutofillMyinfoDataComponent } from './autofill-myinfo-data.component';
 
@@ -6,7 +6,7 @@ describe('AutofillMyinfoDataComponent', () => {
   let component: AutofillMyinfoDataComponent;
   let fixture: ComponentFixture<AutofillMyinfoDataComponent>;
 
-  beforeEach(async(() => {
+  beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
       declarations: [ AutofillMyinfoDataComponent ]
     })

@@ -268,7 +268,8 @@
         "Parent",
         "Sibling",
         "Others"
-      ]
+      ],
+      "DEPENDANT_TXT_LBL": "Dependant"
     },
     "DEPENDANT_EDUCATION": {
       "ABOUT": "Do you want to save up for your child's university education?",
@@ -809,6 +810,8 @@
       "DESC": "Why not put a little aside from your monthly surplus to pamper yourself on rough days without guilt or worry?",
       "LABEL_DESC": "Your monthly allocation to your Bad Mood Fund.",
       "MONTHLY_AMOUNT": "Monthly Amount",
+      "MIN_LBL": "Min",
+      "MAX_LBL": "Max.",
       "HOSPITAL_CHOICE": "Hospital Choice",
       "HOSPITAL_CHOICE_DESC": "If you are ill or injured, which hospital ward will you choose?",
       "BAD_MOOD_FUND_BUCKET": "down-on-luck.svg",

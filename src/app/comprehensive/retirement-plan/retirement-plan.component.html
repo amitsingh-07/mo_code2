@@ -13,8 +13,6 @@
   <div class="comprehensive__page-content">{{'CMP.RETIREMENT_PLAN.SUB_TITLE'|translate}} </div>
   <div class="income-bucket-panel">
     <div class="income-bucket-panel__img retirementImg"></div>
-    <!--<div class="income-bucket-panel__desc mb30">{{'CMP.RETIREMENT_PLAN.ABOUT'|translate}} <span
-        class='income-bucket-panel__value'>{{sliderValue}}</span></div>-->
   </div>
   <div class="flex-row">
     <div class="flex-col-6 align-center">
@@ -32,7 +30,6 @@
       </div>
     </div>
   </div>
-
   <form [formGroup]="retirementPlanForm" name="retirementPlanForm">
     <div class="slider-dark mt20">
       <nouislider [disabled]="viewMode" id="retirementSlider" #ciMultiplierSlider (slide)="onSliderChange($event)"
@@ -102,7 +99,6 @@
                       <i>$</i>
                       <input appComprehensiveViewMode="{{viewMode}}" mode=1 type="text" class="input-control"
                         appCurrencyInput maxLength="6" #monthlyPayout formControlName="monthlyPayout">
-
                     </div>
                   </div>
                 </div>
@@ -168,7 +164,6 @@
                     </div>
                     <div class="delete-icon" (click)="deleteRetirementDetails(i,'lumpSumBenefitSet')"
                       id="retirementDeleteIcon" *ngIf="!viewMode "></div>
-
                   </div>
                 </div>
               </div>
@@ -186,7 +181,6 @@
                       <i>$</i>
                       <input appComprehensiveViewMode="{{viewMode}}" mode=1 type="text" class="input-control"
                         appCurrencyInput maxLength="7" #maturityAmount formControlName="maturityAmount">
-
                     </div>
                   </div>
                 </div>
@@ -203,7 +197,6 @@
                       <input id="maturityYear" appComprehensiveViewMode="{{viewMode}}" mode=1 type="text"
                         class="input-control" [value]=" " [placeholder]="'CMP.MY_SPENDINGS.ENTER_YEAR'|translate"
                         maxLength="4" #maturityYear formControlName="maturityYear">
-
                     </div>
                   </div>
                 </div>
@@ -239,7 +232,6 @@
       <!--Form label /-->
     </div>
   </form>
-
   <div class="footer-cta">
     <button type="button" (click)="goToNext(retirementPlanForm)" class="btn btn-primary mt30 width100"
       id="moDpdnt2BtnFooter">{{

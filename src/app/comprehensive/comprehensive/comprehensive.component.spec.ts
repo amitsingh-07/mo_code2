@@ -47,8 +47,6 @@ describe('ComprehensiveComponent', () => {
   let location: Location;
   let ngbModalService: NgbModal;
   let formBuilder: FormBuilder;
-
-
   let progressTrackerService: ProgressTrackerService;
   let footerService: FooterService;
   let translateService: TranslateService;
@@ -69,7 +67,6 @@ describe('ComprehensiveComponent', () => {
       return true;
     }
   };
-  //let translations: any = '';
   let translations = require('../../../assets/i18n/comprehensive/en.json');
   const routerStub = {
     navigate: jasmine.createSpy('navigate'),
@@ -130,14 +127,12 @@ describe('ComprehensiveComponent', () => {
   beforeEach(() => {
     fixture = TestBed.createComponent(ComprehensiveComponent);
     component = fixture.componentInstance;
-
     ngbModalService = TestBed.inject(NgbModal);
     injector = getTestBed();
     loader = TestBed.inject(LoaderService);
     location = TestBed.inject(Location);
     http = TestBed.inject(HttpTestingController);
     formBuilder = TestBed.inject(FormBuilder);
-
     appService = TestBed.inject(AppService);
     apiService = TestBed.inject(ApiService);
     authService = TestBed.inject(AuthenticationService);
@@ -148,12 +143,10 @@ describe('ComprehensiveComponent', () => {
     comprehensiveAPiService = TestBed.get(comprehensiveAPiService);
     progressTrackerService = TestBed.inject(ProgressTrackerService);
     httpClientSpy = jasmine.createSpyObj('HttpClient', ['post']);
-
     translateService.setTranslation('en', translations);
     translateService.use('en');
     fixture.detectChanges();
   });
-
 
   afterEach(() => {
     TestBed.resetTestingModule();

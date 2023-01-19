@@ -1,5 +1,5 @@
 
-import { async, ComponentFixture, getTestBed, TestBed } from '@angular/core/testing';
+import { waitForAsync, ComponentFixture, getTestBed, TestBed } from '@angular/core/testing';
 import { FormBuilder, ReactiveFormsModule } from '@angular/forms';
 import { Location, DatePipe } from '@angular/common';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
@@ -17,37 +17,28 @@ import { ProgressTrackerService } from './../../shared/modal/progress-tracker/pr
 import { NavbarService } from './../../shared/navbar/navbar.service';
 import { ComprehensiveApiService } from './../comprehensive-api.service';
 import { ComprehensiveService } from './../comprehensive.service';
-
 import { CurrencyPipe } from '@angular/common';
-
-import { tokenGetterFn, mockCurrencyPipe } from
-  '../../../assets/mocks/service/shared-service';
-
+import { tokenGetterFn, mockCurrencyPipe } from '../../../assets/mocks/service/shared-service';
 import { FooterService } from './../../shared/footer/footer.service';
 import { HeaderService } from './../../shared/header/header.service';
 import { createTranslateLoader } from '../comprehensive.module';
 import { AppService } from './../../app.service';
 import { ApiService } from './../../shared/http/api.service';
 import { AuthenticationService } from './../../shared/http/auth/authentication.service';
-
 import { ErrorModalComponent } from './../../shared/modal/error-modal/error-modal.component';
 import { StepIndicatorComponent } from './../../shared/components/step-indicator/step-indicator.component';
 import { AboutAge } from './../../shared/utils/about-age.util';
 import { RoutingService } from './../../shared/Services/routing.service';
-
 import { MyProfileComponent } from './my-profile.component';
 
 describe('MyProfileComponent', () => {
   let component: MyProfileComponent;
   let fixture: ComponentFixture<MyProfileComponent>;
-
   let injector: Injector;
   let location: Location;
   let ngbModalService: NgbModal;
   let ngbModalRef: NgbModalRef;
   let formBuilder: FormBuilder;
-
-
   let comp: MyProfileComponent;
   let progressTrackerService: ProgressTrackerService;
   let footerService: FooterService;
@@ -69,13 +60,12 @@ describe('MyProfileComponent', () => {
       return true;
     }
   };
-  //let translations: any = '';
   let translations = require('../../../assets/i18n/comprehensive/en.json');
   const routerStub = {
     navigate: jasmine.createSpy('navigate'),
     navigateByUrl: jasmine.createSpy('navigateByUrl')
   };
-  beforeEach(async(() => {
+  beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
       declarations: [MyProfileComponent, ErrorModalComponent, StepIndicatorComponent],
       imports: [
@@ -94,9 +84,7 @@ describe('MyProfileComponent', () => {
           }
         }),
         HttpClientTestingModule,
-        //RouterTestingModule.withRoutes(routes),
-        RouterTestingModule.withRoutes([]),
-        //RouterModule.forRoot(routes)
+        RouterTestingModule.withRoutes([])
       ],
       schemas: [NO_ERRORS_SCHEMA],
       providers: [
@@ -121,44 +109,34 @@ describe('MyProfileComponent', () => {
         RoutingService,
         JwtHelperService,
         ProgressTrackerService,
-       // { provide: APP_BASE_HREF, useValue: '/' },
-       // { provide: Router, useClass: RouterStub },
-
        {provide: ActivatedRoute, useValue: route}
       ]
     })
       .overrideModule(BrowserDynamicTestingModule, { set: { entryComponents: [ErrorModalComponent, StepIndicatorComponent] } })
       .compileComponents();
-    router = TestBed.get(Router);	
-    //router.initialNavigation();
-    //spyOn(router, 'navigateByUrl');
+      router = TestBed.get(Router);	
   }));
 
   beforeEach(() => {
     fixture = TestBed.createComponent(MyProfileComponent);
     component = fixture.componentInstance;
-
     ngbModalService = TestBed.get(NgbModal);
     injector = getTestBed();
     loader = TestBed.get(LoaderService);
     location = TestBed.get(Location);
     http = TestBed.get(HttpTestingController);
     formBuilder = TestBed.get(FormBuilder);
-
     appService = TestBed.get(AppService);
     apiService = TestBed.get(ApiService);
     authService = TestBed.get(AuthenticationService);
     navbarService = TestBed.get(NavbarService);
     footerService = TestBed.get(FooterService);
     translateService = injector.get(TranslateService);
-
     comprehensiveService = TestBed.get(ComprehensiveService);
     progressTrackerService = TestBed.get(ProgressTrackerService);
-    //router = new RouterStub();
     httpClientSpy = jasmine.createSpyObj('HttpClient', ['post']);
- 
     translateService.setTranslation('en', translations);
-	translateService.use('en');
+	  translateService.use('en');
     fixture.detectChanges();
     component.ngOnInit();
   });
@@ -170,8 +148,6 @@ describe('MyProfileComponent', () => {
     spyOn(comprehensiveService, 'getComprehensiveEnquiry').and.returnValue(true);
     navbarService.setNavbarComprehensive(true);
     component.myProfileShow=true;
-   
-
   });
 
   it('should create', () => {

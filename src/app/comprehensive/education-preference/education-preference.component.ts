@@ -4,7 +4,6 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { TranslateService } from '@ngx-translate/core';
 import { Subscription } from 'rxjs';
 import { NouisliderComponent } from 'ng2-nouislider';
-
 import { COMPREHENSIVE_FORM_CONSTANTS } from '../comprehensive-form-constants';
 import { COMPREHENSIVE_ROUTE_PATHS } from '../comprehensive-routes.constants';
 import { IChildEndowment } from '../comprehensive-types';
@@ -129,16 +128,13 @@ export class EducationPreferenceComponent implements OnInit, OnDestroy, AfterVie
     });
     this.EducationPreferenceForm = this.formBuilder.group({
       preference: this.formBuilder.array(preferenceArray),
-
     });
-
   }
   buildPreferenceDetailsForm(value): FormGroup {
     const selectionDetails = [];
     if (value.preferenceSelection) {
       selectionDetails.push(Validators.required);
     }
-
     return this.formBuilder.group({
       name: [value.name],
       age: [value.age],
@@ -153,7 +149,6 @@ export class EducationPreferenceComponent implements OnInit, OnDestroy, AfterVie
     const relationship = status ? status : '';
     this.EducationPreferenceForm.controls['preference']['controls'][i].controls.location.setValue(relationship);
     this.EducationPreferenceForm.controls['preference']['controls'][i].markAsDirty();
-
   }
   selectCourse(status, i) {
     const gender = status ? status : '';

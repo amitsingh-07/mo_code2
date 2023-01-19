@@ -1,4 +1,3 @@
-
 import { APP_ROUTES } from '../app-routes.constants';
 
 export const COMPREHENSIVE_BASE_ROUTE = '../' + APP_ROUTES.COMPREHENSIVE + '/';

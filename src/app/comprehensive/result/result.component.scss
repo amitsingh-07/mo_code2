@@ -9,14 +9,13 @@
     justify-content: space-between;
   }
   background: $white-color;
-  //height: 100% !important;
   @include desktop {
     &.container-fluid {
       padding: 90px 20px 20px 20px;
     }
   }
   .header {
-    color: #066360;
+    color: $watercourse-color;
     font-size: 24px;
     font-family: $muli-bold;
     @include allmobiles {
@@ -36,7 +35,7 @@
   .result-panel {
     &__about {
       font-size: 14px;
-      color: #9f9f9f;
+      color: $dark-silver-chalice-color;
       font-family: $muli-light-italic;
       @include allmobiles {
         padding: 0 14%;
@@ -45,18 +44,18 @@
   }
   .about {
     font-size: 16px;
-    color: #066360;
+    color: $watercourse-color;
     font-family: $muli-regular;
 
     .email {
       font-weight: bold;
-      color: #00aaa8;
+      color: $persian-teal-green-color;
     }
   }
 
   .what-next {
     border-radius: 6px;
-    background-color: #00a7a7;
+    background-color: $teal-color;
     width: 100%;
     padding: 30px;
     &--title {
