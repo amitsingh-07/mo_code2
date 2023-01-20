@@ -1,6 +1,5 @@
 import { Subscription } from 'rxjs';
 
-import { Location } from '@angular/common';
 import { Component, OnDestroy, OnInit, ViewChild, ViewEncapsulation } from '@angular/core';
 import { FormArray, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
@@ -48,7 +47,6 @@ export class MyFamilyComponent implements OnInit, OnDestroy {
     private formBuilder: FormBuilder,
     private parserFormatter: NgbDateParserFormatter,
     private router: Router,
-    private _location: Location,
     public footerService: FooterService,
     private modal: NgbModal, public navbarService: NavbarService,
     private translate: TranslateService,
@@ -108,7 +106,7 @@ export class MyFamilyComponent implements OnInit, OnDestroy {
         if (this.myFamilyForm.dirty) {
           this.pageTitleComponent.goBack();
         } else {
-          this._location.back();
+          this.navbarService.goBack();
         }
         return false;
       }

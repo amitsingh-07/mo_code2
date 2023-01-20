@@ -1,5 +1,4 @@
 import { flatMap } from 'rxjs/operators';
-import { Location } from '@angular/common';
 import {
   AfterViewInit, ChangeDetectorRef, Component, OnInit, ViewEncapsulation
 } from '@angular/core';
@@ -84,7 +83,6 @@ export class CreateAccountComponent implements OnInit, AfterViewInit {
     private route: ActivatedRoute,
     private router: Router,
     private translate: TranslateService,
-    private _location: Location,
     private authService: AuthenticationService,
     private appService: AppService,
     private apiService: ApiService,
@@ -538,7 +536,7 @@ export class CreateAccountComponent implements OnInit, AfterViewInit {
   }
 
   goBack() {
-    this._location.back();
+    this.navbarService.goBack();
   }
 
   openTermsOfConditions() {

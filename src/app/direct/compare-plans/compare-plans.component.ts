@@ -1,4 +1,4 @@
-import { CurrencyPipe, Location, TitleCasePipe } from '@angular/common';
+import { CurrencyPipe, TitleCasePipe } from '@angular/common';
 import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { TranslateService } from '@ngx-translate/core';
@@ -25,7 +25,7 @@ export class ComparePlansComponent implements OnInit {
   retirementIncome: any;
   constructor(
     public headerService: HeaderService, public directService: DirectService,
-    public readonly translate: TranslateService, private _location: Location,
+    public readonly translate: TranslateService,
     public titlecase: TitleCasePipe, private modal: NgbModal, private currency: CurrencyPipe,
     public navbarService: NavbarService) {
     this.translate.use('en');
@@ -63,7 +63,7 @@ export class ComparePlansComponent implements OnInit {
   }
 
   close() {
-    this._location.back();
+    this.navbarService.goBack();
   }
 
   viewDetails(plan) {

@@ -1,4 +1,3 @@
-import { Location } from '@angular/common';
 import { Component, OnDestroy, OnInit, ViewChild, ViewEncapsulation } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
@@ -42,7 +41,6 @@ export class MyEstateDistributionComponent implements OnInit, OnDestroy {
     private translate: TranslateService,
     private willWritingService: WillWritingService,
     private formBuilder: FormBuilder,
-    private _location: Location,
     private modal: NgbModal,
     public footerService: FooterService,
     public navbarService: NavbarService,
@@ -78,7 +76,7 @@ export class MyEstateDistributionComponent implements OnInit, OnDestroy {
         if (this.distributionForm.dirty) {
           this.pageTitleComponent.goBack();
         } else {
-          this._location.back();
+          this.navbarService.goBack();
         }
         return false;
       }

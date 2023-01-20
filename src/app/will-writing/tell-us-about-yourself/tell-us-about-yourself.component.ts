@@ -1,4 +1,3 @@
-import { Location } from '@angular/common';
 import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { Router } from '@angular/router';
 import { TranslateService } from '@ngx-translate/core';
@@ -13,12 +12,8 @@ import { WILL_WRITING_ROUTE_PATHS } from '../will-writing-routes.constants';
 })
 export class TellUsAboutYourselfComponent implements OnInit {
 
-  constructor(
-    private translate: TranslateService, 
-    private router: Router,
-    public footerService: FooterService,
-    private _location: Location, 
-    public navbarService: NavbarService) {
+  constructor(private translate: TranslateService, private router: Router,
+    public footerService: FooterService, public navbarService: NavbarService) {
     this.translate.use('en');
   }
 
@@ -30,6 +25,6 @@ export class TellUsAboutYourselfComponent implements OnInit {
     this.router.navigate([WILL_WRITING_ROUTE_PATHS.ABOUT_ME]);
   }
   goBack() {
-    this._location.back();
+    this.navbarService.goBack();
   }
 }

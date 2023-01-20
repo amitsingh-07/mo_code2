@@ -1,4 +1,3 @@
-import { Location } from '@angular/common';
 import {
   AfterViewInit, ChangeDetectorRef, Component, ElementRef, HostListener, OnDestroy, OnInit,
   ViewChild, ViewEncapsulation
@@ -81,7 +80,6 @@ export class LoginComponent implements OnInit, AfterViewInit, OnDestroy {
     private signUpService: SignUpService,
     private route: ActivatedRoute,
     private router: Router,
-    private _location: Location,
     private translate: TranslateService,
     private selectedPlansService: SelectedPlansService,
     private changeDetectorRef: ChangeDetectorRef,
@@ -455,7 +453,7 @@ export class LoginComponent implements OnInit, AfterViewInit, OnDestroy {
   }
 
   goBack() {
-    this._location.back();
+    this.navbarService.goBack();
   }
 
   refreshCaptcha() {

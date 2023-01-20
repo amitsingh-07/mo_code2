@@ -1,4 +1,3 @@
-import { Location } from '@angular/common';
 import {
   ChangeDetectorRef,
   Component,
@@ -88,7 +87,7 @@ export class ProductInfoComponent implements OnInit, OnDestroy {
     private directApiService: DirectApiService, private googleAnalyticsService: GoogleAnalyticsService,
     private cdRef: ChangeDetectorRef, private configService: ConfigService,
     private authService: AuthenticationService, public navbarService: NavbarService,
-    private _location: Location, private planService: SelectedPlansService,
+    private planService: SelectedPlansService,
     private stateStoreService: StateStoreService) {
     this.translate.use('en');
     this.translate.get('COMMON').subscribe((result: string) => {
@@ -179,7 +178,7 @@ export class ProductInfoComponent implements OnInit, OnDestroy {
           this.directService.setModalFreeze(false);
           this.navbarService.setPageTitle(this.resultsPageTitle, null, false, true);
         } else {
-          this._location.back();
+          this.navbarService.goBack();
         }
       }
     });

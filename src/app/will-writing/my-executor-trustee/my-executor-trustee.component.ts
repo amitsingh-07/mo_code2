@@ -1,4 +1,3 @@
-import { Location } from '@angular/common';
 import { Component, OnDestroy, OnInit, ViewChild, ViewEncapsulation } from '@angular/core';
 import { FormArray, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
@@ -55,7 +54,6 @@ export class MyExecutorTrusteeComponent implements OnInit, OnDestroy {
     private willWritingService: WillWritingService,
     public footerService: FooterService,
     public navbarService: NavbarService,
-    private _location: Location,
     private modal: NgbModal,
     private router: Router
   ) {
@@ -98,7 +96,7 @@ export class MyExecutorTrusteeComponent implements OnInit, OnDestroy {
         if (this.addExeTrusteeForm.dirty) {
           this.pageTitleComponent.goBack();
         } else {
-          this._location.back();
+          this.navbarService.goBack();
         }
         return false;
       }
