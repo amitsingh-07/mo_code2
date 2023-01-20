@@ -65,5 +65,6 @@ export let appConstants = {
    MYINFO_LINK_INSURANCE: 'insurance',
    MYINFO_INSURANCE_ATTRIBUTES: ['uinfin','cpfbalances'],
    CHECK_MYINFO_INSURANCE_ATTRIBUTES: 'uinfin,cpfbalances',
-   RESTRICTED_HYPERLINK_URL_CONTENTS: ['mailto', 'javascript: void(0)', 'tel:', 'callto:', '.pdf']
+   RESTRICTED_HYPERLINK_URL_CONTENTS: ['mailto', 'javascript: void(0)', 'tel:', 'callto:', '.pdf'],
+   COMPREHENSIVE_PAYMENT_FAQ: 'https://www.moneyowl.com.sg/faq-comprehensive/#comprehensive|2'
 };
