@@ -3,9 +3,10 @@ import { Component, Input, OnInit, ViewEncapsulation } from '@angular/core';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { Router } from '@angular/router';
 import { TranslateService } from '@ngx-translate/core';
+
 import { ErrorModalComponent } from '../../shared/modal/error-modal/error-modal.component';
 import { WillWritingService } from '../will-writing.service';
-import { NavbarService } from 'src/app/shared/navbar/navbar.service';
+import { NavbarService } from '../../shared/navbar/navbar.service';
 @Component({
   selector: 'app-page-title',
   templateUrl: './page-title.component.html',

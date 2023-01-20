@@ -47,10 +47,10 @@ export class RecommendedCardComponent implements OnInit {
     private readonly translate: TranslateService
   ) {
     this.translate.use('en');
-    this.getRecommendedCards();
   }
 
   ngOnInit(): void {
+    this.getRecommendedCards();
   }
 
   // Setting the next slide index on beforeChange event fire
