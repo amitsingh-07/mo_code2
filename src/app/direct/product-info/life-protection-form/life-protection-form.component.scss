@@ -10,14 +10,14 @@ app-life-protection-form {
   @include allmobiles {
     .direct-form-grp .btn-group--toggle .direct-form-btn--radio.disabled:hover {
       border-color: rgba(0, 135, 134, 0.4) !important;
-      color: #99cfce !important;
+      color: $light-teal-color !important;
     }
   }
 
   @include desktop {
     .direct-form-grp .btn-group--toggle .direct-form-btn--radio.disabled:hover {
       border-color: rgba(0, 135, 134, 0.4) !important;
-      color: #00a7a7 !important;
+      color: $teal-color !important;
     }
   }
 

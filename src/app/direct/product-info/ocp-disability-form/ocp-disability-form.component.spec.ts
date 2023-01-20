@@ -1,4 +1,4 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { waitForAsync, ComponentFixture, TestBed } from '@angular/core/testing';
 import { DirectService } from './../../direct.service';
 import { OcpDisabilityFormComponent } from './ocp-disability-form.component';
 
@@ -10,7 +10,7 @@ describe('OcpDisabilityFormComponent', () => {
   let fixture: ComponentFixture<OcpDisabilityFormComponent>;
   let directService: DirectService;
 
-  beforeEach(async(() => {
+  beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
       imports: [ReactiveFormsModule, FormsModule],
       declarations: [ OcpDisabilityFormComponent],
@@ -74,7 +74,7 @@ describe('OcpDisabilityFormComponent', () => {
     expect(dobObj.month).toBe('10');
     expect(dobObj.day).toBe('04');
   });
-  it('testing the duration dropdown', async(() => {
+  it('testing the duration dropdown', waitForAsync(() => {
     spyOn(component, 'duration');
     const dropdownButton = fixture.debugElement.nativeElement.querySelector('#durationDropDown button');
     const dropdownItem = fixture.debugElement.nativeElement.querySelector('.dropdown-item');

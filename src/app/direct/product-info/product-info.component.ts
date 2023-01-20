@@ -1,5 +1,4 @@
 import {
-  ChangeDetectorRef,
   Component,
   EventEmitter,
   Input,
@@ -8,7 +7,6 @@ import {
   Output,
   ViewEncapsulation
 } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
 import { NgbModal, NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
 import { TranslateService } from '@ngx-translate/core';
 import { Subscription } from 'rxjs';
@@ -21,7 +19,6 @@ import { ConfigService, IConfig } from './../../config/config.service';
 import { HeaderService } from './../../shared/header/header.service';
 import { AuthenticationService } from './../../shared/http/auth/authentication.service';
 import { ToolTipModalComponent } from './../../shared/modal/tooltip-modal/tooltip-modal.component';
-import { SelectedPlansService } from './../../shared/Services/selected-plans.service';
 import { StateStoreService } from './../../shared/Services/state-store.service';
 import { DirectResultsComponent } from './../direct-results/direct-results.component';
 import { DirectApiService } from './../direct.api.service';
@@ -66,28 +63,12 @@ export class ProductInfoComponent implements OnInit, OnDestroy {
   selectedCategoryId = 0;
 
   minProdSearch: string;
-  /*
-    @HostListener('window:resize', ['$event'])
-    onResize(event) {
-      this.innerWidth = window.innerWidth;
-      if (this.innerWidth < this.mobileThreshold) {
-        this.toggleFormVisibility = false;
-        this.directService.setModalFreeze(false);
-        this.searchText = this.translate.instant('COMMON.LBL_CONTINUE');
-      } else {
-        this.toggleSelectVisibility = true;
-        this.toggleFormVisibility = true;
-        this.searchText = this.translate.instant('COMMON.LBL_SEARCH_PLAN');
-      }
-    }
-  */
   constructor(
     public headerService: HeaderService, private directService: DirectService,
-    private modal: NgbModal, private translate: TranslateService, private route: ActivatedRoute,
+    private modal: NgbModal, private translate: TranslateService,
     private directApiService: DirectApiService, private googleAnalyticsService: GoogleAnalyticsService,
-    private cdRef: ChangeDetectorRef, private configService: ConfigService,
+    private configService: ConfigService,
     private authService: AuthenticationService, public navbarService: NavbarService,
-    private planService: SelectedPlansService,
     private stateStoreService: StateStoreService) {
     this.translate.use('en');
     this.translate.get('COMMON').subscribe((result: string) => {

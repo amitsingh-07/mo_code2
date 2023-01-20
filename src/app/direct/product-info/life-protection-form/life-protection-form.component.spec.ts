@@ -1,5 +1,5 @@
 
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { waitForAsync, ComponentFixture, TestBed } from '@angular/core/testing';
 import { DirectService } from './../../direct.service';
 
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
@@ -11,13 +11,13 @@ describe('LifeProtectionFormComponent', () => {
   let fixture: ComponentFixture<LifeProtectionFormComponent>;
   let directService: DirectService;
 
-  beforeEach(async(() => {
+  beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
       imports: [ReactiveFormsModule, FormsModule],
-      declarations: [ LifeProtectionFormComponent],
+      declarations: [LifeProtectionFormComponent],
       providers: [DirectService]
     })
-    .compileComponents();
+      .compileComponents();
 
     directService = TestBed.get(DirectService);
   }));
@@ -75,7 +75,7 @@ describe('LifeProtectionFormComponent', () => {
     expect(dobObj.month).toBe('10');
     expect(dobObj.day).toBe('04');
   });
-  it('testing the Coverage Amount dropdown', async(() => {
+  it('testing the Coverage Amount dropdown', waitForAsync(() => {
     spyOn(component, 'coverage_amt');
     const dropdownButton = fixture.debugElement.nativeElement.querySelector('#getStrLbl6 button');
     const dropdownItem = fixture.debugElement.nativeElement.querySelector('.dropdown-item');
@@ -87,7 +87,7 @@ describe('LifeProtectionFormComponent', () => {
       });
     });
   }));
-  it('testing the duration dropdown', async(() => {
+  it('testing the duration dropdown', waitForAsync(() => {
     spyOn(component, 'duration');
     const dropdownButton = fixture.debugElement.nativeElement.querySelector('#getStrLbl7 button');
     const dropdownItem = fixture.debugElement.nativeElement.querySelector('.dropdown-item');

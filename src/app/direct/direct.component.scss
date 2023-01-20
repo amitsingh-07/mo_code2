@@ -1,5 +1,6 @@
 @import '../../variables';
 @import '../../mixins';
+
 app-direct {
 
   .banner-image {
@@ -45,9 +46,11 @@ app-direct {
     span.btn-close {
       right: 20px;
       position: absolute;
+
       @include iPadLandscape {
         position: fixed;
       }
+
       top: 20px;
       background: url("../../assets/images/direct-btn-close.svg");
       width: 45px;
@@ -55,6 +58,7 @@ app-direct {
       cursor: pointer;
       z-index: 1040;
     }
+
     /*
     span.block {
       top: 0px;

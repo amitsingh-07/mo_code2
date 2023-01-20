@@ -1,46 +1,56 @@
 <div class="prod-info" [ngClass]="{'show': toggleVisibility, 'full': toggleVisibility && !toggleSelectVisibility}">
   <div class="prod-cat-list__wrapper" [ngClass]="{'show': toggleSelectVisibility}">
-    <div class="prod-cat-list-title hidden-lg">{{'COVERAGE.TITLE' | translate}}</div> 
+    <div class="prod-cat-list-title hidden-lg">{{'COVERAGE.TITLE' | translate}}</div>
     <div class="prod-cat-list-close hidden-lg" (click)="openProductCategory(0)"></div>
     <div class="prod-cat-list">
       <ng-container *ngFor="let productCategory of productCategoryList; let i = index">
-        <app-product-category [data]="productCategory" (click)="openProductCategory(i)" *ngIf="productCategory && !productCategory.isHidden"></app-product-category>
+        <app-product-category [data]="productCategory" (click)="openProductCategory(i)"
+          *ngIf="productCategory && !productCategory.isHidden"></app-product-category>
       </ng-container>
     </div>
   </div>
   <div class="prod-form__wrapper" [ngClass]="{'show': toggleFormVisibility}">
     <div class="form-group direct-form sm--view">
       <div class="flex-row">
-          <div class="flex-col-3">
-            <label for="name" id="getStrLbl6">{{ 'COVERAGE.MOBILE_TITLE' | translate}}</label>
-          </div>
-          <div class="flex-col-8 direct-form-grp">
-            <div class="dropdown-control">
-                <div ngbDropdown id="productCatDropDown">
-                  <button type="button" class="btn btn-dropdown without-border" id="dropdownBasic1" ngbDropdownToggle>
-                    <span class="coverage_amt">{{productCategorySelected}}</span>
-                  </button>
-                  <div ngbDropdownMenu aria-labelledby="dropdownBasic1">
-                    <ng-container  *ngFor="let productCategory of productCategoryList; let i = index">
-                      <button type="button" class="dropdown-item" (click)="selectProductCategory(productCategory, i)" *ngIf="productCategory && !productCategory.isHidden">
-                        {{productCategory.prodCatName}}
-                      </button>
-                    </ng-container>
-                  </div>
-                </div>
-              </div>
-          </div> 
+        <div class="flex-col-3">
+          <label for="name" id="getStrLbl6">{{ 'COVERAGE.MOBILE_TITLE' | translate}}</label>
         </div>
+        <div class="flex-col-8 direct-form-grp">
+          <div class="dropdown-control">
+            <div ngbDropdown id="productCatDropDown">
+              <button type="button" class="btn btn-dropdown without-border" id="dropdownBasic1" ngbDropdownToggle>
+                <span class="coverage_amt">{{productCategorySelected}}</span>
+              </button>
+              <div ngbDropdownMenu aria-labelledby="dropdownBasic1">
+                <ng-container *ngFor="let productCategory of productCategoryList; let i = index">
+                  <button type="button" class="dropdown-item" (click)="selectProductCategory(productCategory, i)"
+                    *ngIf="productCategory && !productCategory.isHidden">
+                    {{productCategory.prodCatName}}
+                  </button>
+                </ng-container>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
     <div class="product-info-form-wrapper">
-      <app-life-protection-form (formSubmitted)="formSubmitted($event)" [hidden]="selectedCategoryId != 1"></app-life-protection-form>
-      <app-critical-illness-form (formSubmitted)="formSubmitted($event)" [hidden]="selectedCategoryId != 2"></app-critical-illness-form>
-      <app-ocp-disability-form (formSubmitted)="formSubmitted($event)" [hidden]="selectedCategoryId != 3"></app-ocp-disability-form>
-      <app-hospital-plan-form (formSubmitted)="formSubmitted($event)" [hidden]="selectedCategoryId != 4"></app-hospital-plan-form>
-      <app-long-term-care-form (formSubmitted)="formSubmitted($event)" [hidden]="selectedCategoryId != 5"></app-long-term-care-form>
-      <app-education-form (formSubmitted)="formSubmitted($event)" [hidden]="selectedCategoryId != 6"></app-education-form>
-      <app-retirement-income-form (formSubmitted)="formSubmitted($event)" [hidden]="selectedCategoryId != 7"></app-retirement-income-form>
-      <app-srs-approved-plans-form (formSubmitted)="formSubmitted($event)" [hidden]="selectedCategoryId != 8"></app-srs-approved-plans-form>
+      <app-life-protection-form (formSubmitted)="formSubmitted($event)"
+        [hidden]="selectedCategoryId != 1"></app-life-protection-form>
+      <app-critical-illness-form (formSubmitted)="formSubmitted($event)"
+        [hidden]="selectedCategoryId != 2"></app-critical-illness-form>
+      <app-ocp-disability-form (formSubmitted)="formSubmitted($event)"
+        [hidden]="selectedCategoryId != 3"></app-ocp-disability-form>
+      <app-hospital-plan-form (formSubmitted)="formSubmitted($event)"
+        [hidden]="selectedCategoryId != 4"></app-hospital-plan-form>
+      <app-long-term-care-form (formSubmitted)="formSubmitted($event)"
+        [hidden]="selectedCategoryId != 5"></app-long-term-care-form>
+      <app-education-form (formSubmitted)="formSubmitted($event)"
+        [hidden]="selectedCategoryId != 6"></app-education-form>
+      <app-retirement-income-form (formSubmitted)="formSubmitted($event)"
+        [hidden]="selectedCategoryId != 7"></app-retirement-income-form>
+      <app-srs-approved-plans-form (formSubmitted)="formSubmitted($event)"
+        [hidden]="selectedCategoryId != 8"></app-srs-approved-plans-form>
       <button (click)="openContactForm()" class="btn btn-primary manual-contact-btn">
         <span class="btn-icon"><img src="assets/images/direct/star-icon.svg"></span>
         <span class="ml5">{{ 'COVERAGE.MANUAL_CONTACT_BTN' | translate}}</span>
@@ -48,7 +58,7 @@
     </div>
   </div>
   <button class="btn search-btn" [ngClass]="{'show': toggleFormVisibility}" (click)="search(selectedCategoryId)">
-    {{searchText}} 
+    {{searchText}}
   </button>
 </div>
 

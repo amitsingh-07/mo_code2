@@ -7,7 +7,8 @@
       <div class="flex-col-8 direct-form-grp">
         <div class="btn-group--toggle" name="radioGender">
           <app-custom-radio-controller formControlName="gender" name="gender" [radioLabelValue]="radioLabelValue"
-          [defaultLabelStyleClass]="defaultRadioStyleClass" (valueChangedEvent)="onGenderChange()" flexRowMarPadClass="mb0"></app-custom-radio-controller>
+            [defaultLabelStyleClass]="defaultRadioStyleClass" (valueChangedEvent)="onGenderChange()"
+            flexRowMarPadClass="mb0"></app-custom-radio-controller>
         </div>
       </div>
     </div>
@@ -17,14 +18,18 @@
       </div>
       <div #usrFrmDp class="flex-col-8 direct-form-grp">
         <div class="datepicker-control">
-          <div class="input-group date-picker mb0" [ngClass]="{'inline-error': doberror && !srsApprovedPlansForm.get('dob').valid  && !srsApprovedPlansForm.get('dob').pristine}">
-            <input class="form-control" placeholder="DD / MM / YYYY" formControlName="dob" name="dp"
-              ngbDatepicker #d="ngbDatepicker" autocomplete="off" [minDate]="dpMinDate" [maxDate]="dpMaxDate" (blur)="onDobChange()" (dateSelect)="onDobChange()">
+          <div class="input-group date-picker mb0"
+            [ngClass]="{'inline-error': doberror && !srsApprovedPlansForm.get('dob').valid  && !srsApprovedPlansForm.get('dob').pristine}">
+            <input class="form-control" placeholder="DD / MM / YYYY" formControlName="dob" name="dp" ngbDatepicker
+              #d="ngbDatepicker" autocomplete="off" [minDate]="dpMinDate" [maxDate]="dpMaxDate" (blur)="onDobChange()"
+              (dateSelect)="onDobChange()">
             <div class="input-group-append">
               <button (click)="d.toggle()" class="btn btn-primary" type="button">
-                <img class="date-picker-image--valid" id="getStrdImg1" *ngIf="srsApprovedPlansForm.get('dob').valid || srsApprovedPlansForm.get('dob').pristine || !doberror"
+                <img class="date-picker-image--valid" id="getStrdImg1"
+                  *ngIf="srsApprovedPlansForm.get('dob').valid || srsApprovedPlansForm.get('dob').pristine || !doberror"
                   src="assets/images/calendar-normal.svg" />
-                <img class="date-picker-image--invalid" id="getStrdImg1" *ngIf="doberror && !srsApprovedPlansForm.get('dob').valid && !srsApprovedPlansForm.get('dob').pristine"
+                <img class="date-picker-image--invalid" id="getStrdImg1"
+                  *ngIf="doberror && !srsApprovedPlansForm.get('dob').valid && !srsApprovedPlansForm.get('dob').pristine"
                   src="assets/images/calendar-error.svg" />
               </button>
             </div>
@@ -54,11 +59,14 @@
         <div class="dropdown-control">
           <div ngbDropdown id="singlePremiumDropdown">
             <button type="button" class="btn btn-dropdown" id="btnSinglePremiumDropdown" ngbDropdownToggle>
-              <span class="coverage_amt">{{singlePremium == '' ? 'Select' : singlePremium  | currency:'USD':'symbol-narrow':'1.0-2'}}</span>
+              <span class="coverage_amt">{{singlePremium == '' ? 'Select' : singlePremium |
+                currency:'USD':'symbol-narrow':'1.0-2'}}</span>
             </button>
             <div ngbDropdownMenu aria-labelledby="btnSinglePremiumDropdown">
-              <button class="dropdown-item" (click)="selectSinglePremiumAmount('')">{{'COMMON.LBL_SELECT' | translate}}</button>
-              <button type="button" class="dropdown-item" *ngFor="let singlePremiumAmount of singlePremiumAmountList" (click)="selectSinglePremiumAmount(singlePremiumAmount)">
+              <button class="dropdown-item" (click)="selectSinglePremiumAmount('')">{{'COMMON.LBL_SELECT' |
+                translate}}</button>
+              <button type="button" class="dropdown-item" *ngFor="let singlePremiumAmount of singlePremiumAmountList"
+                (click)="selectSinglePremiumAmount(singlePremiumAmount)">
                 {{singlePremiumAmount | currency:'USD':'symbol-narrow':'1.0-2'}}
               </button>
             </div>
@@ -77,8 +85,10 @@
               <span class="coverage_amt">{{payoutStartAge == '' ? 'Select' : payoutStartAge}}</span>
             </button>
             <div ngbDropdownMenu aria-labelledby="dropdownBasic1">
-              <button class="dropdown-item" (click)="selectPayoutStartAge('')">{{'COMMON.LBL_SELECT' | translate}}</button>
-              <button type="button" class="dropdown-item" *ngFor="let payoutStartAge of payoutStartAgeList" (click)="selectPayoutStartAge(payoutStartAge)">
+              <button class="dropdown-item" (click)="selectPayoutStartAge('')">{{'COMMON.LBL_SELECT' |
+                translate}}</button>
+              <button type="button" class="dropdown-item" *ngFor="let payoutStartAge of payoutStartAgeList"
+                (click)="selectPayoutStartAge(payoutStartAge)">
                 {{payoutStartAge}}
               </button>
             </div>

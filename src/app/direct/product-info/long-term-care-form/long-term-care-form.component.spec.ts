@@ -1,4 +1,4 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { waitForAsync, ComponentFixture, TestBed } from '@angular/core/testing';
 import { DirectService } from './../../direct.service';
 
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
@@ -10,7 +10,7 @@ describe('LongTermCareFormComponent', () => {
   let fixture: ComponentFixture<LongTermCareFormComponent>;
   let directService: DirectService;
 
-  beforeEach(async(() => {
+  beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
       imports: [ReactiveFormsModule, FormsModule],
       declarations: [ LongTermCareFormComponent],
@@ -68,7 +68,7 @@ describe('LongTermCareFormComponent', () => {
     expect(dobObj.month).toBe('10');
     expect(dobObj.day).toBe('04');
   });
-  it('testing the Monthly Payout dropdown', async(() => {
+  it('testing the Monthly Payout dropdown', waitForAsync(() => {
     spyOn(component, 'monthlyPayoutList');
     const dropdownButton = fixture.debugElement.nativeElement.querySelector('#coverageAmtDropDown button');
     const dropdownItem = fixture.debugElement.nativeElement.querySelector('.dropdown-item');

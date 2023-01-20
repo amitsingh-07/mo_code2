@@ -1,5 +1,5 @@
-import { async, ComponentFixture, getTestBed, TestBed } from '@angular/core/testing';
-import { FormBuilder, ReactiveFormsModule, FormArray  } from '@angular/forms';
+import { waitForAsync, ComponentFixture, getTestBed, TestBed } from '@angular/core/testing';
+import { FormBuilder, ReactiveFormsModule, FormArray } from '@angular/forms';
 import { Location, DatePipe } from '@angular/common';
 import { HttpClient } from '@angular/common/http';
 import { HttpClientTestingModule, HttpTestingController } from '@angular/common/http/testing';
@@ -64,7 +64,7 @@ describe('EducationFormComponent', () => {
   let router: Router;
   let myInfoService: MyInfoService;
   let parserFormatter: NgbDateParserFormatter;
-  const route = ({ routeConfig: { component: { name: 'EducationFormComponent'} } } as any) as ActivatedRoute;
+  const route = ({ routeConfig: { component: { name: 'EducationFormComponent' } } } as any) as ActivatedRoute;
   let httpClientSpy;
   let currencyPipe: CurrencyPipe;
   let pageTitle: string;
@@ -76,9 +76,9 @@ describe('EducationFormComponent', () => {
       return true;
     }
   };
-  beforeEach(async(() => {
+  beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
-      declarations: [ EducationFormComponent, ProductDetailComponent ],
+      declarations: [EducationFormComponent, ProductDetailComponent],
       imports: [
         ReactiveFormsModule,
         TranslateModule.forRoot({
@@ -108,7 +108,7 @@ describe('EducationFormComponent', () => {
         TranslateService,
         CurrencyPipe,
         { provide: CurrencyPipe, useValue: mockCurrencyPipe },
-        TitleCasePipe, 
+        TitleCasePipe,
         FooterService,
         NavbarService,
         HeaderService,
@@ -122,7 +122,7 @@ describe('EducationFormComponent', () => {
         AboutAge
       ]
     })
-    .compileComponents();
+      .compileComponents();
   }));
 
   beforeEach(() => {
@@ -145,63 +145,63 @@ describe('EducationFormComponent', () => {
 
     translateService.setTranslation('en', translations);
     translateService.use('en');
-    
+
     fixture.detectChanges();
   });
   afterEach(() => {
     TestBed.resetTestingModule();
-    translateService.get('COMMON').subscribe((result: string) => {     
-    
+    translateService.get('COMMON').subscribe((result: string) => {
+
     });
   });
 
   it('should create', () => {
     expect(component).toBeTruthy();
   });
-  
+
   it('should trigger ngOnInit', () => {
     component.ngOnInit();
-  });  
+  });
 
   it('should trigger onGenderChange', () => {
     component.onGenderChange();
-  });  
+  });
 
   it('should trigger onDobChange', () => {
     component.onDobChange();
-  });  
+  });
 
   it('should trigger ngOnDestroy', () => {
     component.ngOnDestroy();
-  });  
+  });
 
   it('should trigger selectMonthlyContribution', () => {
     component.selectMonthlyContribution(1000);
-  });  
+  });
 
   it('should trigger selectEntryAge', () => {
     component.selectEntryAge(10);
-  }); 
+  });
 
   it('should trigger setselfform', () => {
     component.setselfform();
-  }); 
+  });
 
   it('should trigger setdefaultUniversityAge', () => {
     component.setdefaultUniversityAge();
-  }); 
+  });
 
   it('should trigger showPremiumWaiverModal', () => {
     component.showPremiumWaiverModal();
-  }); 
+  });
 
   it('should trigger summarizeDetails', () => {
     component.summarizeDetails();
-  }); 
+  });
 
   it('should trigger save', () => {
     component.save();
-  });  
+  });
 
   it('form invalid when empty', () => {
     expect(component.educationForm.valid).toBeFalsy();
@@ -239,7 +239,7 @@ describe('EducationFormComponent', () => {
     expect(dobObj.month).toBe('10');
     expect(dobObj.day).toBe('04');
   });
-  it('testing the Monthly contribution dropdown', async(() => {
+  it('testing the Monthly contribution dropdown', waitForAsync(() => {
     spyOn(component, 'monthlyContribution');
     const dropdownButton = fixture.debugElement.nativeElement.querySelector('#coverageAmtDropDown button');
     const dropdownItem = fixture.debugElement.nativeElement.querySelector('.dropdown-item');
@@ -251,7 +251,7 @@ describe('EducationFormComponent', () => {
       });
     });
   }));
-  it('testing the University Age dropdown', async(() => {
+  it('testing the University Age dropdown', waitForAsync(() => {
     spyOn(component, 'univercityEntryAge');
     const dropdownButton = fixture.debugElement.nativeElement.querySelector('#coverageAmtDropDown button');
     const dropdownItem = fixture.debugElement.nativeElement.querySelector('.dropdown-item');

@@ -60,7 +60,6 @@ export class OcpDisabilityFormComponent implements OnInit, AfterViewInit, OnDest
   defaultRadioStyleClass = 'direct-form-btn--radio btn';
   constructor(
     private directService: DirectService, private modal: NgbModal,
-    private parserFormatter: NgbDateParserFormatter,
     private translate: TranslateService,
     private formBuilder: FormBuilder, private config: NgbDatepickerConfig) {
     const today: Date = new Date();

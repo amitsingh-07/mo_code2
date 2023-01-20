@@ -1,6 +1,7 @@
 <div [ngClass]="{'modal--freeze': state.modalFreeze}">
   <div>
-    <app-product-info [hideForm]="state.hideForm" (formSubmitCallback)="formSubmitCallback()" (backPressed)="backPressed()"></app-product-info>
+    <app-product-info [hideForm]="state.hideForm" (formSubmitCallback)="formSubmitCallback()"
+      (backPressed)="backPressed()"></app-product-info>
   </div>
   <div>
     <ng-template #directResults></ng-template>
