@@ -321,25 +321,17 @@
             </div>
 
 
-            <div class="learn-more-option-item">
-                <div>
-                    <a target="_blank" href="https://www.moneyowl.com.sg/faq-investment/wiseincome-portfolio">
+            <div class="learn-more-option-item" (click)="goToWiseIncome('faq')">
                         <div class="flex space-between">
                             <span>{{'WISE_INCOME_PAYOUT.FAQ_LBL' | translate}}</span>
                             <span><i class='arrow'></i></span>
                         </div>
-                    </a>
-                </div>
             </div>
-            <div class="learn-more-option-item mt15">
-                <div>
-                    <a target="_blank" routerLink="/wiseincome">
+            <div class="learn-more-option-item mt15" (click)="goToWiseIncome()">
                         <div class="flex space-between">
                             <span>{{'WISE_INCOME_PAYOUT.ABOUT_WISEINCOME_LBL' | translate}}</span>
                             <span><i class='arrow'></i></span>
                         </div>
-                    </a>
-                </div>
             </div>
             <p class='disclaimer'>{{'WISE_INCOME_PAYOUT.DISCLAIMER' | translate}}</p>
         </div>
