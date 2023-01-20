@@ -23,7 +23,6 @@ import { InvestmentAccountService } from '../../investment-account/investment-ac
 import { LoaderService } from '../../../shared/components/loader/loader.service';
 import { INVESTMENT_COMMON_CONSTANTS } from '../../investment-common/investment-common.constants';
 import { ModelWithButtonComponent } from '../../../shared/modal/model-with-button/model-with-button.component';
-import { Util } from '../../../shared/utils/util';
 
 @Component({
   selector: 'app-wise-income-payout',
@@ -279,13 +278,4 @@ export class WiseIncomePayoutComponent implements OnInit {
     }
     this.navbarService.setCurrentActive(this.currentActive);
   }
-
-  goToWiseIncome(page: string){
-    if (page === 'faq') {
-      Util.openExternalUrl('https://www.moneyowl.com.sg/faq-investment/wiseincome-portfolio', '_blank')
-    } else {
-      Util.openExternalUrl('https://www.moneyowl.com.sg/wiseincome', '_blank')
-    }
-  }
-
 }

@@ -484,7 +484,7 @@ export class LoginComponent implements OnInit, AfterViewInit, OnDestroy {
     if(this.organisationEnabled){
       this.router.navigate([SIGN_UP_ROUTE_PATHS.FORGOT_PASSWORD_CORPORATE]);
     } else {
-      this.router.navigate([SIGN_UP_ROUTE_PATHS.FORGOT_PASSWORD]);
+      this.router.navigate([SIGN_UP_ROUTE_PATHS.FORGOT_PASSWORD_CORPORATE]);
     }
   }
 
