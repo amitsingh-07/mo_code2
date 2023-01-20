@@ -4,7 +4,7 @@ import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { TranslateService } from '@ngx-translate/core';
 
 import { ErrorModalComponent } from '../../shared/modal/error-modal/error-modal.component';
-
+import { NavbarService } from '../../shared/navbar/navbar.service';
 @Component({
   selector: 'app-top-bar-with-clear-button',
   templateUrl: './top-bar-with-clear-button.component.html',
@@ -20,9 +20,9 @@ export class TopBarWithClearButtonComponent implements OnInit {
   unsavedMsg: string;
 
   constructor(
-    private _location: Location,
     private modal: NgbModal,
-    private translate: TranslateService
+    private translate: TranslateService,
+    private navbarService: NavbarService
   ) {
     this.translate.get('COMMON').subscribe((result: string) => {
       this.unsavedMsg = this.translate.instant('WILL_WRITING.COMMON.UNSAVED');
@@ -39,11 +39,11 @@ export class TopBarWithClearButtonComponent implements OnInit {
       ref.componentInstance.unSaved = true;
       ref.result.then((data) => {
         if (data === 'yes') {
-          this._location.back();
+          this.navbarService.goBack();
         }
       });
     } else {
-      this._location.back();
+      this.navbarService.goBack();
     }
     return false;
   }

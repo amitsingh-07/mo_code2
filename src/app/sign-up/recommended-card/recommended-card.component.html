@@ -1,4 +1,4 @@
-<div class="recommended-card-block" [ngClass]="{'hidden': !isLoadComplete}">
+<div class="recommended-card-block" [hidden]="!isLoadComplete">
   <div class="card-container col-12" *ngIf="cards && cards.length > 0; else noCard">
     <ngx-slick-carousel class="flex carousel" #carousel [config]="slideConfig"
       (beforeChange)="beforeSlideChange($event)" (init)="slickInit($event)" (afterChange)="afterSlideChange($event)">
@@ -30,6 +30,6 @@
     </div>
   </ng-template>
 </div>
-<div [ngClass]="{'hidden': isLoadComplete}" class="loader-card-container flex col-12 justify-center">
+<div [hidden]="isLoadComplete" class="loader-card-container flex col-12 justify-center">
   <img alt="loader" src="assets/styles/ajax-loader.gif" />
 </div>

@@ -1,4 +1,3 @@
-import { Location } from '@angular/common';
 import { Component, OnDestroy, OnInit, ViewEncapsulation } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
@@ -42,7 +41,6 @@ export class CheckEligibilityComponent implements OnInit, OnDestroy {
     private willWritingService: WillWritingService,
     private router: Router,
     public footerService: FooterService,
-    private _location: Location,
     private modal: NgbModal, public navbarService: NavbarService,
     private investmentAccountService: InvestmentAccountService,
     private translate: TranslateService
@@ -116,11 +114,11 @@ export class CheckEligibilityComponent implements OnInit, OnDestroy {
           ref.componentInstance.unSaved = true;
           ref.result.then((data) => {
             if (data === 'yes') {
-              this._location.back();
+              this.navbarService.goBack();
             }
           });
         } else {
-          this._location.back();
+          this.navbarService.goBack();
         }
         return false;
       }

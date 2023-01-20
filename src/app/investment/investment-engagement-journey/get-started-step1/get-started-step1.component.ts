@@ -1,4 +1,3 @@
-import { Location } from '@angular/common';
 import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { Router } from '@angular/router';
 import { TranslateService } from '@ngx-translate/core';
@@ -29,7 +28,6 @@ export class GetStartedStep1Component implements OnInit {
     public readonly translate: TranslateService,
     public authService: AuthenticationService,
     private router: Router,
-    private _location: Location,
     public navbarService: NavbarService,
     public headerService: HeaderService,
     public footerService: FooterService,
@@ -58,7 +56,7 @@ export class GetStartedStep1Component implements OnInit {
     }
   }
   goBack() {
-    this._location.back();
+    this.navbarService.goBack();
   }
   goNext() {
     this.router.navigate([INVESTMENT_ENGAGEMENT_JOURNEY_ROUTE_PATHS.PERSONAL_INFO]);

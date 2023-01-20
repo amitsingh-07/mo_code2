@@ -1,4 +1,3 @@
-import { Location } from '@angular/common';
 import {
   Component, HostListener, OnInit, ViewChild, ViewEncapsulation
 } from '@angular/core';
@@ -65,7 +64,6 @@ export class SelectPortfolioGoalMoreinfoComponent implements OnInit {
     public authService: AuthenticationService,
     private investmentCommonService: InvestmentCommonService,
     private investmentAccountService: InvestmentAccountService,
-    private _location: Location,
     private seoService: SeoServiceService,
     private route: ActivatedRoute,
   ) {
@@ -104,7 +102,7 @@ export class SelectPortfolioGoalMoreinfoComponent implements OnInit {
     this.navbarService.setPageTitle(title);
   }
   goBack() {
-    this._location.back();
+    this.navbarService.goBack();
   }
   goNext(Form) {
     this.redirectToNextScreen();

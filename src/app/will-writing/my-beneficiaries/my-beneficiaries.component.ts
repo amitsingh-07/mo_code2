@@ -1,4 +1,3 @@
-import { Location } from '@angular/common';
 import { Component, OnDestroy, OnInit, ViewChild, ViewEncapsulation } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
@@ -48,7 +47,7 @@ export class MyBeneficiariesComponent implements OnInit, OnDestroy {
   fromConfirmationPage = this.willWritingService.fromConfirmationPage;
 
   constructor(
-    private translate: TranslateService, private _location: Location,
+    private translate: TranslateService,
     private formBuilder: FormBuilder,
     private willWritingService: WillWritingService,
     public footerService: FooterService,
@@ -106,7 +105,7 @@ export class MyBeneficiariesComponent implements OnInit, OnDestroy {
         if (this.addBeneficiaryForm.dirty) {
           this.pageTitleComponent.goBack();
         } else {
-          this._location.back();
+          this.navbarService.goBack();
         }
         return false;
       }

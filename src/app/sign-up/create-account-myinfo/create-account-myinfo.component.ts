@@ -1,5 +1,4 @@
 import { Component, Input, OnInit, ViewEncapsulation } from '@angular/core';
-import { Location } from '@angular/common';
 import { ActivatedRoute, Router } from '@angular/router';
 import { SIGN_UP_ROUTE_PATHS } from '../sign-up.routes.constants';
 import { NgbModal, NgbModalOptions, NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
@@ -49,7 +48,6 @@ export class CreateAccountMyinfoComponent implements OnInit {
     private configService: ConfigService,
     private modal: NgbModal,
     private router: Router,
-    private _location: Location,
     private myInfoService: MyInfoService,
     public readonly translate: TranslateService,
     private signUpService: SignUpService,
@@ -204,7 +202,7 @@ export class CreateAccountMyinfoComponent implements OnInit {
   }
 
   goBack() {
-    this._location.back();
+    this.navbarService.goBack();
   }
 
   backToLogin() {
