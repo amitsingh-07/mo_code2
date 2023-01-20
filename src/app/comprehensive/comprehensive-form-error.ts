@@ -4,7 +4,6 @@ export class ComprehensiveFormError {
     invalidMortgageAmount = 'Invalid Mortgage Payment using CPF';
     InvalidPayOff = 'Invalid To Pay Off';
     invalidNameCharacters = 'Full Name should be 2 - 100 characters long';
-
     moGetStrdForm: object = {
         formFieldErrors: {
             errorTitle: this.errorTitleDetails,
@@ -36,7 +35,6 @@ export class ComprehensiveFormError {
                     errorMessage: 'Full Name (as per ID)'
                 }
             }
-
         }
     };
     dependantForm: object = {
@@ -100,7 +98,6 @@ export class ComprehensiveFormError {
                     errorMessage: 'supportAmount'
                 }
             }
-
         }
     };
     educationPreferenceForm: object = {
@@ -151,7 +148,6 @@ export class ComprehensiveFormError {
                     errorMessage: 'Car Loans'
                 }
             }
-
         }
     };
     hospitalPlanForm: object = {
@@ -236,7 +232,6 @@ export class ComprehensiveFormError {
                     errorMessage: 'Invalid Other Annual Income'
                 }
             }
-
         }
     };
     mySpendingsForm: object = {
@@ -350,7 +345,6 @@ export class ComprehensiveFormError {
                     errorMessage: 'Monthly Other Loan Payment - To Pay Off'
                 }
             }
-
         }
     };
 

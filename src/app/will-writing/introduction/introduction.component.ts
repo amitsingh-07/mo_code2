@@ -24,7 +24,6 @@ import { SubscribeMember } from './../../shared/Services/subscribeMember';
 })
 export class IntroductionComponent implements OnInit {
   pageTitle: string;
-
   promoCodeForm: FormGroup;
   faqLink: string;
   getNowLink: string;
@@ -33,7 +32,6 @@ export class IntroductionComponent implements OnInit {
   isDisabled: boolean;
   errorMsg: string;
   @ViewChild('promoCode') promoCodeRef: ElementRef;
-
   subscribeForm: FormGroup;
   subscribeMessage = '';
   subscribeSuccess = false;
@@ -112,7 +110,6 @@ export class IntroductionComponent implements OnInit {
       promoCode: [promoCodeValue, [Validators.required, Validators.pattern(RegexConstants.SixDigitPromo)]]
     });
     this.footerService.setFooterVisibility(false);
-
     this.formValues = this.mailChimpApiService.getSubscribeFormData();
     this.subscribeForm = new FormGroup({
       firstName: new FormControl(this.formValues.firstName),

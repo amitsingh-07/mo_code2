@@ -1,10 +1,9 @@
 import { Component, HostListener, OnDestroy, OnInit } from '@angular/core';
 import { AbstractControl, FormBuilder, FormGroup, ValidatorFn, Validators } from '@angular/forms';
-import { ActivatedRoute, Router } from '@angular/router';
+import { Router } from '@angular/router';
 import { Util } from './../../shared/utils/util';
 import { TranslateService } from '@ngx-translate/core';
 import { Subscription } from 'rxjs';
-
 import { ComprehensiveApiService } from '../comprehensive-api.service';
 import { COMPREHENSIVE_FORM_CONSTANTS } from '../comprehensive-form-constants';
 import { COMPREHENSIVE_ROUTE_PATHS } from '../comprehensive-routes.constants';
@@ -12,7 +11,6 @@ import { IChildEndowment, IMySummaryModal } from '../comprehensive-types';
 import { ConfigService } from './../../config/config.service';
 import { ProgressTrackerService } from './../../shared/modal/progress-tracker/progress-tracker.service';
 import { NavbarService } from './../../shared/navbar/navbar.service';
-import { AboutAge } from './../../shared/utils/about-age.util';
 import { COMPREHENSIVE_CONST } from './../comprehensive-config.constants';
 import { ComprehensiveService } from './../comprehensive.service';
 import { LoaderService } from './../../shared/components/loader/loader.service';
@@ -42,9 +40,9 @@ export class DependantEducationListComponent implements OnInit, OnDestroy {
   viewMode: boolean;
   saveData: any;
   constructor(
-    private route: ActivatedRoute, private router: Router, public navbarService: NavbarService,
+    private router: Router, public navbarService: NavbarService,
     private translate: TranslateService, private formBuilder: FormBuilder, private progressService: ProgressTrackerService,
-    private configService: ConfigService, private comprehensiveService: ComprehensiveService, private aboutAge: AboutAge,
+    private configService: ConfigService, private comprehensiveService: ComprehensiveService,
     private comprehensiveApiService: ComprehensiveApiService, private loaderService: LoaderService) {
     this.viewMode = this.comprehensiveService.getViewableMode();
     this.summaryRouterFlag = COMPREHENSIVE_CONST.SUMMARY_CALC_CONST.ROUTER_CONFIG.STEP1;
@@ -54,7 +52,6 @@ export class DependantEducationListComponent implements OnInit, OnDestroy {
       this.translate.use(config.language);
       this.translate.get(config.common).subscribe((result: string) => {
         // meta tag and title
-
         this.pageTitle = this.translate.instant('CMP.COMPREHENSIVE_STEPS.STEP_1_TITLE');
         this.saveData = this.translate.instant('COMMON_LOADER.SAVE_DATA');
         this.setPageTitle(this.pageTitle);

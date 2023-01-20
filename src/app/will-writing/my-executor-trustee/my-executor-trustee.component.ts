@@ -3,7 +3,6 @@ import { Component, OnDestroy, OnInit, ViewChild, ViewEncapsulation } from '@ang
 import { FormArray, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { TranslateService } from '@ngx-translate/core';
-
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { Subscription } from 'rxjs';
 import { RegexConstants } from '../../../app/shared/utils/api.regex.constants';
@@ -32,7 +31,6 @@ export class MyExecutorTrusteeComponent implements OnInit, OnDestroy {
   private selectedIndex: number;
   private subscription: Subscription;
   private confirmModal = {};
-
   addExeTrusteeForm: FormGroup;
   execTrusteeList: IExecTrustee[] = [];
   relationship = '';
@@ -41,7 +39,6 @@ export class MyExecutorTrusteeComponent implements OnInit, OnDestroy {
   isFormAltered = false;
   formTitle: any = [];
   errorMsg;
-
   hasSpouse: boolean;
   hasChild: boolean;
   willWritingConfig = WILL_WRITING_CONFIG;
@@ -49,7 +46,6 @@ export class MyExecutorTrusteeComponent implements OnInit, OnDestroy {
   unsavedMsg: string;
   toolTip;
   formName: string[] = [];
-
   fromConfirmationPage = this.willWritingService.fromConfirmationPage;
   errorMsgTitle: string;
 

@@ -13,9 +13,12 @@ import { WILL_WRITING_ROUTE_PATHS } from '../will-writing-routes.constants';
 })
 export class TellUsAboutYourselfComponent implements OnInit {
 
-  constructor(private translate: TranslateService, private router: Router,
-              public footerService: FooterService,
-              private _location: Location, public navbarService: NavbarService) {
+  constructor(
+    private translate: TranslateService, 
+    private router: Router,
+    public footerService: FooterService,
+    private _location: Location, 
+    public navbarService: NavbarService) {
     this.translate.use('en');
   }
 

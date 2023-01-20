@@ -3,7 +3,6 @@
 .myDependant {
   .myDependantFormArray {
     background: $black-squeeze-grey-color !important;
-    //color: #005960 !important; /*Not used anywhere*/
     border-radius: 10px;
 
     h5 {
@@ -43,7 +42,7 @@
       background-color: rgba(0, 167, 167, 0.15) !important;
     }
     &.inline-error {
-      color: #e57300 !important;
+      color: $mango-tango-color !important;
       background: $inline-error-bg-color;
       &[placeholder]:empty::before {
         color: $mango-tango-color !important;

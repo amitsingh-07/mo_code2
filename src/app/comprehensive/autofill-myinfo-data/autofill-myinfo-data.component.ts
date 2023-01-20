@@ -19,9 +19,7 @@ import { IMyProfile } from '../comprehensive-types';
   encapsulation: ViewEncapsulation.None
 })
 export class AutofillMyinfoDataComponent implements OnInit {
-
   cfpAutoFillMyinfoData: any;
-
   noaData: Noa;
   childrenRecords: Child[];
   sponsoredChildrenRecords: Child[];
@@ -32,11 +30,8 @@ export class AutofillMyinfoDataComponent implements OnInit {
   isVehicleData = true;
   isCPFHousingWithdrawal = true;
   taxClearanceConsts = COMPREHENSIVE_CONST.TAX_CLEARANCE;
-
   myInfoAttriutes: any;
-
   saveData: string;
-
   userDetails: IMyProfile;
 
   constructor(
@@ -56,9 +51,7 @@ export class AutofillMyinfoDataComponent implements OnInit {
     this.myInfoAttriutes = myInfoService.getMyInfoAttributes();
     this.isVehicleData = this.myInfoAttriutes.includes(COMPREHENSIVE_CONST.EXCLUDABLE_CFP_AUTOFILL_MY_INFO_ATTRIBUTES.VEHICLES);
     this.isCPFHousingWithdrawal = this.myInfoAttriutes.includes(COMPREHENSIVE_CONST.EXCLUDABLE_CFP_AUTOFILL_MY_INFO_ATTRIBUTES.CPF_HOUSING_WITHDRAWAL);
-
     this.cfpAutoFillMyinfoData = signUpService.getCorpBizUserMyInfoData();
-
     this.noaData = this.cfpAutoFillMyinfoData && this.cfpAutoFillMyinfoData.noa ? this.cfpAutoFillMyinfoData.noa : null;
     this.childrenRecords = this.cfpAutoFillMyinfoData && this.cfpAutoFillMyinfoData.childrenRecords && this.cfpAutoFillMyinfoData.childrenRecords.length > 0 ? this.cfpAutoFillMyinfoData.childrenRecords : [];
     this.sponsoredChildrenRecords = this.cfpAutoFillMyinfoData && this.cfpAutoFillMyinfoData.sponsoredChildrenRecords && this.cfpAutoFillMyinfoData.sponsoredChildrenRecords.length >= 0 ? this.cfpAutoFillMyinfoData.sponsoredChildrenRecords : [];

@@ -3,7 +3,6 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { TranslateService } from '@ngx-translate/core';
 import { Subscription } from 'rxjs';
-
 import { COMPREHENSIVE_CONST } from '../comprehensive-config.constants';
 import { COMPREHENSIVE_FORM_CONSTANTS } from '../comprehensive-form-constants';
 import { COMPREHENSIVE_ROUTE_PATHS } from '../comprehensive-routes.constants';
@@ -110,17 +109,14 @@ export class MySpendingsComponent implements OnInit, OnDestroy {
     if (this.earningDetails[COMPREHENSIVE_CONST.YOUR_FINANCES.YOUR_EARNINGS.API_TOTAL_BUCKET_KEY]) {
       this.totalBucket = this.earningDetails[COMPREHENSIVE_CONST.YOUR_FINANCES.YOUR_EARNINGS.API_TOTAL_BUCKET_KEY];
     }
-
     this.onTotalAnnualSpendings();
   }
   selectHLHomeType(homeType: any) {
-
     this.HLTypeOfHome = homeType;
     this.mySpendingsForm.controls['HLtypeOfHome'].setValue(homeType);
     this.mySpendingsForm.markAsDirty();
   }
   selectMortgageHomeType(homeType: any) {
-
     this.mortgageTypeOfHome = homeType;
     this.mySpendingsForm.controls['mortgageTypeOfHome'].setValue(homeType);
     this.mySpendingsForm.markAsDirty();
@@ -209,11 +205,8 @@ export class MySpendingsComponent implements OnInit, OnDestroy {
             otherLoanPayoffUntil.updateValueAndValidity();
           }
           break;
-
       }
-
     }
-
   }
   buildMySpendingForm() {
     this.mySpendingsForm = this.formBuilder.group({

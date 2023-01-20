@@ -1,6 +1,5 @@
 @import '../../../variables';
 @import '../../../mixins';
-$grey-color-notes: #9f9f9f;
 
 .assets-section {
   background: $white-color;
@@ -18,7 +17,6 @@ $grey-color-notes: #9f9f9f;
   justify-content: space-between;
   position: relative;
 
-  //font-size: 18px;
   .help-icon {
     background: url("./../../../assets/images/tool-help-icon.svg") no-repeat;
     cursor: pointer;
@@ -78,30 +76,9 @@ $grey-color-notes: #9f9f9f;
   width: 243px;
   height: 150px;
 }
-/*
-.filledBucket {
-  background: url("/assets/images/comprehensive/finance-assets-filled.svg") no-repeat;
-  display: inline-block;
-  width: 243px;
-  height: 150px;
-}
 
-.middleBucket {
-  background: url("/assets/images/comprehensive/finance-assets-middle.svg") no-repeat;
-  display: inline-block;
-  width: 243px;
-  height: 150px;
-}
-
-.emptyBucket {
-  background: url("/assets/images/comprehensive/finance-assets-empty.svg") no-repeat;
-  display: inline-block;
-  width: 243px;
-  height: 150px;
-}
-*/
 .income-modal-notes {
-  color: $grey-color-notes;
+  color: $dark-silver-chalice-color;
 }
 
 .bucket-notes {
@@ -126,14 +103,6 @@ $grey-color-notes: #9f9f9f;
 }
 
 .both-icon {
-  // .help-icon {
-  //   left: 80% !important;
-  // }
-
-  // .delete-icon {
-  //   left: 95% !important;
-  // }
-
   .form-group-with-bg--content-label {
     color: $black-color;
   }

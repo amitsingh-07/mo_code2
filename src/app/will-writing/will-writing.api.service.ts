@@ -1,5 +1,4 @@
 import { Injectable } from '@angular/core';
-
 import { Util } from '../shared/utils/util';
 import { ApiService } from '../shared/http/api.service';
 import { AuthenticationService } from '../shared/http/auth/authentication.service';

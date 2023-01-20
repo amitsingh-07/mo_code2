@@ -6,7 +6,6 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { TranslateService } from '@ngx-translate/core';
-
 import { FooterService } from '../../shared/footer/footer.service';
 import { ErrorModalComponent } from '../../shared/modal/error-modal/error-modal.component';
 import { NavbarService } from '../../shared/navbar/navbar.service';
@@ -32,20 +31,17 @@ export class MyChildGuardianComponent implements OnInit, OnDestroy {
   private selectedIndex: number;
   private subscription: Subscription;
   private confirmModal = {};
-
   addGuardianForm: FormGroup;
   guardianList: IGuardian[] = [];
   relationship = '';
   relationshipList;
   submitted: boolean;
   willWritingConfig = WILL_WRITING_CONFIG;
-
   hasSpouse = this.willWritingService.getAboutMeInfo().maritalStatus === WILL_WRITING_CONFIG.MARRIED;
   maxGuardian: number;
   unsavedMsg: string;
   toolTip;
   formName: string;
-
   fromConfirmationPage = this.willWritingService.fromConfirmationPage;
 
   constructor(

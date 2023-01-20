@@ -1,12 +1,10 @@
 import { Subscription } from 'rxjs';
-
 import { Location } from '@angular/common';
 import { Component, OnDestroy, OnInit, ViewChild, ViewEncapsulation  } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { TranslateService } from '@ngx-translate/core';
-
 import { appConstants } from '../../app.constants';
 import { AppService } from '../../app.service';
 import { FooterService } from '../../shared/footer/footer.service';
@@ -30,7 +28,6 @@ export class AboutMeComponent implements OnInit, OnDestroy {
   pageTitle: string;
   step: string;
   private confirmModal = {};
-
   aboutMeForm: FormGroup;
   formValues: IAboutMe;
   maritalStatus = '';
@@ -41,12 +38,9 @@ export class AboutMeComponent implements OnInit, OnDestroy {
   private subscription: Subscription;
   unsavedMsg: string;
   toolTip;
-
   fromConfirmationPage = this.willWritingService.fromConfirmationPage;
-
   radioLabelValue = [];
   defaultRadioStyleClass = 'direct-form-btn--radio';
-
   constructor(
     private appService: AppService,
     private formBuilder: FormBuilder,
