@@ -110,7 +110,7 @@ export class PaymentInstructionComponent implements OnInit, OnDestroy {
 
   navigateCompreFaq(){
     if (this.authService.isUserTypeCorporate) {
-      Util.openExternalUrl(appConstants.CORP_FAQ_URL, '_blank');
+      Util.openExternalUrl('/app' + appConstants.CORPORATE_FAQ, '_blank');
     } else {
       Util.openExternalUrl(appConstants.COMPREHENSIVE_PAYMENT_FAQ, '_blank');
     }
