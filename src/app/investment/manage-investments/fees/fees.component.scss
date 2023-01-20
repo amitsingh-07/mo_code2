@@ -93,11 +93,6 @@ app-fees {
         letter-spacing: -0.12px;
         color: $black-color;
 
-        @include allmobiles {
-          // display: flex;
-          // align-items: flex-end;
-        }
-
         .ellipse {
           @include allmobiles {
             overflow: hidden;

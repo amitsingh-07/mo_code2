@@ -201,7 +201,6 @@ body.modal-open::-webkit-scrollbar {
   margin-bottom: 10px;
   margin-right: 30px;
   word-break: break-word;
-  //padding: 0 15px 0 0;
   @include iphone12{
     padding-right: 10px;
   }
@@ -303,7 +302,6 @@ body.modal-open::-webkit-scrollbar {
     display: inline-block;
     position: relative;
     display: inline-block;
-    //margin-right: 14px;
 
     img {
       position: relative;
@@ -546,7 +544,7 @@ body.modal-open::-webkit-scrollbar {
   @include minMobilemaxPhablet {
     margin-top: 60px;
     padding-top: 15px;
-    border-top: $monte-carlo-color 1px solid;
+    border-top: $monte-carlo-blue-color 1px solid;
     padding-bottom: 20px;
     box-shadow: none;
   }
@@ -1063,7 +1061,6 @@ body.modal-open::-webkit-scrollbar {
 
     @include allmobiles {
       &--label {
-        //width: 290px;
         word-break: break-word;
         padding-right: 15px;
       }

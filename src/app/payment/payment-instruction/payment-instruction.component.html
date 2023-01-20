@@ -113,7 +113,8 @@
                                 </div>
                                 <div class="bank-details-content">
                                     <span class="copy-txt" copy-clipboard [copy-clipboard]="uen"
-                                        (copied)="notify($event)" #uen>{{'COMPREHENSIVE.DASHBOARD.TRANSFER_INSTRUCTION.FUNDING_INSTRUCTIONS.MODAL.SHOW_PAYNOW.UNIQUE_ENTITY'
+                                        (copied)="notify($event)"
+                                        #uen>{{'COMPREHENSIVE.DASHBOARD.TRANSFER_INSTRUCTION.FUNDING_INSTRUCTIONS.MODAL.SHOW_PAYNOW.UNIQUE_ENTITY'
                                         | translate}}</span>
                                     <span copy-clipboard [copy-clipboard]="uen" (copied)="notify($event)"
                                         class="copy-icon"><img alt="copy"
@@ -127,7 +128,8 @@
                                 </div>
                                 <div class="bank-details-content">
                                     <span class="copy-txt" copy-clipboard [copy-clipboard]="entity"
-                                        (copied)="notify($event)" #entity>{{'COMPREHENSIVE.DASHBOARD.TRANSFER_INSTRUCTION.FUNDING_INSTRUCTIONS.MODAL.SHOW_PAYNOW.ENTITY'
+                                        (copied)="notify($event)"
+                                        #entity>{{'COMPREHENSIVE.DASHBOARD.TRANSFER_INSTRUCTION.FUNDING_INSTRUCTIONS.MODAL.SHOW_PAYNOW.ENTITY'
                                         | translate}}</span>
                                     <span copy-clipboard [copy-clipboard]="entity" (copied)="notify($event)"
                                         class="copy-icon"><img alt="copy"
