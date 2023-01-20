@@ -1,6 +1,5 @@
 @import '../../../variables';
 @import '../../../mixins';
-$grey-color-notes: #9f9f9f;
 .spendings-section {
     background:$white-color;
     color:$black-color;
@@ -16,7 +15,6 @@ color: $dark-teal-color;
     position: relative;        
     margin-right: 10px;
     position: relative;
-    //font-size: 18px;
     .help-icon {      
         background: url("./../../../assets/images/tool-help-icon.svg") no-repeat;
         width: 40px;
@@ -24,8 +22,6 @@ color: $dark-teal-color;
         cursor: pointer;
         background-repeat: no-repeat;
         position: absolute;
-        // left: 93%;
-        // top: 5px;
     }    
 }
 .help-icon {
@@ -48,9 +44,6 @@ color: $dark-teal-color;
         position: relative;
         top: 2px;
         margin-left: 10px
-        // position: absolute;
-        // left: 95%;
-        // top: 3px!important;
     } 
 .otherMortageBlock{
     margin-top: 30px;
@@ -105,7 +98,6 @@ color: $dark-teal-color;
     border-top:1px solid rgba(134, 205, 206, 0.3); 
 }
 .otherMortage{
-    //border-top:1px solid rgba(134, 205, 206, 0.3);
     .help-icon {
         background: url("./../../../assets/images/tool-help-icon.svg") no-repeat;
         width: 20px;
@@ -114,7 +106,7 @@ color: $dark-teal-color;
     }
 }
 .income-modal-notes{
-    color:$grey-color-notes;
+    color:$dark-silver-chalice-color;
 }
 .bucket-notes{
     font-size:16px;
@@ -123,12 +115,6 @@ color: $dark-teal-color;
     font-size:20px;
 }
 .both-icon{  
-    //  .delete-icon { 
-    //     left: 95% !important;
-    //  }
-    // .help-icon {
-    //     left: 80% !important;
-    // }
     .form-group-with-bg--content-label{
         color:$black-color;
      }

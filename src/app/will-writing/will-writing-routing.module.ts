@@ -1,10 +1,7 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-
 import { AboutMeComponent } from './about-me/about-me.component';
-import {
-  AppointYourExecutorTrusteeComponent
-} from './appoint-your-executor-trustee/appoint-your-executor-trustee.component';
+import { AppointYourExecutorTrusteeComponent } from './appoint-your-executor-trustee/appoint-your-executor-trustee.component';
 import { CheckEligibilityComponent } from './check-eligibility/check-eligibility.component';
 import { ConfirmationComponent } from './confirmation/confirmation.component';
 import { DistributeYourEstateComponent } from './distribute-your-estate/distribute-your-estate.component';

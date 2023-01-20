@@ -3,7 +3,6 @@ import { Component, Input, OnInit, ViewEncapsulation } from '@angular/core';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { Router } from '@angular/router';
 import { TranslateService } from '@ngx-translate/core';
-
 import { ErrorModalComponent } from '../../shared/modal/error-modal/error-modal.component';
 import { WillWritingService } from '../will-writing.service';
 import { NavbarService } from 'src/app/shared/navbar/navbar.service';
@@ -18,7 +17,6 @@ export class PageTitleComponent implements OnInit {
   @Input() step: any;
   @Input() tooltip: any;
   @Input() unsaved: boolean;
-
   unsavedMsg: string;
 
   constructor(
@@ -62,5 +60,4 @@ export class PageTitleComponent implements OnInit {
     const message = this.tooltip['message'];
     this.willWritingService.openToolTipModal(title, message);
   }
-
 }

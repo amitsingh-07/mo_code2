@@ -4,7 +4,6 @@ import { Router } from '@angular/router';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { TranslateService } from '@ngx-translate/core';
 import { forkJoin, Subscription } from 'rxjs';
-
 import { FooterService } from '../../shared/footer/footer.service';
 import { NavbarService } from '../../shared/navbar/navbar.service';
 import { WILL_WRITING_ROUTE_PATHS } from '../will-writing-routes.constants';
@@ -22,7 +21,6 @@ export class CheckEligibilityComponent implements OnInit, OnDestroy {
   pageTitle: string;
   isSingaporean = false;
   isAssets = false;
-
   formValues: any;
   eligibilityForm: FormGroup;
   religion = '';
@@ -188,5 +186,4 @@ export class CheckEligibilityComponent implements OnInit, OnDestroy {
     this.nationality = nationality.name;
     this.eligibilityForm.controls['nationality'].setValue(nationality.value);
   }
-
 }

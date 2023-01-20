@@ -1,9 +1,5 @@
 import { SIGN_UP_ROUTE_PATHS } from '../sign-up/sign-up.routes.constants';
-import {
-    IComprehensiveDetails,
-    IHospitalPlanList,
-    IPromoCode
-} from './comprehensive-types';
+import { IComprehensiveDetails, IHospitalPlanList, IPromoCode } from './comprehensive-types';
 
 export class ComprehensiveFormData {
     comprehensiveDetails: IComprehensiveDetails;

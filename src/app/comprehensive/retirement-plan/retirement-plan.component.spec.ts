@@ -1,5 +1,5 @@
 
-import { async, ComponentFixture, getTestBed, TestBed } from '@angular/core/testing';
+import { waitForAsync, ComponentFixture, getTestBed, TestBed } from '@angular/core/testing';
 import { FormBuilder, ReactiveFormsModule } from '@angular/forms';
 import { Location, DatePipe } from '@angular/common';
 import { HttpClient } from '@angular/common/http';
@@ -11,7 +11,6 @@ import { RouterTestingModule } from '@angular/router/testing';
 import { JwtModule, JwtHelperService } from '@auth0/angular-jwt';
 import { NgbActiveModal, NgbModal, NgbModalRef, NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { TranslateLoader, TranslateModule, TranslateService } from '@ngx-translate/core';
-
 import { COMPREHENSIVE_CONST } from '../comprehensive-config.constants';
 import { COMPREHENSIVE_ROUTE_PATHS } from '../comprehensive-routes.constants';
 import { LoaderService } from './../../shared/components/loader/loader.service';
@@ -19,27 +18,20 @@ import { ProgressTrackerService } from './../../shared/modal/progress-tracker/pr
 import { NavbarService } from './../../shared/navbar/navbar.service';
 import { ComprehensiveApiService } from './../comprehensive-api.service';
 import { ComprehensiveService } from './../comprehensive.service';
-
 import { CurrencyPipe } from '@angular/common';
-
-import { tokenGetterFn, mockCurrencyPipe } from
-  '../../../assets/mocks/service/shared-service';
-
+import { tokenGetterFn, mockCurrencyPipe } from '../../../assets/mocks/service/shared-service';
 import { FooterService } from './../../shared/footer/footer.service';
 import { HeaderService } from './../../shared/header/header.service';
 import { createTranslateLoader } from '../comprehensive.module';
 import { AppService } from './../../app.service';
 import { ApiService } from './../../shared/http/api.service';
 import { AuthenticationService } from './../../shared/http/auth/authentication.service';
-
 import { ErrorModalComponent } from './../../shared/modal/error-modal/error-modal.component';
 import { StepIndicatorComponent } from './../../shared/components/step-indicator/step-indicator.component';
 import { COMPREHENSIVE_ROUTES } from './../comprehensive-routes.constants';
 import { AboutAge } from './../../shared/utils/about-age.util';
 import { RoutingService } from './../../shared/Services/routing.service';
-
 import { SignUpService } from './../../sign-up/sign-up.service';
-
 export class TestComponent {
 }
 export const routes: Routes = [
@@ -56,13 +48,11 @@ import { RetirementPlanComponent } from './retirement-plan.component';
 describe('RetirementPlanComponent', () => {
   let component: RetirementPlanComponent;
   let fixture: ComponentFixture<RetirementPlanComponent>;
-
   let injector: Injector;
   let location: Location;
   let ngbModalService: NgbModal;
   let ngbModalRef: NgbModalRef;
   let formBuilder: FormBuilder;
-
   let progressTrackerService: ProgressTrackerService;
   let footerService: FooterService;
   let translateService: TranslateService;
@@ -84,15 +74,13 @@ describe('RetirementPlanComponent', () => {
       return true;
     }
   };
-
-  //let translations: any = '';
   let translations = require('../../../assets/i18n/comprehensive/en.json');
   const routerStub = {
     navigate: jasmine.createSpy('navigate'),
     navigateByUrl: jasmine.createSpy('navigateByUrl')
   };
 
-  beforeEach(async(() => {
+  beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
       declarations: [RetirementPlanComponent, ErrorModalComponent, StepIndicatorComponent],
       imports: [
@@ -112,7 +100,6 @@ describe('RetirementPlanComponent', () => {
         }),
         HttpClientTestingModule,
         RouterTestingModule.withRoutes(routes),
-        // RouterTestingModule.withRoutes([]),
         RouterModule.forRoot(routes)
       ],
       schemas: [NO_ERRORS_SCHEMA],
@@ -138,50 +125,36 @@ describe('RetirementPlanComponent', () => {
         RoutingService,
         JwtHelperService,
         ProgressTrackerService,
-        // { provide: APP_BASE_HREF, useValue: '/' },
-        // { provide: Router, useClass: RouterStub },
-
         { provide: ActivatedRoute, useValue: route }
       ]
     })
       .overrideModule(BrowserDynamicTestingModule, { set: { entryComponents: [ErrorModalComponent, StepIndicatorComponent] } })
       .compileComponents();
     router = TestBed.get(Router);
-    //router.initialNavigation();
-    //spyOn(router, 'navigateByUrl');
   }));
-
 
   beforeEach(() => {
     fixture = TestBed.createComponent(RetirementPlanComponent);
     component = fixture.componentInstance;
-
     ngbModalService = TestBed.get(NgbModal);
     injector = getTestBed();
     loader = TestBed.get(LoaderService);
     location = TestBed.get(Location);
     http = TestBed.get(HttpTestingController);
     formBuilder = TestBed.get(FormBuilder);
-
     appService = TestBed.get(AppService);
     apiService = TestBed.get(ApiService);
     authService = TestBed.get(AuthenticationService);
     navbarService = TestBed.get(NavbarService);
     footerService = TestBed.get(FooterService);
     translateService = injector.get(TranslateService);
-    //translateService.use('en');
     comprehensiveService = TestBed.get(ComprehensiveService);
-    //comprehensiveAPiService = TestBed.get(comprehensiveAPiService);
     progressTrackerService = TestBed.get(ProgressTrackerService);
-    //router = new RouterStub();
     httpClientSpy = jasmine.createSpyObj('HttpClient', ['post']);
-
-
     translateService.setTranslation('en', translations);
     translateService.use('en');
     fixture.detectChanges();
   });
-
 
   it('should create', () => {
     expect(component).toBeTruthy();
@@ -212,120 +185,115 @@ describe('RetirementPlanComponent', () => {
     };
     comprehensiveService.setComprehensiveVersion(COMPREHENSIVE_CONST.VERSION_TYPE.FULL);
     comprehensiveService.setComprehensiveSummary(summaryData);
-
     progressTrackerService.setProgressTrackerData(
       comprehensiveService.generateProgressTrackerData()
     );
-
   });
+
   it('should execute ngOnInit', () => {
     const setNavbarModeSpy = spyOn(navbarService, 'setNavbarComprehensive');
     component.ngOnInit();
     progressTrackerService.setReadOnly(true);
     navbarService.setNavbarComprehensive(true);
-
     expect(setNavbarModeSpy).toHaveBeenCalledWith(true);
-
   });
+
   it('should trigger ngAfterViewInit', () => {
     component.ngAfterViewInit();
   });
 
   it('buildRetirementPlanForm', () => {
     component.buildRetirementPlanForm();
-
   });
-  
+
   it('buildEmptyRetirementorm', () => {
     component.buildEmptyRetirementorm();
-
   });
-  
+
   it('buildEmptyLumpBenefitSetForm', () => {
     component.buildEmptyLumpBenefitSetForm();
-
   });
-  
-  it('buildRetirementDetailsForm', () => {
-    const data = {monthlyPayout:"33",payoutStartAge:"33",payoutDuration:"2021"}
-    component.buildRetirementDetailsForm(data);
 
+  it('buildRetirementDetailsForm', () => {
+    const data = { monthlyPayout: "33", payoutStartAge: "33", payoutDuration: "2021" }
+    component.buildRetirementDetailsForm(data);
   });
 
   it('buildLumpSumDetailsForm', () => {
-     const data =  {maturityAmount:"33",maturityYear:"2021"}
+    const data = { maturityAmount: "33", maturityYear: "2021" }
     component.buildLumpSumDetailsForm(data);
-
   });
-  
-  
+
   it('addRetirementIncome', () => {
     component.addRetirementIncome();
-
   });
-  
+
   it('SelectPayoutYears', () => {
-    component.SelectPayoutYears('',0);
+    component.SelectPayoutYears('', 0);
 
   });
-  
+
   it('addLumpSumAmount', () => {
     component.addLumpSumAmount();
-
   });
-  
+
   it('onSliderChange', () => {
     component.onSliderChange(50);
-
   });
-  
+
   it('ngOnDestroy', () => {
     component.ngOnDestroy();
-
   });
-   it('should call go next', () => {
+
+  it('should call go next', () => {
     component.goToNext(component.retirementPlanForm);
   });
-     it('should call go next', () => {
+
+  it('should call go next', () => {
     component.validateRetirement(component.retirementPlanForm);
   });
-       it('should call go next', () => {
+
+  it('should call go next', () => {
     component.showSummaryModal();
   });
 
-
   it('Trigger Tooltip', () => {
-	const showModal = component.showToolTipModal('RENTAL_INCOME_TITLE', 'RENTAL_INCOME_MESSAGE');
+    const showModal = component.showToolTipModal('RENTAL_INCOME_TITLE', 'RENTAL_INCOME_MESSAGE');
   });
-        it('openConfirmationModal', () => {
+
+  it('openConfirmationModal', () => {
     component.openConfirmationModal();
   });
-        it('deleteRetirementDetails', () => {
-    component.deleteRetirementDetails(0,'lumpSumBenefitSet');
+
+  it('deleteRetirementDetails', () => {
+    component.deleteRetirementDetails(0, 'lumpSumBenefitSet');
   });
-         it('deleteRetirementDetails', () => {
-    component.deleteRetirementDetails(0,'retirementIncomeSet');
+
+  it('deleteRetirementDetails', () => {
+    component.deleteRetirementDetails(0, 'retirementIncomeSet');
   });
-    it('ageValidation', () => {
+
+  it('ageValidation', () => {
     component.ageValidation(component.retirementPlanForm);
   });
-    it('payOffYearValid', () => {
+
+  it('payOffYearValid', () => {
     component.payOffYearValid(2021);
   });
-     it('payOffYearValid', () => {
+
+  it('payOffYearValid', () => {
     component.changeSlide(30);
   });
-  
-  
-  
+
   it('should call go next', () => {
     spyOn(router, 'navigate');
     component.routerPath();
-    expect(router.navigate).toHaveBeenCalledWith([ COMPREHENSIVE_ROUTE_PATHS.RETIREMENT_PLAN + '/summary']);
+    expect(router.navigate).toHaveBeenCalledWith([COMPREHENSIVE_ROUTE_PATHS.RETIREMENT_PLAN + '/summary']);
   });
+  
   it('should set page title', () => {
     const setPageTitleSpy = spyOn(navbarService, 'setPageTitleWithIcon');
-    component.setPageTitle(  'CMP.COMPREHENSIVE_STEPS.STEP_4_TITLE_NAV');
-    expect(setPageTitleSpy).toHaveBeenCalledWith(  'CMP.COMPREHENSIVE_STEPS.STEP_4_TITLE_NAV', { id: 'RetirementPlanComponent', iconClass: 'navbar__menuItem--journey-map' });
+    component.setPageTitle('CMP.COMPREHENSIVE_STEPS.STEP_4_TITLE_NAV');
+    expect(setPageTitleSpy).toHaveBeenCalledWith('CMP.COMPREHENSIVE_STEPS.STEP_4_TITLE_NAV', { id: 'RetirementPlanComponent', iconClass: 'navbar__menuItem--journey-map' });
   });
 });

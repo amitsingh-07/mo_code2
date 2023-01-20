@@ -1,6 +1,5 @@
 import { IProgressTrackerItem } from '../shared/modal/progress-tracker/progress-tracker.types';
 
-
 export interface IComprehensiveDetails {
     baseProfile: IMyProfile;
     dependentsSummaryList: IDependantSummaryList;

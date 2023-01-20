@@ -4,7 +4,6 @@ import { Router } from '@angular/router';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { TranslateService } from '@ngx-translate/core';
 import { Subscription } from 'rxjs';
-
 import { FooterService } from '../../shared/footer/footer.service';
 import { ErrorModalComponent } from '../../shared/modal/error-modal/error-modal.component';
 import { NavbarService } from '../../shared/navbar/navbar.service';
@@ -29,7 +28,6 @@ export class MyBeneficiariesComponent implements OnInit, OnDestroy {
   isEdit: boolean;
   private selectedIndex: number;
   private confirmModal = {};
-
   addBeneficiaryForm: FormGroup;
   beneficiaryList: IBeneficiary[] = [];
   relationshipList;
@@ -52,7 +50,8 @@ export class MyBeneficiariesComponent implements OnInit, OnDestroy {
     private willWritingService: WillWritingService,
     public footerService: FooterService,
     private modal: NgbModal,
-    private router: Router, public navbarService: NavbarService
+    private router: Router, 
+    public navbarService: NavbarService
   ) {
     this.translate.use('en');
     this.translate.get('COMMON').subscribe((result: string) => {

@@ -1,10 +1,7 @@
-<!--Container fluid-->
-
 <div class="container-fluid max-width--1024 comprehensive">
   <!--Tooltip-->
   <div class="tooltip-container" *ngIf="showToolTip">
     <div class="tooltip-container__inner">
-      <!-- <span class="tooltip-container__inner__arrow"></span> -->
       <div class="tooltip-container__inner__title">{{'CMP.GETTING_STARTED.TOOL_TIP_TITLE'|translate}}</div>
       <div class="tooltip-container__inner__desc">{{'CMP.GETTING_STARTED.TOOL_TIP_DESC'|translate}}</div>
       <span class="tooltip-container__inner__close" (click)="onCloseClick()"></span>
@@ -13,7 +10,7 @@
   <!--Tooltip -->
   <!--Moneyown Logo-->
   <div class="text-center">
-    <img class="owl-img" src="assets/images/comprehensive/createAccount-icon.svg" id="moGetStrdOwlImg" />
+    <img class="owl-img" src="assets/images/createAccount-icon.svg" id="moGetStrdOwlImg" />
   </div>
   <!--Moneyown Logo /-->
   <!--Page heading-->
@@ -30,11 +27,8 @@
   <!--Page desc /-->
   <!--Page form-->
   <form *ngIf="myProfileShow" id="moGetStrdForm" name="moGetStrdForm" [formGroup]="moGetStrdForm">
-    <!--Form group-->
     <div class="form-group-with-bg">
-      <!--Form Content-->
       <div class="form-group-with-bg--content">
-        <!--Flex row 1-->
         <div class="flex-row ">
           <div class="flex-col-5">
             <label for="name" id="myProfileNameLabel">
@@ -46,8 +40,6 @@
             {{userDetails ? userDetails.firstName : ''}}
           </div>
         </div>
-        <!--Flex row 1 /-->
-        <!--Flex row 2-->
         <div class="flex-row">
           <div class="flex-col-5">
             <label for="gender">{{'CMP.FORM_LABEL.GENDER'|translate}}</label>
@@ -59,8 +51,6 @@
             </div>
           </div>
         </div>
-        <!--Flex row 2 /-->
-        <!--Flex row 3-->
         <div class="flex-row">
           <div class="flex-col-5">
             <label for="nationality">{{ 'CMP.FORM_LABEL.NATIONALITY' | translate}}</label>
@@ -75,7 +65,6 @@
                   <span *ngIf="nationality !== ''">{{nationality}}</span>
                 </button>
                 <div ngbDropdownMenu aria-labelledby="dropdownNationality">
-
                   <button type="button" class="dropdown-item" *ngFor="let nationality of nationalityList; let i=index"
                     (click)="selectNationality(nationality)">
                     {{nationality.text}}
@@ -85,8 +74,6 @@
             </div>
           </div>
         </div>
-        <!--Flex row 3 /-->
-        <!--Flex row 4-->
         <div class="flex-row  mb0">
           <div class="flex-col-5">
             <label for="dob">{{ 'CMP.FORM_LABEL.DATE_OF_BIRTH' | translate}}</label>
@@ -113,14 +100,11 @@
             </div>
           </div>
         </div>
-        <!--Flex row 4 /-->
         <div [hidden]="!DOBAlert" class="flex-row info-msg mt20 dob-valid-error">
           <span class='dob-alert-icon'></span><span class='dob-alert-text'>
             {{ 'CMP.MY_PROFILE.DOB_ALERT' |translate }}</span></div>
       </div>
-      <!--Form Content-->
     </div>
-    <!--Form group-->
     <div class="myinfo-block" *ngIf="!viewMode && !DOBAlert" appComprehensiveViewMode="{{viewMode}}" mode=1>
         <div class="myinfo-desc">{{ 'CMP.MY_PROFILE.MYINFO_DESC' |translate }}</div>
         <div *ngIf="myinfoRetrievelDate" class="retrieval-date">{{ 'CMP.MY_PROFILE.RETRIEVAL_DATE' |translate }}<span>{{myinfoRetrievelDate}}</span></div>
@@ -139,4 +123,3 @@
   </form>
   <!--Page form /-->
 </div>
-<!--Container fluid /-->

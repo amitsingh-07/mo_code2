@@ -1,5 +1,5 @@
 
-import { async, ComponentFixture, getTestBed, TestBed } from '@angular/core/testing';
+import { waitForAsync, ComponentFixture, getTestBed, TestBed } from '@angular/core/testing';
 import { FormBuilder, ReactiveFormsModule } from '@angular/forms';
 import { Location, DatePipe, CurrencyPipe } from '@angular/common';
 import { HttpClient } from '@angular/common/http';
@@ -19,27 +19,14 @@ import { ComprehensiveService } from '../comprehensive.service';
 import { FooterService } from './../../shared/footer/footer.service';
 import { AuthenticationService } from './../../shared/http/auth/authentication.service';
 import { NavbarService } from './../../shared/navbar/navbar.service';
-
-
-
-
-import { tokenGetterFn, mockCurrencyPipe } from
-  '../../../assets/mocks/service/shared-service';
-
-
+import { tokenGetterFn, mockCurrencyPipe } from '../../../assets/mocks/service/shared-service';
 import { HeaderService } from './../../shared/header/header.service';
 import { createTranslateLoader } from '../comprehensive.module';
-
 import { ApiService } from './../../shared/http/api.service';
-
 import { StepIndicatorComponent } from './../../shared/components/step-indicator/step-indicator.component';
 import { AboutAge } from './../../shared/utils/about-age.util';
 import { RoutingService } from './../../shared/Services/routing.service';
-
 import { FileUtil } from './../../shared/utils/file.util';
-
-
-
 class MockRouter {
   navigateByUrl(url: string) { return url; }
 }
@@ -50,13 +37,11 @@ import { NgbDateCustomParserFormatter } from './../../shared/utils/ngb-date-cust
 describe('DependantsDetailsComponent', () => {
   let component: DependantsDetailsComponent;
   let fixture: ComponentFixture<DependantsDetailsComponent>;
-
   let injector: Injector;
   let location: Location;
   let ngbModalService: NgbModal;
   let ngbModalRef: NgbModalRef;
   let formBuilder: FormBuilder;
-
   let footerService: FooterService;
   let translateService: TranslateService;
   let http: HttpTestingController;
@@ -76,13 +61,12 @@ describe('DependantsDetailsComponent', () => {
       return true;
     }
   };
-  //let translations: any = '';
   let translations = require('../../../assets/i18n/comprehensive/en.json');
   const routerStub = {
     navigate: jasmine.createSpy('navigate'),
     navigateByUrl: jasmine.createSpy('navigateByUrl')
   };
-  beforeEach(async(() => {
+  beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
       declarations: [DependantsDetailsComponent, ErrorModalComponent, StepIndicatorComponent],
       imports: [
@@ -101,9 +85,7 @@ describe('DependantsDetailsComponent', () => {
           }
         }),
         HttpClientTestingModule,
-        //RouterTestingModule.withRoutes(routes),
         RouterTestingModule.withRoutes([]),
-        //RouterModule.forRoot(routes)
       ],
       schemas: [NO_ERRORS_SCHEMA],
       providers: [
@@ -129,49 +111,34 @@ describe('DependantsDetailsComponent', () => {
         RoutingService,
         JwtHelperService,
         FileUtil,
-
-        // { provide: APP_BASE_HREF, useValue: '/' },
-        // { provide: Router, useClass: RouterStub },
-
         { provide: ActivatedRoute, useValue: route }
       ]
     })
       .overrideModule(BrowserDynamicTestingModule, { set: { entryComponents: [ErrorModalComponent, StepIndicatorComponent] } })
       .compileComponents();
     router = TestBed.get(Router);
-    //router.initialNavigation();
-    //spyOn(router, 'navigateByUrl');
   }));
   beforeEach(() => {
     fixture = TestBed.createComponent(DependantsDetailsComponent);
     component = fixture.componentInstance;
-
     ngbModalService = TestBed.get(NgbModal);
     injector = getTestBed();
     loader = TestBed.get(LoaderService);
     location = TestBed.get(Location);
     http = TestBed.get(HttpTestingController);
     formBuilder = TestBed.get(FormBuilder);
-
     appService = TestBed.get(AppService);
     apiService = TestBed.get(ApiService);
     authService = TestBed.get(AuthenticationService);
     navbarService = TestBed.get(NavbarService);
     footerService = TestBed.get(FooterService);
     translateService = injector.get(TranslateService);
-    //translateService.use('en');
     comprehensiveService = TestBed.get(ComprehensiveService);
-    //comprehensiveAPiService = TestBed.get(comprehensiveAPiService);
-
-    //router = new RouterStub();
     httpClientSpy = jasmine.createSpyObj('HttpClient', ['post']);
-
-
     translateService.setTranslation('en', translations);
     translateService.use('en');
     fixture.detectChanges();
   });
-
 
   afterEach(() => {
     TestBed.resetTestingModule();
@@ -185,97 +152,70 @@ describe('DependantsDetailsComponent', () => {
   });
   it('ngOnInit', () => {
     component.ngOnInit();
-
   });
   it('ngOnDestroy', () => {
     component.ngOnDestroy();
-
   });
   it('selectHouseHoldIncome', () => {
     component.buildDependantForm();
-
   });
   it('getCurrentFormsCount', () => {
     component.getCurrentFormsCount();
-
   });
   it('showSummaryModal', () => {
     component.showSummaryModal();
-
   });
-
   it('Select Relationship', () => {
     component.selectRelationship("brother", 0);
-
   });
   it('Select Relationship', () => {
     component.selectGender("male", 0);
-
   });
   it(' selectNationality', () => {
     component.selectNationality("singaporean", 0);
-
   });
   it(' buildDependantDetailsForm', () => {
     component.buildDependantDetailsForm(component.myDependantForm);
-
   });
   it(' buildDependantDetailsForm', () => {
     component.buildEmptyForm();
-
   });
   it(' addDependant', () => {
     component.addDependant();
-
   });
   it(' removeDependant', () => {
     component.removeDependant(0);
-
   });
   it(' validateDependantForm', () => {
     component.validateDependantForm(component.myDependantForm);
-
   });
-
   it(' goToNext', () => {
     component.goToNext(component.myDependantForm);
-
   });
   it(' goToNextPage', () => {
     component.goToNextPage();
-
   });
   it(' showSummaryModal', () => {
     component.showSummaryModal();
-
   });
   it(' getWrapText', () => {
     component.getWrapText('Name-');
-
   });
   it(' setDependentName', () => {
     component.setDependentName('Name  ', 0);
-
   });
   it(' onKeyPressEvent', () => {
     component.onKeyPressEvent(Event, "Name");
-
   });
   it(' onChange', () => {
     component.onChange(Event);
-
   });
   it(' setCaratTo', () => {
     component.setCaratTo(60, 'position', 'dependentName');
-
   });
-
-
   it('should set page title', () => {
     const setPageTitleSpy = spyOn(navbarService, 'setPageTitleWithIcon');
     component.setPageTitle('CMP.COMPREHENSIVE_STEPS.STEP_1_TITLE');
     expect(setPageTitleSpy).toHaveBeenCalledWith('CMP.COMPREHENSIVE_STEPS.STEP_1_TITLE', { id: 'DependantsDetailsComponent', iconClass: 'navbar__menuItem--journey-map' });
   });
-
-
 });

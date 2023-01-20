@@ -6,7 +6,6 @@ export class MockElementRef extends ElementRef {
   nativeElement = {};
 }
 
-
 describe('ComprehensiveViewModeDirective', () => {
   let comprehensiveViewModeDirective: ComprehensiveViewModeDirective;
   beforeEach(() => {

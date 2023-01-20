@@ -3,7 +3,6 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { TranslateService } from '@ngx-translate/core';
 import { Subscription } from 'rxjs';
-
 import { LoaderService } from './../../shared/components/loader/loader.service';
 import { ComprehensiveApiService } from './../comprehensive-api.service';
 import { COMPREHENSIVE_ROUTE_PATHS } from '../comprehensive-routes.constants';
@@ -102,12 +101,10 @@ export class DependantSelectionComponent implements OnInit, OnDestroy {
       noOfHouseholdMembers: new FormControl(this.householdDetails ? this.householdDetails.noOfHouseholdMembers : '', [Validators.required, Validators.min(1), Validators.max(10)]),
       houseHoldIncome: new FormControl(this.householdDetails ? this.householdDetails.houseHoldIncome : '', Validators.required),
     });
-
   }
   selectHouseHoldMembers(status) {
     this.dependantSelectionForm.controls['noOfHouseholdMembers'].setValue(status);
     this.dependantSelectionForm.markAsDirty();
-
   }
   selectHouseHoldIncome(status) {
     this.dependantSelectionForm.controls['houseHoldIncome'].setValue(status);
@@ -181,5 +178,4 @@ export class DependantSelectionComponent implements OnInit, OnDestroy {
     };
     this.cmpService.openSummaryPopUpModal(this.summaryModalDetails);
   }
-
 }

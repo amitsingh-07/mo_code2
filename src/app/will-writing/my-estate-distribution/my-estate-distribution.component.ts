@@ -23,7 +23,6 @@ export class MyEstateDistributionComponent implements OnInit, OnDestroy {
   private confirmModal = {};
   pageTitle: string;
   step: string;
-
   beneficiaryList: any[] = [];
   distributionForm: FormGroup;
   remainingPercentage = 100;
@@ -173,5 +172,4 @@ export class MyEstateDistributionComponent implements OnInit, OnDestroy {
       }
     }
   }
-
 }

@@ -67,7 +67,7 @@
                       *ngIf="dependantSelectionForm.get('noOfHouseholdMembers'). value !=='' && dependantSelectionForm.get('noOfHouseholdMembers').value !== null">{{dependantSelectionForm.get('noOfHouseholdMembers').value === null ? 'Select' : dependantSelectionForm.get('noOfHouseholdMembers').value}}</span>
                   </button>
                   <div ngbDropdownMenu aria-labelledby="dropdownMembers">
-                    <button class="dropdown-item" (click)="selectHouseHoldMembers('')">Select</button>
+                    <button class="dropdown-item" (click)="selectHouseHoldMembers('')">{{'COMMON.LBL_SELECT' | translate}}</button>
                     <button type="button" class="dropdown-item" *ngFor="let houseHoldMembers of householdMembersList;"
                       (click)="selectHouseHoldMembers(houseHoldMembers)">
                       {{houseHoldMembers}}
@@ -95,7 +95,7 @@
                       *ngIf="dependantSelectionForm.get('houseHoldIncome'). value !=='' && dependantSelectionForm.get('houseHoldIncome').value !== null">{{dependantSelectionForm.get('houseHoldIncome').value === null ? 'Select' : dependantSelectionForm.get('houseHoldIncome').value}}</span>
                   </button>
                   <div ngbDropdownMenu aria-labelledby="dropdownRelation">
-                    <button class="dropdown-item" (click)="selectHouseHoldIncome('')">Select</button>
+                    <button class="dropdown-item" (click)="selectHouseHoldIncome('')">{{'COMMON.LBL_SELECT' | translate}}</button>
                     <button type="button" class="dropdown-item" *ngFor="let houseHoldIncome of householdIncomeList;"
                       (click)="selectHouseHoldIncome(houseHoldIncome)">
                       {{houseHoldIncome}}

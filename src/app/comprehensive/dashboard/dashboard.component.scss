@@ -24,11 +24,11 @@
   }
 
   .toast-msg-container {
-    color: #e57300;
-    background: #fff;
+    color: $mango-tango-color;
+    background: $white-color;
     padding: 19px;
-    background-color: #fff1e3;
-    font-family: "Muli Bold", sans-serif;
+    background-color: $serenade-color;
+    font-family: $muli-bold;
     font-size: 15px;
     line-height: 19px;
     display: flex;
@@ -258,7 +258,7 @@
         padding-top: 0 !important;
     }
     .btn.btn-primary:hover {
-        background-color: #00c5c4 !important;
+        background-color: $robins-egg-blue-color !important;
     }
 
     //Dashboard Lite UI Styles
@@ -281,7 +281,7 @@
         }
     }
     .report-error-msg{
-        color:#ff872f!important;
+        color:$crusta-orange-color!important;
         font-size: 16px!important;
         font-family: $muli-italic;
         margin-bottom: 5px;
