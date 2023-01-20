@@ -147,8 +147,8 @@
   @include allmobiles {
     padding-left: 20px !important;
     padding-right: 20px !important;
-    position: relative; //top: 35px;
-    height: 100%; //bottom: 60px;
+    position: relative;
+    height: 100%;
     padding: 80px 0;
 
     &.bottom-none {
@@ -186,13 +186,6 @@
     &.more {
       top: 60px;
     }
-  }
-}
-
-.form-container {
-  @include allmobiles {
-    //margin-bottom: 60px;
-    //margin-top: 60px;
   }
 }
 

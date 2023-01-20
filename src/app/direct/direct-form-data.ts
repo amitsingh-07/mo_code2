@@ -17,7 +17,7 @@ export class DirectFormData {
     customDob: string;
     smoker: string;
 
-     // Life Protection && Critical Illness Form
+    // Life Protection && Critical Illness Form
     coverageAmt: number;
     duration: string;
     userInfo: UserInfo;

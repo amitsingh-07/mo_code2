@@ -60,7 +60,7 @@ export class DirectComponent implements OnInit, AfterViewInit, IPageComponent, O
   constructor(
     private router: Router, public navbarService: NavbarService,
     public footerService: FooterService, private directService: DirectService, private translate: TranslateService,
-    public modal: NgbModal, private route: ActivatedRoute,
+    public modal: NgbModal,
     private factoryResolver: ComponentFactoryResolver, private appService: AppService,
     private planService: SelectedPlansService, private stateStoreService: StateStoreService,
     private location: Location, private seoService: SeoServiceService, private changeDetector: ChangeDetectorRef,
@@ -135,7 +135,7 @@ export class DirectComponent implements OnInit, AfterViewInit, IPageComponent, O
       this.state.hideForm = true;
     }
     if (!this.authService.isSignedUser()) {
-      this.appService.setCorporateDetails({organisationEnabled: false, uuid: null});
+      this.appService.setCorporateDetails({ organisationEnabled: false, uuid: null });
     }
     if (!JSON.parse(sessionStorage.getItem(SHOWN_DIRECTJOURNEY_CONTACTFORM))) {
       this.contactFormTimerFn();
@@ -145,24 +145,24 @@ export class DirectComponent implements OnInit, AfterViewInit, IPageComponent, O
       .subscribe(showPopup => {
         if (showPopup) {
           this.destroyContactFormTimer$.next(true);
-          this.destroyContactFormTimer$.complete();  
+          this.destroyContactFormTimer$.complete();
           sessionStorage.setItem(SHOWN_DIRECTJOURNEY_CONTACTFORM, JSON.stringify(true));
           this.openContactFormModal();
         }
-    })
+      })
   }
 
   /** Systematically trigger contact form when user idling for 2 mins in direct journey */
   contactFormTimerFn() {
     this.mouseMove$.pipe(
       startWith(null),
-      switchMap( option => interval(1000)),
+      switchMap(option => interval(1000)),
       takeUntil(this.destroyContactFormTimer$),
-    ).subscribe( idleSeconds => {
+    ).subscribe(idleSeconds => {
       if (idleSeconds === DISPLAY_CONTACT_FORM) {
         this.destroyContactFormTimer$.next(true);
         sessionStorage.setItem(SHOWN_DIRECTJOURNEY_CONTACTFORM, JSON.stringify(true));
-        this.openContactFormModal();        
+        this.openContactFormModal();
       }
     })
   }

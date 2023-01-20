@@ -1,5 +1,5 @@
 
-import { async, ComponentFixture, getTestBed, TestBed } from '@angular/core/testing';
+import { waitForAsync, ComponentFixture, getTestBed, TestBed } from '@angular/core/testing';
 import { FormBuilder, ReactiveFormsModule, FormArray  } from '@angular/forms';
 import { Location, DatePipe } from '@angular/common';
 import { HttpClient } from '@angular/common/http';
@@ -76,7 +76,7 @@ describe('EditProductInfoComponent', () => {
       return true;
     }
   };
-  beforeEach(async(() => {
+  beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
       declarations: [ EditProductInfoComponent, ProductDetailComponent ],
       imports: [

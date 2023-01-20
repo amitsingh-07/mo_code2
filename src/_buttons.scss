@@ -12,13 +12,6 @@ button:active {
   background: none;
 }
 
-/*
-button:active:focus {
-  color: inherit;
-  background-color: inherit; 
-  border-color: inherit;
-}
-*/
 .btn {
   font-size: 22px;
   font-family: $muli-semi-bold;
@@ -293,7 +286,6 @@ button:active:focus {
   font-size: 16px;
   font-family: $muli-regular;
   font-weight: normal !important;
-  //width: 133px;
   padding: .90rem;
   @extend .align-center;
   @extend .flex;
@@ -312,21 +304,6 @@ button:active:focus {
     background: transparent !important;
   }
 }
-
-/*Fixed button Medium*/
-
-// .fixed-btn--md {
-//   width: 170px;
-//   padding: .90rem;
-// }
-
-/*Fixed button large*/
-
-// .fixed-btn--lg {
-//   width: 267px;
-//   padding: .90rem;
-// }
-
 
 /*My Info Button Block*/
 
@@ -679,8 +656,6 @@ button:active:focus {
     max-width: 950px;
     max-height: 70px;
     min-height: 64px;
-    //max-width: calc(1024px - 160px);
-    //min-width:337px;
     box-shadow: 0 8px 6px -6px rgba(138, 155, 169, 0.3);
 
     @include allmobiles {
@@ -770,11 +745,9 @@ button:active:focus {
       display: block;
       font-family: $muli-semi-bold;
       font-size: 22px;
-      //line-height: 1.0;
       letter-spacing: -0.4px;
       color: $dark-teal-color;
       max-width: 60%;
-      //word-wrap: normal;
       overflow: hidden;
       white-space: nowrap;
       text-overflow: ellipsis;
@@ -882,7 +855,6 @@ button:active:focus {
       white-space: normal;
       justify-content: center;
       align-items: center;
-      // width: 100px;
       height: 51px;
       @extend .flex;
       @extend .align-center;
@@ -959,7 +931,6 @@ button:active:focus {
   }
 
   .dropdown-control {
-    //border:1px solid $light-teal-color;
     border-radius: 6px;
 
     .dropdown-menu {
@@ -1132,7 +1103,6 @@ button:active:focus {
     font-size: 16px;
     font-family: $muli-regular;
     font-weight: normal !important;
-    //width: 133px;
     padding: .90rem;
     @extend .align-center;
     @extend .flex;
@@ -1141,7 +1111,6 @@ button:active:focus {
     margin: 0;
     background: $white-color;
 
-    //margin-bottom: 5px;
     &.active {
       border: 1px solid $app-backgrnd-color !important;
       color: $white-color !important;

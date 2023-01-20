@@ -101,7 +101,7 @@ export class FormError {
                                 errorMessage: 'You have selected an invalid payout start age. Please check your entry.'
                         }
                 },
-                premiumDuration:  {
+                premiumDuration: {
                         required: {
                                 errorTitle: 'Invalid Premium Duration',
                                 errorMessage: 'You have selected an invalid premium duration. Please check your entry.'

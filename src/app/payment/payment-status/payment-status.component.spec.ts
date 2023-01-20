@@ -1,4 +1,4 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { waitForAsync, ComponentFixture, TestBed } from '@angular/core/testing';
 import { ActivatedRoute, Router } from '@angular/router';
 import { RouterTestingModule } from '@angular/router/testing';
 import { TranslateModule } from '@ngx-translate/core';
@@ -34,13 +34,13 @@ class MockComprehensiveApiService {
 class MockComprehensiveService {
   getEnquiryId() { return '123'; }
 
-  setReportStatus(reportStatus) {}
+  setReportStatus(reportStatus) { }
 
-  setLocked(lock: boolean) {}
+  setLocked(lock: boolean) { }
 
-  setViewableMode(commitFlag: boolean) {}
+  setViewableMode(commitFlag: boolean) { }
 
-  setReportId(reportId: number) {}
+  setReportId(reportId: number) { }
 }
 
 describe('PaymentStatusComponent', () => {
@@ -52,7 +52,7 @@ describe('PaymentStatusComponent', () => {
   let routerNavigateSpy: jasmine.Spy;
   let signUpService: SignUpService;
 
-  beforeEach(async(() => {
+  beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
       declarations: [PaymentStatusComponent],
       imports: [
@@ -60,7 +60,7 @@ describe('PaymentStatusComponent', () => {
         RouterTestingModule.withRoutes([])
       ],
       providers: [
-        { provide: ActivatedRoute,  useClass: ActivatedRouteMock },
+        { provide: ActivatedRoute, useClass: ActivatedRouteMock },
         { provide: ComprehensiveService, useClass: MockComprehensiveService },
         { provide: ComprehensiveApiService, useClass: MockComprehensiveApiService },
         { provide: SignUpService, useClass: MockSignUpService }

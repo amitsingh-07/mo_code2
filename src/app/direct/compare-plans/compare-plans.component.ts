@@ -1,4 +1,4 @@
-import { CurrencyPipe, TitleCasePipe } from '@angular/common';
+import { TitleCasePipe } from '@angular/common';
 import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { TranslateService } from '@ngx-translate/core';
@@ -26,7 +26,7 @@ export class ComparePlansComponent implements OnInit {
   constructor(
     public headerService: HeaderService, public directService: DirectService,
     public readonly translate: TranslateService,
-    public titlecase: TitleCasePipe, private modal: NgbModal, private currency: CurrencyPipe,
+    public titlecase: TitleCasePipe, private modal: NgbModal,
     public navbarService: NavbarService) {
     this.translate.use('en');
     this.translate.get('COMMON').subscribe((result: string) => {
@@ -38,7 +38,7 @@ export class ComparePlansComponent implements OnInit {
     this.frequencyFilter = this.directService.getPremiumFrequencyFilter();
     this.protectionType = this.directService.getProtectionType();
     this.retirementIncome = this.directService.getRetirementIncomeForm();
-    
+
   }
 
   ngOnInit() {

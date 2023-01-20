@@ -35,7 +35,6 @@ export class EducationFormComponent implements OnInit, OnDestroy {
 
   constructor(
     private directService: DirectService, private modal: NgbModal,
-    private parserFormatter: NgbDateParserFormatter,
     private formBuilder: FormBuilder, private translate: TranslateService, private config: NgbDatepickerConfig) {
     const today: Date = new Date();
     this.minDate = { year: (today.getFullYear() - 100), month: (today.getMonth() + 1), day: today.getDate() };

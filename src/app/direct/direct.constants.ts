@@ -11,7 +11,7 @@ export const PRODUCT_CATEGORY_INDEX = {
 
 export const LONG_TERM_CARE_SHIELD = {
     MIN_YEAR: 1970,
-	AGE: 30
+    AGE: 30
 };
 
 export const RETIREMENT_INCOME_CONST = {

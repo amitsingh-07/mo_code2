@@ -1,13 +1,14 @@
 @import '../../../variables';
 @import '../../../mixins';
 
-app-contact-form{
-    .modal-body{
-        @include allmobiles{
+app-contact-form {
+    .modal-body {
+        @include allmobiles {
             border-radius: 8px !important;
             padding-left: 20px !important;
         }
-        .modal-body-title{
+
+        .modal-body-title {
             margin-right: 0px;
             margin-bottom: 15px;
             font-family: $muli-regular;
@@ -17,13 +18,14 @@ app-contact-form{
             color: $silver-grey-color;
             display: block;
 
-            .banner-bg{
+            .banner-bg {
                 width: 269px;
                 height: 193px;
                 text-align: center;
                 margin: 20px auto;
             }
-            .text-bold{
+
+            .text-bold {
                 font-family: $muli-bold;
                 font-size: 18px;
                 color: $darker-teal-color;
@@ -32,55 +34,64 @@ app-contact-form{
             }
         }
     }
-    .form-group-floating-label{
+
+    .form-group-floating-label {
         border: 1px solid $half-baked-blue-color;
-        .form-control-placeholder{
+
+        .form-control-placeholder {
             color: $dusty-grey-color;
         }
     }
-    .btn-primary{
+
+    .btn-primary {
         &.footer-btn {
             font-family: $muli-bold;
             background-color: $teal-color;
             box-shadow: 0 4px 6px 0 rgba(0, 0, 0, 0.15);
             margin-top: 20px;
         }
-        &:disabled{
+
+        &:disabled {
             color: $btn-disabled-teal-color !important;
             background: $btn-disabled-light-bg !important;
         }
     }
-    .datepicker-control{
-        .input-group{
-            &.date-picker{
+
+    .datepicker-control {
+        .input-group {
+            &.date-picker {
                 flex-wrap: nowrap;
-                .form-control-placeholder{
+
+                .form-control-placeholder {
                     top: 20px;
                     margin-left: 0 !important;
-                 }
-                 .form-control:focus + .form-control-placeholder , 
-                 .form-control:valid + .form-control-placeholder {
-                   top: 14px;
-                 }
-        
-                 .dropdown-menu{
-                    &.show{
+                }
+
+                .form-control:focus+.form-control-placeholder,
+                .form-control:valid+.form-control-placeholder {
+                    top: 14px;
+                }
+
+                .dropdown-menu {
+                    &.show {
                         right: -46px !important;
                         left: unset !important;
                     }
-                 }
+                }
             }
         }
     }
-    
-    .alert-msg{
+
+    .alert-msg {
         font-family: $muli-italic;
         font-size: 14px;
         padding-top: 5px;
-        div{
+
+        div {
             display: flex;
             align-items: center;
-            .alert-icon{
+
+            .alert-icon {
                 width: 15px;
                 height: 15px;
                 display: flex;
@@ -89,8 +100,8 @@ app-contact-form{
         }
     }
 
-    .recommnendation-info{
-        .title{
+    .recommnendation-info {
+        .title {
             font-family: $muli-bold;
             font-size: 14px;
             line-height: 21px;
@@ -99,16 +110,20 @@ app-contact-form{
             color: $dark-fountain-blue-color;
             margin-bottom: 15px;
         }
-        .accordion-item{
+
+        .accordion-item {
             border: none;
-            .accordion-header{
+
+            .accordion-header {
                 padding: 0;
                 background: $white-color;
                 border: none;
+
                 .accordion-button {
                     padding: 0px;
                     width: 100%;
                     background: $white-color;
+
                     .arrow {
                         border: solid $half-baked-blue-color;
                         border-width: 0 2px 2px 0;
@@ -117,6 +132,7 @@ app-contact-form{
                         transform: rotate(-135deg);
                         -webkit-transform: rotate(-135deg);
                     }
+
                     &.collapsed {
                         .arrow {
                             transform: rotate(45deg);
@@ -124,39 +140,46 @@ app-contact-form{
                             margin-top: -10px;
                         }
                     }
+
                     &:hover,
                     &:focus {
                         text-decoration: none;
                     }
-                    &::after{
+
+                    &::after {
                         display: none;
                     }
                 }
             }
-            .accordion-body{
+
+            .accordion-body {
                 padding: 0;
-                .form-control{
-                    &.gender{
-                      padding: 0.9rem !important;
-                      color: $teal-color;
-                      flex-direction: row;
+
+                .form-control {
+                    &.gender {
+                        padding: 0.9rem !important;
+                        color: $teal-color;
+                        flex-direction: row;
                     }
                 }
-                .insurance-lbl{
+
+                .insurance-lbl {
                     color: $dove-grey-color;
                 }
+
                 [placeholder]:empty::before {
                     content: attr(placeholder);
                     color: $dusty-grey-color;
                 }
-            
+
                 [placeholder]:empty:focus::before {
                     content: "";
                 }
-                .dropdown-control{
-                    .dropdown-menu{
-                        &.show{
-                           max-height: 220px;
+
+                .dropdown-control {
+                    .dropdown-menu {
+                        &.show {
+                            max-height: 220px;
                         }
                     }
                 }
@@ -166,6 +189,7 @@ app-contact-form{
 
     .consent-checkbox {
         margin-bottom: 16px;
+
         .title {
             margin-top: 16px;
         }
