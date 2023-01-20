@@ -12,6 +12,7 @@ import { COMPREHENSIVE_CONST } from './../../comprehensive/comprehensive-config.
 import { AuthenticationService } from './../../shared/http/auth/authentication.service';
 import { appConstants } from '../../app.constants';
 import { environment } from '../../../environments/environment'
+import { Util } from '../../shared/utils/util';
 @Component({
   selector: 'app-payment-instruction',
   templateUrl: './payment-instruction.component.html',
@@ -107,4 +108,11 @@ export class PaymentInstructionComponent implements OnInit, OnDestroy {
     }, 3000);
   }
 
+  navigateCompreFaq(){
+    if (this.authService.isUserTypeCorporate) {
+      Util.openExternalUrl(appConstants.CORP_FAQ_URL, '_blank');
+    } else {
+      Util.openExternalUrl(appConstants.COMPREHENSIVE_PAYMENT_FAQ, '_blank');
+    }
+  }
 }

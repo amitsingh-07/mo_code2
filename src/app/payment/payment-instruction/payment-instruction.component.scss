@@ -279,15 +279,13 @@ app-payment-instruction {
             .faq-link {
                 text-align: left;
                 padding: 20px 10px 0;
-                a {
-                    font-family: $muli-bold;
-                    font-size: 16px;
-                    font-weight: 700;
-                    letter-spacing: -0.2px;
-                    text-align: center;
-                    color: $crusta-orange-color;
-                    text-decoration: none;
-                }
+                font-family: $muli-bold;
+                font-size: 16px;
+                font-weight: 700;
+                letter-spacing: -0.2px;
+                color: $crusta-orange-color;
+                text-decoration: none;
+                cursor: pointer;
             }
         }
         .footer-btn {

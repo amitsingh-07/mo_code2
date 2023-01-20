@@ -345,18 +345,13 @@ app-wise-income-payout {
                 border-radius: 6px;
                 background-color: $white-color;
 
-                a {
-                    font-family: $muli-bold;
-                    line-height: normal;
-                    letter-spacing: -0.3px;
-                    color: $black-color;
-                    text-decoration: none;
-                    width: 100%;
-
-                    div {
-                        padding: 20px;
-                    }
-                }
+                font-family: $muli-bold;
+                line-height: normal;
+                letter-spacing: -0.3px;
+                color: $black-color;
+                text-decoration: none;
+                width: 100%;
+                padding: 20px;
 
                 .arrow {
                     border: solid$teal-color;
