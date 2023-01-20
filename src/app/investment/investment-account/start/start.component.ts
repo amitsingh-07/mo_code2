@@ -1,4 +1,3 @@
-import { Location } from '@angular/common';
 import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { TranslateService } from '@ngx-translate/core';
@@ -34,7 +33,6 @@ export class StartComponent implements OnInit {
     public footerService: FooterService,
     private route: ActivatedRoute,
     private router: Router,
-    private _location: Location,
     private investmentAccountService: InvestmentAccountService,
     private translate: TranslateService
   ) {
@@ -60,7 +58,7 @@ export class StartComponent implements OnInit {
     }
   }
   goBack() {
-    this._location.back();
+    this.navbarService.goBack();
   }
   myInfoManual() {
     this.investmentAccountService.setMyInfoStatus(false);

@@ -3,9 +3,10 @@ import { Component, Input, OnInit, ViewEncapsulation } from '@angular/core';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { Router } from '@angular/router';
 import { TranslateService } from '@ngx-translate/core';
+
 import { ErrorModalComponent } from '../../shared/modal/error-modal/error-modal.component';
 import { WillWritingService } from '../will-writing.service';
-
+import { NavbarService } from '../../shared/navbar/navbar.service';
 @Component({
   selector: 'app-page-title',
   templateUrl: './page-title.component.html',
@@ -24,7 +25,8 @@ export class PageTitleComponent implements OnInit {
     private modal: NgbModal,
     private translate: TranslateService,
     private router: Router,
-    private willWritingService: WillWritingService
+    private willWritingService: WillWritingService,
+    private navbarService: NavbarService
   ) {
     this.translate.get('COMMON').subscribe((result: string) => {
       this.unsavedMsg = this.translate.instant('WILL_WRITING.COMMON.UNSAVED');
@@ -44,12 +46,12 @@ export class PageTitleComponent implements OnInit {
           if (url) {
             this.router.navigate([url]);
           } else {
-            this._location.back();
+            this.navbarService.goBack();
           }
         }
       });
     } else {
-      this._location.back();
+      this.navbarService.goBack();
     }
     return false;
   }

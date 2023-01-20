@@ -1,4 +1,3 @@
-import { Location } from '@angular/common';
 import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { Router } from '@angular/router';
 import { TranslateService } from '@ngx-translate/core';
@@ -31,7 +30,6 @@ export class StartJourneyComponent implements OnInit {
     public navbarService: NavbarService,
     public footerService: FooterService,
     public authService: AuthenticationService,
-    private _location: Location,
     private seoService: SeoServiceService
   ) {
     this.translate.use('en');
@@ -56,7 +54,7 @@ export class StartJourneyComponent implements OnInit {
     this.navbarService.setPageTitle(title);
   }
   goBack() {
-    this._location.back();
+    this.navbarService.goBack();
   }
   goNext() {
     this.appService.setJourneyType(appConstants.JOURNEY_TYPE_INVESTMENT);

@@ -1,4 +1,3 @@
-import { Location } from '@angular/common';
 import { Component, OnInit, ViewEncapsulation, OnDestroy } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
@@ -63,7 +62,6 @@ export class UpdateUserIdComponent implements OnInit, OnDestroy {
     private route: ActivatedRoute,
     private router: Router,
     private translate: TranslateService,
-    private _location: Location,
     private investmentAccountService: InvestmentAccountService,
     private configService: ConfigService,
     public cryptoService: CryptoService,
@@ -330,7 +328,7 @@ export class UpdateUserIdComponent implements OnInit, OnDestroy {
   }
 
   goBack() {
-    this._location.back();
+    this.navbarService.goBack();
   }
 
   onFocus() {

@@ -1,6 +1,5 @@
 import { Subscription } from 'rxjs';
 
-import { Location } from '@angular/common';
 import { Component, OnDestroy, OnInit, ViewChild, ViewEncapsulation } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
@@ -51,7 +50,6 @@ export class MyChildGuardianComponent implements OnInit, OnDestroy {
     private translate: TranslateService,
     public footerService: FooterService,
     public navbarService: NavbarService,
-    private _location: Location,
     private willWritingService: WillWritingService
   ) {
     this.translate.use('en');
@@ -97,7 +95,7 @@ export class MyChildGuardianComponent implements OnInit, OnDestroy {
         if (this.addGuardianForm.dirty) {
           this.pageTitleComponent.goBack();
         } else {
-          this._location.back();
+          this.navbarService.goBack();
         }
         return false;
       }

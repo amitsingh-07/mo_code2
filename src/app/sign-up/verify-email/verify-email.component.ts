@@ -1,4 +1,3 @@
-import { Location } from '@angular/common';
 import { AfterViewInit, ChangeDetectorRef, Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
@@ -45,7 +44,6 @@ export class VerifyEmailComponent implements OnInit, AfterViewInit {
     private signUpService: SignUpService,
     private route: ActivatedRoute,
     private router: Router,
-    private _location: Location,
     private translate: TranslateService,
     private authService: AuthenticationService,
     private changeDetectorRef: ChangeDetectorRef) {
@@ -139,7 +137,7 @@ export class VerifyEmailComponent implements OnInit, AfterViewInit {
     }
   }
   goBack() {
-    this._location.back();
+    this.navbarService.goBack();
   }
 
   refreshCaptcha() {

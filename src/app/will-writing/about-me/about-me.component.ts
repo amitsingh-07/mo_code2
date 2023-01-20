@@ -1,5 +1,4 @@
 import { Subscription } from 'rxjs';
-import { Location } from '@angular/common';
 import { Component, OnDestroy, OnInit, ViewChild, ViewEncapsulation  } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
@@ -46,7 +45,6 @@ export class AboutMeComponent implements OnInit, OnDestroy {
     private formBuilder: FormBuilder,
     private router: Router,
     private translate: TranslateService,
-    private _location: Location,
     public footerService: FooterService,
     private modal: NgbModal, public navbarService: NavbarService,
     private willWritingService: WillWritingService
@@ -90,7 +88,7 @@ export class AboutMeComponent implements OnInit, OnDestroy {
         if (this.aboutMeForm.dirty) {
           this.pageTitleComponent.goBack();
         } else {
-          this._location.back();
+          this.navbarService.goBack();
         }
         return false;
       }

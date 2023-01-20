@@ -43,7 +43,7 @@ export class AppComponent implements IComponentCanDeactivate, OnInit, AfterViewI
   navbarMode = null;
 
   constructor(
-    private translate: TranslateService, public navbarService: NavbarService, private _location: Location,
+    private translate: TranslateService, public navbarService: NavbarService,
     private googleAnalyticsService: GoogleAnalyticsService,
     private modal: NgbModal, public route: Router, public routingService: RoutingService, private location: Location,
     private configService: ConfigService, private authService: AuthenticationService, private sessionsService: SessionsService,
@@ -114,7 +114,7 @@ export class AppComponent implements IComponentCanDeactivate, OnInit, AfterViewI
       console.log('Device Back Button Clicked');
       if (BackButtonListener.canGoBack) {
         console.log('Go the previous screen');
-        this._location.back();        
+        this.navbarService.goBack();
       } else {
         console.log('No Back screen');
         //App.exitApp();
@@ -149,7 +149,7 @@ export class AppComponent implements IComponentCanDeactivate, OnInit, AfterViewI
       ref.result.then((data) => {
       if (data !== 'proceed') {
         if (this.redirect === '' || this.redirect === undefined) {
-          this._location.back();
+          this.navbarService.goBack();
         } else {
           window.location.href = this.redirect;
           }
