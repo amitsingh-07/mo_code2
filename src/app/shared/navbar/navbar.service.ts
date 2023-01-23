@@ -103,6 +103,10 @@ export class NavbarService {
         if (this.isBackClicked) {
           this.isBackClicked = false;
         }
+        if (event.url === "/accounts/login") {
+          this.urlHistory.currentUrl = null;
+          this.urlHistory.previousUrl = [];
+        }
       }
       this.unsubscribeBackPress();
     });
