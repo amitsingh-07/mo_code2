@@ -624,7 +624,7 @@ _:-ms-fullscreen, :root .flex-col-12, :root .flex-col-7 {
 @mixin stepcolor {
   opacity: 0.2;
  &.active {
-    background-color: #31e5db !important;
+    background-color: $aqua-color !important;
     opacity: 1;
   }
 }

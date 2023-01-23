@@ -6,7 +6,7 @@ export interface ISignUp {
     enquiryId: number;
     referralCode: string;
     userType: string;
-    accountCreationType:string;
+    accountCreationType: string;
     organisationCode?: string;
     enrolmentId?: number;
     isCorpBizEnrollUser?: boolean;
@@ -40,11 +40,11 @@ export interface ICustomer {
     emailAddress: string;
     password: string;
     acceptMarketingNotifications: boolean;
-    uin?:string;
-    fullName?:string;
+    uin?: string;
+    fullName?: string;
     dob: string;
     gender: string;
-  
+
 }
 
 export interface IVerifyRequestOTP {

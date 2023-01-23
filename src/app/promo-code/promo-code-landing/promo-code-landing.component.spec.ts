@@ -1,4 +1,4 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { waitForAsync, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { PromoCodeLandingComponent } from './promo-code-landing.component';
 
@@ -6,11 +6,11 @@ describe('ProductDetailComponent', () => {
   let component: PromoCodeLandingComponent;
   let fixture: ComponentFixture<PromoCodeLandingComponent>;
 
-  beforeEach(async(() => {
+  beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
-      declarations: [ PromoCodeLandingComponent ]
+      declarations: [PromoCodeLandingComponent]
     })
-    .compileComponents();
+      .compileComponents();
   }));
 
   beforeEach(() => {

@@ -70,7 +70,7 @@ export class EmploymentDetailsComponent implements OnInit {
     this.isUserNationalitySingapore = this.investmentAccountService.isSingaporeResident();
     this.formValues = this.investmentAccountService.getInvestmentAccountFormData();
     this.countries = this.investmentAccountService.getCountriesFormDataByFilter();
-    
+
     this.isEditProfile =
       this.route.snapshot.queryParams && this.route.snapshot.queryParams.enableEditProfile
         ? true

@@ -24,14 +24,14 @@
   }
 
   .rsp-border-top {
-    border-top: 1px solid #cee5e4 !important;
+    border-top: 1px solid $edge-water-color !important;
     border-radius: 0px !important;
   }
 
   .add-rsp {
-    border-top: 1px solid #cee5e4;
+    border-top: 1px solid $edge-water-color;
     margin: 20px 0 10px 0;
-    color: #066360;
+    color: $watercourse-color;
     text-decoration: underline;
     padding-top: 15px;
     font-family: $muli-regular;
@@ -44,12 +44,11 @@
   .rsp-header {
     @extend .flex;
     justify-content: space-between;
-    border-top: 1px solid #cee5e4;
+    border-top: 1px solid $edge-water-color;
     padding: 15px 0;
   }
 
   .delete-icon {
-    //margin-left: 10px;
     width: 16px;
     position: relative;
     top: 2px;
@@ -68,7 +67,6 @@
     margin-right: 10px;
     position: relative;
 
-    //font-size: 18px;
     .help-icon {
       background: url("./../../../assets/images/tool-help-icon.svg") no-repeat;
       width: 40px;

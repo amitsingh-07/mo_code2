@@ -79,7 +79,7 @@ export class PaymentStatusComponent implements OnInit, OnDestroy {
       if (params['transaction_state'].toLowerCase() === PAYMENT_STATUS.CANCEL) {
         // Call cancel payment
         const reqId = this.paymentService.getRequestId();
-        this.paymentService.cancelPayment(reqId).subscribe((res) => {});
+        this.paymentService.cancelPayment(reqId).subscribe((res) => { });
       }
     }
   }

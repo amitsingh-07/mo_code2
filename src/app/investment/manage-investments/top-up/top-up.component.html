@@ -8,9 +8,11 @@
           <img src="assets/images/topupwithdraw/topup.svg" />
         </div>
         <div class="faq_link">
-         
-          <a *ngIf="!authService.isUserTypeCorporate" target="_blank" routerLink='/faq' fragment="investment">{{ 'ASSET_ALLOCATION.FAQ_DESC_TEXT' | translate}}</a>
-          <a *ngIf="authService.isUserTypeCorporate" target="_blank" routerLink="{{corpFaq}}"> {{ 'ASSET_ALLOCATION.FAQ_DESC_TEXT' | translate}}</a>
+
+          <a *ngIf="!authService.isUserTypeCorporate" target="_blank" routerLink='/faq' fragment="investment">{{
+            'ASSET_ALLOCATION.FAQ_DESC_TEXT' | translate}}</a>
+          <a *ngIf="authService.isUserTypeCorporate" target="_blank" routerLink="{{corpFaq}}"> {{
+            'ASSET_ALLOCATION.FAQ_DESC_TEXT' | translate}}</a>
         </div>
       </div>
       <div class="col-lg-6 col-md-6 padding-none">
@@ -20,15 +22,16 @@
           <img src="assets/images/alert-black.svg" />
           <div class="info-card-monthly-note" innerHTML="{{'TOPUP.MONTHLY_NOTE' | translate}}"></div>
         </div>
-        <form id="myFinancialsForm" name="myFinancialsForm" [formGroup]="topForm" >
+        <form id="myFinancialsForm" name="myFinancialsForm" [formGroup]="topForm">
           <div class="flex-row">
             <div class="col-lg-12 col-md-12 pl0 pr0 width100">
               <div class="form-group-with-bg">
                 <div class="form-group-with-bg--header">
                   <div class="flex-row">
                     <div class="flex-col-12">
-                      <div class="form-group-with-bg--header-label" id="topup_select_portfolio">{{'TOPUP.SELECT_PORTFOLIO'
-                            | translate}}
+                      <div class="form-group-with-bg--header-label" id="topup_select_portfolio">
+                        {{'TOPUP.SELECT_PORTFOLIO'
+                        | translate}}
                       </div>
                     </div>
                   </div>
@@ -42,9 +45,11 @@
                             ngbDropdownToggle>
                             <img *ngIf="topForm?.controls?.portfolio?.value?.entitlements?.jointAccount"
                               class="joint-account-img" src="assets/images/manage-investments/ja-icon.svg" />
-                            {{topForm.controls.portfolio.value ? (topForm.controls.portfolio.value.portfolioName + ' - ' + 
-                                 (topForm.controls.portfolio.value.refNo? topForm.controls.portfolio.value.refNo : formValues.selectedCustomerPortfolio.referenceCode)) :'Select
-                                Portfolio'}}
+                            {{topForm.controls.portfolio.value ? (topForm.controls.portfolio.value.portfolioName + ' - '
+                            +
+                            (topForm.controls.portfolio.value.refNo? topForm.controls.portfolio.value.refNo :
+                            formValues.selectedCustomerPortfolio.referenceCode)) :'Select
+                            Portfolio'}}
                           </button>
                           <div class="dropdown" ngbDropdownMenu aria-labelledby="courseDropdown">
                             <button class="dropdown-item capital-letter"
@@ -67,8 +72,9 @@
                 <div class="form-group-with-bg--header">
                   <div class="flex-row">
                     <div class="flex-col-12">
-                      <div class="form-group-with-bg--header-label" id="topup_portfolio_enter_amount">{{'TOPUP.ENTER_INVESTMENT_AMOUNT'
-                            | translate}}
+                      <div class="form-group-with-bg--header-label" id="topup_portfolio_enter_amount">
+                        {{'TOPUP.ENTER_INVESTMENT_AMOUNT'
+                        | translate}}
                       </div>
                     </div>
                   </div>
@@ -84,7 +90,8 @@
                       <div id="topup_investmenttype_name" class="input-label-white mb10">{{topupTypes.ONE_TIME.NAME}}
                       </div>
                       <div id="topup_investmenttype_value" class="input-label-normal" *ngIf="investmentCriteria">
-                        {{'TOPUP.MIN'| translate}} {{investmentCriteria.oneTimeInvestmentMinimum | currency:'CAD':'symbol-narrow':'1.0-0' }}
+                        {{'TOPUP.MIN'| translate}} {{investmentCriteria.oneTimeInvestmentMinimum |
+                        currency:'CAD':'symbol-narrow':'1.0-0' }}
                       </div>
                     </label>
                   </div>
@@ -96,8 +103,9 @@
                     <label for="tupup_radio_button_2">
                       <div id="topup_investmenttype_name" class="input-label-white mb10">{{topupTypes.MONTHLY.NAME}}
                       </div>
-                      <div id="topup_investmenttype_value" class="input-label-normal" *ngIf="investmentCriteria"> 
-                        {{'TOPUP.MIN'| translate}} {{investmentCriteria.monthlyInvestmentMinimum | currency:'CAD':'symbol-narrow':'1.0-0' }}
+                      <div id="topup_investmenttype_value" class="input-label-normal" *ngIf="investmentCriteria">
+                        {{'TOPUP.MIN'| translate}} {{investmentCriteria.monthlyInvestmentMinimum |
+                        currency:'CAD':'symbol-narrow':'1.0-0' }}
                       </div>
                     </label>
                   </div>
@@ -108,8 +116,8 @@
                         <i id="myFinancialDollerSymbThree">$</i>
                         <div name="totalLiabilities">
                           <input class="input-control" type="text" appCurrencyInput [allowDecimal]=true
-                            [allowMaxLimit]=10000000 decimalFormat="1.2-2" maxLength="10"
-                            #oneTimeInvestmentAmount value="0" formControlName="oneTimeInvestmentAmount"
+                            [allowMaxLimit]=10000000 decimalFormat="1.2-2" maxLength="10" #oneTimeInvestmentAmount
+                            value="0" formControlName="oneTimeInvestmentAmount"
                             (keyup)="validateAmount(topForm.controls.oneTimeInvestmentAmount.value)"
                             id="onetime_investment">
                         </div>
@@ -138,7 +146,7 @@
         </form>
         <button type="button" [disabled]="!topForm.valid" (click)="goToNext(topForm)"
           class="btn btn__footer--fixed btn-primary width100" id="myFinancialGoNextBtn">{{
-            'TOPUP.CONTINUE' | translate}}</button>
+          'TOPUP.CONTINUE' | translate}}</button>
       </div>
     </div>
   </div>

@@ -1,33 +1,39 @@
 @import '../../../../_variables.scss';
 @import '../../../../_mixins.scss';
 
-app-cka-assessment{
-    .container-fluid{
-        &.max-width--1024{
-            @include allmobiles{
+app-cka-assessment {
+    .container-fluid {
+        &.max-width--1024 {
+            @include allmobiles {
                 padding-bottom: 30px;
             }
-            @include min568max767{
+
+            @include min568max767 {
                 padding-top: 65px;
             }
         }
     }
-    .text-lyt{
+
+    .text-lyt {
         font-size: 18px;
         line-height: 22px;
         letter-spacing: -0.18px;
-      }
-    .tiles{
+    }
+
+    .tiles {
         max-width: 337px;
         margin-left: auto;
-        @include allmobiles{
+
+        @include allmobiles {
             max-width: 100%;
         }
-        @include minMobilemaxPhablet{
+
+        @include minMobilemaxPhablet {
             margin-right: auto;
         }
-        .btn{
-            &.tile{
+
+        .btn {
+            &.tile {
                 background: $white-color;
                 padding: 20px;
                 margin-bottom: 10px;
@@ -39,25 +45,30 @@ app-cka-assessment{
                 color: $boulder-grey-color;
                 align-items: center;
                 text-align: left;
-                &:last-child{
+
+                &:last-child {
                     margin-bottom: 0;
                 }
-                @include allmobiles{
+
+                @include allmobiles {
                     width: 100%;
                 }
-                .title{
+
+                .title {
                     font-family: $muli-semi-bold;
                     letter-spacing: -0.17px;
                     color: $teal-color;
                     margin-bottom: 10px;
                 }
+
                 .icon-block {
                     width: 16px;
                     height: 10px;
                     border: none;
                     float: right;
-                  }
-                  .arrow-right {
+                }
+
+                .arrow-right {
                     display: block;
                     border-style: solid;
                     border-color: $lite-jagged-ice-color;
@@ -72,23 +83,27 @@ app-cka-assessment{
                     transform: rotate(225deg);
                     float: right;
                     margin-top: 6px;
-                  }
-               
-                  &:hover, &:active {
+                }
+
+                &:hover,
+                &:active {
                     @include desktop {
                         background-color: $aqua-squeeze-color;
                         color: $blue-stone-color;
-                        .title{
-                            color: $teal-color;  
+
+                        .title {
+                            color: $teal-color;
                         }
-                        .arrow-right{
+
+                        .arrow-right {
                             border-color: $blue-stone-color;
                         }
                     }
-                 }
+                }
             }
         }
     }
+
     
       .enquiry-text{
         font-family: $muli-regular;

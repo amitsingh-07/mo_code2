@@ -3,7 +3,6 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { TranslateService } from '@ngx-translate/core';
 import { Subscription } from 'rxjs';
-
 import { ConfigService } from '../../config/config.service';
 import { LoaderService } from '../../shared/components/loader/loader.service';
 import { ProgressTrackerService } from '../../shared/modal/progress-tracker/progress-tracker.service';
@@ -11,10 +10,7 @@ import { NavbarService } from '../../shared/navbar/navbar.service';
 import { ComprehensiveApiService } from '../comprehensive-api.service';
 import { COMPREHENSIVE_CONST } from '../comprehensive-config.constants';
 import { ModelWithButtonComponent } from '../../shared/modal/model-with-button/model-with-button.component';
-import {
-  COMPREHENSIVE_ROUTES,
-  COMPREHENSIVE_ROUTE_PATHS,
-} from '../comprehensive-routes.constants';
+import { COMPREHENSIVE_ROUTES, COMPREHENSIVE_ROUTE_PATHS } from '../comprehensive-routes.constants';
 import { ComprehensiveService } from '../comprehensive.service';
 import { PAYMENT_ROUTE_PATHS } from './../../payment/payment-routes.constants';
 import { Util } from '../../shared/utils/util';
@@ -105,10 +101,8 @@ export class ComprehensiveReviewComponent implements OnInit, OnDestroy {
       }
     );
     const reportStatus = this.comprehensiveService.getReportStatus();
-    this.requireToPay =
-      reportStatus === COMPREHENSIVE_CONST.REPORT_STATUS.NEW &&
-      !this.isCorporateUser;
-    if (reportStatus === COMPREHENSIVE_CONST.REPORT_STATUS.SUBMITTED) {
+    this.requireToPay = reportStatus === COMPREHENSIVE_CONST.REPORT_STATUS.NEW && !this.isCorporateUser;
+    if (reportStatus === COMPREHENSIVE_CONST.REPORT_STATUS.SUBMITTED) { 
       this.initiateReport();
     } else if (!this.comprehensiveService.checkResultData()) {
       this.router.navigate([COMPREHENSIVE_ROUTE_PATHS.VALIDATE_RESULT]);
@@ -167,11 +161,7 @@ export class ComprehensiveReviewComponent implements OnInit, OnDestroy {
     } else if (this.comprehensiveService.checkResultData()) {
       const currentStep = this.comprehensiveService.getMySteps();
       if (currentStep === 5) {
-        if (
-          this.isPaymentEnabled &&
-          !this.isCorporateUser &&
-          reportStatus === COMPREHENSIVE_CONST.REPORT_STATUS.NEW
-        ) {
+        if ( this.isPaymentEnabled && !this.isCorporateUser && reportStatus === COMPREHENSIVE_CONST.REPORT_STATUS.NEW ) {
           // If payment is enabled and user has not paid, go payment else initiate report gen
           this.router.navigate([PAYMENT_ROUTE_PATHS.CHECKOUT]);
         } else {
@@ -183,7 +173,7 @@ export class ComprehensiveReviewComponent implements OnInit, OnDestroy {
         }
       } else {
         this.router.navigate([
-          COMPREHENSIVE_ROUTE_PATHS.STEPS + "/" + currentStep,
+          COMPREHENSIVE_ROUTE_PATHS.STEPS + "/" + currentStep
         ]);
       }
     } else {
@@ -216,7 +206,6 @@ export class ComprehensiveReviewComponent implements OnInit, OnDestroy {
             reportStatus = COMPREHENSIVE_CONST.REPORT_STATUS.SUBMITTED;
             viewMode = true;
           }
-
           let routerURL: any;
           if (this.isCorporateUser && this.comprehensiveService.getReportStatus() === COMPREHENSIVE_CONST.REPORT_STATUS.EDIT && Util.isEmptyOrNull(this.adviserPaymentStatus)) {
             routerURL = COMPREHENSIVE_ROUTE_PATHS.REVIEW;
@@ -260,8 +249,7 @@ export class ComprehensiveReviewComponent implements OnInit, OnDestroy {
       "COMPREHENSIVE.DASHBOARD.ADVISER_MODAL.BTN_LBL"
     );
     ref.componentInstance.primaryAction.subscribe(() => {
-      const routerURL =
-        COMPREHENSIVE_ROUTE_PATHS.SPEAK_TO_ADVISOR
+      const routerURL = COMPREHENSIVE_ROUTE_PATHS.SPEAK_TO_ADVISOR;
       this.router.navigate([routerURL]);
     });
   }
@@ -326,7 +314,5 @@ export class ComprehensiveReviewComponent implements OnInit, OnDestroy {
         this.loaderService.hideLoader();
       }
     });
-
   }
-
 }

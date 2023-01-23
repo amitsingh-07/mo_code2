@@ -10,18 +10,18 @@ app-my-family{
     }
 }
 .aboutMe {
-    background-color: #f4fafb;
+    background-color: $black-squeeze-grey-color;
     border-radius: 6px;
-    box-shadow: 0 8px 10px 0 rgba(0, 0, 0, 0.25);
+    box-shadow: 0 8px 10px 0 $box-shadow-color;
     font-size: 18px;
     letter-spacing: -0.3px;
-    color: #2d8289;
+    color: $dark-teal-color;
     margin-top: 23px;
     @include allmobiles {
         margin-top: 19px;
     }
     input{
-        color:#00a7a7;
+        color:$teal-color;
     }
     .flex-row{
         padding: 0 19px 23px; 
@@ -31,7 +31,7 @@ app-my-family{
         font-family: $muli-bold;
         font-size: 20px;
         letter-spacing: -0.4px;
-        color: #066360;
+        color: $watercourse-color;
         margin-bottom: 19px;
         padding: 17px 19px; 
         border-radius: 6px;
@@ -40,7 +40,7 @@ app-my-family{
         font-family: $muli-regular;
         font-size: 16px;
         letter-spacing: -0.3px;
-        color: #2d8289;
+        color: $dark-teal-color;
         font-weight: normal;
     }
 }
@@ -50,33 +50,33 @@ app-my-family{
     font-size: 18px;
     font-weight: 300;
     letter-spacing: -0.2px;
-    color: #fff;
+    color: $white-color;
 }
 .autofill-link {
     @include allmobiles {
         display: flex;
         flex-direction: column-reverse;
         align-items: center;
-        background-color: #fff;
+        background-color: $white-color;
     }
 }
 .autofill-text{
     font-size: 36px;
     letter-spacing: -0.4px;
-    color: #fff;  
+    color: $white-color;  
 }
 
 .sub-title {
     font-size: 18px;
     line-height: 1.22;
     letter-spacing: -0.2px;
-    color: #fff;
+    color: $white-color;
     padding-bottom: 22px;
     font-family: $muli-regular;
     @include allmobiles {
         width: 300px;
         text-align: center;
-        color: #333846;
+        color: $bright-grey-color;
         padding-bottom: 1px;
         font-size: 16px;
     }
@@ -94,7 +94,7 @@ app-my-family{
 .myFamilyForm{
     @include allmobiles{
         padding: 19px 19px 100px;
-        background-color: #00a7a7;
+        background-color: $teal-color;
     }
 }
 
@@ -106,7 +106,7 @@ app-my-family{
 }
 
 .datepicker-control {
-    border: 1px solid #ced4da;
+    border: 1px solid $lite-ghost-color;
     border-radius: 0.25rem;
 }
 
@@ -156,7 +156,7 @@ app-my-family{
     font-stretch: normal;
     line-height: normal;
     letter-spacing: -0.3px;
-    color: #2d8289;
+    color: $dark-teal-color;
   }
 
   .inline-error{

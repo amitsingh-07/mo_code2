@@ -1,19 +1,19 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 import { TranslateService } from '@ngx-translate/core';
-import { INVESTMENT_COMMON_CONSTANTS } from '../../../investment/investment-common/investment-common.constants';
 
+import { INVESTMENT_COMMON_CONSTANTS } from '../../../investment/investment-common/investment-common.constants';
 import {
-    InvestmentAccountService
+  InvestmentAccountService
 } from '../../../investment/investment-account/investment-account-service';
 import {
   InvestmentEngagementJourneyService
 } from '../../../investment/investment-engagement-journey/investment-engagement-journey.service';
 import {
-    MANAGE_INVESTMENTS_CONSTANTS
+  MANAGE_INVESTMENTS_CONSTANTS
 } from '../../../investment/manage-investments/manage-investments.constants';
 import {
-    ManageInvestmentsService
+  ManageInvestmentsService
 } from '../../../investment/manage-investments/manage-investments.service';
 
 @Component({
@@ -39,10 +39,10 @@ export class ReviewBuyRequestModalComponent implements OnInit {
   @Output() closeAction = new EventEmitter<any>();
 
   constructor(public activeModal: NgbActiveModal,
-              public readonly translate: TranslateService,
-              public manageInvestmentsService: ManageInvestmentsService,
-              public investmentAccountService: InvestmentAccountService,
-              public investmentEngagementJourneyService: InvestmentEngagementJourneyService) {
+    public readonly translate: TranslateService,
+    public manageInvestmentsService: ManageInvestmentsService,
+    public investmentAccountService: InvestmentAccountService,
+    public investmentEngagementJourneyService: InvestmentEngagementJourneyService) {
   }
 
   ngOnInit() {
@@ -50,12 +50,12 @@ export class ReviewBuyRequestModalComponent implements OnInit {
     if (this.fundDetails['fundingType'] === MANAGE_INVESTMENTS_CONSTANTS.FUNDING_INSTRUCTIONS.ONETIME) {
       this.oneTimeBuyRequestInfo();
     } else if (this.fundDetails['fundingType'] === MANAGE_INVESTMENTS_CONSTANTS.FUNDING_INSTRUCTIONS.MONTHLY) {
-     this.monthlyBuyRequestInfo();
+      this.monthlyBuyRequestInfo();
     }
     this.portfolioType = this.fundDetails['portfolio']['riskProfileType'];
     if (this.fundDetails['portfolio']['riskProfileId']) {
       this.riskProfileImg =
-       this.investmentEngagementJourneyService.getRiskProfileIcon(this.portfolioType, false);
+        this.investmentEngagementJourneyService.getRiskProfileIcon(this.portfolioType, false);
     }
     this.portfolioCatagories = INVESTMENT_COMMON_CONSTANTS.PORTFOLIO_CATEGORY;
   }
@@ -70,13 +70,13 @@ export class ReviewBuyRequestModalComponent implements OnInit {
       } else {
         this.noteArray = this.translate.instant('REVIEW_BUY_REQUEST.SUFFICIENT_ONETIME_CASH_NOTE');
       }
-    }  else if (this.fundDetails.portfolio.fundingTypeValue.toUpperCase() === MANAGE_INVESTMENTS_CONSTANTS.TOPUP.FUNDING_METHODS.CPF) {
+    } else if (this.fundDetails.portfolio.fundingTypeValue.toUpperCase() === MANAGE_INVESTMENTS_CONSTANTS.TOPUP.FUNDING_METHODS.CPF) {
       this.noteArray = this.translate.instant('REVIEW_BUY_REQUEST.ONETIME_CPF_NOTE');
       this.oneTimeMonthlyInfo = this.translate.instant('REVIEW_BUY_REQUEST.INFO_CPF_ONETIME');
     } else {
       this.noteArray = this.translate.instant('REVIEW_BUY_REQUEST.ONETIME_SRS_NOTE');
       this.oneTimeMonthlyInfo = this.translate.instant('REVIEW_BUY_REQUEST.INFO_SRS_ONETIME');
-     }
+    }
   }
   monthlyBuyRequestInfo() {
     this.requestAmount = Number(this.fundDetails['monthlyInvestment']) || 0;
@@ -84,7 +84,7 @@ export class ReviewBuyRequestModalComponent implements OnInit {
     this.oneTimeMonthlyLbl = this.translate.instant('REVIEW_BUY_REQUEST.MONTHLY_LBL');
     if (this.fundDetails.portfolio.fundingTypeValue.toUpperCase() === MANAGE_INVESTMENTS_CONSTANTS.TOPUP.FUNDING_METHODS.CASH) {
       this.noteArray = this.translate.instant('REVIEW_BUY_REQUEST.MONTHLY_CASH_NOTE');
-    } else  if (this.fundDetails.portfolio.fundingTypeValue.toUpperCase() === MANAGE_INVESTMENTS_CONSTANTS.TOPUP.FUNDING_METHODS.CPF) {
+    } else if (this.fundDetails.portfolio.fundingTypeValue.toUpperCase() === MANAGE_INVESTMENTS_CONSTANTS.TOPUP.FUNDING_METHODS.CPF) {
       this.noteArray = this.translate.instant('REVIEW_BUY_REQUEST.MONTHLY_CPF_NOTE');
       this.oneTimeMonthlyInfo = this.translate.instant('REVIEW_BUY_REQUEST.INFO_CPF_MONTHLY');
     } else {
@@ -100,6 +100,6 @@ export class ReviewBuyRequestModalComponent implements OnInit {
 
   closeIconAction() {
     this.closeAction.emit();
-    this.activeModal.dismiss('Cross click');    
+    this.activeModal.dismiss('Cross click');
   }
 }

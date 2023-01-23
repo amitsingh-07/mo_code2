@@ -2,7 +2,7 @@
 @import '../../../mixins';
 app-check-eligibility {
 .label{
-    color:#2d8289;
+    color: $dark-teal-color;
 }
 .warning-message-container {
     margin-top: 24px;
@@ -17,7 +17,7 @@ app-check-eligibility {
     background-repeat: no-repeat;
 }
 .container-fluid {
-    background-color: #fff;
+    background-color: $white-color;
     padding: 50px 60px 65px;
     @include allmobiles{
         padding: 10px 0 !important;
@@ -43,7 +43,7 @@ app-check-eligibility {
 .eligibilityForm {
     margin-top: 130px;
     @include allmobiles {
-        background-color: #f7f7f7;
+        background-color: $white-smoke-color;
         padding-top: 18px;
         padding-bottom: 18px;
         margin-top:0;
@@ -52,7 +52,7 @@ app-check-eligibility {
     @include iphoneX {
         min-height: 460px; 
         padding-top: 18px;
-        background-color: #f7f7f7;
+        background-color: $white-smoke-color;
         padding-bottom: 18px;
         margin-top:0;
         padding-left: 23px;
@@ -60,7 +60,7 @@ app-check-eligibility {
     @include pixel2XL {
         min-height: 470px; 
         padding-top: 18px;
-        background-color: #f7f7f7;
+        background-color: $white-smoke-color;
         padding-bottom: 18px;
         margin-top:0;
         padding-left: 23px;
@@ -68,8 +68,8 @@ app-check-eligibility {
 }
 .instructions {
     border-radius: 6px;
-    background-color: #fff;
-    box-shadow: 0 8px 12px 0 rgba(0, 0, 0, 0.25);   
+    background-color: $white-color;
+    box-shadow: 0 8px 12px 0 $box-shadow-color;
     @include allmobiles{
         margin: 0 16px !important;
     }
@@ -79,7 +79,7 @@ app-check-eligibility {
     flex-direction: column;
     justify-content: space-around;
     letter-spacing: -0.3px;
-    color: #626362;
+    color: $corduroy-color;
     padding: 30px 25px;
     div{
         margin-bottom: 15px;
@@ -99,14 +99,14 @@ app-check-eligibility {
         font-size: 18px;
         font-weight: 300;
         letter-spacing: -0.2px;
-        color: #00a7a7;
+        color: $teal-color;
     }
     .sub-title{
         font-family: $muli-regular;
         font-size: 18px;
         line-height: 1.22;
         letter-spacing: -0.2px;
-        color: #333846;
+        color: $bright-grey-color;
         @include allmobiles {
             margin-bottom: 12px !important;        
             text-align: center;
@@ -119,12 +119,12 @@ app-check-eligibility {
         }
     }
     h2{
-        color: #00a7a7;
+        color: $teal-color;
         @include allmobiles {
             font-size: 20px;
             letter-spacing: -0.4px;
             text-align: center;
-            color: #066360;
+            color: $watercourse-color;
         }
     }
     @include allmobiles {
@@ -132,7 +132,7 @@ app-check-eligibility {
         width: 100%;
     }
     .tooltip-content{
-        border: 1px solid #00a7a7;
+        border: 1px solid $teal-color;
         border-radius: 4px;
         padding: 13px 29px;
         margin-top: 22px;
@@ -157,11 +157,11 @@ app-check-eligibility {
 
 .inline-error{
     border-radius: 6px !important;
-    border: solid 2px #ff872f !important;
-    background-color: #fff3e9 !important;
-    color: #e57300 !important;
+    border: solid 2px $crusta-orange-color !important;
+    background-color: $inline-error-bg-color !important;
+    color: $mango-tango-color !important;
     .duration{
-        color: #e57300 !important;
+        color: $mango-tango-color !important;
     }
     .btn-dropdown{
         border-radius: none;
@@ -177,17 +177,17 @@ app-check-eligibility {
     }
 }
 .direct-form-btn--radio {
-    background-color: #fff !important;
+    background-color: $white-color !important;
     @include allmobiles {
-        color:  #00a7a7 !important;
+        color:  $teal-color !important;
     }
 }
 .direct-form-btn--radio.active {
-    background-color: #00a7a7 !important;
-    color: #ffffff !important;
+    background-color: $teal-color !important;
+    color: $white-color !important;
     &.no {
-        background-color: #fff3e9 !important;
-        color: #e57300 !important;
+        background-color: $inline-error-bg-color !important;
+        color: $mango-tango-color !important;
         border-radius: 6px !important;
         border: solid 2px $crusta-orange-color !important;
     }
@@ -197,7 +197,7 @@ app-check-eligibility {
     font-family: $muli-semi-bold;
     font-size: 18px;
     letter-spacing: -0.3px;
-    color: #2d8289;
+    color: $dark-teal-color;
     margin-bottom: 17px;
     justify-content: space-between;
         @include allmobiles{
@@ -224,7 +224,7 @@ app-check-eligibility {
     @include allmobiles {
         .show {
             &.dropdown {
-                border: 1px solid #00a7a7 !important;
+                border: 1px solid $teal-color !important;
                 border-radius:  6px;
             }
         }
@@ -252,7 +252,7 @@ app-check-eligibility {
     font-family: $muli-semi-bold;
     font-size: 18px;
     letter-spacing: -0.3px;
-    color: #2d8289;
+    color: $dark-teal-color;
     padding-bottom: 24px;
     position: relative;
     @include allmobiles {
@@ -274,7 +274,7 @@ app-check-eligibility {
   font-weight: normal;
   line-height: 1.31;
   letter-spacing: -0.2px;
-  color: #2d8289;
+  color: $dark-teal-color;
   padding-left: 7px;
 }
 
@@ -307,7 +307,7 @@ app-check-eligibility {
         
 }
 .btn-ftr-get-started.btn:disabled {
-    background-color: #bff1f1 !important;
+    background-color: $btn-disabled !important;
     color: $white-color;
 }
 .direct-form-btn--radio {

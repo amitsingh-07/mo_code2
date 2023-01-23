@@ -38,7 +38,6 @@
             [defaultLabelStyleClass]="defaultRadioStyleClass" flexRowMarPadClass="insurance-input-radio mb0"></app-custom-radio-controller>
           </div>
         </div>
-
         <div *ngIf="insurancePlanForm.get('haveHospitalPlan').value ">
           <div class="form-group-with-bg--content-white--desc flex-row align-item-start">
             <div class="flex-col-1">2.</div>
@@ -88,21 +87,10 @@
               <i>$</i>
               <input type="text" class="input-control" appCurrencyInput maxLength="8"
                 formControlName="lifeProtectionAmount" value="0">
-
             </div>
           </div>
         </div>
         <div [hidden]="!haveHDB">
-          <!-- <div class="form-group-with-bg--content-white--desc flex-row align-item-start">
-            <div class="flex-col-1">2.</div>
-            <div class="flex-col-10">
-              {{'CMP.INSURANCE_PLAN.LIFE_PROTECTION_LABEL_2' | translate}}
-            </div>
-            <div class="help-icon flex-col-1"
-              (click)="showToolTipModal('HOME_PROTECTION_SCHEME_TITLE','HOME_PROTECTION_SCHEME_MESSAGE')"></div>
-          </div> -->
-
-
           <div class="pos-relative">
             <div class="form-group-with-bg--content-white--desc flex-row align-item-start">
               <div class="flex-col-1">2.</div>
@@ -112,16 +100,12 @@
               (click)="showToolTipModal('HOME_PROTECTION_SCHEME_TITLE','HOME_PROTECTION_SCHEME_MESSAGE')"><img
                 src="assets/images/comprehensive/tool-tip-white.svg" width="20" height="20"></span>
           </div>
-
-
-
           <div class="flex-col-12 mb-3">
             <div class="btn-group--toggle" name="radioGender">
               <app-custom-radio-controller formControlName="haveHDBHomeProtectionScheme" name="haveHDBHomeProtectionScheme" [radioLabelValue]="radioLabelValueRider"
               [defaultLabelStyleClass]="defaultRadioStyleClass" flexRowMarPadClass="insurance-input-radio mb0" flexColumns="flex-col-4"></app-custom-radio-controller>
             </div>
           </div>
-
           <div *ngIf="insurancePlanForm.get('haveHDBHomeProtectionScheme').value === 1" class="flex-row">
             <div class="flex-col-5 pr5">
               <label for="name" id="myDependantFormLb1">
@@ -138,16 +122,6 @@
             </div>
           </div>
         </div>
-
-        <!-- <div class="form-group-with-bg--content-white--desc flex-row mt10">
-          <div class="flex-col-1"><span [hidden]="!haveHDB">3.</span> <span [hidden]="haveHDB">2.</span></div>
-          <div class="flex-col-10">
-            {{'CMP.INSURANCE_PLAN.LIFE_PROTECTION_LABEL_3' | translate}}</div>
-          <div class="help-icon flex-col-1"
-            (click)="showToolTipModal('OTHER_LIFE_INSURANCE_TITLE','OTHER_LIFE_INSURANCE_MESSAGE')"></div>
-        </div> -->
-
-
         <div class="pos-relative mt20">
           <div class="form-group-with-bg--content-white--desc flex-row align-item-start">
             <div class="flex-col-1"><span [hidden]="!haveHDB">3.</span><span [hidden]="haveHDB">2.</span></div>
@@ -157,7 +131,6 @@
             (click)="showToolTipModal('OTHER_LIFE_INSURANCE_TITLE','OTHER_LIFE_INSURANCE_MESSAGE')"><img
               src="assets/images/comprehensive/tool-tip-white.svg" width="20" height="20"></span>
         </div>
-
         <div class="flex-row">
           <div class="flex-col-5 pr5">
             <label for="name" id="myDependantFormLb1">

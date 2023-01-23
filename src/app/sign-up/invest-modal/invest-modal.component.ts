@@ -28,12 +28,12 @@ export class InvestModalComponent implements OnInit {
     public authService: AuthenticationService,
     private investmentCommonService: InvestmentCommonService,
     public manageInvestmentsService: ManageInvestmentsService,
-    private investmentEngagementService: InvestmentEngagementJourneyService) {}
+    private investmentEngagementService: InvestmentEngagementJourneyService) { }
 
   ngOnInit(): void {
     this.resizeObservable$ = fromEvent(window, 'resize');
     this.innerWidth = window.innerWidth;
-    this.resizeSubscription$ = this.resizeObservable$.subscribe( evt => {
+    this.resizeSubscription$ = this.resizeObservable$.subscribe(evt => {
       if (innerWidth > this.mobileThreshold) {
         this.activeModal.close();
       }
@@ -42,7 +42,7 @@ export class InvestModalComponent implements OnInit {
 
   newPortfolio() {
     this.authService.removeEnquiryId();
-    this.investmentCommonService.clearFundingDetails();  
+    this.investmentCommonService.clearFundingDetails();
     this.investmentCommonService.clearJourneyData();
     if (this.authService.accessCorporateUserFeature('CREATE_JOINT_ACCOUNT')) {
       this.router.navigate([INVESTMENT_ENGAGEMENT_JOURNEY_ROUTE_PATHS.SELECT_PORTFOLIO_TYPE]);
@@ -66,5 +66,5 @@ export class InvestModalComponent implements OnInit {
     });
     this.activeModal.close();
   }
-  
+
 }

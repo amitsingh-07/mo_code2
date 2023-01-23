@@ -44,18 +44,22 @@ app-additional-declaration1 {
         font-size: 16px;
         font-family: $muli-regular;
       }
+
       .btn-outline-primary {
         &.fixed-btn--sm {
           &.disabled {
             cursor: not-allowed;
             pointer-events: auto !important;
             border-color: $fixed-btn-brdr-color;
-            &.active{
+
+            &.active {
               border-color: $fixed-btn-brdr-color;
+
               &:hover {
                 border-color: $white-color !important;
               }
             }
+
             &:hover {
               border-color: transparent !important;
             }

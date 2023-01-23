@@ -36,7 +36,7 @@ export class InvestmentEngagementJourneyFormData {
   fundingMethod: any;
 
   // SELECT PORTFOLIO
-  selectPortfolioType:any;
+  selectPortfolioType: any;
 
   // SET USER SELECTED PORTFOLIO TYPE, JA || PA
   userPortfolioType: any;

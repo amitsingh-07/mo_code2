@@ -1,4 +1,4 @@
-import { AbstractControl, Validators, ValidatorFn } from '@angular/forms';
+
 
 export function ValidateRange(control): { [key: string]: boolean } | null {
   const SINGAPORE_MOBILE_REGEXP = /^(8|9)\d{7}$/;

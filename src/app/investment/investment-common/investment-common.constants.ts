@@ -152,7 +152,7 @@ export let INVESTMENT_COMMON_CONSTANTS = {
     UOB: 'UOB',
     BANK_EDITABLE_STATUS: 'edit'
   },
-  ASSET_TYPE:{
+  ASSET_TYPE: {
     EQUITIES: 'Equities',
     FIXED_INCOME: 'Fixed Income',
     BONDS: 'Bonds'

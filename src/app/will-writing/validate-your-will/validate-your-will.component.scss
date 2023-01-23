@@ -4,10 +4,10 @@ app-validate-your-will{
 .intro-block {
     .container-fluid {
         padding-top: 30px !important;
-        background-color: #ffffff;
+        background-color: $white-color;
         @include allmobiles {
             padding-top: 10px !important;
-            background-color: #00a7a7;
+            background-color: $teal-color;
             padding-bottom: 40px;
         }
     }
@@ -26,7 +26,7 @@ app-validate-your-will{
             }
             &.active-prev {
                 opacity:1 !important;
-                background-color: #02908e !important;
+                background-color: $blue-lagoon-color !important;
             }
         }
     }
@@ -70,8 +70,8 @@ app-validate-your-will{
             font-size: 22px;
             letter-spacing: -0.2px;
             text-align: center;  
-            color: #ffffff !important;
-            background-color: #00c5c4 !important; 
+            color: $white-color !important;
+            background-color: $robins-egg-blue-color !important; 
         }
     }
     .intro-block__content__heading {
@@ -79,10 +79,10 @@ app-validate-your-will{
         font-size: 36px;
         letter-spacing: -0.4px;
         text-align: center;
-        color: #00a7a7;
+        color: $teal-color;
         margin-top: 30px;
         @include allmobiles {
-            color: #ffffff;
+            color: $white-color;
             font-size: 24px;
             opacity: 1;
             margin-top: 0 !important;
@@ -94,7 +94,7 @@ app-validate-your-will{
         font-size: 24px;
         letter-spacing: -0.3px;
         text-align: center;
-        color: #ffffff;
+        color: $white-color;
         line-height: normal;
     }
     .intro-block__content__sub-title {
@@ -103,7 +103,7 @@ app-validate-your-will{
         line-height: 1.22;
         letter-spacing: -0.2px;
         text-align: center;
-        color: #ffffff;
+        color: $white-color;
         @include allmobiles{
             padding: 0 15px;
         }
@@ -123,20 +123,20 @@ app-validate-your-will{
 }
 
 .validate-your-will-container {
-    color:#2d8289;
+    color:$dark-teal-color;
     border-radius: 6px;
     box-shadow: 0 12px 14px 2px rgba(0, 0, 0, 0.21);
-    background-color: #ffffff;
+    background-color: $white-color;
 }
 
 .instructions {
     border-radius: 6px;
-    background-color: #fff;
+    background-color: $white-color;
     box-shadow: 0 8px 12px 0 rgba(0, 0, 0, 0.25);
     text-align: left;
 }
 .mask {
-    background-color: #2d8289;
+    background-color: $dark-teal-color;
     font-size: 22px;
     font-family: $muli-bold;
     border-top-left-radius: 6px;
@@ -152,20 +152,20 @@ app-validate-your-will{
         font-family: $muli-bold;
         font-size: 18px;
         letter-spacing: -0.3px;
-        color: #066360;
+        color: $watercourse-color;
       .step {
         font-family: $muli-regular;
         font-size: 16px;
         line-height: 1.25;
         font-weight: normal;
         letter-spacing: -0.2px;
-        color: #5e5e5e;
+        color: $silver-grey-color;
       }
   }
 .circle{
     width: 13px;
     height: 13px;
-    background-color: #00c5c4;
+    background-color: $robins-egg-blue-color;
     border-radius: 50%;
 }
   .edit-will {
@@ -174,18 +174,16 @@ app-validate-your-will{
     line-height: 2;
     letter-spacing: -0.2px;
     text-align: center;
-    color: #00a7a7;
+    color: $teal-color;
     cursor: pointer;
     @include allmobiles {
-        color: #ffffff;
+        color: $white-color;
     }
     
     .edit-icon {
-        //background-image: url(../../../assets/images/will-writing/edit-dark.svg);
         background-repeat: no-repeat;
         @include allmobiles {
-            //background-image: url(../../../assets/images/will-writing/edit-white.svg);
-            background-color: #00a7a7;
+            background-color: $teal-color;
             
         }
     }
@@ -198,9 +196,9 @@ app-validate-your-will{
     line-height: 1.33;
     letter-spacing: -0.2px;
     text-align: center;
-    color: #5e5e5e;
+    color: $silver-grey-color;
     @include allmobiles {
-        color: #ffffff;
+        color: $white-color;
     }
     
   }
@@ -223,7 +221,7 @@ app-validate-your-will{
             }
         }
         .section {
-            border-left: 1px solid #00c5c4;
+            border-left: 1px solid $robins-egg-blue-color;
             margin-left: -7px;
             padding-bottom: 20px;
             .sub-section {

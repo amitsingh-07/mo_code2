@@ -1,4 +1,4 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { waitForAsync, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { MyChildGuardianComponent } from './my-child-guardian.component';
 
@@ -6,7 +6,7 @@ describe('MyChildGuardianComponent', () => {
   let component: MyChildGuardianComponent;
   let fixture: ComponentFixture<MyChildGuardianComponent>;
 
-  beforeEach(async(() => {
+  beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
       declarations: [ MyChildGuardianComponent ]
     })

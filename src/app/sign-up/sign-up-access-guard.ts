@@ -7,14 +7,12 @@ import { SignUpService } from './sign-up.service';
 
 @Injectable()
 export class SignUpAccessGuard implements CanActivate {
-  constructor(private signUpService: SignUpService,
-              private myRoute: Router
-            ) {
+  constructor(private signUpService: SignUpService, private myRoute: Router) {
   }
-  canActivate(route: ActivatedRouteSnapshot): Observable<boolean>|Promise<boolean>|boolean {
-   if (!this.signUpService.getCustomerRef()) {
-        this.myRoute.navigate([SIGN_UP_ROUTE_PATHS.CREATE_ACCOUNT_MY_INFO]);
-        return false;
+  canActivate(route: ActivatedRouteSnapshot): Observable<boolean> | Promise<boolean> | boolean {
+    if (!this.signUpService.getCustomerRef()) {
+      this.myRoute.navigate([SIGN_UP_ROUTE_PATHS.CREATE_ACCOUNT_MY_INFO]);
+      return false;
     }
     return true;
   }
@@ -23,13 +21,13 @@ export class SignUpAccessGuard implements CanActivate {
 @Injectable()
 export class SignUpCorporateAccessGuard implements CanActivate {
   constructor(private signUpService: SignUpService,
-              private myRoute: Router
-            ) {
+    private myRoute: Router
+  ) {
   }
-  canActivate(route: ActivatedRouteSnapshot): Observable<boolean>|Promise<boolean>|boolean {
-   if (!this.signUpService.getCustomerRef()) {
-        this.myRoute.navigate([SIGN_UP_ROUTE_PATHS.CORPORATE_CREATE_ACCOUNT_MY_INFO]);
-        return false;
+  canActivate(route: ActivatedRouteSnapshot): Observable<boolean> | Promise<boolean> | boolean {
+    if (!this.signUpService.getCustomerRef()) {
+      this.myRoute.navigate([SIGN_UP_ROUTE_PATHS.CORPORATE_CREATE_ACCOUNT_MY_INFO]);
+      return false;
     }
     return true;
   }

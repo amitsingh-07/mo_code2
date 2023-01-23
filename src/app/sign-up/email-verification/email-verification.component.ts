@@ -8,7 +8,6 @@ import { AuthenticationService } from '../../shared/http/auth/authentication.ser
 import { SIGN_UP_ROUTE_PATHS } from '../../sign-up/sign-up.routes.constants';
 import { SignUpApiService } from './../sign-up.api.service';
 import { appConstants } from './../../app.constants';
-import { AppService } from './../../app.service';
 
 @Component({
   selector: 'app-email-verification',
@@ -28,8 +27,7 @@ export class EmailVerificationComponent implements OnInit {
     private router: Router,
     private translate: TranslateService,
     private footerService: FooterService,
-    private authService: AuthenticationService, private configService: ConfigService,
-    private appService: AppService
+    private authService: AuthenticationService, private configService: ConfigService
   ) {
     this.translate.use('en');
     this.translate.get('EMAIL_VERIFICATION').subscribe((result: any) => {
@@ -62,7 +60,7 @@ export class EmailVerificationComponent implements OnInit {
    */
   verifyEmail(verifyCode) {
     this.signUpApiService.verifyEmail(verifyCode).subscribe((data) => {
-      if( data.objectList[0] &&  data.objectList[0].userType){
+      if (data.objectList[0] && data.objectList[0].userType) {
         this.userType = data.objectList[0].userType;
       }
       if (data.responseMessage.responseCode === 6000) {
@@ -87,7 +85,7 @@ export class EmailVerificationComponent implements OnInit {
   redirectToLogin() {
     if (this.userType.toLowerCase() === appConstants.USERTYPE.FINLIT.toLowerCase()) {
       this.router.navigate([SIGN_UP_ROUTE_PATHS.FINLIT_LOGIN]);
-    } else if (this.userType.toLowerCase() === appConstants.USERTYPE.CORPORATE.toLowerCase()) { 
+    } else if (this.userType.toLowerCase() === appConstants.USERTYPE.CORPORATE.toLowerCase()) {
       this.router.navigate([SIGN_UP_ROUTE_PATHS.CORPORATE_LOGIN]);
     } else {
       this.router.navigate([SIGN_UP_ROUTE_PATHS.LOGIN]);

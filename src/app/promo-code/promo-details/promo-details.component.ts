@@ -72,7 +72,7 @@ export class PromoDetailsComponent implements OnInit {
       });
     });
   }
-  
+
   close() {
     this.activeModal.dismiss();
   }

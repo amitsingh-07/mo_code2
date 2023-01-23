@@ -81,14 +81,14 @@ app-investment-maintenance {
         }
 
         .contact-us-txt {
-            font-family: Muli;
+            font-family: $muli;
             font-size: 18px;
             font-weight: bold;
             font-stretch: normal;
             font-style: normal;
             line-height: normal;
             letter-spacing: -0.34px;
-            color: #ffffff;
+            color: $white-color;
             margin-left: 10px;
             vertical-align: bottom;
         }
@@ -101,7 +101,7 @@ app-investment-maintenance {
             font-style: normal;
             line-height: 1.45;
             letter-spacing: 0.01px;
-            color: #ffffff;
+            color: $white-color;
             margin: 20px 0 29px;
             max-width: 820px;
         }

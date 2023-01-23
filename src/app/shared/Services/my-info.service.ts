@@ -3,8 +3,8 @@ import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import { NgbModal, NgbModalOptions, NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
 import { Subject } from 'rxjs';
-import { appConstants } from '../../app.constants';
 
+import { appConstants } from '../../app.constants';
 import { environment } from '../../../environments/environment';
 import { ApiService } from '../http/api.service';
 import { ErrorModalComponent } from '../modal/error-modal/error-modal.component';
@@ -53,7 +53,7 @@ export class MyInfoService {
 
   setMyInfoAppId(myInfoServices) {
     this.myInfoServices = myInfoServices;
-    var clientIdObj , x;
+    var clientIdObj, x;
     clientIdObj = this.clientId;
     x = clientIdObj[myInfoServices];
     window.sessionStorage.setItem('myinfo_app_id', x);
@@ -84,14 +84,10 @@ export class MyInfoService {
 
   newWindow(authoriseUrl, linkAccount?): void {
     const self = this;
-    setTimeout(() => {    
+    setTimeout(() => {
       this.openFetchPopup(linkAccount);
     }, 500);
     this.isMyInfoEnabled = true;
-    const screenWidth = screen.width;
-    const screenHeight = screen.height;
-    const left = 0;
-    const top = 0;
     this.windowRef = window.open(authoriseUrl);
 
     const timer = setInterval(() => {
@@ -134,7 +130,6 @@ export class MyInfoService {
     };
 
     // Robo2 - MyInfo changes
-    // tslint:disable-next-line:only-arrow-functions
     window.addEventListener('message', function (event) {
       clearInterval(timer);
       window.success = () => null;
@@ -230,7 +225,7 @@ export class MyInfoService {
 
   getMyInfoData() {
     const code = {
-      appId:this.getMyInfoAppId(),
+      appId: this.getMyInfoAppId(),
       authorizationCode: this.myInfoValue,
       personAttributes: this.getMyInfoAttributes()
     };
@@ -240,7 +235,7 @@ export class MyInfoService {
   // singpass account link
   getSingpassAccountData() {
     const code = {
-      appId:this.getMyInfoAppId(),
+      appId: this.getMyInfoAppId(),
       authorizationCode: this.myInfoValue,
       personAttributes: this.getMyInfoAttributes()
     };

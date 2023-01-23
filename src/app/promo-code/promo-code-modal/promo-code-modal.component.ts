@@ -12,7 +12,7 @@ import { TranslateService } from '@ngx-translate/core';
 export class PromoCodeModalComponent implements OnInit {
 
   constructor(
-    public activeModal: NgbActiveModal, 
+    public activeModal: NgbActiveModal,
     private translate: TranslateService) {
     this.translate.use('en');
   }

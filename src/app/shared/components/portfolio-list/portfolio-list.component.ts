@@ -73,7 +73,6 @@ export class PortfolioListComponent implements OnInit, OnChanges {
   @Output() emitToastMessage = new EventEmitter<boolean>();
   @Output() emitMessage = new EventEmitter<any>();
 
-
   // Filtered Portfolio List
   filteredInvestedList: any;
   filteredNotInvestedList: any;

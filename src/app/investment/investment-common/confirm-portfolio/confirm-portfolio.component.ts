@@ -420,7 +420,7 @@ export class ConfirmPortfolioComponent implements OnInit {
         } else if (this.portfolio.portfolioType === INVESTMENT_COMMON_CONSTANTS.PORTFOLIO_CATEGORY.CPF) {
           this.investmentEngagementJourneyService.setSelectPortfolioType({ selectPortfolioType: INVESTMENT_ENGAGEMENT_JOURNEY_CONSTANTS.SELECT_POROFOLIO_TYPE.CPF_PORTFOLIO });
           this.iconImage = this.iconImage = this.investmentEngagementJourneyService.getRiskProfileIcon(this.portfolio.riskProfile.type, false);
-        }else {
+        } else {
           this.investmentEngagementJourneyService.setSelectPortfolioType({ selectPortfolioType: INVESTMENT_ENGAGEMENT_JOURNEY_CONSTANTS.SELECT_POROFOLIO_TYPE.WISEINCOME_PORTFOLIO });
         }
         const fundingParams = this.constructFundingParams(data.objectList);
@@ -484,7 +484,7 @@ export class ConfirmPortfolioComponent implements OnInit {
           desc: this.translate.instant('TOAST_MESSAGES.PORTFOLIO_ACCEPTED', { userGivenPortfolioName: portfolioName }),
         };
         this.manageInvestmentsService.setToastMessage(toastMessage);
-        this.emitToastMessage.emit(portfolioName);      
+        this.emitToastMessage.emit(portfolioName);
         this.investmentCommonService.clearConfirmedFundingMethod();
         this.router.navigate([MANAGE_INVESTMENTS_ROUTE_PATHS.YOUR_INVESTMENT]);
       } else {

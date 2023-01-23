@@ -161,6 +161,7 @@ app-myinfo-modal {
           letter-spacing: -0.3px;
           color: $black-color;
           background-color: $white-color;
+
           div {
             width: 100%;
           }
@@ -186,6 +187,7 @@ app-myinfo-modal {
           &:focus {
             text-decoration: none;
           }
+
           &::after {
             display: none;
           }

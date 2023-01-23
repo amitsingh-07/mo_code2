@@ -312,7 +312,7 @@ export class CpfPrerequisitesComponent implements OnInit {
   }
 
   showTooltip() {
-    const ref = this.modal.open(CpfiaTooltipComponent, { centered: true });
+    this.modal.open(CpfiaTooltipComponent, { centered: true });
   }
 
   disableContinue() {

@@ -7,6 +7,7 @@ app-select-portfolio {
   .container-fluid {
     &.select-portfolio {
       max-width: 485px;
+
       @include desktop {
         max-width: 600px;
       }
@@ -19,19 +20,23 @@ app-select-portfolio {
     font-size: 30px;
     letter-spacing: -0.31px;
   }
+
   .portfolio-subheading {
     margin: 10px 0 20px;
     font-size: 16px;
     font-family: $muli-regular;
     text-align: center;
     letter-spacing: -0.12px;
-    .txt-bold{
+
+    .txt-bold {
       font-family: $muli-bold;
     }
-    @include min568max767{
+
+    @include min568max767 {
       padding-top: 30px;
     }
   }
+
   .portfolio-cards {
     border-radius: 6px;
     padding: 25px;
@@ -45,7 +50,8 @@ app-select-portfolio {
     line-height: normal;
     letter-spacing: normal;
     min-height: 180px;
-    @include allmobiles{
+
+    @include allmobiles {
       margin-bottom: 10px;
     }
 
@@ -68,16 +74,20 @@ app-select-portfolio {
 
     &__img {
       margin-left: 20px;
-      @include allmobiles{
+
+      @include allmobiles {
         margin-left: 10px;
       }
-      @include iphone6{
+
+      @include iphone6 {
         margin-left: 0px;
       }
+
       img {
         width: 90px;
         height: 95px;
-        @include allmobiles{
+
+        @include allmobiles {
           width: 80px;
           height: 85px;
         }
@@ -85,7 +95,7 @@ app-select-portfolio {
     }
 
     &__details {
-      &__portfolio-type{
+      &__portfolio-type {
         width: 110px;
         height: 28px;
         padding: 6px 10px;
@@ -100,20 +110,24 @@ app-select-portfolio {
         display: flex;
         align-items: center;
         margin-bottom: 12px;
-        .circle{
+
+        .circle {
           width: 9px;
           height: 9px;
           border: 2px solid $anzac-tango-color;
           border-radius: 50%;
           margin-right: 5px;
-          &.wise-income{
+
+          &.wise-income {
             border-color: $chetwode-blue-color;
           }
-          &.wise-saver{
+
+          &.wise-saver {
             border-color: $shakespeare-teal-color;
           }
         }
       }
+
       &__title {
         font-size: 18px;
         letter-spacing: -0.19px;
@@ -143,6 +157,7 @@ app-select-portfolio {
         letter-spacing: -0.13px;
       }
     }
+
     .portfolio-new {
       position: absolute;
       top: 10px;
@@ -177,7 +192,8 @@ app-select-portfolio {
         background: url("./../../../../assets/images/wisesaver/icon-tick.svg") no-repeat 0 0;
         padding-left: 30px;
       }
-      .disclaimer{
+
+      .disclaimer {
         font-size: 12px;
         color: $dark-dusty-grey-color;
         padding-top: 0;
@@ -189,10 +205,12 @@ app-select-portfolio {
       font-family: $muli-bold;
       margin-bottom: 15px;
     }
+
     @include desktop {
       .slick-track {
         width: 800px !important;
       }
+
       .slick-slide {
         width: 400px !important;
       }
@@ -218,14 +236,16 @@ app-select-portfolio {
       color: $robins-egg-blue-color;
     }
   }
+
   .more-info-shadow {
     box-shadow: 0 4px 6px 0 rgba(0, 0, 0, 0.5);
   }
+
   .footer-btn-wrapper {
     padding: 0 55px;
   }
 
-  .portfolio-select{
+  .portfolio-select {
     margin-top: 7px;
     border-radius: 14px;
     background-color: $robins-egg-blue-color;
@@ -238,33 +258,38 @@ app-select-portfolio {
     padding: 4px 0;
     cursor: pointer;
   }
-  .nav-tabs{
+
+  .nav-tabs {
     border: none;
-      .portfolio-tab{
-        &.nav-link{
-          width: 140px;
-          border-radius: 14px;
-          border: 1px solid $white-color;
-          background-color: transparent;
-          font-family: $muli-bold;
-          font-size: 14px;
-          line-height: normal;
-          letter-spacing: -0.14px;
-          text-align: center;
-          color: $white-color;
-          padding: 3px 0;
-          &.active{
-            background-color: $robins-egg-blue-color;
-            border: 1px solid $robins-egg-blue-color;
-          }
-          &:hover{
-            text-decoration: none;
-          }
+
+    .portfolio-tab {
+      &.nav-link {
+        width: 140px;
+        border-radius: 14px;
+        border: 1px solid $white-color;
+        background-color: transparent;
+        font-family: $muli-bold;
+        font-size: 14px;
+        line-height: normal;
+        letter-spacing: -0.14px;
+        text-align: center;
+        color: $white-color;
+        padding: 3px 0;
+
+        &.active {
+          background-color: $robins-egg-blue-color;
+          border: 1px solid $robins-egg-blue-color;
         }
+
+        &:hover {
+          text-decoration: none;
+        }
+      }
     }
   }
-  .hide-tabs{
-    .nav-tabs{
+
+  .hide-tabs {
+    .nav-tabs {
       display: none;
     }
   }

@@ -10,7 +10,6 @@ import { ModelWithButtonComponent } from '../../shared/modal/model-with-button/m
 import { MyinfoModalComponent } from '../../shared/modal/myinfo-modal/myinfo-modal.component';
 import { MyInfoService } from '../../shared/Services/my-info.service';
 import { SIGN_UP_ROUTE_PATHS } from '../../sign-up/sign-up.routes.constants';
-
 import { LoaderService } from '../../shared/components/loader/loader.service';
 import { NavbarService } from '../../shared/navbar/navbar.service';
 import { NgbDateCustomParserFormatter } from '../../shared/utils/ngb-date-custom-parser-formatter';
@@ -378,7 +377,6 @@ export class MyProfileComponent implements IPageComponent, OnInit, OnDestroy {
 
     validateMoGetStrdForm(form: FormGroup) {
         this.submitted = true;
-        //COMPREHENSIVE_CONST.REPORT_STATUS.NEW
         if (this.comprehensiveService.getReportStatus() === null) {
             this.moGetStrdForm.markAsDirty();
         }

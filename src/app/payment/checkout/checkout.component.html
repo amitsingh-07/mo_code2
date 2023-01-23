@@ -43,7 +43,8 @@
         *ngIf='cfpPromoCode && promoCodeDescription && reductionAmount'>
         <div>
           <div>{{'CHECKOUT.PROMO_LBL' | translate}} ({{ promoCodeDescription }})</div>
-          <div class="txt-regular">{{ authService.isUserTypeCorporate ? ('CHECKOUT.CORP_PROMOCODE_LBL' | translate) : cfpPromoCode +  ' applied!' }} </div>
+          <div class="txt-regular">{{ authService.isUserTypeCorporate ? ('CHECKOUT.CORP_PROMOCODE_LBL' | translate) :
+            cfpPromoCode + ' applied!' }} </div>
         </div>
         <div class="value">{{ reductionAmount |
           currency:'USD':'symbol-narrow':'1.2'}}</div>
@@ -57,7 +58,8 @@
         <div>
           <div class="value">
             <span class="currency">{{'CHECKOUT.SGD' | translate}}</span>
-            <span>{{ (( paymentAmount > 0 ) ? (paymentAmount | currency:'USD':'symbol-narrow':'1.2'):(paymentAmount | currency:'USD':'symbol-narrow':'1.0-2'))}}</span>
+            <span>{{ (( paymentAmount > 0 ) ? (paymentAmount | currency:'USD':'symbol-narrow':'1.2'):(paymentAmount |
+              currency:'USD':'symbol-narrow':'1.0-2'))}}</span>
           </div>
           <div class="paynow-logo"><img src="assets/images/paynow-logo.svg" /></div>
         </div>
@@ -67,16 +69,18 @@
       <div class="default-txt" *ngIf="!cfpPromoCode" (click)="goToPromoCode($event);">{{'CHECKOUT.ENTER_PROMO_LBL' |
         translate}}</div>
       <div class="flex-row space-between" *ngIf="cfpPromoCode && appliedPromoCode">
-        <div class="valid-promo" [ngClass]="authService.isUserTypeCorporate ? 'valid-promo-corporate' : 'valid-promo-normal'">
+        <div class="valid-promo"
+          [ngClass]="authService.isUserTypeCorporate ? 'valid-promo-corporate' : 'valid-promo-normal'">
           <span class="valid-logo"><img src="assets/images/check-icon-green.svg" alt="" /></span>
           <span class="pl10 promo-display">{{ appliedPromoCode }}</span>
         </div>
-        <div class="remove-btn" *ngIf="!authService.isUserTypeCorporate" (click)="removeAppliedPromoCode();">{{'CHECKOUT.REMOVE_BTN_LBL' | translate}}</div>
+        <div class="remove-btn" *ngIf="!authService.isUserTypeCorporate" (click)="removeAppliedPromoCode();">
+          {{'CHECKOUT.REMOVE_BTN_LBL' | translate}}</div>
       </div>
     </div>
     <div class="terms">{{'CHECKOUT.AGREE' | translate}}<span (click)="openTNC($event)">{{'CHECKOUT.TERMS' |
-          translate}}</span>.</div>
+        translate}}</span>.</div>
     <button type="submit" class="btn
         btn__footer--fixed btn-primary width100" (click)="goToNext();">{{ isWaivedPromo ? ('CHECKOUT.PROCEED' |
-        translate) : ('CHECKOUT.PROCEED_PAYMENT' | translate) }}</button>
+      translate) : ('CHECKOUT.PROCEED_PAYMENT' | translate) }}</button>
   </div>

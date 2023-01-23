@@ -76,6 +76,7 @@ app-start {
       font-size: 21px;
       padding-bottom: 0;
     }
+
     .autofill-estimation {
       display: flex;
       font-family: $muli-semi-bold;
@@ -85,6 +86,7 @@ app-start {
       text-align: center;
       color: $autofill-time-color;
     }
+
     &.postlogin {
       border: none;
       padding: 0;
@@ -94,11 +96,13 @@ app-start {
       box-shadow: none;
       justify-content: center;
       align-items: center;
+
       .flex-row {
         &.flex-col-12 {
           justify-content: flex-start;
         }
       }
+
       .autofill-logo {
         width: 100%;
 
@@ -143,17 +147,20 @@ app-start {
           padding: 19px 0;
           font-family: $muli-regular;
           font-size: 15px;
+
           b.txt-bold {
             font-family: $muli-bold;
           }
         }
       }
     }
+
     .separator {
       margin: 40px 0;
       background-color: $persian-teal-color;
       height: 2px;
       text-align: center;
+
       .txt-or {
         color: $morning-glory-color;
         background-color: $persian-teal-color;
@@ -163,7 +170,7 @@ app-start {
         text-align: center;
         line-height: 40px;
         top: -25px;
-        font-family: "Muli Bold", sans-serif;
+        font-family: $muli-bold;
         font-size: 13px;
         border: 5px solid $teal-color;
         position: relative;

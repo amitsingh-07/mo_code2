@@ -134,8 +134,8 @@ export class DirectService {
 
   resolveProductCategoryIndex(fragment: string) {
     const prodList = this.getProductCategoryList();
-    for(var i = 0; i < prodList.length; i++) {
-      if(prodList[i].prodLink === fragment) {
+    for (var i = 0; i < prodList.length; i++) {
+      if (prodList[i].prodLink === fragment) {
         return i;
       }
     }

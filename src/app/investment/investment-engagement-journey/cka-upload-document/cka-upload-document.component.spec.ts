@@ -1,4 +1,4 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { waitForAsync, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { CkaUploadDocumentComponent } from './cka-upload-document.component';
 
@@ -6,11 +6,11 @@ describe('CkaUploadDocumentComponent', () => {
   let component: CkaUploadDocumentComponent;
   let fixture: ComponentFixture<CkaUploadDocumentComponent>;
 
-  beforeEach(async(() => {
+  beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
-      declarations: [ CkaUploadDocumentComponent ]
+      declarations: [CkaUploadDocumentComponent]
     })
-    .compileComponents();
+      .compileComponents();
   }));
 
   beforeEach(() => {

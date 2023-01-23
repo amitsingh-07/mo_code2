@@ -26,8 +26,8 @@ app-my-beneficiaries{
 }
 .instructions {
     border-radius: 6px;
-    background-color: #fff;
-    box-shadow: 0 8px 12px 0 rgba(0, 0, 0, 0.25);   
+    background-color: $white-color;
+    box-shadow: 0 8px 12px 0 $box-shadow-color;   
     @include allmobiles{
         margin: 0 16px !important;
     }
@@ -37,7 +37,7 @@ app-my-beneficiaries{
     flex-direction: column;
     justify-content: space-around;
     letter-spacing: -0.3px;
-    color: #626362;
+    color: $corduroy-color;
     padding: 30px 25px;
     div{
         margin-bottom: 15px;
@@ -48,7 +48,7 @@ app-my-beneficiaries{
 }
 
 .mask {
-    background-color: #2d8289;
+    background-color: $dark-teal-color;
     font-size: 22px;
     font-family: $muli-bold;
     border-top-left-radius: 6px;
@@ -100,7 +100,7 @@ input[type='checkbox']+label {
         font-stretch: normal;
         line-height: normal;
         letter-spacing: -0.3px;
-        color: #000000;
+        color: $black-color;
         margin-right: 16px;
       }
   }
@@ -121,13 +121,13 @@ input[type='checkbox']+label {
 
 .add-beneficiaries-container {
     .aboutMe{
-        background-color: #f4fafb;
+        background-color: $black-squeeze-grey-color;
         border-radius: 6px;
-        box-shadow: 0 8px 10px 0 rgba(0, 0, 0, 0.25);
+        box-shadow: 0 8px 10px 0 $box-shadow-color;
         font-size: 18px;
         letter-spacing: -0.3px;
         line-height: normal;
-        color: #2d8289;
+        color: $dark-teal-color;
         margin-top: 0px;
         font-family: $muli-semi-bold;
         
@@ -139,7 +139,7 @@ input[type='checkbox']+label {
             font-family: $muli-bold;
             font-size: 20px;
             letter-spacing: -0.4px;
-            color: #066360;
+            color: $watercourse-color;
             margin-bottom: 19px;
             padding: 17px 19px; 
             border-radius: 6px;
@@ -149,19 +149,19 @@ input[type='checkbox']+label {
             font-family: $muli-regular;
             font-size: 16px;
             letter-spacing: -0.3px;
-            color: #2d8289;
+            color: $dark-teal-color;
             font-weight: normal;
         }
         .add-beneficiary{
             .btn {
                 padding: 8px !important;
-                color:#00a7a7;
+                color: $teal-color;
                 font-size: 16px;
-                background-color: #f4fafb;
+                background-color: $black-squeeze-grey-color;
             }
             .btn-primary{
-                background-color: #00a7a7;
-                color: #fff !important;
+                background-color: $app-backgrnd-color;
+                color: $white-color !important;
             }
         }
     }
@@ -173,15 +173,15 @@ input[type='checkbox']+label {
         width: 100%;
     }
     .mobile-header {
-        background-color: #00a7a7;
+        background-color: $app-backgrnd-color;
         position: relative;
         @include allmobiles {
             display: flex;
             flex-direction: column-reverse;
             align-items: center;
             margin-top: -10px;
-            color: #333846 !important;
-            background-color: #fff;
+            color: $bright-grey-color !important;
+            background-color: $white-color;
             padding: 15px 0 13px;
             border-bottom: 1px solid rgba(141,154,168,0.2);
         }  
@@ -194,17 +194,17 @@ input[type='checkbox']+label {
         font-size: 18px;
         font-weight: 300;
         letter-spacing: -0.2px;
-        color: #ffffff;
+        color: $white-color;
       }
     .sub-title{
             font-family: $muli-regular;
             font-size: 18px;
             line-height: 1.22;
             letter-spacing: -0.2px;
-            color: #ffffff;
+            color: $white-color;
         @include allmobiles {
             width: 321px;
-            color: #333846;
+            color: $bright-grey-color;
             text-align: center;
             font-size: 16px;
         }
@@ -214,12 +214,12 @@ input[type='checkbox']+label {
         font-family: $muli-semi-bold;
         font-size: 36px;
         letter-spacing: -0.4px;
-        color: #ffffff;
+        color: $white-color;
         @include allmobiles {
             font-size: 20px;
             letter-spacing: -0.4px;
             text-align: center;
-            color: #066360;
+            color: $watercourse-color;
         }
     }
     @include allmobiles {
@@ -232,7 +232,7 @@ input[type='checkbox']+label {
     font-family: $muli-semi-bold;
     font-size: 18px;
     letter-spacing: -0.3px;
-    color: #ffffff;
+    color: $white-color;
     padding:20px 0;
   }
   .add-beneficiary{
@@ -243,7 +243,7 @@ input[type='checkbox']+label {
     font-family: $muli-regular;
     font-size: 14px;
     letter-spacing: -0.3px;
-    color: #2d8289;
+    color: $dark-teal-color;
     font-weight: 100;
 }
 
@@ -257,7 +257,7 @@ input[type='checkbox']+label {
     font-weight: 100;
     letter-spacing: -0.3px;
     text-align: right;
-    color: #00a7a7;
+    color: $teal-color;
     cursor: pointer;
 }
 .add-icon {
@@ -282,9 +282,9 @@ input[type='checkbox']+label {
 }
 
 .form-control {
-    color: #00a7a7;
+    color: $teal-color;
     &:focus {
-        color: #00a7a7;
+        color: $teal-color;
     }
 }
 

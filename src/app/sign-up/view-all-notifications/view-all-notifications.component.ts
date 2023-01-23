@@ -1,6 +1,4 @@
 import { AfterViewInit, Component, OnInit } from '@angular/core';
-import { FormBuilder } from '@angular/forms';
-import { Router } from '@angular/router';
 import { NgbActiveModal, NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { TranslateService } from '@ngx-translate/core';
 
@@ -22,15 +20,11 @@ export class ViewAllNotificationsComponent implements OnInit, AfterViewInit {
   pageTitle: string;
   ref;
   allMessages;
-  private initLoad = true;
 
   constructor(
     public navbarService: NavbarService,
     public activeModal: NgbActiveModal,
-    private router: Router,
-    private formBuilder: FormBuilder,
     private signUpService: SignUpService,
-    private modal: NgbModal,
     public authService: AuthenticationService,
     public investmentEngagementJourneyService: InvestmentEngagementJourneyService,
     public readonly translate: TranslateService,
@@ -75,17 +69,17 @@ export class ViewAllNotificationsComponent implements OnInit, AfterViewInit {
       this.allMessages = new GroupByPipe().transform(this.allMessages, 'month');
       this.updateNotifications(null, SIGN_UP_CONFIG.NOTIFICATION.READ_PAYLOAD_KEY);
     },
-    (err) => {
-      this.investmentAccountService.showGenericErrorModal();
-    });
+      (err) => {
+        this.investmentAccountService.showGenericErrorModal();
+      });
   }
 
   updateNotifications(messages, type) {
     this.signUpService.updateNotifications(messages, type).subscribe((response) => {
     },
-    (err) => {
-      this.investmentAccountService.showGenericErrorModal();
-    });
+      (err) => {
+        this.investmentAccountService.showGenericErrorModal();
+      });
   }
 
   clearNotification(message, group) {

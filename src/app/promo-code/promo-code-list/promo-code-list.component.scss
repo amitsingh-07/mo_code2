@@ -37,6 +37,7 @@ app-promo-code-list {
       letter-spacing: -0.15px;
       color: $black-color;
       margin-right: 45px;
+
       @include allmobiles {
         display: none;
       }
@@ -47,6 +48,7 @@ app-promo-code-list {
     width: 100%;
     max-width: 500px;
     min-width: 275px;
+
     @include allmobiles {
       width: 100%;
     }
@@ -95,7 +97,7 @@ app-promo-code-list {
   }
 
   #green-tick {
-    padding-right:14px;
+    padding-right: 14px;
   }
 
   input#promoInpt.form-control:invalid+.form-control-placeholder {
@@ -186,7 +188,7 @@ app-promo-code-list {
       width: 345px;
       margin-right: 20px;
 
-      @include allmobiles{
+      @include allmobiles {
         margin-right: 0px;
       }
     }
@@ -213,7 +215,7 @@ app-promo-code-list {
     .flex-div {
       display: flex;
       width: 100%;
-      justify-content:space-between;
+      justify-content: space-between;
 
       img {
         padding-left: 5px;
@@ -226,7 +228,7 @@ app-promo-code-list {
       display: flex;
       flex-direction: column;
       width: 100%;
-      justify-content:space-between;
+      justify-content: space-between;
     }
 
     .promo-details {

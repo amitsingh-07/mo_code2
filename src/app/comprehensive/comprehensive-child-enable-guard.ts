@@ -2,7 +2,6 @@ import { Injectable } from '@angular/core';
 import { ActivatedRouteSnapshot, CanActivateChild, Router, RouterStateSnapshot } from '@angular/router';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
-
 import { appConstants } from '../app.constants';
 import { AppService } from '../app.service';
 import { ConfigService, IConfig } from '../config/config.service';
@@ -22,7 +21,6 @@ export class ComprehensiveChildEnableGuard implements CanActivateChild {
     private authService: AuthenticationService, private appService: AppService,
     private signUpService: SignUpService, private cmpService: ComprehensiveService,
     private loaderService: LoaderService, private cmpApiService: ComprehensiveApiService) { }
-
   // tslint:disable-next-line:cognitive-complexity
   canActivateChild(childRoute: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<boolean> | Promise<boolean> | boolean {
     return this.configService.getConfig().pipe(map((config: IConfig) => {

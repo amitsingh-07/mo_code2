@@ -1,5 +1,4 @@
 import { Component, OnInit, ViewEncapsulation } from '@angular/core';
-import { Location } from '@angular/common';
 import { Router } from '@angular/router';
 import { TranslateService } from '@ngx-translate/core';
 import { FooterService } from '../../../shared/footer/footer.service';
@@ -23,14 +22,13 @@ export class CkaPassedResultComponent implements OnInit {
   constructor(
     public readonly translate: TranslateService,
     private router: Router,
-    private _location: Location,
     public navbarService: NavbarService,
     public headerService: HeaderService,
     public footerService: FooterService,
     private investmentCommonService: InvestmentCommonService
   ) {
     this.translate.use('en');
-   }
+  }
 
   ngOnInit(): void {
     this.navbarService.setNavbarMode(6);
@@ -38,7 +36,7 @@ export class CkaPassedResultComponent implements OnInit {
     this.footerService.setFooterVisibility(false);
   }
   goBack() {
-    this._location.back();
+    this.navbarService.goBack();
   }
 
   goToNext() {

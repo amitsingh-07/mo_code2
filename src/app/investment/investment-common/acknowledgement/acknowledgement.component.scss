@@ -123,8 +123,8 @@ app-acknowledgement {
     }
 
     .transaction-table {
-      color: #000000;
-      border: 1px solid #848484;
+      color: $black-color;
+      border: 1px solid $acknowledgement-text-color;
       margin-top: 10px;
       font-family: $muli-regular;
 
@@ -133,12 +133,12 @@ app-acknowledgement {
       }
 
       .tansaction_label {
-        border-right: 1px solid #848484;
+        border-right: 1px solid $acknowledgement-text-color;
         padding: 5px;
       }
 
       .flex-col-8 {
-        border-right: 1px solid #848484;
+        border-right: 1px solid $acknowledgement-text-color;
         flex: 1;
 
         div {
@@ -149,7 +149,7 @@ app-acknowledgement {
           margin-top: 5px;
           margin-bottom: 0px;
           border: 0;
-          border-top: 1px solid #848484;
+          border-top: 1px solid $acknowledgement-text-color;
         }
       }
     }
@@ -161,11 +161,11 @@ app-acknowledgement {
     }
 
     .flex-row {
-      border-bottom: 1px solid #848484;
+      border-bottom: 1px solid $acknowledgement-text-color;
 
 
       &:nth-child(even) {
-        background-color: #bdb7b7;
+        background-color: $nobel-color;
       }
     }
 

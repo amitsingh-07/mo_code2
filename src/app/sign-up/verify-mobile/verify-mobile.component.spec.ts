@@ -1,4 +1,4 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { waitForAsync, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { VerifyMobileComponent } from './verify-mobile.component';
 
@@ -6,11 +6,11 @@ describe('VerifyMobileComponent', () => {
   let component: VerifyMobileComponent;
   let fixture: ComponentFixture<VerifyMobileComponent>;
 
-  beforeEach(async(() => {
+  beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
-      declarations: [ VerifyMobileComponent ]
+      declarations: [VerifyMobileComponent]
     })
-    .compileComponents();
+      .compileComponents();
   }));
 
   beforeEach(() => {

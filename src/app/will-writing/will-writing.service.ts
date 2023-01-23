@@ -1,23 +1,12 @@
-import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { Util } from '../shared/utils/util';
-
 import { ErrorModalComponent } from '../shared/modal/error-modal/error-modal.component';
 import { ToolTipModalComponent } from '../shared/modal/tooltip-modal/tooltip-modal.component';
 import { SignUpService } from './../sign-up/sign-up.service';
 import { WillWritingFormData } from './will-writing-form-data';
 import { WillWritingFormError } from './will-writing-form-error';
-import {
-  IAboutMe,
-  IBeneficiary,
-  IChild,
-  IEligibility,
-  IExecTrustee,
-  IGuardian,
-  IPromoCode,
-  ISpouse
-} from './will-writing-types';
+import { IAboutMe, IBeneficiary, IChild, IEligibility, IExecTrustee, IGuardian, IPromoCode, ISpouse } from './will-writing-types';
 import { WILL_WRITING_CONFIG } from './will-writing.constants';
 
 const SESSION_STORAGE_KEY = 'app_will_writing_session';
@@ -58,7 +47,6 @@ export class WillWritingService {
   ]);
 
   constructor(
-    private http: HttpClient,
     private modal: NgbModal,
     private signUpService: SignUpService,
   ) {

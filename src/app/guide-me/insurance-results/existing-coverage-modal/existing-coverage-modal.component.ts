@@ -1,4 +1,4 @@
-import { HospitalPlan } from './../../hospital-plan/hospital-plan';
+
 import { Component, EventEmitter, HostListener, Input, OnInit, Output, ViewEncapsulation } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
@@ -71,7 +71,6 @@ export class ExistingCoverageModalComponent implements OnInit {
           break;
         case 4:
           this.isHospitalPlan = true;
-          // this.model.hospitalPlanCoverage = protectionNeed.existingCoverage.value;
           // Drop-down will be displayed for Hospitalization
           break;
         case 5:

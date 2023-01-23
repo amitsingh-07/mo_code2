@@ -1,4 +1,4 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { waitForAsync, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { InvestmentOverviewComponent } from './investment-overview.component';
 
@@ -6,11 +6,11 @@ describe('InvestmentOverviewComponent', () => {
   let component: InvestmentOverviewComponent;
   let fixture: ComponentFixture<InvestmentOverviewComponent>;
 
-  beforeEach(async(() => {
+  beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
-      declarations: [ InvestmentOverviewComponent ]
+      declarations: [InvestmentOverviewComponent]
     })
-    .compileComponents();
+      .compileComponents();
   }));
 
   beforeEach(() => {
@@ -23,27 +23,27 @@ describe('InvestmentOverviewComponent', () => {
     expect(component).toBeTruthy();
   });
 
-  it('should render Total Returns content', async(() => {
+  it('should render Total Returns content', waitForAsync(() => {
     const compiled = fixture.debugElement.nativeElement;
     expect(compiled.querySelector('#investment_overview_total_returns_labl').textContent).toContain('Total Returns');
   }));
 
-  it('should render From start of investment content', async(() => {
+  it('should render From start of investment content', waitForAsync(() => {
     const compiled = fixture.debugElement.nativeElement;
     expect(compiled.querySelector('#investment_overview_investment_start_labl').textContent).toContain('From start of investment content');
   }));
 
-  it('should render From start of investment content', async(() => {
+  it('should render From start of investment content', waitForAsync(() => {
     const compiled = fixture.debugElement.nativeElement;
     expect(compiled.querySelector('#investment_overview_investment_start_labl').textContent).toContain('From start of investment content');
   }));
 
-  it('should render Net Capital Invested content', async(() => {
+  it('should render Net Capital Invested content', waitForAsync(() => {
     const compiled = fixture.debugElement.nativeElement;
     expect(compiled.querySelector('#investment_overview_total_returns_labl').textContent).toContain('Net Capital Invested');
   }));
 
-  it('should render Cash Account Balance', async(() => {
+  it('should render Cash Account Balance', waitForAsync(() => {
     const compiled = fixture.debugElement.nativeElement;
     expect(compiled.querySelector('#investment_overview_investment_cash_labl').textContent).toContain('Cash Account Balance');
   }));

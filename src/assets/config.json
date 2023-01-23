@@ -24,8 +24,6 @@
   "maintenanceStartTime": "2022-03-08T17:50:00.000+08:00",
   "maintenanceEndTime": "2022-03-08T19:10:00.000+08:00",
   "showPortfolioInfo": true,
-  "affiliateEnabled": true,
-  "affiliateAttributionInMs": 2592000000,
   "investment": {
     "myInfoLoader2StartTime": 60,
     "myInfoLoader3StartTime": 90

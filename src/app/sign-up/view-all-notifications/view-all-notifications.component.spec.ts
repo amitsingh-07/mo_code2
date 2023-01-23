@@ -1,4 +1,4 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { waitForAsync, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { ViewAllNotificationsComponent } from './view-all-notifications.component';
 
@@ -6,11 +6,11 @@ describe('ViewAllNotificationsComponent', () => {
   let component: ViewAllNotificationsComponent;
   let fixture: ComponentFixture<ViewAllNotificationsComponent>;
 
-  beforeEach(async(() => {
+  beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
-      declarations: [ ViewAllNotificationsComponent ]
+      declarations: [ViewAllNotificationsComponent]
     })
-    .compileComponents();
+      .compileComponents();
   }));
 
   beforeEach(() => {

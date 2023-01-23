@@ -1,7 +1,7 @@
 import { GuideMeService } from './../../guide-me/guide-me.service';
 import { Location } from '@angular/common';
 import { Component, Input, OnDestroy, OnInit, QueryList, ViewChildren, ViewEncapsulation, ChangeDetectorRef, AfterContentChecked } from '@angular/core';
-import { ActivatedRoute, NavigationEnd, NavigationStart, Router } from '@angular/router';
+import { NavigationEnd, NavigationStart, Router } from '@angular/router';
 import { NgbModal, NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
 import { TranslateService } from '@ngx-translate/core';
 import { Subscription, SubscriptionLike } from 'rxjs';
@@ -61,7 +61,7 @@ export class DirectResultsComponent implements IPageComponent, OnInit, OnDestroy
     private fbPixelService: FBPixelService,
     private router: Router, private translate: TranslateService, public navbarService: NavbarService,
     public modal: NgbModal, private selectedPlansService: SelectedPlansService,
-    private authService: AuthenticationService, private route: ActivatedRoute,
+    private authService: AuthenticationService,
     private stateStoreService: StateStoreService, private location: Location, private guidemeService: GuideMeService,
     private changeDetector: ChangeDetectorRef) {
 

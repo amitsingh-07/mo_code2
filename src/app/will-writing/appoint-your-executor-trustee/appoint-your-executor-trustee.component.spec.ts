@@ -1,4 +1,4 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { waitForAsync, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { AppointYourExecutorTrusteeComponent } from './appoint-your-executor-trustee.component';
 
@@ -6,7 +6,7 @@ describe('AppointYourExecutorTrusteeComponent', () => {
   let component: AppointYourExecutorTrusteeComponent;
   let fixture: ComponentFixture<AppointYourExecutorTrusteeComponent>;
 
-  beforeEach(async(() => {
+  beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
       declarations: [ AppointYourExecutorTrusteeComponent ]
     })
@@ -23,20 +23,20 @@ describe('AppointYourExecutorTrusteeComponent', () => {
     expect(component).toBeTruthy();
   });
 
-  it('should render step-title in a intro-block__content__heading', async(() => {
+  it('should render step-title in a intro-block__content__heading', waitForAsync(() => {
     const compiled = fixture.debugElement.nativeElement;
     expect(compiled.querySelector('intro-block__content__heading').textContent).toContain('Step 3');
   }));
-  it('should render start-title in a intro-block__content__title', async(() => {
+  it('should render start-title in a intro-block__content__title', waitForAsync(() => {
     const compiled = fixture.debugElement.nativeElement;
     expect(compiled.querySelector('intro-block__content__title').textContent).toContain('Appoint Your Executor & Trustee');
   }));
-  it('should render sub-title in a intro-block__content__sub-title', async(() => {
+  it('should render sub-title in a intro-block__content__sub-title', waitForAsync(() => {
     const compiled = fixture.debugElement.nativeElement;
     // tslint:disable-next-line:max-line-length
     expect(compiled.querySelector('intro-block__content__sub-title').textContent).toContain('In the next step, you will appoint someone to manage and carry out the wishes of your will.');
   }));
-  it('testing the proceed button', async(() => {
+  it('testing the proceed button', waitForAsync(() => {
     spyOn(component, 'goToNext');
     const button = fixture.debugElement.nativeElement.querySelector('button');
     button.click();

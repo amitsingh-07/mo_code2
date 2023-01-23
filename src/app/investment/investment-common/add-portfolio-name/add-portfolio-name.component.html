@@ -4,7 +4,8 @@
       <form [formGroup]="form">
         <div class="portfolio-block">
           <div class="portfolio-naming">
-            <div class="hidden-sm">{{'PORTFOLIO_RECOMMENDATION.ADD_PORTFOLIO_NAME.NAME_YOUR_PORTFOLIO' | translate}}</div>
+            <div class="hidden-sm">{{'PORTFOLIO_RECOMMENDATION.ADD_PORTFOLIO_NAME.NAME_YOUR_PORTFOLIO' | translate}}
+            </div>
             <div class="title">{{'PORTFOLIO_RECOMMENDATION.ADD_PORTFOLIO_NAME.PORTFOLIO_READY' | translate}}</div>
             <div class="portfolio-success mb30">
               <img src={{riskProfileIcon}} id="riskProfileImg" />
@@ -14,14 +15,13 @@
           <div class="portfolio-naming--content">
             <div>
               <div class="desc">
-                  {{'PORTFOLIO_RECOMMENDATION.ADD_PORTFOLIO_NAME.ADD_PORTFOLIO_NAME_LAB' | translate}}
+                {{'PORTFOLIO_RECOMMENDATION.ADD_PORTFOLIO_NAME.ADD_PORTFOLIO_NAME_LAB' | translate}}
               </div>
               <div class="form-control mt20" [ngClass]="{'inline-error': showErrorMessage}">
                 <input class="input-control" type="text" placeholder="Enter a unique portfolio name" #portfolioName
                   formControlName="portfolioName" (keyup)="updateCharacterCount($event)" maxlength="50">
               </div>
-              <div
-                *ngIf="!form.get('portfolioName').valid && !form.get('portfolioName').pristine"
+              <div *ngIf="!form.get('portfolioName').valid && !form.get('portfolioName').pristine"
                 class="error-message">
                 {{'PORTFOLIO_RECOMMENDATION.ADD_PORTFOLIO_NAME.VALIDATION_MESSAGE' | translate}}
               </div>
@@ -34,8 +34,8 @@
             <div class="characters">{{characterLength ? characterLength : 0}}
               / 50 characters</div>
 
-            <button type="button" class="btn btn__footer--fixed btn-primary width100  mt20"
-              (click)="submitForm()" id="prfBtn1">{{'PORTFOLIO_RECOMMENDATION.ADD_PORTFOLIO_NAME.CREATE_PORTFOLIO' | translate}}</button>
+            <button type="button" class="btn btn__footer--fixed btn-primary width100  mt20" (click)="submitForm()"
+              id="prfBtn1">{{'PORTFOLIO_RECOMMENDATION.ADD_PORTFOLIO_NAME.CREATE_PORTFOLIO' | translate}}</button>
           </div>
         </div>
       </form>

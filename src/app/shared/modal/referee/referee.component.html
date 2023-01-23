@@ -60,7 +60,7 @@
 								<img *ngIf="cardCategory.comprehensive.voucherStatus === REFEREE_CONSTANT.ISSUED || cardCategory.comprehensive.voucherStatus ===REFEREE_CONSTANT.NOT_APPLICABLE || !refereeInfo.isWelcomeRewardsValid"
 									src="assets/images/refer-friend/grab-logo-grey.svg">
 							</p>
-							<p>{{'REFEREE-MODAL.CREDITS'  | translate}}</p>
+							<p>{{'REFEREE-MODAL.CREDITS' | translate}}</p>
 						</div>
 					</div>
 					<div class="referee-modal__inner__coupon-card" *ngIf="cardCategory && cardCategory.investment">
@@ -77,7 +77,8 @@
 							<p>{{'REFEREE-MODAL.COUPON_CARD_INVEST' | translate}}</p>
 							<p [ngClass]="{'referee-bg-grey-get-started':!refereeInfo.isWelcomeRewardsValid }"
 								class="referee-modal__inner__coupon-card__left__get-started"
-								*ngIf="cardCategory.investment.voucherStatus === REFEREE_CONSTANT.NOT_ISSUED" (click)="investment()">
+								*ngIf="cardCategory.investment.voucherStatus === REFEREE_CONSTANT.NOT_ISSUED"
+								(click)="investment()">
 								{{'REFEREE-MODAL.GET_STARTED' |
 								translate}}</p>
 							<p class="referee-modal__inner__coupon-card__left__issued"
@@ -106,7 +107,7 @@
 								<img *ngIf="cardCategory.investment.voucherStatus === REFEREE_CONSTANT.ISSUED || cardCategory.investment.voucherStatus === REFEREE_CONSTANT.NOT_APPLICABLE || !refereeInfo.isWelcomeRewardsValid"
 									src="assets/images/refer-friend/grab-logo-grey.svg">
 							</p>
-							<p>{{'REFEREE-MODAL.CREDITS'  | translate}}</p>
+							<p>{{'REFEREE-MODAL.CREDITS' | translate}}</p>
 						</div>
 					</div>
 					<div class="referee-modal__inner__coupon-card" *ngIf="cardCategory && cardCategory.insurance">
@@ -123,7 +124,8 @@
 							<p>{{'REFEREE-MODAL.COUPON_CARD_INS' | translate}}</p>
 							<p [ngClass]="{'referee-bg-grey-get-started':!refereeInfo.isWelcomeRewardsValid }"
 								class="referee-modal__inner__coupon-card__left__get-started"
-								*ngIf="cardCategory.insurance.voucherStatus === REFEREE_CONSTANT.NOT_ISSUED" (click)="insurance()">
+								*ngIf="cardCategory.insurance.voucherStatus === REFEREE_CONSTANT.NOT_ISSUED"
+								(click)="insurance()">
 								{{'REFEREE-MODAL.GET_STARTED' |
 								translate}}</p>
 							<p class="referee-modal__inner__coupon-card__left__issued"
@@ -152,7 +154,7 @@
 								<img *ngIf="cardCategory.insurance.voucherStatus === REFEREE_CONSTANT.ISSUED || cardCategory.insurance.voucherStatus === REFEREE_CONSTANT.NOT_APPLICABLE || !refereeInfo.isWelcomeRewardsValid"
 									src="assets/images/refer-friend/grab-logo-grey.svg">
 							</p>
-							<p>{{'REFEREE-MODAL.CREDITS'  | translate}}</p>
+							<p>{{'REFEREE-MODAL.CREDITS' | translate}}</p>
 						</div>
 					</div>
 				</div>

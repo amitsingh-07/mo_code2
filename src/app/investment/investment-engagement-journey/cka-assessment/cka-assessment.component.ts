@@ -1,13 +1,15 @@
-import { Component, OnInit, ViewEncapsulation } from "@angular/core";
-import { TranslateService } from "@ngx-translate/core";
-import { Router } from "@angular/router";
-import { INVESTMENT_ENGAGEMENT_JOURNEY_ROUTE_PATHS } from "../investment-engagement-journey-routes.constants";
-import { FooterService } from "../../../shared/footer/footer.service";
-import { HeaderService } from "../../../shared/header/header.service";
-import { NavbarService } from "../../../shared/navbar/navbar.service";
-import { INVESTMENT_COMMON_ROUTE_PATHS } from "../../investment-common/investment-common-routes.constants";
-import { INVESTMENT_COMMON_CONSTANTS } from "../../investment-common/investment-common.constants";
+import { Component, OnInit, ViewEncapsulation } from '@angular/core';
+import { TranslateService } from '@ngx-translate/core';
+import { Router } from '@angular/router';
+import { INVESTMENT_ENGAGEMENT_JOURNEY_ROUTE_PATHS } from '../investment-engagement-journey-routes.constants';
+import { FooterService } from '../../../shared/footer/footer.service';
+import { HeaderService } from '../../../shared/header/header.service';
+import { NavbarService } from '../../../shared/navbar/navbar.service';
+import { INVESTMENT_COMMON_ROUTE_PATHS } from '../../investment-common/investment-common-routes.constants';
+import { INVESTMENT_COMMON_CONSTANTS } from '../../investment-common/investment-common.constants';
 import { InvestmentCommonService } from "./../../investment-common/investment-common.service";
+
+
 @Component({
   selector: "app-cka-assessment",
   templateUrl: "./cka-assessment.component.html",

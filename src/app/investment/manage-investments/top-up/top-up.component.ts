@@ -128,7 +128,7 @@ export class TopUpComponent implements OnInit, OnDestroy {
       this.getCpfIaAccDetails();
     }
     this.buildFormInvestment();
-    this.setSelectedPortfolio(); 
+    this.setSelectedPortfolio();
   }
 
   ngOnDestroy() {
@@ -160,7 +160,7 @@ export class TopUpComponent implements OnInit, OnDestroy {
     });
   }
 
-  getCpfIaAccDetails() {     
+  getCpfIaAccDetails() {
     this.subscription = this.authService.get2faUpdateEvent.subscribe((token) => {
       if (!token) {
         this.manageInvestmentsService.getProfileCPFIAccountDetails(true).subscribe((data) => {
@@ -178,7 +178,7 @@ export class TopUpComponent implements OnInit, OnDestroy {
           });
       }
     });
-    }
+  }
 
   // set the selected portfolio if there when page loaded
   setSelectedPortfolio() {
@@ -203,10 +203,10 @@ export class TopUpComponent implements OnInit, OnDestroy {
       this.awaitingOrPendingReq(value.fundingTypeValue));
     if (value.fundingTypeValue.toUpperCase() === MANAGE_INVESTMENTS_CONSTANTS.TOPUP.FUNDING_METHODS.SRS) {
       this.getSrsAccountDetails();
-    } 
+    }
     if (value.fundingTypeValue.toUpperCase() === MANAGE_INVESTMENTS_CONSTANTS.TOPUP.FUNDING_METHODS.CPF) {
       this.getCpfIaAccDetails();
-    } 
+    }
   }
 
   getInvestmentCriteria(portfolioType) {
@@ -224,7 +224,7 @@ export class TopUpComponent implements OnInit, OnDestroy {
       this.isAmountExceedBalance = false;
     }
   }
-  
+
   selectedInvestment(investmentType, amount) {
     if (amount) {
       const minAmount = investmentType === MANAGE_INVESTMENTS_CONSTANTS.TOPUP.TOPUP_TYPES.ONE_TIME.VALUE ? amount.oneTimeInvestmentMinimum
@@ -318,7 +318,7 @@ export class TopUpComponent implements OnInit, OnDestroy {
       }
     }
   }
- 
+
   saveAndProceed(form: any) {
     form.value.topupAmount = this.topupAmount;
     this.manageInvestmentsService.setTopUp(form.value);
@@ -341,8 +341,8 @@ export class TopUpComponent implements OnInit, OnDestroy {
     });
     ref.componentInstance.closeBtn = true;
     } else {
-    // Open up show review buy request pop up
-    this.showReviewBuyRequestModal(form);
+      // Open up show review buy request pop up
+      this.showReviewBuyRequestModal(form);
     }
   }
 
@@ -467,12 +467,12 @@ export class TopUpComponent implements OnInit, OnDestroy {
       this.checkIfExistingBuyRequest(form);
     });
     this.reviewBuyRequestModal.componentInstance.closeAction.subscribe((emittedValue) => {
-      if(this.showOnetimeInvestmentAmount){
+      if (this.showOnetimeInvestmentAmount) {
         this.topForm.controls['oneTimeInvestmentAmount'].setValue(0);
-      } 
-      if(this.showMonthlyInvestmentAmount){
+      }
+      if (this.showMonthlyInvestmentAmount) {
         this.topForm.controls['MonthlyInvestmentAmount'].setValue(0);
-      } 
+      }
     });
   }
 

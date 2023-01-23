@@ -21,11 +21,12 @@ app-promo-code-modal {
       border-radius: 0px;
       left: 0;
       right: 0;
+      margin: env(safe-area-inset-top) env(safe-area-inset-right) env(safe-area-inset-left);
     }
 
     .modal-body-message {
       display: flex;
-      flex-direction:column;
+      flex-direction: column;
       justify-content: space-between;
       height: calc(100% - 53.4px);
       padding: 0 20px;
@@ -37,20 +38,25 @@ app-promo-code-modal {
       padding: 14px 20px;
       width: 450px;
       justify-content: space-between;
+
       @include allmobiles {
         padding: 14px 20px;
         width: 100vw;
       }
+
       .add-promo {
         font-size: 16px;
+
         @include allmobiles {
           display: none;
         }
+
         margin-right: 0px;
       }
 
       .div-container {
         max-width: 275px;
+
         @include allmobiles {
           width: 100%;
           max-width: 500px;
@@ -58,12 +64,15 @@ app-promo-code-modal {
       }
 
     }
+
     .active-promo-display {
       padding: 0 25px;
+
       @include allmobiles {
         padding: 0 20px 0 14px;
       }
-      @include min568max767{
+
+      @include min568max767 {
         max-width: 500px;
       }
 
@@ -72,9 +81,11 @@ app-promo-code-modal {
       }
 
     }
+
     .promo-bg {
       border-radius: 6px;
     }
+
     // End CSS for promo-code-list
   }
 
@@ -116,6 +127,7 @@ app-promo-code-modal {
     img:nth-of-type(2) {
       width: 18px;
       cursor: pointer;
+
       @include allmobiles {
         visibility: hidden;
       }

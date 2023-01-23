@@ -1,4 +1,4 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { waitForAsync, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { NtucMemberComponent } from './ntuc-member.component';
 
@@ -6,11 +6,11 @@ describe('NtucMemberComponent', () => {
   let component: NtucMemberComponent;
   let fixture: ComponentFixture<NtucMemberComponent>;
 
-  beforeEach(async(() => {
+  beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
-      declarations: [ NtucMemberComponent ]
+      declarations: [NtucMemberComponent]
     })
-    .compileComponents();
+      .compileComponents();
   }));
 
   beforeEach(() => {

@@ -1,7 +1,6 @@
 import { Component, OnDestroy, OnInit, ViewEncapsulation } from '@angular/core';
 import { Router } from '@angular/router';
 import { TranslateService } from '@ngx-translate/core';
-
 import { FooterService } from '../../shared/footer/footer.service';
 import { NavbarService } from '../../shared/navbar/navbar.service';
 import { WillWritingFormData } from '../will-writing-form-data';
@@ -24,14 +23,12 @@ export class ConfirmationComponent implements OnInit, OnDestroy {
   step: string;
   duplicateError: string;
   existingWill: boolean;
-
   willWritingFormData: WillWritingFormData = new WillWritingFormData();
   willWritingRoutePaths = WILL_WRITING_ROUTE_PATHS;
   willWritingConfig = WILL_WRITING_CONFIG;
   willEstateDistribution = { spouse: [], children: [], others: [] };
   willBeneficiary: IBeneficiary[];
   createWillTriggered = false;
-
   abtMeInfo: IAboutMe;
 
   constructor(
@@ -49,7 +46,6 @@ export class ConfirmationComponent implements OnInit, OnDestroy {
       this.duplicateError = this.translate.instant('WILL_WRITING.CONFIRMATION.DUPLICATE_ERROR');
       this.setPageTitle(this.pageTitle);
     });
-
     this.existingWill = this.willWritingService.getIsWillCreated();
   }
 
@@ -119,5 +115,4 @@ export class ConfirmationComponent implements OnInit, OnDestroy {
       }
     }
   }
-
 }

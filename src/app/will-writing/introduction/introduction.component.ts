@@ -24,17 +24,14 @@ import { SubscribeMember } from './../../shared/Services/subscribeMember';
 })
 export class IntroductionComponent implements OnInit {
   pageTitle: string;
-
   promoCodeForm: FormGroup;
   faqLink: string;
   getNowLink: string;
-  private el: ElementRef;
   promoCode;
   isPromoCodeValid: boolean;
   isDisabled: boolean;
   errorMsg: string;
   @ViewChild('promoCode') promoCodeRef: ElementRef;
-
   subscribeForm: FormGroup;
   subscribeMessage = '';
   subscribeSuccess = false;
@@ -42,6 +39,7 @@ export class IntroductionComponent implements OnInit {
   public emailPattern = '^[a-zA-Z0-9.!#$%&’*+=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$';
   private formError: any = new FormError();
   @ViewChild('subscribeSection') SubscribeSection: ElementRef;
+  disclaimerModal = {TITLE: '', MESSAGE: '', AGREE: ''};
 
   constructor(
     private formBuilder: FormBuilder,
@@ -63,6 +61,7 @@ export class IntroductionComponent implements OnInit {
       this.faqLink = this.translate.instant('WILL_WRITING.INTRODUCTION.FAQ_LINK');
       this.getNowLink = this.translate.instant('WILL_WRITING.INTRODUCTION.GET_ONE_NOW_LINK');
       this.errorMsg = this.translate.instant('WILL_WRITING.INTRODUCTION.PROMO_ERROR');
+      this.disclaimerModal = this.translate.instant('WILL_WRITING.DISCLAIMER');
       // Meta Tag and Title Methods
       this.seoService.setTitle(this.translate.instant('WILL_WRITING.INTRODUCTION.META.META_TITLE'));
       this.seoService.setBaseSocialMetaTags(this.translate.instant('WILL_WRITING.INTRODUCTION.META.META_TITLE'),
@@ -111,7 +110,6 @@ export class IntroductionComponent implements OnInit {
       promoCode: [promoCodeValue, [Validators.required, Validators.pattern(RegexConstants.SixDigitPromo)]]
     });
     this.footerService.setFooterVisibility(false);
-
     this.formValues = this.mailChimpApiService.getSubscribeFormData();
     this.subscribeForm = new FormGroup({
       firstName: new FormControl(this.formValues.firstName),
@@ -164,12 +162,11 @@ export class IntroductionComponent implements OnInit {
     }
   }
 
-  openFAQ() {
-    this.router.navigate(['faq'], { fragment: 'will-writing' });
-  }
-
   openTermsOfConditions() {
     const ref = this.modal.open(WillDisclaimerComponent, { centered: true, windowClass: 'full-height-will' });
+    ref.componentInstance.title = this.disclaimerModal.TITLE;
+    ref.componentInstance.message = this.disclaimerModal.MESSAGE;
+    ref.componentInstance.agree = this.disclaimerModal.AGREE;
     ref.result.then((data) => {
       if (data === 'proceed') {
         this.router.navigate([WILL_WRITING_ROUTE_PATHS.CHECK_ELIGIBILITY]);

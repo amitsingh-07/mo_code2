@@ -1,5 +1,4 @@
 import { flatMap } from 'rxjs/operators';
-import { Location } from '@angular/common';
 import {
   AfterViewInit, ChangeDetectorRef, Component, OnInit, ViewEncapsulation
 } from '@angular/core';
@@ -28,7 +27,6 @@ import { ICorpBizData, IEnquiryUpdate } from '../signup-types';
 import { ValidatePassword } from './password.validator';
 import { ValidateRange } from './range.validator';
 import { Util } from '../../shared/utils/util';
-import { AffiliateService } from '../../shared/Services/affiliate.service';
 import { SIGN_UP_CONFIG } from '../sign-up.constant';
 import { NgbDateCustomParserFormatter } from '../../shared/utils/ngb-date-custom-parser-formatter';
 import { InvestmentAccountService } from '../../investment/investment-account/investment-account-service';
@@ -85,13 +83,11 @@ export class CreateAccountComponent implements OnInit, AfterViewInit {
     private route: ActivatedRoute,
     private router: Router,
     private translate: TranslateService,
-    private _location: Location,
     private authService: AuthenticationService,
     private appService: AppService,
     private apiService: ApiService,
     private selectedPlansService: SelectedPlansService,
     private changeDetectorRef: ChangeDetectorRef,
-    private affiliateService: AffiliateService,
     private investmentAccountService: InvestmentAccountService
   ) {
     const today: Date = new Date();
@@ -509,7 +505,6 @@ export class CreateAccountComponent implements OnInit, AfterViewInit {
     };
     this.apiService.updateInsuranceEnquiry(payload).subscribe(() => {
       if (redirect) {
-        this.affiliateService.removeClickIdJson();
         this.router.navigate([SIGN_UP_ROUTE_PATHS.VERIFY_MOBILE]);
       } else {
         this.callErrorModal(data);
@@ -541,7 +536,7 @@ export class CreateAccountComponent implements OnInit, AfterViewInit {
   }
 
   goBack() {
-    this._location.back();
+    this.navbarService.goBack();
   }
 
   openTermsOfConditions() {
@@ -693,4 +688,3 @@ export class CreateAccountComponent implements OnInit, AfterViewInit {
     this.router.navigate([SIGN_UP_ROUTE_PATHS.CORP_BIZ_SIGNUP_DATA]);
   }
 }
-

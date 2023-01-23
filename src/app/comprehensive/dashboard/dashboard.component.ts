@@ -21,7 +21,6 @@ import { ModelWithButtonComponent } from '../../shared/modal/model-with-button/m
 import { ErrorModalComponent } from '../../shared/modal/error-modal/error-modal.component';
 import { AuthenticationService } from '../../shared/http/auth/authentication.service';
 
-
 @Component({
   selector: 'app-comprehensive-dashboard',
   templateUrl: './dashboard.component.html',
@@ -116,7 +115,6 @@ export class ComprehensiveDashboardComponent implements OnInit {
       this.comprehensiveService.setReportId(data.objectList[0].id);
       const reportDateAPI = new Date(data.objectList[0].lastUpdatedTs);
       this.reportDate = this.datePipe.transform(reportDateAPI, 'dd MMM` yyyy');
-
     });
   }
 
@@ -130,7 +128,6 @@ export class ComprehensiveDashboardComponent implements OnInit {
       this.downloadfile.downloadPDF(data.body, newWindow, COMPREHENSIVE_CONST.REPORT_PDF_NAME);
     });
   }
-
 
   goToEditProfile() {
     if (this.comprehensivePlanning === 4 && !this.isCFPGetStarted) {
@@ -361,13 +358,11 @@ export class ComprehensiveDashboardComponent implements OnInit {
           }
           this.currentStep = (this.getComprehensiveSummaryDashboard.stepCompleted !== null)
             ? this.getComprehensiveSummaryDashboard.stepCompleted : 0;
-
         }
         this.isLoadComplete = true;
       } else {
         this.isLoadComplete = true;
       }
-
     });
   }
 

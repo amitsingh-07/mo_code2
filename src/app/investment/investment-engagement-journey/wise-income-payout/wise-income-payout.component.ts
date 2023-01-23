@@ -23,6 +23,7 @@ import { InvestmentAccountService } from '../../investment-account/investment-ac
 import { LoaderService } from '../../../shared/components/loader/loader.service';
 import { INVESTMENT_COMMON_CONSTANTS } from '../../investment-common/investment-common.constants';
 import { ModelWithButtonComponent } from '../../../shared/modal/model-with-button/model-with-button.component';
+import { Util } from '../../../shared/utils/util';
 
 @Component({
   selector: 'app-wise-income-payout',
@@ -93,7 +94,7 @@ export class WiseIncomePayoutComponent implements OnInit {
         if (!this.navbarHeight) {
           this.navbarHeight = navbarDetails.nativeElement.getBoundingClientRect().height;
         }
-    });
+      });
 
     this.navbarService.setNavbarMobileVisibility(true);
     this.navbarService.setNavbarMode(6);
@@ -103,7 +104,7 @@ export class WiseIncomePayoutComponent implements OnInit {
     this.queryParams = this.route.snapshot.queryParams;
     if (this.queryParams && this.queryParams.key && this.queryParams.key === 'wise-income') {
       this.appService.setJourneyType(appConstants.JOURNEY_TYPE_INVESTMENT);
-      this.investmentEngagementJourneyService.setSelectPortfolioType({ selectPortfolioType:  INVESTMENT_ENGAGEMENT_JOURNEY_CONSTANTS.SELECT_POROFOLIO_TYPE.WISEINCOME_PORTFOLIO });
+      this.investmentEngagementJourneyService.setSelectPortfolioType({ selectPortfolioType: INVESTMENT_ENGAGEMENT_JOURNEY_CONSTANTS.SELECT_POROFOLIO_TYPE.WISEINCOME_PORTFOLIO });
     }
     this.investmentAccountService.getSpecificDropList('portfolioType').subscribe((data) => {
       this.investmentCommonService.setPortfolioType(data.objectList.portfolioType);
@@ -278,4 +279,13 @@ export class WiseIncomePayoutComponent implements OnInit {
     }
     this.navbarService.setCurrentActive(this.currentActive);
   }
+
+  goToWiseIncome(page: string){
+    if (page === 'faq') {
+      Util.openExternalUrl('https://www.moneyowl.com.sg/faq-investment/wiseincome-portfolio', '_blank')
+    } else {
+      Util.openExternalUrl('https://www.moneyowl.com.sg/wiseincome', '_blank')
+    }
+  }
+
 }

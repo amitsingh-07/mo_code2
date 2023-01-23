@@ -24,7 +24,7 @@
                 formControlName="portfolioType" />
               <label for="portfolio_type_2">
                 <div class="input-label-white">{{'SELECT_PORTFOLIO_TYPE.JOINT_ACCOUNT.TITLE' | translate}}
-                    <div class="input-label-sub-text">{{'SELECT_PORTFOLIO_TYPE.JOINT_ACCOUNT.DESC' | translate}}</div>
+                  <div class="input-label-sub-text">{{'SELECT_PORTFOLIO_TYPE.JOINT_ACCOUNT.DESC' | translate}}</div>
                 </div>
                 <div class="input-label-normal">{{'SELECT_PORTFOLIO_TYPE.JOINT_ACCOUNT.DESC2' | translate}}</div>
               </label>
@@ -32,7 +32,8 @@
           </div>
           <div>
             <button type="button" [disabled]="portfolioTypeForm.invalid" (click)="goToNext()"
-              class="btn btn-primary btn__footer--fixed width100">{{'SELECT_PORTFOLIO_TYPE.CONTINUE' | translate}}</button>
+              class="btn btn-primary btn__footer--fixed width100">{{'SELECT_PORTFOLIO_TYPE.CONTINUE' |
+              translate}}</button>
           </div>
         </form>
       </div>

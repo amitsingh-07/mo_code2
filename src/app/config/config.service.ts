@@ -19,7 +19,6 @@ export interface IConfig {
   investmentEngagementEnabled: boolean;
   investmentMyInfoEnabled: boolean;
   comprehensiveEnabled: boolean;
-  retirementPlanningEnabled: boolean;
   srsEnabled: boolean;
   resetPasswordUrl: string;
   resetPasswordCorpUrl?: string;
@@ -38,8 +37,6 @@ export interface IConfig {
   showPortfolioInfo: boolean;
   investment: any;
   account: any;
-  affiliateEnabled: boolean;
-  affiliateAttributionInMs: number;
 }
 
 const CACHE_SIZE = 1;
@@ -81,7 +78,7 @@ export class ConfigService {
   private readConfig() {
     return this.http.get<IConfig>(this.configUrl).pipe(
       map((response) => {
-        this.fetchConfig().subscribe((res)=>{
+        this.fetchConfig().subscribe((res) => {
           if (res) {
             response['iFastMaintenance'] = res['iFastMaintenance'];
             response['maintenanceStartTime'] = res['maintenanceStartTime'];

@@ -22,7 +22,8 @@ app-withdrawal-status {
     display: flex;
     flex-direction: column;
     align-items: center;
-    img{
+
+    img {
       width: 207px;
       height: 214px;
     }
@@ -55,14 +56,13 @@ app-withdrawal-status {
   .custom-modal--desc {
     font-family: $muli-regular;
     font-size: 18px;
-    ;
     line-height: normal;
     letter-spacing: -0.1px;
     text-align: center;
     color: $white-color;
 
     @include allmobiles {
-      font-family: 16px;
+      font-family: 16px; // check
     }
   }
 

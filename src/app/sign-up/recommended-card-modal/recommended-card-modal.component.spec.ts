@@ -1,4 +1,4 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { waitForAsync, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { RecommendedCardModalComponent } from './recommended-card-modal.component';
 
@@ -6,11 +6,11 @@ describe('RecommendedCardModalComponent', () => {
   let component: RecommendedCardModalComponent;
   let fixture: ComponentFixture<RecommendedCardModalComponent>;
 
-  beforeEach(async(() => {
+  beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
-      declarations: [ RecommendedCardModalComponent ]
+      declarations: [RecommendedCardModalComponent]
     })
-    .compileComponents();
+      .compileComponents();
   }));
 
   beforeEach(() => {

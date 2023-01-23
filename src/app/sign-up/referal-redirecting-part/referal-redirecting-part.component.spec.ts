@@ -1,4 +1,4 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { waitForAsync, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { ReferalRedirectingPartComponent } from './referal-redirecting-part.component';
 
@@ -6,11 +6,11 @@ describe('ReferalRedirectingPartComponent', () => {
   let component: ReferalRedirectingPartComponent;
   let fixture: ComponentFixture<ReferalRedirectingPartComponent>;
 
-  beforeEach(async(() => {
+  beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
-      declarations: [ ReferalRedirectingPartComponent ]
+      declarations: [ReferalRedirectingPartComponent]
     })
-    .compileComponents();
+      .compileComponents();
   }));
 
   beforeEach(() => {

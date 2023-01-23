@@ -5,13 +5,15 @@
 .portfolioname-bg {
   background-color: rgba(255, 255, 255, 0.95) !important;
 }
+
 app-add-portfolio-name {
   .portfolio-naming-backdrop {
-    .container-fluid{
-      @include allmobiles{
+    .container-fluid {
+      @include allmobiles {
         padding: 0;
       }
-      @include min350max375{
+
+      @include min350max375 {
         padding-top: 30px;
       }
     }
@@ -24,20 +26,24 @@ app-add-portfolio-name {
     align-items: center;
     color: $black-color;
     height: calc(100vh - 84px);
-    
-    @include allmobiles{
+
+    @include allmobiles {
       height: calc(100vh - 46px);
     }
-    @include min350max375{
+
+    @include min350max375 {
       height: 100vh;
     }
-    @include iphone6plus{
+
+    @include iphone6plus {
       height: calc(100vh - 108px);
     }
-    @include iphonex{
+
+    @include iphonex {
       height: calc(100vh - 108px);
     }
-    @include iphone11{
+
+    @include iphone11 {
       height: calc(100vh - 108px);
     }
 
@@ -65,9 +71,10 @@ app-add-portfolio-name {
       letter-spacing: -0.3px;
       text-align: center;
       color: $custom-modal-title-color;
-      padding:10px 0 20px;
+      padding: 10px 0 20px;
       line-height: 40px;
-      @include allmobiles{
+
+      @include allmobiles {
         font-size: 28px;
       }
     }
@@ -91,7 +98,8 @@ app-add-portfolio-name {
       font-size: 18px;
       letter-spacing: -0.39px;
       text-align: center;
-      @include allmobiles{
+
+      @include allmobiles {
         letter-spacing: -0.34px;
       }
     }
@@ -111,7 +119,7 @@ app-add-portfolio-name {
     font-size: 16px;
     font-style: italic;
     letter-spacing: -0.3px;
-    color: #c1c1c1 !important;
+    color: $nobel-silver-color !important;
   }
 
   .error-message {
@@ -145,7 +153,7 @@ app-add-portfolio-name {
     }
   }
 
-  .btn-primary{
+  .btn-primary {
     font-family: $muli-bold !important;
     font-size: 22px;
   }

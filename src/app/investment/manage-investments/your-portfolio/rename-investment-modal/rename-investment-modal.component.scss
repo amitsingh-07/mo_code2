@@ -1,15 +1,19 @@
 @import '../../../../../_variables.scss';
 @import '../../../../../_mixins.scss';
+
 app-rename-investment-modal {
     .form-control {
-        color: #00a7a7;
+        color: $teal-color;
+
         &:focus {
-            color: #00a7a7;
+            color: $teal-color;
         }
+
         &.inline-error {
             color: $inline-error-border-color;
         }
     }
+
     .characters {
         font-family: $muli-italic;
         font-size: 15px;
@@ -20,12 +24,13 @@ app-rename-investment-modal {
         text-align: right;
         color: $portfolio-name-length-color;
     }
+
     .action-button {
         width: 100%;
         border-radius: 6px;
         box-shadow: 0 4px 6px 0 rgba(0, 0, 0, 0.15) !important;
-        background-color: #00a7a7;
-        border: 1px solid #00a7a7;
+        background-color: $teal-color;
+        border: 1px solid $teal-color;
         margin-top: 23px;
         font-family: $muli-bold;
         font-size: 22px;
@@ -37,16 +42,17 @@ app-rename-investment-modal {
         color: $white-color;
         padding: 10px;
         cursor: pointer;
+
         &:hover {
             background-color: $robins-egg-blue-color;
             border-color: $action-btn-hover-brdr-color;
         }
+
         &.disabled {
             opacity: 0.5;
-            // &:hover {
-            // }
         }
     }
+
     .error-message {
         font-family: $muli-italic;
         font-size: 16px;
@@ -57,12 +63,14 @@ app-rename-investment-modal {
         display: flex;
         text-align: left;
         padding-bottom: 10px;
+
         span {
             &:first-child {
                 padding-right: 11px;
             }
         }
     }
+
     .popup-header-icon {
         &.glass {
             width: 100%;
@@ -70,38 +78,47 @@ app-rename-investment-modal {
             display: flex;
             justify-content: center;
             margin-bottom: -15px;
+
             img {
                 height: 100%;
                 width: 100%;
             }
         }
     }
+
     .modal-body {
         padding-left: 20px !important;
     }
+
     .action-button:active {
         background-color: $action-btn-active-bg;
         color: $white-color;
     }
+
     .warning-icon {
         width: 24px;
         height: 24px;
         padding-left: 7px;
+
         img {
             max-width: 100%;
             height: auto;
             margin: 0;
         }
     }
+
     .modal-body-title {
         display: flex;
         margin-bottom: 18px;
+
         div {
             flex-grow: 0;
             flex-basis: auto;
         }
+
         span.lock {
             padding-left: 5px;
+
             img {
                 vertical-align: initial !important;
             }

@@ -1,4 +1,3 @@
-import { Location } from '@angular/common';
 import { Component, OnDestroy, OnInit, ViewChild, ViewEncapsulation } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
@@ -24,7 +23,6 @@ export class MyEstateDistributionComponent implements OnInit, OnDestroy {
   private confirmModal = {};
   pageTitle: string;
   step: string;
-
   beneficiaryList: any[] = [];
   distributionForm: FormGroup;
   remainingPercentage = 100;
@@ -43,7 +41,6 @@ export class MyEstateDistributionComponent implements OnInit, OnDestroy {
     private translate: TranslateService,
     private willWritingService: WillWritingService,
     private formBuilder: FormBuilder,
-    private _location: Location,
     private modal: NgbModal,
     public footerService: FooterService,
     public navbarService: NavbarService,
@@ -79,7 +76,7 @@ export class MyEstateDistributionComponent implements OnInit, OnDestroy {
         if (this.distributionForm.dirty) {
           this.pageTitleComponent.goBack();
         } else {
-          this._location.back();
+          this.navbarService.goBack();
         }
         return false;
       }
@@ -144,7 +141,6 @@ export class MyEstateDistributionComponent implements OnInit, OnDestroy {
   validateBeneficiaryForm() {
     const estateDistList = this.beneficiaryList.filter((checked) => checked.selected === true);
     const filteredArr = estateDistList.filter((greater) => greater.distPercentage < 1);
-    const joinedArray = [];
     if (this.remainingPercentage < 0) {
       this.willWritingService.openToolTipModal(this.errorMsg.MAX_PERCENTAGE, '');
       return false;
@@ -176,5 +172,4 @@ export class MyEstateDistributionComponent implements OnInit, OnDestroy {
       }
     }
   }
-
 }

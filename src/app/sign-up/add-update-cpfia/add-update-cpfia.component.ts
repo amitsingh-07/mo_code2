@@ -1,4 +1,4 @@
-import { Component, HostListener, OnInit, ViewEncapsulation, OnDestroy } from '@angular/core';
+import { Component, HostListener, OnInit, ViewEncapsulation } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { TranslateService } from '@ngx-translate/core';
@@ -52,11 +52,11 @@ export class AddUpdateCpfiaComponent implements OnInit {
     public investmentEngagementJourneyService: InvestmentEngagementJourneyService,
     private investmentCommonService: InvestmentCommonService,
     private loaderService: LoaderService) {
-      this.translate.use('en');
-      this.translate.get('COMMON').subscribe(() => {
-        this.pageTitle = this.translate.instant('ADD_UPDATE_CPFIA.TITLE');
-        this.setPageTitle(this.pageTitle);
-      });
+    this.translate.use('en');
+    this.translate.get('COMMON').subscribe(() => {
+      this.pageTitle = this.translate.instant('ADD_UPDATE_CPFIA.TITLE');
+      this.setPageTitle(this.pageTitle);
+    });
   }
 
   setPageTitle(title: string) {
@@ -94,7 +94,7 @@ export class AddUpdateCpfiaComponent implements OnInit {
         }
       });
 
-      this.manageInvestmentsService.getProfileCPFIAccountDetails(false)
+    this.manageInvestmentsService.getProfileCPFIAccountDetails(false)
       .pipe(takeUntil(this.ngUnsubscribe))
       .subscribe((data: any) => {
         if (data) {
@@ -237,7 +237,7 @@ export class AddUpdateCpfiaComponent implements OnInit {
   updateCPFSaveCall(form: any) {
     if (!form.valid) {
       return false;
-    } else if(this.isEdit) {
+    } else if (this.isEdit) {
       this.isEdit = false;
       const formValue = form.getRawValue();
       const reqParams = {};

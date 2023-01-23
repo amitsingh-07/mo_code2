@@ -1,4 +1,4 @@
-import { AfterViewInit, Directive, ElementRef, HostListener } from '@angular/core';
+import { AfterViewInit, Directive, HostListener } from '@angular/core';
 
 @Directive({
     selector: '[appInputFocus]',
@@ -6,17 +6,11 @@ import { AfterViewInit, Directive, ElementRef, HostListener } from '@angular/cor
 })
 
 export class InputFocusDirective implements AfterViewInit {
-    constructor(
-        private el: ElementRef) {
-    }
+    constructor() {}
 
     ngAfterViewInit() {
     }
 
     @HostListener('focus', ['$event'])
-    onFocus() {
-        // this.el.nativeElement.scrollIntoView({ behavior: 'smooth', block: 'start' });
-        // this.el.nativeElement.scrollIntoView(true);
-        // window.scrollBy(0, -15); // 100 as offset for header height
-    }
+    onFocus() {}
 }

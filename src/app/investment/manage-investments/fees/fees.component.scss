@@ -1,8 +1,10 @@
 @import '../../../../variables';
 @import '../../../../mixins';
+
 .portfolioname-bg {
   background-color: $white-color !important;
 }
+
 app-fees {
   .invest-section {
     @include allmobiles {
@@ -44,6 +46,7 @@ app-fees {
     @include allmobiles {
       top: 0;
     }
+
     .title-dec {
       margin: 0 0 30px;
       font-family: $muli-regular;
@@ -52,10 +55,12 @@ app-fees {
       letter-spacing: -0.13px;
       color: $silver-grey-color;
     }
+
     .annual-fee-desc {
       font-family: $muli-regular;
       font-size: 14px;
       color: $black-color;
+
       .fund-block {
         &:nth-last-child(2) {
           hr {
@@ -63,19 +68,23 @@ app-fees {
           }
         }
       }
+
       .fund-title {
         display: flex;
         justify-content: space-between;
       }
+
       .form-alert-wrap {
         width: 16px;
         height: 16px;
         margin-right: 10px;
         object-fit: contain;
       }
+
       .fee_value {
         color: $silver-grey-color;
       }
+
       .promo-code-header {
         font-family: $muli-bold;
         font-size: 13px;
@@ -83,10 +92,7 @@ app-fees {
         line-height: 1.38;
         letter-spacing: -0.12px;
         color: $black-color;
-        @include allmobiles {
-          // display: flex;
-          // align-items: flex-end;
-        }
+
         .ellipse {
           @include allmobiles {
             overflow: hidden;
@@ -101,6 +107,7 @@ app-fees {
           }
         }
       }
+
       .promo-code {
         font-family: $muli-bold;
         font-size: 13px;
@@ -109,6 +116,7 @@ app-fees {
         letter-spacing: -0.12px;
         color: $black-color;
       }
+
       .fee_value-status {
         font-family: $muli-regular;
         font-size: 13px;
@@ -116,22 +124,26 @@ app-fees {
         letter-spacing: -0.12px;
         color: $black-color;
         padding-left: 15px;
+
         &.hidden-lg {
           padding-left: 10px;
           text-align: right;
         }
       }
+
       .faq_dec {
         margin: 30px 0 0;
         font-size: 14px;
         line-height: 1.5;
         letter-spacing: -0.13px;
         color: $silver-grey-color;
+
         .faq-link {
           color: $dark-orange-color;
           cursor: pointer;
         }
       }
+
       .arrow {
         background-image: url("./../../../../assets/images/manage-investments/down-arrow.svg");
         background-repeat: no-repeat;
@@ -144,12 +156,15 @@ app-fees {
         display: inline-flex;
       }
     }
+
     span.arrow.active {
       background-image: url("/assets/images/manage-investments/up-arrow.svg");
     }
+
     hr {
       margin: 10px 0;
       border-color: $mercury-smoke-color;
+
       hr:last-child {
         border: none !important;
       }

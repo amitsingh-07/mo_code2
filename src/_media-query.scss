@@ -147,8 +147,8 @@
   @include allmobiles {
     padding-left: 20px !important;
     padding-right: 20px !important;
-    position: relative; //top: 35px;
-    height: 100%; //bottom: 60px;
+    position: relative;
+    height: 100%;
     padding: 80px 0;
 
     &.bottom-none {
@@ -189,13 +189,6 @@
   }
 }
 
-.form-container {
-  @include allmobiles {
-    //margin-bottom: 60px;
-    //margin-top: 60px;
-  }
-}
-
 .modal {
   @include allmobiles {
     position: fixed !important;
@@ -213,7 +206,7 @@
 
     .modal-body {
       border-radius: 0px !important;
-      color: #000;
+      color: $black-color;
       padding: 30px 25px;
       background: $module-fill-color;
 
@@ -223,9 +216,9 @@
     }
 
     .help-modal-body {
-      background: #ffffff;
+      background: $white-color;
       border-radius: 0px !important;
-      color: #000;
+      color: $black-color;
       padding: 25px 25px 25px 25px !important;
 
       b {

@@ -3,7 +3,6 @@ import { Router } from '@angular/router';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { TranslateService } from '@ngx-translate/core';
 import { Subscription } from 'rxjs';
-import { CORPBIZ_WELCOME_FLOW } from '../corpbiz-welcome-flow.constant';
 import { ComprehensiveApiService } from '../../comprehensive/comprehensive-api.service';
 import { ComprehensiveService } from '../../comprehensive/comprehensive.service';
 import { FileUtil } from '../../shared/utils/file.util';

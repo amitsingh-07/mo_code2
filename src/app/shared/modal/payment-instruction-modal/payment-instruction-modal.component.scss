@@ -1,54 +1,67 @@
 @import '../../../../variables';
 @import '../../../../mixins';
+
 app-payment-instruction-modal {
   .description img {
     margin-right: 20px;
   }
-  .mt-20{
+
+  .mt-20 {
     margin-top: 20px;
   }
+
   .payment-support-mail {
-    color: $black-color!important;
+    color: $black-color !important;
     cursor: pointer;
     letter-spacing: -0.11px;
   }
+
   .modal-body-title {
     display: flex;
     padding: 20px 25px 10px 25px;
+
     div {
       flex-grow: 0;
       flex-basis: auto;
     }
+
     span.lock {
       padding-left: 5px;
+
       img {
         vertical-align: initial !important;
       }
     }
   }
+
   .modal-body {
     background-color: $teal-color !important;
     padding: 0 !important;
+
     button.close {
       top: 25px !important;
       right: 25px !important;
     }
+
     @include allmobiles {
       b {
         color: $silver-grey-color !important;
       }
     }
   }
+
   .modal-body-message {
     padding: 0 50px 35px 30px;
   }
+
   .instruction-content {
     color: $instruction-content-color;
     line-height: 22px;
     letter-spacing: -0.16px;
+
     .qrcode {
-      //padding: 20px 20px 0 20px;
       text-align: center;
+
       &__title {
         font-size: 21px;
         font-weight: bold;
@@ -58,6 +71,7 @@ app-payment-instruction-modal {
         font-family: $muli-bold;
         text-align: left;
       }
+
       &__desc {
         font-family: $muli-regular;
         font-size: 16px;
@@ -65,15 +79,18 @@ app-payment-instruction-modal {
         color: $black-color;
         text-align: left;
       }
+
       &__imgcontainer {
         padding: 15px 0;
       }
+
       &__refcode {
         color: $black-color;
         font-size: 16px;
         font-family: $muli-regular;
         margin-bottom: 10px;
       }
+
       &__refcode-box {
         background-color: $cinderella-color;
         padding: 13px 20px !important;
@@ -86,37 +103,45 @@ app-payment-instruction-modal {
         align-items: center;
         justify-content: center;
       }
+
       &__refcode-icon {
         display: inline-block;
         margin-right: 10px;
         margin-top: 2px;
       }
+
       &__refcode-num {
         font-family: $muli-bold;
         font-size: 18px;
         color: $dark-red-color;
       }
+
       &__refcode-info {
         text-align: left;
         padding: 0 33px;
+
         &--text {
           font-size: 13px;
           color: $black-color;
           line-height: 16px;
           letter-spacing: -0.11px;
+
           span {
             color: $dark-red-color;
             font-family: $muli-bold;
           }
+
           span u {
             text-decoration: underline;
           }
+
           b {
             font-family: $muli-bold;
             color: $black-color !important;
           }
         }
       }
+
       &__save-btn {
         background-color: $teal-color;
         padding: 10px 20px;
@@ -128,14 +153,15 @@ app-payment-instruction-modal {
         font-size: 14px;
         font-family: $muli-semi-bold;
       }
+
       &__alt-steps {
         font-size: 16px;
         font-family: $muli-regular;
         text-align: left;
         margin-top: 30px;
-        //padding-left: 10px;
       }
     }
+
     .steps-title {
       font-family: $muli-bold;
       font-size: 21px;
@@ -144,10 +170,12 @@ app-payment-instruction-modal {
       color: $instruction-content-title-color;
       padding: 10px 0;
     }
+
     .list-none {
       padding: 10px 0;
       margin: 0;
     }
+
     li {
       &:last-child {
         .section {
@@ -155,20 +183,24 @@ app-payment-instruction-modal {
           padding-bottom: 0;
         }
       }
+
       .text-black {
         .sub-section {
           color: $black-color;
         }
       }
+
       .section {
         border-left: 1px solid $instruction-section-brdr-color;
         margin-left: -10px;
         padding-bottom: 25px;
         font-size: 16px;
         width: 100%;
+
         .sub-section {
           margin-left: 19.5px;
           padding-right: 25px;
+
           &.step {
             font-family: $muli-bold;
             letter-spacing: -0.3px;
@@ -177,9 +209,11 @@ app-payment-instruction-modal {
             top: -4px;
             position: relative;
           }
+
           span {
             font-family: $muli-bold;
           }
+
           .ref-code-context {
             color: $ref-code-context-color;
             letter-spacing: -0.16px;
@@ -187,11 +221,13 @@ app-payment-instruction-modal {
             font-weight: normal !important;
             font-size: 16px;
             line-height: 22px;
+
             span {
               font-family: $muli-bold;
               color: $ref-code-context-must-color;
               letter-spacing: -0.15px;
             }
+
             b {
               font-family: $muli-bold;
               color: $black-color !important;
@@ -200,6 +236,7 @@ app-payment-instruction-modal {
         }
       }
     }
+
     .circle {
       width: 20px;
       height: 20px;
@@ -207,33 +244,40 @@ app-payment-instruction-modal {
       border-radius: 50%;
       padding: 10px;
     }
+
     .bank-details {
       margin-left: 19.5px;
       margin-top: 20px;
+
       .flex-col {
         padding-bottom: 20px;
+
         div {
           &:last-child {
             font-family: $muli-semi-bold;
           }
         }
       }
+
       &-title {
         font-family: $muli-semi-bold;
         color: $bank-title-color;
         font-size: 18px;
         letter-spacing: -0.3px;
       }
+
       &-content {
         font-family: $muli-semi-bold;
         font-size: 16px;
         letter-spacing: -0.3px;
         color: $bank-centent-color;
         margin-top: 5px;
+
         strong {
           margin-right: 15px;
           font-weight: 600;
         }
+
         img {
           vertical-align: top;
           cursor: pointer;
@@ -250,10 +294,10 @@ app-payment-instruction-modal {
         }
       }
     }
+
     .ref_code_num_container {
       display: flex;
       align-items: center;
-      // height: 50px;
       background-color: $ref-code-container-bg;
       padding: 13px 20px !important;
       color: $ref-code-container-color;
@@ -261,25 +305,18 @@ app-payment-instruction-modal {
       border: 1px solid $ref-code-container-brdr-color;
       margin: 20px 20px 10px 20px;
       max-width: 155px;
+
       .info-text {
-        // position: relative;
         display: flex;
         margin-right: 10px;
+
         img {
           width: 15px;
           height: 15px;
-          // margin-top: 7px;
           vertical-align: inherit;
         }
-        // &-content {
-        //   position: absolute;
-        //   top: 0.18rem;
-        //   left: 0.37rem;
-        //   color: $white-color;
-        //   font-size: 11px;
-        //   font-weight: bold;
-        // }
       }
+
       .ref_num {
         font-family: $muli-semi-bold;
         font-size: 18px;
@@ -287,6 +324,7 @@ app-payment-instruction-modal {
         line-height: 22px;
       }
     }
+
     .ref-code-info {
       display: flex;
       justify-content: space-between;
@@ -296,9 +334,11 @@ app-payment-instruction-modal {
       font-size: 18px;
     }
   }
+
   .faq-link {
     text-align: left;
     padding: 10px;
+
     a {
       font-family: $muli-bold;
       font-size: 16px;
@@ -309,19 +349,24 @@ app-payment-instruction-modal {
       text-decoration: none;
     }
   }
+
   /* TRANSFER DETAILS */
   .transfer-details-wrapper {
     padding: 20px 20px 0 20px;
+
     @include allmobiles {
       padding: 20px 20px 70px;
     }
+
     .heading {
       color: $white-color;
       font-family: $muli-bold;
     }
+
     .transfer-details {
       margin: 20px 0px;
       color: $fund-transfer-details-color;
+
       .tab-links {
         display: flex;
         width: 100%;
@@ -483,14 +528,17 @@ app-payment-instruction-modal {
       }
     }
   }
+
   .footer-btn {
     @include desktop {
       padding: 0 20px 35px 20px;
     }
   }
+
   .btn__footer--fixed {
     margin-top: 10px !important;
   }
+
   .border-left-right {
     @include desktop {
       border-top-left-radius: 6px;

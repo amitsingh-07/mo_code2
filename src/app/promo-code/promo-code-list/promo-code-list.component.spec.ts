@@ -1,4 +1,4 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { waitForAsync, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { PromoCodeListComponent } from './promo-code-list.component';
 
@@ -6,11 +6,11 @@ describe('PromoCodeListComponent', () => {
   let component: PromoCodeListComponent;
   let fixture: ComponentFixture<PromoCodeListComponent>;
 
-  beforeEach(async(() => {
+  beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
-      declarations: [ PromoCodeListComponent ]
+      declarations: [PromoCodeListComponent]
     })
-    .compileComponents();
+      .compileComponents();
   }));
 
   beforeEach(() => {

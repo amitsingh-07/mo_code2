@@ -1,13 +1,9 @@
-import { AffiliateService } from './../Services/affiliate.service';
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
-import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { BehaviorSubject, Observable, throwError } from 'rxjs';
 import { catchError } from 'rxjs/operators';
 
-import { ConfigService } from '../../config/config.service';
-import { GuideMeService } from '../../guide-me/guide-me.service';
 import { IEnquiryUpdate, ISignUp, IVerifyRequestOTP } from '../../sign-up/signup-types';
 import { LoaderService } from './../components/loader/loader.service';
 import { IRecommendationRequest } from './../interfaces/recommendations.request';
@@ -28,15 +24,11 @@ export class ApiService {
   private errorTryAgain = 'Something bad happened; please try again later.';
 
   constructor(
-    private configService: ConfigService,
     private http: BaseService,
     public authService: AuthenticationService,
-    private modal: NgbModal,
-    private guideMeService: GuideMeService,
     private httpClient: HttpClient,
     private router: Router,
-    private loaderService: LoaderService,
-    private affiliateService: AffiliateService) { }
+    private loaderService: LoaderService) { }
 
   private handleError(error: HttpErrorResponse) {
     this.loaderService.hideLoader();
@@ -83,14 +75,6 @@ export class ApiService {
       );
   }
   // -------------------------- ARTICLES MODULE ---------------------------------------
-  getGetStartedArticles() {
-    const url = '../../../assets/mock-data/getStartedArticles.json';
-    return this.http.getMock(url)
-      .pipe(
-        catchError((error: HttpErrorResponse) => this.handleError(error))
-      );
-  }
-
   getRecentArticles(quantity?: number) {
     const payload = { number: 0 };
     if (quantity) {
@@ -107,14 +91,6 @@ export class ApiService {
     return this.http.post(apiConstants.endpoint.article.getArticle + '/' + art_id, payload)
       .pipe(
         catchError((error: HttpErrorResponse) => this.handleError(error))
-      );
-  }
-
-  getArticleContent(art_id) {
-    const url = '/assets/articles/' + art_id + '.jsp';
-    return this.http.getArticle(url)
-      .pipe(
-        catchError((error: HttpErrorResponse) => this.router.navigate(['/articles']))
       );
   }
 
@@ -150,32 +126,6 @@ export class ApiService {
     }
   }
 
-  // ---------------------------- PROMOTIONS MODULE --------------------------
-  getPromoList() {
-    const url = 'assets/mock-data/promoList.json';
-    return this.http.getMock(url);
-  }
-
-  getPromoCategory() {
-    const url = 'assets/promotions/promoType.json';
-    return this.http.getMock(url);
-  }
-
-  getPromoDetail(id: number) {
-    const url = 'assets/promotions/' + id + '_details.json';
-    return this.http.getMock(url);
-  }
-
-  getPromoContent(id: number) {
-    const url = 'assets/promotions/' + id + '.jsp';
-    return this.http.getArticle(url);
-  }
-
-  getPromoTnc(id: number) {
-    const url = 'assets/promotions/' + id + '_tnc.jsp';
-    return this.http.getArticle(url);
-  }
-
   // ---------------------------- ABOUT US MODULE ----------------------------
   getCustomerReviewList() {
     // tslint:disable-next-line:no-commented-code
@@ -185,13 +135,7 @@ export class ApiService {
         catchError((error: HttpErrorResponse) => this.handleError(error))
       );
   }
-  getSubjectList() {
-    const url = 'assets/about-us/subjectList.json';
-    return this.http.getMock(url)
-      .pipe(
-        catchError((error: HttpErrorResponse) => this.handleError(error))
-      );
-  }
+
   sendContactUs(data) {
     const payload = {
       toEmail: data.email,
@@ -282,7 +226,6 @@ export class ApiService {
   createAccount(payload: ISignUp) {
     return this.http.post(apiConstants.endpoint.signUp + this.handleErrorFlag, payload)
       .pipe(
-        // tslint:disable-next-line:no-identical-functions
         catchError((error: HttpErrorResponse) => {
           if (error.error instanceof ErrorEvent) {
             // A client-side or network error occurred. Handle it accordingly.
@@ -350,7 +293,6 @@ export class ApiService {
   verifyOTP(payload: IVerifyRequestOTP) {
     return this.http.post(apiConstants.endpoint.verifyOTP + this.handleErrorFlag, payload)
       .pipe(
-        // tslint:disable-next-line:no-identical-functions
         catchError((error: HttpErrorResponse) => {
           if (error.error instanceof ErrorEvent) {
             // A client-side or network error occurred. Handle it accordingly.
@@ -390,7 +332,7 @@ export class ApiService {
   }
   /** Post Login */
   updateInsuranceEnquiry(payload: IEnquiryUpdate) {
-    return this.http.post(apiConstants.endpoint.updateProductEnquiry, this.affiliateService.appendClickId(payload))
+    return this.http.post(apiConstants.endpoint.updateProductEnquiry, payload)
       .pipe(
         catchError((error: HttpErrorResponse) => this.handleError(error))
       );
@@ -408,7 +350,6 @@ export class ApiService {
         catchError((error: HttpErrorResponse) => this.handleError(error))
       );
   }
-
 
   getGeneratedFrom() {
     const url = '../assets/mock-data/generatedFrom.json';
@@ -432,8 +373,6 @@ export class ApiService {
       );
   }
 
-
-  // tslint:disable-next-line:no-identical-functions
   requestForgotPasswordLink(data) {
     return this.http.post(apiConstants.endpoint.forgotPassword, data)
       .pipe(
@@ -446,7 +385,7 @@ export class ApiService {
         catchError((error: HttpErrorResponse) => this.handleError(error))
       );
   }
-  // tslint:disable-next-line:no-identical-functions
+
   requestResetPassword(data) {
     return this.http.post(apiConstants.endpoint.resetPassword, data)
       .pipe(
@@ -454,7 +393,6 @@ export class ApiService {
       );
   }
 
-  // tslint:disable-next-line:no-identical-functions
   getDirectSearch(payload) {
     return this.http.post(apiConstants.endpoint.getRecommendations, payload)
       .pipe(
@@ -485,18 +423,13 @@ export class ApiService {
       );
   }
 
-
-  // tslint:disable-next-line
   getTopupInvestmentList() {
-    // tslint:disable-next-line:no-commented-code
-    // return this.http.get(apiConstants.endpoint.article.getArticleCategory)
     const url = '../../../assets/mock-data/topupInvestmentList.json';
     return this.http.getMock(url)
       .pipe(
         catchError((error: HttpErrorResponse) => this.handleError(error))
       );
   }
-
 
   getEditProfileList() {
     return this.http.get(apiConstants.endpoint.editProfile)
@@ -519,7 +452,6 @@ export class ApiService {
       );
   }
 
-  // tslint:disable-next-line:no-identical-functions
   requestEditContact(data) {
     return this.http.post(apiConstants.endpoint.editContactDeatails, data)
       .pipe(
@@ -527,7 +459,6 @@ export class ApiService {
       );
   }
 
-  // tslint:disable-next-line:no-identical-functions
   getAllNotifications() {
     return this.http.get(apiConstants.endpoint.notification.getAllNotifications)
       .pipe(
@@ -535,7 +466,6 @@ export class ApiService {
       );
   }
 
-  // tslint:disable-next-line:no-identical-functions
   getRecentNotifications() {
     return this.http.get(apiConstants.endpoint.notification.getRecentNotifications)
       .pipe(
@@ -543,7 +473,6 @@ export class ApiService {
       );
   }
 
-  // tslint:disable-next-line:no-identical-functions
   updateNotifications(data) {
     return this.http.post(apiConstants.endpoint.notification.updateNotifications, data)
       .pipe(
@@ -602,8 +531,6 @@ export class ApiService {
       );
   }
 
-
-
   // Resend Email Verification Link
   resendEmailVerification(payload) {
     return this.http.post(apiConstants.endpoint.resendEmailVerification + this.handleErrorFlag, payload)
@@ -626,9 +553,8 @@ export class ApiService {
       );
   }
 
-
   enquiryByEmail(payload) {
-    return this.http.post(apiConstants.endpoint.enquiryByEmail + '?handleError=true', this.affiliateService.appendClickId(payload))
+    return this.http.post(apiConstants.endpoint.enquiryByEmail + '?handleError=true', payload)
       .pipe(
         catchError((error: HttpErrorResponse) => this.handleError(error))
       );

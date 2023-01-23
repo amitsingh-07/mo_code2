@@ -1,6 +1,8 @@
 import { Injectable } from '@angular/core';
+import { Browser } from '@capacitor/browser';
 
 import { environment } from './../../../environments/environment';
+import { CapacitorUtils } from './capacitor.util';
 
 @Injectable()
 export class Util {
@@ -74,19 +76,19 @@ export class Util {
 
     public static toInteger(value: any): number {
         return parseInt(`${value}`, 10);
-      }
+    }
 
     public static isNumber(value: any): value is number {
         return !isNaN(this.toInteger(value));
-      }
+    }
 
     public static padNumber(value: number) {
         if (this.isNumber(value)) {
-          return `0${value}`.slice(-2);
+            return `0${value}`.slice(-2);
         } else {
-          return '';
+            return '';
         }
-      }
+    }
 
     public static routeParamStringToObject(routeParams: string[]): any {
         if (routeParams != null) {
@@ -118,11 +120,19 @@ export class Util {
         const result = [];
         const map = new Map();
         for (const item of myObjArray) {
-            if(!map.has(item[objKey])){
+            if (!map.has(item[objKey])) {
                 map.set(item[objKey], true);    // set any value to Map
                 result.push(item);
             }
         }
         return result;
-      }
+    }
+
+    public static async openExternalUrl(redirectURL, target = '_blank') {
+        if (CapacitorUtils.isApp) {
+            await Browser.open({ url: encodeURI(redirectURL) });
+        } else {
+            window.open(redirectURL, target);
+        }
+    }
 }
