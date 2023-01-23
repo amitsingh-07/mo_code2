@@ -102,7 +102,7 @@ export let MANAGE_INVESTMENTS_CONSTANTS = {
   TRANSFER_INSTRUCTION: {
     MODE: 'BANK'
   },
-  TOPUP_INSTRUCTION_URL: 'https://www.moneyowl.com.sg/faq-investment/#investments',
+  TOPUP_INSTRUCTION_URL: 'https://www.moneyowl.com.sg/faq-investment',
   WITHDRAW_PAYMENT_MODE_KEYS: {
     PORTFOLIO_TO_CASH_ACCOUNT: 'PORTFOLIO_TO_CASH_ACCOUNT',
     PORTFOLIO_TO_BANK_ACCOUNT: 'PORTFOLIO_TO_BANK_ACCOUNT',
