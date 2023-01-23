@@ -95,18 +95,8 @@ export class NavbarService {
     this.router.events.pipe(
       filter((event) => event instanceof NavigationStart)
     ).subscribe((event: NavigationStart) => {
-      if (CapacitorUtils.isApp) {
-        if (!this.isBackClicked) {
-          this.urlHistory.currentUrl && this.urlHistory.previousUrl.push(this.urlHistory.currentUrl);
-          this.urlHistory.currentUrl = event.url; 
-        } 
-        if (this.isBackClicked) {
-          this.isBackClicked = false;
-        }
-        if (event.url === "/accounts/login") {
-          this.urlHistory.currentUrl = null;
-          this.urlHistory.previousUrl = [];
-        }
+      if (CapacitorUtils.isApp) { 
+        this.handlingMobileAppNavigationUrlHistory(event);
       }
       this.unsubscribeBackPress();
     });
@@ -328,6 +318,16 @@ export class NavbarService {
         history.pushState(null, "null", window.location.href);
       })
       );
+  }
+
+  handlingMobileAppNavigationUrlHistory(event) {
+    if (!this.isBackClicked) {
+      this.urlHistory.currentUrl && this.urlHistory.previousUrl.push(this.urlHistory.currentUrl);
+      this.urlHistory.currentUrl = event.url;
+    }
+    if (this.isBackClicked) {
+      this.isBackClicked = false;
+    }
   }
 
 }

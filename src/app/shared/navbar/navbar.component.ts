@@ -501,6 +501,7 @@ export class NavbarComponent implements OnInit, AfterViewInit {
 
   // Logout Method
   logout() {
+    this.navbarService.urlHistory = { currentUrl: null, previousUrl: [] };
     if (this.authService.isSignedUser()) {
       this.authService.logout().subscribe((data) => {
         this.clearLoginDetails(true, this.signUpService.getUserType());
