@@ -40,7 +40,9 @@ export class CkaMethodQnaComponent implements OnInit {
     private loaderService: LoaderService,
     private investmentCommonService: InvestmentCommonService
   ) {
-    if (!Util.isEmptyOrNull(investmentCommonService.getCKAStatus()) && investmentCommonService.getCKAStatus() === INVESTMENT_COMMON_CONSTANTS.CKA.CKA_PASSED_STATUS) {
+    if (!Util.isEmptyOrNull(investmentCommonService.getCKAStatus()) && 
+    (investmentCommonService.getCKAStatus() === INVESTMENT_COMMON_CONSTANTS.CKA.CKA_PASSED_STATUS && 
+    !(investmentCommonService.getCKAInformation().ckaredeclarationRequired))) {
       router.navigate([SIGN_UP_ROUTE_PATHS.EDIT_PROFILE]);
     }
     this.buildMethodForm();

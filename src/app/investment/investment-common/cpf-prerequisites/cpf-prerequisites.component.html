@@ -2,7 +2,12 @@
   <div class="row">
     <div class="col-lg-7 col-md-6">
       <h2 class="hidden-sm-md">{{'CPF_PREREQUISITES.TITLE' | translate}}</h2>
-      <div>{{'CPF_PREREQUISITES.DESC' | translate}}</div>
+      <ng-container *ngIf="ckaInfo?.cKAStatusMessage === ckaConstant.CKA_EXPIRED_STATUS else notExpired">
+        {{'CPF_PREREQUISITES.EXPIRED_DESC' | translate}}
+      </ng-container>
+      <ng-template #notExpired>
+        {{'CPF_PREREQUISITES.DESC' | translate}}
+      </ng-template>
       <div class="banner-image">
         <img class="hidden-sm-md" src="assets/images/investment-account/cka-banner.svg" />
         <img class="hidden-lg" src="assets/images/investment-account/cka-banner-mobile.svg" />
@@ -27,7 +32,7 @@
                 <span class="status-icon"><img src="./assets/images/check-icon-white.svg"></span>
                 <span class="status-lbl">{{'CPF_PREREQUISITES.CERT_UPLOADED' | translate}}</span>
               </div>
-              <div *ngIf="ckaInfo && ckaInfo.cKAStatusMessage === 'CKA_REJECTED'">
+              <div *ngIf="ckaInfo?.cKAStatusMessage === ckaConstant.CKA_REJECTED_STATUS || ckaInfo?.cKAStatusMessage === ckaConstant.CKA_EXPIRED_STATUS">
                 <ng-container *ngTemplateOutlet="startCKA">
                   <div class="flex-col" (click)="startAssessment()">
                     <div class="status-lbl">{{'CPF_PREREQUISITES.START_NOW_BTN' | translate}}</div>
@@ -85,7 +90,7 @@
                   [ngClass]="{'inline-error':getInlineErrorStatus(preRequisitesForm.controls.cpfAccountNo)}">
                   <input id="srs-act-num-value" type="text" [textMask]="maskConfig()" placeholder="{{
                   'CPF_PREREQUISITES.CPFIA_NUMBER_PLACEHOLDER'
-                  | translate}}" class="form-control" formControlName="cpfAccountNo" autocomplete="off">
+                  | translate}}" class="form-control" formControlName="cpfAccountNo" autocomplete="off" >
                 </div>
               </div>
               <div class="characters" *ngIf="preRequisitesForm.get('cpfOperator').value">
