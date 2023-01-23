@@ -198,15 +198,7 @@ export class ManageInvestmentsService {
     this.manageInvestmentsFormData.userPortfolios = portfolioList;
     this.commit();
   }
-
-  setCKAInformation(ckaInfo) {
-    this.manageInvestmentsFormData.ckaDetails = ckaInfo;
-    this.commit();
-  }
-
-  getCKAInformation() {
-    return this.manageInvestmentsFormData.ckaDetails;
-  }
+  
   // GET CCASH PORTFOLIO LIST//
 
   getCashPortfolioList() {

@@ -31,6 +31,9 @@ export class CpfPrerequisitesComponent implements OnInit {
   cpfBankOperators: any;
   cpfBankDetails: any;
   showOperatorBank = false;
+  ckaConstant = INVESTMENT_COMMON_CONSTANTS.CKA;
+  isCPFBankEdited: string;
+  ifPrerequisitesFormValueChanged = false;
 
   constructor(
     private router: Router,
@@ -50,6 +53,7 @@ export class CpfPrerequisitesComponent implements OnInit {
       this.buildPreRequisitesForm();
       this.getCPFBankOptionList();
     });
+    this.isCPFBankEdited = investmentCommonService.getIfCPFBankEdited();
   }
 
   ngOnInit(): void {
@@ -66,6 +70,12 @@ export class CpfPrerequisitesComponent implements OnInit {
     this.preRequisitesForm = new FormGroup({
       cpfOperator: new FormControl("", Validators.required),
       cpfAccountNo: new FormControl({ value: '', disabled: true }, Validators.required)
+    });
+    this.preRequisitesForm.controls['cpfOperator'].valueChanges.subscribe(() => {
+      this.ifPrerequisitesFormValueChanged = true;
+    });
+    this.preRequisitesForm.controls['cpfAccountNo'].valueChanges.subscribe(() => {
+      this.ifPrerequisitesFormValueChanged = true;
     });
   }
 
@@ -107,13 +117,19 @@ export class CpfPrerequisitesComponent implements OnInit {
             [Validators.required, Validators.pattern(RegexConstants.cpfOperatorMaskForValidation.UOB)]);
           break;
       }
-      this.preRequisitesForm.controls['cpfAccountNo'].enable();
+      [
+        this.ckaConstant.CKA_EXPIRED_STATUS,
+        this.ckaConstant.CKA_PASSED_STATUS,
+      ].includes(this.ckaInfo?.cKAStatusMessage) && this.cpfBankDetails
+        && this.isCPFBankEdited != INVESTMENT_COMMON_CONSTANTS.CPF_BANK_KEYS.BANK_EDITABLE_STATUS
+        ? this.preRequisitesForm.controls["cpfAccountNo"].disable()
+        : this.preRequisitesForm.controls["cpfAccountNo"].enable();
       this.preRequisitesForm.updateValueAndValidity();
     }
   }
 
   startAssessment() {
-    this.investmentCommonService.setCKARedirectFromLocation(INVESTMENT_COMMON_ROUTE_PATHS.CPF_PREREQUISITES);
+    this.investmentCommonService.setCKARedirectFromLocation(INVESTMENT_COMMON_CONSTANTS.CKA_REDIRECT_CONSTS.PREREQUISITES);
     const ref = this.modal.open(ModelWithButtonComponent, { centered: true });
     ref.componentInstance.errorTitle = this.translate.instant(
       'OPEN_CKA.TITLE'
@@ -138,14 +154,17 @@ export class CpfPrerequisitesComponent implements OnInit {
       if (responseMessage && responseMessage.responseCode === 6000) {
         if (data.objectList) {
           this.ckaInfo = data.objectList;
+          this.investmentCommonService.setCKAInformation(this.ckaInfo);
           this.getCPFBankDetails();
-          if (this.ckaInfo.cKAStatusMessage && this.ckaInfo.cKAStatusMessage === INVESTMENT_COMMON_CONSTANTS.CKA.CKA_PASSED_STATUS) {
-            this.investmentCommonService.setCKAStatus(INVESTMENT_COMMON_CONSTANTS.CKA.CKA_PASSED_STATUS);
-          } else if (this.ckaInfo.cKAStatusMessage && this.ckaInfo.cKAStatusMessage === INVESTMENT_COMMON_CONSTANTS.CKA.CKA_BE_CERTIFICATE_UPLOADED) {
-            this.investmentCommonService.setCKAStatus(INVESTMENT_COMMON_CONSTANTS.CKA.CKA_BE_CERTIFICATE_UPLOADED);
-          } else if (this.ckaInfo.cKAStatusMessage && this.ckaInfo.cKAStatusMessage === INVESTMENT_COMMON_CONSTANTS.CKA.CKA_REJECTED_STATUS) {
-            this.investmentCommonService.setCKAStatus(INVESTMENT_COMMON_CONSTANTS.CKA.CKA_REJECTED_STATUS);
+          if (this.ckaInfo.cKAStatusMessage && this.ckaInfo.cKAStatusMessage === this.ckaConstant.CKA_PASSED_STATUS) {
+            this.investmentCommonService.setCKAStatus(this.ckaConstant.CKA_PASSED_STATUS);
+          } else if (this.ckaInfo.cKAStatusMessage && this.ckaInfo.cKAStatusMessage === this.ckaConstant.CKA_BE_CERTIFICATE_UPLOADED) {
+            this.investmentCommonService.setCKAStatus(this.ckaConstant.CKA_BE_CERTIFICATE_UPLOADED);
+          } else if (this.ckaInfo.cKAStatusMessage && this.ckaInfo.cKAStatusMessage === this.ckaConstant.CKA_REJECTED_STATUS) {
+            this.investmentCommonService.setCKAStatus(this.ckaConstant.CKA_REJECTED_STATUS);
             this.enableDisableStepTwo();
+          } else if (this.ckaInfo.cKAStatusMessage && this.ckaInfo.cKAStatusMessage === this.ckaConstant.CKA_EXPIRED_STATUS) {
+            this.investmentCommonService.setCKAStatus(this.ckaConstant.CKA_EXPIRED_STATUS);
           }
         } else {
           this.enableDisableStepTwo();
@@ -196,8 +215,8 @@ export class CpfPrerequisitesComponent implements OnInit {
 
   isCKACompleted() {
     return this.ckaInfo && this.ckaInfo.cKAStatusMessage &&
-      (this.ckaInfo.cKAStatusMessage === INVESTMENT_COMMON_CONSTANTS.CKA.CKA_PASSED_STATUS
-        || this.ckaInfo.cKAStatusMessage === INVESTMENT_COMMON_CONSTANTS.CKA.CKA_BE_CERTIFICATE_UPLOADED)
+      (this.ckaInfo.cKAStatusMessage === this.ckaConstant.CKA_PASSED_STATUS
+        || this.ckaInfo.cKAStatusMessage === this.ckaConstant.CKA_BE_CERTIFICATE_UPLOADED)
   }
 
   goToNext() {
@@ -209,9 +228,12 @@ export class CpfPrerequisitesComponent implements OnInit {
   }
 
   saveCPFAccountDetails(form) {
-    const params = this.constructCpfAccountParams(form.value);
+    const params = this.constructCpfAccountParams(form.getRawValue());
     this.investmentCommonService.saveCKABankAccount(params).subscribe((data) => {
       if (data && data.objectList) {
+        if (Util.isEmptyOrNull(this.cpfBankDetails) && this.ifPrerequisitesFormValueChanged) {
+          this.investmentCommonService.setIfCPFBankEdited(INVESTMENT_COMMON_CONSTANTS.CPF_BANK_KEYS.BANK_EDITABLE_STATUS);
+        }
         this.router.navigate([INVESTMENT_ENGAGEMENT_JOURNEY_ROUTE_PATHS.GET_STARTED_STEP1]);
       }
     }, () => {
@@ -294,15 +316,17 @@ export class CpfPrerequisitesComponent implements OnInit {
   }
 
   disableContinue() {
-    if (Util.isEmptyOrNull(this.ckaInfo) || !this.preRequisitesForm.valid) {
+    if (Util.isEmptyOrNull(this.ckaInfo) || !this.preRequisitesForm.valid || this.ckaInfo.cKAStatusMessage === this.ckaConstant.CKA_EXPIRED_STATUS) {
       return true;
     }
     return false;
   }
 
   setBankEnableStatus() {
-    if (Util.isEmptyOrNull(this.ckaInfo) || (!Util.isEmptyOrNull(this.ckaInfo) && this.ckaInfo.cKAStatusMessage
-      && this.ckaInfo.cKAStatusMessage === INVESTMENT_COMMON_CONSTANTS.CKA.CKA_REJECTED_STATUS)) {
+    if ((Util.isEmptyOrNull(this.ckaInfo) || (!Util.isEmptyOrNull(this.ckaInfo) &&
+      this.ckaInfo?.cKAStatusMessage === this.ckaConstant.CKA_REJECTED_STATUS ||
+      this.ckaInfo?.cKAStatusMessage === this.ckaConstant.CKA_EXPIRED_STATUS) || this.cpfBankDetails)
+      && this.isCPFBankEdited != INVESTMENT_COMMON_CONSTANTS.CPF_BANK_KEYS.BANK_EDITABLE_STATUS) {
       this.showOperatorBank = true;
     } else {
       this.showOperatorBank = false;
@@ -310,7 +334,7 @@ export class CpfPrerequisitesComponent implements OnInit {
   }
 
   uploadCertificate() {
-    this.investmentCommonService.setCKARedirectFromLocation(INVESTMENT_COMMON_ROUTE_PATHS.CPF_PREREQUISITES);
+    this.investmentCommonService.setCKARedirectFromLocation(INVESTMENT_COMMON_CONSTANTS.CKA_REDIRECT_CONSTS.PREREQUISITES);
     const url = INVESTMENT_ENGAGEMENT_JOURNEY_ROUTE_PATHS.CKA_UPLOAD_DOCUMENT;
     this.router.navigate([url]);
   }
