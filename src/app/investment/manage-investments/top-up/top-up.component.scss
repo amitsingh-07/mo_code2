@@ -97,11 +97,9 @@ app-top-up {
 
   .topup-radio-button {
     padding: 0px;
-    //@include allmobiles {
     display: inline-grid;
     width: 50%;
 
-    // min-height: 140px;
     &:nth-child(1) input[type='radio']+label,
     &:nth-child(2) input[type='radio']+label {
       margin-top: 10px;
@@ -117,7 +115,6 @@ app-top-up {
       margin-left: auto;
     }
 
-    //}
     &.one-label {
       padding: 0.7rem 0.8rem;
     }
@@ -137,7 +134,6 @@ app-top-up {
       border: none;
       border: solid 1px $light-teal-color;
       border-radius: 6px;
-      //@include allmobiles {
       width: calc(100% - 10px);
       height: auto;
       text-align: center;
@@ -155,7 +151,6 @@ app-top-up {
         padding: 25px 21px;
       }
 
-      // }
       @include min300max350 {
         padding: 20px 11px;
       }
@@ -185,19 +180,13 @@ app-top-up {
         padding: 0 10px;
 
         @include allmobiles {
-          // position: absolute;
           font-family: $muli-regular;
-          //display: inline-flex;
           width: 100%;
-          // left: 0px;
           padding: 0 10px;
           letter-spacing: -0.3px;
-          // bottom: 20px;
           line-height: 1.3;
           font-size: 12px;
           text-align: center;
-          // display: flex;
-          //justify-content: center;
         }
 
         @include min300max350 {

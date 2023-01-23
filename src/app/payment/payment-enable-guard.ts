@@ -28,7 +28,7 @@ export class PaymentEnableGuard implements CanActivate {
       // Navigate only if payment enabled and user has not paid
       // Skip for payment-instruction page
       if (state.url.includes(PAYMENT_ROUTES.PAYMENT_INSTRUCTION)) {
-          return true;
+        return true;
       } else {
         if (this.isPaymentEnabled) {
           return true;
@@ -40,7 +40,7 @@ export class PaymentEnableGuard implements CanActivate {
       // User is not logged in, redirect to login page
       //this.signUpService.setRedirectUrl(state.url);
       if (this.appService.getCorporateDetails() && this.appService.getCorporateDetails().organisationEnabled) {
-        this.router.navigate([SIGN_UP_ROUTE_PATHS.CORPORATE_LOGIN], { queryParams: {orgID: this.appService.getCorporateDetails().uuid}});
+        this.router.navigate([SIGN_UP_ROUTE_PATHS.CORPORATE_LOGIN], { queryParams: { orgID: this.appService.getCorporateDetails().uuid } });
       } else {
         this.router.navigate([SIGN_UP_ROUTE_PATHS.LOGIN]);
       }

@@ -1,17 +1,21 @@
 @import '../../../variables';
 @import '../../../mixins';
+
 .ntuc-promo-modal {
   .modal-body-message {
     span {
       color: $dark-orange-color;
     }
   }
+
   .dropdown-control {
     position: relative;
   }
+
   .datepicker-control {
     border: 1px solid $half-baked-blue-color;
     border-radius: 6px;
+
     .date-picker {
       .input-group-append {
         .btn-primary {
@@ -20,7 +24,8 @@
           &:disabled {
             color: $form-control-disabled-txt-color !important;
             opacity: 1 !important;
-            .date-picker-image--valid{
+
+            .date-picker-image--valid {
               cursor: not-allowed;
             }
           }
@@ -28,25 +33,31 @@
       }
     }
   }
+
   .form-control {
     max-height: 52px;
     font-family: $muli-regular;
+
     .input-control {
       text-align: left;
       padding: 0;
+
       &::placeholder {
         color: $dusty-grey-color !important;
       }
     }
+
     &:disabled {
       background-color: $iceberg-blue-color;
       color: $teal-color;
       -webkit-text-fill-color: $teal-color;
       cursor: not-allowed;
     }
-    & + .input-group-append {
+
+    &+.input-group-append {
       .btn-primary {
         max-height: 52px;
+
         &:disabled,
         .disabled {
           background-color: $iceberg-blue-color !important;
@@ -55,13 +66,16 @@
       }
     }
   }
-  .alert-msg{
+
+  .alert-msg {
     padding-top: 13px;
     margin-bottom: -10px;
-    @include allmobiles{
+
+    @include allmobiles {
       margin-bottom: -20px;
 
     }
+
     .err-msg {
       color: $mango-tango-color !important;
       padding-left: 7px;
@@ -70,15 +84,19 @@
       letter-spacing: -0.26px;
     }
   }
+
   .modal-body {
     padding-bottom: 25px;
-    @include allmobiles{
+
+    @include allmobiles {
       padding-bottom: 0;
     }
+
     .form-group {
-      @include allmobiles{
+      @include allmobiles {
         margin: 30px 0;
       }
+
       label {
         font-size: 16px;
         color: $dark-teal-color;
@@ -89,18 +107,23 @@
       }
     }
   }
+
   .dropdown-control {
     .btn-dropdown {
       color: $teal-color;
     }
+
     border-radius: 6px;
     position: relative;
     background: $white-color;
     cursor: pointer;
+
     .dropdown-toggle {
       padding: 0.9rem;
+
       &:disabled {
         cursor: not-allowed;
+
         &:hover {
           background-color: transparent !important;
         }
@@ -112,10 +135,12 @@
     background-color: $btn-comprehensive;
     font-size: 18px;
     font-family: $muli-bold;
+
     &:disabled {
       background-color: $btn-comprehensive-disabled-bg;
       color: $white-color;
-      &:hover{
+
+      &:hover {
         background-color: $btn-comprehensive-disabled-bg !important;
       }
     }
@@ -125,13 +150,17 @@
     color: $dark-orange-color;
     text-decoration: none;
     cursor: pointer;
+
     &:hover {
       color: $dark-orange-color;
       text-decoration: none;
     }
   }
+
   .ntuc-promo-modal-header {
-    @include iphoneX; @include iphone6 {
+    @include iphoneX;
+
+    @include iphone6 {
       font-size: 15px;
     }
   }

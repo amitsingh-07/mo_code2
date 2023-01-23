@@ -40,7 +40,7 @@ export class LongTermCareFormComponent implements OnInit, OnDestroy {
     private translate: TranslateService,
     private formBuilder: FormBuilder,
     private config: NgbDatepickerConfig,
-	private aboutAge: AboutAge) {
+    private aboutAge: AboutAge) {
     this.translate.use('en');
     this.translate.get('COMMON').subscribe((result: string) => {
       this.radioLabelValue = [{
@@ -88,7 +88,7 @@ export class LongTermCareFormComponent implements OnInit, OnDestroy {
       this.longTermCareForm.controls.gender.setValue(data['gender']);
       if (data['dob']) {
         this.longTermCareForm.controls.dob.setValue(data['dob']);
-		    this.setPayoutType();
+        this.setPayoutType();
       }
     });
   }
@@ -168,5 +168,5 @@ export class LongTermCareFormComponent implements OnInit, OnDestroy {
       this.payoutEnabled = false;
     }
   }
-  
+
 }

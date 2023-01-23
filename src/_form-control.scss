@@ -58,7 +58,6 @@
     color: $teal-color;
     font-family: $muli-semi-bold;
     position: relative;
-    //top: -17px;
     font-size: 22px;
     @extend .block;
     @extend .text-right;
@@ -98,19 +97,11 @@
 
       .help-icon {
         background-image: url("./assets/images/help-icon.png");
-        //position: absolute;
-        //right: 10px;
         width: 35px;
         height: 20px;
-        //top: 4px;
         cursor: pointer;
         background-repeat: no-repeat;
         margin-left: 10px;
-
-        @include allmobiles {
-          //top: 15px;
-          //right: 30px;
-        }
       }
     }
 
@@ -444,7 +435,7 @@ input::placeholder {
   }
 
   .btn-primary {
-    background: $inline-error-bg-color !important;
+    background: $serenade-dark-color !important;
   }
 
   .btn-orange {
@@ -889,7 +880,6 @@ input::placeholder {
 }
 
 .form-control:focus {
-  //border-color: inherit;
   -webkit-box-shadow: none;
   box-shadow: none;
 }
@@ -1323,13 +1313,6 @@ input::placeholder {
       }
     }
 
-    .form-group-with-bg--header {
-      .form-group-with-bg--header-label {
-        //width: 97%;
-      }
-    }
-
-    //padding: 10px 0;
     color:$app-backgrnd-color;
 
     label {
@@ -1354,7 +1337,7 @@ input::placeholder {
   }
 
   input::placeholder {
-    color: $gray-color !important;
+    color: $grey-color !important;
   }
 
   .form-group-with-bg--content {
@@ -1499,7 +1482,6 @@ input::placeholder {
     .title,
     .input-label-grey {
       display: block;
-      //width: 260px;
       word-break: break-word;
     }
   }
@@ -1509,7 +1491,6 @@ input::placeholder {
     .title,
     .input-label-grey {
       display: block;
-      //width: 500px;
       word-break: break-word;
     }
   }
@@ -1519,7 +1500,6 @@ input::placeholder {
     .title,
     .input-label-grey {
       display: block;
-      //width: 500px;
       word-break: break-word;
     }
   }
