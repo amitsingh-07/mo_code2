@@ -330,7 +330,7 @@ export class NavbarService {
     }
   }
 
-  clearMobAppUrlHistory() {  
+  clearUrlHistory() {
     this.urlHistory = { currentUrl: null, previousUrl: [] };
   }
 
