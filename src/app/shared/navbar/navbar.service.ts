@@ -4,6 +4,7 @@ import { NavigationStart, Router } from '@angular/router';
 import { BehaviorSubject, fromEvent, Observable } from 'rxjs';
 import { Subject } from 'rxjs/internal/Subject';
 import { filter, tap } from 'rxjs/operators';
+import { CapacitorUtils } from '../utils/capacitor.util';
 
 import { IHeaderMenuItem } from './navbar.types';
 
@@ -87,11 +88,16 @@ export class NavbarService {
   wiseIncomeDropDownShow = new BehaviorSubject(false);
   displayingWelcomeFlowContent$: BehaviorSubject<boolean> = new BehaviorSubject(false);
   welcomeJourneyCompleted: boolean = false;
+  urlHistory = { currentUrl: null, previousUrl: []};
+  isBackClicked = false;
 
   constructor(private router: Router, private _location: Location) {
     this.router.events.pipe(
       filter((event) => event instanceof NavigationStart)
     ).subscribe((event: NavigationStart) => {
+      if (CapacitorUtils.isApp) { 
+        this.handlingMobileAppNavigationUrlHistory(event);
+      }
       this.unsubscribeBackPress();
     });
   }
@@ -220,7 +226,14 @@ export class NavbarService {
   }
 
   goBack() {
-    this._location.back();
+    if (CapacitorUtils.isApp) {
+      this.isBackClicked = true;
+      this.urlHistory.currentUrl = this.urlHistory.previousUrl[this.urlHistory.previousUrl.length - 1];
+      this.urlHistory.previousUrl.splice(this.urlHistory.previousUrl.length - 1, 1);      
+      this.router.navigate([this.urlHistory.currentUrl]);
+    } else {
+      this._location.back();
+    }
   }
 
   // Clearing Notification
@@ -305,6 +318,20 @@ export class NavbarService {
         history.pushState(null, "null", window.location.href);
       })
       );
+  }
+
+  handlingMobileAppNavigationUrlHistory(event) {
+    if (!this.isBackClicked) {
+      this.urlHistory.currentUrl && this.urlHistory.previousUrl.push(this.urlHistory.currentUrl);
+      this.urlHistory.currentUrl = event.url;
+    }
+    if (this.isBackClicked) {
+      this.isBackClicked = false;
+    }
+  }
+
+  clearUrlHistory() {
+    this.urlHistory = { currentUrl: null, previousUrl: [] };
   }
 
 }
