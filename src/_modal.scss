@@ -988,6 +988,9 @@ body.modal-open::-webkit-scrollbar {
     padding-left: 25px !important;
     .modal-body-title {
       width: 310px;
+      @include max360{
+        width: calc(100% - 20px);
+      }
     }
 
     .modal-body-message {
