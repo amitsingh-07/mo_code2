@@ -89,6 +89,7 @@ body.modal-open::-webkit-scrollbar {
 .modal-content {
   background: transparent;
   border: none;
+  margin: env(safe-area-inset-top) env(safe-area-inset-right) env(safe-area-inset-left);
 
   .btn.btn-primary {
     box-shadow: 0 6px 7px 0 rgba(0, 0, 0, 0.14) !important;

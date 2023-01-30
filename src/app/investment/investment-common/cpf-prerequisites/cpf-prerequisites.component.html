@@ -27,7 +27,7 @@
                 </span>
                 <span class="status-lbl">{{'CPF_PREREQUISITES.CKA_PASSED' | translate}}</span>
               </div>
-              <div class="cka-status-lbl" (click)="uploadCertificate()"
+              <div class="cka-status-lbl" [ngClass]="{'cursor_auto': ckaInfo.ckaretake}" (click)="uploadCertificate()"
                 *ngIf="ckaInfo && ckaInfo.cKAStatusMessage === 'CKA_CERTIFICATE_UPLOAD'">
                 <span class="status-icon"><img src="./assets/images/check-icon-white.svg"></span>
                 <span class="status-lbl">{{'CPF_PREREQUISITES.CERT_UPLOADED' | translate}}</span>

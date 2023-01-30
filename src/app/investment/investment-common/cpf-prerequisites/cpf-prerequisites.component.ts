@@ -334,8 +334,9 @@ export class CpfPrerequisitesComponent implements OnInit {
   }
 
   uploadCertificate() {
-    this.investmentCommonService.setCKARedirectFromLocation(INVESTMENT_COMMON_CONSTANTS.CKA_REDIRECT_CONSTS.PREREQUISITES);
-    const url = INVESTMENT_ENGAGEMENT_JOURNEY_ROUTE_PATHS.CKA_UPLOAD_DOCUMENT;
-    this.router.navigate([url]);
+    if (this.ckaInfo && this.ckaInfo.ckaretake !== null && !this.ckaInfo.ckaretake) {
+      this.investmentCommonService.setCKARedirectFromLocation(INVESTMENT_COMMON_CONSTANTS.CKA_REDIRECT_CONSTS.PREREQUISITES);
+      this.router.navigate([INVESTMENT_ENGAGEMENT_JOURNEY_ROUTE_PATHS.CKA_UPLOAD_DOCUMENT]);
+    }
   }
 }

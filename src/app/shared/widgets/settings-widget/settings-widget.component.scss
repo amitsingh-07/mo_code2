@@ -18,7 +18,7 @@ app-settings-widget {
   }
 
   .form-group {
-    background-color: #ffffff;
+    background-color: $white-color;
     border-radius: 10px;
 
     @include allmobiles {
@@ -29,8 +29,8 @@ app-settings-widget {
 
     input[type='radio']:checked+label,
     input[type='checkbox']:checked+label {
-      color: #ffffff;
-      background: #00A7A7;
+      color: $white-color;
+      background: $teal-color;
       padding: 0px !important;
       border-radius: 3px;
     }
@@ -42,11 +42,11 @@ app-settings-widget {
     }
 
     input[type='checkbox']+label .input-label-normal {
-      color: #00AAA8;
+      color: $persian-teal-green-color;
     }
 
     input[type='checkbox']:checked+label .input-label-normal {
-      color: #ffffff;
+      color: $white-color;
       font-family: $muli-semi-bold;
     }
 
@@ -56,18 +56,18 @@ app-settings-widget {
       border-bottom: none;
 
       @include allmobiles {
-        border-bottom: 1px solid #d1edec;
+        border-bottom: 1px solid $light-gray-cyan-color;
       }
 
       label {
         font-family: $muli-semi-bold;
-        color: #2D8289;
+        color: $dark-teal-color;
       }
 
       .title {
         font-family: "Muli Semi Bold", sans-serif;
         font-size: 20px;
-        color: #00a7a7;
+        color: $teal-color;
         height: 50px;
         display: flex;
         justify-content: flex-start;
@@ -91,17 +91,17 @@ app-settings-widget {
 
         &:hover {
           font-family: $muli-semi-bold;
-          background: #00A7A7 !important;
+          background: $teal-color !important;
         }
 
         &:active {
           font-family: $muli-semi-bold;
-          background: #00A7A7 !important;
+          background: $teal-color !important;
         }
 
         &:focus {
           font-family: $muli-semi-bold;
-          background: #00A7A7 !important;
+          background: $teal-color !important;
         }
       }
     }
@@ -115,7 +115,7 @@ app-settings-widget {
 
       label {
         font-family: $muli-semi-bold;
-        color: #2D8289;
+        color: $dark-teal-color;
         padding: 0 25px;
       }
 
@@ -124,7 +124,7 @@ app-settings-widget {
         padding: 0 25px;
 
         .checkbox-button {
-          border: 1px solid #99CFCE;
+          border: 1px solid $light-teal-color;
           margin-right: 7px;
           padding: 0;
           margin-bottom: 10px !important;
@@ -173,7 +173,8 @@ app-settings-widget {
     width: 100%;
     top: 0;
     z-index: 99999;
-    background: #fff;
+    background: $white-color;
+    margin: env(safe-area-inset-top) env(safe-area-inset-right) env(safe-area-inset-left);
   }
 }
 
