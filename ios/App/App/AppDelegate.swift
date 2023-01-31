@@ -36,8 +36,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(_ app: UIApplication, open url: URL, options: [UIApplication.OpenURLOptionsKey: Any] = [:]) -> Bool {
         // Called when the app was launched with a url. Feel free to add additional processing here,
         // but if you want the App API to support tracking app url opens, make sure to keep this call
-        print(url)
-        print(options)
         return ApplicationDelegateProxy.shared.application(app, open: url, options: options)
     }
 
@@ -47,31 +45,5 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // tracking app url opens, make sure to keep this call
         return ApplicationDelegateProxy.shared.application(application, continue: userActivity, restorationHandler: restorationHandler)
     }
-
-//     func application(_ application: UIApplication,
-//                  open url: URL,
-//                  options: [UIApplication.OpenURLOptionsKey: Any] = [:] ) -> Bool {
-
-//     // Determine who sent the URL.
-//     let sendingAppID = options[.sourceApplication]
-//     print("source application = \(sendingAppID ?? "Unknown")")
-
-//     // Process the URL.
-//     guard let components = NSURLComponents(url: url, resolvingAgainstBaseURL: true),
-//         let albumPath = components.path,
-//         let params = components.queryItems else {
-//             print("Invalid URL or params missing")
-//             return false
-//     }
-
-//     if let photoIndex = params.first(where: { $0.name == "code" })?.value {
-//         print("albumPath = \(albumPath)")
-//         print("photoIndex = \(photoIndex)")
-//         return true
-//     } else {
-//         print("Photo index missing")
-//         return false
-//     }
-// }
 
 }
