@@ -64,8 +64,7 @@ export class GuideMeService {
 
     this.translate.use('en');
     this.translate.get('COMMON').subscribe((result: string) => {
-      this.loader.title = this.translate.instant('FETCH_MODAL_DATA.TITLE');
-      this.loader.description = this.translate.instant('FETCH_MODAL_DATA.DESCRIPTION');
+      this.loader = this.translate.instant('MYINFO.FETCH_MODAL_DATA');
     });
   }
 
@@ -493,8 +492,8 @@ export class GuideMeService {
 
   openFetchPopup() {
     this.loadingModalRef = this.modal.open(ErrorModalComponent, { centered: true });
-    this.loadingModalRef.componentInstance.errorTitle = this.loader.title;
-    this.loadingModalRef.componentInstance.errorMessage = this.loader.description;
+    this.loadingModalRef.componentInstance.errorTitle = this.loader.TITLE;
+    this.loadingModalRef.componentInstance.errorMessage = this.loader.DESCRIPTION;
   }
 
   closeFetchPopup() {
