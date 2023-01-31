@@ -1547,9 +1547,11 @@ body.modal-open::-webkit-scrollbar {
     padding-right: 20px;
     @include allmobiles {
       padding-right: 15px;
+      letter-spacing: -0.4px;
     }
     @include max360 {
       padding-right: 0px;
+      letter-spacing: -0.4px;
     }
   }
 }
