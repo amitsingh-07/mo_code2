@@ -45,6 +45,7 @@ export class CkaAssessmentComponent implements OnInit {
       this.ckaConstant.CKA_PASSED_STATUS,
       this.ckaConstant.CKA_EXPIRED_STATUS,
       this.ckaConstant.CKA_REJECTED_STATUS,
+      this.ckaConstant.CKA_BE_CERTIFICATE_UPLOADED
     ].includes(this.ckaInfo)
     && this.investmentCommonService.getCKAInformation()?.ckaretake
     );

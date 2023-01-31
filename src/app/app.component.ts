@@ -117,7 +117,7 @@ export class AppComponent implements IComponentCanDeactivate, OnInit, AfterViewI
         this.navbarService.goBack();
       } else {
         console.log('No Back screen');
-        //App.exitApp();
+        App.exitApp();
       }
     });
   }
