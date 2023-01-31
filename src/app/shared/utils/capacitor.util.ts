@@ -5,11 +5,16 @@ import { FileOpener } from '@capacitor-community/file-opener';
 // import { Http, HttpDownloadFileResult } from '@capacitor-community/http';
 
 export const FILE_TYPE = 'application/pdf';
+export const IOS_DEVICE = 'ios';
+export const ANDROID_DEVICE = 'android';
 
 @Injectable()
 
 export class CapacitorUtils {
-  static readonly isApp = Capacitor.getPlatform() !== 'web';
+  static readonly isApp = Capacitor.isNativePlatform();
+  static readonly isIOSDevice = Capacitor.getPlatform() === IOS_DEVICE;
+  static readonly isAndroidDevice = Capacitor.getPlatform() === ANDROID_DEVICE;
+
 
   // static async writeAndOpenFile(blobResponse: any, fileName: string) {
   //   const data = new Blob([blobResponse], { type: FILE_TYPE });
