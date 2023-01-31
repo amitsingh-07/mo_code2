@@ -1,5 +1,5 @@
 import { Location } from '@angular/common';
-import { ElementRef, Injectable } from '@angular/core';
+import { ElementRef, Injectable, NgZone } from '@angular/core';
 import { NavigationStart, Router } from '@angular/router';
 import { BehaviorSubject, fromEvent, Observable } from 'rxjs';
 import { Subject } from 'rxjs/internal/Subject';
@@ -91,7 +91,7 @@ export class NavbarService {
   urlHistory = { currentUrl: null, previousUrl: []};
   isBackClicked = false;
 
-  constructor(private router: Router, private _location: Location) {
+  constructor(private router: Router, private _location: Location, private ngZone: NgZone) {
     this.router.events.pipe(
       filter((event) => event instanceof NavigationStart)
     ).subscribe((event: NavigationStart) => {
@@ -226,14 +226,9 @@ export class NavbarService {
   }
 
   goBack() {
-    if (CapacitorUtils.isApp) {
-      this.isBackClicked = true;
-      this.urlHistory.currentUrl = this.urlHistory.previousUrl[this.urlHistory.previousUrl.length - 1];
-      this.urlHistory.previousUrl.splice(this.urlHistory.previousUrl.length - 1, 1);      
-      this.router.navigate([this.urlHistory.currentUrl]);
-    } else {
+    this.ngZone.run(() => {
       this._location.back();
-    }
+    });
   }
 
   // Clearing Notification
