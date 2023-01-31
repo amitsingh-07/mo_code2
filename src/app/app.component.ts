@@ -94,11 +94,15 @@ export class AppComponent implements IComponentCanDeactivate, OnInit, AfterViewI
 
   initializeApp() {
     App.addListener('appUrlOpen', (event: URLOpenListenerEvent) => {
-      console.log("IN APP LISTENER")
+      console.log("IN APP LISTENER = " + App.getLaunchUrl())
+      App.getLaunchUrl()
       this.zone.run(() => {
-        if (event.url.includes(environment.myInfoCallbackBaseUrl)) {
+        if (event.url.includes("myinfo")) {
           console.log("IN MYINFO")
           this.route.navigateByUrl("myinfo");
+        } else if (event.url.includes("login")) {
+          console.log("IN LOGIN", App.getLaunchUrl())
+          this.route.navigateByUrl("accounts/login");
         }
         // If no match, do nothing - let regular routing
         // logic take over
