@@ -219,7 +219,6 @@ export class NavbarComponent implements OnInit, AfterViewInit {
     this.corpBizData = appService.getCorpBizData();
 
     //Device back navigation
-
     App.addListener('backButton', (BackButtonListener) => {
       console.log('Device Back Button Clicked');
       this.ngZone.run(() => {
