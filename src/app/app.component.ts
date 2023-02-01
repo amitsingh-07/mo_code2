@@ -113,17 +113,6 @@ export class AppComponent implements IComponentCanDeactivate, OnInit, AfterViewI
     App.addListener('appStateChange', ({ isActive }) => {
       console.log('App state changed. Is active?', isActive);
     });
-
-    App.addListener('backButton', ( BackButtonListener ) => {
-      console.log('Device Back Button Clicked');
-      if (BackButtonListener.canGoBack) {
-        console.log('Go the previous screen');
-        this.navbarService.goBack();
-      } else {
-        console.log('No Back screen');
-        App.exitApp();
-      }
-    });
   }
 
   ngAfterViewInit(): void {  
