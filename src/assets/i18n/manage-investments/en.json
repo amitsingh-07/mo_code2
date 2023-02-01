@@ -26,7 +26,7 @@
     },
     "CKA_EXPIRY_MODAL": {
       "TITLE": "CKA Expiry",
-      "TITLE_DESC": "<p>Your Customer Knowledge Assessment (CKA) has expired.</p>To be eligible for continued investments in this portfolio, you are required to take a re-assessment of your CKA.",
+      "TITLE_DESC": "<p>Your Customer Knowledge Assessment (CKA) has either expired or is pending approval.</p>To be eligible for continued investments in this portfolio, you are required to pass a re-assessment of your CKA.",
       "BTN-TEXT": "Take Assessment"
     }
   },
