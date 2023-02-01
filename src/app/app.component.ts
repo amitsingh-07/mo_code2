@@ -120,7 +120,7 @@ export class AppComponent implements IComponentCanDeactivate, OnInit, AfterViewI
       const anchorEle = evt.target as HTMLAnchorElement;
       let url = anchorEle.getAttribute('href');
       let isRouterLink = anchorEle.getAttribute('ng-reflect-router-link');
-      const isDownloadFile = anchorEle.getAttribute('style') === 'display: none';
+      const isDownloadFile = anchorEle.getAttribute('download');
       if (anchorEle.tagName.toLowerCase() === 'a' && url && !isRouterLink && !isDownloadFile && appConstants.RESTRICTED_HYPERLINK_URL_CONTENTS.filter(ele => url.includes(ele)).length === 0) {
         evt.preventDefault();
         let _target = anchorEle.getAttribute('target');
