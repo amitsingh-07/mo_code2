@@ -94,11 +94,15 @@ export class AppComponent implements IComponentCanDeactivate, OnInit, AfterViewI
 
   initializeApp() {
     App.addListener('appUrlOpen', (event: URLOpenListenerEvent) => {
-      console.log("IN APP LISTENER")
+      console.log("IN APP LISTENER = " + App.getLaunchUrl())
+      App.getLaunchUrl()
       this.zone.run(() => {
-        if (event.url.includes(environment.myInfoCallbackBaseUrl)) {
+        if (event.url.includes("myinfo")) {
           console.log("IN MYINFO")
           this.route.navigateByUrl("myinfo");
+        } else if (event.url.includes("login")) {
+          console.log("IN LOGIN", App.getLaunchUrl())
+          this.route.navigateByUrl("accounts/login");
         }
         // If no match, do nothing - let regular routing
         // logic take over
@@ -108,17 +112,6 @@ export class AppComponent implements IComponentCanDeactivate, OnInit, AfterViewI
     // Capacitor - Native Android/iOS device specific listeners
     App.addListener('appStateChange', ({ isActive }) => {
       console.log('App state changed. Is active?', isActive);
-    });
-
-    App.addListener('backButton', ( BackButtonListener ) => {
-      console.log('Device Back Button Clicked');
-      if (BackButtonListener.canGoBack) {
-        console.log('Go the previous screen');
-        this.navbarService.goBack();
-      } else {
-        console.log('No Back screen');
-        //App.exitApp();
-      }
     });
   }
 
