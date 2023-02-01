@@ -226,9 +226,16 @@ export class NavbarService {
   }
 
   goBack() {
-    this.ngZone.run(() => {
-      this._location.back();
-    });
+    if (CapacitorUtils.isApp && CapacitorUtils.isIOSDevice) {
+      this.isBackClicked = true;
+      this.urlHistory.currentUrl = this.urlHistory.previousUrl[this.urlHistory.previousUrl.length - 1];
+      this.urlHistory.previousUrl.splice(this.urlHistory.previousUrl.length - 1, 1);
+      this.router.navigate([this.urlHistory.currentUrl]);
+    } else {
+      this.ngZone.run(() => {
+        this._location.back();
+      });
+    }
   }
 
   // Clearing Notification
