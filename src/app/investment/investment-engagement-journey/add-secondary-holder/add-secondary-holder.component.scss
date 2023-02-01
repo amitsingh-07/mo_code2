@@ -203,6 +203,9 @@ app-add-secondary-holder {
           cursor: pointer;
           display: inline-block;
           margin: 5px 0 0 -5px;
+          @include min425max450{
+            margin-left: 0;
+          }
         }
 
         .flex-row {
