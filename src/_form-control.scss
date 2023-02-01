@@ -164,6 +164,9 @@
 
     &.one-label {
       padding: 0.90rem 0.80rem;
+      @include min425max450{
+        padding: 14px 13px;
+      }
     }
 
     &.two-label {
