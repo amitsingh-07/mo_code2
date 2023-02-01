@@ -5,6 +5,7 @@ import { AuthenticationService } from '../shared/http/auth/authentication.servic
 import { environment } from '../../environments/environment';
 import { SIGN_UP_ROUTE_PATHS } from '../sign-up/sign-up.routes.constants';
 import { Util } from '../shared/utils/util';
+import { CapacitorUtils } from '../shared/utils/capacitor.util';
 @Injectable({
   providedIn: 'root'
 })
@@ -45,14 +46,20 @@ export class SingpassService {
 
   // Open Singpass redirect link in window
   openSingpassUrl() {
-    const loginUrl = environment.singpassLoginUrl +
+    let loginUrl = environment.singpassLoginUrl +
       '?client_id=' + environment.singpassClientId +
       '&redirect_uri=' + environment.singpassBaseUrl + SIGN_UP_ROUTE_PATHS.SINGPASS_REDIRECT_URL +
       '&scope=openid' +
       '&response_type=code' +
       '&state=' + this.stateNonce.state +
       '&nonce=' + this.stateNonce.nonce;
-    Util.openExternalUrl(loginUrl, '_self')
+    if (CapacitorUtils.isApp) {
+      loginUrl = loginUrl.concat("&app_launch_url=com.moneyowl.app://accounts/login")
+      console.log("SINGPASS APP LAUNCH URL = ",loginUrl)
+      window.open(loginUrl, '_blank');
+    } else {
+      window.open(loginUrl, '_self');
+    }
   }
 
 }
