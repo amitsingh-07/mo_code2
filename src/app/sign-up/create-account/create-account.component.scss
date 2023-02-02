@@ -349,6 +349,19 @@ app-create-account {
           top: 14px !important;
         }
 
+        .dropdown-menu{
+          &.show{
+            &+.form-control-placeholder{
+              top: 14px;
+              font-size: 10px;
+              transform: translate3d(0, -50%, 0);
+              opacity: 1;
+              color: $silver-grey-color;
+              z-index: 999;
+            }
+          }
+        }
+        
         .input-group-append {
           .btn-primary {
             &:disabled {
