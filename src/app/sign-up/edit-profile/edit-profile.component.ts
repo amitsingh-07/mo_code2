@@ -673,9 +673,15 @@ export class EditProfileComponent implements OnInit, OnDestroy {
     ref.componentInstance.errorTitle = this.translate.instant(
       'OPEN_CKA.TITLE'
     );
-    ref.componentInstance.errorMessage = this.translate.instant(
-      'OPEN_CKA.DESC'
-    );
+    if (this.ckaInfo && this.ckaInfo.ckaretake !== null && this.ckaInfo.ckaretake) {
+      ref.componentInstance.errorMessage = this.translate.instant(
+        'OPEN_CKA.EXPIRED_DESC'
+      );
+    } else {
+      ref.componentInstance.errorMessage = this.translate.instant(
+        'OPEN_CKA.DESC'
+      );
+    }
     ref.componentInstance.primaryActionLabel = this.translate.instant(
       'OPEN_CKA.BTN-TEXT'
     );
