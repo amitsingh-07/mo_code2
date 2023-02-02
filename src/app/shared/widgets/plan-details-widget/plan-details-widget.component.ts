@@ -17,6 +17,7 @@ import { TranslateService } from '../../../../../node_modules/@ngx-translate/cor
 import { RecommendationsModalComponent } from './../../modal/recommendations-modal/recommendations-modal.component';
 import { RoundPipe } from './../../Pipes/round.pipe';
 import { SelectedPlansService } from '../../Services/selected-plans.service';
+import { Util } from '../../utils/util';
 
 @Component({
   selector: 'app-plan-details-widget',
@@ -260,7 +261,7 @@ export class PlanDetailsWidgetComponent implements DoCheck, OnInit, AfterViewChe
 
   redirectToPromoPage(promo: any) {
     if (promo && promo.link) {
-      window.open(`${window.location.protocol}//${window.location.host}${promo.link}`, '_blank');
+      Util.openExternalUrl(`https://www.moneyowl.com.sg${promo['link']}`, '_blank')
     }
     return;
   }
