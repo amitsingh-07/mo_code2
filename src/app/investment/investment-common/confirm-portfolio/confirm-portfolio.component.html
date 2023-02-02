@@ -81,7 +81,7 @@
 
             <div *ngIf="wiseIncomeEnabled" class="faq_link">
                 <a target="_blank" *ngIf="!authService.isUserTypeCorporate" 
-                href="https://www.moneyowl.com.sg/faq-investment/#wise-income">
+                [href]="wiseIncomeFaq">
                 {{'PORTFOLIO_RECOMMENDATION.FAQ_DESC_TEXT' | translate}}</a>
                 <a target="_blank" *ngIf="authService.isUserTypeCorporate"
                 routerLink="{{corpFaq}}">
