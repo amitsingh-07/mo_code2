@@ -80,9 +80,12 @@
             </div>
 
             <div *ngIf="wiseIncomeEnabled" class="faq_link">
-                <a target="_blank"
-                    routerLink="{{authService.isUserTypeCorporate ? corpFaq : '/faq-investment-wiseincome'}}">{{
-                    'PORTFOLIO_RECOMMENDATION.FAQ_DESC_TEXT' | translate}}</a>
+                <a target="_blank" *ngIf="!authService.isUserTypeCorporate" 
+                href="https://www.moneyowl.com.sg/faq-investment/#wise-income">
+                {{'PORTFOLIO_RECOMMENDATION.FAQ_DESC_TEXT' | translate}}</a>
+                <a target="_blank" *ngIf="authService.isUserTypeCorporate"
+                routerLink="{{corpFaq}}">
+                {{'PORTFOLIO_RECOMMENDATION.FAQ_DESC_TEXT' | translate}}</a>
             </div>
             <div class="withdraw-bank-details" *ngIf="isAcceptPortfolio">
                 <div class="title">{{'PORTFOLIO_RECOMMENDATION.WITHDRAWAL_BANK_DETAILS.CARD_TITLE' | translate}}</div>
