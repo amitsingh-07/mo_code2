@@ -20,6 +20,7 @@ import { SIGN_UP_CONFIG } from './sign-up.constant';
 import { InvestmentAccountService } from '../investment/investment-account/investment-account-service';
 import { appConstants } from '../app.constants';
 import { Util } from '../shared/utils/util';
+import { environment } from './../../environments/environment';
 
 const SIGNUP_SESSION_STORAGE_KEY = 'app_signup_session_storage_key';
 const CUSTOMER_REF_SESSION_STORAGE_KEY = 'app_customer_ref_session_storage_key';
@@ -262,7 +263,7 @@ export class SignUpService {
       captcha: captchaValue,
       sessionId: this.authService.getSessionId(),
       profileType: profileType,
-      redirectUrl: window.location.origin + resetUrl + '?token='
+      redirectUrl: environment.apiBaseUrl + resetUrl + '?token='
     };
   }
   setRestEmailInfo(email, captcha, oldEmail) {
@@ -276,13 +277,14 @@ export class SignUpService {
    * @param data - email and redirect uri.
    */
   constructResetEmailInfo(data, captchaValue, oldLoginEmail) {
+    const verifyUrl = "/app/accounts/email-verification";
     return {
       oldEmail: (oldLoginEmail && this.authService.isUserNameEmail(oldLoginEmail)) ? oldLoginEmail : '',
       mobileNo: (oldLoginEmail && !this.authService.isUserNameEmail(oldLoginEmail)) ? oldLoginEmail : '',
       updatedEmail: data,
       captcha: captchaValue,
       sessionId: this.authService.getSessionId(),
-      callbackUrl: window.location.origin + "/app/accounts/email-verification"
+      callbackUrl: environment.apiBaseUrl + verifyUrl
     };
   }
 

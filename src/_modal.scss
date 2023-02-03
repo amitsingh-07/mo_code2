@@ -870,6 +870,7 @@ body.modal-open::-webkit-scrollbar {
   }
 
   .modal-body {
+    overflow-x: hidden;
     overflow-y: auto;
     width: 790px;
     margin: 0 auto;
@@ -906,6 +907,7 @@ body.modal-open::-webkit-scrollbar {
       margin: 5% !important;
       border-radius: 6px !important;
       overflow-y: auto;
+      overflow-x: hidden;
       padding: 20px !important;
     }
 
