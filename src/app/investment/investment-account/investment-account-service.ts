@@ -689,7 +689,7 @@ export class InvestmentAccountService {
     if (data.uin) {
       this.investmentAccountFormData.nricNumber = data.uin.toUpperCase();
       const nricStartChar = data.uin.charAt(0).toUpperCase();
-      if (nricStartChar === 'S' || nricStartChar === 'T') {
+      if (data.residentialstatus.value === 'C' || data.residentialstatus.value === 'P') {
         this.investmentAccountFormData.showForeignerAlert = false;
         this.investmentAccountFormData.isMyInfoEnabled = true;
       } else {
