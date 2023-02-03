@@ -334,6 +334,7 @@ export const COMPREHENSIVE_CONST = {
         'cpfhousingwithdrawal',
         'email',
         'noa',
+        'uinfin',
         'hdbownership.dateofpurchase',
         'hdbownership.monthlyloaninstalment',
         'hdbownership.loangranted',

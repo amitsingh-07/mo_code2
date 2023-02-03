@@ -687,8 +687,6 @@ export class InvestmentAccountService {
   // MyInfo - Personal data
   setMyInfoPersonal(data) {
     if (data.uin) {
-      this.investmentAccountFormData.nricNumber = data.uin.toUpperCase();
-      const nricStartChar = data.uin.charAt(0).toUpperCase();
       if (data.residentialstatus.value === 'C' || data.residentialstatus.value === 'P') {
         this.investmentAccountFormData.showForeignerAlert = false;
         this.investmentAccountFormData.isMyInfoEnabled = true;
