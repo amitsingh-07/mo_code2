@@ -686,7 +686,7 @@ export class InvestmentAccountService {
 
   // MyInfo - Personal data
   setMyInfoPersonal(data) {
-    if (data.uin) {
+    if (data.residentialstatus.value) {
       if (data.residentialstatus.value === 'C' || data.residentialstatus.value === 'P') {
         this.investmentAccountFormData.showForeignerAlert = false;
         this.investmentAccountFormData.isMyInfoEnabled = true;
@@ -694,6 +694,9 @@ export class InvestmentAccountService {
         this.investmentAccountFormData.showForeignerAlert = true;
         this.investmentAccountFormData.isMyInfoEnabled = false;
       }
+    }
+    if (data.uinfin.value) {
+      this.investmentAccountFormData.nricNumber = data.uinfin.toUpperCase();
       this.disableAttributes.push('nricNumber');
     }
     if (data.dob.value) {
