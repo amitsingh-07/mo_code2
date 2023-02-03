@@ -67,6 +67,7 @@ export class ConfirmPortfolioComponent implements OnInit {
   jaAcceptanceTitle: any;
   bankDetails: any;
   corpFaq = appConstants.CORPORATE_FAQ;
+  wiseIncomeFaq = appConstants.WISE_INCOME_FAQ;
 
   @Output() emitToastMessage = new EventEmitter<boolean>();
   constructor(
