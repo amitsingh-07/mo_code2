@@ -36,22 +36,23 @@ export class FileUtil {
   }
 
   public createDownloadUrl(fileName: string, pdfUrl: string, appendEnv: boolean): void {
-    if (iOS) {
-      let urlStr = pdfUrl;
-      if (appendEnv) {
-        urlStr = environment.apiBaseUrl + '/app/' + pdfUrl;
-      }
+    let urlStr = pdfUrl;
+    if (appendEnv) {
+      urlStr = environment.apiBaseUrl + '/app/' + pdfUrl;
+    }
+    
+    if (CapacitorUtils.isApp || iOS) {
       Util.openExternalUrl(urlStr)
     } else {
       const a = document.createElement('a');
       document.body.appendChild(a);
       a.setAttribute('style', 'display: none');
-      a.href = pdfUrl;
+      a.href = urlStr;
       a.download = fileName;
       a.click();
       setTimeout(() => {
         document.body.removeChild(a);
-        window.URL.revokeObjectURL(pdfUrl);
+        window.URL.revokeObjectURL(urlStr);
       }, 1000);
     }
   }
