@@ -8,7 +8,7 @@ app-direct-results {
     margin-top: -1px;
     margin-left: -3px;
   }
-  
+
   .best-value-icon--mobile {
     z-index: 1020;
     position: absolute;
@@ -26,6 +26,7 @@ app-direct-results {
   position: absolute;
   left: 0;
   width: 100%;
+
   .init-direct-results {
     padding: 50px 0px 100px 0px;
 
@@ -69,41 +70,36 @@ app-direct-results {
     max-width: 984px;
     margin: 0 auto;
     padding: 20px;
-    // @include iPadLandscape {
-    //   padding: 40px;
-    // }
-    // @include iPadProLandscape {
-    //   padding: 40px;
-    // }
-    // @include tablet {
-    //   padding: 40px;
-    // }
   }
 
   .btn-small {
-      font-size: 16px;
-      font-family: $muli-semi-bold;
-      background: transparent;
-      color: white;
+    font-size: 16px;
+    font-family: $muli-semi-bold;
+    background: transparent;
+    color: white;
+    padding: 5px 10px !important;
+    border: 1px solid $white-color;
+
+    &:hover {
+      color: $white-color;
+      border: 1px solid $white-color;
+    }
+
+    &:disabled:hover {
+      color: $btn-disabled-color;
+    }
+
+    @include allmobiles {
+      color: $app-backgrnd-color;
       padding: 5px 10px !important;
-      border: 1px solid #fff;
-      &:hover {
-        color: $white-color;
-        border: 1px solid $white-color;
-      }
-      &:disabled:hover {
-        color: $btn-disabled-color;
-      }
-      @include allmobiles {
-        color: $app-backgrnd-color;
-        padding: 5px 10px !important;
-        border: 1px solid $app-backgrnd-color;
-      }
+      border: 1px solid $app-backgrnd-color;
+    }
   }
 
   .compare {
     background: $white-color;
-    color: #00A7A7;
+    color: $teal-color;
+
     &:hover {
       color: $app-backgrnd-color;
       background: $white-color;
@@ -111,7 +107,7 @@ app-direct-results {
   }
 
   .lbl {
-    float:right; 
+    float: right;
     margin-top: 7px;
     font-size: 16px;
     font-family: $muli-semi-bold;
@@ -119,8 +115,8 @@ app-direct-results {
 
   .plan-wrapper {
     border: none;
-    //margin-bottom: 20px;
     padding-bottom: 0;
+
     @include allmobiles {
       margin-bottom: 0;
     }
@@ -130,6 +126,7 @@ app-direct-results {
       background: white;
       padding: 20px !important;
       margin-bottom: 20px;
+
       @include allmobiles {
         padding: 0px !important;
         margin: 10px 5px;
@@ -147,6 +144,7 @@ app-direct-results {
       .grey {
         color: $text-color-secondary;
       }
+
       .btn-secondary {
         height: 60px;
         margin-top: 2px;
@@ -154,38 +152,43 @@ app-direct-results {
       }
     }
   }
-.results-mobile__compare-plan {
-  @extend .flex;
-  @extend .space-btwn;
-  background: $white-color;
-  padding: 16px 15px 15px;
-  margin-top: -15px;
-  .results-mobile__compare-plan--lbl {
+
+  .results-mobile__compare-plan {
+    @extend .flex;
+    @extend .space-btwn;
+    background: $white-color;
+    padding: 16px 15px 15px;
+    margin-top: -15px;
+
+    .results-mobile__compare-plan--lbl {
+      font-family: $muli-semi-bold;
+      font-size: 17px;
+      color: $black-color;
+    }
+  }
+
+  .compare-plan-header {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    height: 66px;
+    z-index: 1030;
+    background: $app-backgrnd-color;
+    text-align: center;
+    color: $white-color;
     font-family: $muli-semi-bold;
-    font-size: 17px;
-    color: $black-color;
+    border-bottom: 1px solid $pelorous-color;
+    font-size: 24px;
+    line-height: 66px;
+
+    button {
+      position: absolute;
+      right: 15px !important;
+      top: 25px !important;
+    }
   }
-}
-.compare-plan-header {
-  position: fixed; 
-  top: 0; 
-  width: 100%; 
-  height: 66px; 
-  z-index: 1030; 
-  background: $app-backgrnd-color;
-  text-align: center;
-  color: $white-color;
-  font-family: $muli-semi-bold;
-  border-bottom: 1px solid #3eb9b8;
-  font-size: 24px;
-  line-height: 66px;
-  button {
-    position: absolute;
-    right: 15px !important;
-    top: 25px !important;
-  }
-}
-.compare-plan-header--close {
+
+  .compare-plan-header--close {
     right: 12px !important;
     text-shadow: none !important;
     background: url("../../../assets/images/close-btn-white.png") !important;
@@ -195,70 +198,76 @@ app-direct-results {
     top: 20px !important;
     border: none;
     line-height: 65px;
-}
-.compare-plan__container{
-  position: relative;
-  margin-top:0px;
-  background-color:$teal-color;
-  padding-top:30px !important;
-  z-index:1029;
-  @include allmobiles{
-    padding-top: 70px !important;
   }
-}
 
-@include allmobiles {
-  .settings-wrapper {
-    position: absolute;
-    background: white;
-    top: 0;
-    bottom: 0;
-    left: 0;
-    z-index: 999;
+  .compare-plan__container {
+    position: relative;
+    margin-top: 0px;
+    background-color: $teal-color;
+    padding-top: 30px !important;
+    z-index: 1029;
+
+    @include allmobiles {
+      padding-top: 70px !important;
+    }
   }
-}
-// .insurance-plan-widget__container {
-//   //min-height: 400px !important;
-//   @include allmobiles {
-//     min-height: 251px !important;
-//   }
-// }
-.insurance-plan-widget .insurance-plan-widget__container {
-  min-height: auto;
-}
-.disclaimer {
-  font-size: 16px;
-  font-family: $muli-regular;
-  margin: 0 32px;
-  text-align: center;
-  opacity: 0.6;
-  color: $white-color;
-  padding-top: 20px;
-  @include iPhone11 {
-    padding-bottom: 70px;
+
+  @include allmobiles {
+    .settings-wrapper {
+      position: absolute;
+      background: white;
+      top: 0;
+      bottom: 0;
+      left: 0;
+      z-index: 999;
+    }
   }
-  @include max360 {
-    padding-bottom: 70px;
+
+  .insurance-plan-widget .insurance-plan-widget__container {
+    min-height: auto;
   }
-}
-.no-result-msg {
+
+  .disclaimer {
+    font-size: 16px;
+    font-family: $muli-regular;
+    margin: 0 32px;
+    text-align: center;
+    opacity: 0.6;
+    color: $white-color;
+    padding-top: 20px;
+
+    @include iPhone11 {
+      padding-bottom: 70px;
+    }
+
+    @include max360 {
+      padding-bottom: 70px;
+    }
+  }
+
+  .no-result-msg {
     width: 600px;
     margin: 0 auto;
+
     @include allmobiles {
       width: 100%;
       padding: 15px;
     }
   }
+
   .no-results-box {
     border-radius: 6px;
     text-align: center;
     background-color: $white-color;
+
     @include desktop {
       margin-top: 50px;
     }
+
     &__img {
       padding-top: 30px;
     }
+
     &__message {
       font-family: $muli-regular;
       font-size: 18px;
@@ -266,24 +275,30 @@ app-direct-results {
       padding: 20px 40px 30px 40px;
       line-height: normal;
     }
+
     &__separator {
       height: 1px;
       background-color: rgba(141, 154, 168, 0.35);
     }
+
     &__btn-message {
       color: $dark-grey-color;
       font-size: 16px;
       font-family: $muli-regular;
       padding: 20px 0;
+
       @include allmobiles {
         padding: 20px;
       }
     }
+
     &__footer-btn {
       padding: 0 20px 20px;
+
       button {
         width: 100%;
         font-family: $muli-bold;
+
         @include allmobiles {
           font-size: 18px;
         }

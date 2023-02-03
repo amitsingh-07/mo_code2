@@ -19,7 +19,6 @@
           src="assets/images/comprehensive/summary-page/img_smiley.svg" /></span><span>{{'CMP.RISK_PROFILE.PAGE_NOTES' | translate}}</span>
     </div>
   </div>
-
   <div *ngIf="currentQuestion">
     <form name="riskAssessmentForm" [formGroup]="riskAssessmentForm" id="riskAssessmentForm">
       <div *ngIf="questionIndex==1" class="checkbox-button one-label mb10">
@@ -34,7 +33,6 @@
         <div class="question-title mb20 mt30" id="risk-assessment_question_lbl">
           {{currentQuestion.description}}
         </div>
-
         <!-- NORMAL CASE -->
         <div class="row" *ngIf="!isSpecialCase">
           <div class="col-12" *ngFor="let option of currentQuestion.options; let i = index">

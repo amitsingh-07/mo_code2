@@ -10,14 +10,16 @@
 </div>
 
 
-  <div class="container-fluid max-width--1024" [ngClass]="status === 'success' ? 'sufficient-container' : 'insufficient-container'">
-    <div class="content">
+<div class="container-fluid max-width--1024"
+  [ngClass]="status === 'success' ? 'sufficient-container' : 'insufficient-container'">
+  <div class="content">
     <div class="text-center"><img id="" [ngClass]="status === 'success' ? 'success-img' : 'insufficient-success-img'"
-      src="assets/images/investment-account/owl-success-tick.svg" alt="" /></div>
+        src="assets/images/investment-account/owl-success-tick.svg" alt="" /></div>
     <div class="buy-request-submitted">{{ 'TOPUP_REQUEST.BUY_REQUEST_SUBMITTED' | translate}}</div>
     <div *ngIf="status === 'success'" class="buy-request-msg">{{oneTimeMonthlyMsg}}</div>
-   
-    <div *ngIf="!oneTimeOrMonthlySufficient() && this.fundDetails.portfolio.fundingTypeValue === 'Cash'"class="cash-account">
+
+    <div *ngIf="!oneTimeOrMonthlySufficient() && this.fundDetails.portfolio.fundingTypeValue === 'Cash'"
+      class="cash-account">
       <div class="transfer-text">{{ 'TOPUP_REQUEST.FUNDING_DESC' | translate }}</div>
       <div class="cash-account-summary">
         <div class="cash-account-content">
@@ -41,7 +43,8 @@
       </div>
     </div>
     <!-- TRANSFER DETAILS -->
-    <div *ngIf="!oneTimeOrMonthlySufficient() && this.fundDetails.portfolio.fundingTypeValue === 'Cash'" class="transfer-details">
+    <div *ngIf="!oneTimeOrMonthlySufficient() && this.fundDetails.portfolio.fundingTypeValue === 'Cash'"
+      class="transfer-details">
       <div class="tab-links">
         <div class="tab-link-item active" [class.active]="activeMode == 'BANK'" (click)="selectFundingMethod('BANK')">
           <div class="pay-tab">{{ 'TOPUP_REQUEST.BANK_TRANSFER' | translate }}</div>
@@ -54,21 +57,22 @@
         <!-- Bank Transfer Instruction Start -->
         <div class="tab-content fund-instruction" [class.active]="activeMode == 'BANK'">
           <app-instruction-steps [showBankTransferIns]="showBankTransferSteps" [bankDetails]="bankDetails"
-            (showToolTip)="showTipModal()" (showCopyToast)="notify($event)" >
+            (showToolTip)="showTipModal()" (showCopyToast)="notify($event)">
           </app-instruction-steps>
         </div>
         <!-- Bank Transfer Instruction End -->
         <!-- PayNow Transfer Instruction Start -->
         <div class="tab-content fund-instruction" [class.active]="activeMode == 'PAYNOW'">
           <app-instruction-steps [showBankTransferIns]="!showBankTransferSteps" [paynowDetails]="paynowDetails"
-            (showToolTip)="showTipModal()" (showCopyToast)="notify($event)" >
+            (showToolTip)="showTipModal()" (showCopyToast)="notify($event)">
           </app-instruction-steps>
         </div>
         <!-- PayNow Transfer Instruction End -->
       </div>
     </div>
   </div>
-  <div class="text-center"><button (click)="goToNext()" id="" type="button" class="btn btn__footer--fixed btn-primary width100">
-    {{ 'TOPUP_REQUEST.OK_GOT_IT' | translate}}
-  </button></div>
+  <div class="text-center"><button (click)="goToNext()" id="" type="button"
+      class="btn btn__footer--fixed btn-primary width100">
+      {{ 'TOPUP_REQUEST.OK_GOT_IT' | translate}}
+    </button></div>
 </div>

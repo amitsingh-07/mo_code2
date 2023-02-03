@@ -1,5 +1,4 @@
-import { AuthenticationService } from './../../shared/http/auth/authentication.service';
-import { CurrencyPipe, Location } from '@angular/common';
+import { Location } from '@angular/common';
 import {
   AfterViewChecked,
   Component,
@@ -15,13 +14,13 @@ import { TranslateService } from '@ngx-translate/core';
 import { SlickCarouselComponent } from 'ngx-slick-carousel';
 import { Subscription } from 'rxjs';
 
-import { ActivatedRoute, NavigationEnd, NavigationStart, Router } from '../../../../node_modules/@angular/router';
+import { ActivatedRoute, NavigationEnd, NavigationStart, Router } from '@angular/router';
 import { FBPixelService } from '../../shared/analytics/fb-pixel.service';
+import { AuthenticationService } from './../../shared/http/auth/authentication.service';
 import { IPageComponent } from '../../shared/interfaces/page-component.interface';
 import { NavbarService } from '../../shared/navbar/navbar.service';
 import { SelectedPlansService } from '../../shared/Services/selected-plans.service';
 import { StateStoreService } from '../../shared/Services/state-store.service';
-import { GuideMeCalculateService } from '../guide-me-calculate.service';
 import { GuideMeApiService } from '../guide-me.api.service';
 import { GuideMeService } from '../guide-me.service';
 import { CreateAccountModelComponent } from './create-account-model/create-account-model.component';
@@ -52,8 +51,8 @@ export class RecommendationsComponent implements IPageComponent, OnInit, AfterVi
     private carouselConfig: NgbCarouselConfig, private elRef: ElementRef,
     private fbPixelService: FBPixelService,
     private translate: TranslateService, public navbarService: NavbarService,
-    private guideMeApiService: GuideMeApiService, private calculateService: GuideMeCalculateService,
-    private currency: CurrencyPipe, private guideMeService: GuideMeService,
+    private guideMeApiService: GuideMeApiService,
+    private guideMeService: GuideMeService,
     private selectedPlansService: SelectedPlansService, public modal: NgbModal, private router: Router,
     private stateStoreService: StateStoreService, private route: ActivatedRoute,
     private location: Location, private authService: AuthenticationService) {
@@ -231,20 +230,13 @@ export class RecommendationsComponent implements IPageComponent, OnInit, AfterVi
           this.state.ciCoverageAmount = data.premium.ciSumAssured;          
           break;
         case this.state.protectionNeedTypes.LIFE_PROTECTION:
-          //this.coverageAmount = this.calculateService.getLifeProtectionData().coverageAmount + '';
           break;
         case this.state.protectionNeedTypes.CRITICAL_ILLNESS:
-          //const criticalIllnessValues = this.calculateService.getCriticalIllnessData();
-          //this.coverageAmount = criticalIllnessValues.coverageAmount + '';
           break;
         case this.state.protectionNeedTypes.OCCUPATION_DISABILITY:
-          //const ocpData = this.calculateService.getOcpData();
-          //this.coverageAmount = ocpData.coverageAmount + '';
           break;
         case this.state.protectionNeedTypes.LONG_TERM_CARE:
         case this.state.protectionNeedTypes.HOSPITAL_PLAN:
-          //const ltcData = this.calculateService.getLtcData();
-          //this.coverageAmount = ltcData.monthlyPayout + '';
           this.state.premiumFrom = data.premium.premiumAmountYearly;
           this.state.premiumFrequency = this.state.perYear;
           break;

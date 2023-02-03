@@ -3,13 +3,14 @@ import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import { NgbModal, NgbModalOptions, NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
 import { Subject } from 'rxjs';
-import { appConstants } from '../../app.constants';
 
+import { appConstants } from '../../app.constants';
 import { environment } from '../../../environments/environment';
 import { ApiService } from '../http/api.service';
 import { ErrorModalComponent } from '../modal/error-modal/error-modal.component';
 import { ModelWithButtonComponent } from '../modal/model-with-button/model-with-button.component';
 import { SIGN_UP_ROUTE_PATHS } from './../../sign-up/sign-up.routes.constants';
+import { CapacitorUtils } from '../utils/capacitor.util';
 
 const MYINFO_ATTRIBUTE_KEY = 'myinfo_person_attributes';
 declare var window: Window;
@@ -35,7 +36,7 @@ export class MyInfoService {
   loadingModalRef: NgbModalRef;
   isMyInfoEnabled = false;
   status;
-  windowRef: Window;
+  windowRef: any;
 
   constructor(
     private modal: NgbModal, private apiService: ApiService, private router: Router
@@ -53,7 +54,7 @@ export class MyInfoService {
 
   setMyInfoAppId(myInfoServices) {
     this.myInfoServices = myInfoServices;
-    var clientIdObj , x;
+    var clientIdObj, x;
     clientIdObj = this.clientId;
     x = clientIdObj[myInfoServices];
     window.sessionStorage.setItem('myinfo_app_id', x);
@@ -67,12 +68,16 @@ export class MyInfoService {
     let currentUrl = window.location.toString();
     let endPoint = currentUrl.split(currentUrl.split('/')[2])[currentUrl.split(currentUrl.split('/')[2]).length - 1].substr(1);
     window.sessionStorage.setItem('currentUrl', endPoint);
-    const authoriseUrl = this.authApiUrl +
+    let authoriseUrl = this.authApiUrl +
       '?client_id=' + this.getMyInfoAppId() +
       '&attributes=' + this.getMyInfoAttributes() +
       '&purpose=' + this.purpose +
       '&state=' + this.state +
       '&redirect_uri=' + this.redirectUrl;
+      if (CapacitorUtils.isApp) {
+        authoriseUrl = authoriseUrl.concat("&appLaunchURL=com.moneyowl.app://myinfo");
+        console.log("AUTH URL = " + authoriseUrl)
+      }
     this.newWindow(authoriseUrl, linkAccount);
   }
 
@@ -84,64 +89,62 @@ export class MyInfoService {
 
   newWindow(authoriseUrl, linkAccount?): void {
     const self = this;
-    setTimeout(() => {    
+    setTimeout(() => {
       this.openFetchPopup(linkAccount);
     }, 500);
     this.isMyInfoEnabled = true;
-    const screenWidth = screen.width;
-    const screenHeight = screen.height;
-    const left = 0;
-    const top = 0;
-    this.windowRef = window.open(authoriseUrl);
 
-    const timer = setInterval(() => {
-      if (this.windowRef.closed) {
+    if (CapacitorUtils.isApp) {
+      window.open(authoriseUrl, '_blank');
+    } else {
+      this.windowRef = window.open(authoriseUrl);
+      const timer = setInterval(() => {
+        if (this.windowRef.closed) {
+          clearInterval(timer);
+          this.status = 'FAILED';
+          this.changeListener.next(this.getMyinfoReturnMessage(FAILED));
+        }
+      }, 500);
+  
+      window.failed = (value) => {
         clearInterval(timer);
-        this.status = 'FAILED';
-        this.changeListener.next(this.getMyinfoReturnMessage(FAILED));
-      }
-    }, 500);
-
-    window.failed = (value) => {
-      clearInterval(timer);
-      window.failed = () => null;
-      this.windowRef.close();
-      if (value === 'FAILED') {
-        this.status = 'FAILED';
-        this.changeListener.next(this.getMyinfoReturnMessage(FAILED));
-      } else {
-        this.changeListener.next(this.getMyinfoReturnMessage(CANCELLED));
-        this.isMyInfoEnabled = false;
-      }
-      return 'MY_INFO';
-    };
-
-    window.success = (values) => {
-      clearInterval(timer);
-      window.success = () => null;
-      this.windowRef.close();
-      const params = new HttpParams({ fromString: values });
-      if (window.sessionStorage.currentUrl && params && params.get('code')) {
-        const myInfoAuthCode = params.get('code');
-        this.setMyInfoValue(myInfoAuthCode);
-        this.status = 'SUCCESS';
-        this.changeListener.next(this.getMyinfoReturnMessage(SUCCESS, myInfoAuthCode));
-      } else {
-        this.status = 'FAILED';
-        this.changeListener.next(this.getMyinfoReturnMessage(FAILED));
-      }
-      return 'MY_INFO';
-    };
-
-    // Robo2 - MyInfo changes
-    // tslint:disable-next-line:only-arrow-functions
-    window.addEventListener('message', function (event) {
-      clearInterval(timer);
-      window.success = () => null;
-      self.robo2SetMyInfo(event.data);
-      return 'MY_INFO';
-    });
-
+        window.failed = () => null;
+        this.windowRef.close();
+        if (value === 'FAILED') {
+          this.status = 'FAILED';
+          this.changeListener.next(this.getMyinfoReturnMessage(FAILED));
+        } else {
+          this.changeListener.next(this.getMyinfoReturnMessage(CANCELLED));
+          this.isMyInfoEnabled = false;
+        }
+        return 'MY_INFO';
+      };
+  
+      window.success = (values) => {
+        clearInterval(timer);
+        window.success = () => null;
+        this.windowRef.close();
+        const params = new HttpParams({ fromString: values });
+        if (window.sessionStorage.currentUrl && params && params.get('code')) {
+          const myInfoAuthCode = params.get('code');
+          this.setMyInfoValue(myInfoAuthCode);
+          this.status = 'SUCCESS';
+          this.changeListener.next(this.getMyinfoReturnMessage(SUCCESS, myInfoAuthCode));
+        } else {
+          this.status = 'FAILED';
+          this.changeListener.next(this.getMyinfoReturnMessage(FAILED));
+        }
+        return 'MY_INFO';
+      };
+  
+      // Robo2 - MyInfo changes
+      window.addEventListener('message', function (event) {
+        clearInterval(timer);
+        window.success = () => null;
+        self.robo2SetMyInfo(event.data);
+        return 'MY_INFO';
+      });
+    }
   }
 
   robo2SetMyInfo(myInfoAuthCode) {
@@ -230,7 +233,7 @@ export class MyInfoService {
 
   getMyInfoData() {
     const code = {
-      appId:this.getMyInfoAppId(),
+      appId: this.getMyInfoAppId(),
       authorizationCode: this.myInfoValue,
       personAttributes: this.getMyInfoAttributes()
     };
@@ -240,7 +243,7 @@ export class MyInfoService {
   // singpass account link
   getSingpassAccountData() {
     const code = {
-      appId:this.getMyInfoAppId(),
+      appId: this.getMyInfoAppId(),
       authorizationCode: this.myInfoValue,
       personAttributes: this.getMyInfoAttributes()
     };

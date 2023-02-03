@@ -31,8 +31,9 @@
                 <div class="flex-row mb20" *ngIf="addInfoFormValues.pep">
                   <div class="flex-col-12 mb10">
                     <div class="btn-group--toggle" name="radioPep">
-                      <app-custom-radio-controller formControlName="radioPEP" name="radioPEP" [radioLabelValue]="radioLabelValuePEP"
-                      [defaultLabelStyleClass]="defaultRadioStyleClass" [disabled]="true" ></app-custom-radio-controller>
+                      <app-custom-radio-controller formControlName="radioPEP" name="radioPEP"
+                        [radioLabelValue]="radioLabelValuePEP" [defaultLabelStyleClass]="defaultRadioStyleClass"
+                        [disabled]="true"></app-custom-radio-controller>
                     </div>
                   </div>
                 </div>
@@ -73,8 +74,8 @@
                   <div class="form-group">
                     <div class="flex-row">
                       <div class="flex-col-5">
-                        <label for="cName"
-                          id="pep_Info_invPersInfoLbl1">{{ 'EMPLOYMENT_DETAILS.COMPANY_NAME' | translate}}</label>
+                        <label for="cName" id="pep_Info_invPersInfoLbl1">{{ 'EMPLOYMENT_DETAILS.COMPANY_NAME' |
+                          translate}}</label>
                       </div>
                       <div class="flex-col-7"
                         [ngClass]="{'inline-error':getInlineErrorStatus(addInfoForm.controls.cName)}">
@@ -91,8 +92,8 @@
                     <div class="flex-row">
                       <div class="flex-col-5">
                         <label for="employement_details_status" id="pep_Info_employement_details_status-lbl">{{
-                'EMPLOYMENT_DETAILS.OCCUPATION'
-                | translate}}
+                          'EMPLOYMENT_DETAILS.OCCUPATION'
+                          | translate}}
                         </label>
                       </div>
                       <div class="flex-col-7"
@@ -101,8 +102,8 @@
                           <div ngbDropdown>
                             <button class="btn btn-dropdown without-border" id="pep_Info_status-drpdown"
                               ngbDropdownToggle>
-                              <span
-                                *ngIf="!addInfoForm.controls.pepoccupation.value">{{ 'ADDITIONAL_DECLARATION.SELECT_OCCUPATION' | translate}}</span>
+                              <span *ngIf="!addInfoForm.controls.pepoccupation.value">{{
+                                'ADDITIONAL_DECLARATION.SELECT_OCCUPATION' | translate}}</span>
                               <span
                                 *ngIf="addInfoForm.controls.pepoccupation.value">{{addInfoForm.controls.pepoccupation.value.occupation}}</span>
                             </button>
@@ -142,8 +143,9 @@
                     <div class="flex-row">
                       <div class="flex-col-5">
                         <label for="residentialAddress-mailcountry-drpdown" id="addtion-declaration-country-lbl">{{
-                'EMPLOYMENT_DETAILS.COUNTRY'
-                | translate}} <i class="block-tooltip-icon" id="countryHelpIcon" (click)="showHelpModalCountry()"></i>
+                          'EMPLOYMENT_DETAILS.COUNTRY'
+                          | translate}} <i class="block-tooltip-icon" id="countryHelpIcon"
+                            (click)="showHelpModalCountry()"></i>
                         </label>
                       </div>
                       <div class="flex-col-7">
@@ -162,8 +164,8 @@
                     <div class="flex-row">
                       <div class="flex-col-5">
                         <label for="residentialAddress-mailpostalcode-drpdown" id="Addtional-declaration-postal-lbl">{{
-                'EMPLOYMENT_DETAILS.POSTAL_CODE'
-                | translate}}</label>
+                          'EMPLOYMENT_DETAILS.POSTAL_CODE'
+                          | translate}}</label>
                       </div>
                       <div class="flex-col-7">
                         <div class="form-control with-button"
@@ -177,7 +179,7 @@
                               <button type="button"
                                 (click)="retrieveAddress(addInfoForm.controls.pepPostalCode.value, addInfoForm.controls.pepAddress1, addInfoForm.controls.pepAddress2)"
                                 class="btn btn-orange width100">{{
-                      'COMMON.LABEL.RETRIEVE' | translate}}
+                                'COMMON.LABEL.RETRIEVE' | translate}}
                               </button>
                             </div>
                           </div>
@@ -189,8 +191,9 @@
                   <div class="form-group">
                     <div class="flex-row">
                       <div class="flex-col-5">
-                        <label for="residentialAddress-mailaddress1-txt" id="Additional-address-lbl">{{'EMPLOYMENT_DETAILS.ADDRESS_1'
-                | translate}}</label>
+                        <label for="residentialAddress-mailaddress1-txt"
+                          id="Additional-address-lbl">{{'EMPLOYMENT_DETAILS.ADDRESS_1'
+                          | translate}}</label>
                       </div>
                       <div class="flex-col-7">
                         <div class="form-control"
@@ -207,7 +210,7 @@
                       <div class="flex-col-5">
                         <label for="residentialAddress-mailaddress2-txt"
                           id="pep_Info_residentialAddress-mailaddress2-lbl">{{'EMPLOYMENT_DETAILS.ADDRESS_2'
-                | translate}}</label>
+                          | translate}}</label>
                       </div>
                       <div class="flex-col-7">
                         <div class="form-control"
@@ -223,13 +226,13 @@
                     <div class="flex-row">
                       <div class="flex-col-5">
                         <label for="addtnInfo-floor-txt" id="addtnInfo-floor-lbl">{{'RESIDENTIAL_ADDRESS.FLOOR'
-                | translate}}</label>
+                          | translate}}</label>
                       </div>
                       <div class="flex-col-7">
                         <div class="form-control"
                           [ngClass]="{'inline-error':getInlineErrorStatus(addInfoForm.controls.pepFloor)}">
                           <input type="text" class="input-control grey" formControlName="pepFloor"
-                            id="addtnInfo-floor-txt" maxlength="20"/>
+                            id="addtnInfo-floor-txt" maxlength="20" />
                         </div>
                       </div>
                     </div>
@@ -238,14 +241,15 @@
                   <div class="form-group" *ngIf="addInfoForm.get('pepUnitNo')">
                     <div class="flex-row">
                       <div class="flex-col-5">
-                        <label for="addInfoForm-mailunitno-txt" id="addInfoForm-mailunitno-lbl">{{'EMPLOYMENT_DETAILS.UNIT_NO'
-                | translate}}</label>
+                        <label for="addInfoForm-mailunitno-txt"
+                          id="addInfoForm-mailunitno-lbl">{{'EMPLOYMENT_DETAILS.UNIT_NO'
+                          | translate}}</label>
                       </div>
                       <div class="flex-col-7">
                         <div class="form-control"
                           [ngClass]="{'inline-error':getInlineErrorStatus(addInfoForm.controls.pepUnitNo)}">
                           <input type="text" class="input-control grey" formControlName="pepUnitNo"
-                            id="addInfoForm-mailunitno-txt" maxlength="20"/>
+                            id="addInfoForm-mailunitno-txt" maxlength="20" />
                         </div>
                       </div>
                     </div>
@@ -255,7 +259,7 @@
                     <div class="flex-row">
                       <div class="flex-col-5">
                         <label for="addInfoForm-city-txt" id="addInfoForm-city-lbl">{{'RESIDENTIAL_ADDRESS.CITY'
-                | translate}}</label>
+                          | translate}}</label>
                       </div>
                       <div class="flex-col-7">
                         <div class="form-control"
@@ -271,7 +275,7 @@
                     <div class="flex-row">
                       <div class="flex-col-5">
                         <label for="addInfoForm-state-txt" id="addInfoForm-state-lbl">{{'RESIDENTIAL_ADDRESS.STATE'
-                | translate}}</label>
+                          | translate}}</label>
                       </div>
                       <div class="flex-col-7">
                         <div class="form-control"
@@ -286,8 +290,9 @@
                   <div class="form-group" *ngIf="addInfoForm.get('pepZipCode')">
                     <div class="flex-row">
                       <div class="flex-col-5">
-                        <label for="addInfoForm-zipcode-txt" id="addInfoForm-zipcode-lbl">{{'RESIDENTIAL_ADDRESS.ZIPCODE'
-                | translate}}</label>
+                        <label for="addInfoForm-zipcode-txt"
+                          id="addInfoForm-zipcode-lbl">{{'RESIDENTIAL_ADDRESS.ZIPCODE'
+                          | translate}}</label>
                       </div>
                       <div class="flex-col-7">
                         <div class="form-control"
@@ -302,7 +307,7 @@
                 <div class="text-center">
                   <button type="button" id="pep_Info_personalInforNextBtn" (click)="goToNext(addInfoForm)"
                     class="btn btn__footer--fixed btn-ftr-get-started btn-primary width100">{{
-          'COMMON.LABEL.CONTINUE' | translate}}</button>
+                    'COMMON.LABEL.CONTINUE' | translate}}</button>
                 </div>
               </form>
             </div>

@@ -1,112 +1,87 @@
-<div class="container-fluid max-width--1024 select-portfolio full-height"
-    [ngClass]="{'hide-tabs': isJointAccount()}">
+<div class="container-fluid max-width--1024 select-portfolio full-height" [ngClass]="{'hide-tabs': isJointAccount()}">
     <div class="portfolio-page-title hidden-sm-md">{{'PORTFOLIO.TITLE' |
         translate}}</div>
     <div class="portfolio-subheading">
-        <span *ngIf="activeTabId === 1 && !isJointAccount()"
-            [innerHTML]="'PORTFOLIO.SUB_HEADING' | translate"></span>
+        <span *ngIf="activeTabId === 1 && !isJointAccount()" [innerHTML]="'PORTFOLIO.SUB_HEADING' | translate"></span>
         <span *ngIf="activeTabId === 2" [innerHTML]="'PORTFOLIO.CPF_SUB_HEADING'
             | translate"></span>
         <span *ngIf="isJointAccount()" [innerHTML]="'PORTFOLIO.JA_SUB_HEADING' |
             translate"></span>
     </div>
-    <form name="selectPortfolioForm" [formGroup]="selectPortfolioForm"
-        id="selectPortfolioForm">
-        <nav ngbNav #nav="ngbNav" class="nav-tabs mb20 flex justify-center"
-            [(activeId)]="activeTabId" (navChange)="onNavChange($event)">
+    <form name="selectPortfolioForm" [formGroup]="selectPortfolioForm" id="selectPortfolioForm">
+        <nav ngbNav #nav="ngbNav" class="nav-tabs mb20 flex justify-center" [(activeId)]="activeTabId"
+            (navChange)="onNavChange($event)">
             <ng-container [ngbNavItem]="1">
                 <a class="portfolio-tab mr20" ngbNavLink>{{'PORTFOLIO.TAB_LBL_1'
                     | translate}}</a>
                 <ng-template ngbNavContent>
                     <div class="panel-tab-content">
                         <!-- Investment Portfolio -->
-                        <div class="investment-portfolio"
-                            formControlName="selectPortfolioType"
-                            id="selectPortfolioType"
-                            name="selectPortfolioForm" value="investPortfolio"
-                            ngDefaultControl>
+                        <div class="investment-portfolio" formControlName="selectPortfolioType" id="selectPortfolioType"
+                            name="selectPortfolioForm" value="investPortfolio" ngDefaultControl>
                             <div class="portfolio-cards">
                                 <div class="portfolio-cards__details">
-                                    <div
-                                        class="portfolio-cards__details__title">{{'PORTFOLIO.INVESTMENT.TITLE'
+                                    <div class="portfolio-cards__details__title">{{'PORTFOLIO.INVESTMENT.TITLE'
                                         | translate}}</div>
-                                    <div
-                                        class="portfolio-cards__details__portfolio-type">
+                                    <div class="portfolio-cards__details__portfolio-type">
                                         <span class="circle"></span>
                                         {{'PORTFOLIO.DIMENSIONAL_PORTFOLIO' |
                                         translate}}
                                     </div>
-                                    <div class="portfolio-cards__details__desc"
-                                        [innerHTML]="'PORTFOLIO.INVESTMENT.DESC'
+                                    <div class="portfolio-cards__details__desc" [innerHTML]="'PORTFOLIO.INVESTMENT.DESC'
                                         | translate">
                                     </div>
                                 </div>
-                                <div class="portfolio-cards__img"><img
-                                        src="assets/images/wisesaver/investment-guy.svg">
-                                    <div class="portfolio-select"
-                                        (click)="setSelectPortfolioType('investPortfolio',
+                                <div class="portfolio-cards__img"><img src="assets/images/wisesaver/investment-guy.svg">
+                                    <div class="portfolio-select" (click)="setSelectPortfolioType('investPortfolio',
                                         selectPortfolioForm)">{{'PORTFOLIO.SELECT_LBL'
                                         | translate}}</div>
                                 </div>
                             </div>
                         </div>
                         <!-- WiseIncome Portfolio -->
-                        <div class="wiseIncome-portfolio"
-                            formControlName="selectPortfolioType"
-                            id="selectPortfolioType"
-                            name="selectPortfolioForm"
-                            value="wiseIncomePortfolio" ngDefaultControl>
+                        <div class="wiseIncome-portfolio" formControlName="selectPortfolioType" id="selectPortfolioType"
+                            name="selectPortfolioForm" value="wiseIncomePortfolio" ngDefaultControl>
                             <div class="portfolio-cards">
                                 <div class="portfolio-cards__details">
-                                    <div
-                                        class="portfolio-cards__details__title">{{'PORTFOLIO.WISEINCOME.TITLE'
+                                    <div class="portfolio-cards__details__title">{{'PORTFOLIO.WISEINCOME.TITLE'
                                         | translate}}</div>
-                                    <div
-                                        class="portfolio-cards__details__portfolio-type">
+                                    <div class="portfolio-cards__details__portfolio-type">
                                         <span class="circle wise-income"></span>
                                         {{'PORTFOLIO.WISEINCOME_PORTFOLIO' |
                                         translate}}
                                     </div>
-                                    <div class="portfolio-cards__details__desc"
-                                        [innerHTML]="'PORTFOLIO.WISEINCOME.DESC'
+                                    <div class="portfolio-cards__details__desc" [innerHTML]="'PORTFOLIO.WISEINCOME.DESC'
                                         | translate">
                                     </div>
                                 </div>
                                 <div class="portfolio-cards__img"><img
                                         src="assets/images/wiseincome/investment-guy.svg">
-                                    <div class="portfolio-select"
-                                        (click)="setSelectPortfolioType('wiseIncomePortfolio',
+                                    <div class="portfolio-select" (click)="setSelectPortfolioType('wiseIncomePortfolio',
                                         selectPortfolioForm)">{{'PORTFOLIO.SELECT_LBL'
                                         | translate}}</div>
                                 </div>
                             </div>
                         </div>
                         <!-- WiseSaver Portfolio -->
-                        <div class="wisesaver-portfolio"
-                            formControlName="selectPortfolioType"
-                            id="selectPortfolioType"
-                            name="selectPortfolioType"
-                            value="wiseSaverPortfolio" ngDefaultControl>
+                        <div class="wisesaver-portfolio" formControlName="selectPortfolioType" id="selectPortfolioType"
+                            name="selectPortfolioType" value="wiseSaverPortfolio" ngDefaultControl>
                             <div class="portfolio-cards">
                                 <div class="portfolio-cards__details">
-                                    <div
-                                        class="portfolio-cards__details__title">{{'PORTFOLIO.WISESAVER.TITLE'
+                                    <div class="portfolio-cards__details__title">{{'PORTFOLIO.WISESAVER.TITLE'
                                         | translate}}</div>
-                                    <div
-                                        class="portfolio-cards__details__portfolio-type">
+                                    <div class="portfolio-cards__details__portfolio-type">
                                         <span class="circle wise-saver"></span>
                                         {{'PORTFOLIO.WISESAVER_PORTFOLIO' |
                                         translate}}
                                     </div>
-                                    <div class="portfolio-cards__details__desc"
-                                        [innerHTML]="'PORTFOLIO.WISESAVER.DESC'
+                                    <div class="portfolio-cards__details__desc" [innerHTML]="'PORTFOLIO.WISESAVER.DESC'
                                         | translate">
                                     </div>
                                 </div>
                                 <div class="portfolio-cards__img"><img
                                         src="assets/images/wisesaver/wisesaver-family.svg">
-                                    <div class="portfolio-select"
-                                        (click)="setSelectPortfolioType('wiseSaverPortfolio',
+                                    <div class="portfolio-select" (click)="setSelectPortfolioType('wiseSaverPortfolio',
                                         selectPortfolioForm)">{{'PORTFOLIO.SELECT_LBL'
                                         | translate}}</div>
                                 </div>
@@ -121,27 +96,19 @@
                 <ng-template ngbNavContent>
                     <div class="panel-tab-content">
                         <!-- START OF CPF SECTION -->
-                        <div class="wisesaver-portfolio"
-                            formControlName="selectPortfolioType"
-                            id="selectPortfolioType"
-                            name="selectPortfolioType"
-                            value="wiseSaverPortfolio" ngDefaultControl>
+                        <div class="wisesaver-portfolio" formControlName="selectPortfolioType" id="selectPortfolioType"
+                            name="selectPortfolioType" value="wiseSaverPortfolio" ngDefaultControl>
                             <div class="portfolio-cards">
-                                <div class="portfolio-new"><img
-                                        src="assets/images/cpf/portfolio-new.svg"></div>
+                                <div class="portfolio-new"><img src="assets/images/cpf/portfolio-new.svg"></div>
                                 <div class="portfolio-cards__details">
-                                    <div
-                                        class="portfolio-cards__details__title">{{'PORTFOLIO.CPFOA.TITLE'
+                                    <div class="portfolio-cards__details__title">{{'PORTFOLIO.CPFOA.TITLE'
                                         | translate}}</div>
-                                    <div class="portfolio-cards__details__desc"
-                                        [innerHTML]="'PORTFOLIO.CPFOA.DESC' |
+                                    <div class="portfolio-cards__details__desc" [innerHTML]="'PORTFOLIO.CPFOA.DESC' |
                                         translate">
                                     </div>
                                 </div>
-                                <div class="portfolio-cards__img"><img
-                                        src="assets/images/cpf/cpf-oa.svg">
-                                    <div class="portfolio-select"
-                                        (click)="setSelectPortfolioType('CPF',
+                                <div class="portfolio-cards__img"><img src="assets/images/cpf/cpf-oa.svg">
+                                    <div class="portfolio-select" (click)="setSelectPortfolioType('CPF',
                                         selectPortfolioForm)">{{'PORTFOLIO.SELECT_LBL'
                                         | translate}}</div>
                                 </div>

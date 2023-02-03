@@ -26,7 +26,7 @@ app-distribute-your-estate{
             }
             &.active-prev {
                 opacity:1 !important;
-                background-color: #02908e !important;
+                background-color: $blue-lagoon-color !important;
             }
         }
     }
@@ -66,7 +66,7 @@ app-distribute-your-estate{
         font-size: 36px;
         letter-spacing: -0.4px;
         text-align: center;
-        color: #ffffff;
+        color: $white-color;
         margin-top: 30px;
         margin-bottom: 12px;
         @include allmobiles {
@@ -79,7 +79,7 @@ app-distribute-your-estate{
         font-size: 24px;
         letter-spacing: -0.3px;
         text-align: center;
-        color: #ffffff;
+        color: $white-color;
         margin-bottom: 13px;
         @include allmobiles {
             margin-bottom: 19px;
@@ -92,7 +92,7 @@ app-distribute-your-estate{
         letter-spacing: -0.2px;
         text-align: center;
         font-weight: normal;
-        color: #ffffff;
+        color: $white-color;
         @include allmobiles{
             width: 261px;
             margin: 0 auto;

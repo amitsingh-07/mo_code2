@@ -62,7 +62,7 @@ app-add-secondary-holder {
           opacity: 1;
         }
 
-        &:hover{
+        &:hover {
           color: $white-color;
           text-decoration: none;
           border-color: $white-color !important;
@@ -122,7 +122,8 @@ app-add-secondary-holder {
       line-height: normal;
       letter-spacing: -0.24px;
       margin-bottom: 20px;
-      @include allmobiles{
+
+      @include allmobiles {
         font-size: 16px;
       }
     }

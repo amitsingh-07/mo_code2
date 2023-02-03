@@ -1,0 +1,11 @@
+{
+  "applinks": {
+    "apps": [],
+    "details": [
+      {
+        "appID": "2A23PCTPBU.com.moneyowl.app",
+        "paths": ["*"]
+      }
+    ]
+  }
+}

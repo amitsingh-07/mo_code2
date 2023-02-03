@@ -1,34 +1,43 @@
 @import '../../../../variables';
 @import '../../../../mixins';
+
 app-referee {
     .modal-body {
         width: 550px;
         padding: 0;
+
         @include allmobiles {
             padding: 0 !important;
             width: 100%;
         }
+
         @include minPhabletmaxTablet {
             width: auto;
             padding: 0 !important;
         }
     }
+
     .referee-modal {
         letter-spacing: -0.196875px;
+
         p {
             margin: 0;
             line-height: 21px;
+
             b {
                 font-family: $muli-bold;
             }
         }
     }
+
     .referee-modal__bannner {
         height: 160px;
         padding: 0 20px 0 45px;
+
         @include allmobiles {
             padding: 0 20px 0 25px;
         }
+
         display: flex;
         position: relative;
         justify-content: space-between;
@@ -36,10 +45,12 @@ app-referee {
         background: $teal-color;
         border-top-left-radius: 6px;
         border-top-right-radius: 6px;
+
         @include allmobiles {
             border-top-left-radius: 0;
             border-top-right-radius: 0;
         }
+
         &__valid-box {
             color: $portfolio-card-text-color;
             font-size: 14px;
@@ -47,30 +58,36 @@ app-referee {
             border-radius: 30px;
             padding: 5px 10px;
             margin-bottom: 20px;
+
             @include min300max325 {
                 font-size: 12px;
                 margin-bottom: 10px;
                 padding: 5px 8px;
             }
         }
+
         &__close-btn {
             &.close {
                 opacity: 1 !important;
             }
         }
+
         &__stamped {
             position: absolute;
             right: 16px;
             top: 10px;
         }
     }
+
     .referee-modal__bannner__gift-box img {
         vertical-align: bottom;
         width: auto;
         height: 120px;
+
         @include min375max400 {
             height: 110px;
         }
+
         @include max360 {
             height: 100px;
         }
@@ -78,14 +95,18 @@ app-referee {
 
     .referee-modal__inner {
         padding: 30px 88px;
+
         @include allmobiles {
             padding: 30px 20px;
         }
+
         @include minPhabletmaxTablet {
             padding: 30px 60px;
         }
+
         color: $silver-grey-color;
         font-size: 16px;
+
         &__heading {
             color: $teal-color;
             font-family: $muli-bold;
@@ -93,18 +114,21 @@ app-referee {
             margin-bottom: 10px !important;
             line-height: 26px !important;
         }
+
         &__coupon-card {
             height: 110px;
             display: flex;
             margin: 5px 0 16px;
             line-height: 23px;
         }
+
         &__coupon-card--grey {
             display: flex;
             justify-content: space-between;
             color: $silver-grey-color;
             margin: 5px 0;
         }
+
         &__coupon-card__left {
             color: $portfolio-card-text-color;
             font-size: 18px;
@@ -116,16 +140,20 @@ app-referee {
             flex-direction: column;
             justify-content: center;
             width: 75%;
+
             @include min375max400 {
                 font-size: 17px;
             }
+
             @include max360 {
                 font-size: 16px;
                 padding: 0 15px;
             }
+
             @include iphone5 {
                 padding: 0 10px;
             }
+
             &__get-started {
                 color: $crusta-orange-color;
                 font-size: 14px;
@@ -133,11 +161,13 @@ app-referee {
                 line-height: 18px;
                 padding-top: 5px;
             }
+
             &__issued {
                 color: $dark-dusty-grey-color;
                 font-size: 14px;
                 line-height: 18px;
             }
+
             &--grey {
                 background-color: $mercury-smoke-color;
                 font-size: 18px;
@@ -145,18 +175,22 @@ app-referee {
                 display: flex;
                 flex-direction: column;
                 justify-content: center;
+
                 @include min375max400 {
                     font-size: 17px;
                 }
+
                 @include max360 {
                     font-size: 16px;
                     padding: 0 15px;
                 }
+
                 @include iphone5 {
                     padding: 0 10px;
                 }
             }
         }
+
         &__coupon-card__right {
             color: $black-color;
             font-size: 18px;
@@ -168,14 +202,17 @@ app-referee {
             display: flex;
             flex-direction: column;
             justify-content: center;
+
             @include min375max400 {
                 font-size: 17px;
                 padding: 0px 15px 0 5px;
             }
+
             @include max360 {
                 font-size: 16px;
                 padding: 0 10px;
             }
+
             &--grey {
                 background-color: $mercury-smoke-color;
                 display: flex;
@@ -183,15 +220,18 @@ app-referee {
                 justify-content: center;
             }
         }
+
         &__separator {
             background-color: $mercury-smoke-color;
             height: 1px;
             margin: 30px 0 0;
         }
+
         &__more-about {
             ul {
                 padding-left: 20px;
-                > li {
+
+                >li {
                     color: $silver-grey-color;
                     font-size: 18px;
                     padding: 0 10px;
@@ -202,35 +242,42 @@ app-referee {
                     display: flex;
                     flex-direction: column;
                     justify-content: center;
+
                     @include min375max400 {
                         font-size: 17px;
                         padding: 0px 15px 0 5px;
                     }
+
                     @include max360 {
                         font-size: 16px;
                         padding: 0 10px;
                     }
                 }
             }
+
             &__separator {
                 background-color: $mercury-smoke-color;
                 height: 1px;
                 margin: 30px 0;
             }
+
             &__more-about {
                 ul {
                     padding-left: 20px;
-                    > li {
+
+                    >li {
                         color: $silver-grey-color;
                         font-size: 14px;
                         margin-bottom: 20px;
                         list-style-type: disc;
+
                         a {
                             color: $crusta-orange-color !important;
                             text-decoration: none;
                         }
                     }
                 }
+
                 &__heading {
                     color: $black-color;
                     font-weight: bold;
@@ -241,36 +288,43 @@ app-referee {
             }
         }
     }
+
     .referee-bg-grey {
         background-color: $mercury-smoke-color !important;
         color: $silver-grey-color !important;
     }
+
     .referee-bg-grey-get-started {
         color: $silver-grey-color !important;
     }
 
     .mb30 {
         margin-bottom: 30px !important;
+
         b {
             color: $silver-grey-color !important;
         }
     }
+
     .referee-modal__inner__more-about__heading.isActive span img {
         transform: rotate(180deg);
         transition: all 0.5s;
     }
+
     .terms-cond a {
         color: $crusta-orange-color !important;
         text-decoration: none;
     }
+
     .modal-body.white-bg .close {
         background-image: url('./../../../../assets/images/refer-friend/close-btn-dark.svg') !important;
         top: 25px !important;
         right: 25px !important;
         opacity: 0.6 !important;
         z-index: 2 !important;
+
         @supports (-webkit-touch-callout: none) {
-            /* CSS specific to iOS devices */ 
+            /* CSS specific to iOS devices */
             right: -20px !important;
         }
     }

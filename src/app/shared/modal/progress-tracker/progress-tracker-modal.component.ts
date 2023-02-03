@@ -6,11 +6,11 @@ import { filter } from 'rxjs/operators';
 @Component({
     selector: 'app-progress-tracker-modal',
     template: '<div><app-progress-tracker></app-progress-tracker></div>',
-    styleUrls: [ './progress-tracker.component.scss' ],
+    styleUrls: ['./progress-tracker.component.scss'],
     encapsulation: ViewEncapsulation.None
 })
 export class ProgressTrackerModalComponent implements OnInit {
-    constructor(public activeModal: NgbActiveModal, private router: Router) {}
+    constructor(public activeModal: NgbActiveModal, private router: Router) { }
 
     ngOnInit() {
         this.router.events

@@ -1,29 +1,22 @@
-import { async, ComponentFixture, fakeAsync, getTestBed, inject, TestBed, tick } from '@angular/core/testing';
-import { FormBuilder, FormGroup, ReactiveFormsModule, Validators, FormArray, FormControl  } from '@angular/forms';
-import { Subscription } from 'rxjs';
-import { Location, APP_BASE_HREF, DatePipe } from '@angular/common';
+import { waitForAsync, ComponentFixture, getTestBed, TestBed } from '@angular/core/testing';
+import { FormBuilder, ReactiveFormsModule, FormArray  } from '@angular/forms';
+import { Location, DatePipe } from '@angular/common';
 import { HttpClient } from '@angular/common/http';
 import { HttpClientTestingModule, HttpTestingController } from '@angular/common/http/testing';
 import { Injector, NO_ERRORS_SCHEMA } from '@angular/core';
-import { By } from '@angular/platform-browser';
-import { BrowserDynamicTestingModule } from '@angular/platform-browser-dynamic/testing';
-import { RouterModule, Router, Routes, ActivatedRoute } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
 import { RouterTestingModule } from '@angular/router/testing';
 import { JwtModule, JwtHelperService } from '@auth0/angular-jwt';
 import { NgbActiveModal, NgbModal, NgbModalRef, NgbModule, NgbDateParserFormatter } from '@ng-bootstrap/ng-bootstrap';
 import { TranslateLoader, TranslateModule, TranslateService } from '@ngx-translate/core';
-import { concat, Observable, of, throwError } from 'rxjs';
 
 import { CriticalIllnessFormComponent } from './critical-illness-form.component';
 import { ICriticalIllness } from './critical-illness.interface';
-import { ConfigService } from './../../../config/config.service';
 import { LoaderService } from './../../../shared/components/loader/loader.service';
 import { ProgressTrackerService } from './../../../shared/modal/progress-tracker/progress-tracker.service';
 import { NavbarService } from './../../../shared/navbar/navbar.service';
-import { Util } from './../../../shared/utils/util';
 
 import { CurrencyPipe, TitleCasePipe } from '@angular/common';
-import { appConstants } from './../../../app.constants';
 
 import { tokenGetterFn, mockCurrencyPipe } from
   '../../../../assets/mocks/service/shared-service';
@@ -33,11 +26,8 @@ import { HeaderService } from './../../../shared/header/header.service';
 import { AppService } from './../../../app.service';
 import { ApiService } from './../../../shared/http/api.service';
 import { AuthenticationService } from './../../../shared/http/auth/authentication.service';
-
-import { ErrorModalComponent } from './../../../shared/modal/error-modal/error-modal.component';
 import { RoutingService } from './../../../shared/Services/routing.service';
 import { MyInfoService } from './../../../shared/Services/my-info.service';
-import { NgbDateCustomParserFormatter } from './../../../shared/utils/ngb-date-custom-parser-formatter';
 
 import { ProductDetailComponent } from './../../../shared/components/product-detail/product-detail.component';
 import { createTranslateLoader } from './../../direct.module';
@@ -87,7 +77,7 @@ describe('CriticalIllnessFormComponent', () => {
       return true;
     }
   };
-  beforeEach(async(() => {
+  beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
       declarations: [ CriticalIllnessFormComponent, ProductDetailComponent ],
       imports: [
@@ -248,7 +238,7 @@ describe('CriticalIllnessFormComponent', () => {
     expect(dobObj.month).toBe('10');
     expect(dobObj.day).toBe('04');
   });
-  it('testing the Coverage Amount dropdown', async(() => {
+  it('testing the Coverage Amount dropdown', waitForAsync(() => {
     spyOn(component, 'coverage_amt');
     const dropdownButton = fixture.debugElement.nativeElement.querySelector('#getStrLbl6 button');
     const dropdownItem = fixture.debugElement.nativeElement.querySelector('.dropdown-item');
@@ -260,7 +250,7 @@ describe('CriticalIllnessFormComponent', () => {
       });
     });
   }));
-  it('testing the duration dropdown', async(() => {
+  it('testing the duration dropdown', waitForAsync(() => {
     spyOn(component, 'duration');
     const dropdownButton = fixture.debugElement.nativeElement.querySelector('#getStrLbl7 button');
     const dropdownItem = fixture.debugElement.nativeElement.querySelector('.dropdown-item');

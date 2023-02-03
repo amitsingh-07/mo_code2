@@ -1,4 +1,4 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { waitForAsync, ComponentFixture, TestBed } from '@angular/core/testing';
 import { DirectService } from './../../direct.service';
 import { RetirementIncomeFormComponent } from './retirement-income-form.component';
 
@@ -10,7 +10,7 @@ describe('RetirementIncomeFormComponent', () => {
   let fixture: ComponentFixture<RetirementIncomeFormComponent>;
   let directService: DirectService;
 
-  beforeEach(async(() => {
+  beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
       imports: [ReactiveFormsModule, FormsModule],
       declarations: [ RetirementIncomeFormComponent],
@@ -74,7 +74,7 @@ describe('RetirementIncomeFormComponent', () => {
     expect(dobObj.month).toBe('10');
     expect(dobObj.day).toBe('04');
   });
-  it('testing the retirement income dropdown', async(() => {
+  it('testing the retirement income dropdown', waitForAsync(() => {
     spyOn(component, 'selectedRetirementIncome');
     const dropdownButton = fixture.debugElement.nativeElement.querySelector('#dropdownBasic1 button');
     // tslint:disable-next-line:no-duplicate-string
@@ -87,7 +87,7 @@ describe('RetirementIncomeFormComponent', () => {
       });
     });
   }));
-  it('testing the Payout Start Age dropdown', async(() => {
+  it('testing the Payout Start Age dropdown', waitForAsync(() => {
     spyOn(component, 'payoutDuration');
     const dropdownButton = fixture.debugElement.nativeElement.querySelector('#getStrLbl7 button');
     const dropdownItem = fixture.debugElement.nativeElement.querySelector('.dropdown-item');
@@ -99,7 +99,7 @@ describe('RetirementIncomeFormComponent', () => {
       });
     });
   }));
-  it('testing the Payout duration dropdown', async(() => {
+  it('testing the Payout duration dropdown', waitForAsync(() => {
     spyOn(component, 'selectedPayoutAge');
     const dropdownButton = fixture.debugElement.nativeElement.querySelector('#dropdownDuration button');
     const dropdownItem = fixture.debugElement.nativeElement.querySelector('.dropdown-item');
@@ -111,7 +111,7 @@ describe('RetirementIncomeFormComponent', () => {
       });
     });
   }));
-  it('testing the Payout feature dropdown', async(() => {
+  it('testing the Payout feature dropdown', waitForAsync(() => {
     spyOn(component, 'payoutFeature');
     const dropdownButton = fixture.debugElement.nativeElement.querySelector('#dropdownDuration button');
     const dropdownItem = fixture.debugElement.nativeElement.querySelector('.dropdown-item');

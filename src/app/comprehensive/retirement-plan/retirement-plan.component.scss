@@ -41,7 +41,7 @@
   }
 
   .noUi-pips {
-    color: #fff !important;
+    color: $white-color !important;
   }
 
   .noUi-pips-horizontal {
@@ -85,7 +85,7 @@
   }
 
   .addRetirement {
-    color: #066360;
+    color: $watercourse-color;
 
     &.retirement-border-top {
       padding-top: 15px;
@@ -98,17 +98,17 @@
 
   #maturityYear {
     text-align: left;
-    font-family: "muli light"
+    font-family: $muli-light;
   }
 
   .retirement-border-top {
-    border-top: solid 1px #cee5e4;
+    border-top: solid 1px $edge-water-color;
     border-radius: 0px !important;
   }
 
   .form-control i.right {
     top: 52%;
-    font-family: "muli regular";
+    font-family: $muli-regular;
   }
 
   .form-group-with-bg {
@@ -124,7 +124,7 @@
   }
 
   .rsp-border-top {
-    border-top: solid 1px #cee5e4;
+    border-top: solid 1px $edge-water-color;
   }
 
   .form-control-right input {

@@ -13,19 +13,19 @@ app-my-executor-trustee{
     }
 }
 .addExeTrusteeForm {
-    background-color: #f4fafb;
+    background-color: $black-squeeze-grey-color;
     border-radius: 6px;
-    box-shadow: 0 8px 10px 0 rgba(0, 0, 0, 0.25);
+    box-shadow: 0 8px 10px 0 $box-shadow-color;
     font-size: 18px;
     letter-spacing: -0.3px;
-    color: #2d8289;
+    color: $dark-teal-color;
     margin-bottom: 24px;
     .title {
         font-family: $muli-bold;
         border-radius: 6px;
         font-size: 20px;
         letter-spacing: -0.4px;
-        color: #066360;
+        color: $watercourse-color;
         padding: 20px !important;
         background: $white-color;
     }
@@ -41,11 +41,11 @@ app-my-executor-trustee{
     font-size: 18px;
     font-weight: 300;
     letter-spacing: -0.2px;
-    color: #fff;
+    color: $white-color;
 }
 .mobile-header-container {
     @include allmobiles {
-        background-color: #fff;
+        background-color: $white-color;
         margin-top: -10px;
         padding-top: 27px;
     }
@@ -60,7 +60,7 @@ app-my-executor-trustee{
 .autofill-text{
     font-size: 36px;
     letter-spacing: -0.4px;
-    color: #fff;
+    color: $white-color;
     position: relative;
 }
 
@@ -68,12 +68,11 @@ app-my-executor-trustee{
     font-size: 18px;
     line-height: 1.22;
     letter-spacing: -0.2px;
-    color: #fff;
+    color: $white-color;
     font-family: $muli-regular;
     @include allmobiles{
         font-size: 16px;
-        color: #333846;
-        //width:297px;
+        color: $bright-grey-color;
         text-align: center;
     }
 
@@ -92,7 +91,7 @@ app-my-executor-trustee{
     padding-right: 0;
     @include allmobiles{
         margin-bottom: 20px;
-        background-color: #00a7a7;
+        background-color: $app-backgrnd-color;
         padding: 15px;
         margin-top: 10px;
     }
@@ -124,12 +123,12 @@ app-my-executor-trustee{
             font-family: $muli-regular;
             font-size: 16px;
             letter-spacing: -0.1px;
-            color: #00a7a7;
-            background-color: #fff;  
+            color: $teal-color;
+            background-color: $white-color;  
         }
         .btn-primary {
-            color: #fff;
-            background-color: #00a7a7;
+            color: $white-color;
+            background-color: $app-backgrnd-color;
             padding: 8px !important;
             width: 109px !important;
         }
@@ -149,7 +148,7 @@ app-my-executor-trustee{
     font-size: 14px;
     letter-spacing: -0.1px;
     font-weight: 100;
-    color: #2d8289;
+    color: $dark-teal-color;
     padding: 20px !important;
   }
 
@@ -159,7 +158,7 @@ app-my-executor-trustee{
     font-weight: 100;
     letter-spacing: -0.3px;
     text-align: right;
-    color: #00a7a7;
+    color: $teal-color;
     cursor: pointer;
     padding-top: 5px;
 }
@@ -196,13 +195,13 @@ app-my-executor-trustee{
     font-stretch: normal;
     line-height: normal;
     letter-spacing: -0.3px;
-    color: #2d8289;
+    color: $dark-teal-color;
   }
 
 .form-control{
-    color: #00a7a7;
+    color: $teal-color;
     &:focus {
-        color: #00a7a7;
+        color: $teal-color;
     }
 }
 
@@ -230,7 +229,7 @@ app-my-executor-trustee{
         font-stretch: normal;
         line-height: normal;
         letter-spacing: -0.1px;
-        color: #333846;
+        color: $bright-grey-color;
     }
 }
 
@@ -242,7 +241,7 @@ app-my-executor-trustee{
     font-stretch: normal;
     line-height: normal;
     letter-spacing: -0.3px;
-    color: #d8d8d8;
+    color: $slick-dot-inactive-color;
   }
   .relationship {
       width: 119px;
@@ -274,7 +273,7 @@ app-my-executor-trustee{
 .save {
     justify-content: space-around !important;
     .cancel-btn {
-        background-color: #f4fafb !important;
+        background-color: $black-squeeze-grey-color !important;
     }
 }
 .mt27 {
@@ -282,12 +281,12 @@ app-my-executor-trustee{
 }
 .note {
     text-decoration: underline;
-    color:#ffffff;
+    color:$white-color;
     font-size: 16px;
     
     @include allmobiles {
         padding-bottom: 15px;
-        color:#9e9e9e;
+        color:$dark-silver-chalice-color;
         width: 297px;
         text-align: center;
     }

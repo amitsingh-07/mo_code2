@@ -1,18 +1,14 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
-
 import { HttpClient } from '@angular/common/http';
-
 import { ReactiveFormsModule } from '@angular/forms';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
 import { NouisliderModule } from 'ng2-nouislider';
 import { MultiTranslateHttpLoader } from 'ngx-translate-multi-http-loader';
-
 import { ComprehensiveRoutingModule } from './comprehensive-routing.module';
 import { ComprehensiveStepsComponent } from './comprehensive-steps/comprehensive-steps.component';
 import { ComprehensiveComponent } from './comprehensive/comprehensive.component';
-
 import { SharedModule } from '../shared/shared.module';
 import { NgbDateCustomParserFormatter } from '../shared/utils/ngb-date-custom-parser-formatter';
 import { BadMoodFundComponent } from './bad-mood-fund/bad-mood-fund.component';
@@ -93,10 +89,6 @@ export function createTranslateLoader(http: HttpClient) {
 
 })
 export class ComprehensiveModule {
-
-
-
   constructor() {
-
   }
 }

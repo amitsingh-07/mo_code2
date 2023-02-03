@@ -3,7 +3,6 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { TranslateService } from '@ngx-translate/core';
 import { Subscription } from 'rxjs';
-
 import { COMPREHENSIVE_CONST } from '../comprehensive-config.constants';
 import { COMPREHENSIVE_FORM_CONSTANTS } from '../comprehensive-form-constants';
 import { COMPREHENSIVE_ROUTE_PATHS } from '../comprehensive-routes.constants';
@@ -132,7 +131,6 @@ export class MyLiabilitiesComponent implements OnInit, OnDestroy {
         value: this.liabilitiesDetails ? this.liabilitiesDetails.carLoansAmount : '',
         disabled: this.viewMode
       }, []],
-
     });
   }
   goToNext(form: FormGroup) {
@@ -140,9 +138,7 @@ export class MyLiabilitiesComponent implements OnInit, OnDestroy {
       this.routerPath();
     } else {
       if (this.validateLiabilities(form)) {
-
         const liabilitiesData = this.comprehensiveService.getComprehensiveSummary().comprehensiveLiabilities;
-
         if (!form.pristine || Util.isEmptyOrNull(liabilitiesData) ||
           this.comprehensiveService.getReportStatus() === COMPREHENSIVE_CONST.REPORT_STATUS.NEW || this.comprehensiveService.getReportStatus() === COMPREHENSIVE_CONST.REPORT_STATUS.EDIT) {
           if (!form.controls.homeLoanOutstandingAmount.pristine) {
@@ -151,7 +147,6 @@ export class MyLiabilitiesComponent implements OnInit, OnDestroy {
           this.liabilitiesDetails = form.value;
           this.liabilitiesDetails[COMPREHENSIVE_CONST.YOUR_FINANCES.YOUR_LIABILITIES.API_TOTAL_BUCKET_KEY] = this.totalOutstanding;
           this.liabilitiesDetails.enquiryId = this.comprehensiveService.getEnquiryId();
-
           this.loaderService.showLoader({ title: this.saveData });
           this.comprehensiveApiService.saveLiabilities(this.liabilitiesDetails).subscribe((data) => {
             this.comprehensiveService.setMyLiabilities(this.liabilitiesDetails);
@@ -180,10 +175,8 @@ export class MyLiabilitiesComponent implements OnInit, OnDestroy {
     }
     if (this.validationFlag === true && !form.valid) {
       Object.keys(form.controls).forEach((key) => {
-
         form.get(key).markAsDirty();
       });
-
       const error = this.comprehensiveService.getFormError(form, COMPREHENSIVE_FORM_CONSTANTS.MY_LIABILITIES);
       this.comprehensiveService.openErrorModal(error.title, error.errorMessages, false,
         this.translate.instant('CMP.ERROR_MODAL_TITLE.MY_LIABILITIES'));

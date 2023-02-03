@@ -166,7 +166,7 @@
         </li>
     </ul>
     <div class="faq-link">
-        <a *ngIf="!authService.isUserTypeCorporate" target="_blank" routerLink="/faq" fragment="investment">For more information, visit our FAQs.</a>
+        <a *ngIf="!authService.isUserTypeCorporate" target="_blank" href="https://www.moneyowl.com.sg/faq#investment">For more information, visit our FAQs.</a>
         <a *ngIf="authService.isUserTypeCorporate" target="_blank" routerLink="{{corpFaq}}">For more information, visit our FAQs.</a>
     </div>
 </div>

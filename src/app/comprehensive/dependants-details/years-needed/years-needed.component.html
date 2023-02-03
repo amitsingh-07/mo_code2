@@ -17,7 +17,6 @@
         {{profile | titlecase}}
       </div>
     </div>
-
     <ng-container *ngFor="let years of yearsNeeded">
       <div *ngIf="years.className == selectedOption" class="dependant-profile-desc {{years.className}}">
         {{years.message}}

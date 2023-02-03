@@ -61,7 +61,7 @@
           font-family: $muli-regular;
           font-size: 13px;
           letter-spacing: -0.12px;
-          color: #5e5e5e;
+          color: $silver-grey-color;
         }
 
 
@@ -78,12 +78,12 @@
       font-family: $muli-regular;
       font-size: 13px;
       letter-spacing: -0.15px;
-      color: #5e5e5e;
+      color: $silver-grey-color;
       line-height: normal;
 
       a {
         text-decoration: none;
-        color: #ff872f;
+        color: $crusta-orange-color;
         font-family: $muli-bold;
         display: block;
         @include allmobiles{

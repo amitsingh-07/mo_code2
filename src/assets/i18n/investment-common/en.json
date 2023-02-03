@@ -29,9 +29,9 @@
     "CONTINUE": "Continue",
     "WISESAVER_PERCENTAGE_VALUE": "{{wiseSaverValue}}% p.a.",
     "WISESAVER_VALUE_DATE": "5-day Moving Average as at",
-    "EXPENSIVE_RATIO": " Fees include fund level fee of {{expensiveRatio}} p.a. which is incorporated into the NAV.<span> <a target='_blank' href=\"/pricing/\">View our fees table.</a></span>",
-    "EXPENSIVE_RATIO_WISE_INCOME": " This excludes fund level fees (such as annual management fees of {{expensiveRatio}} p.a.) which are factored into the price of the fund.<span> <a target='_blank' href=\"/pricing/\">View our fees table.</a></span>",
-    "EXPENSIVE_RATIO_CPF": " Enjoy 0% advisory fees until end of {{year}}. Fees do not include fund level fees of {{expensiveRatio}} p.a. which is incorporated in the NAV. <span> <a target='_blank' href=\"/pricing/\">View our fees table.</a></span>",
+    "EXPENSIVE_RATIO": " Fees include fund level fee of {{expensiveRatio}} p.a. which is incorporated into the NAV.<span> <a target='_blank' href='https://www.moneyowl.com.sg/pricing'>View our fees table.</a></span>",
+    "EXPENSIVE_RATIO_WISE_INCOME": " This excludes fund level fees (such as annual management fees of {{expensiveRatio}} p.a.) which are factored into the price of the fund.<span> <a target='_blank' href='https://www.moneyowl.com.sg/pricing'>View our fees table.</a></span>",
+    "EXPENSIVE_RATIO_CPF": " Enjoy 0% advisory fees until end of {{year}}. Fees do not include fund level fees of {{expensiveRatio}} p.a. which is incorporated in the NAV. <span> <a target='_blank' href='https://www.moneyowl.com.sg/pricing'>View our fees table.</a></span>",
     "FUND_EXPENSIVE_RATIO": "Fund Expense Ratio",
     "TOTAL_FEE": "Total Fee",
     "LGI_SUB_LBL":"Infinity Global Stock Index Fund",
@@ -270,7 +270,8 @@
       "SHOWPOPUP": {
         "TITLE": "Recipient’s / Entity Name",
         "MESSAGE": "iFast Financial Pte Ltd provides custodial services for MoneyOwl. For more information, please refer to our FAQ."
-      }
+      },
+      "VISIT_FAQ": "For more information, visit our FAQs."
     }
   },
   "TOAST_MESSAGES": {
@@ -457,6 +458,7 @@
   "CPF_PREREQUISITES": {
     "TITLE": "Investment Pre-requisites",
     "DESC": "Before you invest using your CPF-OA monies, it is important to assess that you have the knowledge in investing in Unlisted Specified Investment Products (SIPs). You should have also set up your CPF Investment Account.",
+    "EXPIRED_DESC": "Your Customer Knowledge Assessment (CKA) has expired. To continue investing with your CPF, it is important to re-assess your knowledge in investing in Unlisted Specified Investment Products (SIPs).",
     "STEP_TEXT": "Please complete the 2 steps below:",
     "STEP1_TEXT": "Step 1: Complete Customer Knowledge Assessment (CKA)",
     "STEP2_TEXT": "Step 2: Fill in CPF Investment Account details",
@@ -483,6 +485,7 @@
   "OPEN_CKA": {
     "TITLE": "Before you proceed…",
     "DESC": "<p>We will assess if you have the knowledge or investment experience in understanding the risks and features of unlisted Specified Investment Products (‘SIPs’).</p>If you have undergone and passed the ABS e-Learning (Module 5), you may upload the certificate. Otherwise, you will be asked to go through the e-learning.",
+    "EXPIRED_DESC": "We will assess if you have the knowledge or investment experience in understanding the risks and features of unlisted Specified Investment Products (‘SIPs’).",
     "BTN-TEXT": "Continue"
   }
 }

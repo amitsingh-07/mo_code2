@@ -11,15 +11,16 @@
   @include desktop {
     top: 25px !important;
     left: 145px;
+
     .modal-dialog {
-      transform: translate(0,0) !important;
+      transform: translate(0, 0) !important;
     }
   }
 }
 
 .modal-backdrop.fade.show.progress-tracker-backdrop {
   opacity: 0.5 !important;
-  background: #ffffff;
+  background: $white-color;
   top: 131px;
   margin-right: 15px;
   margin-left: 15px;
@@ -42,6 +43,7 @@
     left: 50%;
     margin-left: -300px;
   }
+
   @include tablet {
     position: fixed;
     width: calc(100% - 280px);
@@ -49,6 +51,7 @@
     top: 55px;
     right: 65px;
   }
+
   @include phablet {
     position: fixed;
     width: calc(100% - 190px);
@@ -62,27 +65,31 @@
     position: absolute;
     width: 20px;
     height: 20px;
-    border: 10px solid #066360;
+    border: 10px solid $watercourse-color;
     border-top: 10px solid transparent;
     border-left: 10px solid transparent;
     border-right: 10px solid transparent;
     right: 10px;
     top: -10px;
+
     @include desktop {
       top: -5px;
     }
+
     z-index: 1069;
   }
 
   .progress-tracker {
-    background: #066360;
+    background: $watercourse-color;
     border-bottom: 20px transparent solid;
     border-radius: 6px;
     position: relative;
     margin: 10px 15px 0;
+
     @include desktop {
       margin: 14px 15px 0;
     }
+
     padding: 35px 15px 15px;
     overflow-y: scroll;
     max-height: 77vh;
@@ -153,14 +160,14 @@
           background: url('../../../../assets/images/comprehensive/progress-tracker/retirement-icon.svg');
           background-position: 10px 3px;
           background-repeat: no-repeat;
-        }        
-        
+        }
+
         &.risk-profile {
           background: url('../../../../assets/images/comprehensive/progress-tracker/risk-assessment.svg');
           background-position: 10px 3px;
           background-repeat: no-repeat;
-        }     
-        
+        }
+
         &.review-inputs {
           background: url('../../../../assets/images/comprehensive/progress-tracker/review-inputs.svg');
           background-position: 10px 3px;
@@ -208,11 +215,11 @@
         ul {
           padding-left: 40px;
         }
-        
+
         li {
           font-size: 16px;
           font-family: $muli-regular;
-          border-left: 2px solid #ff872f;
+          border-left: 2px solid $crusta-orange-color;
           position: relative;
           padding-bottom: 35px;
           cursor: pointer;
@@ -255,7 +262,6 @@
           }
 
           &.active {
-            //padding-top: 23px;
             padding-left: 24px;
             min-height: 60px;
           }
@@ -280,7 +286,8 @@
 
           span {
             word-break: break-word;
-            strong{
+
+            strong {
               font-family: $muli-bold;
             }
           }
@@ -295,7 +302,7 @@
 
     /* Track */
     &::-webkit-scrollbar-track {
-      background: #066360;
+      background: $watercourse-color;
     }
 
     /* Handle */

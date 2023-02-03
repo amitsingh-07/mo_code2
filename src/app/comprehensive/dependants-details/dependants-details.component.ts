@@ -4,7 +4,6 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { NgbDateParserFormatter, NgbDatepickerConfig, NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { TranslateService } from '@ngx-translate/core';
 import { Subscription } from 'rxjs';
-
 import { LoaderService } from '../../shared/components/loader/loader.service';
 import { AboutAge } from '../../shared/utils/about-age.util';
 import { RegexConstants } from '../../shared/utils/api.regex.constants';
@@ -201,7 +200,6 @@ export class DependantsDetailsComponent implements OnInit, OnDestroy {
     this.myDependantForm.get('dependentMappingList').markAsDirty();
   }
   validateDependantForm(form: FormGroup) {
-
     this.submitted = true;
     if (!form.valid) {
       const error = this.comprehensiveService.getMultipleFormError(form, COMPREHENSIVE_FORM_CONSTANTS.dependantForm,
@@ -224,7 +222,6 @@ export class DependantsDetailsComponent implements OnInit, OnDestroy {
           && this.comprehensiveService.getMySubSteps() < 2)) {
           this.hasDependant = form.value.dependentMappingList.length > 0;
           this.houseHold = this.comprehensiveService.gethouseHoldDetails();
-
           form.value.hasDependents = this.hasDependant;
           form.value.noOfHouseholdMembers = this.houseHold.noOfHouseholdMembers;
           form.value.houseHoldIncome = this.houseHold.houseHoldIncome;
@@ -254,7 +251,6 @@ export class DependantsDetailsComponent implements OnInit, OnDestroy {
     } else {
       this.goToNextPage();
     }
-
   }
 
   goToNextPage() {
@@ -325,10 +321,8 @@ export class DependantsDetailsComponent implements OnInit, OnDestroy {
     if (document.createRange) {
       const range = document.createRange();
       range.selectNodeContents(contentEditableElement);
-
       range.setStart(contentEditableElement.firstChild, position);
       range.setEnd(contentEditableElement.firstChild, position);
-
       const selection = window.getSelection();
       selection.removeAllRanges();
       selection.addRange(range);

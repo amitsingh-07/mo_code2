@@ -32,7 +32,7 @@ export class DropdownWithSearchComponent implements OnInit {
   @ViewChild('searchInputElement', { static: true }) searchInputElement: ElementRef;
 
   constructor(private parent: FormGroupDirective, private cd: ChangeDetectorRef, private upperCasePipe: UpperCasePipe,
-  private lowerCasePipe: LowerCasePipe, private titleCasePipe: TitleCasePipe ) {
+    private lowerCasePipe: LowerCasePipe, private titleCasePipe: TitleCasePipe) {
   }
 
   ngOnInit() {
@@ -85,14 +85,14 @@ export class DropdownWithSearchComponent implements OnInit {
   }
 
   getTransformedValue(selectedValue: any) {
-    if(this.textCase && this.textCase === 'default') {      
+    if (this.textCase && this.textCase === 'default') {
       return selectedValue;
-    } else if(this.textCase && this.textCase === 'uppercase') {      
+    } else if (this.textCase && this.textCase === 'uppercase') {
       return this.upperCasePipe.transform(selectedValue);
-    } else if(this.textCase && this.textCase === 'lowercase') { 
+    } else if (this.textCase && this.textCase === 'lowercase') {
       return this.lowerCasePipe.transform(selectedValue);
     } else {
       return this.titleCasePipe.transform(selectedValue);
     }
-  } 
+  }
 }

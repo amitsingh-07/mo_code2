@@ -1,9 +1,10 @@
 import { Component, EventEmitter, Input, OnInit, Output, ViewEncapsulation } from '@angular/core';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { TranslateService } from '@ngx-translate/core';
+
 import { appConstants } from '../../../../app.constants';
 import { AuthenticationService } from '../../../../shared/http/auth/authentication.service';
-
+import { environment } from '../../../../../environments/environment'
 @Component({
   selector: 'app-instruction-steps',
   templateUrl: './instruction-steps.component.html',
@@ -20,8 +21,8 @@ export class InstructionStepsComponent implements OnInit {
   @Output() showCopyToast: EventEmitter<any> = new EventEmitter();
 
   constructor(public readonly translate: TranslateService,
-              private modal: NgbModal,
-              public authService: AuthenticationService) { }
+    private modal: NgbModal,
+    public authService: AuthenticationService) { }
 
   ngOnInit() {
   }
@@ -31,7 +32,7 @@ export class InstructionStepsComponent implements OnInit {
   }
 
   getQrCodeImg() {
-    return document.getElementsByTagName('base')[0].href + 'assets/images/paynow-qrcode.png';
+    return environment.apiBaseUrl + '/app/assets/images/paynow-qrcode.png';
   }
 
   notify(event) {

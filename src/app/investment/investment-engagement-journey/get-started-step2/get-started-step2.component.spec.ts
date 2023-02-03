@@ -1,6 +1,6 @@
 import { GetStartedStep2Component } from './get-started-step2.component';
 import { IntroScreenComponent } from '../intro-screen/intro-screen.component';
-import { async, ComponentFixture, TestBed,getTestBed } from '@angular/core/testing';
+import { waitForAsync, ComponentFixture, TestBed, getTestBed } from '@angular/core/testing';
 import { ReactiveFormsModule } from '@angular/forms';
 import { RouterTestingModule } from '@angular/router/testing';
 import { JwtModule } from '@auth0/angular-jwt';
@@ -13,7 +13,7 @@ import {
   INVESTMENT_ENGAGEMENT_JOURNEY_ROUTE_PATHS
 } from '../investment-engagement-journey-routes.constants';
 import { TranslateService } from '@ngx-translate/core';
-import { Injector, NO_ERRORS_SCHEMA } from '@angular/core';
+import { Injector } from '@angular/core';
 
 describe('GetStartedStep2Component', () => {
   let component: GetStartedStep2Component;
@@ -25,7 +25,7 @@ describe('GetStartedStep2Component', () => {
   let injector: Injector;
   let translations = require('../../../../assets/i18n/investment-engagement-journey/en.json');
 
-  beforeEach(async(() => {
+  beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
       declarations: [GetStartedStep2Component, IntroScreenComponent],
       imports: [TranslateModule.forRoot(), RouterTestingModule.withRoutes([]),
@@ -46,11 +46,11 @@ describe('GetStartedStep2Component', () => {
     translateService = injector.get(TranslateService);
     translateService.setTranslation('en', translations);
     translateService.use('en');
-  
+
     fixture = TestBed.createComponent(GetStartedStep2Component);
     component = fixture.componentInstance;
     fixture.detectChanges();
-   
+
   });
   afterEach(() => {
     TestBed.resetTestingModule();

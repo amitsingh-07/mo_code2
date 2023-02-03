@@ -68,9 +68,9 @@
                           <button class="btn btn-dropdown without-border" id="additional_declaration_sourse-drpdown"
                             ngbDropdownToggle>
                             {{additionDeclarationtwo.controls.source.value ?
-                                    additionDeclarationtwo.controls.source.value.name :
-                                    ( 'ADDITIONAL_DECLARATIONS_SCREEN_TWO.SOURCE_PLACEHOLDER' | translate)
-                                  }}
+                            additionDeclarationtwo.controls.source.value.name :
+                            ( 'ADDITIONAL_DECLARATIONS_SCREEN_TWO.SOURCE_PLACEHOLDER' | translate)
+                            }}
                           </button>
                           <div class="dropdown" ngbDropdownMenu aria-labelledby="courseDropdown">
                             <button class="dropdown-item" *ngFor="let sourceObj of sourceOfIncomeList; let i = index;"
@@ -88,8 +88,9 @@
                   <div class="flex-row">
                     <div class="flex-col-12 mb10">
                       <div class="form-group-with-bg--content-label" for="name"
-                        id="additional_declaration_personalSaving_lab">{{'ADDITIONAL_DECLARATIONS_SCREEN_TWO.PERSONAL_SAVINGS'
-                                | translate}}
+                        id="additional_declaration_personalSaving_lab">
+                        {{'ADDITIONAL_DECLARATIONS_SCREEN_TWO.PERSONAL_SAVINGS'
+                        | translate}}
                       </div>
                     </div>
                     <div class="flex-col-12" formGroupName="personalSavingForm">
@@ -110,8 +111,9 @@
                   <div class="flex-row">
                     <div class="flex-col-12 mb10">
                       <div class="form-group-with-bg--content-label" for="name"
-                        id="additional_declaration_Gift_inheritanc_lab">{{'ADDITIONAL_DECLARATIONS_SCREEN_TWO.INHERITANCE_GIFT'
-                                | translate}}
+                        id="additional_declaration_Gift_inheritanc_lab">
+                        {{'ADDITIONAL_DECLARATIONS_SCREEN_TWO.INHERITANCE_GIFT'
+                        | translate}}
                       </div>
                     </div>
                     <div class="flex-col-12" formGroupName="inheritanceGiftFrom">
@@ -133,7 +135,7 @@
                     <div class="flex-col-12 mb10">
                       <div class="form-group-with-bg--content-label" for="name"
                         id="additional_declaration_Gift_inheritanc_lab">{{'ADDITIONAL_DECLARATIONS_SCREEN_TWO.OTHERS'
-                                | translate}}
+                        | translate}}
                       </div>
                     </div>
                     <div class="flex-col-12" formGroupName="othersFrom">
@@ -190,7 +192,7 @@
                               </span>
                               <span
                                 *ngIf="additionDeclarationtwo.controls.investmentEarnings.controls.earningsGenerated.value">{{additionDeclarationtwo.controls.investmentEarnings.controls.earningsGenerated.value.name
-                                        }} </span>
+                                }} </span>
                             </button>
                             <div class="dropdown" ngbDropdownMenu aria-labelledby="courseDropdown">
                               <button class="dropdown-item" *ngFor="let generated of generatedList; let i = index;"
@@ -223,9 +225,9 @@
                           <button class="btn btn-dropdown without-border" id="additional_declaration_sourse-drpdown"
                             ngbDropdownToggle>
                             {{additionDeclarationtwo.controls.sourceOfWealth.value ?
-                                    additionDeclarationtwo.controls.sourceOfWealth.value.name :
-                                    ( 'ADDITIONAL_DECLARATIONS_SCREEN_TWO.SOURCE_PLACEHOLDER' | translate)
-                                  }}
+                            additionDeclarationtwo.controls.sourceOfWealth.value.name :
+                            ( 'ADDITIONAL_DECLARATIONS_SCREEN_TWO.SOURCE_PLACEHOLDER' | translate)
+                            }}
                           </button>
                           <div class="dropdown" ngbDropdownMenu aria-labelledby="courseDropdown">
                             <button class="dropdown-item" *ngFor="let sourceObj of sourceOfIncomeList; let i = index;"
@@ -243,8 +245,9 @@
                   <div class="flex-row">
                     <div class="flex-col-12 mb10">
                       <div class="form-group-with-bg--content-label" for="name"
-                        id="additional_declaration_personalSaving_lab">{{'ADDITIONAL_DECLARATIONS_SCREEN_TWO.PERSONAL_SAVINGS'
-                                | translate}}
+                        id="additional_declaration_personalSaving_lab">
+                        {{'ADDITIONAL_DECLARATIONS_SCREEN_TWO.PERSONAL_SAVINGS'
+                        | translate}}
                       </div>
                     </div>
                     <div class="flex-col-12" formGroupName="srcOfWealthPersonalSavingForm">
@@ -265,8 +268,9 @@
                   <div class="flex-row">
                     <div class="flex-col-12 mb10">
                       <div class="form-group-with-bg--content-label" for="name"
-                        id="additional_declaration_Gift_inheritanc_lab">{{'ADDITIONAL_DECLARATIONS_SCREEN_TWO.INHERITANCE_GIFT'
-                                | translate}}
+                        id="additional_declaration_Gift_inheritanc_lab">
+                        {{'ADDITIONAL_DECLARATIONS_SCREEN_TWO.INHERITANCE_GIFT'
+                        | translate}}
                       </div>
                     </div>
                     <div class="flex-col-12" formGroupName="srcOfWealthInheritanceGiftForm">
@@ -288,7 +292,7 @@
                     <div class="flex-col-12 mb10">
                       <div class="form-group-with-bg--content-label" for="name"
                         id="additional_declaration_Gift_inheritanc_lab">{{'ADDITIONAL_DECLARATIONS_SCREEN_TWO.OTHERS'
-                                | translate}}
+                        | translate}}
                       </div>
                     </div>
                     <div class="flex-col-12" formGroupName="srcOfWealthOthersForm">
@@ -346,7 +350,7 @@
                               <span
                                 *ngIf="additionDeclarationtwo.controls.srcOfWealthInvestmentEarningsForm.controls.earningsGeneratedWealth.value">
                                 {{additionDeclarationtwo.controls.srcOfWealthInvestmentEarningsForm.controls.earningsGeneratedWealth.value.name
-                                        }} </span>
+                                }} </span>
                             </button>
                             <div class="dropdown" ngbDropdownMenu aria-labelledby="courseDropdown">
                               <button class="dropdown-item" *ngFor="let generated of generatedList; let i = index;"
@@ -365,7 +369,7 @@
                   <button type="button" id="additional_declaration_screen_two_Btn"
                     (click)="goToNext(additionDeclarationtwo)"
                     class="btn btn__footer--fixed btn-ftr-get-started btn-primary width100" id="getStrdBtn3">{{
-                            'COMMON.LABEL.SUBMIT' | translate}}</button>
+                    'COMMON.LABEL.SUBMIT' | translate}}</button>
                 </div>
               </form>
             </div>

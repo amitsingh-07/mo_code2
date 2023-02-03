@@ -1,4 +1,4 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { waitForAsync, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { YourPortfolioComponent } from './your-portfolio.component';
 
@@ -6,11 +6,11 @@ describe('YourPortfolioComponent', () => {
   let component: YourPortfolioComponent;
   let fixture: ComponentFixture<YourPortfolioComponent>;
 
-  beforeEach(async(() => {
+  beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
-      declarations: [ YourPortfolioComponent ]
+      declarations: [YourPortfolioComponent]
     })
-    .compileComponents();
+      .compileComponents();
   }));
 
   beforeEach(() => {
@@ -23,12 +23,12 @@ describe('YourPortfolioComponent', () => {
     expect(component).toBeTruthy();
   });
 
-  it('should render Top Up content', async(() => {
+  it('should render Top Up content', waitForAsync(() => {
     const compiled = fixture.debugElement.nativeElement;
     expect(compiled.querySelector('#topup_button').textContent).toContain('Total Returns');
   }));
 
-  it('testing the Top Up button', async(() => {
+  it('testing the Top Up button', waitForAsync(() => {
     spyOn(component, 'gotoTopUp');
     const button = fixture.debugElement.nativeElement.querySelector('button');
     button.click();

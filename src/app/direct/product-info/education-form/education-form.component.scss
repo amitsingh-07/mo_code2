@@ -1,83 +1,86 @@
 @import '../../../../variables';
 @import '../../../../mixins';
+
 app-education-form {
-.form-group {
-  &.direct-form {
-    border: 1px solid $form-title-backgrnd-color;
-    border-radius: 6px;
-  }
-
-  &:last-child {
-    margin-left: 18px;
-  }
-}
-
-.educationForm-title {
-  color: $teal-color;
-  background: $form-title-backgrnd-color;
-  font-size: 16px;
-  font-family: $muli-bold;
-  padding: 13px 20px;
-  border-radius: 6px 6px 0 0;
-}
-
-.form-group {
-  .frm-data {
-    padding-top: 20px;
-    @include allmobiles {
-      padding-top: 22px !important;
-      border: 1px solid #009A99;
-      border-radius: 0px 0px 6px 6px;
-    }
-  }
-
-  .flex-row {
-    margin-bottom: 17px;
-  }
-}
-
-fieldset {
-  &:disabled {
-    cursor: not-allowed;
-    opacity: 0.2;
-
-    label {
-      cursor: not-allowed;
-    }
-
-    input {
-      cursor: not-allowed;
-    }
-
-    button {
-      cursor: not-allowed;
-
-      img {
-        cursor: not-allowed;
-      }
-    }
-  }
-}
-
-@include allmobiles {
   .form-group {
     &.direct-form {
-      border: none;
+      border: 1px solid $form-title-backgrnd-color;
+      border-radius: 6px;
     }
 
     &:last-child {
-      margin-left: 0px;
+      margin-left: 18px;
     }
   }
 
   .educationForm-title {
-    font-family: $muli-bold;
-    color: $white-color;
-    background: $form-title-mob-backgrnd-color;
+    color: $teal-color;
+    background: $form-title-backgrnd-color;
     font-size: 16px;
+    font-family: $muli-bold;
+    padding: 13px 20px;
+    border-radius: 6px 6px 0 0;
   }
-}
-.education-form {
+
+  .form-group {
+    .frm-data {
+      padding-top: 20px;
+
+      @include allmobiles {
+        padding-top: 22px !important;
+        border: 1px solid $persian-light-green-color;
+        border-radius: 0px 0px 6px 6px;
+      }
+    }
+
+    .flex-row {
+      margin-bottom: 17px;
+    }
+  }
+
+  fieldset {
+    &:disabled {
+      cursor: not-allowed;
+      opacity: 0.2;
+
+      label {
+        cursor: not-allowed;
+      }
+
+      input {
+        cursor: not-allowed;
+      }
+
+      button {
+        cursor: not-allowed;
+
+        img {
+          cursor: not-allowed;
+        }
+      }
+    }
+  }
+
+  @include allmobiles {
+    .form-group {
+      &.direct-form {
+        border: none;
+      }
+
+      &:last-child {
+        margin-left: 0px;
+      }
+    }
+
+    .educationForm-title {
+      font-family: $muli-bold;
+      color: $white-color;
+      background: $form-title-mob-backgrnd-color;
+      font-size: 16px;
+    }
+  }
+
+  .education-form {
     @include desktop {
       display: flex;
       border: 1px solid $form-title-backgrnd-color;
@@ -85,35 +88,42 @@ fieldset {
       padding-top: 22px;
       justify-content: space-between;
       padding-right: 20px;
+
       &:nth-child(2) {
         .flex-row {
           padding-right: 0 !important;
         }
       }
     }
+
     @include allmobiles {
-      border: 1px solid #009A99;
+      border: 1px solid $persian-light-green-color;
       border-radius: 0px 0px 6px 6px;
     }
+
     .form-group {
       &.direct-form {
         border: none;
         border-radius: 0;
       }
     }
+
     @include allmobiles {
       .direct-form {
         padding: 0 0;
       }
+
       .direct-form:nth-child(1) {
         padding-top: 20px;
       }
     }
   }
+
   .education-form-wrapper {
     @include allmobiles {
       margin: 0 20px;
     }
+
     @include desktop {
       min-width: 756px;
       justify-content: space-between;

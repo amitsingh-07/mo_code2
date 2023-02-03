@@ -1,7 +1,4 @@
 import { Component, OnInit, ViewEncapsulation } from '@angular/core';
-import { FormBuilder } from '@angular/forms';
-import { Router } from '@angular/router';
-import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { TranslateService } from '@ngx-translate/core';
 
 import { FooterService } from '../../../shared/footer/footer.service';
@@ -26,18 +23,15 @@ export class HoldingsComponent implements OnInit {
   constructor(
     public readonly translate: TranslateService,
     public headerService: HeaderService,
-    private formBuilder: FormBuilder,
     public authService: AuthenticationService,
-    private router: Router,
     public navbarService: NavbarService,
     public footerService: FooterService,
-    private modal: NgbModal,
     public manageInvestmentsService: ManageInvestmentsService
-    ) {
-      this.formValues = this.manageInvestmentsService.getTopUpFormData();
-      this.portfolio = this.formValues.selectedCustomerPortfolio;
-      this.translate.use('en');
-      this.translate.get('COMMON').subscribe((result: string) => {
+  ) {
+    this.formValues = this.manageInvestmentsService.getTopUpFormData();
+    this.portfolio = this.formValues.selectedCustomerPortfolio;
+    this.translate.use('en');
+    this.translate.get('COMMON').subscribe((result: string) => {
       this.pageTitle = this.translate.instant('HOLDINGS.TITLE');
       this.setPageTitle(this.pageTitle);
     });
@@ -53,7 +47,7 @@ export class HoldingsComponent implements OnInit {
     this.footerService.setFooterVisibility(false);
   }
 
-   setPageTitle(title: string) {
+  setPageTitle(title: string) {
     const stepLabel = this.portfolio.portfolioName;
     this.navbarService.setPageTitle(
       title,

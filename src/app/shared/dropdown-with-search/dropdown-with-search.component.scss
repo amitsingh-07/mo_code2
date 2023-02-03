@@ -1,67 +1,65 @@
 @import '../../../_variables.scss';
 @import '../../../_mixins.scss';
 
-// .dropdown-item {
-//     white-space: normal;
-//     word-break: break-all;
-//     // padding-bottom: 16px; 
-//   }
-  
-  .dropdown-control .btn-dropdown {
-    padding-right: 27px;
+.dropdown-control .btn-dropdown {
+  padding-right: 27px;
+  max-height: 52px;
+}
+
+.dropdown-menu.show {
+  &.with-search {
+    right: -1px;
+    left: -1px !important;
+  }
+}
+
+.search-input-container {
+  display: none;
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  right: 0px;
+  max-height: 52px;
+
+  img {
+    position: absolute;
+    top: 18px;
+    left: 10px;
+
+    @include ieSpecific {
+      top: 20px;
+    }
+  }
+
+  .search-control {
+    padding: 14px 20px 14px 37px;
+    background-color: $search-control-bg-color;
+    border-width: 0px;
+    color: $search-control-color;
+    width: 100%;
     max-height: 52px;
-    // white-space: nowrap;
-    // overflow: hidden;
-    // text-overflow: ellipsis;
-  }
-  
-  .dropdown-menu.show {
-      &.with-search {
-          right: -1px;
-          left:-1px !important;
-      }
-  }
-  .search-input-container {
-      display:none;
-      position:absolute;
-      top: 0px;
-      left: 0px;
-      right: 0px;
-      max-height: 52px;
-      img {
-        position:absolute;
-        top:18px;
-        left:10px;
-        @include ieSpecific{
-          top:20px;
-        }
-      }
-    .search-control {
-      padding: 14px 20px 14px 37px;
-      background-color: $search-control-bg-color;
-      border-width: 0px;
-      color: $search-control-color;
-      width: 100%;
-      max-height: 52px;
-      border-radius: 6px;
-      border: 1px solid $search-control-brdr-color;
-      border-radius: 6px;
-      @include ieSpecific{
-        padding: 15px 20px 15px 37px;
-      }
-    }
-    &.show {
-      display:block;
-    }
-    input {
-      border-radius: 0;
-    }
-    input[type="search"] {
-      -webkit-appearance: none;
+    border-radius: 6px;
+    border: 1px solid $search-control-brdr-color;
+    border-radius: 6px;
+
+    @include ieSpecific {
+      padding: 15px 20px 15px 37px;
     }
   }
-  
-  .no-result {
-    margin: 5px 15px;
+
+  &.show {
+    display: block;
   }
-  
+
+  input {
+    border-radius: 0;
+  }
+
+  input[type="search"] {
+    -webkit-appearance: none;
+  }
+}
+
+.no-result {
+  margin: 5px 15px;
+}

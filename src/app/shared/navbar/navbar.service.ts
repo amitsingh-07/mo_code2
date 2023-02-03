@@ -1,9 +1,10 @@
 import { Location } from '@angular/common';
-import { ElementRef, Injectable, ViewChild } from '@angular/core';
+import { ElementRef, Injectable, NgZone } from '@angular/core';
 import { NavigationStart, Router } from '@angular/router';
 import { BehaviorSubject, fromEvent, Observable } from 'rxjs';
 import { Subject } from 'rxjs/internal/Subject';
 import { filter, tap } from 'rxjs/operators';
+import { CapacitorUtils } from '../utils/capacitor.util';
 
 import { IHeaderMenuItem } from './navbar.types';
 
@@ -87,11 +88,16 @@ export class NavbarService {
   wiseIncomeDropDownShow = new BehaviorSubject(false);
   displayingWelcomeFlowContent$: BehaviorSubject<boolean> = new BehaviorSubject(false);
   welcomeJourneyCompleted: boolean = false;
+  urlHistory = { currentUrl: null, previousUrl: []};
+  isBackClicked = false;
 
-  constructor(private router: Router, private _location: Location) {
+  constructor(private router: Router, private _location: Location, private ngZone: NgZone) {
     this.router.events.pipe(
       filter((event) => event instanceof NavigationStart)
     ).subscribe((event: NavigationStart) => {
+      if (CapacitorUtils.isApp) { 
+        this.handlingMobileAppNavigationUrlHistory(event);
+      }
       this.unsubscribeBackPress();
     });
   }
@@ -181,7 +187,7 @@ export class NavbarService {
       this.pageHelpIcon.next(true);
     } else {
       this.pageHelpIcon.next(false);
-    } 
+    }
     if (settingsIcon) {
       this.pageSettingsIcon.next(true);
     } else {
@@ -220,7 +226,16 @@ export class NavbarService {
   }
 
   goBack() {
-    this._location.back();
+    if (CapacitorUtils.isApp && CapacitorUtils.isIOSDevice) {
+      this.isBackClicked = true;
+      this.urlHistory.currentUrl = this.urlHistory.previousUrl[this.urlHistory.previousUrl.length - 1];
+      this.urlHistory.previousUrl.splice(this.urlHistory.previousUrl.length - 1, 1);
+      this.router.navigate([this.urlHistory.currentUrl]);
+    } else {
+      this.ngZone.run(() => {
+        this._location.back();
+      });
+    }
   }
 
   // Clearing Notification
@@ -231,7 +246,7 @@ export class NavbarService {
   unsubscribeClearNotification() {
     this.clearNotificationEvent.next(false);
   }
-  
+
   subscribeBackPress() {
     this.isBackPressSubscribed.next(true);
     return this.currentBackListener;
@@ -267,15 +282,15 @@ export class NavbarService {
   showPromoAppliedToast() {
     this.promoAppliedCardVisibility.next(true);
     // Set timeout to show card for how long
-    setTimeout(()=> {
+    setTimeout(() => {
       this.promoAppliedCardVisibility.next(false);
     }, 3000);
   }
-  
+
   setMenuItemInvestUser(isVisible: boolean) {
     this.menuItemInvestUser.next(isVisible);
   }
-  
+
   /*WiseIncome Dropdown Scroll*/
   setScrollTo(elementName, navBarHeight) {
     let scrollOption = {
@@ -292,7 +307,7 @@ export class NavbarService {
   setPaymentLockIcon(lockIcon: boolean) {
     this.paymentLockIcon.next(lockIcon);
   }
-  
+
   setPromoCodeCpf(promoCode: any) {
     this.setCpfPromoCode.next(promoCode);
   }
@@ -301,10 +316,24 @@ export class NavbarService {
   preventBackButton(): Observable<Event> {
     history.pushState(null, "null", window.location.href);
     return fromEvent(window, 'popstate')
-    .pipe(tap(res => {
-      history.pushState(null, "null", window.location.href);
-     })
-    );
+      .pipe(tap(res => {
+        history.pushState(null, "null", window.location.href);
+      })
+      );
   }
-  
+
+  handlingMobileAppNavigationUrlHistory(event) {
+    if (!this.isBackClicked) {
+      this.urlHistory.currentUrl && this.urlHistory.previousUrl.push(this.urlHistory.currentUrl);
+      this.urlHistory.currentUrl = event.url;
+    }
+    if (this.isBackClicked) {
+      this.isBackClicked = false;
+    }
+  }
+
+  clearUrlHistory() {
+    this.urlHistory = { currentUrl: null, previousUrl: [] };
+  }
+
 }

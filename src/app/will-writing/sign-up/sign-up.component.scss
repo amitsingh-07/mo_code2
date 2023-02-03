@@ -4,7 +4,7 @@
 app-sign-up{
 .yes-login-but{
     border-radius: 6px;
-    background-color: #ffffff;
+    background-color: $white-color;
     box-shadow: 0 6px 7px 0 rgba(0, 0, 0, 0.14);
     width: 315px;
     height: 57px;
@@ -12,7 +12,7 @@ app-sign-up{
     font-size: 22px;
     letter-spacing: -0.2px;
     text-align: center;
-    color: #00a7a7;
+    color: $teal-color;
     border-width:0px;
     cursor: pointer;
   }
@@ -21,12 +21,12 @@ app-sign-up{
     font-size: 22px;
     letter-spacing: -0.2px;
     text-align: center;
-    color: #ffffff;
+    color: $white-color;
     width: 315px;
     height: 57px;
     border-radius: 6px;
-    border: solid 1px #ffffff;
-    background-color: #00a7a7;
+    border: solid 1px $white-color;
+    background-color: $teal-color;
     cursor: pointer;
   }
   .prelogin-wrapper__title
@@ -35,7 +35,7 @@ app-sign-up{
     font-size: 24px;
     letter-spacing: -0.3px;
     text-align: center;
-    color: #ffffff;
+    color: $white-color;
     margin-bottom: 36px;
     margin-left: auto;
     margin-right: auto;

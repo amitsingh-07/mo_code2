@@ -80,9 +80,9 @@ export class ResidentialAddressComponent implements OnInit {
     this.investmentAccountService.getAllDropDownList().subscribe((data) => {
       this.reasonList = data.objectList.differentAddressReason;
     },
-    (err) => {
-      this.investmentAccountService.showGenericErrorModal();
-    });
+      (err) => {
+        this.investmentAccountService.showGenericErrorModal();
+      });
   }
 
   buildForm(): FormGroup {
@@ -203,8 +203,8 @@ export class ResidentialAddressComponent implements OnInit {
               value: this.formValues.mailCountry
                 ? this.formValues.mailCountry
                 : this.investmentAccountService.getCountryFromNationalityCodeByFilter(
-                    this.formValues.nationalityCode
-                  ),
+                  this.formValues.nationalityCode
+                ),
               disabled: this.investmentAccountService.isDisabled('mailCountry')
             },
             Validators.required
@@ -247,7 +247,7 @@ export class ResidentialAddressComponent implements OnInit {
   }
   addOrRemoveOtherControl(value) {
     const mailFormGroup = this.addressForm.get('mailingAddress') as FormGroup;
-    if ( value && value.name === 'Others, please specify') {
+    if (value && value.name === 'Others, please specify') {
       mailFormGroup.addControl(
         'reasonForOthers',
         new FormControl(
@@ -461,7 +461,7 @@ export class ResidentialAddressComponent implements OnInit {
     }
     return isDisabled;
   }
-  
+
   showHelpModalCountry() {
     const ref = this.modal.open(ErrorModalComponent, { centered: true });
     ref.componentInstance.errorTitle = this.tooltipDetails.TITLE;

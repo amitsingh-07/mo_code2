@@ -2,7 +2,7 @@
 @import '../../../mixins';
 
 .comprehensive.validate-result {
-  background: #fff;
+  background: $white-color;
   height: 95vh !important;
 
   @include desktop {
@@ -12,7 +12,7 @@
   }
 
   .header {
-    color: #066360;
+    color: $watercourse-color;
     font-size: 24px;
     font-family: $muli-bold;
   }
@@ -27,14 +27,14 @@
   .result-panel {
     &__about {
       font-size: 14px;
-      color: #9f9f9f;
+      color: $dark-silver-chalice-color;
       font-family: $muli-italic;
     }
   }
 
   .about {
     font-size: 16px;
-    color: #066360;
+    color: $watercourse-color;
     font-family: $muli-regular;
   }
 }

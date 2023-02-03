@@ -1,4 +1,4 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { waitForAsync, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { DistributeYourEstateComponent } from './distribute-your-estate.component';
 
@@ -6,7 +6,7 @@ describe('DistributeYourEstateComponent', () => {
   let component: DistributeYourEstateComponent;
   let fixture: ComponentFixture<DistributeYourEstateComponent>;
 
-  beforeEach(async(() => {
+  beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
       declarations: [ DistributeYourEstateComponent ]
     })
@@ -23,20 +23,20 @@ describe('DistributeYourEstateComponent', () => {
     expect(component).toBeTruthy();
   });
 
-  it('should render step-title in a intro-block__content__heading', async(() => {
+  it('should render step-title in a intro-block__content__heading', waitForAsync(() => {
     const compiled = fixture.debugElement.nativeElement;
     expect(compiled.querySelector('intro-block__content__heading').textContent).toContain('Step 2');
   }));
-  it('should render start-title in a intro-block__content__title', async(() => {
+  it('should render start-title in a intro-block__content__title', waitForAsync(() => {
     const compiled = fixture.debugElement.nativeElement;
     expect(compiled.querySelector('intro-block__content__title').textContent).toContain('Distribute Your Estate');
   }));
-  it('should render sub-title in a intro-block__content__sub-title', async(() => {
+  it('should render sub-title in a intro-block__content__sub-title', waitForAsync(() => {
     const compiled = fixture.debugElement.nativeElement;
     // tslint:disable-next-line:max-line-length
     expect(compiled.querySelector('intro-block__content__sub-title').textContent).toContain('In the next step, you will decide who inherits which portion of your estate.');
   }));
-  it('testing the proceed button', async(() => {
+  it('testing the proceed button', waitForAsync(() => {
     spyOn(component, 'goToNext');
     const button = fixture.debugElement.nativeElement.querySelector('button');
     button.click();

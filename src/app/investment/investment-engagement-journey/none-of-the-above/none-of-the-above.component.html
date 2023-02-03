@@ -1,14 +1,14 @@
 <div class="container-fluid max-width--1024 investment">
     <div class="row">
-      <div class="col-lg-7 col-md-6 hidden-sm-md">
-        <h2>{{'NONE_OF_THE_ABOVE.PAGE_TITLE' | translate}}</h2>
-        <div class="text-lyt">{{'NONE_OF_THE_ABOVE.PAGE_DESC' | translate}}</div>
-        <div class="banner-image">
-          <img src="assets/images/investment-account/cka-banner.svg" />
+        <div class="col-lg-7 col-md-6 hidden-sm-md">
+            <h2>{{'NONE_OF_THE_ABOVE.PAGE_TITLE' | translate}}</h2>
+            <div class="text-lyt">{{'NONE_OF_THE_ABOVE.PAGE_DESC' | translate}}</div>
+            <div class="banner-image">
+                <img src="assets/images/investment-account/cka-banner.svg" />
+            </div>
         </div>
-      </div>
-      <div class="col-lg-5 col-md-6">
-          <div class="form-group-single-column flex-col">
+        <div class="col-lg-5 col-md-6">
+            <div class="form-group-single-column flex-col">
                 <div class="tiles">
                     <div class="flex-row tile">
                         <div class="flex-col-11">
@@ -28,7 +28,9 @@
                             <div class="step" [innerHtml]="'NONE_OF_THE_ABOVE.STEP_2' | translate"></div>
                             <div class="step">
                                 <span [innerHtml]="'NONE_OF_THE_ABOVE.STEP_3_LBL_1' | translate"></span>
-                                <span class="hyperlink_color" (click)="uploadCertificate()">{{'NONE_OF_THE_ABOVE.STEP_3_LBL_2' | translate}}</span>
+                                <span class="hyperlink_color"
+                                    (click)="uploadCertificate()">{{'NONE_OF_THE_ABOVE.STEP_3_LBL_2' |
+                                    translate}}</span>
                                 <span [innerHtml]="'NONE_OF_THE_ABOVE.STEP_3_LBL_3' | translate"></span>
                             </div>
                         </div>
@@ -37,15 +39,21 @@
                         </div>
                         <div class="text-bold pb20">{{'NONE_OF_THE_ABOVE.QUE_2' | translate}}</div>
                         <div class="steps">
-                            <div *ngIf="!authService.isUserTypeCorporate" class="step" [innerHtml]="'NONE_OF_THE_ABOVE.STEP_4' | translate"></div>
-                            <div *ngIf="authService.isUserTypeCorporate" class="step" [innerHtml]="'NONE_OF_THE_ABOVE.CORP_STEP_4' | translate"></div>
+                            <div *ngIf="!authService.isUserTypeCorporate" class="step"
+                                [innerHtml]="'NONE_OF_THE_ABOVE.STEP_4' | translate"></div>
+                            <div *ngIf="authService.isUserTypeCorporate" class="step"
+                                [innerHtml]="'NONE_OF_THE_ABOVE.CORP_STEP_4' | translate"></div>
                             <div class="step" [innerHtml]="'NONE_OF_THE_ABOVE.STEP_5' | translate"></div>
                         </div>
                     </div>
-                    <button type="button" class="btn btn-primary btn__footer--fixed width100" *ngIf="changeRedirectLocationBtn()" (click)="backToProfile()">{{'NONE_OF_THE_ABOVE.BACK_TO_PROFILE_LBL' | translate}}</button>
-                    <button type="button" class="btn btn-primary btn__footer--fixed width100" *ngIf="!changeRedirectLocationBtn()" [innerHtml]="'NONE_OF_THE_ABOVE.TAKE_CERTIFICATION_LBL' | translate"></button>
+                    <button type="button" class="btn btn-primary btn__footer--fixed width100"
+                        *ngIf="changeRedirectLocationBtn()"
+                        (click)="backToProfile()">{{'NONE_OF_THE_ABOVE.BACK_TO_PROFILE_LBL' | translate}}</button>
+                    <button type="button" class="btn btn-primary btn__footer--fixed width100"
+                        *ngIf="!changeRedirectLocationBtn()"
+                        [innerHtml]="'NONE_OF_THE_ABOVE.TAKE_CERTIFICATION_LBL' | translate"></button>
                 </div>
-          </div>
-      </div>
+            </div>
+        </div>
     </div>
-  </div>
+</div>

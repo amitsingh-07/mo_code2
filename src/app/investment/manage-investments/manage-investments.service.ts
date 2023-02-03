@@ -94,7 +94,7 @@ export class ManageInvestmentsService {
   getCpfiaFormData(): ICPFIAccountDetails {
     return this.manageInvestmentsFormData.cpfiaAccountDetails;
   }
-  
+
   getAllDropDownList() {
     return this.investmentApiService.getAllDropdownList();
   }
@@ -198,6 +198,7 @@ export class ManageInvestmentsService {
     this.manageInvestmentsFormData.userPortfolios = portfolioList;
     this.commit();
   }
+  
   // GET CCASH PORTFOLIO LIST//
 
   getCashPortfolioList() {
@@ -606,10 +607,10 @@ export class ManageInvestmentsService {
   }
 
   accountFormat = (accountNumber, operatorKey: string, operator = MANAGE_INVESTMENTS_CONSTANTS.TOPUP.CPF_OPERATOR, options: any = { guide: false }) => {
-      return conformToMask(
-          accountNumber,
-          operator[operatorKey].regExp,
-          options);
+    return conformToMask(
+      accountNumber,
+      operator[operatorKey].regExp,
+      options);
   }
 
   getSrsAccountDetails(): Observable<ISrsAccountDetails> {

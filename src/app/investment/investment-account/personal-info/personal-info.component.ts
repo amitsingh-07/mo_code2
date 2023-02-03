@@ -290,16 +290,16 @@ export class PersonalInfoComponent implements OnInit {
       ref.componentInstance.errorTitle = error.title;
       ref.componentInstance.errorMessageList = error.errorMessages;
       return false;
-    } 
+    }
     else {
       this.investmentAccountService.setPersonalInfo(form.getRawValue());
       this.source = this.formValues.isMyInfoEnabled ? INVESTMENT_ACCOUNT_CONSTANTS.VALIDATE_SOURCE.MYINFO : INVESTMENT_ACCOUNT_CONSTANTS.VALIDATE_SOURCE.MANUAL;
-      if (this.source == INVESTMENT_ACCOUNT_CONSTANTS.VALIDATE_SOURCE.MANUAL && this.showNric ){    
+      if (this.source == INVESTMENT_ACCOUNT_CONSTANTS.VALIDATE_SOURCE.MANUAL && this.showNric) {
         this.investmentCommonService.getUserNricValidation(form.getRawValue().nricNumber, this.source).subscribe((data) => {
-          if(data.responseMessage.responseCode === 6013){
+          if (data.responseMessage.responseCode === 6013) {
             this.router.navigate([INVESTMENT_ACCOUNT_ROUTE_PATHS.RESIDENTIAL_ADDRESS]);
           }
-          else if(data.responseMessage.responseCode === 6014){
+          else if (data.responseMessage.responseCode === 6014) {
             const ref = this.modal.open(ModelWithButtonComponent, { centered: true });
             ref.componentInstance.errorTitle = this.translate.instant(
               'PERSONAL_INFO.ERROR.TITLE'
@@ -311,7 +311,7 @@ export class PersonalInfoComponent implements OnInit {
               'PERSONAL_INFO.ERROR.BTN-TEXT'
             );
           }
-          else if(data.responseMessage.responseCode === 6015){
+          else if (data.responseMessage.responseCode === 6015) {
             const ref = this.modal.open(ModelWithButtonComponent, { centered: true });
             ref.componentInstance.errorTitle = this.translate.instant(
               'PERSONAL_INFO.ERROR.TITLE'
@@ -325,7 +325,7 @@ export class PersonalInfoComponent implements OnInit {
           }
         });
       }
-      else{
+      else {
         this.router.navigate([INVESTMENT_ACCOUNT_ROUTE_PATHS.RESIDENTIAL_ADDRESS]);
       }
     }

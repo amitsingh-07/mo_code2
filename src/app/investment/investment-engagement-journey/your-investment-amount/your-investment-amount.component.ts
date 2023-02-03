@@ -48,7 +48,7 @@ export class YourInvestmentAmountComponent implements OnInit {
   isCpfEnabled: boolean;
   financialFormValue: any;
   financialFormData = {
-    monthlyIncome:0,
+    monthlyIncome: 0,
     percentageOfSaving: 0,
     totalAssets: 0,
     totalLiabilities: 0,

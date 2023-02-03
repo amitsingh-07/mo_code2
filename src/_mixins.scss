@@ -96,6 +96,11 @@ $desktop-width: 1024px;
     @content;
   }
 }
+@mixin max375 {
+  @media (max-width: #{$mobile375-width}) {
+	@content;
+  }
+}
 @mixin iphone6 {
   @media (min-width: #{$mobile375-width}) and (max-width: #{$mobile414-width - 1px}) {
     @content;
@@ -624,7 +629,7 @@ _:-ms-fullscreen, :root .flex-col-12, :root .flex-col-7 {
 @mixin stepcolor {
   opacity: 0.2;
  &.active {
-    background-color: #31e5db !important;
+    background-color: $aqua-color !important;
     opacity: 1;
   }
 }

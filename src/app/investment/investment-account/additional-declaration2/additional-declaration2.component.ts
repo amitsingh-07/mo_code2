@@ -272,7 +272,6 @@ export class AdditionalDeclaration2Component implements OnInit {
   }
 
   private minValueValidation(control: AbstractControl) {
-    const value = control.value;
     if (control.value < 1) {
       return { minValueCheck: true };
     }
@@ -322,8 +321,6 @@ export class AdditionalDeclaration2Component implements OnInit {
     this.investmentCommonService.clearFundingDetails();
     this.investmentCommonService.clearAccountCreationActions();
   }
-
-  // MO2MP-6065 CHANGES
 
   openHelpModal(source) {
     const ref = this.modal.open(ErrorModalComponent, { centered: true });

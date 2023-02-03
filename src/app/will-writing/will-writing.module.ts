@@ -6,16 +6,12 @@ import { RouterModule } from '@angular/router';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
 import { MultiTranslateHttpLoader } from 'ngx-translate-multi-http-loader';
-
 import { SharedModule } from './../shared/shared.module';
 import { AboutMeComponent } from './about-me/about-me.component';
-import {
-  AppointYourExecutorTrusteeComponent
-} from './appoint-your-executor-trustee/appoint-your-executor-trustee.component';
+import { AppointYourExecutorTrusteeComponent } from './appoint-your-executor-trustee/appoint-your-executor-trustee.component';
 import { CheckEligibilityComponent } from './check-eligibility/check-eligibility.component';
 import { ConfirmationComponent } from './confirmation/confirmation.component';
 import { DistributeYourEstateComponent } from './distribute-your-estate/distribute-your-estate.component';
-import { HowItWorksComponent } from './how-it-works/how-it-works.component';
 import { IntroductionComponent } from './introduction/introduction.component';
 import { MyBeneficiariesComponent } from './my-beneficiaries/my-beneficiaries.component';
 import { MyChildGuardianComponent } from './my-child-guardian/my-child-guardian.component';
@@ -59,7 +55,6 @@ export function createTranslateLoader(http: HttpClient) {
     AboutMeComponent,
     CheckEligibilityComponent,
     DistributeYourEstateComponent,
-    HowItWorksComponent,
     IntroductionComponent,
     MyChildGuardianComponent,
     MyFamilyComponent,

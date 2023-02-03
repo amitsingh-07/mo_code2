@@ -1,9 +1,9 @@
-import { CurrencyPipe, DecimalPipe } from '@angular/common';
+import { DecimalPipe } from '@angular/common';
 import { AfterViewInit, Directive, ElementRef, HostListener, Input } from '@angular/core';
 
 @Directive({
     selector: '[appCurrencyInput]',
-    providers: [CurrencyPipe, DecimalPipe]
+    providers: [DecimalPipe]
 })
 
 export class CurrencyInputDirective implements AfterViewInit {
@@ -14,10 +14,10 @@ export class CurrencyInputDirective implements AfterViewInit {
     [x: string]: any;
 
     constructor(
-        private el: ElementRef, private currencyPipe: CurrencyPipe,
+        private el: ElementRef,
         private decimalPipe: DecimalPipe) {
-            this.el.nativeElement.type = 'tel'; // workaround for predictive text keyboard issue in samsung devices
-            this.el.nativeElement.setAttribute('inputmode', 'decimal');
+        this.el.nativeElement.type = 'tel'; // workaround for predictive text keyboard issue in samsung devices
+        this.el.nativeElement.setAttribute('inputmode', 'decimal');
     }
     ngAfterViewInit() {
         this.formatCurrency();
@@ -31,7 +31,7 @@ export class CurrencyInputDirective implements AfterViewInit {
             this.el.nativeElement.dispatchEvent(new Event('input'));
         }
         const amount = this.el.nativeElement.value;
-        if(amount != null && amount !== '' && parseFloat(amount) >= (this.allowMaxLimit*1) && !isNaN(parseFloat(amount))) {
+        if (amount != null && amount !== '' && parseFloat(amount) >= (this.allowMaxLimit * 1) && !isNaN(parseFloat(amount))) {
             this.el.nativeElement.value = amount.substring(0, 7);
         }
     }

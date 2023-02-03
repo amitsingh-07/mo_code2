@@ -44,7 +44,7 @@ export class ConfirmWithdrawalComponent implements OnInit {
     private investmentAccountService: InvestmentAccountService,
     private signUpService: SignUpService,
     public manageInvestmentsService: ManageInvestmentsService,
-    private investmentEngagementService: InvestmentEngagementJourneyService,
+    investmentEngagementService: InvestmentEngagementJourneyService,
     private investmentCommonService: InvestmentCommonService,
     private loaderService: LoaderService
   ) {

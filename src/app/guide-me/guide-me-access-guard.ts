@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { ActivatedRouteSnapshot, CanActivate } from '@angular/router';
+import { CanActivate } from '@angular/router';
 import { Router } from '@angular/router';
 import { Observable } from 'rxjs';
 import { AppService } from '../app.service';
@@ -17,7 +17,7 @@ export class GuideMeAccessGuard implements CanActivate {
     private appService: AppService
   ) {
   }
-  canActivate(route: ActivatedRouteSnapshot): Observable<boolean> | Promise<boolean> | boolean {
+  canActivate(): Observable<boolean> | Promise<boolean> | boolean {
     if (this.authService.getToken() === null && this.authService.getSessionId() === null) {
       this.authService.authenticate().subscribe((token) => {
         if (this.appService.getCorporateDetails() && this.appService.getCorporateDetails().organisationEnabled) {

@@ -1,4 +1,4 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { waitForAsync, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { CpfiaTooltipComponent } from './cpfia-tooltip.component';
 
@@ -6,11 +6,11 @@ describe('CpfiaTooltipComponent', () => {
   let component: CpfiaTooltipComponent;
   let fixture: ComponentFixture<CpfiaTooltipComponent>;
 
-  beforeEach(async(() => {
+  beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
-      declarations: [ CpfiaTooltipComponent ]
+      declarations: [CpfiaTooltipComponent]
     })
-    .compileComponents();
+      .compileComponents();
   }));
 
   beforeEach(() => {

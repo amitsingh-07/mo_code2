@@ -5,7 +5,6 @@
       <app-step-indicator [count]="6" [activeStepIndex]="2" [mode]="1"></app-step-indicator>
     </div>
   </div>
-  <!--  [class.invest-web-width]="!isEditProfile" [class.invest-web-pt-90]="isEditProfile" -->
   <div class="container-fluid max-width--1024" [class.invest-web-pt-90]="isEditProfile">
     <div class="content">
       <div class="title-big hidden-sm-md" *ngIf="!isEditProfile">{{'EMPLOYMENT_DETAILS.TITLE' | translate}}</div>
@@ -17,13 +16,13 @@
           <div class="row">
             <div class="col-md-1"></div>
             <div class="col-md-11">
-                    <form id="employement_details_form" name="employeDetailsFrom" [formGroup]="employementDetailsForm">
+              <form id="employement_details_form" name="employeDetailsFrom" [formGroup]="employementDetailsForm">
                 <!-- EMPLOyeMENT STATUS -->
                 <div class="form-group">
                   <div class="flex-row">
                     <div class="flex-col-5">
                       <label for="employement_details_status" id="employement_details_status-lbl">{{
-                            'EMPLOYMENT_DETAILS.EMPLOYEMEN_STATUS' | translate}}
+                        'EMPLOYMENT_DETAILS.EMPLOYEMEN_STATUS' | translate}}
                       </label>
                     </div>
                     <div class="flex-col-7">
@@ -32,7 +31,8 @@
                           <button [disabled]="isDisabled('employmentStatus')" class="btn btn-dropdown without-border"
                             id="employement_details_status-drpdown" ngbDropdownToggle>
                             <span
-                              *ngIf="!employementDetailsForm.controls.employmentStatus.value">{{'EMPLOYMENT_DETAILS.SELECT' | translate}}</span>
+                              *ngIf="!employementDetailsForm.controls.employmentStatus.value">{{'EMPLOYMENT_DETAILS.SELECT'
+                              | translate}}</span>
                             <span
                               *ngIf="employementDetailsForm.controls.employmentStatus.value">{{employementDetailsForm.controls.employmentStatus.value}}</span>
                           </button>
@@ -58,9 +58,10 @@
                       [ngClass]="{'inline-error': employementDetailsForm.get('companyName').enabled && !employementDetailsForm.get('companyName').valid && !employementDetailsForm.get('companyName').pristine}">
                       <div [attr.contenteditable]="!isDisabled('companyName')" id="companyName"
                         [textContent]="employementDetailsForm.get('companyName').value"
-                        (focusout)="setControlValue($event.target.textContent, 'companyName', employementDetailsForm);" maxlength="100"
-                        (keypress)="onKeyPressEvent($event, $event.target.textContent)" class="content-editable"
-                        [class.company-disabled]="isDisabled('companyName')" placeholder="Company Name">
+                        (focusout)="setControlValue($event.target.textContent, 'companyName', employementDetailsForm);"
+                        maxlength="100" (keypress)="onKeyPressEvent($event, $event.target.textContent)"
+                        class="content-editable" [class.company-disabled]="isDisabled('companyName')"
+                        placeholder="Company Name">
                       </div>
                     </div>
                   </div>
@@ -69,7 +70,7 @@
                     <div class="flex-row">
                       <div class="flex-col-5">
                         <label for="employement_details_status" id="employment_details_industry-lbl">{{
-                              'EMPLOYMENT_DETAILS.INDUSTRY' | translate}}
+                          'EMPLOYMENT_DETAILS.INDUSTRY' | translate}}
                         </label>
                       </div>
                       <div class="flex-col-7">
@@ -79,9 +80,10 @@
                             <button class="btn btn-dropdown without-border" id="employement_details_status-drpdown"
                               ngbDropdownToggle>
                               <span *ngIf="!employementDetailsForm.controls.industry.value">{{
-                                    'EMPLOYMENT_DETAILS.SELECT_INDUSTRY' | translate}}</span>
-                              <span *ngIf="employementDetailsForm.controls.industry.value">{{employementDetailsForm.controls.industry.value.industry
-                                    }}</span>
+                                'EMPLOYMENT_DETAILS.SELECT_INDUSTRY' | translate}}</span>
+                              <span
+                                *ngIf="employementDetailsForm.controls.industry.value">{{employementDetailsForm.controls.industry.value.industry
+                                }}</span>
                             </button>
                             <div class="dropdown" ngbDropdownMenu aria-labelledby="courseDropdown">
                               <button class="dropdown-item" *ngFor="let option of industryList let i = index;"
@@ -116,7 +118,7 @@
                     <div class="flex-row">
                       <div class="flex-col-5">
                         <label for="employement_details_occupation_lab" id="employement_details_status-lbl">{{
-                              'EMPLOYMENT_DETAILS.OCCUPATION' | translate}}
+                          'EMPLOYMENT_DETAILS.OCCUPATION' | translate}}
                         </label>
                       </div>
                       <div class="flex-col-7"
@@ -126,9 +128,10 @@
                             <button [disabled]="isDisabled('occupation')" class="btn btn-dropdown without-border"
                               id="employement_details_status-drpdown" ngbDropdownToggle>
                               <span *ngIf="!employementDetailsForm?.controls?.occupation?.value?.occupation">{{
-                                    'EMPLOYMENT_DETAILS.SELECT_OCCUPATION' | translate}}</span>
-                              <span *ngIf="employementDetailsForm?.controls?.occupation?.value?.occupation">{{employementDetailsForm.controls.occupation.value.occupation
-                                    }}</span>
+                                'EMPLOYMENT_DETAILS.SELECT_OCCUPATION' | translate}}</span>
+                              <span
+                                *ngIf="employementDetailsForm?.controls?.occupation?.value?.occupation">{{employementDetailsForm.controls.occupation.value.occupation
+                                }}</span>
                             </button>
                             <div class="dropdown" ngbDropdownMenu aria-labelledby="courseDropdown">
                               <button class="dropdown-item" *ngFor="let option of occupationList; let i = index;"
@@ -161,7 +164,7 @@
                   <div class="flex-row mb10" *ngIf="employementDetailsForm.get('contactNumber')">
                     <div class="flex-col-5">
                       <label for="name" id="employement_contact_number_Lbl">{{ 'EMPLOYMENT_DETAILS.CONTACT_NUMBER' |
-                            translate}}
+                        translate}}
                       </label>
                     </div>
                     <div class="flex-col-7"
@@ -178,9 +181,10 @@
                       <div class="form-group">
                         <div class="flex-row">
                           <div class="flex-col-5">
-                            <label for="employment_details-mailcountry-drpdown" id="employment_details-mailcountry-lbl">{{
-                                  'EMPLOYMENT_DETAILS.COUNTRY' | translate}}
-                                <i class="tooltip-icon" id="countryHelpIcon" (click)="showHelpModalCountry()"></i>
+                            <label for="employment_details-mailcountry-drpdown"
+                              id="employment_details-mailcountry-lbl">{{
+                              'EMPLOYMENT_DETAILS.COUNTRY' | translate}}
+                              <i class="tooltip-icon" id="countryHelpIcon" (click)="showHelpModalCountry()"></i>
                             </label>
                           </div>
                           <div class="flex-col-7">
@@ -200,7 +204,7 @@
                           <div class="flex-col-5">
                             <label for="employment_details-mailpostalcode-drpdown"
                               id="employment_details-mailpostalcode-lbl">{{
-                                  'EMPLOYMENT_DETAILS.POSTAL_CODE' | translate}}</label>
+                              'EMPLOYMENT_DETAILS.POSTAL_CODE' | translate}}</label>
                           </div>
                           <div class="flex-col-7">
                             <div class="form-control with-button"
@@ -225,8 +229,9 @@
                       <div class="form-group">
                         <div class="flex-row">
                           <div class="flex-col-5">
-                            <label for="employment_details-mailaddress1-txt" id="employment_details-mailaddress1-lbl">{{'EMPLOYMENT_DETAILS.ADDRESS_1'
-                                  | translate}}</label>
+                            <label for="employment_details-mailaddress1-txt"
+                              id="employment_details-mailaddress1-lbl">{{'EMPLOYMENT_DETAILS.ADDRESS_1'
+                              | translate}}</label>
                           </div>
                           <div class="flex-col-7">
                             <div
@@ -241,8 +246,9 @@
                       <div class="form-group">
                         <div class="flex-row">
                           <div class="flex-col-5">
-                            <label for="employment_details-mailaddress2-txt" id="employment_details-mailaddress2-lbl">{{'EMPLOYMENT_DETAILS.ADDRESS_2'
-                                  | translate}}</label>
+                            <label for="employment_details-mailaddress2-txt"
+                              id="employment_details-mailaddress2-lbl">{{'EMPLOYMENT_DETAILS.ADDRESS_2'
+                              | translate}}</label>
                           </div>
                           <div class="flex-col-7">
                             <div
@@ -257,8 +263,9 @@
                       <div class="form-group" *ngIf="employementDetailsForm.get('employeaddress').get('empFloor')">
                         <div class="flex-row">
                           <div class="flex-col-5">
-                            <label for="residentialAddress-floor-txt" id="residentialAddress-floor-lbl">{{'EMPLOYMENT_DETAILS.FLOOR'
-                                  | translate}}</label>
+                            <label for="residentialAddress-floor-txt"
+                              id="residentialAddress-floor-lbl">{{'EMPLOYMENT_DETAILS.FLOOR'
+                              | translate}}</label>
                           </div>
                           <div class="flex-col-7">
                             <div
@@ -273,8 +280,9 @@
                       <div class="form-group" *ngIf="employementDetailsForm.get('employeaddress').get('empUnitNo')">
                         <div class="flex-row">
                           <div class="flex-col-5">
-                            <label for="employment_details-mailunitno-txt" id="employment_details-mailunitno-lbl">{{'EMPLOYMENT_DETAILS.UNIT_NO'
-                                  | translate}}</label>
+                            <label for="employment_details-mailunitno-txt"
+                              id="employment_details-mailunitno-lbl">{{'EMPLOYMENT_DETAILS.UNIT_NO'
+                              | translate}}</label>
                           </div>
                           <div class="flex-col-7">
                             <div
@@ -290,8 +298,9 @@
                       <div class="form-group" *ngIf="employementDetailsForm.get('employeaddress').get('empCity')">
                         <div class="flex-row">
                           <div class="flex-col-5">
-                            <label for="employment_details-mailcity-txt" id="employment_details-mailcity-lbl">{{'EMPLOYMENT_DETAILS.CITY'
-                                  | translate}}</label>
+                            <label for="employment_details-mailcity-txt"
+                              id="employment_details-mailcity-lbl">{{'EMPLOYMENT_DETAILS.CITY'
+                              | translate}}</label>
                           </div>
                           <div class="flex-col-7">
                             <div
@@ -306,8 +315,9 @@
                       <div class="form-group" *ngIf="employementDetailsForm.get('employeaddress').get('empState')">
                         <div class="flex-row">
                           <div class="flex-col-5">
-                            <label for="employment_details-mailstate-txt" id="employment_details-mailstate-lbl">{{'EMPLOYMENT_DETAILS.STATE'
-                                  | translate}}</label>
+                            <label for="employment_details-mailstate-txt"
+                              id="employment_details-mailstate-lbl">{{'EMPLOYMENT_DETAILS.STATE'
+                              | translate}}</label>
                           </div>
                           <div class="flex-col-7">
                             <div
@@ -322,8 +332,9 @@
                       <div class="form-group" *ngIf="employementDetailsForm.get('employeaddress').get('empZipCode')">
                         <div class="flex-row">
                           <div class="flex-col-5">
-                            <label for="employment_details-mailzipcode-txt" id="employment_details-mailzipcode-lbl">{{'EMPLOYMENT_DETAILS.ZIPCODE'
-                                  | translate}}</label>
+                            <label for="employment_details-mailzipcode-txt"
+                              id="employment_details-mailzipcode-lbl">{{'EMPLOYMENT_DETAILS.ZIPCODE'
+                              | translate}}</label>
                           </div>
                           <div class="flex-col-7">
                             <div
@@ -341,7 +352,7 @@
                   <button *ngIf="!isEditProfile" type="button" id="employment_details_btn"
                     (click)="goToNext(employementDetailsForm)"
                     class="btn btn__footer--fixed btn-ftr-get-started btn-primary" id="getStrdBtn3">{{
-                        'COMMON.LABEL.CONTINUE' | translate}}</button>
+                    'COMMON.LABEL.CONTINUE' | translate}}</button>
                   <button *ngIf="isEditProfile" type="button" id="employment_details_btn"
                     (click)="goToNext(employementDetailsForm)"
                     class="btn btn__footer--fixed btn-ftr-get-started btn-primary" id="getStrdBtn3">Apply

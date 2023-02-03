@@ -1,6 +1,4 @@
 import { QueryList } from '@angular/core';
-import { Subscription } from 'rxjs';
-import { Subject } from 'rxjs/internal/Subject';
 
 import { PlanWidgetComponent } from '../../shared/widgets/plan-widget/plan-widget.component';
 import { IDropDownData } from '../../shared/widgets/settings-widget/settings-widget.component';

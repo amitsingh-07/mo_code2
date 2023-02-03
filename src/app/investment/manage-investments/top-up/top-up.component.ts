@@ -28,7 +28,8 @@ import { ManageInvestmentsService } from '../manage-investments.service';
 import { environment } from './../../../../environments/environment';
 import { PromoCodeService } from './../../../promo-code/promo-code.service';
 import { appConstants } from '../../../app.constants';
-
+import { INVESTMENT_ENGAGEMENT_JOURNEY_ROUTE_PATHS } from './../../../investment/investment-engagement-journey/investment-engagement-journey-routes.constants';
+import { INVESTMENT_COMMON_CONSTANTS } from '../../investment-common/investment-common.constants'
 @Component({
   selector: 'app-top-up',
   templateUrl: './top-up.component.html',
@@ -59,6 +60,8 @@ export class TopUpComponent implements OnInit, OnDestroy {
   reviewBuyRequestModal: NgbModalRef;
   private subscription: Subscription;
   corpFaq = appConstants.CORPORATE_FAQ;
+  isCPF;
+  ckaInfo;
 
   constructor(
     public readonly translate: TranslateService,
@@ -112,8 +115,8 @@ export class TopUpComponent implements OnInit, OnDestroy {
       ]
     });
     if (this.formValues['selectedCustomerPortfolio']) {
-      this.getMonthlyInvestmentInfo(this.formValues['selectedCustomerPortfolioId']);
-      this.getAwaitingOrPendingInfo(this.formValues['selectedCustomerPortfolioId'],
+      this.getMonthlyInvestmentInfo(this.formValues['selectedCustomerPortfolioId'] ? this.formValues['selectedCustomerPortfolioId'] : this.formValues.selectedCustomerPortfolio?.customerPortfolioId);
+      this.getAwaitingOrPendingInfo(this.formValues['selectedCustomerPortfolioId'] ? this.formValues['selectedCustomerPortfolioId'] : this.formValues.selectedCustomerPortfolio?.customerPortfolioId,
       this.awaitingOrPendingReq(this.formValues.selectedCustomerPortfolio.fundingTypeValue));
     }
     if (this.formValues['selectedCustomerPortfolio'] &&
@@ -125,7 +128,7 @@ export class TopUpComponent implements OnInit, OnDestroy {
       this.getCpfIaAccDetails();
     }
     this.buildFormInvestment();
-    this.setSelectedPortfolio(); 
+    this.setSelectedPortfolio();
   }
 
   ngOnDestroy() {
@@ -157,7 +160,7 @@ export class TopUpComponent implements OnInit, OnDestroy {
     });
   }
 
-  getCpfIaAccDetails() {     
+  getCpfIaAccDetails() {
     this.subscription = this.authService.get2faUpdateEvent.subscribe((token) => {
       if (!token) {
         this.manageInvestmentsService.getProfileCPFIAccountDetails(true).subscribe((data) => {
@@ -175,13 +178,14 @@ export class TopUpComponent implements OnInit, OnDestroy {
           });
       }
     });
-    }
+  }
 
   // set the selected portfolio if there when page loaded
   setSelectedPortfolio() {
-    if (this.formValues['selectedCustomerPortfolioId']) {
+    if (this.formValues['selectedCustomerPortfolioId'] || this.formValues['selectedCustomerPortfolio']) {
+      const searchId = this.formValues['selectedCustomerPortfolioId'] ? this.formValues['selectedCustomerPortfolioId'] : this.formValues.selectedCustomerPortfolio?.customerPortfolioId;
       const value = this.portfolioList.find((data) => {
-        return data.customerPortfolioId === this.formValues['selectedCustomerPortfolioId'];
+        return data.customerPortfolioId === searchId;
       });
       this.setDropDownValue('portfolio', value);
     }
@@ -191,6 +195,7 @@ export class TopUpComponent implements OnInit, OnDestroy {
   }
 
   setDropDownValue(key, value) {
+    this.portfolio = value;
     this.getInvestmentCriteria(value.portfolioCategory);
     this.topForm.controls[key].setValue(value);
     this.getMonthlyInvestmentInfo(value['customerPortfolioId']);
@@ -198,10 +203,10 @@ export class TopUpComponent implements OnInit, OnDestroy {
       this.awaitingOrPendingReq(value.fundingTypeValue));
     if (value.fundingTypeValue.toUpperCase() === MANAGE_INVESTMENTS_CONSTANTS.TOPUP.FUNDING_METHODS.SRS) {
       this.getSrsAccountDetails();
-    } 
+    }
     if (value.fundingTypeValue.toUpperCase() === MANAGE_INVESTMENTS_CONSTANTS.TOPUP.FUNDING_METHODS.CPF) {
       this.getCpfIaAccDetails();
-    } 
+    }
   }
 
   getInvestmentCriteria(portfolioType) {
@@ -219,7 +224,7 @@ export class TopUpComponent implements OnInit, OnDestroy {
       this.isAmountExceedBalance = false;
     }
   }
-  
+
   selectedInvestment(investmentType, amount) {
     if (amount) {
       const minAmount = investmentType === MANAGE_INVESTMENTS_CONSTANTS.TOPUP.TOPUP_TYPES.ONE_TIME.VALUE ? amount.oneTimeInvestmentMinimum
@@ -317,11 +322,57 @@ export class TopUpComponent implements OnInit, OnDestroy {
   saveAndProceed(form: any) {
     form.value.topupAmount = this.topupAmount;
     this.manageInvestmentsService.setTopUp(form.value);
+    this.isCPF = this.manageInvestmentsService.getTopUpFormData().portfolio['portfolioCategory'];
     // Save all the details of the top up before proceed
     this.saveFundingDetails();
-    // Open up show review buy request pop up
-    this.showReviewBuyRequestModal(form);
+    if ( this.isCPF === INVESTMENT_COMMON_CONSTANTS.PORTFOLIO_CATEGORY.CPF  && ((typeof this.ckaInfo?.isCKAExpired === 'boolean' && this.ckaInfo?.isCKAExpired) || typeof this.ckaInfo?.isCKAExpired !== 'boolean')) {
+    const ref = this.modal.open(ModelWithButtonComponent, { centered: true , windowClass: 'cka-expiry-modal , limited-width' });
+    ref.componentInstance.errorTitle = this.translate.instant(
+      'TOPUP.CKA_EXPIRY_MODAL.TITLE'
+    );
+    ref.componentInstance.errorMessage = this.translate.instant(
+      'TOPUP.CKA_EXPIRY_MODAL.TITLE_DESC'
+    );
+    ref.componentInstance.primaryActionLabel = this.translate.instant(
+      'TOPUP.CKA_EXPIRY_MODAL.BTN-TEXT'
+    );
+    ref.componentInstance.primaryAction.subscribe(() => {
+      this.openCKAModal()
+    });
+    ref.componentInstance.closeBtn = true;
+    } else {
+      // Open up show review buy request pop up
+      this.showReviewBuyRequestModal(form);
+    }
   }
+
+  openCKAModal() {
+    this.investmentCommonService.setCKARedirectFromLocation(INVESTMENT_COMMON_CONSTANTS.CKA_REDIRECT_CONSTS.TOPUP);
+    const ref = this.modal.open(ModelWithButtonComponent, { centered: true , windowClass: 'custom-cka-modal' });
+    ref.componentInstance.errorTitle = this.translate.instant(
+      'OPEN_CKA.TITLE'
+    );
+    if (this.ckaInfo && this.ckaInfo.ckaretake !== null && this.ckaInfo.ckaretake) {
+      ref.componentInstance.errorMessage = this.translate.instant(
+        'OPEN_CKA.EXPIRED_DESC'
+      );
+    } else {
+      ref.componentInstance.errorMessage = this.translate.instant(
+        'OPEN_CKA.DESC'
+      );
+    }
+    ref.componentInstance.primaryActionLabel = this.translate.instant(
+      'OPEN_CKA.BTN-TEXT'
+    );
+    ref.componentInstance.primaryAction.subscribe(() => {
+      this.manageInvestmentsService.setSelectedCustomerPortfolio(this.portfolio);
+      const routerURL =
+        INVESTMENT_ENGAGEMENT_JOURNEY_ROUTE_PATHS.CKA_ASSESSMENT
+      this.router.navigate([routerURL]);
+    });
+    ref.componentInstance.closeBtn = false;
+  }
+
   saveFundingDetails() {
     if (this.formValues.oneTimeInvestmentAmount) {
       this.topupAmount = this.formValues.oneTimeInvestmentAmount - this.formValues.portfolio['cashAccountBalance'];
@@ -349,6 +400,9 @@ export class TopUpComponent implements OnInit, OnDestroy {
   getMonthlyInvestmentInfo(customerPortfolioId) {
     this.manageInvestmentsService.getMonthlyInvestmentInfo(customerPortfolioId).subscribe((response) => {
       if (response.responseMessage.responseCode >= 6000) {
+        this.ckaInfo = response.objectList.ckaInformation;
+        this.investmentCommonService.setCKAInformation(this.ckaInfo);
+        this.investmentCommonService.setCKAStatus(this.ckaInfo?.cKAStatusMessage);
         this.currentMonthlyInvAmount = response.objectList.monthlyInvestment;
         // If monthly investment already exists, allow zero
         if (this.currentMonthlyInvAmount && this.topForm.get('MonthlyInvestmentAmount')) {
@@ -420,12 +474,12 @@ export class TopUpComponent implements OnInit, OnDestroy {
       this.checkIfExistingBuyRequest(form);
     });
     this.reviewBuyRequestModal.componentInstance.closeAction.subscribe((emittedValue) => {
-      if(this.showOnetimeInvestmentAmount){
+      if (this.showOnetimeInvestmentAmount) {
         this.topForm.controls['oneTimeInvestmentAmount'].setValue(0);
-      } 
-      if(this.showMonthlyInvestmentAmount){
+      }
+      if (this.showMonthlyInvestmentAmount) {
         this.topForm.controls['MonthlyInvestmentAmount'].setValue(0);
-      } 
+      }
     });
   }
 

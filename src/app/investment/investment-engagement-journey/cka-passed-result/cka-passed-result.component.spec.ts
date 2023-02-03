@@ -1,4 +1,4 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { waitForAsync, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { CkaPassedResultComponent } from './cka-passed-result.component';
 
@@ -6,11 +6,11 @@ describe('CkaPassedResultComponent', () => {
   let component: CkaPassedResultComponent;
   let fixture: ComponentFixture<CkaPassedResultComponent>;
 
-  beforeEach(async(() => {
+  beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
-      declarations: [ CkaPassedResultComponent ]
+      declarations: [CkaPassedResultComponent]
     })
-    .compileComponents();
+      .compileComponents();
   }));
 
   beforeEach(() => {

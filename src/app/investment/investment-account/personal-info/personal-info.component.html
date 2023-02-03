@@ -6,7 +6,7 @@
   </div>
   <div class="container-fluid max-width--1024">
     <div class="content">
-      <div class="title-big hidden-sm-md"> {{'PERSONAL_INFO.TITLE'  | translate}}</div>
+      <div class="title-big hidden-sm-md"> {{'PERSONAL_INFO.TITLE' | translate}}</div>
       <div class="row">
         <div class="col-md-4 hidden-sm-md">
           <app-roadmap></app-roadmap>
@@ -22,7 +22,7 @@
                   <div class="flex-row">
                     <div class="flex-col-5">
                       <label for="salutation-drpdown" id="salutation-lbl">{{ 'PERSONAL_INFO.SALUTATION'
-                            | translate}}</label>
+                        | translate}}</label>
                     </div>
                     <div class="flex-col-7">
                       <div class="dropdown-control"
@@ -30,7 +30,7 @@
                         <div ngbDropdown>
                           <button class="btn btn-dropdown without-border" id="salutation-drpdown" ngbDropdownToggle>
                             <span *ngIf="!invPersonalInfoForm.controls.salutation.value">
-                              {{'PERSONAL_INFO.SELECT_SALUTATION'  | translate}}
+                              {{'PERSONAL_INFO.SELECT_SALUTATION' | translate}}
                             </span>
                             <span *ngIf="invPersonalInfoForm.controls.salutation.value">
                               {{invPersonalInfoForm.controls.salutation.value.name }}
@@ -73,8 +73,9 @@
                     </div>
                     <div class="flex-col-7"
                       [ngClass]="{'inline-error': invPersonalInfoForm.get('nricNumber').enabled && !invPersonalInfoForm.get('nricNumber').valid && !invPersonalInfoForm.get('nricNumber').pristine}">
-                      <input type="text" placeholder="e.g S****244F" id="invPersInfoInpt4" class="form-control" autocomplete="off"
-                        #nricNumber oninput="this.value = this.value.toUpperCase()" formControlName="nricNumber" maxLength="30">
+                      <input type="text" placeholder="e.g S****244F" id="invPersInfoInpt4" class="form-control"
+                        autocomplete="off" #nricNumber oninput="this.value = this.value.toUpperCase()"
+                        formControlName="nricNumber" maxLength="30">
                     </div>
                   </div>
                   <div class="flex-row">
@@ -111,8 +112,9 @@
                     </div>
                     <div class="flex-col-7">
                       <div class="btn-group--toggle" name="radioGender">
-                        <app-custom-radio-controller formControlName="gender" name="gender" [radioLabelValue]="radioLabelValue"
-                        [defaultLabelStyleClass]="genderDisabledStyleClass" [disabled]="isGenderDisabled" flexRowMarPadClass="mb0"></app-custom-radio-controller>
+                        <app-custom-radio-controller formControlName="gender" name="gender"
+                          [radioLabelValue]="radioLabelValue" [defaultLabelStyleClass]="genderDisabledStyleClass"
+                          [disabled]="isGenderDisabled" flexRowMarPadClass="mb0"></app-custom-radio-controller>
                       </div>
                     </div>
                   </div>
@@ -121,8 +123,8 @@
                   <div class="flex-row">
                     <div class="flex-col-5">
                       <label for="residentialAddress-country-drpdown" id="residentialAddress-country-lbl">{{
-                            'PERSONAL_INFO.BIRTH_COUNTRY'
-                            | translate}}</label>
+                        'PERSONAL_INFO.BIRTH_COUNTRY'
+                        | translate}}</label>
                     </div>
                     <div class="flex-col-7">
                       <div class="dropdown-control"
@@ -150,8 +152,8 @@
                   <div class="flex-row">
                     <div class="flex-col-5">
                       <label for="residentialAddress-country-drpdown" id="residentialAddress-country-lbl">{{
-                            'PERSONAL_INFO.PASSPORT_ISSUED_COUNTRY'
-                            | translate}}</label>
+                        'PERSONAL_INFO.PASSPORT_ISSUED_COUNTRY'
+                        | translate}}</label>
                     </div>
                     <div class="flex-col-7">
                       <div class="dropdown-control"
@@ -167,8 +169,8 @@
                   <!-- Passport issued country end -->
                   <div class="flex-row" *ngIf="showPassport">
                     <div class="flex-col-5">
-                      <label for="passportExpiry"
-                        id="invPersInfoLbl6">{{ 'PERSONAL_INFO.PASSPORT_EXPIRY' | translate}}</label>
+                      <label for="passportExpiry" id="invPersInfoLbl6">{{ 'PERSONAL_INFO.PASSPORT_EXPIRY' |
+                        translate}}</label>
                     </div>
                     <div #usrFrmDp class="flex-col-7">
                       <div class="datepicker-control">
@@ -196,8 +198,8 @@
                   <div class="flex-row">
                     <div class="flex-col-5">
                       <label for="residentialAddress-country-drpdown" id="residentialAddress-country-lbl">{{
-                            'PERSONAL_INFO.RACE'
-                            | translate}}</label>
+                        'PERSONAL_INFO.RACE'
+                        | translate}}</label>
                     </div>
                     <div class="flex-col-7">
                       <div class="dropdown-control"
@@ -214,7 +216,7 @@
                 <div class="text-center">
                   <button type="button" (click)="goToNext(invPersonalInfoForm)"
                     class="btn btn__footer--fixed btn-ftr-get-started btn-primary" id="invPersInfoBtn3">{{
-                        'LABEL.CONTINUE' | translate}}</button>
+                    'LABEL.CONTINUE' | translate}}</button>
                 </div>
               </form>
             </div>

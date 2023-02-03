@@ -11,8 +11,8 @@
                 <div class="form-group-floating-label disabled">
                   <input type="input" id="mobileNumber" #mobileNumber formControlName="mobileNumber"
                     class="form-control" disabled>
-                  <label class="form-control-placeholder"
-                    for="name">{{ 'UPDATE_USER_ID.CURRENT_MOBILE_NUMBER' | translate}}</label>
+                  <label class="form-control-placeholder" for="name">{{ 'UPDATE_USER_ID.CURRENT_MOBILE_NUMBER' |
+                    translate}}</label>
                 </div>
               </div>
             </div>
@@ -37,8 +37,8 @@
                   <input type="input" maxlength="15" id="newMobileNumber" #newMobileNumber
                     formControlName="newMobileNumber" class="form-control"
                     (keyup)="onlyNumber(newMobileNumber, 'newMobileNumber')" required autocomplete="off">
-                  <label class="form-control-placeholder"
-                    for="name">{{ 'UPDATE_USER_ID.NEW_MOBILE_NUMBER' | translate}}</label>
+                  <label class="form-control-placeholder" for="name">{{ 'UPDATE_USER_ID.NEW_MOBILE_NUMBER' |
+                    translate}}</label>
                 </div>
               </div>
               <div class="alert-msg" *ngIf="submitted && updateUserIdForm.controls.newMobileNumber.errors">
@@ -79,14 +79,15 @@
                     (paste)="onPaste($event, 'confirmMobileNumber')" (focus)="showValidity('confirmMobileNumber')"
                     (blur)="showValidity('confirmMobileNumber')"
                     (keyup)="onlyNumber(confirmMobileNumber, 'confirmMobileNumber')" autocomplete="off">
-                  <label class="form-control-placeholder"
-                    for="name">{{ 'UPDATE_USER_ID.CONFIRM_MOBILE_NUMBER' | translate}}</label>
+                  <label class="form-control-placeholder" for="name">{{ 'UPDATE_USER_ID.CONFIRM_MOBILE_NUMBER' |
+                    translate}}</label>
                   <div class="error-tooltip"
                     *ngIf="confirmMobileFocus && updateUserIdForm.controls.confirmMobileNumber.errors?.mobileMismatch">
                     <div class="error-tooltip__desc">
                       <p class="error-tooltip__desc-one">
                         <span class="error-tooltip__title__warning-icon">!</span>
-                        {{ 'UPDATE_USER_ID.CONFIRM_MOBILE_ERROR.MUST_MATCH' | translate}}</p>
+                        {{ 'UPDATE_USER_ID.CONFIRM_MOBILE_ERROR.MUST_MATCH' | translate}}
+                      </p>
                       <span class="error-tooltip__arrow"></span>
                     </div>
                   </div>
@@ -118,8 +119,8 @@
                   <input type="text" id="newEmail" autocomplete="off" class="form-control email-text" #newEmail
                     formControlName="newEmail" (paste)="onPaste($event, 'newEmail')" required
                     (keyup)="onKeyupEvent($event, 'newEmail')">
-                  <label class="form-control-placeholder"
-                    for="lastName">{{ 'UPDATE_USER_ID.NEW_EMAIL' | translate}}</label>
+                  <label class="form-control-placeholder" for="lastName">{{ 'UPDATE_USER_ID.NEW_EMAIL' |
+                    translate}}</label>
                 </div>
               </div>
               <div class="alert-msg" *ngIf="submitted && updateUserIdForm.controls.newEmail.errors">
@@ -143,14 +144,15 @@
                     formControlName="confirmEmail" autocomplete="off" (paste)="onPaste($event, 'confirmEmail')"
                     (focus)="showValidity('confirmEmail')" (blur)="showValidity('confirmEmail')"
                     (keyup)="onKeyupEvent($event, 'confirmEmail')" required>
-                  <label class="form-control-placeholder"
-                    for="lastName">{{ 'UPDATE_USER_ID.CONFIRM_EMAIL' | translate}}</label>
+                  <label class="form-control-placeholder" for="lastName">{{ 'UPDATE_USER_ID.CONFIRM_EMAIL' |
+                    translate}}</label>
                   <div class="error-tooltip"
                     *ngIf="confirmEmailFocus && updateUserIdForm.controls.confirmEmail.errors?.emailMismatch">
                     <div class="error-tooltip__desc">
                       <p class="error-tooltip__desc-one">
                         <span class="error-tooltip__title__warning-icon">!</span>
-                        {{ 'UPDATE_USER_ID.CONFIRM_EMAIL_ERROR.MUST_MATCH' | translate}}</p>
+                        {{ 'UPDATE_USER_ID.CONFIRM_EMAIL_ERROR.MUST_MATCH' | translate}}
+                      </p>
                       <span class="error-tooltip__arrow"></span>
                     </div>
                   </div>

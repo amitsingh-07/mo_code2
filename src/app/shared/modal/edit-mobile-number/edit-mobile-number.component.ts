@@ -29,8 +29,8 @@ export class EditMobileNumberComponent implements OnInit {
         // dismiss all bootstrap modal dialog
         this.activeModal.dismiss();
       });
-      this.mobileNo.setValue(this.existingMobile);
-      this.mobileNo.updateValueAndValidity();
+    this.mobileNo.setValue(this.existingMobile);
+    this.mobileNo.updateValueAndValidity();
   }
 
   onMobileNoInputChange() {

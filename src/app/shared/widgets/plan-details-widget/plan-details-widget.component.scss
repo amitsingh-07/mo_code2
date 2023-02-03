@@ -1,18 +1,22 @@
 @import '../../../../variables';
 @import '../../../../mixins';
+
 app-plan-details-widget {
     .hidden {
         display: none !important;
     }
+
     .plan-selected-wrapper {
-        border: solid 3px #ff872f !important;
+        border: solid 3px $crusta-orange-color !important;
     }
+
     @include allmobiles {
         .plan-selected-wrapper {
             border: none !important;
         }
+
         .plan-selected-wrapper::after {
-            border: solid 3px #ff872f !important;
+            border: solid 3px $crusta-orange-color !important;
             content: '';
             position: absolute;
             top: 0;
@@ -22,57 +26,68 @@ app-plan-details-widget {
             border-radius: 10px;
         }
     }
+
     .plan-selected {
         border-radius: 6px;
-        color: #fff;
-        background-color: #ff872f !important;
-        border-color: #ff872f !important;
+        color: $white-color;
+        background-color: $crusta-orange-color !important;
+        border-color: $crusta-orange-color !important;
         box-shadow: none;
+
         @include allmobiles {
             padding: 0.50rem;
         }
     }
+
     .brochure {
-        background: #fff;
-        color: #00a7a7;
+        background: $white-color;
+        color: $teal-color;
         border-radius: 6px;
         border: solid 1px rgba(0, 167, 167, 0.4);
     }
+
     .insurance-plan-widget {
         position: relative;
         box-shadow: 0 6px 10px 0 rgba(0, 0, 0, 0.25);
+
         .img-fluid {
             height: 70px;
             width: 70px;
         }
+
         .brochure {
             display: none;
         }
-        .row-btn-bottom {}
+
         .btn-select {
-            background-color: #00a7a7;
-            color: #ffffff;
+            background-color: $teal-color;
+            color: $white-color;
             box-shadow: 0 2px 8px 0 rgba(0, 0, 0, 0.18) !important;
+
             @include allmobiles {
                 padding: 0.50rem;
             }
         }
+
         .see-more-details {
             margin-top: 15px;
             text-align: center;
+
             a {
                 cursor: pointer;
                 text-decoration: underline;
                 font-family: $muli-regular;
                 font-size: 18px;
-                color: #ff872f;
+                color: $crusta-orange-color;
             }
         }
+
         .info-icon {
             position: absolute;
             right: 5px;
             top: 5px;
         }
+
         .insurer-logo {
             height: auto;
             text-align: center;
@@ -80,54 +95,57 @@ app-plan-details-widget {
             align-items: center;
             display: flex;
             justify-content: flex-end;
+
             img {
                 width: 50%;
             }
-            // @include allmobiles {
-            //   img {
-            //     max-width: 75% !important;
-            //     max-height: 100%;
-            //   }
-            // }
         }
-        border: solid 3px #fff;
+
+        border: solid 3px $white-color;
+
         .insurance-plan-widget__container {
             padding-top: 15px;
+
             @include allmobiles {
                 padding-top: 25px;
             }
+
             h4 {
-                //max-height: 44px;
                 font-size: 21px;
                 color: $black-color;
                 font-family: $muli-semi-bold;
             }
+
             @include iPadLandscape {
                 h4 {
                     font-size: 17px;
                 }
             }
+
             h2 {
                 font-size: 36px;
                 color: $app-backgrnd-color;
                 font-family: $muli-semi-bold;
+
                 .text-small {
-                    color: #2d8289;
+                    color: $dark-teal-color;
                     font-size: 18px;
                     font-family: $muli-regular;
                     margin-left: 5px;
                 }
             }
+
             @include iPadLandscape {
                 h2 {
                     font-size: 32px;
                 }
             }
+
             .insurance-plan-widget__container__discount__block {
-                border-top: 1px solid #c2d9ec;
-                border-bottom: 1px solid #c2d9ec;
+                border-top: 1px solid $spindle-color;
+                border-bottom: 1px solid $spindle-color;
                 padding: 0 20px;
-                color: #e46f6f;
+                color: $sunglo-color;
                 font-family: $muli-bold;
                 font-size: 16px;
                 position: relative;
@@ -138,22 +156,26 @@ app-plan-details-widget {
                 padding-left: 40px;
                 cursor: pointer;
             }
+
             .insurance-plan-widget__container__rank__wrapper {
                 @extend .flex;
-                //@extend .space-btwn;
                 @extend .justify-center;
                 margin: 15px 0;
+
                 .one-plan-width {
                     width: 100% !important;
                 }
+
                 .two-plan-width {
                     width: 47% !important;
                 }
+
                 .three-plan-width {
                     width: 30% !important;
                 }
+
                 .insurance-plan-widget__container__rank-box {
-                    background-color: #c0eded;
+                    background-color: $form-title-backgrnd-color;
                     border-radius: 8px;
                     padding: 4%;
                     width: 30%;
@@ -168,16 +190,20 @@ app-plan-details-widget {
                     width: 25%;
                     margin-right: 10px;
                 }
+
                 .insurance-plan-widget__container__rank-box:nth-last-child(1) {
                     margin-right: 0px !important;
                 }
+
                 .feature-head {
                     @include allmobiles {
                         font-size: 16px;
                     }
+
                     font-size: 18px;
                     font-family: $muli-bold;
                 }
+
                 .feature-caption {
                     font-size: 14px;
                     line-height: 18px;
@@ -185,6 +211,7 @@ app-plan-details-widget {
                     width: 100px;
                     margin-bottom: 10px;
                 }
+
                 .help-icon {
                     background: url("../../../../assets/images/tooltip-icon.svg") no-repeat;
                     height: 20px;
@@ -195,119 +222,146 @@ app-plan-details-widget {
             }
         }
     }
+
     .col-btn-bottom {
         @include allmobiles {
             padding: 0 15px;
+
             button {
                 padding: 0.50rem;
                 font-size: 18px;
             }
         }
     }
+
     .with-sub-sections {
         margin-left: 0px;
         padding-bottom: 10px;
+
         h2 {
             width: 100%;
         }
+
         .subtitle {
             position: absolute;
             padding-top: 5px;
+
             @include allmobiles {
                 position: absolute;
                 bottom: 16px;
             }
         }
+
         .plan-value-main {
             padding-top: 5px;
             width: 30%;
             float: left;
             margin-bottom: 0px;
+
             @include allmobiles {
                 width: 50%;
                 margin-bottom: 10px;
             }
-            &.prd-left{
-                border: 1px solid #c2d9ec;
+
+            &.prd-left {
+                border: 1px solid $spindle-color;
                 padding: 10px;
                 border-radius: 6px;
                 font-size: 22px;
                 font-family: $muli-light;
-                @include allmobiles{
+
+                @include allmobiles {
                     float: right;
                 }
-                .text-small{
+
+                .text-small {
                     font-size: 16px;
-                    &.subtitle{
+
+                    &.subtitle {
                         position: unset;
                     }
                 }
             }
         }
+
         .plan-value-sub {
             margin-left: 15px;
             width: auto;
             float: left;
             padding: 10px;
-            border: solid 1px #c2d9ec;
+            border: solid 1px $spindle-color;
             border-radius: 6px;
-            @include max360{
+
+            @include max360 {
                 margin-left: 10px;
             }
+
             h2 {
-                color: #00a7a7;
+                color: $teal-color;
                 width: auto;
                 font-size: 22px;
                 font-family: $muli-light;
                 margin-bottom: 0px;
+
                 .text-small {
-                    color: #2d8289;
+                    color: $dark-teal-color;
                     font-size: 16px;
                     font-family: $muli-regular;
                 }
             }
-            &.drp-left{
+
+            &.drp-left {
                 border: none;
                 padding: 0;
-                h2{
+
+                h2 {
                     font-family: $muli-semi-bold;
                     font-size: 36px;
-                    @include max360{
+
+                    @include max360 {
                         font-size: 32px;
                     }
-                    .text-small{
+
+                    .text-small {
                         font-size: 18px;
-                        &.unit-label{
-                            @include allmobiles{
+
+                        &.unit-label {
+                            @include allmobiles {
                                 position: relative;
                                 top: -20px;
                             }
-                            @include max360{
+
+                            @include max360 {
                                 top: -15px;
                             }
                         }
-                        &.subtitle{
-                            @include allmobiles{
-                             bottom: 16px;
+
+                        &.subtitle {
+                            @include allmobiles {
+                                bottom: 16px;
                             }
                         }
                     }
                 }
-                &.ri-font34{
-                    @include allmobiles{
-                        h2{
+
+                &.ri-font34 {
+                    @include allmobiles {
+                        h2 {
                             font-size: 34px;
-                            .unit-label{
+
+                            .unit-label {
                                 top: -14px
                             }
                         }
                     }
                 }
-                &.ri-font30{
-                    @include allmobiles{
-                        h2{
+
+                &.ri-font30 {
+                    @include allmobiles {
+                        h2 {
                             font-size: 30px;
-                            .unit-label{
+
+                            .unit-label {
                                 top: -12px
                             }
                         }
@@ -316,17 +370,21 @@ app-plan-details-widget {
             }
         }
     }
+
     .grey subtitle--rider-name {
         @include allmobiles {
             text-align: center;
         }
     }
+
     .drp-left {
-        margin-left: 0px!important;
+        margin-left: 0px !important;
     }
+
     .prd-left {
-        margin-left: 15px!important;
-        @include allmobiles{
+        margin-left: 15px !important;
+
+        @include allmobiles {
             margin-left: 0 !important;
         }
     }

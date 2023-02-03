@@ -3,7 +3,6 @@ import { FormArray, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { TranslateService } from '@ngx-translate/core';
 import { Subscription } from 'rxjs';
-
 import { AboutAge } from './../../shared/utils/about-age.util';
 import { MyInfoService } from '../../shared/Services/my-info.service';
 import { COMPREHENSIVE_CONST } from '../comprehensive-config.constants';
@@ -17,7 +16,6 @@ import { NavbarService } from './../../shared/navbar/navbar.service';
 import { Util } from './../../shared/utils/util';
 import { ComprehensiveApiService } from './../comprehensive-api.service';
 import { ComprehensiveService } from './../comprehensive.service';
-
 
 @Component({
   selector: 'app-my-assets',
@@ -58,7 +56,6 @@ export class MyAssetsComponent implements OnInit, OnDestroy {
   fundTypeList: any;
   fundType = [];
   showEditIcon: boolean = false;
-
   // tslint:disable-next-line:cognitive-complexity
   constructor(
     private route: ActivatedRoute, private router: Router, public navbarService: NavbarService,
@@ -73,7 +70,6 @@ export class MyAssetsComponent implements OnInit, OnDestroy {
       this.translate.use(config.language);
       this.translate.get(config.common).subscribe((result: string) => {
         // meta tag and
-
         this.pageTitle = this.translate.instant('CMP.COMPREHENSIVE_STEPS.STEP_2_TITLE');
         this.investmentTypeList = this.translate.instant('CMP.MY_ASSETS.INVESTMENT_TYPE_LIST');
         this.setPageTitle(this.pageTitle);
@@ -92,7 +88,6 @@ export class MyAssetsComponent implements OnInit, OnDestroy {
       this.brsConfig = (retirementSumConfigValue && retirementSumConfigValue['BRS']) ? retirementSumConfigValue['BRS'] : '';
       this.frsConfig = (retirementSumConfigValue && retirementSumConfigValue['FRS']) ? retirementSumConfigValue['FRS'] : '';
     }
-
     this.assetDetails = this.comprehensiveService.getMyAssets();
     if (this.assetDetails && this.assetDetails.source === COMPREHENSIVE_CONST.CPF_SOURCE.MY_INFO) {
       this.cpfFromMyInfo = true;
@@ -116,7 +111,6 @@ export class MyAssetsComponent implements OnInit, OnDestroy {
         this.progressService.show();
       }
     });
-
     this.subscription = this.navbarService.subscribeBackPress().subscribe((event) => {
       if (event && event !== '') {
         const previousUrl = this.comprehensiveService.getPreviousUrl(this.router.url);
@@ -127,13 +121,11 @@ export class MyAssetsComponent implements OnInit, OnDestroy {
         }
       }
     });
-
     this.buildMyAssetsForm();
     if (this.assetDetails && this.assetDetails.investmentPropertiesValue > 0) {
       this.myInvestmentProperties = false;
     }
     this.onTotalAssetsBucket();
-
   }
 
   ngOnDestroy() {
@@ -156,7 +148,6 @@ export class MyAssetsComponent implements OnInit, OnDestroy {
     } else {
       otherInvestFormArray.push(this.buildInvestmentForm('', 0));
     }
-
     this.myAssetsForm = this.formBuilder.group({
       cashInBank: [{ value: this.assetDetails ? this.assetDetails.cashInBank : '', disabled: this.viewMode }, []],
       savingsBonds: [{ value: this.assetDetails ? this.assetDetails.savingsBonds : '', disabled: this.viewMode }, []],
@@ -191,14 +182,12 @@ export class MyAssetsComponent implements OnInit, OnDestroy {
       }, []],
       assetsInvestmentSet: this.formBuilder.array(otherInvestFormArray),
       otherAssetsValue: [{ value: this.assetDetails ? this.assetDetails.otherAssetsValue : '', disabled: this.viewMode }, []]
-
     });
   }
   addOtherInvestment() {
     const otherPropertyControl = this.myAssetsForm.controls['investmentPropertiesValue'];
     if (this.myInvestmentProperties) {
       otherPropertyControl.setValidators([]);
-      //otherPropertyControl.setValidators([Validators.required, Validators.pattern(this.patternValidator)]);
       otherPropertyControl.updateValueAndValidity();
     } else {
       otherPropertyControl.setValue('');
@@ -208,7 +197,6 @@ export class MyAssetsComponent implements OnInit, OnDestroy {
     }
     this.onTotalAssetsBucket();
     this.myInvestmentProperties = !this.myInvestmentProperties;
-
   }
   addInvestment() {
     const investments = this.myAssetsForm.get('assetsInvestmentSet') as FormArray;
@@ -270,7 +258,6 @@ export class MyAssetsComponent implements OnInit, OnDestroy {
   }
   setInvestValidation(totalLength) {
     const otherInvestmentControl = this.myAssetsForm.controls['assetsInvestmentSet']['controls'][0].controls;
-
     otherInvestmentControl['typeOfInvestment'].setValidators([]);
     otherInvestmentControl['typeOfInvestment'].updateValueAndValidity();
     otherInvestmentControl['fundType'].setValidators([]);

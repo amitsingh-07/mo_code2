@@ -1,6 +1,6 @@
 import { GetStartedStep1Component } from './get-started-step1.component';
 import { IntroScreenComponent } from '../intro-screen/intro-screen.component';
-import { async, ComponentFixture, TestBed, getTestBed } from '@angular/core/testing';
+import { waitForAsync, ComponentFixture, TestBed, getTestBed } from '@angular/core/testing';
 import { ReactiveFormsModule } from '@angular/forms';
 import { RouterTestingModule } from '@angular/router/testing';
 import { JwtModule } from '@auth0/angular-jwt';
@@ -12,9 +12,7 @@ import { NavbarService } from '../../../shared/navbar/navbar.service';
 import {
   INVESTMENT_ENGAGEMENT_JOURNEY_ROUTE_PATHS
 } from '../investment-engagement-journey-routes.constants';
-import { HttpClient } from '@angular/common/http';
 import { TranslateService } from '@ngx-translate/core';
-import { InvestmentAccountService } from '../../investment-account/investment-account-service';
 import { HttpClientModule } from '@angular/common/http';
 
 import { SignUpService } from '../../../sign-up/sign-up.service';
@@ -36,7 +34,7 @@ describe('GetStartedStep2Component', () => {
   let translations = require('../../../../assets/i18n/investment-engagement-journey/en.json');
 
 
-  beforeEach(async(() => {
+  beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
       declarations: [GetStartedStep1Component, IntroScreenComponent],
       imports: [TranslateModule.forRoot(), HttpClientModule, RouterTestingModule.withRoutes([]),

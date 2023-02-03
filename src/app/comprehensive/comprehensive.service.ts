@@ -4,7 +4,6 @@ import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { Observable } from 'rxjs';
-
 import { ErrorModalComponent } from '../shared/modal/error-modal/error-modal.component';
 import { SummaryModalComponent } from '../shared/modal/summary-modal/summary-modal.component';
 import { ToolTipModalComponent } from '../shared/modal/tooltip-modal/tooltip-modal.component';
@@ -16,22 +15,13 @@ import { appConstants } from './../app.constants';
 import { ApiService } from './../shared/http/api.service';
 import { AuthenticationService } from './../shared/http/auth/authentication.service';
 import { ProgressTrackerUtil } from './../shared/modal/progress-tracker/progress-tracker-util';
-import {
-  IProgressTrackerData,
-  IProgressTrackerItem,
-  IProgressTrackerSubItem,
-  IProgressTrackerSubItemList
-} from './../shared/modal/progress-tracker/progress-tracker.types';
+import { IProgressTrackerData, IProgressTrackerItem, IProgressTrackerSubItem, IProgressTrackerSubItemList } from './../shared/modal/progress-tracker/progress-tracker.types';
 import { RoutingService } from './../shared/Services/routing.service';
 import { ComprehensiveApiService } from './comprehensive-api.service';
 import { COMPREHENSIVE_CONST } from './comprehensive-config.constants';
 import { ComprehensiveFormData } from './comprehensive-form-data';
 import { ComprehensiveFormError } from './comprehensive-form-error';
-import {
-  COMPREHENSIVE_BASE_ROUTE,
-  COMPREHENSIVE_FULL_ROUTER_CONFIG,
-  COMPREHENSIVE_ROUTE_PATHS
-} from './comprehensive-routes.constants';
+import { COMPREHENSIVE_BASE_ROUTE, COMPREHENSIVE_FULL_ROUTER_CONFIG, COMPREHENSIVE_ROUTE_PATHS } from './comprehensive-routes.constants';
 import {
   HospitalPlan,
   IChildEndowment,
@@ -514,11 +504,6 @@ export class ComprehensiveService {
       .subscribe((data) => { });
   }
   hasBadMoodFund() {
-    /*const maxBadMoodFund = Math.floor(
-      (this.getMyEarnings().totalAnnualIncomeBucket -
-        this.getMySpendings().totalAnnualExpenses) /
-      12
-    );*/
     const badMoodFund = this.getDownOnLuck().badMoodMonthlyAmount;
     const computeBadMoodFund = this.computeBadMoodFund();
     return (!Util.isEmptyOrNull(badMoodFund) && computeBadMoodFund >= badMoodFund && computeBadMoodFund > 0)
@@ -2487,14 +2472,6 @@ export class ComprehensiveService {
    * parameter 1 - stepCompleted 2 - sunStepCompleted
    */
   setStepCompletion(stepCompletedParam: number, subStepCompletedParam: number) {
-    /*return new Promise((resolve, reject) => {
-      const stepIndicatorData = { enquiryId: this.getEnquiryId(), stepCompleted: stepCompletedParam,
-      subStepCompleted: subStepCompletedParam };
-      this.comprehensiveApiService.saveStepIndicator(stepIndicatorData).subscribe((data) => {
-        this.setMySteps(stepCompletedParam, subStepCompletedParam);
-        resolve();
-      });
-    });*/
     return new Observable((obs) => {
       const stepIndicatorData = {
         enquiryId: this.getEnquiryId(), stepCompleted: stepCompletedParam,

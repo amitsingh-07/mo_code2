@@ -73,7 +73,7 @@ export class RiskWillingnessComponent implements IPageComponent, OnInit {
         self.setCurrentQuestion();
       }
     });
-    
+
   }
 
   setPageTitle(title: string) {
@@ -93,9 +93,9 @@ export class RiskWillingnessComponent implements IPageComponent, OnInit {
       this.questionsList = data.objectList;
       this.setCurrentQuestion();
     },
-    (err) => {
-      this.investmentAccountService.showGenericErrorModal();
-    });
+      (err) => {
+        this.investmentAccountService.showGenericErrorModal();
+      });
   }
 
   setCurrentQuestion() {
@@ -139,9 +139,9 @@ export class RiskWillingnessComponent implements IPageComponent, OnInit {
           this.investmentEngagementJourneyService.setPortfolioSplashModalCounter(0);
           this.router.navigate([INVESTMENT_ENGAGEMENT_JOURNEY_ROUTE_PATHS.RISK_PROFILE]);
         },
-        (err) => {
-          this.investmentAccountService.showGenericErrorModal();
-        });
+          (err) => {
+            this.investmentAccountService.showGenericErrorModal();
+          });
       }
     }
   }

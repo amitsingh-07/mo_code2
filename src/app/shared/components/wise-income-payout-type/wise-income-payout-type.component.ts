@@ -17,19 +17,19 @@ import { InvestmentCommonService } from '../../../investment/investment-common/i
 export class WiseIncomePayoutTypeComponent implements OnInit {
   @Input('portfolio') portfolio;
   @Input('payoutType') payoutType;
-  payoutConst : any;
+  payoutConst: any;
   payoutTimeInterval: any;
 
   constructor(private router: Router,
     private investmentAccountService: InvestmentAccountService,
-    private investmentCommonService: InvestmentCommonService) { 
+    private investmentCommonService: InvestmentCommonService) {
     this.payoutConst = INVESTMENT_COMMON_CONSTANTS.WISE_INCOME_PAYOUT;
   }
 
   ngOnInit(): void {
-  this.getPayoutTimeInterval();
+    this.getPayoutTimeInterval();
   }
-  
+
   goReviewInputs() {
     this.investmentAccountService.activateReassess();
     this.investmentCommonService.saveUpdateSessionData(this.portfolio);

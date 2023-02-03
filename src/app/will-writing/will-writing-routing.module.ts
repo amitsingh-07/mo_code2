@@ -1,14 +1,10 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-
 import { AboutMeComponent } from './about-me/about-me.component';
-import {
-  AppointYourExecutorTrusteeComponent
-} from './appoint-your-executor-trustee/appoint-your-executor-trustee.component';
+import { AppointYourExecutorTrusteeComponent } from './appoint-your-executor-trustee/appoint-your-executor-trustee.component';
 import { CheckEligibilityComponent } from './check-eligibility/check-eligibility.component';
 import { ConfirmationComponent } from './confirmation/confirmation.component';
 import { DistributeYourEstateComponent } from './distribute-your-estate/distribute-your-estate.component';
-import { HowItWorksComponent } from './how-it-works/how-it-works.component';
 import { IntroductionComponent } from './introduction/introduction.component';
 import { MyBeneficiariesComponent } from './my-beneficiaries/my-beneficiaries.component';
 import { MyChildGuardianComponent } from './my-child-guardian/my-child-guardian.component';
@@ -36,11 +32,6 @@ const routes: Routes = [
   {
     path: WILL_WRITING_ROUTES.CHECK_ELIGIBILITY,
     component: CheckEligibilityComponent,
-    canActivate: [WillWritingAccessGuard]
-  },
-  {
-    path: WILL_WRITING_ROUTES.HOW_IT_WORKS,
-    component: HowItWorksComponent,
     canActivate: [WillWritingAccessGuard]
   },
   {

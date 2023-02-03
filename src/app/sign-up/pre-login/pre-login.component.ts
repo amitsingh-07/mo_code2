@@ -1,4 +1,3 @@
-import { Location } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
@@ -31,7 +30,6 @@ export class PreLoginComponent implements OnInit {
     private signUpService: SignUpService,
     private route: ActivatedRoute,
     private router: Router,
-    private _location: Location,
     private translate: TranslateService) {
     this.translate.use('en');
     this.route.params.subscribe((params) => {
@@ -43,7 +41,7 @@ export class PreLoginComponent implements OnInit {
     this.footerService.setFooterVisibility(false);
   }
   goBack() {
-    this._location.back();
+    this.navbarService.goBack();
   }
   navigateCreateAccount() {
     this.signUpService.setRedirectUrl(INVESTMENT_ACCOUNT_ROUTE_PATHS.START);

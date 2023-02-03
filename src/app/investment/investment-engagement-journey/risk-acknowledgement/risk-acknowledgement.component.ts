@@ -1,4 +1,3 @@
-import { Location } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { TranslateService } from '@ngx-translate/core';
@@ -36,7 +35,6 @@ export class RiskAcknowledgementComponent implements OnInit {
     public readonly translate: TranslateService,
     public authService: AuthenticationService,
     private router: Router,
-    private _location: Location,
     public navbarService: NavbarService,
     public headerService: HeaderService,
     public footerService: FooterService,
@@ -76,7 +74,7 @@ export class RiskAcknowledgementComponent implements OnInit {
     this.getPortfolioAllocationDetails();
   }
   goBack() {
-    this._location.back();
+    this.navbarService.goBack();
   }
   getPortfolioAllocationDetails() {
     const params: any = this.constructParamsWithUserPortfolioType();

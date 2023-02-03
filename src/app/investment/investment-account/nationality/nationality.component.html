@@ -1,10 +1,5 @@
 <div class="investment-account">
   <div class="container-fluid max-width--1024 invest-web-width">
-    <!-- <div class="row">
-    <div class="col-12">
-      <app-sing-pass></app-sing-pass>
-    </div>
-  </div> -->
     <div class="row text-center">
       <div class="mt10">
         <h2>{{ 'SELECT_NATIONALITY.BEFORE_WE_PROCEED' | translate}}</h2>
@@ -17,8 +12,6 @@
       </div>
     </div>
     <form name="selectNationalityForm" [formGroup]="selectNationalityForm">
-      <!-- <div class="text mb20" id="select_nationality_text" *ngIf="selectNationalityForm.controls.nationality.value">{{ 'SELECT_NATIONALITY.SELECT_NATIONALITY_LAB2' | translate}}
-    </div> -->
       <app-sing-pass></app-sing-pass>
       <div class="flex-row">
         <div class="flex-col-5">
@@ -38,17 +31,17 @@
       <div *ngIf="selectNationalityForm.get('unitedStatesResident')">
         <div class="flex-row mb10">
           <div class="flex-col-12 mt15">
-            <label class="form-group-with-bg--content-label" id="select_nationality_question-one"
-              for="name">{{ 'SELECT_NATIONALITY.QUESTION_ONE' | translate}}
+            <label class="form-group-with-bg--content-label" id="select_nationality_question-one" for="name">{{
+              'SELECT_NATIONALITY.QUESTION_ONE' | translate}}
             </label>
           </div>
         </div>
         <!-- buttons -->
         <div class="flex-row">
           <div class="flex-col-12 mb10">
-            <div class="btn-group--toggle" name="radioGender">            
+            <div class="btn-group--toggle" name="radioGender">
               <app-custom-radio-controller formControlName="unitedStatesResident" [radioLabelValue]="radioLabelValue"
-              defaultLabelStyleClass="fixed-btn--sm" name="unitedStatesResident"></app-custom-radio-controller>
+                defaultLabelStyleClass="fixed-btn--sm" name="unitedStatesResident"></app-custom-radio-controller>
             </div>
           </div>
         </div>
@@ -65,8 +58,9 @@
         <div class="flex-row">
           <div class="flex-col-12 mb10">
             <div class="btn-group--toggle" name="radioResident">
-              <app-custom-radio-controller formControlName="singaporeanResident" name="singaporeanResident" [radioLabelValue]="radioLabelValue"
-              defaultLabelStyleClass="fixed-btn--sm" name="singaporeanResident"></app-custom-radio-controller>
+              <app-custom-radio-controller formControlName="singaporeanResident" name="singaporeanResident"
+                [radioLabelValue]="radioLabelValue" defaultLabelStyleClass="fixed-btn--sm"
+                name="singaporeanResident"></app-custom-radio-controller>
             </div>
           </div>
         </div>

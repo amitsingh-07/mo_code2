@@ -3,7 +3,6 @@ import { DomSanitizer } from '@angular/platform-browser';
 import { Router } from '@angular/router';
 import { NgbModal, NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
 import { TranslateService } from '@ngx-translate/core';
-
 import { APP_ROUTES } from '../../app-routes.constants';
 import { appConstants } from '../../app.constants';
 import { AppService } from '../../app.service';
@@ -17,9 +16,7 @@ import { ComprehensiveService } from '../comprehensive.service';
 import { ConfigService } from './../../config/config.service';
 import { FooterService } from './../../shared/footer/footer.service';
 import { AuthenticationService } from './../../shared/http/auth/authentication.service';
-import {
-  LoginCreateAccountModelComponent
-} from './../../shared/modal/login-create-account-model/login-create-account-model.component';
+import { LoginCreateAccountModelComponent } from './../../shared/modal/login-create-account-model/login-create-account-model.component';
 import { NavbarService } from './../../shared/navbar/navbar.service';
 
 @Component({
@@ -29,22 +26,18 @@ import { NavbarService } from './../../shared/navbar/navbar.service';
   encapsulation: ViewEncapsulation.None
 })
 export class ComprehensiveComponent implements OnInit {
-
   loginModalTitle: string;
   modalRef: NgbModalRef;
   safeURL: any;
   userDetails: IMyProfile;
   promoCodeSuccess: string;
   promoValidated: string;
-
   getComprehensiveSummaryDashboard: any;
-  isBannerNoteVisible: boolean;
   includingGst = false;
   fetchData: string;
   loading: string;
   productAmount = COMPREHENSIVE_CONST.PROMOTION.AMOUNT;
   isCorporate: boolean;
-
 
   constructor(
     private appService: AppService, private cmpService: ComprehensiveService,
@@ -128,8 +121,6 @@ export class ComprehensiveComponent implements OnInit {
       });
 
     }
-    this.isBannerNoteVisible = this.isCurrentDateInRange(COMPREHENSIVE_CONST.BANNER_NOTE_START_TIME,
-      COMPREHENSIVE_CONST.BANNER_NOTE_END_TIME);
   }
 
   /**

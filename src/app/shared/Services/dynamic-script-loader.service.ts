@@ -1,7 +1,5 @@
 import { Injectable } from '@angular/core';
 
-import { environment } from './../../../environments/environment';
-
 interface Scripts {
   name: string;
   src: string;

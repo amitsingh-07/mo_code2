@@ -6,14 +6,14 @@
 <div class="modal-body">
   <div class="title-container">
     <div class="modal-body-title">{{ 'TRANSFER_INSTRUCTION.TRANSFER_FUND_TITLE' | translate }}</div>
-
     <button type="button" class="close" aria-label="Close" (click)="activeModal.dismiss('Cross click')">
       <span aria-hidden="true"></span>
     </button>
   </div>
   <div class="cash-account">
     <div class="flex-row" *ngIf="!numberOfPendingReq">
-      <div class="transfer-instruction-lbl width100 mb20">{{ 'TRANSFER_INSTRUCTION.TOP_UP_REQUEST_LBL' | translate }}</div>
+      <div class="transfer-instruction-lbl width100 mb20">{{ 'TRANSFER_INSTRUCTION.TOP_UP_REQUEST_LBL' | translate }}
+      </div>
       <button type="button" class="btn-with-icon" id="topup_button" (click)="goToTopUp()">
         <span class="topup-btn-img"><img id="topup_img" src="assets/images/investment-account/money-topup.svg"
             alt="" /></span> <span>{{ 'TRANSFER_INSTRUCTION.TOP_UP' | translate }}</span>
@@ -57,17 +57,15 @@
       <!-- TAB 1 -->
       <div class="tab-content" [class.active]="activeMode == 'BANK'">
         <app-instruction-steps [showBankTransferIns]="showBankTransferSteps" [bankDetails]="bankDetails"
-          (showToolTip)="showTipModal()" (showCopyToast)="notify($event)" ></app-instruction-steps>
+          (showToolTip)="showTipModal()" (showCopyToast)="notify($event)"></app-instruction-steps>
       </div>
       <!-- TAB 2 -->
       <div class="tab-content" [class.active]="activeMode == 'PAYNOW'">
         <app-instruction-steps [showBankTransferIns]="!showBankTransferSteps" [paynowDetails]="paynowDetails"
-          (showToolTip)="showTipModal()" (showCopyToast)="notify($event)" ></app-instruction-steps>
+          (showToolTip)="showTipModal()" (showCopyToast)="notify($event)"></app-instruction-steps>
       </div>
     </div>
-
     <button type="button" class="btn btn__footer--fixed btn-primary width100" (click)="modalClose()">
       {{ 'TRANSFER_INSTRUCTION.OKAY_GOT_IT_BTN' | translate }}</button>
-
   </div>
 </div>

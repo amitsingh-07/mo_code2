@@ -54,11 +54,9 @@
               <div ngbDropdown id="employmentTypeDropDown">
                 <button type="button" class="btn btn-dropdown" id="dropdownEmploymentType" ngbDropdownToggle
                   appComprehensiveViewMode="{{viewMode}}" mode=1>
-
                   <span *ngIf="employmentType !== ''">{{employmentType}}</span>
                 </button>
                 <div ngbDropdownMenu aria-labelledby="dropdownEmploymentType">
-
                   <button type="button" class="dropdown-item earnings-dropdown" appComprehensiveViewMode="{{viewMode}}"
                     mode=1 *ngFor="let employmentType of employmentTypeList; let i=index"
                     (click)="selectEmploymentType(employmentType)">
@@ -210,7 +208,6 @@
                   <span> {{'CMP.MY_EARNINGS.RENTAL_INCOME'|translate}} <span [hidden]="!monthlyRentIncome">
                       {{'CMP.MY_EARNINGS.SELECTED'|translate}} </span> </span>
                 </button>
-                <!--span class="help-icon" (click)="showToolTipModal('ADD_MONTHLY_INCOME_TITLE','ADD_MONTHLY_INCOME_MESSAGE')"></span-->
               </div>
               <div class="with-help-icon" for="name">
                 <button [disabled]="otherMonthlyWorkIncomeType" type="button" class="dropdown-item earnings-dropdown"
@@ -276,8 +273,8 @@
         <!--Form Header-->
         <div class="form-group-with-bg--header">
           <div class="flex space-btwn" [ngClass]="{'both-icon': !viewMode}">
-            <div class="form-group-with-bg--header-label">{{
-'CMP.MY_EARNINGS.ANNUAL_DIVIDENDS' | translate}}<div class="form-group-with-bg--header-sub-label"></div>
+            <div class="form-group-with-bg--header-label">{{'CMP.MY_EARNINGS.ANNUAL_DIVIDENDS' | translate}}
+              <div class="form-group-with-bg--header-sub-label"></div>
             </div>
             <div>
               <span class="help-icon" (click)="showToolTipModal('ADD_DIVIDENDS_TITLE','ADD_DIVIDENDS_MESSAGE')"></span>
@@ -311,8 +308,8 @@
         <div class="form-group-with-bg--header">
           <div class="flex-row">
             <div class="flex-col-12 with-delete-icon">
-              <div class="form-group-with-bg--header-label">{{
-'CMP.MY_EARNINGS.OTHER_ANNUAL_INCOME' | translate}}<div class="form-group-with-bg--header-sub-label"></div>
+              <div class="form-group-with-bg--header-label">{{'CMP.MY_EARNINGS.OTHER_ANNUAL_INCOME' | translate}}
+                <div class="form-group-with-bg--header-sub-label"></div>
               </div>
               <span class="delete-icon" *ngIf="!viewMode"
                 (click)="SelectEarningsType('otherAnnualIncomeType', false)"></span>
@@ -355,8 +352,6 @@
                   <span> {{'CMP.MY_EARNINGS.ANNUAL_DIVIDENDS'|translate}} <span [hidden]="!annualDividendsType">
                       {{'CMP.MY_EARNINGS.SELECTED'|translate}} </span></span>
                 </button>
-                <!-- <span class="help-icon"
-                  (click)="showToolTipModal('ADD_DIVIDENDS_TITLE','ADD_DIVIDENDS_MESSAGE')"></span> -->
               </div>
               <button [disabled]="otherAnnualIncomeType" type="button" class="dropdown-item earnings-dropdown"
                 (click)="SelectEarningsType('otherAnnualIncomeType', true)">
@@ -376,8 +371,8 @@
       <div class="flex-row">
         <div class="flex-col-12">
           <div class="footer-cta">
-            <button type="button" (click)="goToNext(myEarningsForm)" class="btn btn-primary width100" id="prfBtn1">{{
-  (!viewMode) ? ('CMP.FORM_LABEL.SAVE_AND_CONTINUE'|translate) : ('CMP.FORM_LABEL.NEXT'|translate)}}</button>
+            <button type="button" (click)="goToNext(myEarningsForm)" class="btn btn-primary width100" id="prfBtn1">
+              {{(!viewMode) ? ('CMP.FORM_LABEL.SAVE_AND_CONTINUE'|translate) : ('CMP.FORM_LABEL.NEXT'|translate)}}</button>
           </div>
         </div>
       </div>
@@ -389,7 +384,6 @@
       <div class="text-right bucket-notes-dollar">
         {{totalAnnualIncomeBucket | currency:'USD':'symbol-narrow':'1.0-2'}}</div>
     </div>
-    <!--div class=" btn btn-primary btn__footer--fixed width100" id="prfBtn1">{{ 'CMP.MY_EARNINGS.BUCKET_NOTE'|translate}}{{totalAnnualIncomeBucket | currency:'USD':'symbol-narrow':'1.0-2'}}</div-->
   </form>
   <!--Page form /-->
 </div>

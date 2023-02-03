@@ -1,4 +1,3 @@
-import { Location } from '@angular/common';
 import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { Router } from '@angular/router';
 import { TranslateService } from '@ngx-translate/core';
@@ -16,7 +15,7 @@ export class DistributeYourEstateComponent implements OnInit {
 
   constructor(private translate: TranslateService, private router: Router,
               public footerService: FooterService,
-              private _location: Location, public navbarService: NavbarService) {
+              public navbarService: NavbarService) {
     this.translate.use('en');
   }
 
@@ -28,6 +27,6 @@ export class DistributeYourEstateComponent implements OnInit {
     this.router.navigate([WILL_WRITING_ROUTE_PATHS.MY_BENEFICIARIES]);
   }
   goBack() {
-    this._location.back();
+    this.navbarService.goBack();
   }
 }

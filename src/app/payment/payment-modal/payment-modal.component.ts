@@ -21,16 +21,6 @@ export class PaymentModalComponent implements OnInit {
     this.translate.use('en');
   }
 
-  ngOnInit() {
-    // this.router.events
-    //   .pipe(filter((event) => event instanceof NavigationEnd))
-    //   .subscribe(({ urlAfterRedirects }: NavigationEnd) => {
-    //     // dismiss all bootstrap modal dialog
-    //     this.activeModal.dismiss();
-    //   });
-  }
-  // closePopup() {
-  //   this.activeModal.dismiss();
-  // }
+  ngOnInit() { }
 
 }

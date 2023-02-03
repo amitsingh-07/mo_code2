@@ -1,9 +1,11 @@
 import { Injectable } from '@angular/core';
+
 import { ApiService } from '../http/api.service';
 import { Formatter } from '../utils/formatter.util';
 import { AppService } from './../../app.service';
 import { appConstants } from './../../app.constants';
 import { IEnquiryUpdate } from './../../sign-up/signup-types';
+
 export const SESSION_STORAGE_KEY = 'app_selected_plan_session_storage_key';
 export const SESSION_INSURANCE_NEW_USER = 'app_insurance_new_user';
 
@@ -21,9 +23,7 @@ export class SelectedPlansService {
     }
   }
 
-  /**
-   * clear session storage data.
-   */
+  // clear session storage data.
   clearData() {
     if (window.sessionStorage) {
       sessionStorage.removeItem(SESSION_STORAGE_KEY);

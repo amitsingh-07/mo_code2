@@ -6,8 +6,10 @@ app-confirm-withdrawal-modal {
     @include desktop {
       width: 500px;
     }
+
     padding-left: 25px;
   }
+
   .edit-investment-modal {
     font-family: $muli;
 
@@ -28,10 +30,10 @@ app-confirm-withdrawal-modal {
       }
 
       .forward-pricing-info {
-        background-color: #00a7a7;
+        background-color: $teal-color;
         margin: 0 -20px 15px -25px;
         font-size: 13px;
-        color: #fff;
+        color: $white-color;
         padding: 20px;
 
         div {
@@ -65,7 +67,7 @@ app-confirm-withdrawal-modal {
         span.head {
           font-size: 14px;
           font-family: $muli-bold;
-          color: #000;
+          color: $black-color;
           margin-bottom: 15px;
           display: block;
         }
@@ -74,13 +76,13 @@ app-confirm-withdrawal-modal {
           .caption {
             display: block;
             font-size: 14px;
-            color: #5e5e5e;
+            color: $silver-grey-color;
             font-family: $muli-light;
           }
 
           .values {
             display: block;
-            color: #00a7a7;
+            color: $teal-color;
             font-size: 18px;
             margin-bottom: 10px;
             font-family: $muli-bold;
@@ -88,13 +90,13 @@ app-confirm-withdrawal-modal {
 
           .rebalancing-info {
             border-radius: 6px;
-            background-color: #f7f7f7;
+            background-color: $white-smoke-color;
             padding: 20px;
             display: flex;
             font-family: $muli-bold;
             font-size: 13px;
             letter-spacing: -0.11px;
-            color: #000000;
+            color: $black-color;
 
             @include allmobiles {
               padding: 20px 15px;
@@ -102,6 +104,7 @@ app-confirm-withdrawal-modal {
 
             .txt-grey {
               color: $dark-grey-color;
+
               span {
                 font-family: $muli-regular;
               }
@@ -109,7 +112,7 @@ app-confirm-withdrawal-modal {
 
             .txt-orange {
               a {
-                color: #ff872f;
+                color: $crusta-orange-color;
                 text-decoration: none;
                 cursor: pointer;
                 font-family: $muli-bold;
@@ -122,6 +125,7 @@ app-confirm-withdrawal-modal {
               height: 24px;
               display: flex;
             }
+
             .rebalance-message {
               font-family: $muli-regular;
               margin-top: 10px;

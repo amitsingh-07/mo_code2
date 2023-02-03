@@ -1,4 +1,3 @@
-import { CurrencyPipe } from '@angular/common';
 import { Component, EventEmitter, OnDestroy, OnInit, Output, ViewEncapsulation } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { NgbDateParserFormatter, NgbDatepickerConfig, NgbModal, NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
@@ -39,9 +38,8 @@ export class SrsApprovedPlansFormComponent implements OnInit, OnDestroy {
   defaultRadioStyleClass = 'direct-form-btn--radio btn';
 
   constructor(
-    private directService: DirectService, private modal: NgbModal,
-    private parserFormatter: NgbDateParserFormatter, private translate: TranslateService,
-    private formBuilder: FormBuilder, private config: NgbDatepickerConfig, private currencyPipe: CurrencyPipe) {
+    private directService: DirectService, private modal: NgbModal, private translate: TranslateService,
+    private formBuilder: FormBuilder, private config: NgbDatepickerConfig) {
     const today: Date = new Date();
     this.dpMinDate = { year: (today.getFullYear() - 100), month: (today.getMonth() + 1), day: today.getDate() };
     this.dpMaxDate = { year: today.getFullYear(), month: (today.getMonth() + 1), day: today.getDate() };

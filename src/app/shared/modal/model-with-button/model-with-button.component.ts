@@ -3,8 +3,8 @@ import { Component, EventEmitter, Input, OnInit, Output, ViewEncapsulation } fro
 import { NavigationEnd, Router } from '@angular/router';
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 import { TranslateService } from '@ngx-translate/core';
-import { ANIMATION_DATA } from '../../../../assets/animation/animationData';
 
+import { ANIMATION_DATA } from '../../../../assets/animation/animationData';
 declare var require: any;
 const bodymovin = require("../../../../assets/scripts/lottie_svg.min.js");
 

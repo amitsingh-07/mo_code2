@@ -9,8 +9,10 @@
             <img src="assets/images/investment-account/transfer-web.svg" />
           </div>
           <div class="faq_link">
-            <a *ngIf="!authService.isUserTypeCorporate" target="_blank" routerLink="/faq" fragment="investment">{{ 'ASSET_ALLOCATION.FAQ_DESC_TEXT' | translate}}</a>
-            <a *ngIf="authService.isUserTypeCorporate" target="_blank" routerLink="{{corpFaq}}">{{ 'ASSET_ALLOCATION.FAQ_DESC_TEXT' | translate}}</a>
+            <a *ngIf="!authService.isUserTypeCorporate" target="_blank" routerLink="/faq" fragment="investment">{{
+              'ASSET_ALLOCATION.FAQ_DESC_TEXT' | translate}}</a>
+            <a *ngIf="authService.isUserTypeCorporate" target="_blank" routerLink="{{corpFaq}}">{{
+              'ASSET_ALLOCATION.FAQ_DESC_TEXT' | translate}}</a>
           </div>
         </div>
         <div class="max-width col-lg-6 col-md-6">
@@ -32,13 +34,15 @@
                           {{'TRANSFER.SELECT_CASH_ACCOUNT'| translate}}
                         </span>
                         <span class="capital-letter"
-                          *ngIf="transferForm.controls.transferFrom.value">{{transferForm.controls.transferFrom.value.portfolioName + ' - ' + transferForm.controls.transferFrom.value.refno}}</span>
+                          *ngIf="transferForm.controls.transferFrom.value">{{transferForm.controls.transferFrom.value.portfolioName
+                          + ' - ' + transferForm.controls.transferFrom.value.refno}}</span>
                       </button>
                       <div class="dropdown" ngbDropdownMenu aria-labelledby="withdrawDropDown">
                         <button class="dropdown-item capital-letter"
                           *ngFor="let portfolio of sourceCashPortfolioList; let i = index;"
                           (click)="setTransferFrom('transferFrom', portfolio)"
-                          id="withdraw-portfolio-option-{{i}}">{{portfolio.portfolioName + ' - ' + portfolio.refno}}</button>
+                          id="withdraw-portfolio-option-{{i}}">{{portfolio.portfolioName + ' - ' +
+                          portfolio.refno}}</button>
                       </div>
                     </div>
                   </div>
@@ -58,13 +62,15 @@
                           class="placeholder_color">{{'TRANSFER.SELECT_CASH_ACCOUNT'| translate}}
                         </span>
                         <span class="capital-letter"
-                          *ngIf="transferForm.controls.transferTo.value">{{transferForm.controls.transferTo.value.portfolioName + ' - ' + transferForm.controls.transferTo.value.refno}}</span>
+                          *ngIf="transferForm.controls.transferTo.value">{{transferForm.controls.transferTo.value.portfolioName
+                          + ' - ' + transferForm.controls.transferTo.value.refno}}</span>
                       </button>
                       <div class="dropdown" ngbDropdownMenu aria-labelledby="withdrawDropDown">
                         <button class="dropdown-item capital-letter"
                           *ngFor="let portfolio of destinationCashPortfolioList; let i = index;"
                           (click)="setTransferTo('transferTo', portfolio)"
-                          id="withdraw-portfolio-option-{{i}}">{{portfolio.portfolioName + ' - ' + portfolio.refno}}</button>
+                          id="withdraw-portfolio-option-{{i}}">{{portfolio.portfolioName + ' - ' +
+                          portfolio.refno}}</button>
                       </div>
                     </div>
                   </div>
@@ -142,8 +148,8 @@
           </div>
           <button type="button" class="btn btn__footer--fixed btn-ftr-get-started btn-primary 
             width100" id="portfolioRecommendationNextBtn" [disabled]="!transferForm.valid ||
-            !(transferForm.controls.transferAmount?.value > 0)"
-            (click)="goToNext(transferForm)">{{ 'LABEL.CONTINUE' | translate}}</button>
+            !(transferForm.controls.transferAmount?.value > 0)" (click)="goToNext(transferForm)">{{ 'LABEL.CONTINUE' |
+            translate}}</button>
         </div>
       </div>
     </div>

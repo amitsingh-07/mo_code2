@@ -13,7 +13,6 @@ import { INVESTMENT_ACCOUNT_CONSTANTS } from '../investment-account/investment-a
 import { PersonalInfo } from './investment-period/investment-period';
 import { InvestmentAccountCommon } from '../investment-account/investment-account-common';
 import { RegexConstants } from '../../shared/utils/api.regex.constants';
-import { InvestmentAccountFormError } from '../investment-account/investment-account-form-error';
 
 const PORTFOLIO_RECOMMENDATION_COUNTER_KEY = 'portfolio_recommendation-counter';
 const SESSION_STORAGE_KEY = 'app_engage_journey_session';
@@ -762,13 +761,12 @@ export class InvestmentEngagementJourneyService {
   }
   //Get Risk Profile icon
   getRiskProfileIcon(riskProfileType: string, isBalancedCpf: boolean) {
-    if(isBalancedCpf) {
+    if (isBalancedCpf) {
       return INVESTMENT_ENGAGEMENT_JOURNEY_CONSTANTS.riskProfileIcon['balanced-cpfis-icon'];
-    } else if(!Util.isEmptyOrNull(riskProfileType)) {
+    } else if (!Util.isEmptyOrNull(riskProfileType)) {
       return INVESTMENT_ENGAGEMENT_JOURNEY_CONSTANTS.riskProfileIcon[riskProfileType.toLowerCase()];
     } else {
       return '';
     }
   }
 }
- 

@@ -1,9 +1,10 @@
 import { Location } from '@angular/common';
-import { Component, HostListener, OnInit } from '@angular/core';
+import { AfterViewInit, Component, HostListener, NgZone, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { NgbModal, NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
 import { TranslateService } from '@ngx-translate/core';
 import { Observable } from 'rxjs';
+import { App, URLOpenListenerEvent } from '@capacitor/app';
 
 import { IComponentCanDeactivate } from './changes.guard';
 import { ConfigService, IConfig } from './config/config.service';
@@ -17,6 +18,8 @@ import { RoutingService } from './shared/Services/routing.service';
 import { SessionsService } from './shared/Services/sessions/sessions.service';
 import { appConstants } from './app.constants';
 import { UnsupportedDeviceModalComponent } from './shared/modal/unsupported-device-modal/unsupported-device-modal.component';
+import { environment } from 'src/environments/environment';
+import { Util } from './shared/utils/util';
 
 declare global {
   interface Window {
@@ -32,7 +35,7 @@ declare global {
   styleUrls: ['./app.component.scss']
 })
 
-export class AppComponent implements IComponentCanDeactivate, OnInit {
+export class AppComponent implements IComponentCanDeactivate, OnInit, AfterViewInit {
   title = 'Money Owl';
   modalRef: NgbModalRef;
   initRoute = false;
@@ -40,11 +43,11 @@ export class AppComponent implements IComponentCanDeactivate, OnInit {
   navbarMode = null;
 
   constructor(
-    private translate: TranslateService, public navbarService: NavbarService, private _location: Location,
+    private translate: TranslateService, public navbarService: NavbarService,
     private googleAnalyticsService: GoogleAnalyticsService,
     private modal: NgbModal, public route: Router, public routingService: RoutingService, private location: Location,
     private configService: ConfigService, private authService: AuthenticationService, private sessionsService: SessionsService,
-    public activatedRoute: ActivatedRoute) {
+    public activatedRoute: ActivatedRoute, private zone: NgZone) {
     this.translate.setDefaultLang('en');
     this.configService.getConfig().subscribe((config: IConfig) => {
       this.translate.setDefaultLang(config.language);
@@ -76,6 +79,8 @@ export class AppComponent implements IComponentCanDeactivate, OnInit {
         this.showFbWarning();
       }
     });
+    // Capacitor Deeplink
+    this.initializeApp();
   }
 
   ngOnInit() {
@@ -85,20 +90,43 @@ export class AppComponent implements IComponentCanDeactivate, OnInit {
     window.failed.namespace = window.failed.namespace || {};
     window.success = window.success || {};
     window.success.namespace = window.success.namespace || {};
+  }
 
-    this.configService.getConfig().subscribe((config: IConfig) => {
-      if (config.affiliateEnabled) {
-        this.activatedRoute.queryParams.subscribe(params => {
-          if (params['irclickid'] && typeof(Storage) !== "undefined") {
-            const item = {
-              irClickId: params['irclickid'],
-              clickIdCreatedDate: new Date().toISOString()
-            };
-            localStorage.setItem('irclickid_json', JSON.stringify(item));
-          }
-        });
-      }
+  initializeApp() {
+    App.addListener('appUrlOpen', (event: URLOpenListenerEvent) => {
+      console.log("IN APP LISTENER = " + App.getLaunchUrl())
+      App.getLaunchUrl()
+      this.zone.run(() => {
+        if (event.url.includes("myinfo")) {
+          console.log("IN MYINFO")
+          this.route.navigateByUrl("myinfo");
+        } else if (event.url.includes("login")) {
+          console.log("IN LOGIN", App.getLaunchUrl())
+          this.route.navigateByUrl("accounts/login");
+        }
+        // If no match, do nothing - let regular routing
+        // logic take over
+      });
     });
+
+    // Capacitor - Native Android/iOS device specific listeners
+    App.addListener('appStateChange', ({ isActive }) => {
+      console.log('App state changed. Is active?', isActive);
+    });
+  }
+
+  ngAfterViewInit(): void {  
+    document.body.addEventListener('click', evt => {
+      const anchorEle = evt.target as HTMLAnchorElement;
+      let url = anchorEle.getAttribute('href');
+      let isRouterLink = anchorEle.getAttribute('ng-reflect-router-link');
+      const isDownloadFile = anchorEle.getAttribute('download');
+      if (anchorEle.tagName.toLowerCase() === 'a' && url && !isRouterLink && !isDownloadFile && appConstants.RESTRICTED_HYPERLINK_URL_CONTENTS.filter(ele => url.includes(ele)).length === 0) {
+        evt.preventDefault();
+        let _target = anchorEle.getAttribute('target');
+        Util.openExternalUrl(url, _target);
+      }
+    })
   }
 
   onActivate(event) {
@@ -115,7 +143,7 @@ export class AppComponent implements IComponentCanDeactivate, OnInit {
       ref.result.then((data) => {
       if (data !== 'proceed') {
         if (this.redirect === '' || this.redirect === undefined) {
-          this._location.back();
+          this.navbarService.goBack();
         } else {
           window.location.href = this.redirect;
           }
