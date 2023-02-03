@@ -6,7 +6,8 @@ export let INVESTMENT_ACCOUNT_CONSTANTS = {
     'dob',
     'sex',
     'regadd',
-    'residentialstatus'
+    'residentialstatus',
+    'uinfin'
   ],
   MY_INFO_LINK_ATTRIBUTES: [
     'name'
