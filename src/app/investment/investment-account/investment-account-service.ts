@@ -695,8 +695,8 @@ export class InvestmentAccountService {
         this.investmentAccountFormData.isMyInfoEnabled = false;
       }
     }
-    if (data.uinfin.value) {
-      this.investmentAccountFormData.nricNumber = data.uinfin.toUpperCase();
+    if (data.uin) {
+      this.investmentAccountFormData.nricNumber = data.uin.toUpperCase();
       this.disableAttributes.push('nricNumber');
     }
     if (data.dob.value) {
