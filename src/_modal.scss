@@ -1472,7 +1472,7 @@ body.modal-open::-webkit-scrollbar {
   .close{
     width: 16px;
     height: 16px;
-    background-size: auto !important;
+    background-size: contain !important;
   }
 }
 
