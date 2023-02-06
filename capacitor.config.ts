@@ -2,7 +2,7 @@ import { CapacitorConfig } from '@capacitor/cli';
 
 const config: CapacitorConfig = {
   appId: 'com.moneyowl.app',
-  appName: 'MoneyOwl Mobile',
+  appName: 'MoneyOwl',
   webDir: 'dist/NTUCDev',
   bundledWebRuntime: false,
   server: {
