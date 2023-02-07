@@ -926,6 +926,7 @@ body.modal-open::-webkit-scrollbar {
   }
 
   .modal-body {
+    margin: env(safe-area-inset-top) env(safe-area-inset-right) env(safe-area-inset-left);;
     padding: 0px !important;
   }
 
@@ -934,6 +935,7 @@ body.modal-open::-webkit-scrollbar {
   }
 
   .tnc__content {
+    margin: env(safe-area-inset-bottom) env(safe-area-inset-right) env(safe-area-inset-left);
     padding: 0 10px;
   }
 

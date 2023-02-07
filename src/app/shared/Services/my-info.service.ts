@@ -66,7 +66,7 @@ export class MyInfoService {
 
   goToMyInfo(linkAccount?) {
     let currentUrl = window.location.toString();
-    let endPoint = currentUrl.split(currentUrl.split('/')[2])[currentUrl.split(currentUrl.split('/')[2]).length - 1].substr(1);
+    let endPoint = currentUrl.split(currentUrl.split('/')[2])[currentUrl.split(currentUrl.split('/')[2]).length - 1].substring(1);
     window.sessionStorage.setItem('currentUrl', endPoint);
     let authoriseUrl = this.authApiUrl +
       '?client_id=' + this.getMyInfoAppId() +
@@ -74,10 +74,6 @@ export class MyInfoService {
       '&purpose=' + this.purpose +
       '&state=' + this.state +
       '&redirect_uri=' + this.redirectUrl;
-      if (CapacitorUtils.isApp) {
-        authoriseUrl = authoriseUrl.concat("&appLaunchURL=com.moneyowl.app://myinfo");
-        console.log("AUTH URL = " + authoriseUrl)
-      }
     this.newWindow(authoriseUrl, linkAccount);
   }
 
@@ -277,7 +273,7 @@ export class MyInfoService {
   // Check if the source page matches with the session stored one
   checkMyInfoSourcePage() {
     const currentUrl = window.location.toString();
-    const currentPath = currentUrl.split(currentUrl.split('/')[2])[currentUrl.split(currentUrl.split('/')[2]).length - 1].substr(1);
+    const currentPath = currentUrl.split(currentUrl.split('/')[2])[currentUrl.split(currentUrl.split('/')[2]).length - 1].substring(1);
     if (this.getMyInfoAttributes() === appConstants.CHECK_MYINFO_INSURANCE_ATTRIBUTES
       && window.sessionStorage.getItem('currentUrl') === currentPath) {
       return true;

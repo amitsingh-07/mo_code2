@@ -93,7 +93,7 @@ const routes: Routes = [
 ];
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes, { enableTracing: false })],
+  imports: [RouterModule.forRoot(routes, { enableTracing: false, onSameUrlNavigation: 'reload'})],
   declarations: []
 })
 export class AppRoutingModule { }
