@@ -45,11 +45,9 @@ app-login {
       font-family: $muli-bold;
       font-size: 16px;
       cursor: pointer;
-    }
-
-    a span {
-      font-weight: 400;
-      text-decoration: underline;
+      &:hover{
+        text-decoration: underline !important;
+      }
     }
   }
 
