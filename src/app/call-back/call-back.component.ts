@@ -46,13 +46,15 @@ export class CallBackComponent implements OnInit {
           if (window.sessionStorage.getItem('currentUrl').includes(SIGN_UP_ROUTES.EDIT_PROFILE)) {
             this.myInfoService.openFetchPopup(true);
           } else {
-            this.myInfoService.openFetchPopup();
+            setTimeout(() => {
+              this.myInfoService.openFetchPopup();
+            }, 10);
           }
           this.zone.run(() => {
             setTimeout(() => {
               this.myInfoService.status = 'SUCCESS';
               this.myInfoService.changeListener.next(this.myInfoService.getMyinfoReturnMessage(1, this.data.code));
-            }, 500);
+            }, 200);
           });
         });
       }

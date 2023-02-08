@@ -23,8 +23,8 @@
                 <action android:name="android.intent.action.VIEW" />
                 <category android:name="android.intent.category.DEFAULT" />
                 <category android:name="android.intent.category.BROWSABLE" />
-                <data android:scheme="http" android:host="bfa-fb-newdev.ntucbfa.cloud" />
-                <data android:scheme="https" android:host="bfa-fb-newdev.ntucbfa.cloud" />
+                <data android:scheme="https" />
+                <data android:host="bfa-fb-newdev.ntucbfa.cloud" />
             </intent-filter>
         </activity>
 
