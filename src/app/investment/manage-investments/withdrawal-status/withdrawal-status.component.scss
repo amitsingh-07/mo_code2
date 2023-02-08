@@ -62,7 +62,7 @@ app-withdrawal-status {
     color: $white-color;
 
     @include allmobiles {
-      font-family: 16px; // check
+      font-size: 16px;
     }
   }
 
