@@ -152,15 +152,62 @@ export class MyProfileComponent implements IPageComponent, OnInit, OnDestroy {
 
         this.isOrganisationEnabled = appService.getCorporateDetails() ? appService.getCorporateDetails().organisationEnabled : false;
 
+    }
+
+    ngOnInit() {
+        this.progressService.setProgressTrackerData(this.comprehensiveService.generateProgressTrackerData());
+        this.loaderService.showLoader({ title: this.fetchData, autoHide: false });
+        this.getCurrentVersionType = COMPREHENSIVE_CONST.VERSION_TYPE.FULL;
+        this.comprehensiveApiService.getComprehensiveSummary().subscribe((data: any) => {
+            if (data && data.objectList[0]) {
+                this.comprehensiveService.setComprehensiveSummary(data.objectList[0]);
+                this.getComprehensiveEnquiry = this.comprehensiveService.getComprehensiveEnquiry();
+                this.myinfoRetrievelDate = this.getComprehensiveEnquiry.myInfoRetrievedDate;
+                this.getComprehensiveData = this.comprehensiveService.getComprehensiveEnquiry().type;
+                if (this.comprehensiveService.getComprehensiveSummary().comprehensiveEnquiry.reportStatus
+                    === COMPREHENSIVE_CONST.REPORT_STATUS.ERROR || (!this.comprehensiveService.getComprehensiveSummary().comprehensiveEnquiry
+                        .isLocked && this.comprehensiveService.getComprehensiveSummary().comprehensiveEnquiry.reportStatus
+                        === COMPREHENSIVE_CONST.REPORT_STATUS.READY)) {
+                    this.loaderService.hideLoaderForced();
+                    this.redirectToDashboard();
+                }
+                this.checkRedirect();
+                this.loadMyInfoListener();
+                this.loaderService.hideLoaderForced();
+            }
+        });
+
+        this.navbarService.setNavbarComprehensive(true);
+        this.menuClickSubscription = this.navbarService.onMenuItemClicked.subscribe((pageId) => {
+            if (this.pageId === pageId) {
+                this.onCloseClick();
+                this.progressService.show();
+            }
+        });
+
+        this.subscription = this.navbarService.subscribeBackPress().subscribe((event) => {
+            if (event && event !== '') {
+                this.redirectToDashboard();
+            }
+        });
+
+        if (!this.comprehensiveService.isProgressToolTipShown()) {
+            setTimeout(() => {
+                this.showToolTip = true;
+            }, 1000);
+        }
+    }
+
+    loadMyInfoListener() {
         this.myinfoChangeListener = this.myInfoService.changeListener.subscribe((myinfoObj: any) => {
-            let attributeList = comprehensiveService.cfpAutofillMyInfoAttributes;
+            let attributeList = this.comprehensiveService.cfpAutofillMyInfoAttributes;
             if (this.disabledAttributes) {
                 attributeList = this.removeMyInfoAttributes(this.disabledAttributes.cpfHousingFlag, COMPREHENSIVE_CONST.EXCLUDABLE_CFP_AUTOFILL_MY_INFO_ATTRIBUTES.CPF_HOUSING_WITHDRAWAL, attributeList);
                 attributeList = this.removeMyInfoAttributes(this.disabledAttributes.vehicleFlag, COMPREHENSIVE_CONST.EXCLUDABLE_CFP_AUTOFILL_MY_INFO_ATTRIBUTES.VEHICLES, attributeList);
             }
             if (myinfoObj && myinfoObj !== '') {
                 if (myinfoObj.status && myinfoObj.status === 'SUCCESS' &&
-                    (this.myInfoService.getMyInfoAttributes() === comprehensiveService.cfpAutofillMyInfoAttributes.join() ||
+                    (this.myInfoService.getMyInfoAttributes() === this.comprehensiveService.cfpAutofillMyInfoAttributes.join() ||
                         (this.disabledAttributes &&
                             (attributeList.join() === this.myInfoService.getMyInfoAttributes())
                         )
@@ -168,14 +215,14 @@ export class MyProfileComponent implements IPageComponent, OnInit, OnDestroy {
                     this.myInfoService.getCorpBizMyInfoAccountCreateData(this.userDetails.email, this.userDetails.mobileNumber, this.isOrganisationEnabled)
                         .subscribe((data) => {
                             if (data.responseMessage.responseCode === 6000 && data && data['objectList'] && data['objectList'][0]) {
-                                if (Object.keys(signUpService.getCorpBizUserMyInfoData()).length > 0) {
-                                    signUpService.clearCorpbizSessionData();
+                                if (Object.keys(this.signUpService.getCorpBizUserMyInfoData()).length > 0) {
+                                    this.signUpService.clearCorpbizSessionData();
                                 }
-                                comprehensiveService.isCFPAutofillMyInfoEnabled = true;
-                                signUpService.loadCorpBizUserMyInfoData(data['objectList'][0]);
+                                this.comprehensiveService.isCFPAutofillMyInfoEnabled = true;
+                                this.signUpService.loadCorpBizUserMyInfoData(data['objectList'][0]);
                                 this.myInfoService.isMyInfoEnabled = false;
                                 this.closeMyInfoPopup();
-                                router.navigate([COMPREHENSIVE_ROUTE_PATHS.CFP_AUTOFILL]);
+                                this.router.navigate([COMPREHENSIVE_ROUTE_PATHS.CFP_AUTOFILL]);
                             } else if (data.responseMessage.responseCode === 6014) {
                                 this.myInfoService.isMyInfoEnabled = false;
                                 this.closeMyInfoPopup();
@@ -202,49 +249,6 @@ export class MyProfileComponent implements IPageComponent, OnInit, OnDestroy {
                 }
             }
         });
-    }
-
-    ngOnInit() {
-        this.progressService.setProgressTrackerData(this.comprehensiveService.generateProgressTrackerData());
-        this.loaderService.showLoader({ title: this.fetchData, autoHide: false });
-        this.getCurrentVersionType = COMPREHENSIVE_CONST.VERSION_TYPE.FULL;
-        this.comprehensiveApiService.getComprehensiveSummary().subscribe((data: any) => {
-            if (data && data.objectList[0]) {
-                this.comprehensiveService.setComprehensiveSummary(data.objectList[0]);
-                this.getComprehensiveEnquiry = this.comprehensiveService.getComprehensiveEnquiry();
-                this.myinfoRetrievelDate = this.getComprehensiveEnquiry.myInfoRetrievedDate;
-                this.getComprehensiveData = this.comprehensiveService.getComprehensiveEnquiry().type;
-                if (this.comprehensiveService.getComprehensiveSummary().comprehensiveEnquiry.reportStatus
-                    === COMPREHENSIVE_CONST.REPORT_STATUS.ERROR || (!this.comprehensiveService.getComprehensiveSummary().comprehensiveEnquiry
-                        .isLocked && this.comprehensiveService.getComprehensiveSummary().comprehensiveEnquiry.reportStatus
-                        === COMPREHENSIVE_CONST.REPORT_STATUS.READY)) {
-                    this.loaderService.hideLoaderForced();
-                    this.redirectToDashboard();
-                }
-                this.checkRedirect();
-                this.loaderService.hideLoaderForced();
-            }
-        });
-
-        this.navbarService.setNavbarComprehensive(true);
-        this.menuClickSubscription = this.navbarService.onMenuItemClicked.subscribe((pageId) => {
-            if (this.pageId === pageId) {
-                this.onCloseClick();
-                this.progressService.show();
-            }
-        });
-
-        this.subscription = this.navbarService.subscribeBackPress().subscribe((event) => {
-            if (event && event !== '') {
-                this.redirectToDashboard();
-            }
-        });
-
-        if (!this.comprehensiveService.isProgressToolTipShown()) {
-            setTimeout(() => {
-                this.showToolTip = true;
-            }, 1000);
-        }
     }
 
     checkRedirect() {

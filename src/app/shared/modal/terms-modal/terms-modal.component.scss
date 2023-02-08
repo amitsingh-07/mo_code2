@@ -80,7 +80,7 @@ app-terms-modal {
     max-width: 190px;
     height: 100%;
     max-height: 57px;
-    bottom: 30px;
+    bottom: calc(30px + env(safe-area-inset-bottom));
     left: 50%;
     transform: translateX(-50%);
 

@@ -18,7 +18,6 @@ import { RoutingService } from './shared/Services/routing.service';
 import { SessionsService } from './shared/Services/sessions/sessions.service';
 import { appConstants } from './app.constants';
 import { UnsupportedDeviceModalComponent } from './shared/modal/unsupported-device-modal/unsupported-device-modal.component';
-import { environment } from 'src/environments/environment';
 import { Util } from './shared/utils/util';
 
 declare global {
@@ -94,16 +93,11 @@ export class AppComponent implements IComponentCanDeactivate, OnInit, AfterViewI
 
   initializeApp() {
     App.addListener('appUrlOpen', (event: URLOpenListenerEvent) => {
-      console.log("IN APP LISTENER = " + App.getLaunchUrl())
-      App.getLaunchUrl()
       this.zone.run(() => {
-        if (event.url.includes("myinfo")) {
-          console.log("IN MYINFO")
-          this.route.navigateByUrl("myinfo");
-        } else if (event.url.includes("login")) {
-          console.log("IN LOGIN", App.getLaunchUrl())
-          this.route.navigateByUrl("accounts/login");
-        }
+        const slug = event.url.split("app/").pop();
+        if (event.url.includes("myinfo") || event.url.includes("login")) {
+          this.route.navigateByUrl(slug);
+        } 
         // If no match, do nothing - let regular routing
         // logic take over
       });
