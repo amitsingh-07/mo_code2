@@ -26,6 +26,7 @@ import { SelectedPlansService } from '../../shared/Services/selected-plans.servi
 import { SIGN_UP_ROUTE_PATHS } from '../../sign-up/sign-up.routes.constants';
 import { SIGN_UP_CONFIG } from '../sign-up.constant';
 import { SignUpService } from '../sign-up.service';
+import { CapacitorUtils } from "../../shared/utils/capacitor.util";
 
 
 
@@ -148,15 +149,23 @@ export class ReferalRedirectingPartComponent implements OnInit {
       this.getInsurance();
     });
     ref.componentInstance.closeAction.subscribe(() => {
-      this.router.navigate([reDirectiveUrl]);
+      this.redirectPathOnModalClose(reDirectiveUrl);
     });
     ref.result.then(
       (result) => { },
       (reason) => {
         if (reason === 0) {
-          this.router.navigate([reDirectiveUrl]);
+          this.redirectPathOnModalClose(reDirectiveUrl);
         }
       });
+  }
+
+  redirectPathOnModalClose(redirectUrl) {
+    if (CapacitorUtils.isApp && CapacitorUtils.isIOSDevice) {
+      this.navbarService.goBack();
+    } else {
+      this.router.navigate([redirectUrl]);
+    }
   }
 
   //  INVESTMENT RE DIRECTION  FLOW 

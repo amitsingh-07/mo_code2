@@ -95,7 +95,7 @@ export class NavbarService {
     this.router.events.pipe(
       filter((event) => event instanceof NavigationStart)
     ).subscribe((event: NavigationStart) => {
-      if (CapacitorUtils.isApp) { 
+      if (CapacitorUtils.isApp && CapacitorUtils.isIOSDevice) { 
         this.handlingMobileAppNavigationUrlHistory(event);
       }
       this.unsubscribeBackPress();
