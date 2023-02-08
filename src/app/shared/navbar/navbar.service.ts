@@ -7,7 +7,7 @@ import { filter, tap } from 'rxjs/operators';
 import { CapacitorUtils } from '../utils/capacitor.util';
 
 import { IHeaderMenuItem } from './navbar.types';
-import { appConstants } from 'src/app/app.constants';
+import { appConstants } from '../../app.constants';
 
 @Injectable({
   providedIn: 'root'
