@@ -660,8 +660,8 @@ export class InvestmentAccountService {
     };
   }
 
-  setCallBackInvestmentAccount() {
-    this.investmentAccountFormData.callBackInvestmentAccount = true;
+  setCallBackInvestmentAccount(isInvestment: boolean) {
+    this.investmentAccountFormData.callBackInvestmentAccount = isInvestment;
     this.commit();
   }
 

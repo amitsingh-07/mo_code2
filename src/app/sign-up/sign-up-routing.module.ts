@@ -125,7 +125,8 @@ const routes: Routes = [
   {
     path: SIGN_UP_ROUTES.LOGIN,
     component: LoginComponent,
-    canActivate: [SingpassLoginGuard]
+    canActivate: [SingpassLoginGuard],
+    runGuardsAndResolvers: 'pathParamsOrQueryParamsChange'
   },
   {
     path: SIGN_UP_ROUTES.CORPORATE_LOGIN,

@@ -4,7 +4,6 @@ import { ApiService } from '../shared/http/api.service';
 import { AuthenticationService } from '../shared/http/auth/authentication.service';
 import { environment } from '../../environments/environment';
 import { SIGN_UP_ROUTE_PATHS } from '../sign-up/sign-up.routes.constants';
-import { Util } from '../shared/utils/util';
 import { CapacitorUtils } from '../shared/utils/capacitor.util';
 @Injectable({
   providedIn: 'root'
@@ -54,12 +53,10 @@ export class SingpassService {
       '&state=' + this.stateNonce.state +
       '&nonce=' + this.stateNonce.nonce;
     if (CapacitorUtils.isApp) {
-      loginUrl = loginUrl.concat("&app_launch_url=com.moneyowl.app://accounts/login")
-      console.log("SINGPASS APP LAUNCH URL = ",loginUrl)
       window.open(loginUrl, '_blank');
     } else {
       window.open(loginUrl, '_self');
     }
   }
-
+  
 }

@@ -491,6 +491,9 @@ input::placeholder {
       border: transparent;
       color: $app-backgrnd-color;
       background: $module-fill-color;
+      @include max360{
+        padding-right: 5px;
+      }
     }
   }
 
@@ -1437,7 +1440,7 @@ input::placeholder {
     opacity: 1 !important;
     pointer-events: none;
   }
-
+  
   .datepicker-control .input-group.view-mode .form-control {
     background-color: rgba(0, 167, 167, 0.15) !important;
     color: $app-backgrnd-color !important;

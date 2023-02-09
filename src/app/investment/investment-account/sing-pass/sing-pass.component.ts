@@ -223,7 +223,7 @@ export class SingPassComponent implements OnInit, OnDestroy {
 
   getMyInfo() {
     this.showConfirmation = false;
-    this.investmentAccountService.setCallBackInvestmentAccount();
+    this.investmentAccountService.setCallBackInvestmentAccount(true);
     this.myInfoService.setMyInfoAttributes(
       this.investmentAccountService.myInfoAttributes
     );

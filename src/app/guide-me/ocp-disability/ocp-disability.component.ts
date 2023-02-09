@@ -127,7 +127,7 @@ export class OcpDisabilityComponent implements OnInit, AfterViewInit, OnDestroy 
 
   selectEmployeeType(status, setSlider) {
     this.defaultEmployee = status;
-    this.coverageMax = this.defaultEmployee === GUIDE_ME_CONSTANTS.EMPLOYEE_TYPE ? GUIDE_ME_CONSTANTS[0] : GUIDE_ME_CONSTANTS[1];
+    this.coverageMax = this.defaultEmployee === GUIDE_ME_CONSTANTS.EMPLOYEE_TYPE ? GUIDE_ME_CONSTANTS.COVERAGE_AGE[0] : GUIDE_ME_CONSTANTS.COVERAGE_AGE[1];
     if (setSlider) {
       this.setSliderValues(this.coverageMax);
     }

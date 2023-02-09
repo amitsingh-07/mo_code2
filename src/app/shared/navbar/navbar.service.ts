@@ -7,6 +7,7 @@ import { filter, tap } from 'rxjs/operators';
 import { CapacitorUtils } from '../utils/capacitor.util';
 
 import { IHeaderMenuItem } from './navbar.types';
+import { appConstants } from '../../app.constants';
 
 @Injectable({
   providedIn: 'root'
@@ -95,7 +96,7 @@ export class NavbarService {
     this.router.events.pipe(
       filter((event) => event instanceof NavigationStart)
     ).subscribe((event: NavigationStart) => {
-      if (CapacitorUtils.isApp) { 
+      if (CapacitorUtils.isApp && CapacitorUtils.isIOSDevice) { 
         this.handlingMobileAppNavigationUrlHistory(event);
       }
       this.unsubscribeBackPress();
@@ -227,7 +228,8 @@ export class NavbarService {
 
   goBack() {
     if (CapacitorUtils.isApp && CapacitorUtils.isIOSDevice) {
-      this.isBackClicked = true;
+      this.isBackClicked = true; 
+      this.urlHistory.previousUrl = this.urlHistory.previousUrl.filter(item => !item.includes(appConstants.MY_INFO_CALLBACK_URL) );
       this.urlHistory.currentUrl = this.urlHistory.previousUrl[this.urlHistory.previousUrl.length - 1];
       this.urlHistory.previousUrl.splice(this.urlHistory.previousUrl.length - 1, 1);
       this.router.navigate([this.urlHistory.currentUrl]);
