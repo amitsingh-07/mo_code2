@@ -24,6 +24,7 @@ import {
   INVESTMENT_ENGAGEMENT_JOURNEY_CONSTANTS
 } from '../investment-engagement-journey.constants';
 import { InvestmentEngagementJourneyService } from '../investment-engagement-journey.service';
+import { SIGN_UP_ROUTE_PATHS } from '../../../sign-up/sign-up.routes.constants';
 
 @Component({
   selector: 'app-your-financials',
@@ -122,7 +123,7 @@ export class YourFinancialsComponent implements IPageComponent, OnInit {
     ref.componentInstance.errorMessage = this.modalData.modalMessage;
     ref.componentInstance.primaryActionLabel = this.translator.RETURN_HOME;
     ref.componentInstance.primaryAction.subscribe((emittedValue) => {
-      window.open('/', '_self');
+      this.router.navigate([SIGN_UP_ROUTE_PATHS.DASHBOARD]);
     });
   }
 
