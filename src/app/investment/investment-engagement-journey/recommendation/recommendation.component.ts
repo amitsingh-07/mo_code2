@@ -18,6 +18,7 @@ import { AuthenticationService } from './../../../shared/http/auth/authenticatio
 import { InvestmentCommonService } from './../../investment-common/investment-common.service';
 import { RiskProfile } from './riskprofile';
 import { InvestmentAccountService } from '../../investment-account/investment-account-service';
+import { SIGN_UP_ROUTE_PATHS } from '../../../sign-up/sign-up.routes.constants';
 
 @Component({
   selector: 'app-recommendation',
@@ -126,9 +127,11 @@ export class RecommendationComponent implements OnInit, AfterViewInit {
       this.router.navigate([INVESTMENT_ENGAGEMENT_JOURNEY_ROUTE_PATHS.PORTFOLIO_RECOMMENDATION]);
     }
   }
+  
   goToHomepage() {
-    window.open('/', '_self')
+    this.router.navigate([SIGN_UP_ROUTE_PATHS.DASHBOARD]);
   }
+
   setPageTitle(title: string) {
     this.navbarService.setPageTitle(title);
   }

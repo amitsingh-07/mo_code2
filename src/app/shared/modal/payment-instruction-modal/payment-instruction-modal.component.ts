@@ -5,7 +5,8 @@ import { NgbActiveModal, NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { TranslateService } from '@ngx-translate/core';
 
 import { ErrorModalComponent } from '../error-modal/error-modal.component';
-import { environment } from 'src/environments/environment';
+import { environment } from '../../../../environments/environment';
+
 @Component({
   selector: 'app-payment-instruction-modal',
   templateUrl: './payment-instruction-modal.component.html',

@@ -10,6 +10,7 @@ import { WILL_WRITING_ROUTE_PATHS } from '../will-writing-routes.constants';
 import { ErrorModalComponent } from './../../shared/modal/error-modal/error-modal.component';
 import { WillWritingService } from './../will-writing.service';
 import { InvestmentAccountService } from './../../investment/investment-account/investment-account-service';
+import { SIGN_UP_ROUTE_PATHS } from '../../sign-up/sign-up.routes.constants';
 
 @Component({
   selector: 'app-check-eligibility',
@@ -165,7 +166,7 @@ export class CheckEligibilityComponent implements OnInit, OnDestroy {
       ref.componentInstance.errorMessage = this.errorModal.MESSAGE;
       ref.componentInstance.navToHome = true;
       ref.result.then(() => {
-        window.open('/', '_self')
+        this.router.navigate([SIGN_UP_ROUTE_PATHS.DASHBOARD]);
       }).catch((e) => {
       });
   }
