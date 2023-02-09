@@ -195,6 +195,9 @@ export class MyInfoService {
   }
 
   cancelMyInfo() {
+    if (CapacitorUtils.isApp) {
+      this.router.navigate[window.sessionStorage.getItem('currentUrl')];
+    }
     if (!this.windowRef.closed) {
       this.windowRef.close();
     }

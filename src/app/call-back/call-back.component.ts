@@ -24,7 +24,9 @@ export class CallBackComponent implements OnInit {
 
   ngOnInit() {
      if (window.sessionStorage.currentUrl && this.route.queryParams['value'] && this.route.queryParams['value']['code']) {
-      this.myInfoService.openFetchPopup();
+      setTimeout(() => {
+        this.myInfoService.openFetchPopup();
+      }, 500);
       this.myInfoService.isMyInfoEnabled = true;
       this.data = this.route.queryParams['value'];
       this.myInfoService.setMyInfoValue(this.data.code);
@@ -44,17 +46,19 @@ export class CallBackComponent implements OnInit {
       } else {
         this.router.navigate([window.sessionStorage.getItem('currentUrl')]).then(() => {
           if (window.sessionStorage.getItem('currentUrl').includes(SIGN_UP_ROUTES.EDIT_PROFILE)) {
-            this.myInfoService.openFetchPopup(true);
+            setTimeout(() => {
+              this.myInfoService.openFetchPopup(true);
+            }, 500);
           } else {
             setTimeout(() => {
               this.myInfoService.openFetchPopup();
-            }, 10);
+            }, 500);
           }
           this.zone.run(() => {
             setTimeout(() => {
               this.myInfoService.status = 'SUCCESS';
               this.myInfoService.changeListener.next(this.myInfoService.getMyinfoReturnMessage(1, this.data.code));
-            }, 200);
+            }, 1000);
           });
         });
       }
