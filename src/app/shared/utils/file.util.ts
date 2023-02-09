@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 
 import { CapacitorUtils } from './capacitor.util';
 import { Util } from './util';
-import { environment } from 'src/environments/environment';
+import { environment } from '../../../environments/environment';
 
 export const FILE_TYPE = 'application/pdf';
 const iOS = /iPad|iPhone|iPod/.test(navigator.userAgent);
