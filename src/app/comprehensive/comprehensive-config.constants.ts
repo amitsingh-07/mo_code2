@@ -332,7 +332,6 @@ export const COMPREHENSIVE_CONST = {
         'residentialstatus',
         'cpfbalances',
         'cpfhousingwithdrawal',
-        'email',
         'noa',
         'uinfin',
         'hdbownership.dateofpurchase',
