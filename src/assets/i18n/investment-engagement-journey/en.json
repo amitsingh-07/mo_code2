@@ -274,7 +274,7 @@
     "CONTINUE": "Continue",
     "REVIEW_INPUT": "Review My Inputs",
     "PROCEED_NEXT": "Proceed To Next Step",
-    "RETURN_HOME": "Back to Dashboard",
+    "RETURN_HOME": "Return To Dashboard",
     "LABEL_YES": "Yes",
     "LABEL_NO": "No",
     "TITLE": "Your Financials",
@@ -427,7 +427,7 @@
   "RISK_PROFILE": {
     "TITLE": "Your Recommendation",
     "BUTTON_TITLE": "View My Portfolio",
-    "RETURN_TO_HOMEPAGE": "Back to Dashboard",
+    "RETURN_TO_HOMEPAGE": "Back To Dashboard",
     "YOUR_RISK_APPETITE": "Your Risk Appetite",
     "YOUR_PORTFOLIO_RECOMMENDATION": "Your Portfolio Recommendation",
     "PORTFOLIO_FIRST_BTN": "View {{firstPortfolio}} Portfolio",
