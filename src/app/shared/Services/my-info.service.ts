@@ -264,6 +264,7 @@ export class MyInfoService {
     const payload = {
       authorizationCode: this.myInfoValue,
       personAttributes: this.getMyInfoAttributes(),
+      appId:this.getMyInfoAppId(),
       isCorpBizUser: true,
       organisationCode: isOrganisationEnabled ? appConstants.USERTYPE.FACEBOOK : null,
       email: email,
