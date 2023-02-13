@@ -492,7 +492,7 @@ input::placeholder {
       color: $app-backgrnd-color;
       background: $module-fill-color;
       @include max360{
-        padding-right: 5px;
+        padding-right: 0px;
       }
     }
   }
