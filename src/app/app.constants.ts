@@ -22,6 +22,7 @@ export let appConstants = {
     JOURNEY_TYPE_WILL_WRITING: 'WILL_WRITING',
     HOME_ROUTE: '/home#',
     JOURNEY_TYPE_COMPREHENSIVE: 'comprehensive-plus',
+    BASE_HREF: '/app/',
     SESSION_KEY: {
         COMPREHENSIVE: 'app-comprehensive-session',
         CFP_USER_ROLE: 'app-comprehensive-user'

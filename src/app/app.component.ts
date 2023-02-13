@@ -20,6 +20,7 @@ import { SessionsService } from './shared/Services/sessions/sessions.service';
 import { appConstants } from './app.constants';
 import { UnsupportedDeviceModalComponent } from './shared/modal/unsupported-device-modal/unsupported-device-modal.component';
 import { Util } from './shared/utils/util';
+import { environment } from '../environments/environment';
 
 declare global {
   interface Window {
@@ -95,8 +96,8 @@ export class AppComponent implements IComponentCanDeactivate, OnInit, AfterViewI
   initializeApp() {
     App.addListener('appUrlOpen', (event: URLOpenListenerEvent) => {
       this.zone.run(() => {
-        const slug = event.url.split("app/").pop();
         if (event.url.includes("myinfo") || event.url.includes("login")) {
+          const slug = event.url.replace(environment.singpassBaseUrl, "");
           this.route.navigateByUrl(slug);
         }
       });

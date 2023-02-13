@@ -2,12 +2,13 @@ export const SIGN_UP_BASE_ROUTE = '../accounts/';
 export const DASHBOARD_PATH = '/accounts/dashboard';
 export const EDIT_PROFILE_PATH = '/accounts/edit-profile';
 export const INVESTMENT_MANAGEMENT_PATH = 'investment/manage/';
-export const ACCOUNTS_PATH = '/app/accounts/';
+export const ACCOUNTS_PATH = '/accounts/';
 
 export const SIGN_UP_ROUTES = {
   ROOT: '', 
   ACCOUNT_CREATED: 'success',
   ACCOUNT_UPDATED: 'account-updated',
+  ACCOUNTS_LOGIN: 'accounts/login',
   CREATE_ACCOUNT: 'sign-up-account',
   CREATE_ACCOUNT_MY_INFO: 'sign-up',
   EMAIL_VERIFIED: 'email-verification',
