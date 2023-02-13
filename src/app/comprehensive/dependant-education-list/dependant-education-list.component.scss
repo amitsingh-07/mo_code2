@@ -28,12 +28,19 @@
   .dependant-title {
       font-size: 18px;
   }
-  .help-icon {
-    background: url("./../../../assets/images/comprehensive/tool-tip-white.svg") no-repeat;
-    width: 20px;
-    position: relative;
-    top: 5px;
-    cursor: pointer;
+  .text-with-helpicon {
+    .comprehensive__page-sub-heading {
+      @include allmobiles {
+        width: calc(100% - 20px);
+      }
+    }
+    .help-icon {
+      background: url("./../../../assets/images/comprehensive/tool-tip-white.svg") no-repeat;
+      width: 20px;
+      position: relative;
+      top: 5px;
+      cursor: pointer;
+    }
   }
 }
 .age {
