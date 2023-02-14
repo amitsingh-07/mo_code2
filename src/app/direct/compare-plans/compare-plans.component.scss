@@ -29,10 +29,7 @@ app-compare-plans {
 
     .rt-round {
         border-top-right-radius: 6px !important;
-
-        .bg-white {
-            border-right: 0px !important;
-        }
+        border-right: 0px !important;
     }
 
     .rb-round {
@@ -46,7 +43,6 @@ app-compare-plans {
     .bg-white {
         background: transparent !important;
         color: black;
-        border-right: 2px solid $teal-color;
         padding: 20px;
     }
 
@@ -356,11 +352,18 @@ app-compare-plans {
         @include allmobiles {
             width: 100% !important;
         }
+        @include tablet {
+            max-width: 100%;
+        }
     }
 
     .details-main {
+        padding: 0 13px;
         @include allmobiles {
             margin: 0px 0px 20px 0px !important;
+        }
+        @include tablet {
+            padding: 0;
         }
     }
 }

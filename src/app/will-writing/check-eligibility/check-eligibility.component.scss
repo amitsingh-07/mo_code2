@@ -230,8 +230,6 @@ app-check-eligibility {
         }
     }
      .dropdown-menu {
-       z-index: 999;
-
        @include allmobiles {
          max-height: 200px !important;
          overflow: auto;
