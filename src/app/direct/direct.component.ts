@@ -10,7 +10,8 @@ import {
   ViewContainerRef,
   ViewEncapsulation,
   ComponentRef,
-  ChangeDetectorRef
+  ChangeDetectorRef,
+  NgZone
 } from '@angular/core';
 import { ActivatedRoute, NavigationEnd, NavigationStart, Router } from '@angular/router';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
@@ -64,7 +65,7 @@ export class DirectComponent implements OnInit, AfterViewInit, IPageComponent, O
     private factoryResolver: ComponentFactoryResolver, private appService: AppService,
     private planService: SelectedPlansService, private stateStoreService: StateStoreService,
     private location: Location, private seoService: SeoServiceService, private changeDetector: ChangeDetectorRef,
-    private authService: AuthenticationService) {
+    private authService: AuthenticationService, private zone: NgZone) {
 
     /* ************** STATE HANDLING - START ***************** */
     this.componentName = DirectComponent.name;
@@ -159,6 +160,7 @@ export class DirectComponent implements OnInit, AfterViewInit, IPageComponent, O
       switchMap(option => interval(1000)),
       takeUntil(this.destroyContactFormTimer$),
     ).subscribe(idleSeconds => {
+      this.changeDetector.detectChanges();
       if (idleSeconds === DISPLAY_CONTACT_FORM) {
         this.destroyContactFormTimer$.next(true);
         sessionStorage.setItem(SHOWN_DIRECTJOURNEY_CONTACTFORM, JSON.stringify(true));
@@ -168,10 +170,12 @@ export class DirectComponent implements OnInit, AfterViewInit, IPageComponent, O
   }
 
   openContactFormModal() {
-    const modalRef = this.modal.open(ContactFormComponent, {
-      centered: true,
-      windowClass: 'custom-full-height contact-form-modal',
-    });
+    this.zone.run(() => {
+      this.modal.open(ContactFormComponent, {
+        centered: true,
+        windowClass: 'custom-full-height contact-form-modal',
+      });
+    })
   }
 
   ngAfterViewInit() {

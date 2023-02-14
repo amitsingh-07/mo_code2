@@ -30,7 +30,7 @@ export class MyInfoService {
   private attributes = '';
   private myInfoServices = '';
   purpose = 'financial planning and advisory.';
-  redirectUrl = environment.myInfoCallbackBaseUrl;
+  redirectUrl = CapacitorUtils.isApp ? environment.singpassBaseUrl + appConstants.MY_INFO_CALLBACK_URL : environment.singpassBaseUrl + appConstants.BASE_HREF + appConstants.MY_INFO_CALLBACK_URL;
   state = Math.floor(100 + Math.random() * 90);
   myInfoValue: any;
   loadingModalRef: NgbModalRef;
@@ -234,7 +234,8 @@ export class MyInfoService {
     const code = {
       appId: this.getMyInfoAppId(),
       authorizationCode: this.myInfoValue,
-      personAttributes: this.getMyInfoAttributes()
+      personAttributes: this.getMyInfoAttributes(),
+      isMobileApp: CapacitorUtils.isApp
     };
     return this.apiService.getMyInfoData(code);
   }
@@ -264,6 +265,7 @@ export class MyInfoService {
     const payload = {
       authorizationCode: this.myInfoValue,
       personAttributes: this.getMyInfoAttributes(),
+      appId:this.getMyInfoAppId(),
       isCorpBizUser: true,
       organisationCode: isOrganisationEnabled ? appConstants.USERTYPE.FACEBOOK : null,
       email: email,
