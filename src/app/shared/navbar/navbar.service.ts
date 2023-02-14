@@ -4,6 +4,7 @@ import { NavigationStart, Router } from '@angular/router';
 import { BehaviorSubject, fromEvent, Observable } from 'rxjs';
 import { Subject } from 'rxjs/internal/Subject';
 import { filter, tap } from 'rxjs/operators';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { CapacitorUtils } from '../utils/capacitor.util';
 
 import { IHeaderMenuItem } from './navbar.types';
@@ -91,8 +92,9 @@ export class NavbarService {
   welcomeJourneyCompleted: boolean = false;
   urlHistory = { currentUrl: null, previousUrl: []};
   isBackClicked = false;
+  activeModals = 0;
 
-  constructor(private router: Router, private _location: Location, private ngZone: NgZone) {
+  constructor(private router: Router, private _location: Location, private ngZone: NgZone, private modal: NgbModal) {
     this.router.events.pipe(
       filter((event) => event instanceof NavigationStart)
     ).subscribe((event: NavigationStart) => {
@@ -100,7 +102,14 @@ export class NavbarService {
         this.handlingMobileAppNavigationUrlHistory(event);
       }
       this.unsubscribeBackPress();
+      if (event.navigationTrigger === 'popstate' && this.activeModals > 0) {
+        this.modal.dismissAll();
+      }
     });
+    
+    this.modal.activeInstances.subscribe(list => {
+			this.activeModals = list.length;
+		});
   }
 
   /* Navbar Generic Element Details*/
