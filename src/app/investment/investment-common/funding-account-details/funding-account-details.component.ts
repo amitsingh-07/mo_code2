@@ -266,7 +266,9 @@ export class FundingAccountDetailsComponent implements OnInit {
   saveSRSAccountDetails(form) {
     const params = this.constructSaveSrsAccountParams(form.value);
     const customerPortfolioId = this.investmentAccountFormValues.recommendedCustomerPortfolioId;
+    this.showLoader();
     this.investmentCommonService.saveSrsAccountDetails(params, customerPortfolioId).subscribe((data) => {
+      this.loaderService.hideLoaderForced();
       if (!Util.isEmptyOrNull(this.navigationType)) {
         this.router.navigate([INVESTMENT_COMMON_ROUTE_PATHS.PORTFOLIO_SUMMARY]);
       } else {
@@ -274,7 +276,7 @@ export class FundingAccountDetailsComponent implements OnInit {
       }
     },
       (err) => {
-        this.investmentAccountService.showGenericErrorModal();
+        this.loaderService.hideLoaderForced();
       });
   }
 
@@ -558,12 +560,11 @@ export class FundingAccountDetailsComponent implements OnInit {
     this.showLoader();
     this.investmentCommonService.saveCKABankAccount(params).subscribe((data) => {
       this.loaderService.hideLoaderForced();
-      if (data && data.objectList) {
-        this.router.navigate([INVESTMENT_COMMON_ROUTE_PATHS.ADD_PORTFOLIO_NAME]);
-      }
+        if (data && data.objectList) {
+          this.router.navigate([INVESTMENT_COMMON_ROUTE_PATHS.ADD_PORTFOLIO_NAME]);
+        }     
     }, () => {
       this.loaderService.hideLoaderForced();
-      this.investmentAccountService.showGenericErrorModal();
     });
   }
 
