@@ -109,6 +109,7 @@ app-compare-plans {
             display: flex;
             flex-direction: column;
             justify-content: space-between;
+            border-right: 2px solid $teal-color;
 
             &:first-child {
                 border-top-left-radius: 6px;
