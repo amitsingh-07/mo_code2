@@ -64,7 +64,7 @@ export class SignUpService {
     private datePipe: DatePipe,
     public modal: NgbModal,
     private translate: TranslateService,
-    private investmentAccountService: InvestmentAccountService,
+    private investmentAccountService: InvestmentAccountService
   ) {
     this.getAccountInfo();
     this.configService.getConfig().subscribe((config: IConfig) => {
