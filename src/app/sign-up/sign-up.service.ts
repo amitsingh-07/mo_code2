@@ -21,7 +21,6 @@ import { InvestmentAccountService } from '../investment/investment-account/inves
 import { appConstants } from '../app.constants';
 import { Util } from '../shared/utils/util';
 import { environment } from './../../environments/environment';
-import { AppService } from '../app.service';
 
 const SIGNUP_SESSION_STORAGE_KEY = 'app_signup_session_storage_key';
 const CUSTOMER_REF_SESSION_STORAGE_KEY = 'app_customer_ref_session_storage_key';
@@ -66,7 +65,6 @@ export class SignUpService {
     public modal: NgbModal,
     private translate: TranslateService,
     private investmentAccountService: InvestmentAccountService,
-    private appService: AppService
   ) {
     this.getAccountInfo();
     this.configService.getConfig().subscribe((config: IConfig) => {
@@ -772,9 +770,7 @@ export class SignUpService {
   }
 
   // create account my_info details
-  setCreateAccountMyInfoFormData(data) {
-    let email = this.appService.getCorpBizData()?.email;
-    let mobileNumber = this.appService.getCorpBizData()?.mobileNumber;
+  setCreateAccountMyInfoFormData(data,email,mobile) {
     if (data.name && data.name.value) {
       this.signUpFormData.fullName = data.name.value;
       this.disableAttributes.push('fullName');
@@ -783,16 +779,8 @@ export class SignUpService {
       this.signUpFormData.nricNumber = data.uin;
       this.disableAttributes.push('nricNumber');
     }
-    if (data.email && data.email.value) {
-      this.signUpFormData.email = data.email.value;
-    } else {
       this.signUpFormData.email = email;
-    }
-    if (data.mobileno && data.mobileno.nbr) {
-      this.signUpFormData.mobileNumber = data.mobileno.nbr;
-    } else {
-      this.signUpFormData.mobileNumber = mobileNumber;
-    }
+      this.signUpFormData.mobileNumber = mobile;
     if (data.dob.value) {
       this.signUpFormData.dob = this.investmentAccountService.dateFormat(data.dob.value);
       this.disableAttributes.push('dob');
