@@ -114,10 +114,8 @@ export class CorpBizSignupComponent implements OnInit {
           if (Object.keys(this.signUpService.getCorpBizUserMyInfoData()).length > 0) {
             this.signUpService.clearCorpbizSessionData();
           }
-          data.objectList[0].email.value = email;
-          data.objectList[0].mobileno.nbr = mobile;
           this.signUpService.setCorpBizMyInfoStatus(true);
-          this.signUpService.setCreateAccountMyInfoFormData(data.objectList[0]);
+          this.signUpService.setCreateAccountMyInfoFormData(data.objectList[0],email,mobile);
           this.signUpService.loadCorpBizUserMyInfoData(data.objectList[0]);
           this.router.navigate([SIGN_UP_ROUTE_PATHS.CORP_BIZ_SIGNUP_DATA]);
         } else if (data.responseMessage.responseCode === 6014) {

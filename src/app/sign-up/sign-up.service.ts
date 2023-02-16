@@ -770,7 +770,7 @@ export class SignUpService {
   }
 
   // create account my_info details
-  setCreateAccountMyInfoFormData(data) {
+  setCreateAccountMyInfoFormData(data,email,mobile) {
     if (data.name && data.name.value) {
       this.signUpFormData.fullName = data.name.value;
       this.disableAttributes.push('fullName');
@@ -779,12 +779,8 @@ export class SignUpService {
       this.signUpFormData.nricNumber = data.uin;
       this.disableAttributes.push('nricNumber');
     }
-    if (data.email && data.email.value) {
-      this.signUpFormData.email = data.email.value;
-    }
-    if (data.mobileno && data.mobileno.nbr) {
-      this.signUpFormData.mobileNumber = data.mobileno.nbr;
-    }
+      this.signUpFormData.email = email;
+      this.signUpFormData.mobileNumber = mobile;
     if (data.dob.value) {
       this.signUpFormData.dob = this.investmentAccountService.dateFormat(data.dob.value);
       this.disableAttributes.push('dob');
