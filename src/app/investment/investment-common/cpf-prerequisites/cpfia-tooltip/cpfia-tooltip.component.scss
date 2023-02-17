@@ -47,9 +47,14 @@ app-cpfia-tooltip {
     font-family: $muli-bold;
     color: $crusta-orange-color;
     cursor: pointer;
+    text-decoration: underline;
 
     &:hover {
       text-decoration: none;
+    }
+
+    &:visited {
+      text-decoration: underline;
     }
   }
 }
