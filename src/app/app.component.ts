@@ -21,6 +21,7 @@ import { appConstants } from './app.constants';
 import { UnsupportedDeviceModalComponent } from './shared/modal/unsupported-device-modal/unsupported-device-modal.component';
 import { Util } from './shared/utils/util';
 import { environment } from '../environments/environment';
+import { CapacitorUtils } from './shared/utils/capacitor.util';
 
 declare global {
   interface Window {
@@ -186,7 +187,7 @@ export class AppComponent implements IComponentCanDeactivate, OnInit, AfterViewI
   doBeforeUnload() {
     // Alert the user window is closing
     // Not to show alert when on login page
-    if (this.route.url == '/accounts/login') {
+    if (this.route.url == '/accounts/login' || CapacitorUtils.isApp) {
       return true;
     } else {
       return false;
