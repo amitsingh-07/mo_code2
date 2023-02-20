@@ -4,7 +4,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { NgbModal, NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
 import { TranslateService } from '@ngx-translate/core';
 import { Observable } from 'rxjs';
-import { App, URLOpenListenerEvent } from '@capacitor/app';
+import { App } from '@capacitor/app';
 import { AppLauncher } from '@capacitor/app-launcher';
 
 import { IComponentCanDeactivate } from './changes.guard';
@@ -22,6 +22,7 @@ import { UnsupportedDeviceModalComponent } from './shared/modal/unsupported-devi
 import { Util } from './shared/utils/util';
 import { environment } from '../environments/environment';
 import { CapacitorUtils } from './shared/utils/capacitor.util';
+import { InAppBrowser, UrlEvent } from '@capgo/inappbrowser';
 
 declare global {
   interface Window {
@@ -95,20 +96,10 @@ export class AppComponent implements IComponentCanDeactivate, OnInit, AfterViewI
   }
 
   initializeApp() {
-    App.addListener('appUrlOpen', (event: URLOpenListenerEvent) => {
-      this.zone.run(() => {
-        if (event.url.includes("myinfo") || event.url.includes("login")) {
-          const slug = event.url.replace(environment.singpassBaseUrl, "");
-          this.route.navigateByUrl(slug);
-        }
-      });
-    });
-
     // Capacitor - Native Android/iOS device specific listeners
     App.addListener('appStateChange', ({ isActive }) => {
       console.log('App state changed. Is active?', isActive);
     });
-
     // Check from browser if device has install moneyowl mobile app
     const checkCanOpenUrl = async () => {
       const { value } = await AppLauncher.canOpenUrl({ url: 'com.moneyowl.app' });
@@ -116,6 +107,20 @@ export class AppComponent implements IComponentCanDeactivate, OnInit, AfterViewI
         console.log('Can open MONEYOWL: ');
       }
     };
+    // Capgo Inappbrowser listener for singpass/myinfo
+    InAppBrowser.addListener('urlChangeEvent', (urlEvt: UrlEvent) => {
+      this.zone.run(() => {
+        if (urlEvt.url.startsWith(environment.singpassBaseUrl) && urlEvt.url.includes("code") && urlEvt.url.includes("state") && urlEvt.url.includes("login")) {
+          InAppBrowser.close();
+          const slug = urlEvt.url.replace(environment.singpassBaseUrl + appConstants.BASE_HREF, "");
+          this.route.navigateByUrl(slug);
+        } else if (urlEvt.url.startsWith(environment.singpassBaseUrl) && urlEvt.url.includes("code") && urlEvt.url.includes("state") && urlEvt.url.includes("myinfo")) {
+          InAppBrowser.close();
+          const slug = urlEvt.url.replace(environment.singpassBaseUrl + "/", "");
+          this.route.navigateByUrl(slug.replace("/", ""));
+        }
+      });
+    });
   }
 
   ngAfterViewInit(): void {  

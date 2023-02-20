@@ -3,9 +3,10 @@ import { Injectable } from '@angular/core';
 import { ApiService } from '../shared/http/api.service';
 import { AuthenticationService } from '../shared/http/auth/authentication.service';
 import { environment } from '../../environments/environment';
-import { SIGN_UP_ROUTES, SIGN_UP_ROUTE_PATHS } from '../sign-up/sign-up.routes.constants';
+import { SIGN_UP_ROUTES } from '../sign-up/sign-up.routes.constants';
 import { CapacitorUtils } from '../shared/utils/capacitor.util';
 import { appConstants } from '../app.constants';
+import { InAppBrowser } from '@capgo/inappbrowser';
 
 @Injectable({
   providedIn: 'root'
@@ -39,17 +40,14 @@ export class SingpassService {
       enquiryId: enquiryId,
       journeyType: journeyType,
       code: code,
-      state: state,
-      isMobileApp: CapacitorUtils.isApp
+      state: state
     };
     return this.apiService.loginSingpass(payload);
   }
 
   // Open Singpass redirect link in window
   openSingpassUrl() {
-    const redirectUrl = CapacitorUtils.isApp ? environment.singpassBaseUrl + SIGN_UP_ROUTE_PATHS.SINGPASS_REDIRECT_URL :
-      environment.singpassBaseUrl + appConstants.BASE_HREF + SIGN_UP_ROUTES.ACCOUNTS_LOGIN;
-
+    const redirectUrl =   environment.singpassBaseUrl + appConstants.BASE_HREF + SIGN_UP_ROUTES.ACCOUNTS_LOGIN;
     let loginUrl = environment.singpassLoginUrl +
       '?client_id=' + environment.singpassClientId +
       '&redirect_uri=' + redirectUrl +
@@ -57,8 +55,8 @@ export class SingpassService {
       '&response_type=code' +
       '&state=' + this.stateNonce.state +
       '&nonce=' + this.stateNonce.nonce;
-    if (CapacitorUtils.isApp) {
-      window.open(loginUrl, '_blank');
+  if (CapacitorUtils.isApp) {
+      InAppBrowser.openWebView({url: loginUrl, title: "Singpass Login"});
     } else {
       window.open(loginUrl, '_self');
     }

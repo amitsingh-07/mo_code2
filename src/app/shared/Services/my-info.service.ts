@@ -11,6 +11,7 @@ import { ErrorModalComponent } from '../modal/error-modal/error-modal.component'
 import { ModelWithButtonComponent } from '../modal/model-with-button/model-with-button.component';
 import { SIGN_UP_ROUTE_PATHS } from './../../sign-up/sign-up.routes.constants';
 import { CapacitorUtils } from '../utils/capacitor.util';
+import { InAppBrowser } from '@capgo/inappbrowser';
 
 const MYINFO_ATTRIBUTE_KEY = 'myinfo_person_attributes';
 declare var window: Window;
@@ -30,7 +31,7 @@ export class MyInfoService {
   private attributes = '';
   private myInfoServices = '';
   purpose = 'financial planning and advisory.';
-  redirectUrl = CapacitorUtils.isApp ? environment.singpassBaseUrl + appConstants.MY_INFO_CALLBACK_URL : environment.singpassBaseUrl + appConstants.BASE_HREF + appConstants.MY_INFO_CALLBACK_URL;
+  redirectUrl = environment.myInfoCallbackBaseUrl;
   state = Math.floor(100 + Math.random() * 90);
   myInfoValue: any;
   loadingModalRef: NgbModalRef;
@@ -91,7 +92,7 @@ export class MyInfoService {
     this.isMyInfoEnabled = true;
 
     if (CapacitorUtils.isApp) {
-      window.open(authoriseUrl, '_blank');
+      InAppBrowser.openWebView({url: encodeURI(authoriseUrl), title: "myInfo"});
     } else {
       this.windowRef = window.open(authoriseUrl);
       const timer = setInterval(() => {
