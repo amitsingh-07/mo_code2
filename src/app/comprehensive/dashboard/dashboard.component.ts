@@ -61,6 +61,7 @@ export class ComprehensiveDashboardComponent implements OnInit {
   isSpeakToAdvisor = false;
   isAdvisorAppointment = false;
   reportStatusTypes: any;
+  isReportDownloading = false;
 
   constructor(
     private router: Router,
@@ -119,12 +120,14 @@ export class ComprehensiveDashboardComponent implements OnInit {
   }
 
   downloadComprehensiveReport() {
+    this.isReportDownloading = true;
     let newWindow;
     if(/iPad|iPhone|iPod/.test(navigator.userAgent)) {
       newWindow = window.open();
     }
     const payload = { reportId: this.getComprehensiveSummaryDashboard.reportId, enquiryId: this.enquiryId };
     this.comprehensiveApiService.downloadComprehensiveReport(payload).subscribe((data: any) => {
+      this.isReportDownloading = false;
       this.downloadfile.downloadPDF(data.body, newWindow, COMPREHENSIVE_CONST.REPORT_PDF_NAME);
     });
   }
