@@ -1560,3 +1560,9 @@ body.modal-open::-webkit-scrollbar {
     }
   }
 }
+
+.no-title {
+  .modal-body-message {
+    padding-right: 10px;
+  }
+}

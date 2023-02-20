@@ -265,7 +265,7 @@ export class LoginComponent implements OnInit, AfterViewInit, OnDestroy {
     const accessCode = (this.finlitEnabled) ? this.loginForm.value.accessCode : '';
     const organisationCode = this.organisationEnabled && this.loginForm.get('organisationCode').value || null;
     if (!form.valid || ValidatePassword(form.controls['loginPassword'])) {
-      const ref = this.modal.open(ErrorModalComponent, { centered: true });
+      const ref = this.modal.open(ErrorModalComponent, { centered: true, windowClass: 'no-title' });
       let error;
       if (!form.valid) {
         this.markAllFieldsDirty(form);

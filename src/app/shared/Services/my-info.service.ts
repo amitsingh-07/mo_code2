@@ -3,6 +3,7 @@ import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import { NgbModal, NgbModalOptions, NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
 import { Subject } from 'rxjs';
+import { InAppBrowser } from '@capgo/inappbrowser';
 
 import { appConstants } from '../../app.constants';
 import { environment } from '../../../environments/environment';
@@ -30,7 +31,7 @@ export class MyInfoService {
   private attributes = '';
   private myInfoServices = '';
   purpose = 'financial planning and advisory.';
-  redirectUrl = CapacitorUtils.isApp ? environment.singpassBaseUrl + appConstants.MY_INFO_CALLBACK_URL : environment.singpassBaseUrl + appConstants.BASE_HREF + appConstants.MY_INFO_CALLBACK_URL;
+  redirectUrl = environment.myInfoCallbackBaseUrl;
   state = Math.floor(100 + Math.random() * 90);
   myInfoValue: any;
   loadingModalRef: NgbModalRef;
@@ -91,7 +92,7 @@ export class MyInfoService {
     this.isMyInfoEnabled = true;
 
     if (CapacitorUtils.isApp) {
-      window.open(authoriseUrl, '_blank');
+      InAppBrowser.openWebView({url: encodeURI(authoriseUrl), title: "myInfo"});
     } else {
       this.windowRef = window.open(authoriseUrl);
       const timer = setInterval(() => {
