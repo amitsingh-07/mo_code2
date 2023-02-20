@@ -5,7 +5,7 @@ import { NgbModal, NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
 import { TranslateService } from '@ngx-translate/core';
 import { Observable } from 'rxjs';
 import { App } from '@capacitor/app';
-import { AppLauncher } from '@capacitor/app-launcher';
+import { InAppBrowser, UrlEvent } from '@capgo/inappbrowser';
 
 import { IComponentCanDeactivate } from './changes.guard';
 import { ConfigService, IConfig } from './config/config.service';
@@ -22,7 +22,6 @@ import { UnsupportedDeviceModalComponent } from './shared/modal/unsupported-devi
 import { Util } from './shared/utils/util';
 import { environment } from '../environments/environment';
 import { CapacitorUtils } from './shared/utils/capacitor.util';
-import { InAppBrowser, UrlEvent } from '@capgo/inappbrowser';
 
 declare global {
   interface Window {
@@ -100,13 +99,6 @@ export class AppComponent implements IComponentCanDeactivate, OnInit, AfterViewI
     App.addListener('appStateChange', ({ isActive }) => {
       console.log('App state changed. Is active?', isActive);
     });
-    // Check from browser if device has install moneyowl mobile app
-    const checkCanOpenUrl = async () => {
-      const { value } = await AppLauncher.canOpenUrl({ url: 'com.moneyowl.app' });
-      if (value) {
-        console.log('Can open MONEYOWL: ');
-      }
-    };
     // Capgo Inappbrowser listener for singpass/myinfo
     InAppBrowser.addListener('urlChangeEvent', (urlEvt: UrlEvent) => {
       this.zone.run(() => {

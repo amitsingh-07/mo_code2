@@ -3,6 +3,7 @@ import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import { NgbModal, NgbModalOptions, NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
 import { Subject } from 'rxjs';
+import { InAppBrowser } from '@capgo/inappbrowser';
 
 import { appConstants } from '../../app.constants';
 import { environment } from '../../../environments/environment';
@@ -11,7 +12,6 @@ import { ErrorModalComponent } from '../modal/error-modal/error-modal.component'
 import { ModelWithButtonComponent } from '../modal/model-with-button/model-with-button.component';
 import { SIGN_UP_ROUTE_PATHS } from './../../sign-up/sign-up.routes.constants';
 import { CapacitorUtils } from '../utils/capacitor.util';
-import { InAppBrowser } from '@capgo/inappbrowser';
 
 const MYINFO_ATTRIBUTE_KEY = 'myinfo_person_attributes';
 declare var window: Window;

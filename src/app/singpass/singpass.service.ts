@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+import { InAppBrowser } from '@capgo/inappbrowser';
 
 import { ApiService } from '../shared/http/api.service';
 import { AuthenticationService } from '../shared/http/auth/authentication.service';
@@ -6,7 +7,6 @@ import { environment } from '../../environments/environment';
 import { SIGN_UP_ROUTES } from '../sign-up/sign-up.routes.constants';
 import { CapacitorUtils } from '../shared/utils/capacitor.util';
 import { appConstants } from '../app.constants';
-import { InAppBrowser } from '@capgo/inappbrowser';
 
 @Injectable({
   providedIn: 'root'
