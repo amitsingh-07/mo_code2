@@ -1,11 +1,11 @@
 import { Location } from '@angular/common';
-import { AfterViewInit, Component, HostListener, NgZone, OnInit } from '@angular/core';
+import { AfterViewInit, Component, HostListener, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { NgbModal, NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
 import { TranslateService } from '@ngx-translate/core';
 import { Observable } from 'rxjs';
 import { App } from '@capacitor/app';
-import { InAppBrowser, UrlEvent } from '@capgo/inappbrowser';
+import { InAppBrowser, UrlEvent } from 'capgo-inappbrowser-intent-fix';
 
 import { IComponentCanDeactivate } from './changes.guard';
 import { ConfigService, IConfig } from './config/config.service';
@@ -22,6 +22,7 @@ import { UnsupportedDeviceModalComponent } from './shared/modal/unsupported-devi
 import { Util } from './shared/utils/util';
 import { environment } from '../environments/environment';
 import { CapacitorUtils } from './shared/utils/capacitor.util';
+import { MyInfoService } from './shared/Services/my-info.service';
 
 declare global {
   interface Window {
@@ -49,7 +50,7 @@ export class AppComponent implements IComponentCanDeactivate, OnInit, AfterViewI
     private googleAnalyticsService: GoogleAnalyticsService,
     private modal: NgbModal, public route: Router, public routingService: RoutingService, private location: Location,
     private configService: ConfigService, private authService: AuthenticationService, private sessionsService: SessionsService,
-    public activatedRoute: ActivatedRoute, private zone: NgZone) {
+    public activatedRoute: ActivatedRoute, private myInfoService: MyInfoService) {
     this.translate.setDefaultLang('en');
     this.configService.getConfig().subscribe((config: IConfig) => {
       this.translate.setDefaultLang(config.language);
@@ -99,19 +100,23 @@ export class AppComponent implements IComponentCanDeactivate, OnInit, AfterViewI
     App.addListener('appStateChange', ({ isActive }) => {
       console.log('App state changed. Is active?', isActive);
     });
-    // Capgo Inappbrowser listener for singpass/myinfo
+    // Capgo Inappbrowser close listener for singpass/myinfo
+    InAppBrowser.addListener('closeEvent', () => {
+      this.myInfoService.closeFetchPopup();
+    });
+    // Capgo Inappbrowser urlchange listener for singpass/myinfo
     InAppBrowser.addListener('urlChangeEvent', (urlEvt: UrlEvent) => {
-      this.zone.run(() => {
-        if (urlEvt.url.startsWith(environment.singpassBaseUrl) && urlEvt.url.includes("code") && urlEvt.url.includes("state") && urlEvt.url.includes("login")) {
-          InAppBrowser.close();
-          const slug = urlEvt.url.replace(environment.singpassBaseUrl + appConstants.BASE_HREF, "");
-          this.route.navigateByUrl(slug);
-        } else if (urlEvt.url.startsWith(environment.singpassBaseUrl) && urlEvt.url.includes("code") && urlEvt.url.includes("state") && urlEvt.url.includes("myinfo")) {
-          InAppBrowser.close();
-          const slug = urlEvt.url.replace(environment.singpassBaseUrl + "/", "");
-          this.route.navigateByUrl(slug.replace("/", ""));
-        }
-      });
+      if (urlEvt.url.startsWith(environment.singpassBaseUrl) && urlEvt.url.includes("code") && urlEvt.url.includes("state") && urlEvt.url.includes("login")) {
+        InAppBrowser.close();
+        const slug = urlEvt.url.replace(environment.singpassBaseUrl + appConstants.BASE_HREF, "");
+        this.route.navigateByUrl(slug);
+      } else if (urlEvt.url.startsWith(environment.singpassBaseUrl) && urlEvt.url.includes("code") && urlEvt.url.includes("state") && urlEvt.url.includes("myinfo")) {
+        InAppBrowser.close();
+        const code = urlEvt.url.substring(urlEvt.url.indexOf("=") + 1, urlEvt.url.lastIndexOf("&state"));
+        this.myInfoService.mobileMyInfoCheck(code);
+      } else if (urlEvt.url.startsWith(environment.singpassBaseUrl)) {
+        InAppBrowser.close();
+      }
     });
   }
 

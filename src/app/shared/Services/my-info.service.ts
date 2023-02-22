@@ -1,17 +1,19 @@
 import { HttpParams } from '@angular/common/http';
-import { Injectable } from '@angular/core';
+import { Injectable, NgZone, OnDestroy } from '@angular/core';
 import { Router } from '@angular/router';
 import { NgbModal, NgbModalOptions, NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
 import { Subject } from 'rxjs';
-import { InAppBrowser } from '@capgo/inappbrowser';
+import { InAppBrowser } from 'capgo-inappbrowser-intent-fix';
 
 import { appConstants } from '../../app.constants';
 import { environment } from '../../../environments/environment';
 import { ApiService } from '../http/api.service';
 import { ErrorModalComponent } from '../modal/error-modal/error-modal.component';
 import { ModelWithButtonComponent } from '../modal/model-with-button/model-with-button.component';
-import { SIGN_UP_ROUTE_PATHS } from './../../sign-up/sign-up.routes.constants';
+import { SIGN_UP_ROUTES, SIGN_UP_ROUTE_PATHS } from './../../sign-up/sign-up.routes.constants';
 import { CapacitorUtils } from '../utils/capacitor.util';
+import { INVESTMENT_ACCOUNT_ROUTE_PATHS } from '../../investment/investment-account/investment-account-routes.constants';
+import { InvestmentAccountService } from '../../investment/investment-account/investment-account-service';
 
 const MYINFO_ATTRIBUTE_KEY = 'myinfo_person_attributes';
 declare var window: Window;
@@ -23,7 +25,7 @@ const SUCCESS = 1;
 @Injectable({
   providedIn: 'root'
 })
-export class MyInfoService {
+export class MyInfoService implements OnDestroy {
 
   changeListener = new Subject();
   authApiUrl = environment.myInfoAuthorizeUrl;
@@ -38,10 +40,18 @@ export class MyInfoService {
   isMyInfoEnabled = false;
   status;
   windowRef: any;
+  getMyInfoDataSubscription: any;
+  closeBtnSubscription: any;
 
   constructor(
-    private modal: NgbModal, private apiService: ApiService, private router: Router
+    private modal: NgbModal, private apiService: ApiService, private router: Router, private zone: NgZone,
+    private investmentAccountService: InvestmentAccountService
   ) { }
+
+  ngOnDestroy() {
+    this.getMyInfoDataSubscription.unsubscribe();
+    this.closeBtnSubscription.unsubscribe();
+  }
 
   setMyInfoAttributes(attributes) {
     this.attributes = attributes;
@@ -86,13 +96,15 @@ export class MyInfoService {
 
   newWindow(authoriseUrl, linkAccount?): void {
     const self = this;
-    setTimeout(() => {
-      this.openFetchPopup(linkAccount);
-    }, 500);
+    if (!CapacitorUtils.isApp) {
+      setTimeout(() => {
+        this.openFetchPopup(linkAccount);
+      }, 500);
+    }
     this.isMyInfoEnabled = true;
 
     if (CapacitorUtils.isApp) {
-      InAppBrowser.openWebView({url: encodeURI(authoriseUrl), title: "myInfo"});
+      InAppBrowser.openWebView({ url: encodeURI(authoriseUrl), title: "" });
     } else {
       this.windowRef = window.open(authoriseUrl);
       const timer = setInterval(() => {
@@ -102,7 +114,7 @@ export class MyInfoService {
           this.changeListener.next(this.getMyinfoReturnMessage(FAILED));
         }
       }, 500);
-  
+
       window.failed = (value) => {
         clearInterval(timer);
         window.failed = () => null;
@@ -116,7 +128,7 @@ export class MyInfoService {
         }
         return 'MY_INFO';
       };
-  
+
       window.success = (values) => {
         clearInterval(timer);
         window.success = () => null;
@@ -133,7 +145,7 @@ export class MyInfoService {
         }
         return 'MY_INFO';
       };
-  
+
       // Robo2 - MyInfo changes
       window.addEventListener('message', function (event) {
         clearInterval(timer);
@@ -184,7 +196,7 @@ export class MyInfoService {
       this.loadingModalRef.componentInstance.errorMessage = 'Please be patient while we fetch your required data from Myinfo.';
     }
     this.loadingModalRef.componentInstance.primaryActionLabel = 'Cancel';
-    this.loadingModalRef.componentInstance.closeAction.subscribe(() => {
+    this.closeBtnSubscription = this.loadingModalRef.componentInstance.closeAction.subscribe(() => {
       this.changeListener.next(this.getMyinfoReturnMessage(CANCELLED));
       this.cancelMyInfo();
     });
@@ -196,9 +208,6 @@ export class MyInfoService {
   }
 
   cancelMyInfo() {
-    if (CapacitorUtils.isApp) {
-      this.router.navigate[window.sessionStorage.getItem('currentUrl')];
-    }
     if (!this.windowRef.closed) {
       this.windowRef.close();
     }
@@ -235,8 +244,7 @@ export class MyInfoService {
     const code = {
       appId: this.getMyInfoAppId(),
       authorizationCode: this.myInfoValue,
-      personAttributes: this.getMyInfoAttributes(),
-      isMobileApp: CapacitorUtils.isApp
+      personAttributes: this.getMyInfoAttributes()
     };
     return this.apiService.getMyInfoData(code);
   }
@@ -266,7 +274,7 @@ export class MyInfoService {
     const payload = {
       authorizationCode: this.myInfoValue,
       personAttributes: this.getMyInfoAttributes(),
-      appId:this.getMyInfoAppId(),
+      appId: this.getMyInfoAppId(),
       isCorpBizUser: true,
       organisationCode: isOrganisationEnabled ? appConstants.USERTYPE.FACEBOOK : null,
       email: email,
@@ -287,4 +295,45 @@ export class MyInfoService {
       return false;
     }
   }
+
+  mobileMyInfoCheck(code) {
+    if (this.myInfoValue !== code) {
+      this.isMyInfoEnabled = true;
+      this.setMyInfoValue(code);
+      if (window.sessionStorage.getItem('currentUrl').includes(SIGN_UP_ROUTES.EDIT_PROFILE)) {
+        this.openFetchPopup(true);
+      } else {
+        this.openFetchPopup();
+      }
+      // Check if investment flow or others
+      if (this.investmentAccountService.getCallBackInvestmentAccount()) {
+        this.getMyInfoDataSubscription = this.getMyInfoData().subscribe({
+          next: (data) => {
+            this.investmentAccountService.setMyInfoFormData(data.objectList[0]);
+            this.isMyInfoEnabled = false;
+            this.closeMyInfoPopup(false);
+            this.zone.run(() => {
+              this.router.navigate([INVESTMENT_ACCOUNT_ROUTE_PATHS.SELECT_NATIONALITY]);
+            });
+            this.investmentAccountService.setCallBackInvestmentAccount(false);
+          },
+          error: (e) => {
+            this.closeMyInfoPopup(true);
+            this.zone.run(() => {
+              this.router.navigate([window.sessionStorage.getItem('currentUrl')]);
+            });
+            this.investmentAccountService.setCallBackInvestmentAccount(false);
+          }
+        });
+      } else {
+        this.zone.run(() => {
+          this.router.navigate([window.sessionStorage.getItem('currentUrl')]).then(() => {
+            this.status = 'SUCCESS';
+            this.changeListener.next(this.getMyinfoReturnMessage(SUCCESS, code));
+          });
+        });
+      }
+    }
+  }
+
 }
