@@ -82,7 +82,7 @@ export class CallBackComponent implements OnInit {
       this.myInfoSubscription.unsubscribe();
     }
     if (window.sessionStorage.currentUrl) {
-      this.router.navigate([window.sessionStorage.getItem('currentUrl').substring(2)]);
+      this.router.navigate([window.sessionStorage.getItem('currentUrl')]);
     } else {
       this.router.navigate(['home']);
     }
