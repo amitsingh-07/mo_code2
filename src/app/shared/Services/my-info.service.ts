@@ -116,7 +116,6 @@ export class MyInfoService implements OnDestroy {
       }, 500);
 
       window.failed = (value) => {
-        console.log("INSIDE WINDOW.FAILED")
         clearInterval(timer);
         window.failed = () => null;
         this.windowRef.close();
@@ -170,7 +169,6 @@ export class MyInfoService implements OnDestroy {
   }
 
   getMyinfoReturnMessage(status: number, code?: string): any {
-    console.log("STATUS == ", status)
     if (status === SUCCESS) {
       return { status: 'SUCCESS', authorizeCode: code };
     } else if (status === CANCELLED) {
