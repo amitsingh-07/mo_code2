@@ -5,7 +5,7 @@ import { NgbModal, NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
 import { TranslateService } from '@ngx-translate/core';
 import { Observable } from 'rxjs';
 import { App } from '@capacitor/app';
-import { InAppBrowser, UrlEvent } from '@capgo/inappbrowser';
+import { InAppBrowser, UrlEvent } from 'capgo-inappbrowser-intent-fix';
 
 import { IComponentCanDeactivate } from './changes.guard';
 import { ConfigService, IConfig } from './config/config.service';
@@ -109,7 +109,7 @@ export class AppComponent implements IComponentCanDeactivate, OnInit, AfterViewI
         } else if (urlEvt.url.startsWith(environment.singpassBaseUrl) && urlEvt.url.includes("code") && urlEvt.url.includes("state") && urlEvt.url.includes("myinfo")) {
           InAppBrowser.close();
           const slug = urlEvt.url.replace(environment.singpassBaseUrl + "/", "");
-          this.route.navigateByUrl(slug.replace("/", ""));
+          this.route.navigateByUrl(slug.replace("/", ""), { skipLocationChange: true });
         }
       });
     });
