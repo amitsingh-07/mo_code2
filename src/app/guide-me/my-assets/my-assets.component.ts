@@ -86,7 +86,7 @@ export class MyAssetsComponent implements IPageComponent, OnInit, OnDestroy, Aft
               this.guideMeService.setMyAssetsTempData(this.assetsForm.value);
               this.closeMyInfoPopup();
               this.guideMeService.myinfoValueRequested$.next(true);
-              this.router.navigate([GUIDE_ME_ROUTE_PATHS.MYINFO_RETRIEVAL]);
+              this.router.navigate([GUIDE_ME_ROUTE_PATHS.MYINFO_RETRIEVAL], { skipLocationChange: true });
             } else {
               this.closeMyInfoPopup();
             }
