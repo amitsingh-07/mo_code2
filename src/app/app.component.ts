@@ -109,7 +109,7 @@ export class AppComponent implements IComponentCanDeactivate, OnInit, AfterViewI
         } else if (urlEvt.url.startsWith(environment.singpassBaseUrl) && urlEvt.url.includes("code") && urlEvt.url.includes("state") && urlEvt.url.includes("myinfo")) {
           InAppBrowser.close();
           const slug = urlEvt.url.replace(environment.singpassBaseUrl + "/", "");
-          this.route.navigateByUrl(slug.replace("/", ""));
+          this.route.navigateByUrl(slug.replace("/", ""), { skipLocationChange: true });
         }
       });
     });
