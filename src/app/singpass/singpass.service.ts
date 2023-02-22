@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { InAppBrowser } from '@capgo/inappbrowser';
+import { InAppBrowser } from 'capgo-inappbrowser-intent-fix';
 
 import { ApiService } from '../shared/http/api.service';
 import { AuthenticationService } from '../shared/http/auth/authentication.service';
@@ -56,7 +56,7 @@ export class SingpassService {
       '&state=' + this.stateNonce.state +
       '&nonce=' + this.stateNonce.nonce;
   if (CapacitorUtils.isApp) {
-      InAppBrowser.openWebView({url: loginUrl, title: "Singpass Login"});
+      InAppBrowser.openWebView({url: encodeURI(loginUrl), title: "Singpass Login", }); 
     } else {
       window.open(loginUrl, '_self');
     }

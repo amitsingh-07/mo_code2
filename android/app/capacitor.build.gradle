@@ -14,7 +14,7 @@ dependencies {
     implementation project(':capacitor-browser')
     implementation project(':capacitor-filesystem')
     implementation project(':capacitor-splash-screen')
-    implementation project(':capgo-inappbrowser')
+    implementation project(':capgo-inappbrowser-intent-fix')
 
 }
 

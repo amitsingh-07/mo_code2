@@ -3,7 +3,7 @@ import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import { NgbModal, NgbModalOptions, NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
 import { Subject } from 'rxjs';
-import { InAppBrowser } from '@capgo/inappbrowser';
+import { InAppBrowser } from 'capgo-inappbrowser-intent-fix';
 
 import { appConstants } from '../../app.constants';
 import { environment } from '../../../environments/environment';
