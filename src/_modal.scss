@@ -1437,6 +1437,21 @@ body.modal-open::-webkit-scrollbar {
   }
 }
 
+.custom-cpfia-modal {
+  .modal-body-message {
+    color: $boulder-grey-color;
+    .hyperlink_color {
+      font-family: $muli-regular;
+      color: $dark-orange-color;
+      cursor: pointer;
+      text-decoration: underline;
+      &:visited {
+        text-decoration: underline;
+      }
+    }
+  }
+}
+
 .custom-cka-modal{
   .modal-body-message{
     color: $boulder-grey-color;
