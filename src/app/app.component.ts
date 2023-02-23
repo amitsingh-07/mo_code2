@@ -1,5 +1,5 @@
 import { Location } from '@angular/common';
-import { AfterViewInit, Component, HostListener, OnInit } from '@angular/core';
+import { AfterViewInit, Component, HostListener, NgZone, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { NgbModal, NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
 import { TranslateService } from '@ngx-translate/core';
@@ -50,7 +50,7 @@ export class AppComponent implements IComponentCanDeactivate, OnInit, AfterViewI
     private googleAnalyticsService: GoogleAnalyticsService,
     private modal: NgbModal, public route: Router, public routingService: RoutingService, private location: Location,
     private configService: ConfigService, private authService: AuthenticationService, private sessionsService: SessionsService,
-    public activatedRoute: ActivatedRoute, private myInfoService: MyInfoService) {
+    public activatedRoute: ActivatedRoute, private myInfoService: MyInfoService, private zone: NgZone) {
     this.translate.setDefaultLang('en');
     this.configService.getConfig().subscribe((config: IConfig) => {
       this.translate.setDefaultLang(config.language);
@@ -109,11 +109,14 @@ export class AppComponent implements IComponentCanDeactivate, OnInit, AfterViewI
       if (urlEvt.url.startsWith(environment.singpassBaseUrl) && urlEvt.url.includes("code") && urlEvt.url.includes("state") && urlEvt.url.includes("login")) {
         InAppBrowser.close();
         const slug = urlEvt.url.replace(environment.singpassBaseUrl + appConstants.BASE_HREF, "");
-        this.route.navigateByUrl(slug);
+        this.zone.run(()=>{
+          this.route.navigateByUrl(slug);
+        });
       } else if (urlEvt.url.startsWith(environment.singpassBaseUrl) && urlEvt.url.includes("code") && urlEvt.url.includes("state") && urlEvt.url.includes("myinfo")) {
         InAppBrowser.close();
-        const code = urlEvt.url.substring(urlEvt.url.indexOf("=") + 1, urlEvt.url.lastIndexOf("&state"));
-        this.myInfoService.mobileMyInfoCheck(code);
+        const url = new URL(urlEvt.url);
+        const params = new URLSearchParams(url.search);
+        this.myInfoService.mobileMyInfoCheck(params.get("code"));
       } else if (urlEvt.url.startsWith(environment.singpassBaseUrl)) {
         InAppBrowser.close();
       }

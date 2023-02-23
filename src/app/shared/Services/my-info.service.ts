@@ -12,7 +12,6 @@ import { ErrorModalComponent } from '../modal/error-modal/error-modal.component'
 import { ModelWithButtonComponent } from '../modal/model-with-button/model-with-button.component';
 import { SIGN_UP_ROUTES, SIGN_UP_ROUTE_PATHS } from './../../sign-up/sign-up.routes.constants';
 import { CapacitorUtils } from '../utils/capacitor.util';
-import { INVESTMENT_ACCOUNT_ROUTE_PATHS } from '../../investment/investment-account/investment-account-routes.constants';
 import { InvestmentAccountService } from '../../investment/investment-account/investment-account-service';
 
 const MYINFO_ATTRIBUTE_KEY = 'myinfo_person_attributes';
@@ -305,34 +304,12 @@ export class MyInfoService implements OnDestroy {
       } else {
         this.openFetchPopup();
       }
-      // Check if investment flow or others
-      if (this.investmentAccountService.getCallBackInvestmentAccount()) {
-        this.getMyInfoDataSubscription = this.getMyInfoData().subscribe({
-          next: (data) => {
-            this.investmentAccountService.setMyInfoFormData(data.objectList[0]);
-            this.isMyInfoEnabled = false;
-            this.closeMyInfoPopup(false);
-            this.zone.run(() => {
-              this.router.navigate([INVESTMENT_ACCOUNT_ROUTE_PATHS.SELECT_NATIONALITY]);
-            });
-            this.investmentAccountService.setCallBackInvestmentAccount(false);
-          },
-          error: (e) => {
-            this.closeMyInfoPopup(true);
-            this.zone.run(() => {
-              this.router.navigate([window.sessionStorage.getItem('currentUrl')]);
-            });
-            this.investmentAccountService.setCallBackInvestmentAccount(false);
-          }
+      this.zone.run(() => {
+        this.router.navigate([window.sessionStorage.getItem('currentUrl')]).then(() => {
+          this.status = 'SUCCESS';
+          this.changeListener.next(this.getMyinfoReturnMessage(SUCCESS, code));
         });
-      } else {
-        this.zone.run(() => {
-          this.router.navigate([window.sessionStorage.getItem('currentUrl')]).then(() => {
-            this.status = 'SUCCESS';
-            this.changeListener.next(this.getMyinfoReturnMessage(SUCCESS, code));
-          });
-        });
-      }
+      });
     }
   }
 

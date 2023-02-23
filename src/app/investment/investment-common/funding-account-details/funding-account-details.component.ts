@@ -585,7 +585,7 @@ export class FundingAccountDetailsComponent implements OnInit {
   }
 
   shpwCPFModal() {
-    const ref = this.modal.open(ModelWithButtonComponent, { centered: true, windowClass: 'custom-cka-modal' });
+    const ref = this.modal.open(ModelWithButtonComponent, { centered: true, windowClass: 'custom-cpfia-modal' });
     ref.componentInstance.errorTitle = this.translate.instant(
       'CONFIRM_ACCOUNT_DETAILS.CPF_TOOLTIP.TITLE'
     );
