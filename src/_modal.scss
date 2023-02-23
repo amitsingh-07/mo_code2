@@ -1441,8 +1441,8 @@ body.modal-open::-webkit-scrollbar {
   .modal-body-message {
     color: $boulder-grey-color;
     .hyperlink_color {
-      font-family: $muli-regular;
-      color: $dark-orange-color;
+      font-family: $muli-bold;
+      color: $crusta-orange-color;
       cursor: pointer;
       text-decoration: underline;
       &:visited {
