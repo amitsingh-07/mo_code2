@@ -114,8 +114,9 @@ export class AppComponent implements IComponentCanDeactivate, OnInit, AfterViewI
         });
       } else if (urlEvt.url.startsWith(environment.singpassBaseUrl) && urlEvt.url.includes("code") && urlEvt.url.includes("state") && urlEvt.url.includes("myinfo")) {
         InAppBrowser.close();
-        const code = urlEvt.url.substring(urlEvt.url.indexOf("=") + 1, urlEvt.url.lastIndexOf("&state"));
-        this.myInfoService.mobileMyInfoCheck(code);
+        const url = new URL(urlEvt.url);
+        const params = new URLSearchParams(url.search);
+        this.myInfoService.mobileMyInfoCheck(params.get("code"));
       } else if (urlEvt.url.startsWith(environment.singpassBaseUrl)) {
         InAppBrowser.close();
       }
