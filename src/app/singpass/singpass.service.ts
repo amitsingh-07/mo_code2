@@ -56,7 +56,7 @@ export class SingpassService {
       '&state=' + this.stateNonce.state +
       '&nonce=' + this.stateNonce.nonce;
   if (CapacitorUtils.isApp) {
-      InAppBrowser.openWebView({url: encodeURI(loginUrl), title: "", });
+      InAppBrowser.openWebView({url: encodeURI(loginUrl), title: ""});
     } else {
       window.open(loginUrl, '_self');
     }
