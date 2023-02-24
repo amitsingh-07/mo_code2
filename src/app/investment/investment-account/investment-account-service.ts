@@ -686,13 +686,13 @@ export class InvestmentAccountService {
 
   // MyInfo - Personal data
   setMyInfoPersonal(data) {
+    this.investmentAccountFormData.showForeignerAlert = true;
+    this.investmentAccountFormData.isMyInfoEnabled = false;
+    
     if (data.residentialstatus.value) {
       if (data.residentialstatus.value === 'C' || data.residentialstatus.value === 'P') {
         this.investmentAccountFormData.showForeignerAlert = false;
         this.investmentAccountFormData.isMyInfoEnabled = true;
-      } else {
-        this.investmentAccountFormData.showForeignerAlert = true;
-        this.investmentAccountFormData.isMyInfoEnabled = false;
       }
     }
     if (data.uin) {
