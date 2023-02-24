@@ -109,8 +109,7 @@ export class MyInfoService implements OnDestroy {
       const timer = setInterval(() => {
         if (this.windowRef.closed) {
           clearInterval(timer);
-          this.status = 'FAILED';
-          this.changeListener.next(this.getMyinfoReturnMessage(FAILED));
+          this.setFailedStatus();
         }
       }, 500);
 
@@ -119,8 +118,7 @@ export class MyInfoService implements OnDestroy {
         window.failed = () => null;
         this.windowRef.close();
         if (value === 'FAILED') {
-          this.status = 'FAILED';
-          this.changeListener.next(this.getMyinfoReturnMessage(FAILED));
+          this.setFailedStatus();
         } else {
           this.changeListener.next(this.getMyinfoReturnMessage(CANCELLED));
           this.isMyInfoEnabled = false;
@@ -136,11 +134,9 @@ export class MyInfoService implements OnDestroy {
         if (window.sessionStorage.currentUrl && params && params.get('code')) {
           const myInfoAuthCode = params.get('code');
           this.setMyInfoValue(myInfoAuthCode);
-          this.status = 'SUCCESS';
-          this.changeListener.next(this.getMyinfoReturnMessage(SUCCESS, myInfoAuthCode));
+          this.setSuccessStatus(myInfoAuthCode);
         } else {
-          this.status = 'FAILED';
-          this.changeListener.next(this.getMyinfoReturnMessage(FAILED));
+          this.setFailedStatus();
         }
         return 'MY_INFO';
       };
@@ -155,6 +151,16 @@ export class MyInfoService implements OnDestroy {
     }
   }
 
+  setFailedStatus() {
+    this.status = 'FAILED';
+    this.changeListener.next(this.getMyinfoReturnMessage(FAILED));
+  }
+
+  setSuccessStatus(code) {
+    this.status = 'SUCCESS';
+    this.changeListener.next(this.getMyinfoReturnMessage(SUCCESS, code));
+  }
+
   robo2SetMyInfo(myInfoAuthCode) {
     if (myInfoAuthCode && myInfoAuthCode.indexOf('-') !== -1) {
       if (!this.windowRef.closed) {
@@ -162,8 +168,7 @@ export class MyInfoService implements OnDestroy {
       }
       this.router.navigate(['myinfo'], { queryParams: { code: myInfoAuthCode } });
     } else {
-      this.status = 'FAILED';
-      this.changeListener.next(this.getMyinfoReturnMessage(FAILED));
+      this.setFailedStatus();
     }
   }
 
@@ -306,8 +311,7 @@ export class MyInfoService implements OnDestroy {
       }
       this.zone.run(() => {
         this.router.navigate([window.sessionStorage.getItem('currentUrl')]).then(() => {
-          this.status = 'SUCCESS';
-          this.changeListener.next(this.getMyinfoReturnMessage(SUCCESS, code));
+          this.setSuccessStatus(code);
         });
       });
     }

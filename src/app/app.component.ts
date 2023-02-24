@@ -106,13 +106,15 @@ export class AppComponent implements IComponentCanDeactivate, OnInit, AfterViewI
     });
     // Capgo Inappbrowser urlchange listener for singpass/myinfo
     InAppBrowser.addListener('urlChangeEvent', (urlEvt: UrlEvent) => {
-      if (urlEvt.url.startsWith(environment.singpassBaseUrl) && urlEvt.url.includes("code") && urlEvt.url.includes("state") && urlEvt.url.includes("login")) {
+      if (urlEvt.url.startsWith(environment.myInfoCallbackBaseUrl) && urlEvt.url.includes("error")) {
+        InAppBrowser.close();
+      } else if (urlEvt.url.startsWith(environment.singpassBaseUrl) && urlEvt.url.includes("code") && urlEvt.url.includes("state") && urlEvt.url.includes("login")) {
         InAppBrowser.close();
         const slug = urlEvt.url.replace(environment.singpassBaseUrl + appConstants.BASE_HREF, "");
         this.zone.run(()=>{
           this.route.navigateByUrl(slug);
         });
-      } else if (urlEvt.url.startsWith(environment.singpassBaseUrl) && urlEvt.url.includes("code") && urlEvt.url.includes("state") && urlEvt.url.includes("myinfo")) {
+      } else if (urlEvt.url.startsWith(environment.myInfoCallbackBaseUrl) && urlEvt.url.includes("code") && urlEvt.url.includes("state")) {
         InAppBrowser.close();
         const url = new URL(urlEvt.url);
         const params = new URLSearchParams(url.search);
