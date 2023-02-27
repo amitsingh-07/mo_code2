@@ -2,6 +2,13 @@
 @import '../../../mixins';
 
 app-create-account {
+  .container-fluid {
+    &.max-width--1024{
+      @include allmobiles {
+        padding-top: 0;
+      }
+    }
+  }
   .checkbox-button a {
     color: $white-color;
     text-decoration: underline;
@@ -31,7 +38,7 @@ app-create-account {
     height: 43px;
     cursor: pointer;
     position: absolute;
-    top: 5%;
+    top: 38px;
     left: 20px;
     background-repeat: no-repeat;
     z-index: 999;
@@ -98,6 +105,7 @@ app-create-account {
       max-width: 170px !important;
       max-height: 155px !important;
       height: auto;
+      margin-top: 30px;
     }
   }
 
