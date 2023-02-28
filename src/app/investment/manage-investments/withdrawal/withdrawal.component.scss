@@ -215,12 +215,14 @@ app-withdrawal {
         color: $teal-color !important;
         -webkit-text-fill-color: $teal-color !important;
         text-align: left !important;
+        opacity: 1!important;
       }
 
       &#withdraw-type-cpf {
         color: $teal-color !important;
         -webkit-text-fill-color: $teal-color !important;
         text-align: left !important;
+        opacity: 1!important;
       }
     }
   }
