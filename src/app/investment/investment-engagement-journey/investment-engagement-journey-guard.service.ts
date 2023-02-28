@@ -39,10 +39,7 @@ export class InvestmentEngagementJourneyGuardService implements CanActivate {
               : this.translate.instant('INVESTMENT_ADD_PORTFOLIO_ERROR.ACCOUNT_CREATION_PENDING_ERROR')
           };
           this.investmentAccountService.setDashboardInitialMessage(dashboardMessage);
-          const currentUrl = window.location.toString();
-          const rootPoint = currentUrl.split(currentUrl.split('/')[4])[0].substr(0, currentUrl.split(currentUrl.split('/')[4])[0].length - 1);
-          const redirectObjective = rootPoint + DASHBOARD_PATH;
-          if (window.location.href === redirectObjective) {
+          if (this.router.url === DASHBOARD_PATH) {
             this.router.navigate([SIGN_UP_ROUTE_PATHS.EDIT_PROFILE], { replaceUrl: true });
           } else {
             this.router.navigate([SIGN_UP_ROUTE_PATHS.DASHBOARD]);
