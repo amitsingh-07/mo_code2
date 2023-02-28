@@ -151,10 +151,7 @@ export class SingPassComponent implements OnInit, OnDestroy {
             this.investmentAccountService.setMyInfoFormData(data.objectList[0]);
             this.myInfoService.isMyInfoEnabled = false;
             this.closeMyInfoPopup(false);
-            const currentUrl = window.location.toString();
-            const rootPoint = currentUrl.split(currentUrl.split('/')[4])[0].substr(0, currentUrl.split(currentUrl.split('/')[4])[0].length - 1);
-            const redirectObjective = rootPoint + MY_INFO_START_PATH;
-            if (window.location.href === redirectObjective) {
+            if (this.router.url === MY_INFO_START_PATH) {
               this.router.navigate([INVESTMENT_ACCOUNT_ROUTE_PATHS.START]);
             } else {
               this.ngZone.run(() => {
