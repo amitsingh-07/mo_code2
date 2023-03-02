@@ -12,7 +12,7 @@
             </div>
             <div class="portfolio_name_title">{{formValues.defaultPortfolioName}}</div>
           </div>
-          <div class="portfolio-naming--content">
+          <div class="portfolio-naming--content" [ngClass]="{'pb100': isAndroidDevice()}">
             <div>
               <div class="desc">
                 {{'PORTFOLIO_RECOMMENDATION.ADD_PORTFOLIO_NAME.ADD_PORTFOLIO_NAME_LAB' | translate}}
