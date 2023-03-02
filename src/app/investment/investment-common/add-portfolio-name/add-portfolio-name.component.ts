@@ -483,4 +483,12 @@ export class AddPortfolioNameComponent implements OnInit, OnDestroy {
   checkIfJointAccount() {
     return this.userPortfolioType === INVESTMENT_ENGAGEMENT_JOURNEY_CONSTANTS.PORTFOLIO_TYPE.JOINT_ACCOUNT_ID;
   }
+
+  isAndroidDevice() {
+    if (navigator.userAgent.match(/Android/i)) {
+      return true;
+    } else {
+      return false;
+    }
+  }
 }
