@@ -3,6 +3,7 @@ import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms'
 import { Router } from '@angular/router';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { TranslateService } from '@ngx-translate/core';
+import { CapacitorUtils } from '../../../shared/utils/capacitor.util';
 
 import { LoaderService } from '../../../shared/components/loader/loader.service';
 import { FooterService } from '../../../shared/footer/footer.service';
@@ -482,5 +483,13 @@ export class AddPortfolioNameComponent implements OnInit, OnDestroy {
 
   checkIfJointAccount() {
     return this.userPortfolioType === INVESTMENT_ENGAGEMENT_JOURNEY_CONSTANTS.PORTFOLIO_TYPE.JOINT_ACCOUNT_ID;
+  }
+
+  isAndroidDevice() {
+    if (CapacitorUtils.isApp && CapacitorUtils.isAndroidDevice) {
+      return true;
+    } else {
+      return false;
+    }
   }
 }
