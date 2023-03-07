@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewEncapsulation } from '@angular/core';
+import { Component, ElementRef, OnInit, ViewChild, ViewEncapsulation } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
@@ -35,6 +35,9 @@ export class UploadDocumentsComponent implements OnInit {
   defaultThumb: any;
   formData: FormData = new FormData();
   investmentAccountCommon: InvestmentAccountCommon = new InvestmentAccountCommon();
+  @ViewChild('frontThumb') frontThumb: ElementRef<HTMLImageElement>;
+  @ViewChild('backThumb') backThumb: ElementRef<HTMLImageElement>;
+
   constructor(
     public readonly translate: TranslateService,
     private formBuilder: FormBuilder,
@@ -117,7 +120,6 @@ export class UploadDocumentsComponent implements OnInit {
       if (CapacitorUtils.isApp && CapacitorUtils.isAndroidDevice) {
         const ref = this.modal.open(UploadDocumentOptionsComponent, { centered: true })
         ref.result.then(uploadOption => {
-            this.modal.dismissAll();
             if (uploadOption === 'BROWSE') {
               elem.removeAttribute('capture');
               elem.click();
