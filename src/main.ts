@@ -57,6 +57,16 @@ if (environment.adRollAdvId && environment.adRollPropertyId) {
   document.body.appendChild(adroll_pixel_script);
 }
 
+/* Hubspot Script */
+if (environment.hsPortalId) {
+  const hs_script = document.createElement('script');
+  hs_script.setAttribute('type', 'text/javascript');
+  hs_script.setAttribute('async', 'true');
+  hs_script.setAttribute('defer', 'true');
+  hs_script.setAttribute('src', 'https://js.hs-scripts.com/' + environment.hsPortalId + '.js');
+  document.head.appendChild(hs_script);
+}
+
 if (environment.production) {
   // Specific Prod Tools
   enableProdMode();
