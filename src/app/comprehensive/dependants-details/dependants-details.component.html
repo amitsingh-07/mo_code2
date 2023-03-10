@@ -156,9 +156,9 @@
                 <button type="button" class="btn btn-dropdown" id="dropdownNationality" ngbDropdownToggle
                   appComprehensiveViewMode="{{viewMode}}" mode=1>
                   <span class="grey-text"
-                    *ngIf="dependentMappingList.get('nation').value ===''">{{'COMMON.LBL_SELECT' | translate}}</span>
+                    *ngIf="dependentMappingList.get('nation').value ==='' || dependentMappingList.get('nation').value === null ">{{'COMMON.LBL_SELECT' | translate}}</span>
                   <span
-                    *ngIf="dependentMappingList.get('nation').value !==''">{{dependentMappingList.get('nation').value}}</span>
+                    *ngIf="dependentMappingList.get('nation').value !=='' && dependentMappingList.get('nation').value !== null">{{dependentMappingList.get('nation').value}}</span>
                 </button>
                 <div ngbDropdownMenu aria-labelledby="dropdownNationality">
                   <button class="dropdown-item"

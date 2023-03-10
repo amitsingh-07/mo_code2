@@ -73,7 +73,7 @@ app-withdrawal {
 
   .withdraw {
     .dropdown-control .btn-dropdown {
-      padding-right: 26px !important;
+      padding-right: 27px !important;
     }
 
     .dropdown-control .dropdown-menu.show {
@@ -202,6 +202,7 @@ app-withdrawal {
         -webkit-text-fill-color: $form-control-disabled-txt-color !important;
         background: $form-control-disabled-bg-color2 !important;
         cursor: not-allowed;
+        opacity: 1!important;
 
         &:-internal-autofill-selected {
           box-shadow: inset 0 0 0px 9999px $form-control-disabled-bg-color2 !important;
@@ -211,16 +212,12 @@ app-withdrawal {
     }
 
     .input-control {
-      &#withdraw-type-srs {
+      &#withdraw-type-srs, &#withdraw-type-cpf  {
         color: $teal-color !important;
         -webkit-text-fill-color: $teal-color !important;
         text-align: left !important;
-      }
-
-      &#withdraw-type-cpf {
-        color: $teal-color !important;
-        -webkit-text-fill-color: $teal-color !important;
-        text-align: left !important;
+        opacity: 1!important;
+        padding-left: 0px!important;
       }
     }
   }
