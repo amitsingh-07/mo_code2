@@ -35,8 +35,6 @@ export class UploadDocumentsComponent implements OnInit {
   defaultThumb: any;
   formData: FormData = new FormData();
   investmentAccountCommon: InvestmentAccountCommon = new InvestmentAccountCommon();
-  @ViewChild('frontThumb') frontThumb: ElementRef<HTMLImageElement>;
-  @ViewChild('backThumb') backThumb: ElementRef<HTMLImageElement>;
 
   constructor(
     public readonly translate: TranslateService,
@@ -115,22 +113,10 @@ export class UploadDocumentsComponent implements OnInit {
     });
   }
 
-  openFileDialog(elem) {
+  async openFileDialog(elem) {
     if (!elem.files.length) {
-      if (CapacitorUtils.isApp && CapacitorUtils.isAndroidDevice) {
-        const ref = this.modal.open(UploadDocumentOptionsComponent, { centered: true })
-        ref.result.then(uploadOption => {
-            if (uploadOption === 'BROWSE') {
-              elem.removeAttribute('capture');
-              elem.click();
-            } else if (uploadOption === 'CAMERA') {             
-              elem.setAttribute('capture', '');
-              elem.click();
-            }
-          },
-          reason => { }
-        );
-      } else {
+      const cameraOption = await this.investmentAccountService.uploadFileOption(elem);
+      if (cameraOption === 'BROWSE' || cameraOption === 'CAMERA') {
         elem.click();
       }
     }

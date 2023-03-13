@@ -10,7 +10,7 @@ export class UploadDocumentOptionsComponent {
 
   constructor(
     public activeModal: NgbActiveModal
-  ) { }
+    ) { }
 
   uploadFile(selectedOption) {
     this.activeModal.close(selectedOption);

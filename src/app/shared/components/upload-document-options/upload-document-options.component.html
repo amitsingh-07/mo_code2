@@ -1,26 +1,24 @@
-<div class="invest-menu-modal-block">
-    <div class="modal-header header-modal-image">
-      <button type="button" class="close" aria-label="Close" (click)="activeModal.dismiss('Cross click')">
-        <span aria-hidden="true" id="errorModelCloseIcon"></span>
-      </button>
+<div class="upload-document-modal-block">
+  <div class="modal-body upload-document-body">
+    <div class="close-icon" (click)="activeModal.dismiss('Cross click')">
+      <img src="assets/images/rectangle.svg" />
     </div>
-    <div class="modal-body" id="modalDesc">
-      <div class="btn-menu">
-        
-        <div class="flex btn-menu-item" (click)="uploadFile('CAMERA')">
-          <div class="menu-icon"><img src="assets/images/new-portfolio-icon.svg" alt="" /></div>
-          <div style="display: flex; align-items: center;">
-            <div>Take Photo</div>
-          </div>
+    <div class="choose-action-txt">
+      {{'CAMERA_UPLOAD.TITLE' | translate}}
+    </div>
+    <div class="mobile-upload-menu">
+      <div class="camera_content">
+        <div class="mobile-upload-menu-item" (click)="uploadFile('CAMERA')">
+          <img src="assets/images/photo_camera.svg" alt="" />
         </div>
-        <hr>
-        <div class="flex btn-menu-item" (click)="uploadFile('BROWSE')">
-          <div class="menu-icon"><img src="assets/images/existing-portfolio-icon.svg" alt="" /></div>
-          <div style="display: flex; align-items: center;">
-            <div>Browser</div>
-          </div>
+        <div class="label">{{'CAMERA_UPLOAD.CAMERA_LABEL' | translate}}</div>
+      </div>
+      <div class="browse_content">
+        <div class="mobile-upload-menu-item" (click)="uploadFile('BROWSE')">
+          <img src="assets/images/folder_copy.svg" alt="" />
         </div>
+        <div class="label">{{'CAMERA_UPLOAD.FILES_LABEL' | translate}}</div>
       </div>
     </div>
-  
   </div>
+</div>

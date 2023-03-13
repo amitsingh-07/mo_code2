@@ -23,6 +23,8 @@ import { PersonalInfo } from './personal-info/personal-info';
 import { InvestmentApiService } from '../investment-api.service';
 import { RegexConstants } from './../../shared/utils/api.regex.constants';
 import { PromoCodeService } from '../../promo-code/promo-code.service';
+import { CapacitorUtils } from 'src/app/shared/utils/capacitor.util';
+import { UploadDocumentOptionsComponent } from 'src/app/shared/components/upload-document-options/upload-document-options.component';
 
 const SESSION_STORAGE_KEY = 'app_inv_account_session';
 const ACCOUNT_SUCCESS_COUNTER_KEY = 'investment_account_success_counter';
@@ -2079,4 +2081,25 @@ export class InvestmentAccountService {
     }
     return country;
   }
+
+  uploadFileOption(elem): Promise<string> {
+    return new Promise(resolve => {
+      if (CapacitorUtils.isApp && CapacitorUtils.isAndroidDevice) {
+        const ref = this.modal.open(UploadDocumentOptionsComponent, { centered: true })
+        ref.result.then(uploadOption => {
+          if (uploadOption === 'BROWSE') {
+            elem.removeAttribute('capture');
+          } else if (uploadOption === 'CAMERA') {
+            elem.setAttribute('capture', '');
+          }
+          return resolve(uploadOption)
+        },
+          reason => resolve(reason)
+        );
+      } else {
+        return resolve('BROWSE')
+      }
+    })
+  }
+  
 }

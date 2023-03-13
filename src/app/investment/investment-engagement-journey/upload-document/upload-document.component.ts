@@ -22,6 +22,8 @@ import { INVESTMENT_COMMON_CONSTANTS } from './../../../investment/investment-co
 import { MANAGE_INVESTMENTS_ROUTE_PATHS } from '../../manage-investments/manage-investments-routes.constants';
 import { IToastMessage } from '../../manage-investments/manage-investments-form-data';
 import { ManageInvestmentsService } from '../../manage-investments/manage-investments.service';
+import { UploadDocumentOptionsComponent } from '../../../shared/components/upload-document-options/upload-document-options.component';
+import { CapacitorUtils } from '../../../shared/utils/capacitor.util';
 
 @Component({
   selector: 'app-upload-document',
@@ -182,9 +184,12 @@ export class UploadDocumentComponent implements OnInit {
     });
   }
 
-  openFileDialog(elem) {
+  async openFileDialog(elem) {
     if (!elem.files.length) {
-      elem.click();
+      const cameraOption = await this.investmentAccountService.uploadFileOption(elem);
+      if (cameraOption === 'BROWSE' || cameraOption === 'CAMERA') {
+        elem.click();
+      }
     }
   }
 
