@@ -17,8 +17,6 @@ import { INVESTMENT_ACCOUNT_ROUTE_PATHS } from '../investment-account-routes.con
 import { InvestmentAccountService } from '../investment-account-service';
 import { INVESTMENT_ACCOUNT_CONSTANTS } from '../investment-account.constant';
 import { INVESTMENT_COMMON_ROUTE_PATHS } from '../../investment-common/investment-common-routes.constants';
-import { CapacitorUtils } from '../../../shared/utils/capacitor.util';
-import { UploadDocumentOptionsComponent } from '../../../shared/components/upload-document-options/upload-document-options.component';
 
 @Component({
   selector: 'app-upload-documents',
