@@ -15,7 +15,6 @@ import { GuideMeCalculateService } from './guide-me-calculate.service';
 import { GuideMeService } from './guide-me.service';
 import { IExistingCoverage } from './insurance-results/existing-coverage-modal/existing-coverage.interface';
 import { SelectedPlansService } from './../shared/Services/selected-plans.service';
-import { HubspotService } from '../shared/analytics/hubspot.service';
 
 @Injectable({
     providedIn: 'root'
@@ -24,7 +23,6 @@ export class GuideMeApiService {
     existingCoverage: IExistingCoverage;
     constructor(
         private apiService: ApiService,
-        private hubspotService: HubspotService,
         private authService: AuthenticationService, private guideMeService: GuideMeService,
         private calculateService: GuideMeCalculateService,
         private selectedPlansService: SelectedPlansService) {
@@ -170,24 +168,6 @@ export class GuideMeApiService {
 
     enquiryByEmail(data) {
         const payload = this.enquiryByEmailRequest(data);
-        const hsPayload = [
-            {
-              name: "email",
-              value: payload.email
-            }, 
-            {
-              name: "phone",
-              value: payload.mobileNumber
-            },
-            {
-              name: "firstname",
-              value: payload.firstName
-            },
-            {
-              name: "lastname",
-              value: payload.lastName
-            }];
-          this.hubspotService.submitRegistration(hsPayload);
         return this.apiService.enquiryByEmail(payload);
     }
 }
