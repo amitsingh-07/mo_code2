@@ -7,6 +7,7 @@ import { UploadDocumentService } from '../../../shared/Services/upload-document.
 
 import { INVESTMENT_ACCOUNT_CONSTANTS } from '../../../investment/investment-account/investment-account.constant';
 import { EmitInfo } from '../../interfaces/upload-document.interface';
+import { InvestmentAccountService } from '../../../investment/investment-account/investment-account-service';
 
 
 export interface DocumentInfo {
@@ -38,7 +39,8 @@ export class UploadDocComponent implements OnInit {
   constructor(public readonly translate: TranslateService,
     public modal: NgbModal,
     private uploadDocService: UploadDocumentService,
-    private controlContainer: ControlContainer) {
+    private controlContainer: ControlContainer,
+    private investmentAccountService: InvestmentAccountService) {
   }
 
   ngOnInit(): void {
@@ -64,7 +66,7 @@ export class UploadDocComponent implements OnInit {
 
   openFileDialog(elem) {
     if (!elem.files.length && this.uploadForm.controls.document.value == "") {
-      elem.click();
+      this.investmentAccountService.uploadFileOption(elem);
     }
   }
 

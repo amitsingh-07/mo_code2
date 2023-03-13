@@ -740,5 +740,10 @@
             "VEHICLE": "Vehicle"
           }
         }
+      },
+      "CAMERA_UPLOAD": {
+        "TITLE": "Choose an action",
+        "CAMERA_LABEL": "Camera",
+        "FILES_LABEL": "Files"
       }
 }
