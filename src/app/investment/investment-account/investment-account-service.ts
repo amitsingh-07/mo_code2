@@ -2086,9 +2086,9 @@ export class InvestmentAccountService {
     if (CapacitorUtils.isApp && CapacitorUtils.isAndroidDevice) {
       const ref = this.modal.open(UploadDocumentOptionsComponent, { centered: true })
       ref.result.then(uploadOption => {
-        if (uploadOption === 'BROWSE') {
+        if (uploadOption === INVESTMENT_ACCOUNT_CONSTANTS.UPLOAD_OPTION.BROWSE) {
           elem.removeAttribute('capture');
-        } else if (uploadOption === 'CAMERA') {
+        } else if (uploadOption === INVESTMENT_ACCOUNT_CONSTANTS.UPLOAD_OPTION.CAMERA) {
           elem.setAttribute('capture', '');
         }
         elem.click();

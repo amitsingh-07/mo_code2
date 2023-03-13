@@ -8,13 +8,13 @@
     </div>
     <div class="mobile-upload-menu">
       <div class="camera_content">
-        <div class="mobile-upload-menu-item" (click)="uploadFile('CAMERA')">
+        <div class="mobile-upload-menu-item" (click)="uploadFile(UPLOAD_OPTION.CAMERA)">
           <img src="assets/images/photo_camera.svg" alt="" />
         </div>
         <div class="label">{{'CAMERA_UPLOAD.CAMERA_LABEL' | translate}}</div>
       </div>
       <div class="browse_content">
-        <div class="mobile-upload-menu-item" (click)="uploadFile('BROWSE')">
+        <div class="mobile-upload-menu-item" (click)="uploadFile(UPLOAD_OPTION.BROWSE)">
           <img src="assets/images/folder_copy.svg" alt="" />
         </div>
         <div class="label">{{'CAMERA_UPLOAD.FILES_LABEL' | translate}}</div>
