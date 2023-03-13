@@ -184,7 +184,7 @@ export class UploadDocumentComponent implements OnInit {
 
   openFileDialog(elem) {
     if (!elem.files.length) {
-      elem.click();
+      this.investmentAccountService.uploadFileOption(elem);
     }
   }
 

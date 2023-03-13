@@ -84,5 +84,9 @@ export let INVESTMENT_ACCOUNT_CONSTANTS = {
   VALIDATE_SOURCE: {
     MANUAL: "Manual",
     MYINFO: "MyInfo"
+  },
+  UPLOAD_OPTION: {
+    BROWSE: 'BROWSE',
+    CAMERA: 'CAMERA'
   }
 };
