@@ -64,11 +64,8 @@ export class UploadDocumentBOComponent implements OnInit {
     this.investmentAccountService.loadInvestmentAccountRoadmap(true);
   }
 
-  async openFileDialog(elem) {
-    const uploadOption = await this.investmentAccountService.uploadFileOption(elem);
-    if (uploadOption === 'BROWSE' || uploadOption === 'CAMERA') {
-      elem.click();
-    }
+  openFileDialog(elem) {
+    this.investmentAccountService.uploadFileOption(elem);
   }
 
   fileSelected(control, controlname, fileElem, thumbElem?) {

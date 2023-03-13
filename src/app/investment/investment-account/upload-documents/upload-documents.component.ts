@@ -113,12 +113,9 @@ export class UploadDocumentsComponent implements OnInit {
     });
   }
 
-  async openFileDialog(elem) {
+  openFileDialog(elem) {
     if (!elem.files.length) {
-      const cameraOption = await this.investmentAccountService.uploadFileOption(elem);
-      if (cameraOption === 'BROWSE' || cameraOption === 'CAMERA') {
-        elem.click();
-      }
+      this.investmentAccountService.uploadFileOption(elem);
     }
   }
 

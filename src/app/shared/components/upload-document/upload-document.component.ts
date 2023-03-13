@@ -64,12 +64,9 @@ export class UploadDocComponent implements OnInit {
     this.fileType = this.getFileType(file);
   }
 
-  async openFileDialog(elem) {
+  openFileDialog(elem) {
     if (!elem.files.length && this.uploadForm.controls.document.value == "") {
-      const cameraOption = await this.investmentAccountService.uploadFileOption(elem);
-      if (cameraOption === 'BROWSE' || cameraOption === 'CAMERA') {
-        elem.click();
-      }
+      this.investmentAccountService.uploadFileOption(elem);
     }
   }
 

@@ -2082,24 +2082,22 @@ export class InvestmentAccountService {
     return country;
   }
 
-  uploadFileOption(elem): Promise<string> {
-    return new Promise(resolve => {
-      if (CapacitorUtils.isApp && CapacitorUtils.isAndroidDevice) {
-        const ref = this.modal.open(UploadDocumentOptionsComponent, { centered: true })
-        ref.result.then(uploadOption => {
-          if (uploadOption === 'BROWSE') {
-            elem.removeAttribute('capture');
-          } else if (uploadOption === 'CAMERA') {
-            elem.setAttribute('capture', '');
-          }
-          return resolve(uploadOption)
-        },
-          reason => resolve(reason)
-        );
-      } else {
-        return resolve('BROWSE')
-      }
-    })
+  uploadFileOption(elem): void {
+    if (CapacitorUtils.isApp && CapacitorUtils.isAndroidDevice) {
+      const ref = this.modal.open(UploadDocumentOptionsComponent, { centered: true })
+      ref.result.then(uploadOption => {
+        if (uploadOption === 'BROWSE') {
+          elem.removeAttribute('capture');
+        } else if (uploadOption === 'CAMERA') {
+          elem.setAttribute('capture', '');
+        }
+        elem.click();
+      },
+        reason => { }
+      );
+    } else {
+      elem.click();
+    }
   }
   
 }
