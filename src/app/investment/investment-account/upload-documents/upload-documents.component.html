@@ -40,7 +40,7 @@
                   <div class="upload-doc">
                     <!-- FRONT IMAGE UPLOAD -->
                   <ng-container *ngIf="isUserNationalitySingapore">
-                    <div class="upload-desc" (click)="openFileDialog(nricFront)">
+                    <div class="upload-desc" (click)="openFileDialog(nricFront, 'nricFrontImage')">
                       <div class="thumb-container">
                         <div class="thumb-close-icon"
                           (click)="clearFileSelection(uploadForm.controls.nricFrontImage, 'NRIC_FRONT', $event, frontThumb, nricFront)"
@@ -67,7 +67,7 @@
                         
                     <!-- BACK IMAGE UPLOAD -->
                     <ng-container *ngIf="isUserNationalitySingapore">
-                    <div class="upload-desc" (click)="openFileDialog(nricBack)">
+                    <div class="upload-desc" (click)="openFileDialog(nricBack, 'nricBackImage')">
                       <div class="thumb-container">
                         <div class="thumb-close-icon"
                           (click)="clearFileSelection(uploadForm.controls.nricBackImage, 'NRIC_BACK', $event, backThumb, nricBack)"

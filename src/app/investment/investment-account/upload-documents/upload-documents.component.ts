@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewEncapsulation } from '@angular/core';
+import { Component, ElementRef, OnInit, ViewChild, ViewEncapsulation } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
@@ -17,6 +17,9 @@ import { INVESTMENT_ACCOUNT_ROUTE_PATHS } from '../investment-account-routes.con
 import { InvestmentAccountService } from '../investment-account-service';
 import { INVESTMENT_ACCOUNT_CONSTANTS } from '../investment-account.constant';
 import { INVESTMENT_COMMON_ROUTE_PATHS } from '../../investment-common/investment-common-routes.constants';
+import { CapacitorUtils } from 'src/app/shared/utils/capacitor.util';
+import { UploadDocumentOptionsComponent } from 'src/app/shared/components/upload-document-options/upload-document-options.component';
+import { Camera, CameraResultType } from '@capacitor/camera';
 
 @Component({
   selector: 'app-upload-documents',
@@ -25,6 +28,8 @@ import { INVESTMENT_COMMON_ROUTE_PATHS } from '../../investment-common/investmen
   encapsulation: ViewEncapsulation.None
 })
 export class UploadDocumentsComponent implements OnInit {
+  @ViewChild('frontThumb') frontThumb : ElementRef;
+  @ViewChild('backThumb') backThumb : ElementRef;
   uploadForm: FormGroup;
   pageTitle: string;
   formValues: any;
@@ -111,19 +116,76 @@ export class UploadDocumentsComponent implements OnInit {
     });
   }
 
-  openFileDialog(elem) {
+  // openFileDialog(elem) {
+  //   if (!elem.files.length) {
+  //     this.investmentAccountService.uploadFileOption(elem);
+  //   }
+  // }
+
+  openFileDialog(elem, controllerName?) {
     if (!elem.files.length) {
-      this.investmentAccountService.uploadFileOption(elem);
+      if (CapacitorUtils.isApp && CapacitorUtils.isAndroidDevice) {
+        const ref = this.modal.open(UploadDocumentOptionsComponent, { centered: true })
+        ref.result.then(
+          async result => {
+            if (result === 'BROWSE') {
+              elem.click();
+            } else if (result === 'CAMERA') {
+              const image = await Camera.getPhoto({
+                quality: 90,
+                allowEditing: false,
+                resultType: CameraResultType.DataUrl,
+                source: result,
+              });
+              const base64 = image.dataUrl;              
+              const imageBlob = this.dataURItoBlob(base64);
+              const imageName = `${new Date().getTime()}.${imageBlob.type && imageBlob.type.split('/')[1]}`;
+
+              const cameraUploadedImageFile = new File([imageBlob], imageName, { type: imageBlob.type });
+              console.log('.... ',cameraUploadedImageFile)
+              let thumbElem =  this.backThumb;
+              let controlname = 'NRIC_BACK';
+              if (controllerName === 'nricFrontImage') {
+                thumbElem = this.frontThumb;
+                controlname = 'NRIC_FRONT';
+              }              
+              this.fileSelected(this.uploadForm.get(controllerName), controlname, null, thumbElem.nativeElement, cameraUploadedImageFile)
+            } else {
+              alert('cross clicked')
+            }
+          },
+          reason => { }
+        );
+      } else {
+        elem.click();
+      }
     }
   }
 
-  fileSelected(control, controlname, fileElem, thumbElem?) {
+  dataURItoBlob(dataURI) {
+    var byteString;
+    if (dataURI.split(',')[0].indexOf('base64') >= 0)
+        byteString = atob(dataURI.split(',')[1]);
+    else
+        byteString = unescape(dataURI.split(',')[1]);
+
+    var mimeString = dataURI.split(',')[0].split(':')[1].split(';')[0];
+    var ia = new Uint8Array(byteString.length);
+    for (var i = 0; i < byteString.length; i++) {
+        ia[i] = byteString.charCodeAt(i);
+    }
+
+    return new Blob([ia], {type:mimeString});
+}
+
+  fileSelected(control, controlname, fileElem, thumbElem?, cameraUploadedImageFile?) {
     const response = this.investmentAccountCommon.fileSelected(
       this.formData,
       control,
       controlname,
       fileElem,
-      thumbElem
+      thumbElem,
+      cameraUploadedImageFile
     );
     if (!response.validFileSize) {
       const ref = this.modal.open(ErrorModalComponent, { centered: true });
@@ -148,7 +210,7 @@ export class UploadDocumentsComponent implements OnInit {
       ref.componentInstance.errorDescription = errorDesc;
       control.setValue('');
     } else {
-      const selFile = fileElem.target.files[0];
+      const selFile = cameraUploadedImageFile || fileElem.target.files[0];
       control.setValue(selFile ? selFile.name : '');
     }
   }
