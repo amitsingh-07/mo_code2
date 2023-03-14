@@ -33,6 +33,7 @@ export class UploadDocumentsComponent implements OnInit {
   defaultThumb: any;
   formData: FormData = new FormData();
   investmentAccountCommon: InvestmentAccountCommon = new InvestmentAccountCommon();
+
   constructor(
     public readonly translate: TranslateService,
     private formBuilder: FormBuilder,
@@ -112,7 +113,7 @@ export class UploadDocumentsComponent implements OnInit {
 
   openFileDialog(elem) {
     if (!elem.files.length) {
-      elem.click();
+      this.investmentAccountService.uploadFileOption(elem);
     }
   }
 

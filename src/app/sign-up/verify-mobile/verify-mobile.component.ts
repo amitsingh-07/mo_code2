@@ -36,7 +36,6 @@ import { StateStoreService } from './../../shared/Services/state-store.service';
 import { ApiService } from '../../shared/http/api.service';
 import { Formatter } from '../../shared/utils/formatter.util';
 import { InvestmentCommonService } from '../../investment/investment-common/investment-common.service';
-import { HubspotService } from './../../shared/analytics/hubspot.service';
 import { LoginService } from '../login.service';
 
 @Component({
@@ -102,7 +101,6 @@ export class VerifyMobileComponent implements OnInit, OnDestroy {
     private investmentCommonService: InvestmentCommonService,
     private stateStoreService: StateStoreService,
     private apiService: ApiService,
-    private hubspotService: HubspotService,
     private loginService: LoginService,
     private renderer: Renderer2,) {
     this.roleTwoFAEnabled = this.authService.isSignedUserWithRole(SIGN_UP_CONFIG.ROLE_2FA);
@@ -480,31 +478,6 @@ export class VerifyMobileComponent implements OnInit, OnDestroy {
         this.mobileNumberVerifiedMessage = this.loading['verified2fa'];
         this.authService.removeAccessCode();
         this.progressModal = false;
-        // Pulling Customer information to log on Hubspot
-        this.signUpApiService.getUserProfileInfo().subscribe((data) => {
-          let userInfo = data.objectList;
-          this.hubspotService.registerEmail(userInfo.emailAddress);
-          this.hubspotService.registerPhone(userInfo.mobileNumber);
-          const hsPayload = [
-            {
-              name: "email",
-              value: userInfo.emailAddress
-            },
-            {
-              name: "phone",
-              value: userInfo.mobileNumber
-            },
-            {
-              name: "firstname",
-              value: userInfo.firstName
-            },
-            {
-              name: "lastname",
-              value: userInfo.lastName
-            }];
-          this.hubspotService.submitLogin(hsPayload);
-        });
-
         this.investmentCommonService.clearAccountCreationActions();
         try {
           if (data.objectList[0].customerId) {

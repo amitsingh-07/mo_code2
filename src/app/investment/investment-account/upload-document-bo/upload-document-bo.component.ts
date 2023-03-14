@@ -65,7 +65,7 @@ export class UploadDocumentBOComponent implements OnInit {
   }
 
   openFileDialog(elem) {
-    elem.click();
+    this.investmentAccountService.uploadFileOption(elem);
   }
 
   fileSelected(control, controlname, fileElem, thumbElem?) {

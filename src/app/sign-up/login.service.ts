@@ -12,7 +12,6 @@ import { appConstants } from '../app.constants';
 import { COMPREHENSIVE_ROUTE_PATHS } from '../comprehensive/comprehensive-routes.constants';
 import { ErrorModalComponent } from '../shared/modal/error-modal/error-modal.component';
 import { Formatter } from '../shared/utils/formatter.util';
-import { HubspotService } from '../shared/analytics/hubspot.service';
 import { IEnquiryUpdate } from './signup-types';
 import { InvestmentAccountService } from '../investment/investment-account/investment-account-service';
 import { InvestmentCommonService } from '../investment/investment-common/investment-common.service';
@@ -53,7 +52,6 @@ export class LoginService {
     public configService: ConfigService,
     public modal: NgbModal,
     private translate: TranslateService,
-    private hubspotService: HubspotService,
     private investmentAccountService: InvestmentAccountService,
     private investmentCommonService: InvestmentCommonService,
     private router: Router,
@@ -73,7 +71,6 @@ export class LoginService {
 
   // non 2fa success login method
   onSuccessLogin(data) {
-    this.hubspotLogin();
     this.investmentCommonService.clearAccountCreationActions();
     if (data.objectList[0] && data.objectList[0].customerId) {
       this.appService.setCustomerId(data.objectList[0].customerId);
@@ -85,33 +82,6 @@ export class LoginService {
     } else {
       this.goToNext();
     }
-  }
-
-  // Pulling Customer information to log on Hubspot
-  hubspotLogin() {
-    this.signUpApiService.getUserProfileInfo().subscribe((data) => {
-      let userInfo = data.objectList;
-      this.hubspotService.registerEmail(userInfo.emailAddress);
-      this.hubspotService.registerPhone(userInfo.mobileNumber);
-      const hsPayload = [
-        {
-          name: "email",
-          value: userInfo.emailAddress
-        },
-        {
-          name: "phone",
-          value: userInfo.mobileNumber
-        },
-        {
-          name: "firstname",
-          value: userInfo.firstName
-        },
-        {
-          name: "lastname",
-          value: userInfo.lastName
-        }];
-      this.hubspotService.submitLogin(hsPayload);
-    });
   }
 
   goToNext() {
