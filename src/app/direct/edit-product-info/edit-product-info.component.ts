@@ -40,7 +40,6 @@ export class EditProductInfoComponent implements OnInit {
 
   ngOnInit() {
 
-    //this.directService.prodSearchInfoData.subscribe((data) => {
     const data = this.directService.getMinProdInfo();
     if (data !== '') {
       this.minProdSearch = data;
@@ -52,7 +51,6 @@ export class EditProductInfoComponent implements OnInit {
       this.directService.setModalFreeze(false);
     }
     this.initCategorySetup();
-    // });
   }
 
   initCategorySetup() {
