@@ -58,8 +58,8 @@ export class InvestmentAccountCommon {
     return fileName;
   }
 
-  fileSelected(formData, control, controlname, fileElem, thumbElem?, cameraUploadedImageFile?) {
-    const selectedFile: File = cameraUploadedImageFile || fileElem.target.files[0];
+  fileSelected(formData, control, controlname, fileElem, thumbElem?) {
+    const selectedFile: File = fileElem.target.files[0];
     const fileSize: number = selectedFile.size / 1024 / 1024; // in MB
     const fileType = selectedFile.name
       .split('.')
