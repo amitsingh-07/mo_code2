@@ -2,6 +2,9 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android">
     <queries>
         <package android:name="sg.ndi.sp" />
+        <intent>
+          <action android:name="android.support.customtabs.action.CustomTabsService" />
+        </intent>
     </queries>
     <application
         android:allowBackup="true"

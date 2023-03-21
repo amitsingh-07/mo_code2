@@ -1,3 +1,4 @@
+
 import { IEnvironment } from './environment.interface';
 
 // This file can be replaced during build by using the `fileReplacements` array.
@@ -7,31 +8,31 @@ import { IEnvironment } from './environment.interface';
 export const environment: IEnvironment = {
   production: false,
   isDebugMode: true,
-  apiBaseUrl: 'https://newmouat1.ntucbfa.com',
-  myInfoClientId: { 
-    invest:'STG2-MYINFO-SELF-TEST',
-    signup: 'STG2-MYINFO-SELF-TEST',
-    cfp: 'STG2-MYINFO-SELF-TEST',
-    corpbiz:'STG2-MYINFO-SELF-TEST',
-    linkSingpass: 'STG2-MYINFO-SELF-TEST',
-    insurance: 'STG2-MYINFO-SELF-TEST'
+  apiBaseUrl: 'https://bfa-fb-newdev.ntucbfa.cloud',
+  myInfoClientId: {
+    invest:'STG-201820691C-MONEYOWL-CPACCT',
+    signup: 'STG-201820691C-MONEYOWL-BFA',
+    cfp: 'STG-201820691C-MONEYOWL-FPREPORT',
+    corpbiz:'STG-201820691C-MONEYOWL-CPACCT-FPREPORT',
+    linkSingpass: 'STG-201820691C-MONEYOWL-BFA',
+    insurance: 'STG-201820691C-MONEYOWL-INSURANCEANALYSIS'
   },
-  myInfoCallbackBaseUrl: 'https://localhost:3001',
+  myInfoCallbackBaseUrl: 'https://bfa-fb-newdev.ntucbfa.cloud/app/myinfo',
   myInfoAuthorizeUrl: 'https://test.api.myinfo.gov.sg/com/v3/authorise',
   gAdPropertyId: 'AW-782920447',
   gaPropertyId: 'UA-125256446-1',
   hideHomepage: true,
   mockInvestAccount: true,
-  expire2faTime: 298,
+  expire2faTime: 178,
   expire2faPollRate: 2,
   expire2faMaxCheck: 5,
   promoCodeJsonUrl: 'https://mo-static-assets.s3-ap-southeast-1.amazonaws.com/promo/non-prod/promo-details.json',
-  configJsonUrl: 'https://mo-static-assets.s3.ap-southeast-1.amazonaws.com/promo/KS098130_newmodev_config.json',
+  configJsonUrl:'https://mo-static-assets.s3.ap-southeast-1.amazonaws.com/promo/KS098130_newmodev_config.json',
   hsPortalId: '6411917',
   hsUrlTrack: '9f0ad9ef-ba87-4059-9ee9-60d46880dc5f',
   singpassClientId: 'iROTlv1CU9Cz3GlYiNosMsZDGIYwWSB3',
   singpassLoginUrl:'https://stg-id.singpass.gov.sg/auth',
-  singpassBaseUrl: 'https://newmouat1.ntucbfa.com'
+  singpassBaseUrl: 'https://bfa-fb-newdev.ntucbfa.cloud'
 };
 
 /*
