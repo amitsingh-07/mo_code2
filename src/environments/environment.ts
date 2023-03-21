@@ -1,21 +1,22 @@
 import { IEnvironment } from './environment.interface';
+
 // This file can be replaced during build by using the `fileReplacements` array.
 // `ng build ---prod` replaces `environment.ts` with `environment.prod.ts`.
 // The list of file replacements can be found in `angular.json`.
 
 export const environment: IEnvironment = {
-  production: true,
-  isDebugMode: false,
+  production: false,
+  isDebugMode: true,
   apiBaseUrl: 'https://newmouat1.ntucbfa.com',
-  myInfoClientId: {
-    invest:'STG-201820691C-MONEYOWL-CPACCT',
-    signup: 'STG-201820691C-MONEYOWL-BFA',    
-    cfp: 'STG-201820691C-MONEYOWL-FPREPORT',
-    corpbiz:'STG-201820691C-MONEYOWL-CPACCT-FPREPORT',
-    linkSingpass: 'STG-201820691C-MONEYOWL-BFA',
-    insurance: 'STG-201820691C-MONEYOWL-INSURANCEANALYSIS'
+  myInfoClientId: { 
+    invest:'STG2-MYINFO-SELF-TEST',
+    signup: 'STG2-MYINFO-SELF-TEST',
+    cfp: 'STG2-MYINFO-SELF-TEST',
+    corpbiz:'STG2-MYINFO-SELF-TEST',
+    linkSingpass: 'STG2-MYINFO-SELF-TEST',
+    insurance: 'STG2-MYINFO-SELF-TEST'
   },
-  myInfoCallbackBaseUrl: 'https://newmouat1.ntucbfa.com/app/myinfo',
+  myInfoCallbackBaseUrl: 'https://localhost:3001',
   myInfoAuthorizeUrl: 'https://test.api.myinfo.gov.sg/com/v3/authorise',
   gAdPropertyId: 'AW-782920447',
   gaPropertyId: 'UA-125256446-1',
@@ -25,13 +26,14 @@ export const environment: IEnvironment = {
   expire2faPollRate: 2,
   expire2faMaxCheck: 5,
   promoCodeJsonUrl: 'https://mo-static-assets.s3-ap-southeast-1.amazonaws.com/promo/non-prod/promo-details.json',
-  configJsonUrl: 'https://mo-static-assets.s3.ap-southeast-1.amazonaws.com/promo/KS098130_newmouat1_config.json',
+  configJsonUrl: 'https://mo-static-assets.s3.ap-southeast-1.amazonaws.com/promo/KS098130_newmodev_config.json',
   hsPortalId: '6411917',
   hsUrlTrack: '9f0ad9ef-ba87-4059-9ee9-60d46880dc5f',
   singpassClientId: 'iROTlv1CU9Cz3GlYiNosMsZDGIYwWSB3',
   singpassLoginUrl:'https://stg-id.singpass.gov.sg/auth',
   singpassBaseUrl: 'https://newmouat1.ntucbfa.com'
 };
+
 /*
  * In development mode, to ignore zone related error stack frames such as
  * `zone.run`, `zoneDelegate.invokeTask` for easier debugging, you can
