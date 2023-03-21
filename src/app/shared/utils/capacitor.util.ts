@@ -24,7 +24,6 @@ export class CapacitorUtils {
       (getUriResult) => {
         const path = getUriResult.uri;
         FileOpener.open({ filePath: path, contentType: FILE_TYPE });
-        console.log(`File ${filename} written to ${path}`);
       },
       (error) => {
         console.log(error);
@@ -33,7 +32,6 @@ export class CapacitorUtils {
   };
 
   static async openNativePDF(base64data, filename) {
-    console.log("writeTempFileThenOpenPdf === ", base64data)
     Filesystem.writeFile({
       path: filename,
       data: base64data,
@@ -41,7 +39,6 @@ export class CapacitorUtils {
     })
       .then((writeFileResult) => {
         this.openPdfFile(filename);
-        console.log(`File ${filename} written`);
       })
       .catch((e) => {
         console.error(e);

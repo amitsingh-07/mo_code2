@@ -8,7 +8,6 @@ import { Util } from '../utils/util';
 import { CustomErrorHandlerService } from './custom-error-handler.service';
 import { HelperService } from './helper.service';
 import { IServerResponse } from './interfaces/server-response.interface';
-import { HTTP } from '@awesome-cordova-plugins/http/ngx';
 
 @Injectable({
   providedIn: 'root'
@@ -21,7 +20,7 @@ export class BaseService {
     public httpClient: HttpClient,
     public errorHandler: CustomErrorHandlerService,
     public helperService: HelperService,
-    public configService: ConfigService, private http: HTTP
+    public configService: ConfigService
   ) {
     this.config$ = this.configService.getConfig();
     this.apiBaseUrl = Util.getApiBaseUrl();

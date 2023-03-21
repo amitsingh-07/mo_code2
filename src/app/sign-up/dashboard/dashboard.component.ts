@@ -466,10 +466,10 @@ export class DashboardComponent implements OnInit {
       newWindow = window.open();
     }
     this.willWritingApiService.downloadWill().subscribe((res: any) => {
-      if (res) {
-        this.fileUtil.downloadPDF(res, newWindow, this.translate.instant('DASHBOARD.WILL_WRITING.WILLS_PDF_NAME'));
-      }
-    }, (error) => console.log(error));
+      this.fileUtil.downloadPDF(res, newWindow, this.translate.instant('DASHBOARD.WILL_WRITING.WILLS_PDF_NAME'));
+    }, (error) => {
+      this.showCustomErrorModal('Error!', error);
+    });
   }
 
   showCustomErrorModal(title, desc) {
