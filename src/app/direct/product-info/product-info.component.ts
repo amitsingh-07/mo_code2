@@ -144,8 +144,6 @@ export class ProductInfoComponent implements OnInit, OnDestroy {
     this.subscription = this.navbarService.subscribeBackPress().subscribe((event) => {
       if (event && event !== '') {
         if (event === this.pageTitle) {
-          //if (this.innerWidth < this.mobileThreshold) {
-
           this.minProdSearch = '';
           this.initLoad = true;
           this.toggleVisibility = true;
@@ -154,7 +152,6 @@ export class ProductInfoComponent implements OnInit, OnDestroy {
 
           this.setSelectedCategory();
           this.backPressed.emit('backPressed');
-          //}
         } else if (event === this.editPageTitle) {
           this.directService.setModalFreeze(false);
           this.navbarService.setPageTitle(this.resultsPageTitle, null, false, true);
@@ -165,14 +162,6 @@ export class ProductInfoComponent implements OnInit, OnDestroy {
     });
 
     this.prodSearchInfoSub = this.directService.prodSearchInfoData.subscribe((data) => {
-      // if (data !== '') {
-      //   this.minProdSearch = data;
-      //   this.initLoad = false;
-      //   this.toggleVisibility = false;
-      //   this.toggleBackdropVisibility = false;
-      //   this.directService.setModalFreeze(false);
-      //   this.formSubmitCallback.emit(data);
-      // }
     });
     this.directService.modalToolTipTrigger.subscribe((data) => {
       if (data.title !== '') {
