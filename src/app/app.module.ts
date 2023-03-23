@@ -119,6 +119,7 @@ import { WillWritingEnableGuard } from './will-writing/will-writing-enable-guard
 import { SessionsService } from './shared/Services/sessions/sessions.service';
 import { NotSupportedComponent } from './not-supported/not-supported.component';
 import { RefereeComponent } from './shared/modal/referee/referee.component';
+import { HttpForceXhrBackend } from './http-force-xhr-backend';
 
 // tslint:disable-next-line:max-line-length
 export function createTranslateLoader(http: HttpClient) {
@@ -190,7 +191,8 @@ export function tokenGetterFn() {
     })
   ],
   providers: [
-    {provide: HttpBackend, useClass: NativeHttpFallback, deps: [Platform, NativeHttpBackend, HttpXhrBackend]},
+    { provide: NativeHttpFallback, useClass: NativeHttpFallback, deps: [Platform, NativeHttpBackend, HttpXhrBackend] },
+    { provide: HttpBackend, useClass: HttpForceXhrBackend, deps: [NativeHttpFallback, HttpXhrBackend] },
     {
       provide: APP_INITIALIZER,
       useFactory: onAppInit,
