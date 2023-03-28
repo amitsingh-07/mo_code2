@@ -33,9 +33,10 @@
           </div>
         </div>
 
-        <div class="flex-row">
-          <div class="col-md-12 col-md-push-3 details-main">
-            <button type="button" (click)="viewDetails(plan)" class="btn btn-secondary details-btn">{{ 'BUTTON.DETAILS' | translate
+        <div class="flex-row flex justify-center">
+          <div class="col-12 details-main">
+            <button type="button" (click)="viewDetails(plan)" class="btn btn-secondary details-btn">{{ 'BUTTON.DETAILS'
+              | translate
               }}</button>
           </div>
         </div>
@@ -74,16 +75,22 @@
     </div>
 
     <div class="flex-col-12 flex title">
-      <div [ngClass]="{'wide' : plansData && plansData.length === 4}">{{ (protectionType.toLowerCase() == 'retirement income plan') ? ('COMPARE_PLANS.PAYOUT_DURATION' |
+      <div [ngClass]="{'wide' : plansData && plansData.length === 4}">{{ (protectionType.toLowerCase() == 'retirement
+        income plan') ? ('COMPARE_PLANS.PAYOUT_DURATION' |
         translate) : ('COMPARE_PLANS.COVARAGE_DURATION' |
         translate)}}</div>
     </div>
     <div *ngFor="let plan of plansData; let i = index;" class="col-sm-3 col-md-3 col-6 insurance-plan-widget-content"
       [ngClass]="{'hidden-sm-md': i > 1}">
       <div class="plan-content">
-        <span *ngIf="protectionType.toLowerCase().indexOf('srs') < 0 && (protectionType.toLowerCase() != 'retirement income plan')">{{plan.premium.durationName | titlecase}}</span>
-        <span *ngIf="protectionType.toLowerCase().indexOf('srs') > -1 && (protectionType.toLowerCase() != 'retirement income plan')">{{plan.coverageDuration | titlecase}}</span>
-        <span *ngIf="(protectionType.toLowerCase() == 'retirement income plan')">{{retirementIncome.payoutDuration | titlecase}}</span>        
+        <span
+          *ngIf="protectionType.toLowerCase().indexOf('srs') < 0 && (protectionType.toLowerCase() != 'retirement income plan')">{{plan.premium.durationName
+          | titlecase}}</span>
+        <span
+          *ngIf="protectionType.toLowerCase().indexOf('srs') > -1 && (protectionType.toLowerCase() != 'retirement income plan')">{{plan.coverageDuration
+          | titlecase}}</span>
+        <span *ngIf="(protectionType.toLowerCase() == 'retirement income plan')">{{retirementIncome.payoutDuration |
+          titlecase}}</span>
       </div>
       <div class="heading">&nbsp;</div>
     </div>
@@ -95,7 +102,8 @@
     <div *ngFor="let plan of plansData; let i = index;" class="col-sm-3 col-md-3 col-6 insurance-plan-widget-content"
       [ngClass]="{'hidden-sm-md': i > 1}">
       <div class="plan-content">
-        <span>{{ (protectionType.toLowerCase() === 'retirement income plan') ? plan.premium.premiumTerm : plan.premiumDuration}}</span>
+        <span>{{ (protectionType.toLowerCase() === 'retirement income plan') ? plan.premium.premiumTerm :
+          plan.premiumDuration}}</span>
       </div>
       <div class="heading">&nbsp;</div>
     </div>

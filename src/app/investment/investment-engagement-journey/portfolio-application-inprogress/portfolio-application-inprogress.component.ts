@@ -1,5 +1,4 @@
 import { Component, OnInit, ViewEncapsulation } from '@angular/core';
-import { Location } from '@angular/common';
 import { Router } from '@angular/router';
 import { TranslateService } from '@ngx-translate/core';
 import { FooterService } from '../../../shared/footer/footer.service';
@@ -19,10 +18,9 @@ export class PortfolioApplicationInprogressComponent implements OnInit {
   constructor(
     public readonly translate: TranslateService,
     private router: Router,
-    private _location: Location,
     public navbarService: NavbarService,
     public headerService: HeaderService,
-    public footerService: FooterService, 
+    public footerService: FooterService,
     private investmentAccountService: InvestmentAccountService
   ) {
     this.translate.use('en');
@@ -36,7 +34,7 @@ export class PortfolioApplicationInprogressComponent implements OnInit {
     this.investmentAccountService.deactivateReassess();
   }
   goBack() {
-    this._location.back();
+    this.navbarService.goBack();
   }
 
   goToNext() {

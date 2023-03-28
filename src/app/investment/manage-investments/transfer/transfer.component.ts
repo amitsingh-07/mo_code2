@@ -53,7 +53,7 @@ export class TransferComponent implements OnInit, OnDestroy {
     private investmentAccountService: InvestmentAccountService,
     private signUpService: SignUpService,
     private decimalPipe: DecimalPipe,
-    public authService : AuthenticationService
+    public authService: AuthenticationService
   ) {
     this.translate.use('en');
     this.translate.get('COMMON').subscribe((result: string) => {
@@ -138,8 +138,6 @@ export class TransferComponent implements OnInit, OnDestroy {
 
   setSelectedPortfolio() {
     if (this.formValues) {
-      const customerPortfolioId = this.formValues.transferFrom ?
-        this.formValues.transferFrom.customerPortfolioId : this.formValues.selectedCustomerPortfolio;
       if (this.formValues.selectedCustomerPortfolio && this.formValues.selectedCustomerPortfolio.portfolioName) {
         const data = this.sourceCashPortfolioList.find((portfolio) => {
           return portfolio.portfolioName === this.formValues.selectedCustomerPortfolio.portfolioName;

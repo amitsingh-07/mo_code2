@@ -8,18 +8,18 @@
                 {{investmentInput.onetime}}
             </div>
         </div>
-        <div class="fund_sub_container_value">    
+        <div class="fund_sub_container_value">
             <div class="fund_heading">
                 {{ 'PORTFOLIO_RECOMMENDATION.WISE_INCOME_PORTFOLIO.MONTHLY_INVESTMENT' | translate}}
-            </div> 
+            </div>
             <div class="fund_value">
                 {{investmentInput.monthly}}
-            </div> 
+            </div>
         </div>
     </div>
     <div class='fund-bt'>
-        <button type="button" class="btn btn-fund width100" (click) = "openEditInvestmentModal()">{{
-        'PORTFOLIO_RECOMMENDATION.WISE_INCOME_PORTFOLIO.REVIEW_MY_INPUTS' | translate}}
+        <button type="button" class="btn btn-fund width100" (click)="openEditInvestmentModal()">{{
+            'PORTFOLIO_RECOMMENDATION.WISE_INCOME_PORTFOLIO.REVIEW_MY_INPUTS' | translate}}
             <span class='btn-fund_icon'></span>
         </button>
     </div>

@@ -12,13 +12,6 @@ button:active {
   background: none;
 }
 
-/*
-button:active:focus {
-  color: inherit;
-  background-color: inherit; 
-  border-color: inherit;
-}
-*/
 .btn {
   font-size: 22px;
   font-family: $muli-semi-bold;
@@ -39,13 +32,13 @@ button:active:focus {
     }
 
     &:hover {
-      background-color: #0de0de !important;
+      background-color: $bright-turquiose-color !important;
     }
 
     &:focus,
     &:active {
       outline: none !important;
-      background: #00c5c4 !important;
+      background: $robins-egg-blue-color !important;
       border-color: none !important;
       box-shadow: 0 12px 14px 0 rgba(0, 0, 0, 0.21) !important;
     }
@@ -67,13 +60,13 @@ button:active:focus {
     color: $teal-color;
 
     &:hover {
-      background-color: #eafaf9;
+      background-color: $polar-blue-color;
       box-shadow: 0 12px 14px 0 rgba(0, 0, 0, 0.21);
     }
 
     &:focus,
     &:active {
-      background-color: #eafaf9;
+      background-color: $polar-blue-color;
       box-shadow: 0px;
     }
 
@@ -90,32 +83,32 @@ button:active:focus {
     box-shadow: 0 2px 8px 0 rgba(0, 0, 0, 0.18) !important;
 
     &:hover {
-      background-color: #00c5c4;
+      background-color: $robins-egg-blue-color;
     }
 
     &:focus,
     &:active {
       outline: none !important;
-      background: #00c5c4 !important;
+      background: $robins-egg-blue-color !important;
       border-color: none !important;
     }
   }
 
   &.btn-secondary {
     background-color: transparent;
-    border: 1px solid #00c5c4;
+    border: 1px solid $robins-egg-blue-color;
     color: $app-backgrnd-color;
 
     &:hover {
       background-color: transparent;
-      border: 1px solid #00c5c4 !important;
+      border: 1px solid $robins-egg-blue-color !important;
       color: $app-backgrnd-color !important;
     }
 
     &:focus,
     &:active {
       outline: none !important;
-      border: 1px solid #00c5c4 !important;
+      border: 1px solid $robins-egg-blue-color !important;
       color: $app-backgrnd-color !important;
       background-color: transparent !important;
     }
@@ -127,8 +120,8 @@ button:active:focus {
       padding: 5px 10px;
       font-family: $muli-regular;
       font-size: 14px;
-      color: #8cd7d7;
-      border: 1px solid #8cd7d7;
+      color: $intro-block-heading-color;
+      border: 1px solid $intro-block-heading-color;
     }
   }
 
@@ -264,25 +257,25 @@ button:active:focus {
 }
 
 .btn.btn-primary:hover {
-  background-color: #0de0de !important;
+  background-color: $bright-turquiose-color !important;
 
   @include allmobiles {
-    background-color: #00c5c4 !important;
+    background-color: $robins-egg-blue-color !important;
   }
 
   @include tablet {
-    background-color: #00c5c4 !important;
+    background-color: $robins-egg-blue-color !important;
   }
 }
 
 .btn:disabled:hover {
-  background: #009a9a !important;
+  background: $btn-disabled-bg !important;
   cursor: not-allowed;
 }
 
 .btn:disabled:active {
-  background: #009a9a !important;
-  color: #99cfcf;
+  background: $btn-disabled-bg !important;
+  color: $btn-disabled-color;
   cursor: not-allowed;
 }
 /*Fixed button small*/
@@ -293,7 +286,6 @@ button:active:focus {
   font-size: 16px;
   font-family: $muli-regular;
   font-weight: normal !important;
-  //width: 133px;
   padding: .90rem;
   @extend .align-center;
   @extend .flex;
@@ -313,21 +305,6 @@ button:active:focus {
   }
 }
 
-/*Fixed button Medium*/
-
-// .fixed-btn--md {
-//   width: 170px;
-//   padding: .90rem;
-// }
-
-/*Fixed button large*/
-
-// .fixed-btn--lg {
-//   width: 267px;
-//   padding: .90rem;
-// }
-
-
 /*My Info Button Block*/
 
 .myinfo__block {
@@ -338,7 +315,7 @@ button:active:focus {
   border-radius: 8px;
   color: $myinfo-btn-color;
   margin-bottom: 10px;
-  color: #e57300;
+  color: $mango-tango-color;
   cursor: pointer;
 
   .myinfo__block__btn {
@@ -388,7 +365,7 @@ button:active:focus {
   min-width: 337px;
   max-width: 370px;
   box-shadow: 0 8px 12px 0 rgba(0, 0, 0, 0.2);
-  border: solid 1px #ff7f00;
+  border: solid 1px $myinfo-block-btn-bg-color;
 
   @include allmobiles {
     width: 100% !important;
@@ -444,7 +421,7 @@ button:active:focus {
 
 /*Dependentant Count Button Styles*/
 .dependent-count--btn {
-  background: #FFFFFF;
+  background: $white-color;
   padding: 0.90rem;
   text-align: center;
   color: $app-backgrnd-color;
@@ -679,8 +656,6 @@ button:active:focus {
     max-width: 950px;
     max-height: 70px;
     min-height: 64px;
-    //max-width: calc(1024px - 160px);
-    //min-width:337px;
     box-shadow: 0 8px 6px -6px rgba(138, 155, 169, 0.3);
 
     @include allmobiles {
@@ -770,11 +745,9 @@ button:active:focus {
       display: block;
       font-family: $muli-semi-bold;
       font-size: 22px;
-      //line-height: 1.0;
       letter-spacing: -0.4px;
       color: $dark-teal-color;
       max-width: 60%;
-      //word-wrap: normal;
       overflow: hidden;
       white-space: nowrap;
       text-overflow: ellipsis;
@@ -882,7 +855,6 @@ button:active:focus {
       white-space: normal;
       justify-content: center;
       align-items: center;
-      // width: 100px;
       height: 51px;
       @extend .flex;
       @extend .align-center;
@@ -959,7 +931,6 @@ button:active:focus {
   }
 
   .dropdown-control {
-    //border:1px solid $light-teal-color;
     border-radius: 6px;
 
     .dropdown-menu {
@@ -1132,7 +1103,6 @@ button:active:focus {
     font-size: 16px;
     font-family: $muli-regular;
     font-weight: normal !important;
-    //width: 133px;
     padding: .90rem;
     @extend .align-center;
     @extend .flex;
@@ -1141,7 +1111,6 @@ button:active:focus {
     margin: 0;
     background: $white-color;
 
-    //margin-bottom: 5px;
     &.active {
       border: 1px solid $app-backgrnd-color !important;
       color: $white-color !important;

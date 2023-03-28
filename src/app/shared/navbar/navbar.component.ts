@@ -1,9 +1,13 @@
 import {
-  AfterViewInit, ChangeDetectorRef, Component, ElementRef, HostListener, OnInit, Renderer2,
+  AfterViewInit, ChangeDetectorRef, Component, ElementRef, HostListener, NgZone, OnInit, Renderer2,
   ViewChild
 } from '@angular/core';
 import { NavigationEnd, NavigationExtras, Router } from '@angular/router';
 import { NgbDropdownConfig, NgbModal, NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
+import { ViewportScroller } from '@angular/common';
+import { Subject } from 'rxjs';
+import { takeUntil } from 'rxjs/operators';
+import { App } from '@capacitor/app';
 
 import { APP_ROUTES } from '../../app-routes.constants';
 import { appConstants } from '../../app.constants';
@@ -11,9 +15,6 @@ import { AppService } from '../../app.service';
 import { ConfigService, IConfig } from '../../config/config.service';
 import { InvestmentAccountService } from '../../investment/investment-account/investment-account-service';
 import { AuthenticationService } from '../../shared/http/auth/authentication.service';
-import {
-  TransactionModalComponent
-} from '../../shared/modal/transaction-modal/transaction-modal.component';
 import { SIGN_UP_CONFIG } from '../../sign-up/sign-up.constant';
 import {
   DASHBOARD_PATH, EDIT_PROFILE_PATH, SIGN_UP_ROUTE_PATHS
@@ -32,10 +33,6 @@ import { NavbarConfig } from './config/presets';
 import { NavbarService } from './navbar.service';
 import { SessionsService } from '../Services/sessions/sessions.service';
 import { MANAGE_INVESTMENTS_ROUTE_PATHS } from '../../investment/manage-investments/manage-investments-routes.constants';
-import { INVESTMENT_ENGAGEMENT_JOURNEY_ROUTE_PATHS } from '../../investment/investment-engagement-journey/investment-engagement-journey-routes.constants';
-import { ViewportScroller } from '@angular/common';
-import { Subject } from 'rxjs';
-import { takeUntil } from 'rxjs/operators';
 
 @Component({
   selector: 'app-navbar',
@@ -94,7 +91,6 @@ export class NavbarComponent implements OnInit, AfterViewInit {
   isInvestmentEnabled = false;
   isNotificationEnabled = false;
   isComprehensiveEnabled = false;
-  isRetirementPlanningEnabled = false;
   isComprehensiveLiveEnabled = false;
 
   showComprehensiveTitle = false;
@@ -159,7 +155,8 @@ export class NavbarComponent implements OnInit, AfterViewInit {
     private selectedPlansService: SelectedPlansService,
     private progressTrackerService: ProgressTrackerService,
     private comprehensiveService: ComprehensiveService,
-    private viewportScroller: ViewportScroller) {
+    private viewportScroller: ViewportScroller,
+    private ngZone: NgZone) {
     this.browserCheck();
     this.matrixResolver();
     config.autoClose = true;
@@ -173,7 +170,6 @@ export class NavbarComponent implements OnInit, AfterViewInit {
       this.isWillWritingEnabled = moduleConfig.willWritingEnabled;
       this.isInvestmentEnabled = moduleConfig.investmentEnabled;
       this.isComprehensiveEnabled = moduleConfig.comprehensiveEnabled;
-      this.isRetirementPlanningEnabled = moduleConfig.retirementPlanningEnabled;
       this.isComprehensiveLiveEnabled = moduleConfig.comprehensiveLiveEnabled;
     });
 
@@ -221,6 +217,20 @@ export class NavbarComponent implements OnInit, AfterViewInit {
     }
 
     this.corpBizData = appService.getCorpBizData();
+
+    //Device back navigation
+    App.addListener('backButton', (BackButtonListener) => {
+      console.log('Device Back Button Clicked');
+      this.ngZone.run(() => {
+        if (BackButtonListener.canGoBack) {
+          console.log('Nav bar Go the previous screen');
+          this.goBack();
+        } else {
+          console.log('Nav Bar No Back screen');
+          App.exitApp();
+        }
+      });
+    });
   }
 
   @HostListener('window:scroll', ['$event'])
@@ -310,7 +320,7 @@ export class NavbarComponent implements OnInit, AfterViewInit {
       this.matrixResolver(navbarMode);
       // Enabling Notifications
       if (this.navbarConfig.showNotifications) {
-        this.isNotificationEnabled = true; // = this.canActivateNotification();
+        this.isNotificationEnabled = true;
       } else {
         this.isNotificationEnabled = false;
       }
@@ -324,6 +334,11 @@ export class NavbarComponent implements OnInit, AfterViewInit {
       this.showNavShadow = showNavShadow;
       this.cdr.detectChanges();
     });
+  }
+
+  ngOnDestroy() {
+    this.ngUnsubscribe.next(true);
+    this.ngUnsubscribe.unsubscribe();
   }
 
   onPageChanged() {
@@ -371,7 +386,6 @@ export class NavbarComponent implements OnInit, AfterViewInit {
     this.showNotificationClear = false;
     this.showLabel = config.showLabel ? config.showLabel : false;
   }
-
   // End of MATRIX RESOLVER --- DO NOT DELETE IT'S IMPORTANT
 
   openSearchBar(toggle: boolean) {
@@ -465,6 +479,7 @@ export class NavbarComponent implements OnInit, AfterViewInit {
   }
 
   toggleRecentNotification() {
+    this.renderer.removeClass(document.body, 'modal-open');
     this.isNotificationHidden = !this.isNotificationHidden;
     if (!this.isNotificationHidden) { // When Opened
       if (this.recentMessages && this.recentMessages.length) {
@@ -501,12 +516,9 @@ export class NavbarComponent implements OnInit, AfterViewInit {
   }
   // End of Notifications
 
-  showFilterModalPopUp(data) {
-    this.modalRef = this.modal.open(TransactionModalComponent, { centered: true });
-  }
-
   // Logout Method
   logout() {
+    this.navbarService.clearUrlHistory();
     if (this.authService.isSignedUser()) {
       this.authService.logout().subscribe((data) => {
         this.clearLoginDetails(true, this.signUpService.getUserType());
@@ -614,8 +626,8 @@ export class NavbarComponent implements OnInit, AfterViewInit {
   //wiseIncome Dropdown
   wiseIncomeDropDown(event) {
     this.wiseIncomeDropDownShow = !this.wiseIncomeDropDownShow;
-    //event.stopPropagation();
   }
+
   //wiseIncome Dropdown Scroll
   onClickScroll(elementId: string): void {
     this.navbarService.setScrollTo(elementId, this.NavBar.nativeElement.getBoundingClientRect().height);
@@ -629,11 +641,6 @@ export class NavbarComponent implements OnInit, AfterViewInit {
     } else {
       this.currentActive = 0;
     }
-  }
-
-  ngOnDestroy() {
-    this.ngUnsubscribe.next(true);
-    this.ngUnsubscribe.unsubscribe();
   }
 
 }

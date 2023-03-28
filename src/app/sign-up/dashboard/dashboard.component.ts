@@ -47,10 +47,11 @@ import { INVESTMENT_COMMON_CONSTANTS } from '../../investment/investment-common/
 import { ComprehensiveService } from '../../comprehensive/comprehensive.service';
 import { Util } from '../../shared/utils/util';
 import { appConstants } from '../../app.constants';
-import { InvestmentEngagementJourneyService} from '../../investment/investment-engagement-journey/investment-engagement-journey.service';
+import { InvestmentEngagementJourneyService } from '../../investment/investment-engagement-journey/investment-engagement-journey.service';
 import { INVESTMENT_ENGAGEMENT_JOURNEY_CONSTANTS } from '../../investment/investment-engagement-journey/investment-engagement-journey.constants';
 import { InvestModalComponent } from '../invest-modal/invest-modal.component';
 import { FileUtil } from '../../shared/utils/file.util';
+import { CapacitorUtils } from '../../shared/utils/capacitor.util';
 
 @Component({
   selector: 'app-dashboard',
@@ -139,7 +140,7 @@ export class DashboardComponent implements OnInit {
       this.isComprehensiveEnabled = config.comprehensiveEnabled;
     });
     this.portfolioCategory = INVESTMENT_COMMON_CONSTANTS.PORTFOLIO_CATEGORY;
-      this.getReferralCodeData();
+    this.getReferralCodeData();
   }
 
   ngOnInit() {
@@ -269,9 +270,9 @@ export class DashboardComponent implements OnInit {
       if (data && data.responseMessage && data.responseMessage.responseCode === 6000) {
         this.investmentsSummary = data.objectList;
         const accStatusInfoFromSession = this.investmentCommonService.getInvestmentCommonFormData().accountCreationActions;
-        if (this.investmentsSummary && this.investmentsSummary.investmentAccountStatus && accStatusInfoFromSession) {      
+        if (this.investmentsSummary && this.investmentsSummary.investmentAccountStatus && accStatusInfoFromSession) {
           this.investmentCommonService.setAccountCreationActionsToSession(this.investmentsSummary.investmentAccountStatus);
-        } 
+        }
         this.setInvestmentsSummary(this.investmentsSummary);
         this.getInvestmentStatus();
       } else {
@@ -284,10 +285,10 @@ export class DashboardComponent implements OnInit {
   }
 
   goToEngagement() {
-    if(this.portfolioExists){
+    if (this.portfolioExists) {
       this.router.navigate([INVESTMENT_ENGAGEMENT_JOURNEY_ROUTE_PATHS.SELECT_PORTFOLIO_TYPE]);
     }
-    else{
+    else {
       this.router.navigate([INVESTMENT_ENGAGEMENT_JOURNEY_ROUTE_PATHS.ROOT]);
     }
   }
@@ -372,7 +373,7 @@ export class DashboardComponent implements OnInit {
       }
       case SIGN_UP_CONFIG.INVESTMENT.CDD_CHECK_PENDING:
       case SIGN_UP_CONFIG.INVESTMENT.EDD_CHECK_CLEARED:
-      case SIGN_UP_CONFIG.INVESTMENT.EDD_CHECK_PENDING: 
+      case SIGN_UP_CONFIG.INVESTMENT.EDD_CHECK_PENDING:
       case SIGN_UP_CONFIG.INVESTMENT.CKA_PENDING: {
         this.showCddCheckOngoing = true;
         this.enableInvestment();
@@ -461,12 +462,14 @@ export class DashboardComponent implements OnInit {
   }
   downloadWill() {
     let newWindow;
-    if(/iPad|iPhone|iPod/.test(navigator.userAgent)) {
+    if (CapacitorUtils.isIosWeb) {
       newWindow = window.open();
     }
-    this.willWritingApiService.downloadWill().subscribe((data: any) => {
-      this.fileUtil.downloadPDF(data, newWindow, this.translate.instant('DASHBOARD.WILL_WRITING.WILLS_PDF_NAME'));
-    }, (error) => console.log(error));
+    this.willWritingApiService.downloadWill().subscribe((res: any) => {
+      this.fileUtil.downloadPDF(res, newWindow, this.translate.instant('DASHBOARD.WILL_WRITING.WILLS_PDF_NAME'));
+    }, (error) => {
+      this.showCustomErrorModal('Error!', error);
+    });
   }
 
   showCustomErrorModal(title, desc) {
@@ -474,11 +477,11 @@ export class DashboardComponent implements OnInit {
     ref.componentInstance.errorTitle = title;
     ref.componentInstance.errorMessage = desc;
   }
-  
+
   // Show new updates Modal if first time login
   openNewUpdatesModal() {
     const ref = this.modal.open(CarouselModalComponent, { centered: true, windowClass: 'srs-dashboard-modal' });
-    if(this.authService.isUserTypeCorporate) {
+    if (this.authService.isUserTypeCorporate) {
       ref.componentInstance.slides = this.translate.instant('DASHBOARD.SRS_JOINT_ACCOUNT.SRS_JOINT_ACCOUNT_SLIDES_CORP');
     } else {
       ref.componentInstance.slides = this.translate.instant('DASHBOARD.SRS_JOINT_ACCOUNT.SRS_JOINT_ACCOUNT_SLIDES');
@@ -513,7 +516,7 @@ export class DashboardComponent implements OnInit {
 
   newPortfolio() {
     this.authService.removeEnquiryId();
-    this.investmentCommonService.clearFundingDetails();  
+    this.investmentCommonService.clearFundingDetails();
     this.investmentCommonService.clearJourneyData();
     if (this.authService.accessCorporateUserFeature('CREATE_JOINT_ACCOUNT')) {
       this.router.navigate([INVESTMENT_ENGAGEMENT_JOURNEY_ROUTE_PATHS.SELECT_PORTFOLIO_TYPE]);
@@ -551,13 +554,21 @@ export class DashboardComponent implements OnInit {
   // show Start investing button if no portfolio but user has iFast account
   showPortfolioCards() {
     return Util.isEmptyOrNull(this.investmentsSummary.portfolioSummary.investmentPortfolio)
-    && Util.isEmptyOrNull(this.investmentsSummary.portfolioSummary.cpfPortfolio)
-    && Util.isEmptyOrNull(this.investmentsSummary.portfolioSummary.wiseIncomePortfolio)
-    && Util.isEmptyOrNull(this.investmentsSummary.portfolioSummary.wiseSaverPortfolio)
+      && Util.isEmptyOrNull(this.investmentsSummary.portfolioSummary.cpfPortfolio)
+      && Util.isEmptyOrNull(this.investmentsSummary.portfolioSummary.wiseIncomePortfolio)
+      && Util.isEmptyOrNull(this.investmentsSummary.portfolioSummary.wiseSaverPortfolio)
   }
 
   openInvestMenuModal() {
     this.modal.open(InvestModalComponent, { centered: true });
+  }
+
+  goToInsuranceJourney(page: string){
+    if (page === 'direct') {
+      this.router.navigate(['/direct']);
+    } else {
+      this.router.navigate(['/guideme']);
+    }
   }
 }
 

@@ -1,9 +1,8 @@
-import { Component, OnDestroy, OnInit, ViewEncapsulation, HostListener } from '@angular/core';
+import { Component, OnDestroy, OnInit, ViewEncapsulation } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { TranslateService } from '@ngx-translate/core';
 import { Subscription } from 'rxjs';
-
 import { ConfigService } from '../../config/config.service';
 import { NavbarService } from '../../shared/navbar/navbar.service';
 import { ComprehensiveApiService } from '../comprehensive-api.service';
@@ -15,7 +14,6 @@ import { AboutAge } from './../../shared/utils/about-age.util';
 import { COMPREHENSIVE_CONST } from './../comprehensive-config.constants';
 import { Util } from '../../shared/utils/util';
 import { LoaderService } from './../../shared/components/loader/loader.service';
-
 
 @Component({
   selector: 'app-insurance-plan',

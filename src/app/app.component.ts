@@ -1,9 +1,11 @@
 import { Location } from '@angular/common';
-import { Component, HostListener, OnInit } from '@angular/core';
+import { AfterViewInit, Component, HostListener, NgZone, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { NgbModal, NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
 import { TranslateService } from '@ngx-translate/core';
 import { Observable } from 'rxjs';
+import { InAppBrowser, UrlEvent } from 'capgo-inappbrowser-intent-fix';
+import { HTTP } from '@awesome-cordova-plugins/http/ngx';
 
 import { IComponentCanDeactivate } from './changes.guard';
 import { ConfigService, IConfig } from './config/config.service';
@@ -17,6 +19,11 @@ import { RoutingService } from './shared/Services/routing.service';
 import { SessionsService } from './shared/Services/sessions/sessions.service';
 import { appConstants } from './app.constants';
 import { UnsupportedDeviceModalComponent } from './shared/modal/unsupported-device-modal/unsupported-device-modal.component';
+import { Util } from './shared/utils/util';
+import { environment } from '../environments/environment';
+import { CapacitorUtils } from './shared/utils/capacitor.util';
+import { MyInfoService } from './shared/Services/my-info.service';
+import { Platform } from '@ionic/angular';
 
 declare global {
   interface Window {
@@ -32,7 +39,7 @@ declare global {
   styleUrls: ['./app.component.scss']
 })
 
-export class AppComponent implements IComponentCanDeactivate, OnInit {
+export class AppComponent implements IComponentCanDeactivate, OnInit, AfterViewInit {
   title = 'Money Owl';
   modalRef: NgbModalRef;
   initRoute = false;
@@ -40,11 +47,11 @@ export class AppComponent implements IComponentCanDeactivate, OnInit {
   navbarMode = null;
 
   constructor(
-    private translate: TranslateService, public navbarService: NavbarService, private _location: Location,
+    private translate: TranslateService, public navbarService: NavbarService,
     private googleAnalyticsService: GoogleAnalyticsService,
     private modal: NgbModal, public route: Router, public routingService: RoutingService, private location: Location,
     private configService: ConfigService, private authService: AuthenticationService, private sessionsService: SessionsService,
-    public activatedRoute: ActivatedRoute) {
+    public activatedRoute: ActivatedRoute, private myInfoService: MyInfoService, private zone: NgZone, private http: HTTP, private platform: Platform) {
     this.translate.setDefaultLang('en');
     this.configService.getConfig().subscribe((config: IConfig) => {
       this.translate.setDefaultLang(config.language);
@@ -76,6 +83,9 @@ export class AppComponent implements IComponentCanDeactivate, OnInit {
         this.showFbWarning();
       }
     });
+    if (CapacitorUtils.isApp) {
+      this.initializeApp();
+    }
   }
 
   ngOnInit() {
@@ -85,20 +95,56 @@ export class AppComponent implements IComponentCanDeactivate, OnInit {
     window.failed.namespace = window.failed.namespace || {};
     window.success = window.success || {};
     window.success.namespace = window.success.namespace || {};
+  }
 
-    this.configService.getConfig().subscribe((config: IConfig) => {
-      if (config.affiliateEnabled) {
-        this.activatedRoute.queryParams.subscribe(params => {
-          if (params['irclickid'] && typeof(Storage) !== "undefined") {
-            const item = {
-              irClickId: params['irclickid'],
-              clickIdCreatedDate: new Date().toISOString()
-            };
-            localStorage.setItem('irclickid_json', JSON.stringify(item));
-          }
+  initializeApp() {
+    // Native Android/iOS device specific methods
+    // SSL Cert Pinning
+    this.platform.ready().then(()=>{
+      this.http.setServerTrustMode('pinned').then(() => {
+        console.log('[SUCCESS] Cert Pinned !');
+      })
+      .catch(() => {
+        console.log('[ERROR] SSL Pinning Fails!');
+      });
+    });
+    // Capgo Inappbrowser close listener for singpass/myinfo
+    InAppBrowser.addListener('closeEvent', () => {
+      this.myInfoService.closeFetchPopup();
+    });
+    // Capgo Inappbrowser urlchange listener for singpass/myinfo
+    InAppBrowser.addListener('urlChangeEvent', (urlEvt: UrlEvent) => {
+      if (urlEvt.url.startsWith(environment.singpassBaseUrl) && urlEvt.url.includes("error")) {
+        InAppBrowser.close();
+      } else if (urlEvt.url.startsWith(environment.singpassBaseUrl) && urlEvt.url.includes("code") && urlEvt.url.includes("state") && urlEvt.url.includes("login")) {
+        InAppBrowser.close();
+        const slug = urlEvt.url.replace(environment.singpassBaseUrl + appConstants.BASE_HREF, "");
+        this.zone.run(()=>{
+          this.route.navigateByUrl(slug);
         });
+      } else if (urlEvt.url.startsWith(environment.singpassBaseUrl) && urlEvt.url.includes("code") && urlEvt.url.includes("state") && urlEvt.url.includes("myinfo")) {
+        InAppBrowser.close();
+        const url = new URL(urlEvt.url);
+        const params = new URLSearchParams(url.search);
+        this.myInfoService.mobileMyInfoCheck(params.get("code"));
+      } else if (urlEvt.url.startsWith(environment.singpassBaseUrl)) {
+        InAppBrowser.close();
       }
     });
+  }
+
+  ngAfterViewInit(): void {  
+    document.body.addEventListener('click', evt => {
+      const anchorEle = evt.target as HTMLAnchorElement;
+      let url = anchorEle.getAttribute('href');
+      let isRouterLink = anchorEle.getAttribute('ng-reflect-router-link');
+      const isDownloadFile = anchorEle.getAttribute('download');
+      if (anchorEle.tagName.toLowerCase() === 'a' && url && !isRouterLink && !isDownloadFile && appConstants.RESTRICTED_HYPERLINK_URL_CONTENTS.filter(ele => url.includes(ele)).length === 0) {
+        evt.preventDefault();
+        let _target = anchorEle.getAttribute('target');
+        Util.openExternalUrl(url, _target);
+      }
+    })
   }
 
   onActivate(event) {
@@ -115,7 +161,7 @@ export class AppComponent implements IComponentCanDeactivate, OnInit {
       ref.result.then((data) => {
       if (data !== 'proceed') {
         if (this.redirect === '' || this.redirect === undefined) {
-          this._location.back();
+          this.navbarService.goBack();
         } else {
           window.location.href = this.redirect;
           }
@@ -156,7 +202,7 @@ export class AppComponent implements IComponentCanDeactivate, OnInit {
   doBeforeUnload() {
     // Alert the user window is closing
     // Not to show alert when on login page
-    if (this.route.url == '/accounts/login') {
+    if (this.route.url == '/accounts/login' || CapacitorUtils.isApp) {
       return true;
     } else {
       return false;

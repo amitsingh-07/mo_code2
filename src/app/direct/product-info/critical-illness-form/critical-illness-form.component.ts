@@ -1,7 +1,5 @@
-import { CurrencyPipe } from '@angular/common';
 import { Component, EventEmitter, OnDestroy, OnInit, Output, ViewEncapsulation } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { Router } from '@angular/router';
 import { NgbDateParserFormatter, NgbDatepickerConfig, NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { TranslateService } from '@ngx-translate/core';
 
@@ -21,7 +19,7 @@ import { Util } from './../../../shared/utils/util';
 })
 
 export class CriticalIllnessFormComponent implements OnInit, OnDestroy {
-  categorySub: any; 
+  categorySub: any;
   criticalIllnessForm: FormGroup;
   formValues: any;
   coverage_amt = '';
@@ -33,17 +31,16 @@ export class CriticalIllnessFormComponent implements OnInit, OnDestroy {
   minDate;
   maxDate;
   radioLabelValue = [];
-  radioLabelValueEarlyCI =[];
+  radioLabelValueEarlyCI = [];
   defaultRadioStyleClass = 'direct-form-btn--radio btn';
   private userInfoSubscription: Subscription;
-  
+
   @Output() formSubmitted: EventEmitter<any> = new EventEmitter();
 
   constructor(
     private directService: DirectService, private modal: NgbModal,
-    private parserFormatter: NgbDateParserFormatter, private translate: TranslateService,
-    private formBuilder: FormBuilder, private config: NgbDatepickerConfig, private currencyPipe: CurrencyPipe,
-    private router: Router) {
+    private translate: TranslateService,
+    private formBuilder: FormBuilder, private config: NgbDatepickerConfig) {
     const today: Date = new Date();
     this.minDate = { year: (today.getFullYear() - 100), month: (today.getMonth() + 1), day: today.getDate() };
     this.maxDate = { year: today.getFullYear(), month: (today.getMonth() + 1), day: today.getDate() };
@@ -65,7 +62,7 @@ export class CriticalIllnessFormComponent implements OnInit, OnDestroy {
         value: this.translate.instant('COMMON.LBL_NO_VALUE')
       }];
       this.defaultRadioStyleClass = 'direct-form-btn--radio btn';
-    });    
+    });
     this.coverageAmtValuesTemp.push(1500000);
     this.coverageAmtValuesTemp.push(2000000);
   }
@@ -175,7 +172,7 @@ export class CriticalIllnessFormComponent implements OnInit, OnDestroy {
       ref.componentInstance.errorMessage = this.directService.currentFormError(form)['errorMessage'];
       return false;
     }
-    form.value.earlyCI = (form.value.earlyCI === 'yes' ||  form.value.earlyCI === true) ? true : false;
+    form.value.earlyCI = (form.value.earlyCI === 'yes' || form.value.earlyCI === true) ? true : false;
     form.value.coverageAmt = this.coverage_amt;
     form.value.duration = this.duration;
     this.directService.setCriticalIllnessForm(form.value);

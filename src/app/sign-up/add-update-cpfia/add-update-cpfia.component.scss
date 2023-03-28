@@ -23,7 +23,7 @@ app-add-update-cpfia {
         padding-right: 10px;
     }
     .form-control {
-        color: #00a7a7;
+        color: $teal-color;
         &:disabled,
         &.disabled {
             cursor: not-allowed;
@@ -39,7 +39,7 @@ app-add-update-cpfia {
         padding-right: 8px;
         font-family: $muli-italic;
         font-size: 15px;
-        color: #74c1c1;
+        color: $portfolio-name-length-color;
     }
     .btn__footer--fixed {
         font-family: $muli-bold;

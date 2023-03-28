@@ -13,7 +13,6 @@ import { INVESTMENT_ACCOUNT_CONSTANTS } from '../investment-account/investment-a
 import { PersonalInfo } from './investment-period/investment-period';
 import { InvestmentAccountCommon } from '../investment-account/investment-account-common';
 import { RegexConstants } from '../../shared/utils/api.regex.constants';
-import { InvestmentAccountFormError } from '../investment-account/investment-account-form-error';
 
 const PORTFOLIO_RECOMMENDATION_COUNTER_KEY = 'portfolio_recommendation-counter';
 const SESSION_STORAGE_KEY = 'app_engage_journey_session';
@@ -614,7 +613,7 @@ export class InvestmentEngagementJourneyService {
   validateExpiry(control: AbstractControl): { [s: string]: boolean } {
     const value = control.value;
     const today = new Date();
-    if (control.value !== undefined && isNaN(control.value) && !(control.errors && control.errors.ngbDate)) {
+    if (control.value !== undefined && isNaN(control.value)) {
       const isMinExpiry =
         new Date(value.year, value.month - 1, value.day) >=
         new Date(
@@ -678,7 +677,7 @@ export class InvestmentEngagementJourneyService {
   /* To Validate Maximum age of secondary holder */
   validateMaximumAge(control: AbstractControl): { [s: string]: boolean } {
     const value = control.value;
-    if (control.value !== undefined && isNaN(control.value) && !(control.errors && control.errors.ngbDate)) {
+    if (control.value !== undefined && isNaN(control.value)) {
       const isMaxAge =
         new Date(
           value.year + INVESTMENT_ACCOUNT_CONSTANTS.personal_info.min_age,
@@ -695,7 +694,7 @@ export class InvestmentEngagementJourneyService {
   /* To Validate Minimum age of secondary holder */
   validateMinimumAge(control: AbstractControl) {
     const value = control.value;
-    if (control.value !== undefined && isNaN(control.value) && !(control.errors && control.errors.ngbDate)) {
+    if (control.value !== undefined && isNaN(control.value)) {
       const isMinAge =
         new Date(
           value.year + INVESTMENT_ACCOUNT_CONSTANTS.personal_info.min_age,
@@ -762,13 +761,12 @@ export class InvestmentEngagementJourneyService {
   }
   //Get Risk Profile icon
   getRiskProfileIcon(riskProfileType: string, isBalancedCpf: boolean) {
-    if(isBalancedCpf) {
+    if (isBalancedCpf) {
       return INVESTMENT_ENGAGEMENT_JOURNEY_CONSTANTS.riskProfileIcon['balanced-cpfis-icon'];
-    } else if(!Util.isEmptyOrNull(riskProfileType)) {
+    } else if (!Util.isEmptyOrNull(riskProfileType)) {
       return INVESTMENT_ENGAGEMENT_JOURNEY_CONSTANTS.riskProfileIcon[riskProfileType.toLowerCase()];
     } else {
       return '';
     }
   }
 }
- 

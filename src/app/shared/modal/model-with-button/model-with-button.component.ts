@@ -1,10 +1,10 @@
 import { filter } from 'rxjs/operators';
-import { Component, EventEmitter, Input, OnInit, Output, ViewEncapsulation } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output, ViewEncapsulation, NgZone } from '@angular/core';
 import { NavigationEnd, Router } from '@angular/router';
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 import { TranslateService } from '@ngx-translate/core';
-import { ANIMATION_DATA } from '../../../../assets/animation/animationData';
 
+import { ANIMATION_DATA } from '../../../../assets/animation/animationData';
 declare var require: any;
 const bodymovin = require("../../../../assets/scripts/lottie_svg.min.js");
 
@@ -44,7 +44,8 @@ export class ModelWithButtonComponent implements OnInit {
   constructor(
     public activeModal: NgbActiveModal,
     private router: Router,
-    public readonly translate: TranslateService) {
+    public readonly translate: TranslateService,
+    private zone: NgZone) {
     this.translate.use('en');
     this.translate.get('COMMON').subscribe((result: string) => {
     });
@@ -57,7 +58,9 @@ export class ModelWithButtonComponent implements OnInit {
         // dismiss all bootstrap modal dialog
         this.activeModal.dismiss();
       });
-    this.createAnimation();
+    this.zone.run(()=>{
+      this.createAnimation();
+    });
   }
 
   primaryActionSelected() {

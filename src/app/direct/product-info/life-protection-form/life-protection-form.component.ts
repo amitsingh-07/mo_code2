@@ -1,10 +1,7 @@
-import { CurrencyPipe } from '@angular/common';
 import { Component, EventEmitter, OnDestroy, OnInit, Output, ViewEncapsulation } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { Router } from '@angular/router';
 import { NgbDateParserFormatter, NgbDatepickerConfig, NgbModal, NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
 import { TranslateService } from '@ngx-translate/core';
-
 import { ErrorModalComponent } from './../../../shared/modal/error-modal/error-modal.component';
 import { NgbDateCustomParserFormatter } from './../../../shared/utils/ngb-date-custom-parser-formatter';
 import { DirectService } from './../../direct.service';
@@ -46,30 +43,29 @@ export class LifeProtectionFormComponent implements OnInit, OnDestroy {
 
   constructor(
     private directService: DirectService, private modal: NgbModal,
-    private parserFormatter: NgbDateParserFormatter, private translate: TranslateService,
-    private formBuilder: FormBuilder, private config: NgbDatepickerConfig, private currencyPipe: CurrencyPipe,
-    private router: Router) {
+    private translate: TranslateService,
+    private formBuilder: FormBuilder, private config: NgbDatepickerConfig) {
     const today: Date = new Date();
     this.minDate = { year: (today.getFullYear() - 100), month: (today.getMonth() + 1), day: today.getDate() };
     this.maxDate = { year: today.getFullYear(), month: (today.getMonth() + 1), day: today.getDate() };
     config.outsideDays = 'collapsed';
     this.translate.use('en');
     this.translate.get('COMMON').subscribe((result: string) => {
-    this.radioLabelValue = [{
-      name: this.translate.instant('COMMON.LBL_MALE'),
-      value: this.translate.instant('COMMON.LBL_MALE_VALUE')
-    }, {
-      name: this.translate.instant('COMMON.LBL_FEMALE'),
-      value: this.translate.instant('COMMON.LBL_FEMALE_VALUE')
-    }];
-    this.radioLabelValueIsEarlyCI = [{
-      name: this.translate.instant('COMMON.LBL_YES'),
-      value: this.translate.instant('COMMON.LBL_YES_VALUE')
-    }, {
-      name: this.translate.instant('COMMON.LBL_NO'),
-      value: this.translate.instant('COMMON.LBL_NO_VALUE')
-    }];
-  });
+      this.radioLabelValue = [{
+        name: this.translate.instant('COMMON.LBL_MALE'),
+        value: this.translate.instant('COMMON.LBL_MALE_VALUE')
+      }, {
+        name: this.translate.instant('COMMON.LBL_FEMALE'),
+        value: this.translate.instant('COMMON.LBL_FEMALE_VALUE')
+      }];
+      this.radioLabelValueIsEarlyCI = [{
+        name: this.translate.instant('COMMON.LBL_YES'),
+        value: this.translate.instant('COMMON.LBL_YES_VALUE')
+      }, {
+        name: this.translate.instant('COMMON.LBL_NO'),
+        value: this.translate.instant('COMMON.LBL_NO_VALUE')
+      }];
+    });
     this.coverageAmtValuesTemp.push(1500000);
     this.coverageAmtValuesTemp.push(2000000);
   }

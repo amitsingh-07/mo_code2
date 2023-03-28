@@ -1,4 +1,4 @@
-import { isDebugMode } from '../app/shared/logger/console-logger.service';
+
 import { IEnvironment } from './environment.interface';
 // This file can be replaced during build by using the `fileReplacements` array.
 // `ng build ---prod` replaces `environment.ts` with `environment.prod.ts`.
@@ -9,10 +9,10 @@ export const environment: IEnvironment = {
   isDebugMode: false,
   apiBaseUrl: 'https://newmouat1.ntucbfa.com',
   myInfoClientId: {
-    invest:'STG-201820691C-MONEYOWL-BFA',
-    signup: 'STG-201820691C-MONEYOWL-BFA',
-    cfp: 'STG-201820691C-MONEYOWL-BFA',
-    corpbiz:'STG-201820691C-MONEYOWL-BFA',
+    invest:'STG-201820691C-MONEYOWL-CPACCT',
+    signup: 'STG-201820691C-MONEYOWL-BFA',    
+    cfp: 'STG-201820691C-MONEYOWL-FPREPORT',
+    corpbiz:'STG-201820691C-MONEYOWL-CPACCT-FPREPORT',
     linkSingpass: 'STG-201820691C-MONEYOWL-BFA',
     insurance: 'STG-201820691C-MONEYOWL-INSURANCEANALYSIS'
   },

@@ -1,15 +1,18 @@
 import { HttpParams } from '@angular/common/http';
-import { Injectable } from '@angular/core';
+import { Injectable, NgZone, OnDestroy } from '@angular/core';
 import { Router } from '@angular/router';
 import { NgbModal, NgbModalOptions, NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
 import { Subject } from 'rxjs';
-import { appConstants } from '../../app.constants';
+import { InAppBrowser } from 'capgo-inappbrowser-intent-fix';
 
+import { appConstants } from '../../app.constants';
 import { environment } from '../../../environments/environment';
 import { ApiService } from '../http/api.service';
 import { ErrorModalComponent } from '../modal/error-modal/error-modal.component';
 import { ModelWithButtonComponent } from '../modal/model-with-button/model-with-button.component';
-import { SIGN_UP_ROUTE_PATHS } from './../../sign-up/sign-up.routes.constants';
+import { SIGN_UP_ROUTES, SIGN_UP_ROUTE_PATHS } from './../../sign-up/sign-up.routes.constants';
+import { CapacitorUtils } from '../utils/capacitor.util';
+import { InvestmentAccountService } from '../../investment/investment-account/investment-account-service';
 
 const MYINFO_ATTRIBUTE_KEY = 'myinfo_person_attributes';
 declare var window: Window;
@@ -21,7 +24,7 @@ const SUCCESS = 1;
 @Injectable({
   providedIn: 'root'
 })
-export class MyInfoService {
+export class MyInfoService implements OnDestroy {
 
   changeListener = new Subject();
   authApiUrl = environment.myInfoAuthorizeUrl;
@@ -35,11 +38,19 @@ export class MyInfoService {
   loadingModalRef: NgbModalRef;
   isMyInfoEnabled = false;
   status;
-  windowRef: Window;
+  windowRef: any;
+  getMyInfoDataSubscription: any;
+  closeBtnSubscription: any;
 
   constructor(
-    private modal: NgbModal, private apiService: ApiService, private router: Router
+    private modal: NgbModal, private apiService: ApiService, private router: Router, private zone: NgZone,
+    private investmentAccountService: InvestmentAccountService
   ) { }
+
+  ngOnDestroy() {
+    this.getMyInfoDataSubscription.unsubscribe();
+    this.closeBtnSubscription.unsubscribe();
+  }
 
   setMyInfoAttributes(attributes) {
     this.attributes = attributes;
@@ -53,7 +64,7 @@ export class MyInfoService {
 
   setMyInfoAppId(myInfoServices) {
     this.myInfoServices = myInfoServices;
-    var clientIdObj , x;
+    var clientIdObj, x;
     clientIdObj = this.clientId;
     x = clientIdObj[myInfoServices];
     window.sessionStorage.setItem('myinfo_app_id', x);
@@ -65,9 +76,9 @@ export class MyInfoService {
 
   goToMyInfo(linkAccount?) {
     let currentUrl = window.location.toString();
-    let endPoint = currentUrl.split(currentUrl.split('/')[2])[currentUrl.split(currentUrl.split('/')[2]).length - 1].substr(1);
+    let endPoint = currentUrl.split(currentUrl.split('/')[2])[currentUrl.split(currentUrl.split('/')[2]).length - 1].substring(1);
     window.sessionStorage.setItem('currentUrl', endPoint);
-    const authoriseUrl = this.authApiUrl +
+    let authoriseUrl = this.authApiUrl +
       '?client_id=' + this.getMyInfoAppId() +
       '&attributes=' + this.getMyInfoAttributes() +
       '&purpose=' + this.purpose +
@@ -84,64 +95,70 @@ export class MyInfoService {
 
   newWindow(authoriseUrl, linkAccount?): void {
     const self = this;
-    setTimeout(() => {    
-      this.openFetchPopup(linkAccount);
-    }, 500);
+    if (!CapacitorUtils.isApp) {
+      setTimeout(() => {
+        this.openFetchPopup(linkAccount);
+      }, 500);
+    }
     this.isMyInfoEnabled = true;
-    const screenWidth = screen.width;
-    const screenHeight = screen.height;
-    const left = 0;
-    const top = 0;
-    this.windowRef = window.open(authoriseUrl);
 
-    const timer = setInterval(() => {
-      if (this.windowRef.closed) {
+    if (CapacitorUtils.isApp) {
+      InAppBrowser.openWebView({ url: encodeURI(authoriseUrl), title: "" });
+    } else {
+      this.windowRef = window.open(authoriseUrl);
+      const timer = setInterval(() => {
+        if (this.windowRef.closed) {
+          clearInterval(timer);
+          this.setFailedStatus();
+        }
+      }, 500);
+
+      window.failed = (value) => {
         clearInterval(timer);
-        this.status = 'FAILED';
-        this.changeListener.next(this.getMyinfoReturnMessage(FAILED));
-      }
-    }, 500);
+        window.failed = () => null;
+        this.windowRef.close();
+        if (value === 'FAILED') {
+          this.setFailedStatus();
+        } else {
+          this.changeListener.next(this.getMyinfoReturnMessage(CANCELLED));
+          this.isMyInfoEnabled = false;
+        }
+        return 'MY_INFO';
+      };
 
-    window.failed = (value) => {
-      clearInterval(timer);
-      window.failed = () => null;
-      this.windowRef.close();
-      if (value === 'FAILED') {
-        this.status = 'FAILED';
-        this.changeListener.next(this.getMyinfoReturnMessage(FAILED));
-      } else {
-        this.changeListener.next(this.getMyinfoReturnMessage(CANCELLED));
-        this.isMyInfoEnabled = false;
-      }
-      return 'MY_INFO';
-    };
+      window.success = (values) => {
+        clearInterval(timer);
+        window.success = () => null;
+        this.windowRef.close();
+        const params = new HttpParams({ fromString: values });
+        if (window.sessionStorage.currentUrl && params && params.get('code')) {
+          const myInfoAuthCode = params.get('code');
+          this.setMyInfoValue(myInfoAuthCode);
+          this.setSuccessStatus(myInfoAuthCode);
+        } else {
+          this.setFailedStatus();
+        }
+        return 'MY_INFO';
+      };
 
-    window.success = (values) => {
-      clearInterval(timer);
-      window.success = () => null;
-      this.windowRef.close();
-      const params = new HttpParams({ fromString: values });
-      if (window.sessionStorage.currentUrl && params && params.get('code')) {
-        const myInfoAuthCode = params.get('code');
-        this.setMyInfoValue(myInfoAuthCode);
-        this.status = 'SUCCESS';
-        this.changeListener.next(this.getMyinfoReturnMessage(SUCCESS, myInfoAuthCode));
-      } else {
-        this.status = 'FAILED';
-        this.changeListener.next(this.getMyinfoReturnMessage(FAILED));
-      }
-      return 'MY_INFO';
-    };
+      // Robo2 - MyInfo changes
+      window.addEventListener('message', function (event) {
+        clearInterval(timer);
+        window.success = () => null;
+        self.robo2SetMyInfo(event.data);
+        return 'MY_INFO';
+      });
+    }
+  }
 
-    // Robo2 - MyInfo changes
-    // tslint:disable-next-line:only-arrow-functions
-    window.addEventListener('message', function (event) {
-      clearInterval(timer);
-      window.success = () => null;
-      self.robo2SetMyInfo(event.data);
-      return 'MY_INFO';
-    });
+  setFailedStatus() {
+    this.status = 'FAILED';
+    this.changeListener.next(this.getMyinfoReturnMessage(FAILED));
+  }
 
+  setSuccessStatus(code) {
+    this.status = 'SUCCESS';
+    this.changeListener.next(this.getMyinfoReturnMessage(SUCCESS, code));
   }
 
   robo2SetMyInfo(myInfoAuthCode) {
@@ -151,8 +168,7 @@ export class MyInfoService {
       }
       this.router.navigate(['myinfo'], { queryParams: { code: myInfoAuthCode } });
     } else {
-      this.status = 'FAILED';
-      this.changeListener.next(this.getMyinfoReturnMessage(FAILED));
+      this.setFailedStatus();
     }
   }
 
@@ -184,7 +200,7 @@ export class MyInfoService {
       this.loadingModalRef.componentInstance.errorMessage = 'Please be patient while we fetch your required data from Myinfo.';
     }
     this.loadingModalRef.componentInstance.primaryActionLabel = 'Cancel';
-    this.loadingModalRef.componentInstance.closeAction.subscribe(() => {
+    this.closeBtnSubscription = this.loadingModalRef.componentInstance.closeAction.subscribe(() => {
       this.changeListener.next(this.getMyinfoReturnMessage(CANCELLED));
       this.cancelMyInfo();
     });
@@ -230,7 +246,7 @@ export class MyInfoService {
 
   getMyInfoData() {
     const code = {
-      appId:this.getMyInfoAppId(),
+      appId: this.getMyInfoAppId(),
       authorizationCode: this.myInfoValue,
       personAttributes: this.getMyInfoAttributes()
     };
@@ -240,7 +256,7 @@ export class MyInfoService {
   // singpass account link
   getSingpassAccountData() {
     const code = {
-      appId:this.getMyInfoAppId(),
+      appId: this.getMyInfoAppId(),
       authorizationCode: this.myInfoValue,
       personAttributes: this.getMyInfoAttributes()
     };
@@ -262,6 +278,7 @@ export class MyInfoService {
     const payload = {
       authorizationCode: this.myInfoValue,
       personAttributes: this.getMyInfoAttributes(),
+      appId: this.getMyInfoAppId(),
       isCorpBizUser: true,
       organisationCode: isOrganisationEnabled ? appConstants.USERTYPE.FACEBOOK : null,
       email: email,
@@ -274,7 +291,7 @@ export class MyInfoService {
   // Check if the source page matches with the session stored one
   checkMyInfoSourcePage() {
     const currentUrl = window.location.toString();
-    const currentPath = currentUrl.split(currentUrl.split('/')[2])[currentUrl.split(currentUrl.split('/')[2]).length - 1].substr(1);
+    const currentPath = currentUrl.split(currentUrl.split('/')[2])[currentUrl.split(currentUrl.split('/')[2]).length - 1].substring(1);
     if (this.getMyInfoAttributes() === appConstants.CHECK_MYINFO_INSURANCE_ATTRIBUTES
       && window.sessionStorage.getItem('currentUrl') === currentPath) {
       return true;
@@ -282,4 +299,22 @@ export class MyInfoService {
       return false;
     }
   }
+
+  mobileMyInfoCheck(code) {
+    if (this.myInfoValue !== code) {
+      this.isMyInfoEnabled = true;
+      this.setMyInfoValue(code);
+      if (window.sessionStorage.getItem('currentUrl').includes(SIGN_UP_ROUTES.EDIT_PROFILE)) {
+        this.openFetchPopup(true);
+      } else {
+        this.openFetchPopup();
+      }
+      this.zone.run(() => {
+        this.router.navigate([window.sessionStorage.getItem('currentUrl')]).then(() => {
+          this.setSuccessStatus(code);
+        });
+      });
+    }
+  }
+
 }

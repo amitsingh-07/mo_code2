@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { CanActivate, Router } from '@angular/router';
-import {map} from 'rxjs/operators';
+import { map } from 'rxjs/operators';
 
 import { AppService } from '../../app.service';
 import { AuthenticationService } from '../../shared/http/auth/authentication.service';
@@ -17,17 +17,17 @@ export class ManageInvestmentsGuardService implements CanActivate {
     private route: Router,
     private authService: AuthenticationService,
     private appService: AppService
-  ) {}
+  ) { }
   canActivate() {
     const investmentStatus = this.investmentCommonService.getInvestmentStatus();
     if (!this.authService.isSignedUser()) {
       if (this.appService.getCorporateDetails() && this.appService.getCorporateDetails().organisationEnabled) {
-        this.route.navigate([SIGN_UP_ROUTE_PATHS.CORPORATE_LOGIN], { queryParams: {orgID: this.appService.getCorporateDetails().uuid}});
+        this.route.navigate([SIGN_UP_ROUTE_PATHS.CORPORATE_LOGIN], { queryParams: { orgID: this.appService.getCorporateDetails().uuid } });
       } else {
         this.route.navigate([SIGN_UP_ROUTE_PATHS.LOGIN]);
       }
       return false;
-    } else if (investmentStatus && MANAGE_INVESTMENTS_CONSTANTS.ALLOW_MANAGE_INVESTMENTS_GUARD.indexOf(investmentStatus) < 0 ) {
+    } else if (investmentStatus && MANAGE_INVESTMENTS_CONSTANTS.ALLOW_MANAGE_INVESTMENTS_GUARD.indexOf(investmentStatus) < 0) {
       this.route.navigate([SIGN_UP_ROUTE_PATHS.DASHBOARD]);
       return false;
     } else if (!investmentStatus) {

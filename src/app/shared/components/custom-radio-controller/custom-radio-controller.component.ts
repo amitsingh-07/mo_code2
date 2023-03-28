@@ -1,4 +1,4 @@
-import { Component, EventEmitter, forwardRef, Input, Output, Provider } from '@angular/core';
+import { Component, EventEmitter, forwardRef, Input, Output } from '@angular/core';
 import { ControlValueAccessor, FormControl, NG_VALUE_ACCESSOR, Validators } from '@angular/forms';
 
 export const DEFAULT_VALUE_ACCESSOR: any = {

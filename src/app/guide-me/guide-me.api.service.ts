@@ -1,6 +1,4 @@
-import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { MyInfoService } from '../shared/Services/my-info.service';
 import { appConstants } from './../app.constants';
 import { ApiService } from '../shared/http/api.service';
 import { AuthenticationService } from '../shared/http/auth/authentication.service';
@@ -17,7 +15,6 @@ import { GuideMeCalculateService } from './guide-me-calculate.service';
 import { GuideMeService } from './guide-me.service';
 import { IExistingCoverage } from './insurance-results/existing-coverage-modal/existing-coverage.interface';
 import { SelectedPlansService } from './../shared/Services/selected-plans.service';
-import { HubspotService } from '../shared/analytics/hubspot.service';
 
 @Injectable({
     providedIn: 'root'
@@ -25,8 +22,7 @@ import { HubspotService } from '../shared/analytics/hubspot.service';
 export class GuideMeApiService {
     existingCoverage: IExistingCoverage;
     constructor(
-        private http: HttpClient, private apiService: ApiService,
-        private myInfoService: MyInfoService, private hubspotService: HubspotService,
+        private apiService: ApiService,
         private authService: AuthenticationService, private guideMeService: GuideMeService,
         private calculateService: GuideMeCalculateService,
         private selectedPlansService: SelectedPlansService) {
@@ -172,24 +168,6 @@ export class GuideMeApiService {
 
     enquiryByEmail(data) {
         const payload = this.enquiryByEmailRequest(data);
-        const hsPayload = [
-            {
-              name: "email",
-              value: payload.email
-            }, 
-            {
-              name: "phone",
-              value: payload.mobileNumber
-            },
-            {
-              name: "firstname",
-              value: payload.firstName
-            },
-            {
-              name: "lastname",
-              value: payload.lastName
-            }];
-          this.hubspotService.submitRegistration(hsPayload);
         return this.apiService.enquiryByEmail(payload);
     }
 }

@@ -1,27 +1,25 @@
 @import '../../../variables';
 @import '../../../mixins';
 .education-support{
+  input[type='checkbox']+label {
+    background: url("./../../../assets/images/check-box-normal.svg") left top no-repeat;
+  }
+  input[type='checkbox']:checked+label {
+    background-image: url("./../../../assets/images/check-box-select.svg");
+  }
+  .title {
+    
+    position: relative;
+    top: -6px;
+  }
+  .sub-title {
+    position: relative;
+    top: -4px;
 
-
-input[type='checkbox']+label {
-  background: url("./../../../assets/images/check-box-normal.svg") left top no-repeat;
-}
-input[type='checkbox']:checked+label {
-  background-image: url("./../../../assets/images/check-box-select.svg");
-}
-.title {
-  
-  position: relative;
-  top: -6px;
-}
-.sub-title {
-  position: relative;
-  top: -4px;
-
-  opacity: 0.7;
-  font-size: 16px;
-  line-height: 21px;
-}
+    opacity: 0.7;
+    font-size: 16px;
+    line-height: 21px;
+  }
 }
 .comprehensive {
   &.container-fluid {
@@ -30,28 +28,35 @@ input[type='checkbox']:checked+label {
   .dependant-title {
       font-size: 18px;
   }
-  .help-icon {
-    background: url("./../../../assets/images/comprehensive/tool-tip-white.svg") no-repeat;
-    width: 20px;
-    position: relative;
-    top: 5px;
-    cursor: pointer;
+  .text-with-helpicon {
+    .comprehensive__page-sub-heading {
+      @include allmobiles {
+        width: calc(100% - 20px);
+      }
+    }
+    .help-icon {
+      background: url("./../../../assets/images/comprehensive/tool-tip-white.svg") no-repeat;
+      width: 20px;
+      position: relative;
+      top: 5px;
+      cursor: pointer;
+    }
   }
 }
 .age {
-  color: #8d9aa8!important;
+  color: $teal-grey-color !important;
   font-size: 16px!important;
 }
 .education-support-array{
-  background: #fff;
-  color:#000;
+  background: $white-color;
+  color: $black-color;
   border-radius:5px;
 }
 .education-plan{
   font-size: 16px;
-  background-color: #f4fafb;
-  color: #2d8289;
-  border: 1px solid #f4fafb;
+  background-color: $black-squeeze-grey-color;
+  color: $dark-teal-color;
+  border: 1px solid $black-squeeze-grey-color;
  
 }
 .border-all8 {

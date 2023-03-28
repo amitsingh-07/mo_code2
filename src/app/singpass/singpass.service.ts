@@ -1,15 +1,19 @@
 import { Injectable } from '@angular/core';
+import { InAppBrowser } from 'capgo-inappbrowser-intent-fix';
 
 import { ApiService } from '../shared/http/api.service';
 import { AuthenticationService } from '../shared/http/auth/authentication.service';
 import { environment } from '../../environments/environment';
-import { SIGN_UP_ROUTE_PATHS } from '../sign-up/sign-up.routes.constants';
+import { SIGN_UP_ROUTES } from '../sign-up/sign-up.routes.constants';
+import { CapacitorUtils } from '../shared/utils/capacitor.util';
+import { appConstants } from '../app.constants';
+
 @Injectable({
   providedIn: 'root'
 })
 export class SingpassService {
   private stateNonce: any;
-  
+
   constructor(
     private apiService: ApiService,
     private authService: AuthenticationService
@@ -17,10 +21,10 @@ export class SingpassService {
   }
 
   // Get state & nonce using session id
-  getStateNonce() : any {
+  getStateNonce(): any {
     if (this.authService.isAuthenticated()) {
       const payload = { sessionId: this.authService.getSessionId() };
-      this.apiService.getStateNonce(payload).subscribe((data)=>{
+      this.apiService.getStateNonce(payload).subscribe((data) => {
         this.setStateNonceObj(data['objectList'][0]);
       });
     }
@@ -35,23 +39,27 @@ export class SingpassService {
     const payload = {
       enquiryId: enquiryId,
       journeyType: journeyType,
-      code: code, 
-      state: state, 
-      redirect_uri: environment.singpassBaseUrl + SIGN_UP_ROUTE_PATHS.SINGPASS_REDIRECT_URL
+      code: code,
+      state: state
     };
     return this.apiService.loginSingpass(payload);
-  } 
+  }
 
   // Open Singpass redirect link in window
-  openSingpassUrl(){
-    const loginUrl = environment.singpassLoginUrl +
-    '?client_id=' + environment.singpassClientId +
-    '&redirect_uri=' + environment.singpassBaseUrl + SIGN_UP_ROUTE_PATHS.SINGPASS_REDIRECT_URL+
-    '&scope=openid' +
-    '&response_type=code' +
-    '&state=' + this.stateNonce.state +
-    '&nonce=' + this.stateNonce.nonce;
-    window.open(loginUrl, '_self');
+  openSingpassUrl() {
+    const redirectUrl =   environment.singpassBaseUrl + appConstants.BASE_HREF + SIGN_UP_ROUTES.ACCOUNTS_LOGIN;
+    let loginUrl = environment.singpassLoginUrl +
+      '?client_id=' + environment.singpassClientId +
+      '&redirect_uri=' + redirectUrl +
+      '&scope=openid' +
+      '&response_type=code' +
+      '&state=' + this.stateNonce.state +
+      '&nonce=' + this.stateNonce.nonce;
+  if (CapacitorUtils.isApp) {
+      InAppBrowser.openWebView({url: encodeURI(loginUrl), title: ""});
+    } else {
+      window.open(loginUrl, '_self');
+    }
   }
 
 }

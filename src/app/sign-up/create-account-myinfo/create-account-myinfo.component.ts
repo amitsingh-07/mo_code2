@@ -1,5 +1,4 @@
 import { Component, Input, OnInit, ViewEncapsulation } from '@angular/core';
-import { Location } from '@angular/common';
 import { ActivatedRoute, Router } from '@angular/router';
 import { SIGN_UP_ROUTE_PATHS } from '../sign-up.routes.constants';
 import { NgbModal, NgbModalOptions, NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
@@ -49,13 +48,12 @@ export class CreateAccountMyinfoComponent implements OnInit {
     private configService: ConfigService,
     private modal: NgbModal,
     private router: Router,
-    private _location: Location,
     private myInfoService: MyInfoService,
     public readonly translate: TranslateService,
     private signUpService: SignUpService,
-    private route: ActivatedRoute,    
+    private route: ActivatedRoute,
     public navbarService: NavbarService,
-    public footerService: FooterService,    
+    public footerService: FooterService,
     private authService: AuthenticationService,
     private appService: AppService
   ) {
@@ -98,7 +96,7 @@ export class CreateAccountMyinfoComponent implements OnInit {
     }, this.loader2StartTime);
   }
 
-  ngOnInit(): void {    
+  ngOnInit(): void {
     if (!this.authService.isAuthenticated()) {
       this.authService.authenticate().subscribe((token) => {
       });
@@ -134,8 +132,10 @@ export class CreateAccountMyinfoComponent implements OnInit {
     this.myInfoSubscription = this.myInfoService.getMyInfoAccountCreateData().subscribe((data) => {
       if (data.responseMessage.responseCode === 6000 && data && data.objectList[0]) {
         this.closeMyInfoPopup(false);
-        this.signUpService.setCreateAccountMyInfoFormData(data.objectList[0]);
-        if(this.finlitEnabled) {
+        const email = data.objectList[0].email?.value;
+        const mobile = data.objectList[0].mobileno?.nbr;
+        this.signUpService.setCreateAccountMyInfoFormData(data.objectList[0],email,mobile);
+        if (this.finlitEnabled) {
           this.router.navigate([SIGN_UP_ROUTE_PATHS.FINLIT_CREATE_ACCOUNT + this.referralCode]);
         } else {
           this.organisationEnabled ? this.router.navigate([SIGN_UP_ROUTE_PATHS.CORPORATE_CREATE_ACCOUNT]) : this.router.navigate([SIGN_UP_ROUTE_PATHS.CREATE_ACCOUNT + this.referralCode]);
@@ -204,24 +204,24 @@ export class CreateAccountMyinfoComponent implements OnInit {
   }
 
   goBack() {
-    this._location.back();
+    this.navbarService.goBack();
   }
 
   backToLogin() {
-    if(this.finlitEnabled) {
+    if (this.finlitEnabled) {
       this.router.navigate([SIGN_UP_ROUTE_PATHS.FINLIT_LOGIN]);
     } else if (this.organisationEnabled) {
-      this.router.navigate([SIGN_UP_ROUTE_PATHS.CORPORATE_LOGIN], { queryParams: {orgID: this.appService.getCorporateDetails().uuid}});
+      this.router.navigate([SIGN_UP_ROUTE_PATHS.CORPORATE_LOGIN], { queryParams: { orgID: this.appService.getCorporateDetails().uuid } });
     } else {
       this.router.navigate([SIGN_UP_ROUTE_PATHS.LOGIN]);
     }
   }
 
   skipMyInfo() {
-    this.signUpService.setMyInfoStatus(false);    
-    if(this.finlitEnabled) {
+    this.signUpService.setMyInfoStatus(false);
+    if (this.finlitEnabled) {
       this.router.navigate([SIGN_UP_ROUTE_PATHS.FINLIT_CREATE_ACCOUNT + this.referralCode]);
-    } else if(this.organisationEnabled) {
+    } else if (this.organisationEnabled) {
       this.router.navigate([SIGN_UP_ROUTE_PATHS.CORPORATE_CREATE_ACCOUNT]);
     } else {
       this.router.navigate([SIGN_UP_ROUTE_PATHS.CREATE_ACCOUNT + this.referralCode]);

@@ -1,4 +1,4 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { waitForAsync, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { AddUpdateCpfiaComponent } from './add-update-cpfia.component';
 
@@ -6,11 +6,11 @@ describe('AddUpdateCpfiaComponent', () => {
   let component: AddUpdateCpfiaComponent;
   let fixture: ComponentFixture<AddUpdateCpfiaComponent>;
 
-  beforeEach(async(() => {
+  beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
-      declarations: [ AddUpdateCpfiaComponent ]
+      declarations: [AddUpdateCpfiaComponent]
     })
-    .compileComponents();
+      .compileComponents();
   }));
 
   beforeEach(() => {

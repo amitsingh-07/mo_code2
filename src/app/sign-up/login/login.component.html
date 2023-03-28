@@ -23,172 +23,176 @@
             <img class="login-header-icon" src="assets/images/createAccount-icon.svg" />
           </div>
           <app-singpass [showSingpassLogin]="showSingpassLogin"></app-singpass>
-          <div class="h-separator-container"><img class="separator-icon" src="assets/images/singpass/asset-seperator-h.svg"></div>
-        <form id="loginForm" name="loginForm" [formGroup]="loginForm"
-          (keyup.enter)="doLogin(loginForm)">
-          <div class="flex-row mb10">
-            <div class="flex-col-12 stretch">
-              <div class="form-group-floating-label"
-                [ngClass]="{'inline-error':getInlineErrorStatus(loginForm.controls.loginUsername)}">
-                <input type="text" appInputFocus id="login_username_txt" class="form-control" #loginUsername
-                  formControlName="loginUsername" (paste)="onPaste($event, 'loginUsername')" (keyup)="onKeyupEvent($event, 'loginUsername')" required>
-                <label class="form-control-placeholder" for="login_username_txt" id="login_username_lbl">{{
-                  'LOGIN.FORM.USERNAME' | translate}}</label>
+          <div class="h-separator-container"><img class="separator-icon"
+              src="assets/images/singpass/asset-seperator-h.svg"></div>
+          <form id="loginForm" name="loginForm" [formGroup]="loginForm" (keyup.enter)="doLogin(loginForm)">
+            <div class="flex-row mb10">
+              <div class="flex-col-12 stretch">
+                <div class="form-group-floating-label"
+                  [ngClass]="{'inline-error':getInlineErrorStatus(loginForm.controls.loginUsername)}">
+                  <input type="text" appInputFocus id="login_username_txt" class="form-control" #loginUsername
+                    formControlName="loginUsername" (paste)="onPaste($event, 'loginUsername')"
+                    (keyup)="onKeyupEvent($event, 'loginUsername')" required>
+                  <label class="form-control-placeholder" for="login_username_txt" id="login_username_lbl">{{
+                    'LOGIN.FORM.USERNAME' | translate}}</label>
+                </div>
               </div>
             </div>
-          </div>
-          <div class="flex-row mb15">
-            <div class="flex-col-12 stretch">
-              <div class="form-group-floating-label"
-                [ngClass]="{'inline-error':getInlineErrorStatus(loginForm.controls.loginPassword)}"
-                (capsLock)="capsOn=$event">
-                <input type="password" appInputFocus #loginPassword id="login_password_txt" class="form-control"
-                  formControlName="loginPassword" required (focus)="onFocus()" (blur)="onBlur()">
-                <label class="form-control-placeholder" for="login_password_txt" id="login_password_lbl">{{
-                  'LOGIN.FORM.PASSWORD' | translate}}</label>
-                <span id="login_showpassword_button"
-                  [ngClass]="(loginPassword.type === 'text') ? 'show-password' : 'hide-password'"
-                  (click)="showHidePassword(loginPassword)"></span>
+            <div class="flex-row mb15">
+              <div class="flex-col-12 stretch">
+                <div class="form-group-floating-label"
+                  [ngClass]="{'inline-error':getInlineErrorStatus(loginForm.controls.loginPassword)}"
+                  (capsLock)="capsOn=$event">
+                  <input type="password" appInputFocus #loginPassword id="login_password_txt" class="form-control"
+                    formControlName="loginPassword" required (focus)="onFocus()" (blur)="onBlur()">
+                  <label class="form-control-placeholder" for="login_password_txt" id="login_password_lbl">{{
+                    'LOGIN.FORM.PASSWORD' | translate}}</label>
+                  <span id="login_showpassword_button"
+                    [ngClass]="(loginPassword.type === 'text') ? 'show-password' : 'hide-password'"
+                    (click)="showHidePassword(loginPassword)"></span>
+                </div>
+              </div>
+              <div class="alert-msg" *ngIf="capsOn && capslockFocus">
+                <div>
+                  <span class="alert-icon"><img src="assets/images/alert.svg" /></span>
+                  <span class="err-msg">{{'COMMON.CAPS_LOCK_IS_ON' | translate}}</span>
+                </div>
               </div>
             </div>
-            <div class="alert-msg" *ngIf="capsOn && capslockFocus">
-              <div>
-                <span class="alert-icon"><img src="assets/images/alert.svg" /></span>
-                <span class="err-msg">{{'COMMON.CAPS_LOCK_IS_ON' | translate}}</span>
+            <div class="flex-row mb30" *ngIf="showCaptcha">
+              <span class="mb10">{{ 'COMMON.CAPTCHA_TITLE' | translate}}</span>
+              <img [src]="(captchaSrc | secure | async) || ''" class="captcha-img" />
+              <div class="flex-col-6 stretch">
+                <div class="form-group-floating-label">
+                  <input type="text" id="crtAccInpt6" class="form-control" #captchaValue formControlName="captchaValue"
+                    required>
+                  <label class="form-control-placeholder" for="lastName">{{ 'COMMON.CAPTCHA' | translate}}</label>
+                </div>
+                <div>
+                  <span (click)="refreshCaptcha()" class="link-white">{{ 'COMMON.TRY_ANOTHER_TEXT' | translate}} <i
+                      class="fa fa-refresh ml10"></i></span>
+                </div>
               </div>
             </div>
-          </div>
-          <div class="flex-row mb30" *ngIf="showCaptcha">
-            <span class="mb10">{{ 'COMMON.CAPTCHA_TITLE' | translate}}</span>
-            <img [src]="(captchaSrc | secure | async) || ''" class="captcha-img" />
-            <div class="flex-col-6 stretch">
-              <div class="form-group-floating-label">
-                <input type="text" id="crtAccInpt6" class="form-control" #captchaValue formControlName="captchaValue"
-                  required>
-                <label class="form-control-placeholder" for="lastName">{{ 'COMMON.CAPTCHA' | translate}}</label>
-              </div>
-              <div>
-                <span (click)="refreshCaptcha()" class="link-white">{{ 'COMMON.TRY_ANOTHER_TEXT' | translate}} <i
-                    class="fa fa-refresh ml10"></i></span>
-              </div>
+            <button id="login_submit_btn" (click)="doLogin(loginForm)" type="button" class="btn btn-primary width100">{{
+              'COMMON.LOGIN' | translate }}</button>
+            <!-- FORGOT -->
+            <div class="forgot-link mt30" *ngIf="!hideForgotPassword">
+              <a id="login_forgotpwd_link" (click)="navigateForgotPassword()">{{ 'LOGIN.FORGOT_PASSWORD' |
+                translate}}</a>
             </div>
-          </div>
-          <button id="login_submit_btn" (click)="doLogin(loginForm)" type="button" class="btn btn-primary width100">{{
-            'COMMON.LOGIN' | translate }}</button>
-          <!-- FORGOT -->
-          <div class="forgot-link mt30" *ngIf="!hideForgotPassword">
-            <a id="login_forgotpwd_link" [routerLink]="'/accounts/forgot-password'">{{ 'LOGIN.FORGOT_PASSWORD' |
-              translate}}</a>
-          </div>
-          <div class="start-link mt10"><a id="login_signup_link"
-              [routerLink]="finlitEnabled ? '/accounts/finlit/sign-up':'/accounts/sign-up'  ">{{'LOGIN.DON_T_HAVE_AN_ACCOUNT' |
-              translate}}</a></div>
-        </form>
-      </div>
+            <div class="start-link mt10"><a id="login_signup_link" (click)="navigateSignUp()">{{'LOGIN.DON_T_HAVE_AN_ACCOUNT'
+                |
+                translate}}</a></div>
+          </form>
+        </div>
       </div>
     </div>
     <div class="client-assist mt30" innerHTML="{{'LOGIN.CLIENT_ASSISTANCE' | translate}}"></div>
   </div>
-<!-- Old login page with Finlit -->
-<ng-template #normalLogin>
-  <div class="content">
-    <div class="row">
-      <div class="col-lg-7 col-md-6">
-        <div class="signup-wrapper">
-          <h2 class="signup-wrapper__title order1 sm-order2 ml10 mb20" #welcomeTitle id="login_welcometxt_lbl">
-            {{ 'LOGIN.WELCOME_LBL' | translate}}</h2>
-          <img class="signup-wrapper__header-icon order3 sm-order1" src="assets/images/createAccount-icon.svg" />
+  <!-- Old login page with Finlit -->
+  <ng-template #normalLogin>
+    <div class="content">
+      <div class="row">
+        <div class="col-lg-7 col-md-6">
+          <div class="signup-wrapper">
+            <h2 class="signup-wrapper__title order1 sm-order2 ml10 mb20" #welcomeTitle id="login_welcometxt_lbl">
+              {{ 'LOGIN.WELCOME_LBL' | translate}}</h2>
+            <img class="signup-wrapper__header-icon order3 sm-order1" src="assets/images/createAccount-icon.svg" />
+          </div>
+        </div>
+        <div class="col-lg-5 col-md-6">
+          <form id="loginForm" name="loginForm" [formGroup]="loginForm" (keyup.enter)="doLogin(loginForm)">
+            <div class="flex-row mb15">
+              <div class="flex-col-12 stretch">
+                <div class="form-group-floating-label"
+                  [ngClass]="{'inline-error':getInlineErrorStatus(loginForm.controls.loginUsername)}">
+                  <input type="text" appInputFocus id="login_username_txt" class="form-control" #loginUsername
+                    formControlName="loginUsername" (paste)="onPaste($event, 'loginUsername')"
+                    (keyup)="onKeyupEvent($event, 'loginUsername')" required>
+                  <label class="form-control-placeholder" for="login_username_txt" id="login_username_lbl">{{
+                    'LOGIN.FORM.USERNAME' | translate}}</label>
+                </div>
+              </div>
+            </div>
+            <div class="flex-row mb20">
+              <div class="flex-col-12 stretch">
+                <div class="form-group-floating-label"
+                  [ngClass]="{'inline-error':getInlineErrorStatus(loginForm.controls.loginPassword)}"
+                  (capsLock)="capsOn=$event">
+                  <input type="password" appInputFocus #loginPassword id="login_password_txt" class="form-control"
+                    formControlName="loginPassword" required (focus)="onFocus()" (blur)="onBlur()">
+                  <label class="form-control-placeholder" for="login_password_txt" id="login_password_lbl">{{
+                    'LOGIN.FORM.PASSWORD' | translate}}</label>
+                  <span id="login_showpassword_button"
+                    [ngClass]="(loginPassword.type === 'text') ? 'show-password' : 'hide-password'"
+                    (click)="showHidePassword(loginPassword)"></span>
+                </div>
+              </div>
+              <div class="alert-msg" *ngIf="capsOn && capslockFocus">
+                <div>
+                  <span class="alert-icon"><img src="assets/images/alert.svg" /></span>
+                  <span class="err-msg">{{'COMMON.CAPS_LOCK_IS_ON' | translate}}</span>
+                </div>
+              </div>
+            </div>
+            <div class="flex-row mb20" *ngIf='finlitEnabled'>
+              <div class="flex-col-12 stretch">
+                <div class="form-group-floating-label"
+                  [ngClass]="{'inline-error':getInlineErrorStatus(loginForm.controls.accessCode)}">
+                  <input type="text" appInputFocus id="login_access_code_txt" class="form-control" #accessCode
+                    formControlName="accessCode" required maxLength="10">
+                  <label class="form-control-placeholder" for="login_access_code_txt" id="login_access_code_lbl">{{
+                    'LOGIN.FORM.ACCESS_CODE' | translate}}</label>
+                </div>
+              </div>
+            </div>
+            <div class="flex-row mb20" *ngIf='organisationEnabled'>
+              <div class="flex-col-12 stretch">
+                <div class="form-group-floating-label"
+                  [ngClass]="{'inline-error':getInlineErrorStatus(loginForm.controls.organisationCode)}">
+                  <input type="text" appInputFocus id="login_organisationid_txt" class="form-control"
+                    (keyup)="onKeyupEvent($event, 'organisationCode')" (paste)="onPaste($event, 'organisationCode')"
+                    formControlName="organisationCode" oninput="this.value = this.value.toUpperCase()" required
+                    maxLength="10">
+                  <label class="form-control-placeholder" for="login_organisationid_txt"
+                    id="login_organisationid_lbl">{{ 'LOGIN.FORM.ORGANISATION_NAME' | translate}}</label>
+                </div>
+              </div>
+            </div>
+            <div class="flex-row mb10" *ngIf="showCaptcha">
+              <span class="mb10">{{ 'COMMON.CAPTCHA_TITLE' | translate}}</span>
+              <div class="flex-col-6 stretch">
+                <div class="form-group-captcha-wrapper">
+                  <img [src]="(captchaSrc | secure | async) || ''" class="captcha-img" />
+                </div>
+              </div>
+              <div class="flex-col-6 stretch">
+                <div class="form-group-floating-label">
+                  <input type="text" id="crtAccInpt6" class="form-control" #captchaValue formControlName="captchaValue"
+                    required>
+                  <label class="form-control-placeholder" for="lastName">{{ 'COMMON.CAPTCHA' | translate}}</label>
+                </div>
+                <div>
+                  <span (click)="refreshCaptcha()" class="link-white">{{ 'COMMON.TRY_ANOTHER_TEXT' | translate}} <i
+                      class="fa fa-refresh" style="color: white; margin-left: 10px;"></i></span>
+                </div>
+              </div>
+            </div>
+            <!-- FORGOT -->
+            <div class="forgot-link" *ngIf="!hideForgotPassword">
+              <a id="login_forgotpwd_link" (click)="navigateForgotPassword()">{{
+                'LOGIN.FORGOT_PASSWORD' | translate}}</a>
+            </div>
+            <div class="start-link"><a id="login_signup_link" (click)="navigateSignUp()">{{
+                'LOGIN.DON_T_HAVE_AN_ACCOUNT' | translate}}</a></div>
+            <button id="login_submit_btn" (click)="doLogin(loginForm)" type="button"
+              class="btn btn__footer--fixed btn-primary width100 ">{{
+              'COMMON.LOGIN' | translate }}</button>
+          </form>
+          <div class="mt60" innerHTML="{{'LOGIN.CLIENT_ASSISTANCE' | translate}}"></div>
         </div>
       </div>
-      <div class="col-lg-5 col-md-6">
-        <form id="loginForm" name="loginForm" [formGroup]="loginForm" (keyup.enter)="doLogin(loginForm)">
-          <div class="flex-row mb15">
-            <div class="flex-col-12 stretch">
-              <div class="form-group-floating-label"
-                [ngClass]="{'inline-error':getInlineErrorStatus(loginForm.controls.loginUsername)}">
-                <input type="text" appInputFocus id="login_username_txt" class="form-control" #loginUsername
-                formControlName="loginUsername" (paste)="onPaste($event, 'loginUsername')" (keyup)="onKeyupEvent($event, 'loginUsername')" required>
-                <label class="form-control-placeholder" for="login_username_txt"
-                  id="login_username_lbl">{{ 'LOGIN.FORM.USERNAME' | translate}}</label>
-              </div>
-            </div>
-          </div>
-          <div class="flex-row mb20">
-            <div class="flex-col-12 stretch">
-              <div class="form-group-floating-label"
-                [ngClass]="{'inline-error':getInlineErrorStatus(loginForm.controls.loginPassword)}"
-                (capsLock)="capsOn=$event">
-                <input type="password" appInputFocus #loginPassword id="login_password_txt" class="form-control"
-                  formControlName="loginPassword" required (focus)="onFocus()" (blur)="onBlur()">
-                <label class="form-control-placeholder" for="login_password_txt"
-                  id="login_password_lbl">{{ 'LOGIN.FORM.PASSWORD' | translate}}</label>
-                <span id="login_showpassword_button"
-                  [ngClass]="(loginPassword.type === 'text') ? 'show-password' : 'hide-password'"
-                  (click)="showHidePassword(loginPassword)"></span>
-              </div>
-            </div>
-            <div class="alert-msg" *ngIf="capsOn && capslockFocus">
-              <div>
-                <span class="alert-icon"><img src="assets/images/alert.svg" /></span>
-                <span class="err-msg">{{'COMMON.CAPS_LOCK_IS_ON' | translate}}</span>
-              </div>
-            </div>
-          </div>
-          <div class="flex-row mb20" *ngIf='finlitEnabled'>
-            <div class="flex-col-12 stretch">
-              <div class="form-group-floating-label"
-                [ngClass]="{'inline-error':getInlineErrorStatus(loginForm.controls.accessCode)}">
-                <input type="text" appInputFocus id="login_access_code_txt" class="form-control" #accessCode
-                  formControlName="accessCode" required maxLength="10">
-                <label class="form-control-placeholder" for="login_access_code_txt"
-                  id="login_access_code_lbl">{{ 'LOGIN.FORM.ACCESS_CODE' | translate}}</label>
-              </div>
-            </div>
-          </div>
-          <div class="flex-row mb20" *ngIf='organisationEnabled'>
-            <div class="flex-col-12 stretch">
-              <div class="form-group-floating-label"
-              [ngClass]="{'inline-error':getInlineErrorStatus(loginForm.controls.organisationCode)}"
-                >
-                <input type="text" appInputFocus id="login_organisationid_txt" class="form-control" (keyup)="onKeyupEvent($event, 'organisationCode')" (paste)="onPaste($event, 'organisationCode')"
-                  formControlName="organisationCode" oninput="this.value = this.value.toUpperCase()" required maxLength="10">
-                <label class="form-control-placeholder" for="login_organisationid_txt"
-                id="login_organisationid_lbl">{{ 'LOGIN.FORM.ORGANISATION_NAME' | translate}}</label>
-              </div>
-            </div>
-          </div>          
-          <div class="flex-row mb10" *ngIf="showCaptcha">
-            <span class="mb10">{{ 'COMMON.CAPTCHA_TITLE' | translate}}</span>
-            <div class="flex-col-6 stretch">
-              <div class="form-group-captcha-wrapper">
-                <img [src]="(captchaSrc | secure | async) || ''" class="captcha-img" />
-              </div>
-            </div>
-            <div class="flex-col-6 stretch">
-              <div class="form-group-floating-label">
-                <input type="text" id="crtAccInpt6" class="form-control" #captchaValue formControlName="captchaValue"
-                  required>
-                <label class="form-control-placeholder" for="lastName">{{ 'COMMON.CAPTCHA' | translate}}</label>
-              </div>
-              <div>
-                <span (click)="refreshCaptcha()" class="link-white">{{ 'COMMON.TRY_ANOTHER_TEXT' | translate}} <i
-                    class="fa fa-refresh" style="color: white; margin-left: 10px;"></i></span>
-              </div>
-            </div>
-          </div>
-          <!-- FORGOT -->
-          <div class="forgot-link" *ngIf="!hideForgotPassword">
-            <a id="login_forgotpwd_link"
-              [routerLink]="organisationEnabled ? '/accounts/corp/forgot-password' : '/accounts/forgot-password'">{{ 'LOGIN.FORGOT_PASSWORD' | translate}}</a>
-          </div>
-          <div class="start-link"><a id="login_signup_link" [routerLink]="finlitEnabled ? '/accounts/finlit/sign-up' : organisationEnabled ? '/accounts/corp/sign-up' : '/accounts/sign-up'  ">{{ 'LOGIN.DON_T_HAVE_AN_ACCOUNT' | translate}}</a></div>
-          <button id="login_submit_btn" (click)="doLogin(loginForm)" type="button"
-            class="btn btn__footer--fixed btn-primary width100 ">{{
-            'COMMON.LOGIN' | translate }}</button>
-        </form>
-        <div class="mt60"  innerHTML="{{'LOGIN.CLIENT_ASSISTANCE' | translate}}"></div>
-      </div>
     </div>
-  </div>
-</ng-template>
+  </ng-template>
 </div>

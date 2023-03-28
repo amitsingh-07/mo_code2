@@ -72,7 +72,7 @@ app-insurance-results {
     }
   }
   .custom-modal--title {
-    color: #00aaa8;
+    color: $custom-modal-title-color;
     font-family: $muli-regular;
     font-size: 36px;
     letter-spacing: -0.4px;
@@ -80,7 +80,7 @@ app-insurance-results {
     margin-top: 30px;
   }
   .custom-modal--desc {
-    color: #5e5e5e;
+    color: $silver-grey-color;
     font-size: 18px;
     line-height: 1.33;
     letter-spacing: -0.2px;

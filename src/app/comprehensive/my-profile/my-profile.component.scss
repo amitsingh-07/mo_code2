@@ -5,7 +5,7 @@ app-cmp-my-profile {
     text-transform: capitalize;
   }
   .dob-valid-error {
-    color: #ff9141 !important;
+    color: $neon-carrot-orange-color !important;
     position: relative;
     font-family: $muli-italic;
 
@@ -25,11 +25,11 @@ app-cmp-my-profile {
     }  
   } 
   .inline-error input.form-control::placeholder {
-    color: #e57300 !important;
+    color: $mango-tango-color !important;
     border: none !important;
     }
     .fixed-btn--sm-comprehensive.inline-error {
-      background: #fff3e9 !important;
+      background: $serenade-dark-color !important;
       }
   .datepicker-control{
     .input-group{

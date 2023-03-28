@@ -145,16 +145,13 @@ export class SingPassComponent implements OnInit, OnDestroy {
   getMyInfoData() {
     this.showFetchPopUp();
     this.myInfoSubscription = this.myInfoService.getMyInfoData().subscribe((data) => {
-      if (data && data.objectList[0]) { 
-        this.investmentCommonService.getUserNricValidation(data.objectList[0].uin , INVESTMENT_ACCOUNT_CONSTANTS.VALIDATE_SOURCE.MYINFO).subscribe((response) => {
-          if(response.responseMessage.responseCode === 6013){
+      if (data && data.objectList[0]) {
+        this.investmentCommonService.getUserNricValidation(data.objectList[0].uin, INVESTMENT_ACCOUNT_CONSTANTS.VALIDATE_SOURCE.MYINFO).subscribe((response) => {
+          if (response.responseMessage.responseCode === 6013) {
             this.investmentAccountService.setMyInfoFormData(data.objectList[0]);
             this.myInfoService.isMyInfoEnabled = false;
             this.closeMyInfoPopup(false);
-            const currentUrl = window.location.toString();
-            const rootPoint = currentUrl.split(currentUrl.split('/')[4])[0].substr(0, currentUrl.split(currentUrl.split('/')[4])[0].length - 1);
-            const redirectObjective = rootPoint + MY_INFO_START_PATH;
-            if (window.location.href === redirectObjective) {
+            if (this.router.url === MY_INFO_START_PATH) {
               this.router.navigate([INVESTMENT_ACCOUNT_ROUTE_PATHS.START]);
             } else {
               this.ngZone.run(() => {
@@ -162,7 +159,7 @@ export class SingPassComponent implements OnInit, OnDestroy {
               });
             }
           }
-          else if(response.responseMessage.responseCode === 6014){
+          else if (response.responseMessage.responseCode === 6014) {
             this.closeMyInfoPopup(false);
             this.router.navigate([INVESTMENT_ACCOUNT_ROUTE_PATHS.START]);
             const ref = this.modal.open(ModelWithButtonComponent, { centered: true });
@@ -176,7 +173,7 @@ export class SingPassComponent implements OnInit, OnDestroy {
               'INVESTMENT_ACCOUNT_MYINFO.NRIC_VALIDATION_ERROR.BTN-TEXT'
             );
           }
-          else if(response.responseMessage.responseCode === 6015){
+          else if (response.responseMessage.responseCode === 6015) {
             this.closeMyInfoPopup(false);
             this.router.navigate([INVESTMENT_ACCOUNT_ROUTE_PATHS.START]);
             const ref = this.modal.open(ModelWithButtonComponent, { centered: true });
@@ -223,7 +220,7 @@ export class SingPassComponent implements OnInit, OnDestroy {
 
   getMyInfo() {
     this.showConfirmation = false;
-    this.investmentAccountService.setCallBackInvestmentAccount();
+    this.investmentAccountService.setCallBackInvestmentAccount(true);
     this.myInfoService.setMyInfoAttributes(
       this.investmentAccountService.myInfoAttributes
     );

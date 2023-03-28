@@ -18,6 +18,7 @@ import { AuthenticationService } from './../../../shared/http/auth/authenticatio
 import { InvestmentCommonService } from './../../investment-common/investment-common.service';
 import { RiskProfile } from './riskprofile';
 import { InvestmentAccountService } from '../../investment-account/investment-account-service';
+import { SIGN_UP_ROUTE_PATHS } from '../../../sign-up/sign-up.routes.constants';
 
 @Component({
   selector: 'app-recommendation',
@@ -126,9 +127,11 @@ export class RecommendationComponent implements OnInit, AfterViewInit {
       this.router.navigate([INVESTMENT_ENGAGEMENT_JOURNEY_ROUTE_PATHS.PORTFOLIO_RECOMMENDATION]);
     }
   }
+  
   goToHomepage() {
-    window.open('/', '_self')
+    this.router.navigate([SIGN_UP_ROUTE_PATHS.DASHBOARD]);
   }
+
   setPageTitle(title: string) {
     this.navbarService.setPageTitle(title);
   }
@@ -143,7 +146,6 @@ export class RecommendationComponent implements OnInit, AfterViewInit {
     if (this.selectedRiskProfile.riskProfileId === INVESTMENT_ENGAGEMENT_JOURNEY_CONSTANTS.risk_profile.should_not_invest_id) {
       this.showNoPortfolio = true;
     } else if (this.selectedRiskProfile.riskProfileId && this.selectedRiskProfile.alternateRiskProfileId) {
-      // #this.showTwoPortfolio = true;
       this.showSinglePortfolio = true;
     } else {
       this.showSinglePortfolio = true;

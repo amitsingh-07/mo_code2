@@ -1,65 +1,77 @@
 @import '../../../variables';
 @import '../../../mixins';
+
 app-compare-plans {
     position: absolute;
     z-index: 1029;
     background-color: $teal-color;
+
     .container-fluid {
         padding-top: 40px;
+
         @include allmobiles {
             padding-top: 80px;
         }
     }
+
     .best-value-icon {
         position: absolute;
         top: 5px;
         left: -3px;
     }
+
     .info-icon {
         position: absolute;
         right: 8px;
         top: 8px;
         cursor: pointer;
     }
+
     .rt-round {
         border-top-right-radius: 6px !important;
-        .bg-white {
-            border-right: 0px !important;
-        }
+        border-right: 0px !important;
     }
+
     .rb-round {
         border-bottom-right-radius: 6px;
     }
+
     .lb-round {
         border-bottom-left-radius: 6px;
     }
+
     .bg-white {
         background: transparent !important;
         color: black;
-        border-right: 2px solid #00a7a7;
         padding: 20px;
     }
+
     .title {
         margin-top: -30px;
         text-align: center;
         justify-content: center;
         align-items: center;
-        color: #fff;
+        color: $white-color;
         z-index: 99;
         line-height: 1.9;
+
         div {
-            background: #2d8289;
+            background: $dark-teal-color;
             width: 550px;
+
             @include allmobiles {
                 width: 300px;
             }
+
             @include iPadLandscape {
                 width: auto;
             }
         }
+
         .wide {
             width: 650px;
         }
+
         .tooltip-compare {
             background: url("../../../assets/images/tooltip-compare.svg") no-repeat;
             height: 20px;
@@ -71,76 +83,83 @@ app-compare-plans {
             margin-top: 5px;
         }
     }
+
     .heading {
         justify-content: center;
-        background-color: #2d8289;
+        background-color: $dark-teal-color;
         z-index: 99;
-        color: #fff;
+        color: $white-color;
         height: 30px;
         width: 100%;
     }
-    // .lc-radius{
-    //     border-bottom-left-radius: 6px;
-    //     border-bottom-right-radius: 6px;
-    //  } 
-    // .lc-radius::nth-last-child(1){
-    //   border-bottom-right-radius: 6px;
-    // }
+
     .compare-modal {
         justify-content: center;
+
         .insurance-plan-widget__container {
             background: transparent;
             text-align: center;
         }
+
         .insurance-plan-widget {
-            background: #fff;
+            background: $white-color;
             padding: 0 !important;
             color: black;
             padding: 20px;
             display: flex;
             flex-direction: column;
             justify-content: space-between;
+            border-right: 2px solid $teal-color;
+
             &:first-child {
                 border-top-left-radius: 6px;
             }
+
             &::nth-last-child(1) {
                 border-top-right-radius: 6px;
             }
         }
+
         .insurance-plan-widget-content {
-            background: #fff;
+            background: $white-color;
             padding: 0 !important;
             color: black;
             padding: 20px;
             display: flex;
             flex-direction: column;
             justify-content: space-between;
-            border-right: 2px solid #00a7a7;
+            border-right: 2px solid $teal-color;
+
             &.lc-radius {
                 &:first-child {
                     border-bottom-left-radius: 6px;
                 }
             }
+
             .plan-content {
                 display: flex;
                 background: transparent;
-                color: #5E5E5E !important;
+                color: $silver-grey-color !important;
                 padding: 20px;
                 justify-content: center;
                 text-align: center;
+
                 &.feature-list {
                     flex-direction: column;
                 }
+
                 img {
                     width: 36px;
                     height: 35px;
                     object-fit: contain;
                 }
+
                 .features {
                     display: flex;
                     justify-content: flex-start;
                     padding: 10px 0;
                     text-align: left;
+
                     img {
                         width: 15px;
                         height: 15px;
@@ -150,37 +169,44 @@ app-compare-plans {
             }
         }
     }
+
     .plan-wrapper {
         flex: 0 0 50%;
         max-width: 50%;
+
         @include allmobiles {
             flex: 0 0 47%;
             max-width: 47%;
         }
     }
+
     .plan-wrapper:nth-child(1) {
         @include allmobiles {
             margin-right: 3px;
             padding-right: 3px;
         }
     }
+
     .plan-wrapper:nth-child(2) {
         @include allmobiles {
             margin-right: 0px;
             padding-left: 3px;
         }
     }
+
     .insurance-plan-widget__container {
         padding-top: 15px;
+
         @include allmobiles {
             min-height: 251px;
             padding: 0 !important;
         }
+
         h4 {
-            //height: 26px;
             font-size: 16px;
             color: $form-block-title-color;
             font-family: $muli-semi-bold;
+
             @include allmobiles {
                 font-size: 16px;
                 text-align: center;
@@ -191,27 +217,31 @@ app-compare-plans {
                 align-items: center;
             }
         }
+
         h2 {
             font-size: 24px;
             color: $app-backgrnd-color;
             font-family: $muli-semi-bold;
+
             @include allmobiles {
                 text-align: center;
                 margin-top: 5px;
                 margin-bottom: 5px;
                 font-size: 24px;
             }
+
             .text-small {
-                color: #2d8289;
+                color: $dark-teal-color;
                 font-size: 16px;
                 font-family: $muli-regular;
-                /*margin-left: 5px;*/
+
                 @include allmobiles {
                     font-size: 16px;
                     margin-left: 0;
                 }
             }
         }
+
         .insurer-logo {
             height: 80px;
             text-align: center;
@@ -219,21 +249,25 @@ app-compare-plans {
             display: flex;
             align-items: center;
             justify-content: center;
+
             img {
                 max-width: 65% !important;
                 max-height: 65%;
+
                 @include allmobiles {
                     max-width: 70% !important;
                     max-height: 70% !important;
                 }
             }
         }
+
         .insurance-plan-widget__container__rank__wrapper {
             @extend .flex;
             @extend .space-btwn;
             margin: 20px 0;
+
             .insurance-plan-widget__container__rank-box {
-                background-color: #c0eded;
+                background-color: $form-title-backgrnd-color;
                 border-radius: 8px;
                 padding: 4%;
                 width: 30%;
@@ -244,13 +278,16 @@ app-compare-plans {
                 @extend .align-center;
                 flex-direction: column;
             }
+
             .feature-head {
                 @include allmobiles {
                     font-size: 16px;
                 }
+
                 font-size: 18px;
                 font-family: $muli-bold;
             }
+
             .feature-caption {
                 font-size: 14px;
                 line-height: 18px;
@@ -258,6 +295,7 @@ app-compare-plans {
                 width: 100px;
                 margin-bottom: 10px;
             }
+
             .help-icon {
                 background: url("../../../assets/images/tooltip-icon.svg") no-repeat;
                 height: 20px;
@@ -267,6 +305,7 @@ app-compare-plans {
             }
         }
     }
+
     .compare-plan-header {
         position: fixed;
         top: 0;
@@ -277,16 +316,18 @@ app-compare-plans {
         text-align: center;
         color: $white-color;
         font-family: $muli-semi-bold;
-        border-bottom: 1px solid #3eb9b8;
+        border-bottom: 1px solid $pelorous-color;
         font-size: 24px;
         line-height: 66px;
         left: 0;
+
         button {
             position: absolute;
             right: 15px !important;
             top: 25px !important;
         }
     }
+
     .compare-plan-header--close {
         right: 12px !important;
         text-shadow: none !important;
@@ -297,24 +338,33 @@ app-compare-plans {
         top: 20px !important;
         border: none;
         line-height: 65px;
-    }    
-    
+    }
+
     .details-btn {
-        height: 40px!important;
-        padding: 0.5rem!important;
-        border-radius: 6px!important;
-        border: solid 1px $recommend-details-button!important;
-        font-size: 16px!important;
-        font-family: $muli-regular!important;
-        width: 139px!important;
+        height: 40px !important;
+        padding: 0.5rem !important;
+        border-radius: 6px !important;
+        border: solid 1px $recommend-details-button !important;
+        font-size: 16px !important;
+        font-family: $muli-regular !important;
+        width: 139px !important;
         letter-spacing: -0.12px;
+
         @include allmobiles {
-            width: 100%!important;
+            width: 100% !important;
+        }
+        @include tablet {
+            max-width: 100%;
         }
     }
-    .details-main{
+
+    .details-main {
+        padding: 0 13px;
         @include allmobiles {
-            margin: 0px 0px 20px 0px!important;
+            margin: 0px 0px 20px 0px !important;
+        }
+        @include tablet {
+            padding: 0;
         }
     }
 }

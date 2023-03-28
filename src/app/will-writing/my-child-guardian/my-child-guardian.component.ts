@@ -1,12 +1,10 @@
 import { Subscription } from 'rxjs';
 
-import { Location } from '@angular/common';
 import { Component, OnDestroy, OnInit, ViewChild, ViewEncapsulation } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { TranslateService } from '@ngx-translate/core';
-
 import { FooterService } from '../../shared/footer/footer.service';
 import { ErrorModalComponent } from '../../shared/modal/error-modal/error-modal.component';
 import { NavbarService } from '../../shared/navbar/navbar.service';
@@ -32,20 +30,17 @@ export class MyChildGuardianComponent implements OnInit, OnDestroy {
   private selectedIndex: number;
   private subscription: Subscription;
   private confirmModal = {};
-
   addGuardianForm: FormGroup;
   guardianList: IGuardian[] = [];
   relationship = '';
   relationshipList;
   submitted: boolean;
   willWritingConfig = WILL_WRITING_CONFIG;
-
   hasSpouse = this.willWritingService.getAboutMeInfo().maritalStatus === WILL_WRITING_CONFIG.MARRIED;
   maxGuardian: number;
   unsavedMsg: string;
   toolTip;
   formName: string;
-
   fromConfirmationPage = this.willWritingService.fromConfirmationPage;
 
   constructor(
@@ -55,7 +50,6 @@ export class MyChildGuardianComponent implements OnInit, OnDestroy {
     private translate: TranslateService,
     public footerService: FooterService,
     public navbarService: NavbarService,
-    private _location: Location,
     private willWritingService: WillWritingService
   ) {
     this.translate.use('en');
@@ -101,7 +95,7 @@ export class MyChildGuardianComponent implements OnInit, OnDestroy {
         if (this.addGuardianForm.dirty) {
           this.pageTitleComponent.goBack();
         } else {
-          this._location.back();
+          this.navbarService.goBack();
         }
         return false;
       }

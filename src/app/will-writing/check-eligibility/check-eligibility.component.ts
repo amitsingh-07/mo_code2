@@ -1,17 +1,16 @@
-import { Location } from '@angular/common';
 import { Component, OnDestroy, OnInit, ViewEncapsulation } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { TranslateService } from '@ngx-translate/core';
 import { forkJoin, Subscription } from 'rxjs';
-
 import { FooterService } from '../../shared/footer/footer.service';
 import { NavbarService } from '../../shared/navbar/navbar.service';
 import { WILL_WRITING_ROUTE_PATHS } from '../will-writing-routes.constants';
 import { ErrorModalComponent } from './../../shared/modal/error-modal/error-modal.component';
 import { WillWritingService } from './../will-writing.service';
 import { InvestmentAccountService } from './../../investment/investment-account/investment-account-service';
+import { SIGN_UP_ROUTE_PATHS } from '../../sign-up/sign-up.routes.constants';
 
 @Component({
   selector: 'app-check-eligibility',
@@ -23,7 +22,6 @@ export class CheckEligibilityComponent implements OnInit, OnDestroy {
   pageTitle: string;
   isSingaporean = false;
   isAssets = false;
-
   formValues: any;
   eligibilityForm: FormGroup;
   religion = '';
@@ -42,7 +40,6 @@ export class CheckEligibilityComponent implements OnInit, OnDestroy {
     private willWritingService: WillWritingService,
     private router: Router,
     public footerService: FooterService,
-    private _location: Location,
     private modal: NgbModal, public navbarService: NavbarService,
     private investmentAccountService: InvestmentAccountService,
     private translate: TranslateService
@@ -116,11 +113,11 @@ export class CheckEligibilityComponent implements OnInit, OnDestroy {
           ref.componentInstance.unSaved = true;
           ref.result.then((data) => {
             if (data === 'yes') {
-              this._location.back();
+              this.navbarService.goBack();
             }
           });
         } else {
-          this._location.back();
+          this.navbarService.goBack();
         }
         return false;
       }
@@ -169,7 +166,7 @@ export class CheckEligibilityComponent implements OnInit, OnDestroy {
       ref.componentInstance.errorMessage = this.errorModal.MESSAGE;
       ref.componentInstance.navToHome = true;
       ref.result.then(() => {
-        window.open('/', '_self')
+        this.router.navigate([SIGN_UP_ROUTE_PATHS.DASHBOARD]);
       }).catch((e) => {
       });
   }
@@ -190,5 +187,4 @@ export class CheckEligibilityComponent implements OnInit, OnDestroy {
     this.nationality = nationality.name;
     this.eligibilityForm.controls['nationality'].setValue(nationality.value);
   }
-
 }

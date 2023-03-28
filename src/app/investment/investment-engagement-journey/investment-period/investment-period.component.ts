@@ -1,10 +1,9 @@
 import { AfterViewInit, ChangeDetectorRef, Component, ElementRef, OnInit, ViewChild, ViewEncapsulation } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-import { NgbDateParserFormatter, NgbDatepickerConfig, NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { NgbDateParserFormatter, NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { TranslateService } from '@ngx-translate/core';
 import { NouisliderComponent } from 'ng2-nouislider';
-
 import { INVESTMENT_ENGAGEMENT_JOURNEY_CONSTANTS } from '../investment-engagement-journey.constants';
 import { FooterService } from '../../../shared/footer/footer.service';
 import { IPageComponent } from '../../../shared/interfaces/page-component.interface';
@@ -15,7 +14,6 @@ import { INVESTMENT_ENGAGEMENT_JOURNEY_ROUTE_PATHS } from '../investment-engagem
 import { InvestmentEngagementJourneyService } from '../investment-engagement-journey.service';
 import { ModelWithButtonComponent } from '../../../shared/modal/model-with-button/model-with-button.component';
 
-const assetImgPath = './assets/images/';
 
 @Component({
   selector: 'app-investment-period',
@@ -43,11 +41,9 @@ export class InvestmentPeriodComponent implements OnInit, AfterViewInit, IPageCo
     private formBuilder: FormBuilder,
     public navbarService: NavbarService,
     public footerService: FooterService,
-    private config: NgbDatepickerConfig,
     private investmentEngagementJourneyService: InvestmentEngagementJourneyService,
     private modal: NgbModal,
     private elRef: ElementRef,
-    private parserFormatter: NgbDateParserFormatter,
     public readonly translate: TranslateService,
     private cd: ChangeDetectorRef
   ) {
@@ -129,7 +125,7 @@ export class InvestmentPeriodComponent implements OnInit, AfterViewInit, IPageCo
     return x > min && x <= max;
   }
 
-  changeSlide($event){
+  changeSlide($event) {
     const slideValue = ($event.target.value > 40) ? 40 : $event.target.value
     this.piInvestmentSlider.writeValue(slideValue);
     this.personalInfoForm.controls.investmentPeriod.setValue(slideValue);
@@ -137,7 +133,7 @@ export class InvestmentPeriodComponent implements OnInit, AfterViewInit, IPageCo
   }
   save(form: any) {
     const investmentPeriodValue = {
-      period: form.value.investmentPeriod == 1 ? form.value.investmentPeriod  + ' ' + 'year' : form.value.investmentPeriod  + ' ' +'years'
+      period: form.value.investmentPeriod == 1 ? form.value.investmentPeriod + ' ' + 'year' : form.value.investmentPeriod + ' ' + 'years'
     };
     if (!form.valid) {
       Object.keys(form.controls).forEach((key) => {
@@ -153,17 +149,17 @@ export class InvestmentPeriodComponent implements OnInit, AfterViewInit, IPageCo
       return false;
     } else if (form.value.investmentPeriod < 4 && this.investmentEngagementJourneyService.getPortfolioFormData().selectPortfolioType === INVESTMENT_ENGAGEMENT_JOURNEY_CONSTANTS.SELECT_POROFOLIO_TYPE.INVEST_PORTFOLIO) {
       this.showModalPopUp(this.translate.instant('PERSONAL_INFO.MODAL.TITLE'), this.translate.instant('PERSONAL_INFO.MODAL.BTN_LBL1'), this.translate.instant('PERSONAL_INFO.MODAL.BTN_LBL2'), this.translate.instant('PERSONAL_INFO.MODAL.MESSAGE', investmentPeriodValue));
-    } else if (form.value.investmentPeriod < 11 && this.investmentEngagementJourneyService.getPortfolioFormData().selectPortfolioType === INVESTMENT_ENGAGEMENT_JOURNEY_CONSTANTS.SELECT_POROFOLIO_TYPE.CPF_PORTFOLIO){
+    } else if (form.value.investmentPeriod < 11 && this.investmentEngagementJourneyService.getPortfolioFormData().selectPortfolioType === INVESTMENT_ENGAGEMENT_JOURNEY_CONSTANTS.SELECT_POROFOLIO_TYPE.CPF_PORTFOLIO) {
       this.showModalPopUp(this.translate.instant('PERSONAL_INFO.CPF.MODAL.TITLE'), this.translate.instant('PERSONAL_INFO.CPF.MODAL.BTN_LBL1'), this.translate.instant('PERSONAL_INFO.CPF.MODAL.BTN_LBL2'), this.translate.instant('PERSONAL_INFO.CPF.MODAL.MESSAGE', investmentPeriodValue))
     }
-      else {
+    else {
       this.investmentEngagementJourneyService.setPersonalInfo(form.value);
       return true;
     }
   }
 
   showModalPopUp(title, btn1, btn2, msg) {
-    const ref = this.modal.open(ModelWithButtonComponent, { centered: true , windowClass: 'limited-width , custom-advisory-modal' });
+    const ref = this.modal.open(ModelWithButtonComponent, { centered: true, windowClass: 'limited-width , custom-advisory-modal' });
     ref.componentInstance.errorTitle = title;
     ref.componentInstance.errorMessageHTML = msg;
     ref.componentInstance.investmentPeriodImg = true;
@@ -174,7 +170,7 @@ export class InvestmentPeriodComponent implements OnInit, AfterViewInit, IPageCo
       ref.dismiss();
     });
     ref.componentInstance.secondaryAction.subscribe((emittedValue) => {
-      if (this.investmentEngagementJourneyService.getPortfolioFormData().selectPortfolioType == INVESTMENT_ENGAGEMENT_JOURNEY_CONSTANTS.SELECT_POROFOLIO_TYPE.INVEST_PORTFOLIO){
+      if (this.investmentEngagementJourneyService.getPortfolioFormData().selectPortfolioType == INVESTMENT_ENGAGEMENT_JOURNEY_CONSTANTS.SELECT_POROFOLIO_TYPE.INVEST_PORTFOLIO) {
         this.investmentEngagementJourneyService.setSelectPortfolioType({ selectPortfolioType: INVESTMENT_ENGAGEMENT_JOURNEY_CONSTANTS.SELECT_POROFOLIO_TYPE.WISESAVER_PORTFOLIO });
         this.router.navigate([INVESTMENT_ENGAGEMENT_JOURNEY_ROUTE_PATHS.SELECT_PORTFOLIO_GOAL_MORE_INFO]);
       }

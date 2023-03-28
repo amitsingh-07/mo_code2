@@ -3,14 +3,12 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { TranslateService } from '@ngx-translate/core';
 import { Subscription } from 'rxjs';
-
 import { ConfigService } from './../../config/config.service';
 import { IPageComponent } from '../../shared/interfaces/page-component.interface';
 import { ProgressTrackerService } from '../../shared/modal/progress-tracker/progress-tracker.service';
 import { NavbarService } from '../../shared/navbar/navbar.service';
 import { COMPREHENSIVE_CONST } from '../comprehensive-config.constants';
 import { COMPREHENSIVE_ROUTE_PATHS } from '../comprehensive-routes.constants';
-import { ComprehensiveApiService } from './../comprehensive-api.service';
 import { ComprehensiveService } from './../comprehensive.service';
 import { LoaderService } from './../../shared/components/loader/loader.service';
 
@@ -43,7 +41,6 @@ export class RiskProfileComponent implements IPageComponent, OnInit {
   constructor(
     public navbarService: NavbarService,
     public readonly translate: TranslateService,
-    private comprehensiveApiService: ComprehensiveApiService,
     private comprehensiveService: ComprehensiveService,
     private progressService: ProgressTrackerService,
     private route: ActivatedRoute,
@@ -62,7 +59,6 @@ export class RiskProfileComponent implements IPageComponent, OnInit {
         this.setPageTitle(this.pageTitle);
       });
     });
-
     this.viewMode = this.comprehensiveService.getViewableMode();
     const self = this;
     if (route.snapshot.data[0]) {
@@ -98,7 +94,6 @@ export class RiskProfileComponent implements IPageComponent, OnInit {
       }
     });
     this.setRiskProfileFlag();
-
   }
 
   setPageTitle(title: string) {
@@ -148,30 +143,25 @@ export class RiskProfileComponent implements IPageComponent, OnInit {
       this.loaderService.showLoader({ title: this.saveData });
       //SKIP PROFILE FLAG save
       this.comprehensiveService.saveSkipRiskProfile().subscribe(() => {
-
         if (form.controls.riskProfileCheckboxFlag.value) {
-          if (this.comprehensiveService.getMySteps() === 4
-            && this.comprehensiveService.getMySubSteps() < (this.questionIndex + 1)) {
+          if (this.comprehensiveService.getMySteps() === 4 && this.comprehensiveService.getMySubSteps() < (this.questionIndex + 1)) {
             this.comprehensiveService.setStepCompletion(4, this.questionIndex).subscribe(() => {
               this.loaderService.hideLoader();
               this.progressService.setProgressTrackerData(this.comprehensiveService.generateProgressTrackerData());
-              const routerURL = this.viewMode ? COMPREHENSIVE_ROUTE_PATHS.DASHBOARD
-                : COMPREHENSIVE_ROUTE_PATHS.VALIDATE_RESULT;
+              const routerURL = this.viewMode ? COMPREHENSIVE_ROUTE_PATHS.DASHBOARD : COMPREHENSIVE_ROUTE_PATHS.VALIDATE_RESULT;
               this.router.navigate([routerURL]);
             });
           } else {
             this.loaderService.hideLoader();
             this.progressService.setProgressTrackerData(this.comprehensiveService.generateProgressTrackerData());
-            const routerURL = this.viewMode ? COMPREHENSIVE_ROUTE_PATHS.DASHBOARD
-              : COMPREHENSIVE_ROUTE_PATHS.VALIDATE_RESULT;
+            const routerURL = this.viewMode ? COMPREHENSIVE_ROUTE_PATHS.DASHBOARD : COMPREHENSIVE_ROUTE_PATHS.VALIDATE_RESULT;
             this.router.navigate([routerURL]);
           }
         } else {
           if (this.questionIndex < this.questionsList.length) {
             // NEXT QUESTION
             this.comprehensiveService.saveRiskAssessment().subscribe((data) => {
-              if (this.comprehensiveService.getMySteps() === 4
-                && this.comprehensiveService.getMySubSteps() < (this.questionIndex + 1)) {
+              if (this.comprehensiveService.getMySteps() === 4 && this.comprehensiveService.getMySubSteps() < (this.questionIndex + 1)) {
                 this.loaderService.hideLoader();
                 this.comprehensiveService.setStepCompletion(4, this.questionIndex).subscribe((data1: any) => {
                   this.progressService.setProgressTrackerData(this.comprehensiveService.generateProgressTrackerData());
@@ -189,18 +179,15 @@ export class RiskProfileComponent implements IPageComponent, OnInit {
             });
           } else {
             this.comprehensiveService.saveRiskAssessment().subscribe((data) => {
-              if (this.comprehensiveService.getMySteps() === 4
-                && this.comprehensiveService.getMySubSteps() < 4) {
-                this.comprehensiveService.setStepCompletion(4, 4).subscribe((data1: any) => {
+              if (this.comprehensiveService.getMySteps() === 4 && this.comprehensiveService.getMySubSteps() < 4) {
+                  this.comprehensiveService.setStepCompletion(4, 4).subscribe((data1: any) => {
                   this.progressService.setProgressTrackerData(this.comprehensiveService.generateProgressTrackerData());
-                  const routerURL = this.viewMode ? COMPREHENSIVE_ROUTE_PATHS.DASHBOARD
-                    : COMPREHENSIVE_ROUTE_PATHS.VALIDATE_RESULT;
+                  const routerURL = this.viewMode ? COMPREHENSIVE_ROUTE_PATHS.DASHBOARD : COMPREHENSIVE_ROUTE_PATHS.VALIDATE_RESULT;
                   this.router.navigate([routerURL]);
                 });
               } else {
                 this.progressService.setProgressTrackerData(this.comprehensiveService.generateProgressTrackerData());
-                const routerURL = this.viewMode ? COMPREHENSIVE_ROUTE_PATHS.DASHBOARD
-                  : COMPREHENSIVE_ROUTE_PATHS.VALIDATE_RESULT;
+                const routerURL = this.viewMode ? COMPREHENSIVE_ROUTE_PATHS.DASHBOARD : COMPREHENSIVE_ROUTE_PATHS.VALIDATE_RESULT;
                 this.router.navigate([routerURL]);
               }
             });

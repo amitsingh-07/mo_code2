@@ -7,6 +7,7 @@ import { UploadDocumentService } from '../../../shared/Services/upload-document.
 
 import { INVESTMENT_ACCOUNT_CONSTANTS } from '../../../investment/investment-account/investment-account.constant';
 import { EmitInfo } from '../../interfaces/upload-document.interface';
+import { InvestmentAccountService } from '../../../investment/investment-account/investment-account-service';
 
 
 export interface DocumentInfo {
@@ -38,7 +39,8 @@ export class UploadDocComponent implements OnInit {
   constructor(public readonly translate: TranslateService,
     public modal: NgbModal,
     private uploadDocService: UploadDocumentService,
-    private controlContainer: ControlContainer) {
+    private controlContainer: ControlContainer,
+    private investmentAccountService: InvestmentAccountService) {
   }
 
   ngOnInit(): void {
@@ -58,13 +60,17 @@ export class UploadDocComponent implements OnInit {
   getBlob(streamResponse) {
     this.uploadDocService.blobToThumbNail(streamResponse, this.uploadForm.controls.document, this.documentInfo, this.documentThumb);
     let file = this.uploadDocService.blobToFile(streamResponse);
-    this.fileName = file.name;
+    if (file["localURL"]) {
+      this.fileName = file["localURL"];
+    } else {
+      this.fileName = file.name;
+    }
     this.fileType = this.getFileType(file);
   }
 
   openFileDialog(elem) {
     if (!elem.files.length && this.uploadForm.controls.document.value == "") {
-      elem.click();
+      this.investmentAccountService.uploadFileOption(elem);
     }
   }
 
@@ -73,7 +79,11 @@ export class UploadDocComponent implements OnInit {
   }
 
   getFileType(fileElem: any): String {
-    return fileElem && fileElem.name ? fileElem.name.split('.')[1].toLowerCase() : '';
+    if (fileElem["localURL"]) {
+      return fileElem && fileElem["localURL"] ? fileElem["localURL"].split('.')[1].toLowerCase() : '';
+    } else {
+      return fileElem && fileElem.name ? fileElem.name.split('.')[1].toLowerCase() : '';
+    }
   }
 
   fileSelect(control, controlname, fileElem, thumbElem?) {

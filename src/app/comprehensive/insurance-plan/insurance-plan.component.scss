@@ -7,16 +7,15 @@ app-insurance-plan{
   }
 
   .insurance {
-    color: #066360 !important;
+    color: $watercourse-color !important;
   }
 
   .sub-heading {
     letter-spacing: -0.2px;
     font-weight: 600;
-    font-family: muli-bold;
+    font-family: $muli-bold;
     font-size: 20px !important;
-    color: #066360 !important;
-
+    color: $watercourse-color !important;
   }
 
   .sub-desc {

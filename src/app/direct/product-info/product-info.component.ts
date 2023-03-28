@@ -1,6 +1,4 @@
-import { Location } from '@angular/common';
 import {
-  ChangeDetectorRef,
   Component,
   EventEmitter,
   Input,
@@ -9,7 +7,6 @@ import {
   Output,
   ViewEncapsulation
 } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
 import { NgbModal, NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
 import { TranslateService } from '@ngx-translate/core';
 import { Subscription } from 'rxjs';
@@ -22,7 +19,6 @@ import { ConfigService, IConfig } from './../../config/config.service';
 import { HeaderService } from './../../shared/header/header.service';
 import { AuthenticationService } from './../../shared/http/auth/authentication.service';
 import { ToolTipModalComponent } from './../../shared/modal/tooltip-modal/tooltip-modal.component';
-import { SelectedPlansService } from './../../shared/Services/selected-plans.service';
 import { StateStoreService } from './../../shared/Services/state-store.service';
 import { DirectResultsComponent } from './../direct-results/direct-results.component';
 import { DirectApiService } from './../direct.api.service';
@@ -67,28 +63,12 @@ export class ProductInfoComponent implements OnInit, OnDestroy {
   selectedCategoryId = 0;
 
   minProdSearch: string;
-  /*
-    @HostListener('window:resize', ['$event'])
-    onResize(event) {
-      this.innerWidth = window.innerWidth;
-      if (this.innerWidth < this.mobileThreshold) {
-        this.toggleFormVisibility = false;
-        this.directService.setModalFreeze(false);
-        this.searchText = this.translate.instant('COMMON.LBL_CONTINUE');
-      } else {
-        this.toggleSelectVisibility = true;
-        this.toggleFormVisibility = true;
-        this.searchText = this.translate.instant('COMMON.LBL_SEARCH_PLAN');
-      }
-    }
-  */
   constructor(
     public headerService: HeaderService, private directService: DirectService,
-    private modal: NgbModal, private translate: TranslateService, private route: ActivatedRoute,
+    private modal: NgbModal, private translate: TranslateService,
     private directApiService: DirectApiService, private googleAnalyticsService: GoogleAnalyticsService,
-    private cdRef: ChangeDetectorRef, private configService: ConfigService,
+    private configService: ConfigService,
     private authService: AuthenticationService, public navbarService: NavbarService,
-    private _location: Location, private planService: SelectedPlansService,
     private stateStoreService: StateStoreService) {
     this.translate.use('en');
     this.translate.get('COMMON').subscribe((result: string) => {
@@ -164,8 +144,6 @@ export class ProductInfoComponent implements OnInit, OnDestroy {
     this.subscription = this.navbarService.subscribeBackPress().subscribe((event) => {
       if (event && event !== '') {
         if (event === this.pageTitle) {
-          //if (this.innerWidth < this.mobileThreshold) {
-
           this.minProdSearch = '';
           this.initLoad = true;
           this.toggleVisibility = true;
@@ -174,25 +152,16 @@ export class ProductInfoComponent implements OnInit, OnDestroy {
 
           this.setSelectedCategory();
           this.backPressed.emit('backPressed');
-          //}
         } else if (event === this.editPageTitle) {
           this.directService.setModalFreeze(false);
           this.navbarService.setPageTitle(this.resultsPageTitle, null, false, true);
         } else {
-          this._location.back();
+          this.navbarService.goBack();
         }
       }
     });
 
     this.prodSearchInfoSub = this.directService.prodSearchInfoData.subscribe((data) => {
-      // if (data !== '') {
-      //   this.minProdSearch = data;
-      //   this.initLoad = false;
-      //   this.toggleVisibility = false;
-      //   this.toggleBackdropVisibility = false;
-      //   this.directService.setModalFreeze(false);
-      //   this.formSubmitCallback.emit(data);
-      // }
     });
     this.directService.modalToolTipTrigger.subscribe((data) => {
       if (data.title !== '') {

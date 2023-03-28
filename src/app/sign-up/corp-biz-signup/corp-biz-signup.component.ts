@@ -12,8 +12,7 @@ import { ModelWithButtonComponent } from '../../shared/modal/model-with-button/m
 import { SIGN_UP_ROUTE_PATHS } from '../sign-up.routes.constants';
 import { SIGN_UP_CONFIG } from '../sign-up.constant';
 import { AppService } from '../../app.service';
-import { SignUpApiService } from '../sign-up.api.service';
-import { appConstants } from 'src/app/app.constants';
+import { appConstants } from '../../app.constants';
 import { MyinfoModalComponent } from '../../shared/modal/myinfo-modal/myinfo-modal.component';
 
 @Component({
@@ -45,8 +44,7 @@ export class CorpBizSignupComponent implements OnInit {
     private navbarService: NavbarService,
     private footerService: FooterService,
     private readonly translate: TranslateService,
-    private appService: AppService,
-    private signUpApiService: SignUpApiService
+    private appService: AppService
   ) {
     this.translate.use('en');
     this.translate.get('COMMON').subscribe((result: string) => {
@@ -116,10 +114,8 @@ export class CorpBizSignupComponent implements OnInit {
           if (Object.keys(this.signUpService.getCorpBizUserMyInfoData()).length > 0) {
             this.signUpService.clearCorpbizSessionData();
           }
-          data.objectList[0].email.value = email;
-          data.objectList[0].mobileno.nbr = mobile;
           this.signUpService.setCorpBizMyInfoStatus(true);
-          this.signUpService.setCreateAccountMyInfoFormData(data.objectList[0]);
+          this.signUpService.setCreateAccountMyInfoFormData(data.objectList[0],email,mobile);
           this.signUpService.loadCorpBizUserMyInfoData(data.objectList[0]);
           this.router.navigate([SIGN_UP_ROUTE_PATHS.CORP_BIZ_SIGNUP_DATA]);
         } else if (data.responseMessage.responseCode === 6014) {

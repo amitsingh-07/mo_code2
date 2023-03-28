@@ -1,7 +1,6 @@
-import { Location } from '@angular/common';
 import { Component, HostListener, OnDestroy, OnInit, AfterViewInit, ChangeDetectorRef } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
-import { ActivatedRoute, Router } from '@angular/router';
+import { Router } from '@angular/router';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { TranslateService } from '@ngx-translate/core';
 import { Subscription } from 'rxjs';
@@ -37,11 +36,11 @@ export class MyAssetsComponent implements IPageComponent, OnInit, OnDestroy, Aft
 
   constructor(
     private router: Router, public navbarService: NavbarService,
-    private modal: NgbModal, private location: Location,
+    private modal: NgbModal,
     private myInfoService: MyInfoService,
     public guideMeApiService: GuideMeApiService, private configService: ConfigService,
     private guideMeService: GuideMeService, private translate: TranslateService,
-    private route: ActivatedRoute, private changeDetectorRef: ChangeDetectorRef) {
+    private changeDetectorRef: ChangeDetectorRef) {
     this.translate.use('en');
     this.translate.get('COMMON').subscribe((result: string) => {
       this.pageTitle = this.translate.instant('MY_ASSETS.TITLE');
@@ -87,7 +86,7 @@ export class MyAssetsComponent implements IPageComponent, OnInit, OnDestroy, Aft
               this.guideMeService.setMyAssetsTempData(this.assetsForm.value);
               this.closeMyInfoPopup();
               this.guideMeService.myinfoValueRequested$.next(true);
-              this.router.navigate([GUIDE_ME_ROUTE_PATHS.MYINFO_RETRIEVAL]);
+              this.router.navigate([GUIDE_ME_ROUTE_PATHS.MYINFO_RETRIEVAL], { skipLocationChange: true });
             } else {
               this.closeMyInfoPopup();
             }

@@ -122,7 +122,7 @@ app-funding-account-details {
           }
 
           .form-control {
-            color: #00a7a7;
+            color: $teal-color;
             font-family: $muli-regular;
 
             &:disabled,
@@ -201,6 +201,7 @@ app-funding-account-details {
       border-color: $form-control-disabled-border-color !important;
       cursor: not-allowed;
       padding: 0 !important;
+      opacity: 1 !important;
     }
   }
 

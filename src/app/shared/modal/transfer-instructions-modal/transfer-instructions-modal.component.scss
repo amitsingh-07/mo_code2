@@ -5,19 +5,22 @@
   @include desktop {
     width: 500px;
   }
+
   $self: &;
   padding: 0;
   padding-bottom: 20px;
-  //border-radius: 0px;
+
   @include allmobiles {
     padding: 0 !important;
   }
+
   background-color: $app-backgrnd-color;
 
   .title-container {
     background-color: $white-color;
     border-radius: 6px;
-    @include allmobiles{
+
+    @include allmobiles {
       border-radius: 0px;
     }
   }
@@ -33,10 +36,10 @@
     padding: 20px 40px 15px 25px;
     border-top-left-radius: 6px;
     border-top-right-radius: 6px;
-    @include allmobiles{
+
+    @include allmobiles {
       border-radius: 0px;
     }
-
   }
 
   &-message {
@@ -59,16 +62,19 @@
     }
   }
 
-  .cash-account{
+  .cash-account {
     margin: 20px 1rem;
-    color: #ffffff;
-    .transfer-instruction-lbl{
+    color: $white-color;
+
+    .transfer-instruction-lbl {
       text-align: center;
       padding: 0 20px;
-      @include allmobiles{
+
+      @include allmobiles {
         text-align: left;
       }
     }
+
     .btn-with-icon {
       border-radius: 6px;
       box-shadow: 0 4px 5px 0 rgba(0, 0, 0, 0.21) !important;
@@ -86,27 +92,33 @@
       justify-content: center;
       align-items: center;
       cursor: pointer;
+
       &:active {
         outline: none;
         background-color: $white-color;
       }
+
       &:hover {
         outline: none;
       }
+
       &:focus {
         outline: none;
         background-color: $white-color;
       }
+
       .topup-btn-img {
         height: 25px;
-        img{
-          width:100%;
+
+        img {
+          width: 100%;
           height: 25px;
         }
       }
     }
-    .cash-account-content{
-      .ref-code{
+
+    .cash-account-content {
+      .ref-code {
         cursor: pointer;
         padding: 14px 13px 10px 10px;
         font-family: $muli-bold;
@@ -114,10 +126,10 @@
         line-height: 1.17;
         letter-spacing: -0.17px;
         text-align: center;
-        color: #ff872f;
+        color: $crusta-orange-color;
         border-radius: 4px;
-        border: 2px solid #00a7a7;
-        background-color: #ffffff;
+        border: 2px solid $teal-color;
+        background-color: $white-color;
         margin-bottom: 15px;
         display: flex;
         justify-content: center;
@@ -141,14 +153,16 @@
           }
         }
       }
-      .note-icon{
+
+      .note-icon {
         width: 24px;
         height: 24px;
         margin-right: 15px;
         margin-top: 5px;
         display: flex;
       }
-      .note{
+
+      .note {
         font-family: $muli-regular;
         font-size: 13px;
         font-weight: normal;
@@ -156,24 +170,28 @@
         font-stretch: normal;
         line-height: 1.62;
         letter-spacing: -0.12px;
-        color: #4a4a4a;
-        span{
+        color: $dark-grey-color;
+
+        span {
           font-family: $muli-bold !important;
         }
-        @include allmobiles{
+
+        @include allmobiles {
           line-height: normal;
         }
       }
     }
-   }
+  }
 
   /* TRANSFER DETAILS */
   .transfer-details {
     margin: 15px 1rem 0px;
     color: $teal-color;
+
     @include allmobiles {
       padding-bottom: 80px;
     }
+
     .tab-container {
       display: flex;
 
@@ -208,12 +226,13 @@
             background-color: $white-color;
           }
 
-          .pay-tab{
-            max-width:84px;
+          .pay-tab {
+            max-width: 84px;
             height: 42px;
             display: flex;
             align-items: center;
-            img{
+
+            img {
               width: 55px;
               height: 35px;
             }
@@ -226,6 +245,7 @@
       background-color: $bond-container-bg;
       border-radius: 0px 0px 6px 6px;
       margin-bottom: 6px;
+
       .tab-content {
         display: none;
 
@@ -234,6 +254,6 @@
         }
       }
     }
-    
+
   }
 }

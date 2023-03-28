@@ -1,5 +1,4 @@
 
-import { Location } from '@angular/common';
 import { AfterViewInit, Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 
@@ -26,7 +25,7 @@ export class HeaderComponent implements IPageComponent, OnInit, AfterViewInit {
   dropDownIcon = false;
 
   constructor(public navbarService: NavbarService, public headerService: HeaderService,
-              private _location: Location , private router: Router) {  }
+    private router: Router) { }
 
   ngOnInit() {
     this.headerService.currentPageTitle.subscribe((title) => this.pageTitle = title);
@@ -62,6 +61,6 @@ export class HeaderComponent implements IPageComponent, OnInit, AfterViewInit {
   }
 
   goBack() {
-    this._location.back();
+    this.navbarService.goBack();
   }
 }

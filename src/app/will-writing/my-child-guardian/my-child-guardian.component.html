@@ -33,7 +33,7 @@
                     <div class="input-label-normal">{{'WILL_WRITING.COMMON.MY' |
                       translate}} {{guardian.relationship | titlecase }}</div>
                   </label>
-                  <span class="default" *ngIf="guardian.relationship === willWritingConfig.SPOUSE">Default</span>
+                  <span class="default" *ngIf="guardian.relationship === willWritingConfig.SPOUSE">{{ 'WILL_WRITING.MY_CHILDS_GUARDIAN.DEFAULT' | translate}}</span>
                   <span (click)="editGuardian(guardian.relationship, i)" class="edit-icon"><img src="assets/images/will-writing/edit-dark.svg" /></span>
                 </div>
               </div>

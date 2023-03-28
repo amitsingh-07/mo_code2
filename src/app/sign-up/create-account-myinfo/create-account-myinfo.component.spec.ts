@@ -1,4 +1,4 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { waitForAsync, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { CreateAccountMyinfoComponent } from './create-account-myinfo.component';
 
@@ -6,11 +6,11 @@ describe('CreateAccountMyinfoComponent', () => {
   let component: CreateAccountMyinfoComponent;
   let fixture: ComponentFixture<CreateAccountMyinfoComponent>;
 
-  beforeEach(async(() => {
+  beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
-      declarations: [ CreateAccountMyinfoComponent ]
+      declarations: [CreateAccountMyinfoComponent]
     })
-    .compileComponents();
+      .compileComponents();
   }));
 
   beforeEach(() => {

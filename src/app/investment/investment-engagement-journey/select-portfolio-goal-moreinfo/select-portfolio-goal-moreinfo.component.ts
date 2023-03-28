@@ -1,4 +1,3 @@
-import { Location } from '@angular/common';
 import {
   Component, HostListener, OnInit, ViewChild, ViewEncapsulation
 } from '@angular/core';
@@ -65,10 +64,9 @@ export class SelectPortfolioGoalMoreinfoComponent implements OnInit {
     public authService: AuthenticationService,
     private investmentCommonService: InvestmentCommonService,
     private investmentAccountService: InvestmentAccountService,
-    private _location: Location,
     private seoService: SeoServiceService,
     private route: ActivatedRoute,
-  ) { 
+  ) {
     this.translate.use('en');
     this.translate.get('COMMON').subscribe((result: string) => {
       this.pageTitle = this.translate.instant('PORTFOLIO.TITLE_NEW');
@@ -104,7 +102,7 @@ export class SelectPortfolioGoalMoreinfoComponent implements OnInit {
     this.navbarService.setPageTitle(title);
   }
   goBack() {
-    this._location.back();
+    this.navbarService.goBack();
   }
   goNext(Form) {
     this.redirectToNextScreen();
@@ -203,11 +201,14 @@ export class SelectPortfolioGoalMoreinfoComponent implements OnInit {
           if (this.ckaInfo.cKAStatusMessage && this.ckaInfo.cKAStatusMessage === INVESTMENT_COMMON_CONSTANTS.CKA.CKA_PASSED_STATUS && this.ckaInfo.cpfOperatorAvailable) {
             this.investmentCommonService.setCKAStatus(INVESTMENT_COMMON_CONSTANTS.CKA.CKA_PASSED_STATUS);
             this.router.navigate([INVESTMENT_ENGAGEMENT_JOURNEY_ROUTE_PATHS.GET_STARTED_STEP1]);
-          } else if (this.ckaInfo.cKAStatusMessage && this.ckaInfo.cKAStatusMessage === INVESTMENT_COMMON_CONSTANTS.CKA.CKA_BE_CERTIFICATE_UPLOADED  && this.ckaInfo.cpfOperatorAvailable) {
+          } else if (this.ckaInfo.cKAStatusMessage && this.ckaInfo.cKAStatusMessage === INVESTMENT_COMMON_CONSTANTS.CKA.CKA_BE_CERTIFICATE_UPLOADED && this.ckaInfo.cpfOperatorAvailable) {
             this.investmentCommonService.setCKAStatus(INVESTMENT_COMMON_CONSTANTS.CKA.CKA_BE_CERTIFICATE_UPLOADED);
             this.router.navigate([INVESTMENT_ENGAGEMENT_JOURNEY_ROUTE_PATHS.GET_STARTED_STEP1]);
           } else if (this.ckaInfo.cKAStatusMessage && this.ckaInfo.cKAStatusMessage === INVESTMENT_COMMON_CONSTANTS.CKA.CKA_REJECTED_STATUS) {
             this.investmentCommonService.setCKAStatus(INVESTMENT_COMMON_CONSTANTS.CKA.CKA_REJECTED_STATUS);
+            this.router.navigate([INVESTMENT_COMMON_ROUTE_PATHS.CPF_PREREQUISITES]);
+          } else if (this.ckaInfo.cKAStatusMessage && this.ckaInfo.cKAStatusMessage === INVESTMENT_COMMON_CONSTANTS.CKA.CKA_EXPIRED_STATUS) {
+            this.investmentCommonService.setCKAStatus(INVESTMENT_COMMON_CONSTANTS.CKA.CKA_EXPIRED_STATUS);
             this.router.navigate([INVESTMENT_COMMON_ROUTE_PATHS.CPF_PREREQUISITES]);
           } else {
             this.router.navigate([INVESTMENT_COMMON_ROUTE_PATHS.CPF_PREREQUISITES]);

@@ -54,7 +54,7 @@ app-terms {
   }
 
   .tnc__content {
-    margin-top:56px;
+    margin-top:56px !important;
     padding:20px;
     height:calc(100% - 171px);
     overflow-y:auto;
@@ -70,7 +70,7 @@ app-terms {
     max-width:190px;
     height:100%;
     max-height:57px;
-    bottom:30px;
+    bottom: calc(30px + env(safe-area-inset-bottom));
     left:50%;
     transform:translateX(-50%);
     @include minMobilemaxPhablet{

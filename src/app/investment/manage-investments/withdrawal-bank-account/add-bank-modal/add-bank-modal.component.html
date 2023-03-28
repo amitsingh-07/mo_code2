@@ -21,15 +21,15 @@
               'WITHDRAW_PAYMENT_METHOD.ADD_BANK_MODAL.ACCOUNT_HOLDER_NAME' | translate}}</label>
           </div>
           <div class="flex-col-12">
-              <div [ngClass]="{'inline-error':getInlineErrorStatus(addBankForm.controls.accountHolderName)}">
-                <div contenteditable="true"
-                       id="accountHolderName-" [textContent]="addBankForm.get('accountHolderName').value"
-                       (focusout)="setAccountHolderName($event.target.textContent);" maxlength="100"
-                       (keypress)="onKeyPressEvent($event, $event.target.textContent)" class="content-editable"
-                        placeholder="Account Holder's Name">
-                     </div>
-              </div> 
-         </div>
+            <div [ngClass]="{'inline-error':getInlineErrorStatus(addBankForm.controls.accountHolderName)}">
+              <div contenteditable="true" id="accountHolderName-"
+                [textContent]="addBankForm.get('accountHolderName').value"
+                (focusout)="setAccountHolderName($event.target.textContent);" maxlength="100"
+                (keypress)="onKeyPressEvent($event, $event.target.textContent)" class="content-editable"
+                placeholder="Account Holder's Name">
+              </div>
+            </div>
+          </div>
         </div>
         <!-- Content -->
         <div class="flex-row regulations">
@@ -45,8 +45,8 @@
             <div class="dropdown-control" [ngClass]="{'inline-error':getInlineErrorStatus(addBankForm.controls.bank)}">
               <div ngbDropdown>
                 <button class="btn btn-dropdown" id="residentialAddress-country-drpdown" ngbDropdownToggle>
-                  <span
-                    *ngIf="!addBankForm.controls.bank.value">{{ 'WITHDRAW_PAYMENT_METHOD.SELECT' | translate}}</span>
+                  <span *ngIf="!addBankForm.controls.bank.value">{{ 'WITHDRAW_PAYMENT_METHOD.SELECT' |
+                    translate}}</span>
                   <span *ngIf="addBankForm.controls.bank.value">{{addBankForm.controls.bank.value.key}}</span>
                 </button>
                 <div class="dropdown dropdown-lg" ngbDropdownMenu aria-labelledby="courseDropdown">
@@ -75,7 +75,7 @@
       <button type="button" *ngIf="!bankDetails" (click)="save(addBankForm)" class="btn btn-primary-dark width100 mt5"
         id="incomeBtn">{{
         'LABEL.SAVE' | translate}}</button>
-        
+
       <button *ngIf="bankDetails" type="button" (click)="save(addBankForm)" class="btn btn-primary-dark width100 mt5"
         id="incomeBtn"> {{'WITHDRAW_PAYMENT_METHOD.ADD_BANK_MODAL.APPLY_CHANGE' | translate}}
       </button>

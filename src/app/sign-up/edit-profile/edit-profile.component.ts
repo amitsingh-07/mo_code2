@@ -96,7 +96,7 @@ export class EditProfileComponent implements OnInit, OnDestroy {
   myInfoStatus2: string;
   isMyInfoEnabled = false;
   ckaInfo: any;
-  displaySingpassLink:boolean;
+  displaySingpassLink: boolean;
 
   constructor(
     private modal: NgbModal,
@@ -308,12 +308,15 @@ export class EditProfileComponent implements OnInit, OnDestroy {
           //CKA Status
           if (data.objectList.ckaInformation) {
             this.ckaInfo = data.objectList.ckaInformation;
+            this.investmentCommonService.setCKAInformation(this.ckaInfo);
             if (this.ckaInfo && this.ckaInfo.cKAStatusMessage && this.ckaInfo.cKAStatusMessage === INVESTMENT_COMMON_CONSTANTS.CKA.CKA_PASSED_STATUS) {
               this.investmentCommonService.setCKAStatus(INVESTMENT_COMMON_CONSTANTS.CKA.CKA_PASSED_STATUS);
             } else if (this.ckaInfo.cKAStatusMessage && this.ckaInfo.cKAStatusMessage === INVESTMENT_COMMON_CONSTANTS.CKA.CKA_BE_CERTIFICATE_UPLOADED) {
               this.investmentCommonService.setCKAStatus(INVESTMENT_COMMON_CONSTANTS.CKA.CKA_BE_CERTIFICATE_UPLOADED);
             } else if (this.ckaInfo.cKAStatusMessage && this.ckaInfo.cKAStatusMessage === INVESTMENT_COMMON_CONSTANTS.CKA.CKA_REJECTED_STATUS) {
               this.investmentCommonService.setCKAStatus(INVESTMENT_COMMON_CONSTANTS.CKA.CKA_REJECTED_STATUS);
+            } else if (this.ckaInfo.cKAStatusMessage && this.ckaInfo.cKAStatusMessage === INVESTMENT_COMMON_CONSTANTS.CKA.CKA_EXPIRED_STATUS) {
+              this.investmentCommonService.setCKAStatus(INVESTMENT_COMMON_CONSTANTS.CKA.CKA_EXPIRED_STATUS);
             }
           }
         }
@@ -665,14 +668,20 @@ export class EditProfileComponent implements OnInit, OnDestroy {
   }
 
   openCKAModal() {
-    this.investmentCommonService.setCKARedirectFromLocation(SIGN_UP_ROUTE_PATHS.EDIT_PROFILE);
-    const ref = this.modal.open(ModelWithButtonComponent, { centered: true , windowClass: 'custom-cka-modal' });
+    this.investmentCommonService.setCKARedirectFromLocation(INVESTMENT_COMMON_CONSTANTS.CKA_REDIRECT_CONSTS.PROFILE);
+    const ref = this.modal.open(ModelWithButtonComponent, { centered: true, windowClass: 'custom-cka-modal' });
     ref.componentInstance.errorTitle = this.translate.instant(
       'OPEN_CKA.TITLE'
     );
-    ref.componentInstance.errorMessage = this.translate.instant(
-      'OPEN_CKA.DESC'
-    );
+    if (this.ckaInfo && this.ckaInfo.ckaretake !== null && this.ckaInfo.ckaretake) {
+      ref.componentInstance.errorMessage = this.translate.instant(
+        'OPEN_CKA.EXPIRED_DESC'
+      );
+    } else {
+      ref.componentInstance.errorMessage = this.translate.instant(
+        'OPEN_CKA.DESC'
+      );
+    }
     ref.componentInstance.primaryActionLabel = this.translate.instant(
       'OPEN_CKA.BTN-TEXT'
     );
@@ -685,22 +694,23 @@ export class EditProfileComponent implements OnInit, OnDestroy {
   }
 
   showUploadDoc() {
-    this.investmentCommonService.setCKARedirectFromLocation(SIGN_UP_ROUTE_PATHS.EDIT_PROFILE);
-    const url = INVESTMENT_ENGAGEMENT_JOURNEY_ROUTE_PATHS.CKA_UPLOAD_DOCUMENT;
-    this.router.navigate([url]);
+    if (this.ckaInfo && this.ckaInfo.ckaretake !== null && !this.ckaInfo.ckaretake) {
+      this.investmentCommonService.setCKARedirectFromLocation(INVESTMENT_COMMON_CONSTANTS.CKA_REDIRECT_CONSTS.PROFILE);
+      this.router.navigate([INVESTMENT_ENGAGEMENT_JOURNEY_ROUTE_PATHS.CKA_UPLOAD_DOCUMENT]);
+    }
   }
 
-  setCPFIABankDetails(){
+  setCPFIABankDetails() {
     this.manageInvestmentsService.getProfileCPFIAccountDetails(true)
-    .pipe(takeUntil(this.ngUnsubscribe))
-    .subscribe((data: any) => {
-      if (data) {
-        this.cpfBankDetails = data;
-      }
-    },
-    () => {
-      this.investmentAccountService.showGenericErrorModal();
-    }
-    );
+      .pipe(takeUntil(this.ngUnsubscribe))
+      .subscribe((data: any) => {
+        if (data) {
+          this.cpfBankDetails = data;
+        }
+      },
+        () => {
+          this.investmentAccountService.showGenericErrorModal();
+        }
+      );
   }
 }

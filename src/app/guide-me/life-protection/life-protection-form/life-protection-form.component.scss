@@ -24,7 +24,7 @@ app-life-protection-form {
   .page-indicator span {
     width: 11px;
     height: 11px;
-    background-color: #73cece;
+    background-color: $downy-color;
     border-radius: 10px;
     margin-right: 10px;
     display: block;
@@ -33,7 +33,7 @@ app-life-protection-form {
     margin-right: 0px;
   }
   .page-indicator span.active {
-    background-color: #fff;
+    background-color: $white-color;
   }
   #lifeprotectionForm {
     margin: 80px 0px 100px 0px;
@@ -90,9 +90,6 @@ app-life-protection-form {
       }
     }
     .input-control {
-      @include allmobiles() {
-        //width: 51vw !important;
-      }
       input {
         &:disabled {
           cursor: not-allowed;
@@ -104,14 +101,13 @@ app-life-protection-form {
     }
     .dropdown-control {
       .btn-dropdown {
-        color: #00a7a7;
+        color: $teal-color;
         &:active {
           border: 1px solid $half-baked-blue-color;
         }
       }
       border-radius: 6px;
       position: relative;
-      //width: 43vw;
       &:after {
         background-image: url('../../../../assets/images/dropdown-icon.svg');
         width: 16px;
@@ -122,11 +118,10 @@ app-life-protection-form {
         right: 10px;
       }
       position: relative;
-      background: #FFF;
+      background: $white-color;
       cursor: pointer;
       .dropdown-toggle {
         padding: 0.90rem;
-        //padding-right: 0;
         &:disabled {
           cursor: not-allowed;
           &:hover {
@@ -137,7 +132,7 @@ app-life-protection-form {
     }
     .link {
       text-decoration: underline !important;
-        color: #2d8289 !important;
+        color: $dark-teal-color !important;
         display: flex;
         flex-wrap: wrap;
         cursor: pointer;
@@ -145,7 +140,7 @@ app-life-protection-form {
     @include allmobiles {
       .link {
         text-decoration: underline !important;
-        color: #2d8289 !important;
+        color: $dark-teal-color !important;
         display: flex;
         flex-wrap: wrap;
         max-width: 100px;
@@ -155,7 +150,7 @@ app-life-protection-form {
     @include iPadProPortrait {
       .link {
         text-decoration: underline !important;
-        color: #2d8289 !important;
+        color: $dark-teal-color !important;
         display: flex;
         flex-wrap: wrap;
         max-width: 100px;
@@ -165,7 +160,7 @@ app-life-protection-form {
     @include iPadProLandscape {
       .link {
         text-decoration: underline !important;
-        color: #2d8289 !important;
+        color: $dark-teal-color !important;
         display: flex;
         flex-wrap: wrap;
         max-width: 100px;
@@ -191,14 +186,12 @@ app-life-protection-form {
     }
   }
   .education-support {
-    background-color: #2d8289;
+    background-color: $dark-teal-color;
     padding: 0.90rem;
     border-radius: 6px;
     border-top-left-radius: 0;
     border-top-right-radius: 0;
-    //position: relative;
     font-size: 16px;
-    //z-index: 3;
     margin-top: -7px;
     input[type='checkbox']+label {
       background: url("../../../../assets/images/check-box-normal.svg") left top no-repeat;
@@ -221,8 +214,6 @@ app-life-protection-form {
     }
   }
   .education-support-details {
-    //position: relative;
-    //z-index: 3;
     .form-group-with-bg {
       padding: 0.90rem;
       label {
@@ -242,7 +233,7 @@ app-life-protection-form {
         .flex-row {
           margin-bottom: 15px;
         }
-        background: #276f75;
+        background: $pardiso-green-color;
         border-top-left-radius: 0;
         border-top-right-radius: 0;
         position: relative;
@@ -250,7 +241,7 @@ app-life-protection-form {
         .form-group-with-bg--content-label {
           flex-basis: 48vw;
           margin-right: 2vw;
-          color: #ffffff;
+          color: $white-color;
           font-family: "Muli Semi Bold", sans-serif;
           position: relative;
           font-size: 18px;
@@ -262,7 +253,7 @@ app-life-protection-form {
     }
   }
   .btn:disabled:hover {
-    background: #fff !important;
+    background: $white-color !important;
   }
   .dependent-count {
     @extend .align-center;

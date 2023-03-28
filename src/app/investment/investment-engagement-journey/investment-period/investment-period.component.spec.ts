@@ -1,6 +1,5 @@
 import { InvestmentPeriodComponent } from './investment-period.component';
-import { IntroScreenComponent } from '../intro-screen/intro-screen.component';
-import { async, ComponentFixture, TestBed, getTestBed } from '@angular/core/testing';
+import { waitForAsync, ComponentFixture, TestBed, getTestBed } from '@angular/core/testing';
 import { ReactiveFormsModule } from '@angular/forms';
 import { RouterTestingModule } from '@angular/router/testing';
 import { JwtModule } from '@auth0/angular-jwt';
@@ -13,17 +12,10 @@ import {
   INVESTMENT_ENGAGEMENT_JOURNEY_ROUTE_PATHS
 } from '../investment-engagement-journey-routes.constants';
 import { TranslateService } from '@ngx-translate/core';
-import { Injector, NO_ERRORS_SCHEMA } from '@angular/core';
+import { Injector } from '@angular/core';
 import { InvestmentEngagementJourneyService } from '../investment-engagement-journey.service';
-import { AfterViewInit, ChangeDetectorRef, Component, ElementRef, OnInit, ViewChild, ViewEncapsulation } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { NgbDateParserFormatter, NgbDatepickerConfig, NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { NouisliderComponent } from 'ng2-nouislider';
-import { INVESTMENT_ENGAGEMENT_JOURNEY_CONSTANTS } from '../investment-engagement-journey.constants';
-import { IPageComponent } from '../../../shared/interfaces/page-component.interface';
-import { ErrorModalComponent } from '../../../shared/modal/error-modal/error-modal.component';
-import { NgbDateCustomParserFormatter } from '../../../shared/utils/ngb-date-custom-parser-formatter';
-import { ModelWithButtonComponent } from '../../../shared/modal/model-with-button/model-with-button.component';
 import { HttpClientModule } from '@angular/common/http';
 import { SignUpService } from '../../../sign-up/sign-up.service';
 import { DatePipe } from '@angular/common';
@@ -43,7 +35,7 @@ describe('InvestmentPeriodComponent', () => {
   let translations = require('../../../../assets/i18n/investment-engagement-journey/en.json');
 
 
-  beforeEach(async(() => {
+  beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
       declarations: [InvestmentPeriodComponent, NouisliderComponent],
       imports: [TranslateModule.forRoot(), RouterTestingModule.withRoutes([]),

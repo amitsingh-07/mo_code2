@@ -1,0 +1,24 @@
+<div class="upload-document-modal-block">
+  <div class="modal-body upload-document-body">
+    <div class="close-icon" (click)="activeModal.dismiss('Cross click')">
+      <img src="assets/images/rectangle.svg" />
+    </div>
+    <div class="choose-action-txt">
+      {{'CAMERA_UPLOAD.TITLE' | translate}}
+    </div>
+    <div class="mobile-upload-menu">
+      <div class="camera_content">
+        <div class="mobile-upload-menu-item" (click)="uploadFile(UPLOAD_OPTION.CAMERA)">
+          <img src="assets/images/photo_camera.svg" alt="" />
+        </div>
+        <div class="label">{{'CAMERA_UPLOAD.CAMERA_LABEL' | translate}}</div>
+      </div>
+      <div class="browse_content">
+        <div class="mobile-upload-menu-item" (click)="uploadFile(UPLOAD_OPTION.BROWSE)">
+          <img src="assets/images/folder_copy.svg" alt="" />
+        </div>
+        <div class="label">{{'CAMERA_UPLOAD.FILES_LABEL' | translate}}</div>
+      </div>
+    </div>
+  </div>
+</div>

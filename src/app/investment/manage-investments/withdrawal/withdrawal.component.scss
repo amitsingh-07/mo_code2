@@ -1,5 +1,6 @@
 @import '../../../../variables';
 @import '../../../../mixins';
+
 app-withdrawal {
   .joint_account {
     background-color: $white-color;
@@ -26,15 +27,20 @@ app-withdrawal {
     .joint_account-note {
       font-family: $muli-italic;
       font-size: 13px;
-      @include iphoneX; @include iphone6 {
+      @include iphoneX;
+
+      @include iphone6 {
         font-size: 12.5px;
       }
+
       line-height: normal;
       letter-spacing: -0.14px;
       color: $dark-grey-color;
+
       strong {
         font-family: $muli-bold-italic;
       }
+
       a {
         font-family: $muli-bold-italic;
         color: $crusta-orange-color;
@@ -42,6 +48,7 @@ app-withdrawal {
       }
     }
   }
+
   h2 {
     font-size: 30px !important;
     margin-bottom: 15px;
@@ -60,13 +67,13 @@ app-withdrawal {
     padding: 21px 0 105px;
 
     a {
-      color: #a7f3f1;
+      color: $top-up-faq-link-color;
     }
   }
 
   .withdraw {
     .dropdown-control .btn-dropdown {
-      padding-right: 26px !important;
+      padding-right: 27px !important;
     }
 
     .dropdown-control .dropdown-menu.show {
@@ -76,12 +83,14 @@ app-withdrawal {
 
     .dropdown-item {
       white-space: normal;
+
       &:disabled {
-          font-size: 16px;
-          letter-spacing: -0.16px;
-          color: $dusty-grey-color;
-          cursor: not-allowed !important;
-        }
+        font-size: 16px;
+        letter-spacing: -0.16px;
+        color: $dusty-grey-color;
+        cursor: not-allowed !important;
+      }
+
       &.hide {
         display: none;
       }
@@ -129,7 +138,7 @@ app-withdrawal {
 
       span {
         font-family: $muli-italic;
-        color: #fff;
+        color: $white-color;
         font-size: 16px;
         line-height: 21px;
       }
@@ -144,6 +153,7 @@ app-withdrawal {
 
   .capital-letter {
     text-transform: capitalize;
+
     .joint-account-img {
       width: 20px;
       height: 16px;
@@ -162,13 +172,14 @@ app-withdrawal {
 
   .checkbox-button {
     input[type="checkbox"] {
+
       &:disabled,
-      &:disabled + label {
+      &:disabled+label {
         cursor: not-allowed;
       }
     }
 
-    input[type="checkbox"] + label {
+    input[type="checkbox"]+label {
       background-size: 20px;
       padding-left: 30px;
     }
@@ -191,6 +202,7 @@ app-withdrawal {
         -webkit-text-fill-color: $form-control-disabled-txt-color !important;
         background: $form-control-disabled-bg-color2 !important;
         cursor: not-allowed;
+        opacity: 1!important;
 
         &:-internal-autofill-selected {
           box-shadow: inset 0 0 0px 9999px $form-control-disabled-bg-color2 !important;
@@ -200,15 +212,12 @@ app-withdrawal {
     }
 
     .input-control {
-      &#withdraw-type-srs {
+      &#withdraw-type-srs, &#withdraw-type-cpf  {
         color: $teal-color !important;
         -webkit-text-fill-color: $teal-color !important;
         text-align: left !important;
-      }
-      &#withdraw-type-cpf {
-        color: $teal-color !important;
-        -webkit-text-fill-color: $teal-color !important;
-        text-align: left !important;
+        opacity: 1!important;
+        padding-left: 0px!important;
       }
     }
   }

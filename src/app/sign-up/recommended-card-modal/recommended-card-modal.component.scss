@@ -72,8 +72,9 @@ app-recommended-card-modal {
             list-style: disc;
           }
         }
-        & > {
-          :last-child{
+
+        &> {
+          :last-child {
             padding-bottom: 0;
             margin-bottom: 0;
           }

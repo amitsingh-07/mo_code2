@@ -21,11 +21,9 @@ export class HelperService {
   addContentTypeHeader = true;
 
   showLoader() {
-    // this.loadingModalRef = this.modalService.open(LoaderComponent);
   }
 
   hideLoader() {
-    // this.loadingModalRef.close();
     this.loaderService.hideLoader();
   }
 
@@ -69,7 +67,7 @@ export class HelperService {
     } else {
       message = error.message;
     }
-    this.loadingModalRef = this.modal.open(ErrorModalComponent, { centered: true });
+    this.loadingModalRef = title ? this.modal.open(ErrorModalComponent, { centered: true }) : this.modal.open(ErrorModalComponent, { centered: true, windowClass: 'no-title' });
     this.loadingModalRef.componentInstance.errorTitle = title;
     this.loadingModalRef.componentInstance.errorMessage = message;
   }

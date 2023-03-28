@@ -15,88 +15,92 @@
           <span>{{'FOOTER.TOP_SECTION.LIVE_CHAT.TITLE' | translate}}</span>
         </div>
       </ng-template>
-      </div>
-    </div> 
-  <div class="footer__group tertiary">
-      <div class="footer__group--inner">
-        <div class="footer-address">
-          <div class="footer-address__header">
-            <a href="{{'FOOTER.MIDDLE_SECTION.ADDRESS.LINK' | translate}}" target="_blank">
-              {{'FOOTER.MIDDLE_SECTION.ADDRESS.LABEL' | translate}}
-              </a>
-          </div>
-          <div class="footer-address__body">
-              <p>
-                <span>{{'FOOTER.MIDDLE_SECTION.CONTACT_US.MAIN_GENERAL.LABEL' | translate}}:</span>
-                <a href="callto:{{'FOOTER.MIDDLE_SECTION.CONTACT_US.MAIN_GENERAL.LINK' | translate}}">
-                  {{'FOOTER.MIDDLE_SECTION.CONTACT_US.MAIN_GENERAL.LINK_LABEL' | translate}}
-                  </a>
-                </p>
-              <p>
-                <span>{{'FOOTER.MIDDLE_SECTION.CONTACT_US.EMAIL.LABEL' | translate}}:</span>
-                <a href="mailto:{{'FOOTER.MIDDLE_SECTION.CONTACT_US.EMAIL.LINK' | translate}}" target="_top">
-                  {{'FOOTER.MIDDLE_SECTION.CONTACT_US.EMAIL.LINK_LABEL' | translate}}
-                  </a>
-                </p>
-              <p class="corporate-link--section">
-                <span>{{'FOOTER.MIDDLE_SECTION.CONTACT_US.CORPORATE.LABEL' | translate}}:</span>
-                <a href="mailto:{{'FOOTER.MIDDLE_SECTION.CONTACT_US.CORPORATE.LINK' | translate}}" target="_top">
-                  {{'FOOTER.MIDDLE_SECTION.CONTACT_US.CORPORATE.LINK_LABEL' | translate}} 
-                </a> 
-                </p>
-              <p style="margin-top: 25px;">
-                <span>{{'FOOTER.MIDDLE_SECTION.OPERATING_HOURS.LABEL' | translate}}:</span><br>
-                <span class="reg-font" innerHTML="{{'FOOTER.MIDDLE_SECTION.OPERATING_HOURS.CONTENT_WEEKDAY' | translate}}"></span><br>
-                <span class="italic-font" innerHTML="{{'FOOTER.MIDDLE_SECTION.OPERATING_HOURS.CONTENT_WEEKDAY_SUBTEXT' | translate}}"></span><br>
-                <span class="reg-font" innerHTML="{{'FOOTER.MIDDLE_SECTION.OPERATING_HOURS.CONTENT_WEEKEND' | translate}}"></span><br>
-                <span class="italic-font" innerHTML="{{'FOOTER.MIDDLE_SECTION.OPERATING_HOURS.CONTENT_WEEKEND_SUBTEXT' | translate}}"></span><br>
-              </p>
-              <p class="italic-font">{{'FOOTER.MIDDLE_SECTION.OPERATING_HOURS.EXCEPTION' | translate}}</p>
-            </div>
-          </div>
-        <div class="footer-social__container">
-            <div class="footer-social">
-                <a class="social-btn" target="_blank" href="https://www.facebook.com/moneyowlsg/">
-                  <span class="icon facebook-icon"></span>
-                  <span>Facebook</span>
-                  </a>
-                <a class="social-btn" target="_blank" href="https://www.linkedin.com/company/moneyowlsg">
-                  <span class="icon linkedin-icon"></span>
-                  <span>LinkedIn</span>
-                  </a>
-              </div>
-            <div class="footer-social">
-              <a class="social-btn" target="_blank" href="https://www.instagram.com/moneyowl_sg/">
-                  <span class="icon instagram-icon"></span>
-                  <span>Instagram</span>
-                </a>
-                <a class="social-btn" target="_blank" href="https://www.youtube.com/channel/UCEn8Gu0UbxJo0jIXtoO4BRA">
-                  <span class="icon youtube-icon"></span>
-                  <span>YouTube</span>
-                </a>  
-              </div>
-            <div *ngIf="isMaintenanceEnabled" class="footer-maintenance">
-              <p>{{'FOOTER.MIDDLE_SECTION.MAINTENANCE.MSG1' | translate }}</p>
-              <p>{{'FOOTER.MIDDLE_SECTION.MAINTENANCE.MSG2' | translate }}</p> 
-              </div>
-          </div> 
-        </div>
     </div>
+  </div>
+  <div class="footer__group tertiary">
+    <div class="footer__group--inner">
+      <div class="footer-address">
+        <div class="footer-address__header">
+          <a href="{{'FOOTER.MIDDLE_SECTION.ADDRESS.LINK' | translate}}" target="_blank">
+            {{'FOOTER.MIDDLE_SECTION.ADDRESS.LABEL' | translate}}
+          </a>
+        </div>
+        <div class="footer-address__body">
+          <p>
+            <span>{{'FOOTER.MIDDLE_SECTION.CONTACT_US.MAIN_GENERAL.LABEL' | translate}}:</span>
+            <a href="callto:{{'FOOTER.MIDDLE_SECTION.CONTACT_US.MAIN_GENERAL.LINK' | translate}}">
+              {{'FOOTER.MIDDLE_SECTION.CONTACT_US.MAIN_GENERAL.LINK_LABEL' | translate}}
+            </a>
+          </p>
+          <p>
+            <span>{{'FOOTER.MIDDLE_SECTION.CONTACT_US.EMAIL.LABEL' | translate}}:</span>
+            <a href="mailto:{{'FOOTER.MIDDLE_SECTION.CONTACT_US.EMAIL.LINK' | translate}}" target="_top">
+              {{'FOOTER.MIDDLE_SECTION.CONTACT_US.EMAIL.LINK_LABEL' | translate}}
+            </a>
+          </p>
+          <p class="corporate-link--section">
+            <span>{{'FOOTER.MIDDLE_SECTION.CONTACT_US.CORPORATE.LABEL' | translate}}:</span>
+            <a href="mailto:{{'FOOTER.MIDDLE_SECTION.CONTACT_US.CORPORATE.LINK' | translate}}" target="_top">
+              {{'FOOTER.MIDDLE_SECTION.CONTACT_US.CORPORATE.LINK_LABEL' | translate}}
+            </a>
+          </p>
+          <p style="margin-top: 25px;">
+            <span>{{'FOOTER.MIDDLE_SECTION.OPERATING_HOURS.LABEL' | translate}}:</span><br>
+            <span class="reg-font"
+              innerHTML="{{'FOOTER.MIDDLE_SECTION.OPERATING_HOURS.CONTENT_WEEKDAY' | translate}}"></span><br>
+            <span class="italic-font"
+              innerHTML="{{'FOOTER.MIDDLE_SECTION.OPERATING_HOURS.CONTENT_WEEKDAY_SUBTEXT' | translate}}"></span><br>
+            <span class="reg-font"
+              innerHTML="{{'FOOTER.MIDDLE_SECTION.OPERATING_HOURS.CONTENT_WEEKEND' | translate}}"></span><br>
+            <span class="italic-font"
+              innerHTML="{{'FOOTER.MIDDLE_SECTION.OPERATING_HOURS.CONTENT_WEEKEND_SUBTEXT' | translate}}"></span><br>
+          </p>
+          <p class="italic-font">{{'FOOTER.MIDDLE_SECTION.OPERATING_HOURS.EXCEPTION' | translate}}</p>
+        </div>
+      </div>
+      <div class="footer-social__container">
+        <div class="footer-social">
+          <a class="social-btn" target="_blank" href="https://www.facebook.com/moneyowlsg/">
+            <span class="icon facebook-icon"></span>
+            <span>Facebook</span>
+          </a>
+          <a class="social-btn" target="_blank" href="https://www.linkedin.com/company/moneyowlsg">
+            <span class="icon linkedin-icon"></span>
+            <span>LinkedIn</span>
+          </a>
+        </div>
+        <div class="footer-social">
+          <a class="social-btn" target="_blank" href="https://www.instagram.com/moneyowl_sg/">
+            <span class="icon instagram-icon"></span>
+            <span>Instagram</span>
+          </a>
+          <a class="social-btn" target="_blank" href="https://www.youtube.com/channel/UCEn8Gu0UbxJo0jIXtoO4BRA">
+            <span class="icon youtube-icon"></span>
+            <span>YouTube</span>
+          </a>
+        </div>
+        <div *ngIf="isMaintenanceEnabled" class="footer-maintenance">
+          <p>{{'FOOTER.MIDDLE_SECTION.MAINTENANCE.MSG1' | translate }}</p>
+          <p>{{'FOOTER.MIDDLE_SECTION.MAINTENANCE.MSG2' | translate }}</p>
+        </div>
+      </div>
+    </div>
+  </div>
   <div class="footer__group quaternary">
     <div class="footer__group--inner">
       <div class="footer-copyright">
         <span>{{'FOOTER.BOTTOM_SECTION.CITATION' | translate}}</span>
         <span>
           <ng-container *ngIf="showFooterItems">
-            <a routerLink="/terms-of-use">{{'FOOTER.BOTTOM_SECTION.LEGAL.TERMS_OF_USE.LABEL' | translate}}</a> | 
-            <a routerLink="/privacy-policy">{{'FOOTER.BOTTOM_SECTION.LEGAL.PRIVACY_POLICY.LABEL' | translate}}</a> | 
-            <a routerLink="/security-policy">{{'FOOTER.BOTTOM_SECTION.LEGAL.SECURITY_POLICY.LABEL' | translate}}</a> | 
-            <a routerLink="/disclosures">{{'FOOTER.BOTTOM_SECTION.LEGAL.DISCLOSURE.LABEL' | translate}}</a> | 
+            <a routerLink="/terms-of-use">{{'FOOTER.BOTTOM_SECTION.LEGAL.TERMS_OF_USE.LABEL' | translate}}</a> |
+            <a routerLink="/privacy-policy">{{'FOOTER.BOTTOM_SECTION.LEGAL.PRIVACY_POLICY.LABEL' | translate}}</a> |
+            <a routerLink="/security-policy">{{'FOOTER.BOTTOM_SECTION.LEGAL.SECURITY_POLICY.LABEL' | translate}}</a> |
+            <a routerLink="/disclosures">{{'FOOTER.BOTTOM_SECTION.LEGAL.DISCLOSURE.LABEL' | translate}}</a> |
             <a routerLink="/fair-dealing">{{'FOOTER.BOTTOM_SECTION.LEGAL.FAIR_DEALING.LABEL' | translate}}</a> |
           </ng-container>
-          {{copyrightYear}} {{'FOOTER.BOTTOM_SECTION.ALL_RIGHTS_RESERVED' | translate}}      
+          {{copyrightYear}} {{'FOOTER.BOTTOM_SECTION.ALL_RIGHTS_RESERVED' | translate}}
         </span>
       </div>
-      </div>
+    </div>
   </div>
 </footer>

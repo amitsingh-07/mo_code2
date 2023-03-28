@@ -3,6 +3,7 @@ import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms'
 import { Router } from '@angular/router';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { TranslateService } from '@ngx-translate/core';
+import { CapacitorUtils } from '../../../shared/utils/capacitor.util';
 
 import { LoaderService } from '../../../shared/components/loader/loader.service';
 import { FooterService } from '../../../shared/footer/footer.service';
@@ -10,7 +11,6 @@ import { ErrorModalComponent } from '../../../shared/modal/error-modal/error-mod
 import { NavbarService } from '../../../shared/navbar/navbar.service';
 import { RegexConstants } from '../../../shared/utils/api.regex.constants';
 import { SIGN_UP_CONFIG } from '../../../sign-up/sign-up.constant';
-import { InvestmentAccountCommon } from '../../investment-account/investment-account-common';
 import {
   INVESTMENT_ACCOUNT_ROUTE_PATHS
 } from '../../investment-account/investment-account-routes.constants';
@@ -91,7 +91,7 @@ export class AddPortfolioNameComponent implements OnInit, OnDestroy {
     this.footerService.setFooterVisibility(false);
     this.formValues = this.investmentAccountService.getInvestmentAccountFormData();
     this.fundingMethod = this.investmentCommonService.getConfirmedFundingMethodName();
-    if(this.formValues.recommendedRiskProfileId == 7 || this.formValues.recommendedRiskProfileId == 9) {
+    if (this.formValues.recommendedRiskProfileId == 7 || this.formValues.recommendedRiskProfileId == 9) {
       this.riskProfileIcon = ProfileIcons[this.formValues.recommendedRiskProfileId - 1]['icon'];
     } else {
       this.riskProfileIcon = this.investmentEngagementService.getRiskProfileIcon(this.formValues.recommendedRiskProfileId.type, false);
@@ -104,14 +104,14 @@ export class AddPortfolioNameComponent implements OnInit, OnDestroy {
   submitForm() {
     if (this.form.valid) {
       this.isCpfEnabled = this.investmentCommonService.getInvestmentCommonFormData().portfolioDetails.fundingTypeValue === INVESTMENT_COMMON_CONSTANTS.FUNDING_METHODS.CPF_OA;
-      if(this.isCpfEnabled) {
+      if (this.isCpfEnabled) {
         this.investmentCommonService.getCKAAssessmentStatus().subscribe((res) => {
-          if((res.responseMessage.responseCode === 6000)) {
+          if ((res.responseMessage.responseCode === 6000)) {
             this.cpfStatus = (res.objectList && res.objectList.cKAStatusMessage) ? res.objectList.cKAStatusMessage : '';
-            if (this.cpfStatus  === INVESTMENT_COMMON_CONSTANTS.CKA.CKA_BE_CERTIFICATE_UPLOADED || this.cpfStatus  === INVESTMENT_COMMON_CONSTANTS.CKA.CKA_PASSED_STATUS) {
+            if (this.cpfStatus === INVESTMENT_COMMON_CONSTANTS.CKA.CKA_BE_CERTIFICATE_UPLOADED || this.cpfStatus === INVESTMENT_COMMON_CONSTANTS.CKA.CKA_PASSED_STATUS) {
               this.continueIfastAccCreation();
             } else {
-              this.clearData();              
+              this.clearData();
               this.router.navigate([SIGN_UP_ROUTE_PATHS.DASHBOARD]);
             }
           }
@@ -202,7 +202,7 @@ export class AddPortfolioNameComponent implements OnInit, OnDestroy {
       autoHide: false
     });
     const param = this.constructUpdatePortfolioAccountStatusParams();
-        
+
     this.investmentCommonService.updatePortfolioStatus(param).subscribe((response) => {
       this.loaderService.hideLoaderForced();
       if (response.responseMessage.responseCode === 6000) {
@@ -237,7 +237,7 @@ export class AddPortfolioNameComponent implements OnInit, OnDestroy {
       } else if (this.investmentCommonService.isUsersFirstPortfolio(data)) { /* FIRST TIME PORTFOLIO */
         this.verifyAML();
       } else { /* SUBSEQUENT PORTFOLIO */
-        if(this.isCpfEnabled && this.cpfStatus === INVESTMENT_COMMON_CONSTANTS.CKA.CKA_BE_CERTIFICATE_UPLOADED) {
+        if (this.isCpfEnabled && this.cpfStatus === INVESTMENT_COMMON_CONSTANTS.CKA.CKA_BE_CERTIFICATE_UPLOADED) {
           this.updatePortfolioAccountStatus();
         } else {
           this.isSubsequentPortfolio = true;
@@ -291,7 +291,7 @@ export class AddPortfolioNameComponent implements OnInit, OnDestroy {
             response.objectList.status.toUpperCase() === INVESTMENT_ACCOUNT_CONSTANTS.status.aml_cleared.toUpperCase() &&
             !pepData
           ) {
-            if(this.isCpfEnabled && this.cpfStatus === INVESTMENT_COMMON_CONSTANTS.CKA.CKA_BE_CERTIFICATE_UPLOADED) {
+            if (this.isCpfEnabled && this.cpfStatus === INVESTMENT_COMMON_CONSTANTS.CKA.CKA_BE_CERTIFICATE_UPLOADED) {
               this.updatePortfolioAccountStatus();
             } else {
               this.createInvestmentAccount(false);
@@ -483,5 +483,13 @@ export class AddPortfolioNameComponent implements OnInit, OnDestroy {
 
   checkIfJointAccount() {
     return this.userPortfolioType === INVESTMENT_ENGAGEMENT_JOURNEY_CONSTANTS.PORTFOLIO_TYPE.JOINT_ACCOUNT_ID;
+  }
+
+  isAndroidDevice() {
+    if (CapacitorUtils.isApp && CapacitorUtils.isAndroidDevice) {
+      return true;
+    } else {
+      return false;
+    }
   }
 }

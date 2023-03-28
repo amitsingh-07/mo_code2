@@ -49,8 +49,8 @@ export class ForgotPasswordResultComponent implements OnInit {
   redirectToLogin() {
     if (this.signUpService.getUserType() === appConstants.USERTYPE.FINLIT) {
       this.router.navigate([SIGN_UP_ROUTE_PATHS.FINLIT_LOGIN]);
-    } else if(this.organisationEnabled) {
-      this.router.navigate([SIGN_UP_ROUTE_PATHS.CORPORATE_LOGIN], { queryParams: {orgID: this.appService.getCorporateDetails().uuid}});
+    } else if (this.organisationEnabled) {
+      this.router.navigate([SIGN_UP_ROUTE_PATHS.CORPORATE_LOGIN], { queryParams: { orgID: this.appService.getCorporateDetails().uuid } });
     } else {
       this.router.navigate([SIGN_UP_ROUTE_PATHS.LOGIN]);
     }

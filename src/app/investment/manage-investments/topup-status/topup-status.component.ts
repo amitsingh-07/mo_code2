@@ -113,7 +113,7 @@ export class TopupStatusComponent implements OnInit, OnDestroy {
       (this.fundDetails.fundingType ===
         MANAGE_INVESTMENTS_CONSTANTS.FUNDING_INSTRUCTIONS.ONETIME ||
         this.fundDetails.fundingType ===
-          MANAGE_INVESTMENTS_CONSTANTS.FUNDING_INSTRUCTIONS.MONTHLY) &&
+        MANAGE_INVESTMENTS_CONSTANTS.FUNDING_INSTRUCTIONS.MONTHLY) &&
       !this.fundDetails.isAmountExceedBalance
     );
   }
@@ -123,9 +123,9 @@ export class TopupStatusComponent implements OnInit, OnDestroy {
     this.manageInvestmentsService.getTransferDetails(customerPortfolioId).subscribe((data) => {
       this.setBankPayNowDetails(data.objectList);
     },
-    (err) => {
-      this.investmentAccountService.showGenericErrorModal();
-    });
+      (err) => {
+        this.investmentAccountService.showGenericErrorModal();
+      });
   }
 
   setBankPayNowDetails(data) {

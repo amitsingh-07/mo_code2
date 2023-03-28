@@ -73,7 +73,7 @@ export class FundingAccountDetailsComponent implements OnInit {
     public investmentAccountService: InvestmentAccountService,
     public manageInvestmentsService: ManageInvestmentsService,
     public loaderService: LoaderService,
-    public authService : AuthenticationService
+    public authService: AuthenticationService
   ) {
     this.navigationType = this.investmentCommonService.setNavigationType(this.router.url, INVESTMENT_COMMON_ROUTES.EDIT_FUNDING_ACCOUNT_DETAILS,
       INVESTMENT_ENGAGEMENT_JOURNEY_CONSTANTS.NAVIGATION_TYPE.EDIT);
@@ -266,7 +266,9 @@ export class FundingAccountDetailsComponent implements OnInit {
   saveSRSAccountDetails(form) {
     const params = this.constructSaveSrsAccountParams(form.value);
     const customerPortfolioId = this.investmentAccountFormValues.recommendedCustomerPortfolioId;
+    this.showLoader();
     this.investmentCommonService.saveSrsAccountDetails(params, customerPortfolioId).subscribe((data) => {
+      this.loaderService.hideLoaderForced();
       if (!Util.isEmptyOrNull(this.navigationType)) {
         this.router.navigate([INVESTMENT_COMMON_ROUTE_PATHS.PORTFOLIO_SUMMARY]);
       } else {
@@ -274,7 +276,7 @@ export class FundingAccountDetailsComponent implements OnInit {
       }
     },
       (err) => {
-        this.investmentAccountService.showGenericErrorModal();
+        this.loaderService.hideLoaderForced();
       });
   }
 
@@ -317,7 +319,7 @@ export class FundingAccountDetailsComponent implements OnInit {
     if (this.fundingAccountDetailsForm.get('srsFundingDetails').get('srsOperatorBank').value) {
       const accNo = this.fundingAccountDetailsForm.get('srsFundingDetails').get('srsAccountNumber').value;
       if (accNo) {
-        if(accNo.indexOf('*') >= 0) {
+        if (accNo.indexOf('*') >= 0) {
           return accNo.replace(/\-/g, '').length;
         }
         return accNo.match(/\d/g).join('').length;
@@ -514,7 +516,7 @@ export class FundingAccountDetailsComponent implements OnInit {
     if (this.fundingAccountDetailsForm.get('cpfIADetails').get('cpfOperatorBank').value) {
       const accNo = this.fundingAccountDetailsForm.get('cpfIADetails').get('cpfAccountNumber').value;
       if (accNo) {
-        if(accNo.indexOf('*') >= 0) {
+        if (accNo.indexOf('*') >= 0) {
           return accNo.replace(/\-/g, '').length;
         }
         return accNo.match(/\d/g).join('').length;
@@ -558,12 +560,11 @@ export class FundingAccountDetailsComponent implements OnInit {
     this.showLoader();
     this.investmentCommonService.saveCKABankAccount(params).subscribe((data) => {
       this.loaderService.hideLoaderForced();
-      if (data && data.objectList) {
-        this.router.navigate([INVESTMENT_COMMON_ROUTE_PATHS.ADD_PORTFOLIO_NAME]);
-      }
+        if (data && data.objectList) {
+          this.router.navigate([INVESTMENT_COMMON_ROUTE_PATHS.ADD_PORTFOLIO_NAME]);
+        }     
     }, () => {
       this.loaderService.hideLoaderForced();
-      this.investmentAccountService.showGenericErrorModal();
     });
   }
 
@@ -584,12 +585,12 @@ export class FundingAccountDetailsComponent implements OnInit {
   }
 
   shpwCPFModal() {
-    const ref = this.modal.open(ModelWithButtonComponent, { centered: true, windowClass: 'custom-cka-modal' });
+    const ref = this.modal.open(ModelWithButtonComponent, { centered: true, windowClass: 'custom-cpfia-modal' });
     ref.componentInstance.errorTitle = this.translate.instant(
       'CONFIRM_ACCOUNT_DETAILS.CPF_TOOLTIP.TITLE'
     );
-    ref.componentInstance.errorMessage = this.organisationEnabled ? this.translate.instant('CONFIRM_ACCOUNT_DETAILS.CPF_TOOLTIP.CORP_DESC') : 
-    this.translate.instant('CONFIRM_ACCOUNT_DETAILS.CPF_TOOLTIP.DESC');
+    ref.componentInstance.errorMessage = this.organisationEnabled ? this.translate.instant('CONFIRM_ACCOUNT_DETAILS.CPF_TOOLTIP.CORP_DESC') :
+      this.translate.instant('CONFIRM_ACCOUNT_DETAILS.CPF_TOOLTIP.DESC');
     ref.componentInstance.primaryActionLabel = this.translate.instant(
       'CONFIRM_ACCOUNT_DETAILS.CPF_TOOLTIP.BTN'
     );

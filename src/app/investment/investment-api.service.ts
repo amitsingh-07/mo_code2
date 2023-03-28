@@ -9,7 +9,6 @@ import { BaseService } from '../shared/http/base.service';
 import { IServerResponse } from '../shared/http/interfaces/server-response.interface';
 import { environment } from './../../environments/environment';
 
-const newLocal = 'EnquiryId';
 
 @Injectable({
   providedIn: 'root'
@@ -204,8 +203,8 @@ export class InvestmentApiService {
       );
   }
 
-  getCKADocument(documentType) {
-    return this.http.getBlobStream(investmentApiConstants.endpoint.investment.getCKADocument.replace('$DOCUMENT_TYPE$', documentType))
+  getCKADocument(data) {
+    return this.http.post(investmentApiConstants.endpoint.investment.getCKADocument, data)
       .pipe(
         catchError((error: HttpErrorResponse) => this.handleError(error))
       );
@@ -346,7 +345,7 @@ export class InvestmentApiService {
 
   downloadStatement(data, customerPortfolioId) {
     const url = investmentApiConstants.endpoint.investment.getStatement.replace('$CUSTOMER_PORTFOLIO_ID$', customerPortfolioId);
-    return this.http.getBlob(url + data)
+    return this.http.getBase64String(url + data)
       .pipe(
         catchError((error: HttpErrorResponse) => this.handleError(error))
       );

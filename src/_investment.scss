@@ -295,7 +295,7 @@
             background-position: right top;
             background-attachment: scroll;
             background-repeat: no-repeat;
-            background-color: #00c2c0;
+            background-color: $robins-blue-color;
             background-size: 230px 150px;
             position: absolute;
             top: 0;
@@ -357,16 +357,14 @@
   }
   
   .toast-msg-container {
-    color: #e57300;
-    background: #fff;
+    color: $mango-tango-color;
+    background: $white-color;
     padding: 20px;
-    background-color: #fff1e3;
-    // border-top: 1px solid #dfdfdf;
-    font-family: "Muli Bold", sans-serif;
+    background-color: $serenade-color;
+    font-family: $muli-bold;
     font-size: 15px;
     line-height: 19px;
     display: flex;
-    //justify-content: space-between;
     align-items: center;
     border-radius: 6px;
     width: 370px;
@@ -390,7 +388,7 @@
     }
 
     .flex-col-3 {
-      color: #00a7a7;
+      color: $teal-color;
       text-align: right;
     }
   }
@@ -420,11 +418,11 @@
   }
 
   .toast-msg-container {
-    color: #e57300;
-    background: #fff;
+    color: $mango-tango-color;
+    background: $white-color;
     padding: 19px;
-    background-color: #fff1e3;
-    font-family: "Muli Bold", sans-serif;
+    background-color: $serenade-color;
+    font-family: $muli-bold;
     font-size: 15px;
     line-height: 19px;
     display: flex;

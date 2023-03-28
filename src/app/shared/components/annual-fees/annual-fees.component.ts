@@ -1,8 +1,8 @@
 import { Component, Input, OnInit, ViewEncapsulation, OnChanges } from '@angular/core';
-import { ConfigService, IConfig } from './../../../config/config.service';
-import { INVESTMENT_COMMON_CONSTANTS } from '../../../investment/investment-common/investment-common.constants';
 import { TranslateService } from '@ngx-translate/core';
 
+import { ConfigService, IConfig } from './../../../config/config.service';
+import { INVESTMENT_COMMON_CONSTANTS } from '../../../investment/investment-common/investment-common.constants';
 @Component({
   selector: 'app-annual-fees',
   templateUrl: './annual-fees.component.html',
@@ -28,14 +28,14 @@ export class AnnualFeesComponent implements OnInit, OnChanges {
 
   ngOnInit() {
     this.portfolioTypeFlag = (this.portfolioType.toUpperCase() === INVESTMENT_COMMON_CONSTANTS.WISESAVER_ASSET_ALLOCATION.TYPE);
-    this.wiseIncomeEnabled =  (this.portfolioType.toLowerCase() === INVESTMENT_COMMON_CONSTANTS.PORTFOLIO_CATEGORY.WISEINCOME.toLowerCase());
-    this.cpfEnabled =  (this.portfolioType.toLowerCase() === INVESTMENT_COMMON_CONSTANTS.PORTFOLIO_CATEGORY.CPF.toLowerCase());
+    this.wiseIncomeEnabled = (this.portfolioType.toLowerCase() === INVESTMENT_COMMON_CONSTANTS.PORTFOLIO_CATEGORY.WISEINCOME.toLowerCase());
+    this.cpfEnabled = (this.portfolioType.toLowerCase() === INVESTMENT_COMMON_CONSTANTS.PORTFOLIO_CATEGORY.CPF.toLowerCase());
   }
   ngOnChanges() {
     this.feeDetailsValues = [];
     this.feeDetails.forEach(fee => {
       if (fee.feeName !== this.translate.instant('PORTFOLIO_RECOMMENDATION.FUND_EXPENSIVE_RATIO')
-            && fee.feeName !== this.translate.instant('PORTFOLIO_RECOMMENDATION.TOTAL_FEE')) {
+        && fee.feeName !== this.translate.instant('PORTFOLIO_RECOMMENDATION.TOTAL_FEE')) {
         this.feeDetailsValues.push(fee);
         return this.feeDetailsValues;
       } else if (fee.feeName === this.translate.instant('PORTFOLIO_RECOMMENDATION.FUND_EXPENSIVE_RATIO')) {

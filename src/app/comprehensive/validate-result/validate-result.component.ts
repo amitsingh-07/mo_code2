@@ -2,7 +2,6 @@ import { Component, OnDestroy, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { TranslateService } from '@ngx-translate/core';
 import { Subscription } from 'rxjs';
-
 import { ConfigService } from '../../config/config.service';
 import { LoaderService } from '../../shared/components/loader/loader.service';
 import { ProgressTrackerService } from '../../shared/modal/progress-tracker/progress-tracker.service';
@@ -20,6 +19,7 @@ import { ComprehensiveService } from '../comprehensive.service';
 export class ValidateResultComponent implements OnInit, OnDestroy {
   pageId: string;
   pageTitle: string;
+  loaderTitle: string;
   menuClickSubscription: Subscription;
   subscription: Subscription;
   constructor(
@@ -37,6 +37,7 @@ export class ValidateResultComponent implements OnInit, OnDestroy {
       this.translate.get(config.common).subscribe((result: string) => {
         // meta tag and title
         this.pageTitle = this.translate.instant('CMP.VALIDATE_RESULT.TITLE');
+        this.loaderTitle = this.translate.instant('COMMON_LOADER.TITLE');
         this.setPageTitle(this.pageTitle);
       });
     });
@@ -68,10 +69,10 @@ export class ValidateResultComponent implements OnInit, OnDestroy {
         const stepCheck = this.comprehensiveService.checkStepValidation(stepCalculated);
         if (stepCheck.status) {
           if (currentStep === 5) {
-            this.loaderService.showLoader({ title: 'Loading', autoHide: false });
+            this.loaderService.showLoader({ title: this.loaderTitle, autoHide: false });
             this.initiateReport();
           } else {
-            this.loaderService.showLoader({ title: 'Loading', autoHide: false });
+            this.loaderService.showLoader({ title: this.loaderTitle, autoHide: false });
             const stepIndicatorData = {
               enquiryId: this.comprehensiveService.getEnquiryId(), stepCompleted: stepCalculated,
               subStepCompleted: 0

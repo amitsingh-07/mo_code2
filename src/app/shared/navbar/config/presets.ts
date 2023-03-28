@@ -1,4 +1,4 @@
-import { INavbarConfig } from './navbar.config.interface';
+
 
 export class NavbarConfig {
   'default': object = {

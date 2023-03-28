@@ -1,4 +1,4 @@
-import { isDebugMode } from '../app/shared/logger/console-logger.service';
+
 import { IEnvironment } from './environment.interface';
 
 // This file can be replaced during build by using the `fileReplacements` array.
@@ -10,10 +10,10 @@ export const environment: IEnvironment = {
   isDebugMode: true,
   apiBaseUrl: 'https://bfa-dev2.ntucbfa.cloud',
   myInfoClientId: {
-    invest:'STG-201820691C-MONEYOWL-BFA',
-    signup: 'STG-201820691C-MONEYOWL-BFA',
-    cfp: 'STG-201820691C-MONEYOWL-BFA',
-    corpbiz:'STG-201820691C-MONEYOWL-BFA',
+    invest:'STG-201820691C-MONEYOWL-CPACCT',
+    signup: 'STG-201820691C-MONEYOWL-BFA',    
+    cfp: 'STG-201820691C-MONEYOWL-FPREPORT',
+    corpbiz:'STG-201820691C-MONEYOWL-CPACCT-FPREPORT',
     linkSingpass: 'STG-201820691C-MONEYOWL-BFA',
     insurance: 'STG-201820691C-MONEYOWL-INSURANCEANALYSIS'
   },
@@ -21,7 +21,7 @@ export const environment: IEnvironment = {
   myInfoAuthorizeUrl: 'https://test.api.myinfo.gov.sg/com/v3/authorise',
   gAdPropertyId: 'AW-782920447',
   gaPropertyId: 'UA-125256446-1',
-  hideHomepage: false,
+  hideHomepage: true,
   mockInvestAccount: true,
   expire2faTime: 178,
   expire2faPollRate: 2,

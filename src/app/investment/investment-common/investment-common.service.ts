@@ -530,7 +530,10 @@ export class InvestmentCommonService {
   }
 
   getCKADocument(documentType) {
-    return this.investmentApiService.getCKADocument(documentType);
+    const data = {
+      "docType": documentType
+    };
+    return this.investmentApiService.getCKADocument(data);
   }
 
   setCKAStatus(ckaStatus) {
@@ -552,5 +555,23 @@ export class InvestmentCommonService {
 
   saveCKABankAccount(data) {
     return this.investmentApiService.saveCKABankAccount(data);
+  }
+
+  setCKAInformation(ckaInfo) {
+    this.investmentCommonFormData.ckaDetails = ckaInfo;
+    this.commit();
+  }
+
+  getCKAInformation() {
+    return this.investmentCommonFormData.ckaDetails;
+  }
+
+  setIfCPFBankEdited(isCPFBankEdited: string) {
+    this.investmentCommonFormData.isCPFBankEdited = isCPFBankEdited;
+    this.commit();
+  }
+
+  getIfCPFBankEdited() {
+    return this.investmentCommonFormData.isCPFBankEdited;
   }
 }

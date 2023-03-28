@@ -9,10 +9,6 @@ import { RouterModule } from '@angular/router';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
 
-import {
-  BreakdownAccordionComponent
-} from '../shared/components/breakdown-accordion/breakdown-accordion.component';
-import { BreakdownBarComponent } from '../shared/components/breakdown-bar/breakdown-bar.component';
 import { RoadmapComponent } from '../shared/components/roadmap/roadmap.component';
 import { PercentageInputDirective } from '../shared/directives/percentage-input.directive';
 import { CarouselModalComponent } from '../shared/modal/carousel-modal/carousel-modal.component';
@@ -26,7 +22,6 @@ import { TimeAgoPipe } from '../shared/Pipes/time-ago.pipe';
 import { AllocationComponent } from './components/allocation/allocation.component';
 import { AnnualFeesComponent } from './components/annual-fees/annual-fees.component';
 import { DisclosuresComponent } from './components/disclosures/disclosures.component';
-import { FairDealingComponent } from './components/fair-dealing/fair-dealing.component';
 import {
   InvestmentTitleBarComponent
 } from './components/investment-title-bar/investment-title-bar.component';
@@ -35,7 +30,6 @@ import { PortfolioInfoComponent } from './components/portfolio-info/portfolio-in
 import { PortfolioListComponent } from './components/portfolio-list/portfolio-list.component';
 import { PrivacyPolicyComponent } from './components/privacy-policy/privacy-policy.component';
 import { ProductDetailComponent } from './components/product-detail/product-detail.component';
-import { SecurityPolicyComponent } from './components/security-policy/security-policy.component';
 import { StepIndicatorComponent } from './components/step-indicator/step-indicator.component';
 import { TermsOfUseComponent } from './components/terms-of-use/terms-of-use.component';
 import { TermsComponent } from './components/terms/terms.component';
@@ -92,6 +86,7 @@ import { UploadDocComponent } from './components/upload-document/upload-document
 import { CurrencyEditorPipe } from './Pipes/currency-editor.pipe';
 import { MyinfoModalComponent } from './modal/myinfo-modal/myinfo-modal.component';
 import { CustomRadioControllerComponent } from './components/custom-radio-controller/custom-radio-controller.component';
+import { UploadDocumentOptionsComponent } from './components/upload-document-options/upload-document-options.component';
 
 export function createTranslateLoader(http: HttpClient) {
   return new MultiTranslateHttpLoader(
@@ -129,8 +124,6 @@ export function createTranslateLoader(http: HttpClient) {
     ProductDetailComponent,
     PlanDetailsWidgetComponent,
     LoaderComponent,
-    BreakdownBarComponent,
-    BreakdownAccordionComponent,
     TruncatePipe,
     TimeAgoPipe,
     FormatDatePipe,
@@ -163,7 +156,8 @@ export function createTranslateLoader(http: HttpClient) {
     UploadDocComponent,
     CurrencyEditorPipe,
     MyinfoModalComponent,
-    CustomRadioControllerComponent
+    CustomRadioControllerComponent,
+    UploadDocumentOptionsComponent
   ],
   declarations: [
     CurrencyInputDirective,
@@ -181,13 +175,10 @@ export function createTranslateLoader(http: HttpClient) {
     ConfirmationModalComponent,
     SpinnerComponent,
     PrivacyPolicyComponent,
-    FairDealingComponent,
     DisclosuresComponent,
     TermsComponent,
     WillDisclaimerComponent,
     TermsOfUseComponent,
-    BreakdownBarComponent,
-    BreakdownAccordionComponent,
     PercentageInputDirective,
     TruncatePipe,
     TimeAgoPipe,
@@ -209,7 +200,6 @@ export function createTranslateLoader(http: HttpClient) {
     InstructionStepsComponent,
     DropdownWithSearchComponent,
     StartsWithPipe,
-    SecurityPolicyComponent,
     TermsModalComponent,
     SecurePipe,
     PortfolioListComponent,
@@ -226,7 +216,8 @@ export function createTranslateLoader(http: HttpClient) {
     BankDetailsComponent,    
     UploadDocComponent, CurrencyEditorPipe,
     MyinfoModalComponent,
-    CustomRadioControllerComponent
+    CustomRadioControllerComponent,
+    UploadDocumentOptionsComponent
   ],
   entryComponents: [
     EditInvestmentModalComponent,

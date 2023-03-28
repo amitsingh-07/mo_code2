@@ -1,11 +1,12 @@
 import { Injectable } from '@angular/core';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { TranslateService } from '@ngx-translate/core';
+import { Subject } from 'rxjs';
 
 import { ErrorModalComponent } from '../modal/error-modal/error-modal.component';
 import { INVESTMENT_ACCOUNT_CONSTANTS } from '../../investment/investment-account/investment-account.constant';
-import { Subject } from 'rxjs';
 import { EmitInfo } from '../interfaces/upload-document.interface';
+import { FileUtil } from '../utils/file.util';
 
 @Injectable({
   providedIn: 'root'
@@ -14,12 +15,12 @@ import { EmitInfo } from '../interfaces/upload-document.interface';
 export class UploadDocumentService {
   private streamResponse = new Subject();
   streamResponseObserv = this.streamResponse.asObservable();
-  
+
   emitObject: EmitInfo;
-  
+
   constructor(
     public readonly translate: TranslateService,
-    private modal: NgbModal,
+    private modal: NgbModal, private fileUtil: FileUtil
   ) {
   }
 
@@ -80,13 +81,21 @@ export class UploadDocumentService {
   setThumbnail(thumbElem, file, isBlob?) {
     // Set Thumbnail
     const defaultThumb = INVESTMENT_ACCOUNT_CONSTANTS.upload_documents.default_thumb;
-    const reader: FileReader = new FileReader();
+    let reader: FileReader = new FileReader();
+    const realFileReader = (reader as any)._realReader;
+    if (realFileReader) {
+      reader = realFileReader;
+    }
     reader.onloadend = () => {
       this.setSRC(isBlob, thumbElem, reader.result);
     };
 
     if (file) {
-      reader.readAsDataURL(file);
+      if (file instanceof Blob) {
+        reader.readAsDataURL(file);
+      } else {
+        reader.readAsDataURL(file.name[0]);
+      }
     } else {
       const thumbPath = window.location.origin + '/assets/images/' + defaultThumb;
       this.setSRC(isBlob, thumbElem, thumbPath);
@@ -112,7 +121,12 @@ export class UploadDocumentService {
   selectedFile(formData, controlname, file, isBlob, fileElem?, thumbElem?) {
     const selectedFile: File = file;
     const fileSize: number = selectedFile.size / 1024 / 1024; // in MB
-    const fileType = selectedFile.name.split('.')[selectedFile.name.split('.').length - 1].toUpperCase();
+    let fileType;
+    if (selectedFile["localURL"]) {
+      fileType = selectedFile["localURL"].split('.')[selectedFile["localURL"].split('.').length - 1].toUpperCase();
+    } else {
+      fileType = selectedFile.name.split('.')[selectedFile.name.split('.').length - 1].toUpperCase();
+    }
     const isValidFileSize =
       fileSize <= INVESTMENT_ACCOUNT_CONSTANTS.upload_documents.max_file_size;
     const isValidFileType = INVESTMENT_ACCOUNT_CONSTANTS.upload_documents.file_types.indexOf(
@@ -171,10 +185,17 @@ export class UploadDocumentService {
   }
 
   blobToFile(streamResponse: any) {
-    let extension = streamResponse.headers.get('FILE_TYPE').split('.')[1].toLowerCase();
-    const blob = new Blob([streamResponse.body], { type: this.createFileType(extension) });
-    let file = new File([blob], streamResponse.headers.get('FILE_TYPE'), { type: this.createFileType(extension) });
-    return file;
+    let extension: string;
+    let blob: Blob;
+    if (streamResponse["content"] && streamResponse["filename"]) {
+      extension = streamResponse['filename'].split('.')[1].toLowerCase();
+      blob = this.fileUtil.convertBase64toBlob(streamResponse['content'], streamResponse['filename']);
+      return new File([blob], streamResponse['filename'], { type: this.createFileType(extension) });
+    } else {
+      extension = streamResponse.headers.get('FILE_TYPE').split('.')[1].toLowerCase();
+      blob = new Blob([streamResponse.body], { type: this.createFileType(extension) });
+      return new File([blob], streamResponse.headers.get('FILE_TYPE'), { type: this.createFileType(extension) });
+    }
   }
 
   createFileType(e): string {
@@ -200,18 +221,18 @@ export class UploadDocumentService {
 
   setEmitObject(emitObj) {
     this.emitObject = { clearBtn: false, fileSelected: false };
-    switch(emitObj) {
+    switch (emitObj) {
       case "CLEAR": {
         this.emitObject.clearBtn = true;
         return this.emitObject;
-      } 
+      }
 
       case "FILE_SELECTED": {
         this.emitObject.fileSelected = true;
         return this.emitObject;
       }
 
-      default: {        
+      default: {
         return this.emitObject;
       }
     }

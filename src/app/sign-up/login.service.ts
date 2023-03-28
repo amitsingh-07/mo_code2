@@ -12,7 +12,6 @@ import { appConstants } from '../app.constants';
 import { COMPREHENSIVE_ROUTE_PATHS } from '../comprehensive/comprehensive-routes.constants';
 import { ErrorModalComponent } from '../shared/modal/error-modal/error-modal.component';
 import { Formatter } from '../shared/utils/formatter.util';
-import { HubspotService } from '../shared/analytics/hubspot.service';
 import { IEnquiryUpdate } from './signup-types';
 import { InvestmentAccountService } from '../investment/investment-account/investment-account-service';
 import { InvestmentCommonService } from '../investment/investment-common/investment-common.service';
@@ -30,6 +29,7 @@ import { ModelWithButtonComponent } from '../shared/modal/model-with-button/mode
 import { CORPBIZ_ROUTES_PATHS } from '../corpbiz-welcome-flow/corpbiz-welcome-flow.routes.constants';
 import { NavbarService } from '../shared/navbar/navbar.service';
 import { Util } from '../shared/utils/util';
+import { SingpassModalComponent } from '../singpass/singpass-modal/singpass-modal.component';
 
 @Injectable({
   providedIn: 'root'
@@ -52,7 +52,6 @@ export class LoginService {
     public configService: ConfigService,
     public modal: NgbModal,
     private translate: TranslateService,
-    private hubspotService: HubspotService,
     private investmentAccountService: InvestmentAccountService,
     private investmentCommonService: InvestmentCommonService,
     private router: Router,
@@ -72,7 +71,6 @@ export class LoginService {
 
   // non 2fa success login method
   onSuccessLogin(data) {
-    this.hubspotLogin();
     this.investmentCommonService.clearAccountCreationActions();
     if (data.objectList[0] && data.objectList[0].customerId) {
       this.appService.setCustomerId(data.objectList[0].customerId);
@@ -84,33 +82,6 @@ export class LoginService {
     } else {
       this.goToNext();
     }
-  }
-
-  // Pulling Customer information to log on Hubspot
-  hubspotLogin() {
-    this.signUpApiService.getUserProfileInfo().subscribe((data) => {
-      let userInfo = data.objectList;
-      this.hubspotService.registerEmail(userInfo.emailAddress);
-      this.hubspotService.registerPhone(userInfo.mobileNumber);
-      const hsPayload = [
-        {
-          name: "email",
-          value: userInfo.emailAddress
-        },
-        {
-          name: "phone",
-          value: userInfo.mobileNumber
-        },
-        {
-          name: "firstname",
-          value: userInfo.firstName
-        },
-        {
-          name: "lastname",
-          value: userInfo.lastName
-        }];
-      this.hubspotService.submitLogin(hsPayload);
-    });
   }
 
   goToNext() {
@@ -149,7 +120,7 @@ export class LoginService {
         || (insuranceEnquiry.enquiryProtectionTypeData && insuranceEnquiry.enquiryProtectionTypeData.length > 0)));
   }
 
-  updateInsuranceEnquiry(insuranceEnquiry, data, clearState=null) {
+  updateInsuranceEnquiry(insuranceEnquiry, data, clearState = null) {
     const journeyType = (insuranceEnquiry.journeyType === appConstants.JOURNEY_TYPE_DIRECT) ?
       appConstants.INSURANCE_JOURNEY_TYPE.DIRECT : appConstants.INSURANCE_JOURNEY_TYPE.GUIDED;
     const payload: IEnquiryUpdate = {
@@ -216,25 +187,26 @@ export class LoginService {
 
   displaySingpassLoginError(data) {
     if (data.responseMessage.responseCode === 5127) {  // Multiple NRIC
-      this.displayErrorModal(this.modalText.SINGPASS_MULTIPLE_ACC_MODAL, false);
+      this.displayErrorModal(this.modalText.SINGPASS_MULTIPLE_ACC_MODAL);
     } else if (data.responseMessage.responseCode === 5128) { // Investment Acc Pending
-      this.displayErrorModal(this.modalText.SINGPASS_INVESTMENT_ACC_PENDING_MODAL, false);
+      this.displayErrorModal(this.modalText.SINGPASS_INVESTMENT_ACC_PENDING_MODAL);
     } else { // SingPass Login Unsuccessful
-      this.displayErrorModal(this.modalText.SINGPASS_LOGIN_FAIL_MODAL, true);
-    }
-  }
-
-  displayErrorModal(modalMsg, withBtn) {
-    const ref = this.modal.open(ModelWithButtonComponent, { centered: true });
-    ref.componentInstance.errorTitle = this.translate.instant(modalMsg.TITLE);
-    ref.componentInstance.errorMessageHTML = this.translate.instant(modalMsg.MESSAGE);
-    if (withBtn) {
-      ref.componentInstance.primaryActionLabel = this.translate.instant(modalMsg.BACK_BTN);
+      const ref = this.modal.open(SingpassModalComponent, { centered: true });
+      ref.componentInstance.title = this.translate.instant(this.modalText.SINGPASS_LOGIN_FAIL_MODAL.TITLE);
+      ref.componentInstance.msgOne = this.translate.instant(this.modalText.SINGPASS_LOGIN_FAIL_MODAL.MESSAGE_1);
+      ref.componentInstance.msgTwo = this.translate.instant(this.modalText.SINGPASS_LOGIN_FAIL_MODAL.MESSAGE_2);
+      ref.componentInstance.primaryActionLabel = this.translate.instant(this.modalText.SINGPASS_LOGIN_FAIL_MODAL.BACK_BTN);
       ref.componentInstance.primaryAction.subscribe(() => {
         this.toogleLoginType.next('PASSWORD');
         this.modal.dismissAll();
       });
     }
+  }
+
+  displayErrorModal(modalMsg) {
+    const ref = this.modal.open(ModelWithButtonComponent, { centered: true });
+    ref.componentInstance.errorTitle = this.translate.instant(modalMsg.TITLE);
+    ref.componentInstance.errorMessageHTML = this.translate.instant(modalMsg.MESSAGE);
   }
 
   setEnquiryIdAndJourneyType() {

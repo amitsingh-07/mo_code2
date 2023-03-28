@@ -4,8 +4,6 @@ import { NgbActiveModal, NgbDateParserFormatter, NgbDateStruct } from '@ng-boots
 import { Router } from '@angular/router';
 import { RegexConstants } from '../../shared/utils/api.regex.constants';
 import { SIGN_UP_CONFIG } from '../../sign-up/sign-up.constant';
-import { TranslateService } from '@ngx-translate/core';
-import { DirectService } from './../direct.service';
 import { DirectApiService } from '../direct.api.service';
 import { NgbDateCustomParserFormatter } from '../../shared/utils/ngb-date-custom-parser-formatter';
 import { EMAIL_ENQUIRY_SUCCESS } from '../direct-routes.constants';
@@ -27,7 +25,7 @@ export class ContactFormComponent implements OnInit {
   minDate: NgbDateStruct;
   interestedInsuranceInList: string[];
 
-  constructor(public activeModal: NgbActiveModal, private fb: FormBuilder, private translate: TranslateService, private directService: DirectService,
+  constructor(public activeModal: NgbActiveModal, private fb: FormBuilder,
     private directApiService: DirectApiService, private router: Router, private authService: AuthenticationService) {
     const today: Date = new Date();
     this.minDate = {
@@ -36,7 +34,7 @@ export class ContactFormComponent implements OnInit {
     };
     this.maxDate = {
       year: today.getFullYear() - SIGN_UP_CONFIG.ACCOUNT_CREATION.DOB.DATE_PICKER_MIN_YEAR,
-      month: today.getMonth() + 1, 
+      month: today.getMonth() + 1,
       day: today.getDate()
     };
   }
@@ -55,8 +53,8 @@ export class ContactFormComponent implements OnInit {
       gender: [''],
       insuranceInterestedIn: [''],
       isSmoker: [''],
-      anyOtherQueries : [''],
-      journeyType : ['insurance-direct'],
+      anyOtherQueries: [''],
+      journeyType: ['insurance-direct'],
       validateCaptchaBean: this.fb.group({
         captcha: '',
         sessionId: this.authService.getSessionId()
@@ -82,17 +80,17 @@ export class ContactFormComponent implements OnInit {
 
   contactMe() {
     this.isSubmitted = true;
-      let payload = this.formObject.value;
-      if (payload.dateOfBirth) {
-          payload.dateOfBirth = `${payload.dateOfBirth.day}/${payload.dateOfBirth.month}/${payload.dateOfBirth.year}`;
-      }
-      this.directApiService.directContactMeForm(payload)
-        .subscribe(data => {
-            if (data.responseMessage.responseCode === 6000) {
-              this.closeModal(data.responseMessage.responseDescription);
-              this.router.navigate([EMAIL_ENQUIRY_SUCCESS]);
-            }
-          });      
+    let payload = this.formObject.value;
+    if (payload.dateOfBirth) {
+      payload.dateOfBirth = `${payload.dateOfBirth.day}/${payload.dateOfBirth.month}/${payload.dateOfBirth.year}`;
+    }
+    this.directApiService.directContactMeForm(payload)
+      .subscribe(data => {
+        if (data.responseMessage.responseCode === 6000) {
+          this.closeModal(data.responseMessage.responseDescription);
+          this.router.navigate([EMAIL_ENQUIRY_SUCCESS]);
+        }
+      });
   }
 
   setDropDownValue(key, value) {
@@ -117,11 +115,11 @@ export class ContactFormComponent implements OnInit {
 
   getInterestedInsuranceInList() {
     this.directApiService.getInterestedInList()
-        .subscribe(data => {
-            if (data.responseMessage.responseCode === 6000) {
-              this.interestedInsuranceInList = data.objectList;
-            }
-          }); 
+      .subscribe(data => {
+        if (data.responseMessage.responseCode === 6000) {
+          this.interestedInsuranceInList = data.objectList;
+        }
+      });
   }
 
   setControlValue(value, controlName) {
@@ -134,32 +132,32 @@ export class ContactFormComponent implements OnInit {
     }
   }
 
-    // #SET THE CONTROL FOR 300 CHARACTERS LIMIT
+  // #SET THE CONTROL FOR 300 CHARACTERS LIMIT
   onKeyPressEvent(event: any, content: any) {
-      const selection = window.getSelection();
-      if (content.length >= 300 && selection.type !== 'Range') {
-        const id = event.target.id;
-        const el = document.querySelector('#' + id);
-        this.setCaratTo(el, 300, content);
-        event.preventDefault();
-      }
-      return (event.which !== 13);
+    const selection = window.getSelection();
+    if (content.length >= 300 && selection.type !== 'Range') {
+      const id = event.target.id;
+      const el = document.querySelector('#' + id);
+      this.setCaratTo(el, 300, content);
+      event.preventDefault();
+    }
+    return (event.which !== 13);
   }
 
-    // #FOR 300 CHARACTERS FIELD CURSOR POSITION
-    setCaratTo(contentEditableElement, position, content) {
-      contentEditableElement.innerText = content;
-      if (document.createRange) {
-        const range = document.createRange();
-        range.selectNodeContents(contentEditableElement);
-  
-        range.setStart(contentEditableElement.firstChild, position);
-        range.setEnd(contentEditableElement.firstChild, position);
-  
-        const selection = window.getSelection();
-        selection.removeAllRanges();
-        selection.addRange(range);
-      }
+  // #FOR 300 CHARACTERS FIELD CURSOR POSITION
+  setCaratTo(contentEditableElement, position, content) {
+    contentEditableElement.innerText = content;
+    if (document.createRange) {
+      const range = document.createRange();
+      range.selectNodeContents(contentEditableElement);
+
+      range.setStart(contentEditableElement.firstChild, position);
+      range.setEnd(contentEditableElement.firstChild, position);
+
+      const selection = window.getSelection();
+      selection.removeAllRanges();
+      selection.addRange(range);
     }
+  }
 
 }

@@ -34,7 +34,8 @@
         <div *ngIf="fundDetails.source == 'FUNDING'">
           <div *ngIf="fundDetails.oneTimeInvestment > 0" class="strong">{{fundDetails.oneTimeInvestment |
             formatCurrency}}
-            <span>({{ 'FUNDING_INSTRUCTIONS.ONE_TIME' | translate }})</span></div>
+            <span>({{ 'FUNDING_INSTRUCTIONS.ONE_TIME' | translate }})</span>
+          </div>
           <div *ngIf="fundDetails.monthlyInvestment > 0" class="strong">{{fundDetails.monthlyInvestment |
             formatCurrency}}
             <span> / {{ 'FUNDING_INSTRUCTIONS.MONTH' | translate }}</span>
@@ -46,9 +47,12 @@
       </div>
       <div class="to-account">
         <img *ngIf="riskProfileImg" src="{{riskProfileImg}}" alt="" />
-        <img *ngIf="!riskProfileImg && portfolioArray.portfolioType.toUpperCase() === portfolioCatagories.WISESAVER.toUpperCase()" src="assets/images/investment-account/wise-saver-icon.svg" alt="" />
-        <img *ngIf="!riskProfileImg && portfolioArray.portfolioType.toUpperCase() === portfolioCatagories.WISEINCOME.toUpperCase()" src="assets/images/investment-account/wiseIncome_payout.svg" alt="" />
-        <!-- <div>{{ 'FUNDING_INSTRUCTIONS.YOUR_PORTFOLIO' | translate }}</div> -->
+        <img
+          *ngIf="!riskProfileImg && portfolioArray.portfolioType.toUpperCase() === portfolioCatagories.WISESAVER.toUpperCase()"
+          src="assets/images/investment-account/wise-saver-icon.svg" alt="" />
+        <img
+          *ngIf="!riskProfileImg && portfolioArray.portfolioType.toUpperCase() === portfolioCatagories.WISEINCOME.toUpperCase()"
+          src="assets/images/investment-account/wiseIncome_payout.svg" alt="" />
         <div class="strong multiline-ellipsis">
           {{(PortfolioName ? PortfolioName : fundDetails.portfolio.riskProfile.type)}}</div>
       </div>
@@ -64,7 +68,8 @@
             <div class="cash-account-balance">{{ 'FUNDING_INSTRUCTIONS.CASH_ACCOUNT_BALANCE_LBL' | translate }} $0</div>
             <div class="ref-code">
               <span copy-clipboard [context]="bankDetails ? bankDetails.referenceNumber :paynowDetails.referenceNumber"
-                (copied)="notify($event)" >{{ 'FUNDING_INSTRUCTIONS.REFERENCE_CODE_LBL' | translate }}{{ bankDetails ? bankDetails.referenceNumber :paynowDetails.referenceNumber }}
+                (copied)="notify($event)">{{ 'FUNDING_INSTRUCTIONS.REFERENCE_CODE_LBL' | translate }}{{ bankDetails ?
+                bankDetails.referenceNumber :paynowDetails.referenceNumber }}
               </span>
               <span copy-clipboard [context]="bankDetails ? bankDetails.referenceNumber :paynowDetails.referenceNumber"
                 (copied)="notify($event)" class="copy-icon"><img alt="copy"
@@ -90,7 +95,7 @@
             <div class="pay-tab">{{ 'FUNDING_INSTRUCTIONS.BANK_TRANSFER' | translate }}</div>
           </div>
           <div class="tab-link-item" [class.active]="activeMode == 'PAYNOW'" (click)="selectFundingMethod('PAYNOW')">
-            <div class="pay-tab"><img src="assets/images/topupwithdraw\paynow.png" alt="" /></div>
+            <div class="pay-tab"><img src="assets/images/topupwithdraw/paynow.png" alt="" /></div>
           </div>
         </div>
         <div class="tab-content-container">
@@ -105,11 +110,12 @@
                   <div *ngIf="fundDetails.oneTimeInvestment > 0">
                     <span>{{fundDetails.oneTimeInvestment | formatCurrency}}</span>&nbsp;
                     ({{'FUNDING_INSTRUCTIONS.ONE_TIME'
-                      | translate}})</div>
+                    | translate}})
+                  </div>
                   <div *ngIf="fundDetails.monthlyInvestment > 0">
                     <span>{{fundDetails.monthlyInvestment | formatCurrency}}</span>&nbsp;/ {{
-                      'FUNDING_INSTRUCTIONS.MONTH'
-                      | translate }}
+                    'FUNDING_INSTRUCTIONS.MONTH'
+                    | translate }}
                   </div>
                 </div>
                 <div class="investment-values" *ngIf="fundDetails.source == 'TOPUP'">
@@ -120,20 +126,20 @@
                     </div>
                     <div *ngIf="!fundDetails.isAmountExceedBalance && fundDetails.oneTimeInvestment">
                       <span>{{fundDetails.oneTimeInvestment | formatCurrency}}</span>&nbsp;({{
-                        'FUNDING_INSTRUCTIONS.ONE_TIME'
-                        | translate }})
+                      'FUNDING_INSTRUCTIONS.ONE_TIME'
+                      | translate }})
                     </div>
                   </div>
                   <div *ngIf="fundDetails.monthlyInvestment">
                     <div *ngIf="fundDetails.isAmountExceedBalance">
                       <span>{{fundDetails.exceededAmount | formatCurrency}}</span>&nbsp;/ {{
-                        'FUNDING_INSTRUCTIONS.MONTH'
-                        | translate }}
+                      'FUNDING_INSTRUCTIONS.MONTH'
+                      | translate }}
                     </div>
                     <div *ngIf="!fundDetails.isAmountExceedBalance && fundDetails.monthlyInvestment">
                       <span>{{fundDetails.monthlyInvestment | formatCurrency}}</span>&nbsp;/
                       {{ 'FUNDING_INSTRUCTIONS.MONTH'
-                        | translate }}
+                      | translate }}
                     </div>
                   </div>
                 </div>
@@ -169,7 +175,7 @@
           <div class="tab-content fund-instruction" [class.active]="activeMode == 'BANK'"
             *ngIf="fundDetails.source == 'FUNDING'">
             <app-instruction-steps [showBankTransferIns]="showBankTransferSteps" [bankDetails]="bankDetails"
-              (showToolTip)="showTipModal()" (showCopyToast)="notify($event)" ></app-instruction-steps>
+              (showToolTip)="showTipModal()" (showCopyToast)="notify($event)"></app-instruction-steps>
           </div>
           <!-- New Bank Transfer Instruction End -->
           <!-- TAB 2 -->
@@ -183,13 +189,13 @@
                 <div class="investment-values" *ngIf="fundDetails.source == 'FUNDING'">
                   <div *ngIf="fundDetails.oneTimeInvestment > 0">
                     <span>{{fundDetails.oneTimeInvestment | formatCurrency}}</span>&nbsp; ({{
-                      'FUNDING_INSTRUCTIONS.ONE_TIME'
-                      | translate }})
+                    'FUNDING_INSTRUCTIONS.ONE_TIME'
+                    | translate }})
                   </div>
                   <div *ngIf="fundDetails.monthlyInvestment > 0">
                     <span>{{fundDetails.monthlyInvestment | formatCurrency}}</span>&nbsp;/ {{
-                      'FUNDING_INSTRUCTIONS.MONTH'
-                      | translate }}
+                    'FUNDING_INSTRUCTIONS.MONTH'
+                    | translate }}
                   </div>
                 </div>
                 <div class="investment-values" *ngIf="fundDetails.source == 'TOPUP'">
@@ -200,20 +206,20 @@
                     </div>
                     <div *ngIf="!fundDetails.isAmountExceedBalance && fundDetails.oneTimeInvestment">
                       <span>{{fundDetails.oneTimeInvestment | formatCurrency}}</span>&nbsp;({{
-                        'FUNDING_INSTRUCTIONS.ONE_TIME'
-                        | translate }})
+                      'FUNDING_INSTRUCTIONS.ONE_TIME'
+                      | translate }})
                     </div>
                   </div>
                   <div *ngIf="fundDetails.monthlyInvestment">
                     <div *ngIf="fundDetails.isAmountExceedBalance">
                       <span>{{fundDetails.exceededAmount | formatCurrency}}</span>&nbsp;/ {{
-                        'FUNDING_INSTRUCTIONS.MONTH'
-                        | translate }}
+                      'FUNDING_INSTRUCTIONS.MONTH'
+                      | translate }}
                     </div>
                     <div *ngIf="!fundDetails.isAmountExceedBalance && fundDetails.monthlyInvestment">
                       <span>{{fundDetails.monthlyInvestment | formatCurrency}}</span>&nbsp;/
                       {{ 'FUNDING_INSTRUCTIONS.MONTH'
-                        | translate }}
+                      | translate }}
                     </div>
                   </div>
                 </div>
@@ -245,7 +251,7 @@
           <div class="tab-content fund-instruction" [class.active]="activeMode == 'PAYNOW'"
             *ngIf="fundDetails.source == 'FUNDING'">
             <app-instruction-steps [showBankTransferIns]="!showBankTransferSteps" [paynowDetails]="paynowDetails"
-              (showToolTip)="showTipModal()" (showCopyToast)="notify($event)" ></app-instruction-steps>
+              (showToolTip)="showTipModal()" (showCopyToast)="notify($event)"></app-instruction-steps>
           </div>
           <!-- New PayNow Transfer Instruction End -->
         </div>

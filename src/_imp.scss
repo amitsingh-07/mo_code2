@@ -59,11 +59,11 @@
 }
 
 .label-orange {
-  color: #e57300 !important;
+  color: $mango-tango-color !important;
 }
 
 .label-teal {
-  color: #00a7a7 !important;
+  color: $teal-color !important;
 }
 
 .word-break {
@@ -332,6 +332,10 @@
   padding-bottom: 60px !important;
 }
 
+.pb100 {
+  padding-bottom: 100px !important;
+}
+
 .pb0 {
   padding-bottom: 0 !important;
 }
@@ -527,7 +531,7 @@ nouislider {
   background-color: transparent;
   height: 44px;
   width: 52px;
-  color: #00a7a7;
+  color: $teal-color;
   line-height: 30px;
   border: none;
 }

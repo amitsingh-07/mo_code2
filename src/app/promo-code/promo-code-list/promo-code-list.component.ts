@@ -40,7 +40,7 @@ export class PromoCodeListComponent implements OnInit {
     private modal: NgbModal,
     public authService: AuthenticationService) {
     this.translate.use('en');
-    this.checkOutPage = !(this.router.url === PAYMENT_CHECKOUT) ;
+    this.checkOutPage = !(this.router.url === PAYMENT_CHECKOUT);
   }
 
   ngOnInit() {

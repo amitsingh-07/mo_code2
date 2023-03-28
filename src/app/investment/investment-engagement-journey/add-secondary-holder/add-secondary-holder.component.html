@@ -3,7 +3,7 @@
   <div class="content">
     <div class="row">
       <div class="col-lg-7 col-md-6 hidden-sm-md">
-        <h2>{{ navigationType ? ('SECONDARY_HOLDER.EDIT_PAGE_TITLE' | translate) 
+        <h2>{{ navigationType ? ('SECONDARY_HOLDER.EDIT_PAGE_TITLE' | translate)
           : ('SECONDARY_HOLDER.PAGE_TITLE' | translate)}}</h2>
         <div class="banner-image">
           <img src="assets/images/investment-account/secondary-holder-banner.svg" />
@@ -63,7 +63,7 @@
                             <div ngbDropdown>
                               <button class="btn btn-dropdown without-border" id="salutation-drpdown" ngbDropdownToggle>
                                 <span *ngIf="!secondaryHolderMajorForm.controls?.relationship?.value">
-                                  {{'SECONDARY_HOLDER.MAJOR.SELECT_RELATIONSHIP'  | translate}}
+                                  {{'SECONDARY_HOLDER.MAJOR.SELECT_RELATIONSHIP' | translate}}
                                 </span>
                                 <span *ngIf="secondaryHolderMajorForm.controls.relationship.value">
                                   {{secondaryHolderMajorForm.controls?.relationship?.value.name }}
@@ -138,10 +138,12 @@
                         </div>
                         <div class="flex-row">
                           <div class="flex-col-12 mb10">
-                            <div class="btn-group--toggle" name="radioGender">            
-                              <app-custom-radio-controller formControlName="unitedStatesResident" name="unitedStatesResident" [radioLabelValue]="radioLabelValueUsPR"
-                              (valueChangedEvent)="unitedStatesPRChange($event)" [defaultLabelStyleClass]="defaultRadioStyleClass"></app-custom-radio-controller>
-                          </div>
+                            <div class="btn-group--toggle" name="radioGender">
+                              <app-custom-radio-controller formControlName="unitedStatesResident"
+                                name="unitedStatesResident" [radioLabelValue]="radioLabelValueUsPR"
+                                (valueChangedEvent)="unitedStatesPRChange($event)"
+                                [defaultLabelStyleClass]="defaultRadioStyleClass"></app-custom-radio-controller>
+                            </div>
                           </div>
                         </div>
                       </div>
@@ -157,32 +159,12 @@
                         </div>
                         <div class="flex-row">
                           <div class="flex-col-12 mb10">
-                            <!-- <div class="btn-group--toggle" ngbRadioGroup name="radioGender"
-                              formControlName="singaporeanResident">
-                              <div class="flex-row">
-                                <div class="flex-col-6">
-                                  <label ngbButtonLabel class="btn-outline-primary
-                                    fixed-btn--sm mr5">
-                                    <input ngbButton type="radio" id="select_nationlity_yes1" [value]="true"
-                                      (change)="singaporeanPRChange($event.target.value)">
-                                    {{'SECONDARY_HOLDER.MINOR.YES_lABEL' |
-                                    translate}}
-                                  </label>
-                                </div>
-                                <div class="flex-col-6">
-                                  <label ngbButtonLabel class="btn-outline-primary
-                                    fixed-btn--sm">
-                                    <input ngbButton type="radio" id="select_nationlity_no1" [value]="false"
-                                      (change)="singaporeanPRChange($event.target.value)">
-                                    {{'SECONDARY_HOLDER.MINOR.NO_LABEL' |
-                                    translate}}</label>
-                                </div>
-                              </div>
-                            </div> -->
-                            <div class="btn-group--toggle" name="radioGender">            
-                              <app-custom-radio-controller formControlName="singaporeanResident" [radioLabelValue]="radioLabelValueUsPR"
-                              (valueChangedEvent)="singaporeanPRChange($event)" [defaultLabelStyleClass]="defaultRadioStyleClass"></app-custom-radio-controller>
-                          </div>
+                            <div class="btn-group--toggle" name="radioGender">
+                              <app-custom-radio-controller formControlName="singaporeanResident"
+                                [radioLabelValue]="radioLabelValueUsPR"
+                                (valueChangedEvent)="singaporeanPRChange($event)"
+                                [defaultLabelStyleClass]="defaultRadioStyleClass"></app-custom-radio-controller>
+                            </div>
                           </div>
                         </div>
                       </div>
@@ -208,8 +190,8 @@
                                 <span *ngIf="!secondaryHolderMinorForm.get('passportExpiry')"
                                   [innerHtml]="(isNationalitySingapore() || secondaryHolderMinorForm.value?.singaporeanResident) ? ('SECONDARY_HOLDER.MINOR.PERSONAL_INFO.FULL_NAME_NRIC_BIRTH_CERT' | translate) : ('SECONDARY_HOLDER.MINOR.PERSONAL_INFO.FULL_NAME_NRIC' | translate)">
                                 </span>
-                                <span
-                                  *ngIf="secondaryHolderMinorForm.get('passportExpiry')">{{ 'SECONDARY_HOLDER.MINOR.PERSONAL_INFO.FULL_NAME_PASSPORT' | translate}}</span>
+                                <span *ngIf="secondaryHolderMinorForm.get('passportExpiry')">{{
+                                  'SECONDARY_HOLDER.MINOR.PERSONAL_INFO.FULL_NAME_PASSPORT' | translate}}</span>
                               </div>
                             </label>
                           </div>
@@ -243,8 +225,8 @@
                         <div class="flex-row" *ngIf="secondaryHolderMinorForm.get('issuedCountry')">
                           <div class="flex-col-5">
                             <label for="residentialAddress-country-drpdown" id="residentialAddress-country-lbl">{{
-                                  'SECONDARY_HOLDER.MINOR.PERSONAL_INFO.PASSPORT_ISSUED_COUNTRY'
-                                  | translate}}</label>
+                              'SECONDARY_HOLDER.MINOR.PERSONAL_INFO.PASSPORT_ISSUED_COUNTRY'
+                              | translate}}</label>
                           </div>
                           <div class="flex-col-7">
                             <div class="dropdown-control"
@@ -260,8 +242,8 @@
                         <!-- Country Of Issue end -->
                         <div class="flex-row" *ngIf="secondaryHolderMinorForm.get('dob')">
                           <div class="flex-col-5">
-                            <label for="dob"
-                              id="invPersInfoLbl7">{{ 'SECONDARY_HOLDER.MINOR.PERSONAL_INFO.DOB' | translate}}</label>
+                            <label for="dob" id="invPersInfoLbl7">{{ 'SECONDARY_HOLDER.MINOR.PERSONAL_INFO.DOB' |
+                              translate}}</label>
                           </div>
                           <div #usrFrmDp class="flex-col-7">
                             <div class="datepicker-control">
@@ -289,14 +271,16 @@
                         </div>
                         <div class="flex-row" *ngIf="secondaryHolderMinorForm.get('gender')">
                           <div class="flex-col-5">
-                            <label for="gender"
-                              id="invPersInfoLbl8">{{ 'SECONDARY_HOLDER.MINOR.PERSONAL_INFO.GENDER' | translate}}</label>
+                            <label for="gender" id="invPersInfoLbl8">{{ 'SECONDARY_HOLDER.MINOR.PERSONAL_INFO.GENDER' |
+                              translate}}</label>
                           </div>
                           <div class="flex-col-7">
-                            <div class="btn-group--toggle" name="radioGender">  
-                              <app-custom-radio-controller formControlName="gender" name="gender" [radioLabelValue]="radioLabelValueGender"
-                               [defaultLabelStyleClass]="defaultRadioStyleClass" flexRowMarPadClass="mb0"></app-custom-radio-controller>
-                          </div>
+                            <div class="btn-group--toggle" name="radioGender">
+                              <app-custom-radio-controller formControlName="gender" name="gender"
+                                [radioLabelValue]="radioLabelValueGender"
+                                [defaultLabelStyleClass]="defaultRadioStyleClass"
+                                flexRowMarPadClass="mb0"></app-custom-radio-controller>
+                            </div>
                           </div>
                         </div>
                         <!-- Country of Birth start -->
@@ -320,8 +304,8 @@
                         <!-- Country of Birth end -->
                         <div class="flex-row" *ngIf="secondaryHolderMinorForm.get('passportNumber')">
                           <div class="flex-col-5">
-                            <label for="name"
-                              id="invPersInfoLbl5">{{ 'SECONDARY_HOLDER.MINOR.PERSONAL_INFO.PASSPORT_NUMBER' | translate}}</label>
+                            <label for="name" id="invPersInfoLbl5">{{
+                              'SECONDARY_HOLDER.MINOR.PERSONAL_INFO.PASSPORT_NUMBER' | translate}}</label>
                           </div>
                           <div class="flex-col-7"
                             [ngClass]="{'inline-error': secondaryHolderMinorForm.get('passportNumber').enabled && !secondaryHolderMinorForm.get('passportNumber').valid && !secondaryHolderMinorForm.get('passportNumber').pristine}">
@@ -334,8 +318,8 @@
                         <div class="flex-row" *ngIf="secondaryHolderMinorForm.get('passportIssuedCountry')">
                           <div class="flex-col-5">
                             <label for="residentialAddress-country-drpdown" id="residentialAddress-country-lbl">{{
-                                  'SECONDARY_HOLDER.MINOR.PERSONAL_INFO.PASSPORT_ISSUED_COUNTRY'
-                                  | translate}}</label>
+                              'SECONDARY_HOLDER.MINOR.PERSONAL_INFO.PASSPORT_ISSUED_COUNTRY'
+                              | translate}}</label>
                           </div>
                           <div class="flex-col-7">
                             <div class="dropdown-control"
@@ -410,7 +394,7 @@
                                 <button class="btn btn-dropdown without-border" id="salutation-drpdown"
                                   ngbDropdownToggle>
                                   <span *ngIf="!secondaryHolderMinorForm.controls?.relationship?.value">
-                                    {{'SECONDARY_HOLDER.MINOR.PERSONAL_INFO.SELECT_RELATIONSHIP'  | translate}}
+                                    {{'SECONDARY_HOLDER.MINOR.PERSONAL_INFO.SELECT_RELATIONSHIP' | translate}}
                                   </span>
                                   <span *ngIf="secondaryHolderMinorForm.controls?.relationship?.value">
                                     {{secondaryHolderMinorForm.controls.relationship.value.name }}
@@ -453,7 +437,8 @@
                           <div class="widget-body" [formGroupName]="x">
                             <div class="flex-row pl10">
                               <div class="flex-col-5 flex align-items-end">
-                                <label class="tax-country-label flex-col-10" for="name" id="tax-info-label">{{ 'SECONDARY_HOLDER.MINOR.TAX_INFO.COUNTRY_TEXT' |
+                                <label class="tax-country-label flex-col-10" for="name" id="tax-info-label">{{
+                                  'SECONDARY_HOLDER.MINOR.TAX_INFO.COUNTRY_TEXT' |
                                   translate}}</label>
                                 <i class="tooltip-block-icon flex-col-2" id="countryHelpIcon" (click)="openModal()"></i>
                               </div>
@@ -484,10 +469,12 @@
                             <!-- Button part -->
                             <div class="flex-row mb0">
                               <div class="flex-col-12">
-                                <div class="btn-group--toggle" name="radioTin">            
-                                  <app-custom-radio-controller formControlName="radioTin" name="radioTin" [radioLabelValue]="radioLabelValueTin"
-                                  (valueChangedEvent)="isTinNumberAvailChanged($event , taxInfoItem, null)" [defaultLabelStyleClass]="defaultRadioStyleClass"></app-custom-radio-controller>
-                              </div>
+                                <div class="btn-group--toggle" name="radioTin">
+                                  <app-custom-radio-controller formControlName="radioTin" name="radioTin"
+                                    [radioLabelValue]="radioLabelValueTin"
+                                    (valueChangedEvent)="isTinNumberAvailChanged($event , taxInfoItem, null)"
+                                    [defaultLabelStyleClass]="defaultRadioStyleClass"></app-custom-radio-controller>
+                                </div>
                               </div>
                             </div>
                             <!-- Second Dropdown -->
@@ -506,8 +493,8 @@
                                         id="tax_Info_dropdown_country">{{taxInfoItem.controls.noTinReason.value.name}}</span>
                                       <span *ngIf="!taxInfoItem.controls.noTinReason?.value" class="dependent-count"
                                         id="tax_Info_dropdown_country">{{
-                                          'SECONDARY_HOLDER.MINOR.TAX_INFO.SELECT_REASON_TEXT' |
-                                          translate}}</span>
+                                        'SECONDARY_HOLDER.MINOR.TAX_INFO.SELECT_REASON_TEXT' |
+                                        translate}}</span>
                                     </button>
                                     <div class="dropdown dropdown-lg" ngbDropdownMenu aria-labelledby="dropdownBasic1">
                                       <button class="dropdown-item" (click)="selectReason(reasonListObj , taxInfoItem)"
@@ -562,10 +549,12 @@
           <div [ngbNavOutlet]="nav"></div>
 
           <button *ngIf="activeTabId === 1 || activeTabId === 3" [disabled]="!secondaryHolderMajorForm.valid"
-            (click)="majorHolderGoToNext()" class="btn btn-primary btn__footer--fixed width100 mt30">{{navigationType ? ('SECONDARY_HOLDER.SAVE' | translate) 
+            (click)="majorHolderGoToNext()" class="btn btn-primary btn__footer--fixed width100 mt30">{{navigationType ?
+            ('SECONDARY_HOLDER.SAVE' | translate)
             : ('SECONDARY_HOLDER.CONTINUE' | translate)}}</button>
           <button *ngIf="activeTabId === 2" (click)="minorHolderGoToNext()" [disabled]="disableMinorSave()"
-            class="btn btn-primary btn__footer--fixed width100 mt30">{{navigationType ? ('SECONDARY_HOLDER.SAVE' | translate) 
+            class="btn btn-primary btn__footer--fixed width100 mt30">{{navigationType ? ('SECONDARY_HOLDER.SAVE' |
+            translate)
             : ('SECONDARY_HOLDER.CONTINUE' | translate)}}</button>
         </div>
       </div>

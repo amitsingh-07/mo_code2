@@ -14,7 +14,7 @@ app-add-bank-modal {
         font-size: 18px;
         font-weight: 600;
         padding-right: 15px;
-        color: #2d8289;
+        color: $dark-teal-color;
       }
     }
 
@@ -96,27 +96,4 @@ app-add-bank-modal {
   [placeholder]:empty:focus::before {
     content: "";
   }
-
-  // .content-editable {
-  //   border: 1px solid #94CCCC;
-  //   border-radius: 6px;
-  //   padding: .90rem;
-  //   background: $white-color;
-  //   color: $app-backgrnd-color;
-  //   word-break: break-word;
-  //   min-height: 52px;
-
-  //   &.view-mode {
-  //     background-color: rgba(0, 167, 167, 0.15) !important;
-  //   }
-
-  //   &.inline-error {
-  //     color: #e57300 !important;
-  //     background: #fff3e9;
-
-  //     &[placeholder]:empty::before {
-  //       color: #e57300 !important;
-  //     }
-  //   }
-  // }
 }

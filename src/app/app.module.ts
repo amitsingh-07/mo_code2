@@ -1,13 +1,11 @@
 import 'hammerjs';
-
 import { MultiTranslateHttpLoader } from 'ngx-translate-multi-http-loader';
-
 import {
-  APP_BASE_HREF,
   CurrencyPipe, LocationStrategy, PathLocationStrategy, TitleCasePipe
 } from '@angular/common';
 import {
-  HTTP_INTERCEPTORS, HttpClient, HttpClientJsonpModule, HttpClientModule
+  HTTP_INTERCEPTORS, HttpClient, HttpClientJsonpModule, HttpClientModule,
+  HttpBackend, HttpXhrBackend
 } from '@angular/common/http';
 import { APP_INITIALIZER, Injector, NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
@@ -17,6 +15,8 @@ import { JwtModule } from '@auth0/angular-jwt';
 import { NgbActiveModal, NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
 import { DatePipe } from '@angular/common';
+import { NativeHttpModule, NativeHttpBackend, NativeHttpFallback } from 'ionic-native-http-connection-backend';
+import { Platform } from '@ionic/angular';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -42,7 +42,6 @@ import {
   CreateAccountModelComponent
 } from './guide-me/recommendations/create-account-model/create-account-model.component';
 import { HammerConfig } from './hammer.config';
-import { HomeComponent } from './home/home.component';
 import {
   FundDetailsComponent
 } from './investment/investment-common/fund-details/fund-details.component';
@@ -95,17 +94,12 @@ import { PaymentEnableGuard } from './payment/payment-enable-guard';
 import {
   LoginCreateAccountModelComponent
 } from './shared/modal/login-create-account-model/login-create-account-model.component';
-import { SuccessModalComponent } from './shared/modal/success-modal/success-modal.component';
 import { SummaryModalComponent } from './shared/modal/summary-modal/summary-modal.component';
 import { TermsModalComponent } from './shared/modal/terms-modal/terms-modal.component';
 import { ToolTipModalComponent } from './shared/modal/tooltip-modal/tooltip-modal.component';
 import {
-  TransactionModalComponent
-} from './shared/modal/transaction-modal/transaction-modal.component';
-import {
   UnsupportedDeviceModalComponent
 } from './shared/modal/unsupported-device-modal/unsupported-device-modal.component';
-import { NavbarComponent } from './shared/navbar/navbar.component';
 import { NavbarService } from './shared/navbar/navbar.service';
 import { RoutingService } from './shared/Services/routing.service';
 import { StateStoreService } from './shared/Services/state-store.service';
@@ -125,14 +119,14 @@ import { WillWritingEnableGuard } from './will-writing/will-writing-enable-guard
 import { SessionsService } from './shared/Services/sessions/sessions.service';
 import { NotSupportedComponent } from './not-supported/not-supported.component';
 import { RefereeComponent } from './shared/modal/referee/referee.component';
+import { HttpForceXhrBackend } from './http-force-xhr-backend';
 
 // tslint:disable-next-line:max-line-length
 export function createTranslateLoader(http: HttpClient) {
   return new MultiTranslateHttpLoader(
     http,
     [
-      { prefix: './assets/i18n/app/', suffix: '.json' },
-      { prefix: './assets/i18n/home/', suffix: '.json' }
+      { prefix: './assets/i18n/app/', suffix: '.json' }
     ]);
 }
 
@@ -156,15 +150,12 @@ export function tokenGetterFn() {
     CreateAccountModelComponent,
     LoginCreateAccountModelComponent,
     ExistingCoverageModalComponent,
-    SuccessModalComponent,
     RestrictAlphabetsDirective,
     HeaderComponent,
     FooterComponent,
     CallBackComponent,
-    HomeComponent,
     UrlRedirectComponent,
     TestMyInfoComponent,
-    TransactionModalComponent,
     FundDetailsComponent,
     UnsupportedDeviceModalComponent,
     SummaryModalComponent,
@@ -176,6 +167,7 @@ export function tokenGetterFn() {
     NotSupportedComponent
   ],
   imports: [
+    NativeHttpModule,
     BrowserModule,
     NgbModule,
     AppRoutingModule,
@@ -199,13 +191,14 @@ export function tokenGetterFn() {
     })
   ],
   providers: [
+    { provide: NativeHttpFallback, useClass: NativeHttpFallback, deps: [Platform, NativeHttpBackend, HttpXhrBackend] },
+    { provide: HttpBackend, useClass: HttpForceXhrBackend, deps: [NativeHttpFallback, HttpXhrBackend] },
     {
       provide: APP_INITIALIZER,
       useFactory: onAppInit,
       multi: true,
-      deps: [Injector]  
+      deps: [Injector]
     },
-    // { provide: APP_BASE_HREF, useValue: '/app/' },
     NgbActiveModal,
     AuthenticationService, CustomErrorHandlerService, RequestCache,
     AppService, TitleCasePipe, PendingChangesGuard, DefaultErrors,
@@ -240,7 +233,7 @@ export function tokenGetterFn() {
   entryComponents: [RefereeComponent,HelpModalComponent, LoaderComponent, ErrorModalComponent, BankDetailsComponent, ToolTipModalComponent, ModelWithButtonComponent,
     LifeProtectionModalComponent, MobileModalComponent, InsuranceResultModalComponent,
     CreateAccountModelComponent, ExistingCoverageModalComponent, RecommendationsModalComponent, TermsModalComponent,
-    SettingsWidgetComponent, ConfirmationModalComponent, TermsComponent, WillDisclaimerComponent, TransactionModalComponent,
+    SettingsWidgetComponent, ConfirmationModalComponent, TermsComponent, WillDisclaimerComponent,
     FundDetailsComponent, UnsupportedDeviceModalComponent, RestrictAddPortfolioModalComponent,
     LoginCreateAccountModelComponent, SummaryModalComponent, PaymentInstructionModalComponent]
 })

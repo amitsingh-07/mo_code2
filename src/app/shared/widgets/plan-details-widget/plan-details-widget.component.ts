@@ -17,6 +17,7 @@ import { TranslateService } from '../../../../../node_modules/@ngx-translate/cor
 import { RecommendationsModalComponent } from './../../modal/recommendations-modal/recommendations-modal.component';
 import { RoundPipe } from './../../Pipes/round.pipe';
 import { SelectedPlansService } from '../../Services/selected-plans.service';
+import { Util } from '../../utils/util';
 
 @Component({
   selector: 'app-plan-details-widget',
@@ -75,7 +76,7 @@ export class PlanDetailsWidgetComponent implements DoCheck, OnInit, AfterViewChe
       this.icon = this.data.icon;
       this.insurerLogo = 'assets/images/' + this.data.insurer.logoName;
       this.premiumAmount = this.data.premium.premiumAmount;
-      if(this.premiumAmount > 0){
+      if (this.premiumAmount > 0) {
         const tempValue = this.premiumAmount.toFixed(2);
         this.premiumAmountLength = tempValue.toString().length;
       }
@@ -87,7 +88,7 @@ export class PlanDetailsWidgetComponent implements DoCheck, OnInit, AfterViewChe
       this.coverageDuration = this.data.premium.durationName;
       this.premiumDuration = this.data.premium.premiumTerm;
       this.premiumAmountYearly = this.data.premium.premiumAmountYearly;
-      if(this.premiumAmountYearly > 0 && this.frequencyType == "yearly"){
+      if (this.premiumAmountYearly > 0 && this.frequencyType == "yearly") {
         const tempValue = this.premiumAmountYearly.toFixed(2);
         this.premiumAmountLength = tempValue.toString().length;
       }
@@ -158,8 +159,8 @@ export class PlanDetailsWidgetComponent implements DoCheck, OnInit, AfterViewChe
       }
       if (this.type === 'occupational disability') {
         this.canShowRanking = true;
-        this.highlights.push({ title: 'Deferred Period:', description: this.data.premium.deferredPeriod });
-        this.highlights.push({ title: 'Escalating Benefit:', description: this.data.premium.escalatingBenefit });
+        this.highlights.push({ title: 'Deferred Period:', description: this.data.premium.deferredPeriod + this.translate.instant('SUFFIX.MONTHS')});
+        this.highlights.push({ title: 'Escalating Benefit:', description: this.data.premium.escalatingBenefit + this.translate.instant('SUFFIX.PERCENTAGE')});
       }
       if (this.type.indexOf('retirement') > -1) {
         this.highlights.push({ title: 'Payout Period:', description: this.data.premium.retirementPayPeriodDisplay });
@@ -260,7 +261,7 @@ export class PlanDetailsWidgetComponent implements DoCheck, OnInit, AfterViewChe
 
   redirectToPromoPage(promo: any) {
     if (promo && promo.link) {
-      window.open(`${window.location.protocol}//${window.location.host}${promo.link}`, '_blank');
+      Util.openExternalUrl(`https://www.moneyowl.com.sg${promo['link']}`, '_blank')
     }
     return;
   }

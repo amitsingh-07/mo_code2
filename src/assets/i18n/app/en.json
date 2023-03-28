@@ -42,7 +42,9 @@
     "SUFFIX": {
         "PER_MONTH": "/ mth",
         "PER_YEAR": "/ year",
-        "SINGLE": "Single"
+        "SINGLE": "Single",
+        "MONTHS": " Months",
+        "PERCENTAGE": "%"
     },
     "LABEL": {
         "GENDER": "Gender",
@@ -153,7 +155,7 @@
         },
         "RATING": {
             "TITLE": "Insurer’s Financial Strength Rating",
-            "MESSAGE": "<div> <div class='mb20'>This is a forward-looking opinion about the financial security characteristics of an insurance company with respect to its ability to pay under its insurance policies and contracts in accordance with their terms.</div><div class='insurer-rating'> <div class='rating title'> <span>S&P Rating</span> </div><div class='rating-desc title'> <span>Description</span> </div></div><div class='insurer-rating'> <div class='rating'> <span>AAA</span> </div><div class='rating-desc'> <span>The insurer rated 'AAA' has extremely strong financial security characteristics.</span> </div></div><div class='insurer-rating'> <div class='rating'> <span>AA+</span> <span>AA</span> <span>AA-</span> </div><div class='rating-desc'> <span>An insurer rated 'AA' has very strong financial security characteristics, differing only slightly from those rated higher.</span> </div></div><div class='insurer-rating'> <div class='rating'> <span>A+</span> <span>A</span> <span>A-</span> </div><div class='rating-desc'> <span>An insurer rated 'A' has strong financial security characteristics but is somewhat more likely to be affected by adverse business conditions than are insurers with higher ratings.</span> </div></div><div class='insurer-rating'> <div class='rating'> <span>BBB+</span> <span>BBB</span> <span>BBB-</span> </div><div class='rating-desc'> <span>An insurer rated 'BBB' has good financial security characteristics but is more likely to be affected by adverse business conditions than are higher-rated insurers.</span> </div></div><div class='insurer-rating-source'>Source: <a href=\"http://www.standardandpoors.com/RATINGSDIRECT' target=\"_blank\">http://www.standardandpoors.com/RATINGSDIRECT</a></div></div>"
+            "MESSAGE": "<div> <div class='mb20'>This is a forward-looking opinion about the financial security characteristics of an insurance company with respect to its ability to pay under its insurance policies and contracts in accordance with their terms.</div><div class='insurer-rating'> <div class='rating title'> <span>S&P Rating</span> </div><div class='rating-desc title'> <span>Description</span> </div></div><div class='insurer-rating'> <div class='rating'> <span>AAA</span> </div><div class='rating-desc'> <span>The insurer rated 'AAA' has extremely strong financial security characteristics.</span> </div></div><div class='insurer-rating'> <div class='rating'> <span>AA+</span> <span>AA</span> <span>AA-</span> </div><div class='rating-desc'> <span>An insurer rated 'AA' has very strong financial security characteristics, differing only slightly from those rated higher.</span> </div></div><div class='insurer-rating'> <div class='rating'> <span>A+</span> <span>A</span> <span>A-</span> </div><div class='rating-desc'> <span>An insurer rated 'A' has strong financial security characteristics but is somewhat more likely to be affected by adverse business conditions than are insurers with higher ratings.</span> </div></div><div class='insurer-rating'> <div class='rating'> <span>BBB+</span> <span>BBB</span> <span>BBB-</span> </div><div class='rating-desc'> <span>An insurer rated 'BBB' has good financial security characteristics but is more likely to be affected by adverse business conditions than are higher-rated insurers.</span> </div></div><div class='insurer-rating-source'>Source: <a href='http://www.standardandpoors.com/RATINGSDIRECT' target='_blank'>http://www.standardandpoors.com/RATINGSDIRECT</a></div></div>"
         }
     },
     "LEGAL": {
@@ -597,7 +599,9 @@
     "EMAIL_ENQUIRY": {
         "THANKYOU": "Thank you!",
         "TITLE": "Your enquiry has been sent successfully. Our advisors will contact you as soon as possible.",
-        "FOR_ENQUIRY": "For enquiries, please contact us at:"
+        "FOR_ENQUIRY": "For enquiries, please contact us at:",
+        "ENQUIRY_NUMBER": "(65) 6329 9188",
+        "ENQUIRY_EMAIL": "enquiries@moneyowl.com.sg"
     },
     "INVESTMENT_ADD_PORTFOLIO_ERROR": {
         "MAX_PORTFOLIO_LIMIT_TITLE": "You have just reached the maximum number of 20 portfolios limit.",
@@ -611,6 +615,14 @@
         "CONTENT": "We’ll be back again shortly. Please check our homepage for the schedule of maintenance.",
         "CONTACT_US": "Contact Us",
         "ABT_MO": "MoneyOwl Pte Ltd is a financial adviser and fund management company licensed by MAS. We are a joint venture between NTUC Enterprise Co-operative Ltd and Providend Holding Pte Ltd. Capital Markets Services Licence No: CMS100758. {{copyrightYear}} MoneyOwl Pte Ltd. All Rights Reserved."
+    },
+    "NOT_FOUND": {
+        "TITLE": "Oh…this is embarassing!",
+        "SUB_TITLE": "Owls could not find the page you are looking for!"
+    },
+    "NOT_SUPPORTED": {
+        "TITLE": "Web browser not supported",
+        "SUB_TITLE": "You are using a web browser that we do not support. Please switch to using Chrome or Safari to continue viewing our website."
     },
     "UPLOAD_DOCUMENTS": {
         "CKA_CERTIFICATE" : "UT & ILP Certificate",
@@ -730,5 +742,10 @@
             "VEHICLE": "Vehicle"
           }
         }
+      },
+      "CAMERA_UPLOAD": {
+        "TITLE": "Choose an action",
+        "CAMERA_LABEL": "Camera",
+        "FILES_LABEL": "Files"
       }
 }

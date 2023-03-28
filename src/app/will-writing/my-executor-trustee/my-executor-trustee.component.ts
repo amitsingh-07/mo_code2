@@ -1,9 +1,7 @@
-import { Location } from '@angular/common';
 import { Component, OnDestroy, OnInit, ViewChild, ViewEncapsulation } from '@angular/core';
 import { FormArray, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { TranslateService } from '@ngx-translate/core';
-
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { Subscription } from 'rxjs';
 import { RegexConstants } from '../../../app/shared/utils/api.regex.constants';
@@ -32,7 +30,6 @@ export class MyExecutorTrusteeComponent implements OnInit, OnDestroy {
   private selectedIndex: number;
   private subscription: Subscription;
   private confirmModal = {};
-
   addExeTrusteeForm: FormGroup;
   execTrusteeList: IExecTrustee[] = [];
   relationship = '';
@@ -41,7 +38,6 @@ export class MyExecutorTrusteeComponent implements OnInit, OnDestroy {
   isFormAltered = false;
   formTitle: any = [];
   errorMsg;
-
   hasSpouse: boolean;
   hasChild: boolean;
   willWritingConfig = WILL_WRITING_CONFIG;
@@ -49,8 +45,8 @@ export class MyExecutorTrusteeComponent implements OnInit, OnDestroy {
   unsavedMsg: string;
   toolTip;
   formName: string[] = [];
-
   fromConfirmationPage = this.willWritingService.fromConfirmationPage;
+  errorMsgTitle: string;
 
   constructor(
     private formBuilder: FormBuilder,
@@ -58,7 +54,6 @@ export class MyExecutorTrusteeComponent implements OnInit, OnDestroy {
     private willWritingService: WillWritingService,
     public footerService: FooterService,
     public navbarService: NavbarService,
-    private _location: Location,
     private modal: NgbModal,
     private router: Router
   ) {
@@ -73,6 +68,7 @@ export class MyExecutorTrusteeComponent implements OnInit, OnDestroy {
       this.unsavedMsg = this.translate.instant('WILL_WRITING.COMMON.UNSAVED');
       this.toolTip = this.translate.instant('WILL_WRITING.COMMON.ID_TOOLTIP');
       this.errorMsg = this.translate.instant('WILL_WRITING.MY_EXECUTOR_TRUSTEE.ERROR_MSG');
+      this.errorMsgTitle = this.translate.instant('WILL_WRITING.MY_EXECUTOR_TRUSTEE.ERROR_TITLE');
       this.setPageTitle(this.pageTitle);
     });
   }
@@ -100,7 +96,7 @@ export class MyExecutorTrusteeComponent implements OnInit, OnDestroy {
         if (this.addExeTrusteeForm.dirty) {
           this.pageTitleComponent.goBack();
         } else {
-          this._location.back();
+          this.navbarService.goBack();
         }
         return false;
       }
@@ -275,7 +271,7 @@ export class MyExecutorTrusteeComponent implements OnInit, OnDestroy {
       });
     }
     if (errors.errorMessages.length > 0) {
-      this.willWritingService.openErrorModal('Oops! Please take note of the following:', errors.errorMessages, true);
+      this.willWritingService.openErrorModal(this.errorMsg.ERROR_TITLE, errors.errorMessages, true);
       return false;
     }
     return true;

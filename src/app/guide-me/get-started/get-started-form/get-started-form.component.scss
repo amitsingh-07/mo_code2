@@ -39,7 +39,7 @@ strong {
       color: $app-backgrnd-color;
       margin-right: 4px;
       + span {
-        color: #5e5e5e;
+        color: $silver-grey-color;
       }
     }
   }
@@ -49,9 +49,6 @@ strong {
 }
 
 #userInfoForm {
-  @include allmobiles {
-    //margin-top: 50px;
-  }
   .flex-col-6 {
     label {
     white-space: normal !important;

@@ -1,42 +1,45 @@
 @import '../../../../variables.scss';
 @import '../../../../_mixins.scss';
 
-.roadmap-widget {   
+.roadmap-widget {
     background-color: $road-map-bg;
-    border-radius:6px;
-    padding:20px;
+    border-radius: 6px;
+    padding: 20px;
 
     .main-title {
-        font-size:18px;
+        font-size: 18px;
         font-family: $muli-bold;
     }
+
     .roadmap-item-container {
-        margin-top:20px;
+        margin-top: 20px;
+
         .roadmap-item {
             padding-left: 45px;
-            position:relative;
-            min-height:50px;
+            position: relative;
+            min-height: 50px;
             color: $road-map-item-color;
-            font-family:$muli-regular;
-            font-size:15px;
+            font-family: $muli-regular;
+            font-size: 15px;
 
             .roadmap-icon {
                 position: absolute;
-                top:0px;
-                left:0px;
-                width:40px;
-                height:100%;
+                top: 0px;
+                left: 0px;
+                width: 40px;
+                height: 100%;
 
                 .line {
-                    display:block;
-                    width:2px;
-                    height:100%;
+                    display: block;
+                    width: 2px;
+                    height: 100%;
                     background-color: $road-map-line-bg;
                     margin: 0 auto;
-                    margin-top:4px;
+                    margin-top: 4px;
                 }
+
                 .icon {
-                    display:block;
+                    display: block;
                     background-repeat: no-repeat;
                     background-position: center top;
                     position: absolute;
@@ -46,41 +49,46 @@
                     bottom: 0px;
                 }
             }
+
             &:last-child {
                 .roadmap-icon {
                     .line {
-                        display:none;
+                        display: none;
                     }
                 }
             }
-            &.not-started{
+
+            &.not-started {
                 .roadmap-icon {
                     .icon {
-                        background-image:url('../../../../assets/images/roadmap/not-started.png');
+                        background-image: url('../../../../assets/images/roadmap/not-started.png');
                     }
                 }
             }
-            &.in-progress{
+
+            &.in-progress {
                 .roadmap-icon {
                     .icon {
-                        background-image:url('../../../../assets/images/roadmap/owl_head_tracker.svg');
-                        top:-7px !important;      
+                        background-image: url('../../../../assets/images/roadmap/owl_head_tracker.svg');
+                        top: -7px !important;
                     }
                 }
-                .roadmap-item-title{
+
+                .roadmap-item-title {
                     font-family: $muli-bold;
                     color: $road-mag-inprogress-color;
                 }
             }
-            &.completed{
+
+            &.completed {
                 .roadmap-icon {
                     .icon {
-                        background-image:url('../../../../assets/images/roadmap/completed.svg');
+                        background-image: url('../../../../assets/images/roadmap/completed.svg');
                         top: -1px !important;
                     }
                 }
             }
         }
     }
-    
+
 }

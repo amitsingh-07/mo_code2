@@ -36,7 +36,6 @@ import { StateStoreService } from './../../shared/Services/state-store.service';
 import { ApiService } from '../../shared/http/api.service';
 import { Formatter } from '../../shared/utils/formatter.util';
 import { InvestmentCommonService } from '../../investment/investment-common/investment-common.service';
-import { HubspotService } from './../../shared/analytics/hubspot.service';
 import { LoginService } from '../login.service';
 
 @Component({
@@ -102,9 +101,8 @@ export class VerifyMobileComponent implements OnInit, OnDestroy {
     private investmentCommonService: InvestmentCommonService,
     private stateStoreService: StateStoreService,
     private apiService: ApiService,
-    private hubspotService: HubspotService,
     private loginService: LoginService,
-    private renderer: Renderer2, ) {
+    private renderer: Renderer2,) {
     this.roleTwoFAEnabled = this.authService.isSignedUserWithRole(SIGN_UP_CONFIG.ROLE_2FA);
     this.translate.use('en');
     this.translate.get('VERIFY_MOBILE').subscribe((result: any) => {
@@ -193,7 +191,7 @@ export class VerifyMobileComponent implements OnInit, OnDestroy {
    */
   buildVerifyMobileForm() {
     this.verifyMobileForm = this.formBuilder.group({
-      ngOtpInput: ['', [Validators.required, Validators.pattern(RegexConstants.OTP)]]      
+      ngOtpInput: ['', [Validators.required, Validators.pattern(RegexConstants.OTP)]]
     });
   }
 
@@ -355,13 +353,13 @@ export class VerifyMobileComponent implements OnInit, OnDestroy {
   }
 
   sendWelcomeEmail() {
-    const mobileNo = this.isCorpBiz? this.appService.getCorpBizData().mobileNumber.toString() : this.mobileNumber.number.toString();
+    const mobileNo = this.isCorpBiz ? this.appService.getCorpBizData().mobileNumber.toString() : this.mobileNumber.number.toString();
     this.signUpApiService.sendWelcomeEmail(mobileNo, false).subscribe((data) => { });
   }
 
   resendEmailVerification() {
     let organisationCode = (this.organisationEnabled && appConstants.USERTYPE.FACEBOOK) || null;
-    const mobileNo = this.isCorpBiz? this.appService.getCorpBizData().mobileNumber.toString() : this.mobileNumber.number.toString();
+    const mobileNo = this.isCorpBiz ? this.appService.getCorpBizData().mobileNumber.toString() : this.mobileNumber.number.toString();
     this.signUpApiService.resendEmailVerification(mobileNo, false, organisationCode).subscribe((data) => {
       if (data.responseMessage.responseCode === 6007) {
         this.navbarService.logoutUser();
@@ -480,31 +478,6 @@ export class VerifyMobileComponent implements OnInit, OnDestroy {
         this.mobileNumberVerifiedMessage = this.loading['verified2fa'];
         this.authService.removeAccessCode();
         this.progressModal = false;
-        // Pulling Customer information to log on Hubspot
-        this.signUpApiService.getUserProfileInfo().subscribe((data) => {
-          let userInfo = data.objectList;
-          this.hubspotService.registerEmail(userInfo.emailAddress);
-          this.hubspotService.registerPhone(userInfo.mobileNumber);
-          const hsPayload = [
-            {
-              name: "email",
-              value: userInfo.emailAddress
-            },
-            {
-              name: "phone",
-              value: userInfo.mobileNumber
-            },
-            {
-              name: "firstname",
-              value: userInfo.firstName
-            },
-            {
-              name: "lastname",
-              value: userInfo.lastName
-            }];
-          this.hubspotService.submitLogin(hsPayload);
-        });
-
         this.investmentCommonService.clearAccountCreationActions();
         try {
           if (data.objectList[0].customerId) {
@@ -650,8 +623,8 @@ export class VerifyMobileComponent implements OnInit, OnDestroy {
   @HostListener('keyup', ['$event'])
   onKeyUp(event: KeyboardEvent) {
     if (event.keyCode === 46) {
-      if(event.srcElement['id']) {
-        const el = document.querySelector('#' + event.srcElement['id']);      
+      if (event.srcElement['id']) {
+        const el = document.querySelector('#' + event.srcElement['id']);
         const rowNumber = event.srcElement['id'].split('_');
         const element_0 = this.renderer.selectRootElement('#' + event.srcElement['id']);
         const startPosition = element_0.selectionStart;
@@ -660,9 +633,10 @@ export class VerifyMobileComponent implements OnInit, OnDestroy {
           const rowCount = (parseInt(rowNumber[1]) < 5) ? parseInt(rowNumber[1]) + 1 : parseInt(rowNumber[1]);
           const element = this.renderer.selectRootElement('#' + (rowNumber[0] + '_' + rowCount + '_' + rowNumber[2]));
           if (parseInt(rowNumber[1]) == 0) {
-            if(startPosition == 0 && endPosition == 0) {
+            if (startPosition == 0 && endPosition == 0) {
               setTimeout(() => { element.setSelectionRange(0, 1); element.focus(); }, 0);
-            } else {this.otp = null; this.showOtpComponent = false;
+            } else {
+              this.otp = null; this.showOtpComponent = false;
               setTimeout(() => { element.value = null; element.setSelectionRange(0, 1); element.focus(); }, 0);
             }
           } else if (parseInt(rowNumber[1]) < 5 && parseInt(rowNumber[1]) > 0) {
@@ -673,7 +647,7 @@ export class VerifyMobileComponent implements OnInit, OnDestroy {
           }
         } else {
           const rowCount = (parseInt(rowNumber[1]) < 5) ? parseInt(rowNumber[1]) + 1 : parseInt(rowNumber[1]);
-          const element = this.renderer.selectRootElement('#' + (rowNumber[0] + '_' + rowCount + '_' + rowNumber[2]));        
+          const element = this.renderer.selectRootElement('#' + (rowNumber[0] + '_' + rowCount + '_' + rowNumber[2]));
           setTimeout(() => { element.setSelectionRange(0, 1); element.focus(); }, 0);
         }
         event.preventDefault();
@@ -683,8 +657,8 @@ export class VerifyMobileComponent implements OnInit, OnDestroy {
   }
   @HostListener('keydown', ['$event'])
   onKeyDown(event: KeyboardEvent) {
-    if (event.keyCode === 46) { 
-      if(event.srcElement['id']) {    
+    if (event.keyCode === 46) {
+      if (event.srcElement['id']) {
         const rowNumber = event.srcElement['id'].split('_');
         const element_0 = this.renderer.selectRootElement('#' + event.srcElement['id']);
         const startPosition = element_0.selectionStart;

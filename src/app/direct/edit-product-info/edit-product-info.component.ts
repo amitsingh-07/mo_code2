@@ -1,8 +1,6 @@
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { TranslateService } from '@ngx-translate/core';
-
 import { NavbarService } from '../../shared/navbar/navbar.service';
-import { DirectApiService } from '../direct.api.service';
 import { DirectService } from '../direct.service';
 
 @Component({
@@ -26,7 +24,7 @@ export class EditProductInfoComponent implements OnInit {
   productCategorySelectedLogo: string;
 
   constructor(
-    private directService: DirectService, private directApiService: DirectApiService,
+    private directService: DirectService,
     private translate: TranslateService, private navbarService: NavbarService) {
     this.translate.use('en');
     this.translate.get('COMMON').subscribe((results) => {
@@ -42,19 +40,17 @@ export class EditProductInfoComponent implements OnInit {
 
   ngOnInit() {
 
-    //this.directService.prodSearchInfoData.subscribe((data) => {
-      const data = this.directService.getMinProdInfo();
-      if (data !== '') {
-        this.minProdSearch = data;
-        if (this.initLoad === true) { // Initial Load Case
-          this.initLoad = false;
-        }
-        this.toggleVisibility = false;
-        this.toggleBackdropVisibility = false;
-        this.directService.setModalFreeze(false);
+    const data = this.directService.getMinProdInfo();
+    if (data !== '') {
+      this.minProdSearch = data;
+      if (this.initLoad === true) { // Initial Load Case
+        this.initLoad = false;
       }
-      this.initCategorySetup();
-   // });
+      this.toggleVisibility = false;
+      this.toggleBackdropVisibility = false;
+      this.directService.setModalFreeze(false);
+    }
+    this.initCategorySetup();
   }
 
   initCategorySetup() {

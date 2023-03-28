@@ -1,13 +1,16 @@
 @import '../../../../variables';
+
 app-cpfia-success-modal {
   .modal-body {
     padding: 20px;
+
     .cpfia-success {
       width: 111px;
       height: 114px;
       display: flex;
       margin: 0 auto 20px;
     }
+
     .txt-orange {
       font-family: $muli-semi-bold;
       font-size: 18px;
@@ -18,6 +21,7 @@ app-cpfia-success-modal {
       cursor: pointer;
     }
   }
+
   .primary-btn {
     font-family: $muli-bold;
     font-size: 24px;

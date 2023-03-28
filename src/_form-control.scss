@@ -14,7 +14,7 @@
   }
 
   border-radius: 8px;
-  background: #f4fafb;
+  background: $black-squeeze-grey-color;
   margin-bottom: 16px;
 
   .form-group-with-bg--header {
@@ -25,7 +25,7 @@
 
     .form-group-with-bg--header-label {
       font-family: $muli-semi-bold;
-      color: #000000;
+      color: $black-color;
       padding-bottom: 10px;
       font-size: 18px;
       word-break: break-word;
@@ -38,14 +38,14 @@
     .form-group-with-bg--header-single-label {
       margin-right: 2vw;
       font-family: $muli-semi-bold;
-      color: #000000;
+      color: $black-color;
       padding: 10px 0 18px 0;
       font-size: 18px;
     }
 
     .form-group-with-bg--header-sub-label {
       font-family: $muli-regular;
-      color: #8d9aa8 !important;
+      color: $teal-grey-color !important;
       font-size: 16px;
     }
 
@@ -55,10 +55,9 @@
   }
 
   .total {
-    color: #00a7a7;
+    color: $teal-color;
     font-family: $muli-semi-bold;
     position: relative;
-    //top: -17px;
     font-size: 22px;
     @extend .block;
     @extend .text-right;
@@ -73,7 +72,7 @@
     padding: 20px;
 
     .form-group-with-bg--content-label {
-      color: #2d8289;
+      color: $dark-teal-color;
       font-family: $muli-semi-bold;
       margin-right: 10px;
       position: relative;
@@ -81,14 +80,14 @@
 
       .form-group-with-bg--header-single-label {
         font-family: $muli-semi-bold;
-        color: #000000;
+        color: $black-color;
         padding: 10px 0 18px 0;
         font-size: 18px;
       }
 
       a.link {
         text-decoration: underline !important;
-        color: #2d8289 !important;
+        color: $dark-teal-color !important;
       }
 
       .with-help-icon {
@@ -98,25 +97,17 @@
 
       .help-icon {
         background-image: url("./assets/images/help-icon.png");
-        //position: absolute;
-        //right: 10px;
         width: 35px;
         height: 20px;
-        //top: 4px;
         cursor: pointer;
         background-repeat: no-repeat;
         margin-left: 10px;
-
-        @include allmobiles {
-          //top: 15px;
-          //right: 30px;
-        }
       }
     }
 
     .form-group-with-bg--content-sub-label {
       font-family: $muli-regular;
-      color: #2d8289;
+      color: $dark-teal-color;
       font-size: 16px;
     }
   }
@@ -156,19 +147,19 @@
 
     .input-label-black,
     .input-label-grey {
-      color: #000000;
+      color: $black-color;
       font-family: $muli-semi-bold;
       font-size: 18px;
     }
 
     .input-label-grey {
-      color: #5e5e5e;
+      color: $silver-grey-color;
     }
 
     .input-label-normal {
       font-family: $muli-regular;
       font-size: 16px;
-      color: #5e5e5e;
+      color: $silver-grey-color;
     }
 
     &.one-label {
@@ -231,8 +222,8 @@
   input[type='checkbox']+label {
     width: 100%;
     padding: 17px 15px;
-    background: #00c5c4;
-    color: #fff;
+    background: $robins-egg-blue-color;
+    color: $white-color;
     font-family: $muli-bold;
     font-size: 16px;
     position: relative;
@@ -257,7 +248,7 @@
     }
 
     .input-label-white {
-      color: #ffffff;
+      color: $white-color;
       font-family: $muli-semi-bold;
       font-size: 20px;
       line-height: 1.3;
@@ -275,7 +266,7 @@
     .input-label-normal {
       font-family: $muli-regular;
       @include fontSize(10px);
-      color: #ffffff;
+      color: $white-color;
       opacity: 0.8;
       letter-spacing: -0.3px;
       line-height: 1.1;
@@ -301,7 +292,7 @@
     .input-label-top20 {
       font-family: $muli;
       @include fontSize(10px);
-      color: #ffffff;
+      color: $white-color;
       opacity: 0.8;
       letter-spacing: -0.3px;
       line-height: 1.1;
@@ -317,13 +308,13 @@
   input[type='radio']:checked+label,
   input[type='checkbox']:checked+label {
     background-image: none;
-    background-color: #fff;
+    background-color: $white-color;
     box-shadow: 0 6px 8px 0 rgba(0, 0, 0, 0.3);
 
     .input-label-white,
     .input-label-normal,
     .input-label-top20 {
-      color: #00a7a7;
+      color: $teal-color;
     }
   }
 
@@ -444,7 +435,7 @@ input::placeholder {
   }
 
   .btn-primary {
-    background: #fff3e9 !important;
+    background: $serenade-dark-color !important;
   }
 
   .btn-orange {
@@ -479,7 +470,7 @@ input::placeholder {
 
 .form__col--mid {
   label {
-    color: #2d8289;
+    color: $dark-teal-color;
     font-family: $muli-semi-bold;
     margin-top: 1vh;
     margin-right: 5vw;
@@ -500,6 +491,9 @@ input::placeholder {
       border: transparent;
       color: $app-backgrnd-color;
       background: $module-fill-color;
+      @include max360{
+        padding-right: 0px;
+      }
     }
   }
 
@@ -540,18 +534,18 @@ input::placeholder {
 
   .dropdown-lg {
     height: 235px;
-    background-color: #fff;
+    background-color: $white-color;
     overflow: auto;
   }
 
   .btn-dropdown {
     background: $module-fill-color;
     padding: .90rem;
-    border: 1px solid #94CCCC;
+    border: 1px solid $half-baked-blue-color;
     text-align: left;
     font-size: 16px;
     font-family: $muli-regular;
-    color: #00a7a7;
+    color: $teal-color;
     white-space: normal;
 
     &.grey {
@@ -576,11 +570,11 @@ input::placeholder {
   }
 
   .form--group-dropdown-selected {
-    color: #00a7a7;
+    color: $teal-color;
   }
 
   .dependent-count {
-    color: #00a7a7;
+    color: $teal-color;
     margin-right: 4px;
   }
 }
@@ -590,7 +584,7 @@ input::placeholder {
 .form-control {
   width: 100%;
   height: auto;
-  border: 1px solid #94CCCC;
+  border: 1px solid $half-baked-blue-color;
   border-radius: 6px;
   position: relative;
   padding: 0.90rem;
@@ -605,21 +599,21 @@ input::placeholder {
     text-align: center;
     font-style: normal;
     z-index: 2;
-    color: #00a7a7;
+    color: $teal-color;
 
     &.right {
       right: 12px;
       transform: translate(0, -50%);
       top: 50%;
-      color: #2D8288;
+      color: $lochinvar-color;
     }
   }
 
   .input-control {
     width: 100%;
-    color: #00a7a7;
+    color: $teal-color;
     position: relative;
-    background: #FFF;
+    background: $white-color;
     text-align: right;
     border: none;
     font-size: 16px;
@@ -662,8 +656,8 @@ input::placeholder {
 
 .dropdown-toggle {
   &:disabled {
-    color: #bff1f1 !important;
-    border-color: #bff1f1 !important;
+    color: $btn-disabled !important;
+    border-color: $btn-disabled !important;
 
     &::after {
       opacity: 0.1;
@@ -674,11 +668,11 @@ input::placeholder {
 
 .form-control {
   &.disabled {
-    border-color: #bff1f1 !important;
+    border-color: $btn-disabled !important;
 
     i,
     input {
-      color: #bff1f1 !important;
+      color: $btn-disabled !important;
     }
   }
 }
@@ -710,6 +704,7 @@ input::placeholder {
     position: absolute;
     right: 10px;
     top: 17px;
+    z-index: 1000;
   }
 
   .hide-password {
@@ -727,7 +722,7 @@ input::placeholder {
       position: relative;
       padding: 10px;
       border-radius: 6px;
-      background: #007d7d;
+      background: $darker-teal-color;
 
       p {
 
@@ -760,7 +755,7 @@ input::placeholder {
           .error-tooltip__title__warning-icon {
             text-align: center;
             border-radius: 100%;
-            background-color: #e57300;
+            background-color: $mango-tango-color;
             width: 25px;
             height: 25px;
             display: inline-block;
@@ -771,7 +766,7 @@ input::placeholder {
         }
 
         &.error-tooltip__desc-three {
-          color: #a2cfcf;
+          color: $no-bank-account-color;
         }
       }
 
@@ -780,7 +775,7 @@ input::placeholder {
         height: 0;
         border-left: 15px solid transparent;
         border-right: 15px solid transparent;
-        border-top: 15px solid #007d7d;
+        border-top: 15px solid $darker-teal-color;
         position: absolute;
         bottom: -14px;
         right: 15px;
@@ -789,7 +784,7 @@ input::placeholder {
   }
 
   .form-control {
-    color: #00a7a7;
+    color: $teal-color;
     border: none;
     padding-bottom: 9px;
     padding-top: 12px;
@@ -806,8 +801,8 @@ input::placeholder {
   select:-webkit-autofill,
   select:-webkit-autofill:hover,
   select:-webkit-autofill:focus {
-    color: #00a7a7;
-    -webkit-text-fill-color: #00a7a7;
+    color: $teal-color;
+    -webkit-text-fill-color: $teal-color;
     box-shadow: inset 0 0 0px 9999px white;
     -webkit-box-shadow: inset 0 0 0px 9999px white !important;
   }
@@ -817,7 +812,7 @@ input::placeholder {
     top: 14px;
     padding: 0px 0 0 12px;
     transition: all 200ms;
-    color: #00a7a7;
+    color: $teal-color;
     left: 2px;
     background: transparent !important;
   }
@@ -827,7 +822,7 @@ input::placeholder {
     font-size: 10px;
     transform: translate3d(0, -50%, 0);
     opacity: 1;
-    color: #5e5e5e;
+    color: $silver-grey-color;
     z-index: 999;
   }
 }
@@ -889,7 +884,6 @@ input::placeholder {
 }
 
 .form-control:focus {
-  //border-color: inherit;
   -webkit-box-shadow: none;
   box-shadow: none;
 }
@@ -1017,7 +1011,7 @@ input::placeholder {
       .education-form {
         display: flex;
         padding-top: 40px;
-        border: 1px solid #c0eded;
+        border: 1px solid $form-title-backgrnd-color;
         border-radius: 0px 0px 6px 6px;
         .direct-form {
           width: 350px !important;
@@ -1045,7 +1039,7 @@ input::placeholder {
     position: relative;
     padding: 40px;
     border-radius: 6px;
-    border: 1px solid #e1e1e1;
+    border: 1px solid $border-grey-color;
 
     .mail-icon__container {
       position: absolute;
@@ -1268,7 +1262,7 @@ input::placeholder {
     font-family: $muli-regular;
     font-size: 14px;
     line-height: 1.2;
-    color: #4a4a4a;
+    color: $dark-grey-color;
     opacity: 0.9;
     margin-top: 10px;
     text-align: center;
@@ -1292,7 +1286,7 @@ input::placeholder {
 
     .bg-title {
       .form-group-with-bg--header-label {
-        color: #313644 !important;
+        color: $tuna-color !important;
       }
     }
 
@@ -1323,13 +1317,6 @@ input::placeholder {
       }
     }
 
-    .form-group-with-bg--header {
-      .form-group-with-bg--header-label {
-        //width: 97%;
-      }
-    }
-
-    //padding: 10px 0;
     color:$app-backgrnd-color;
 
     label {
@@ -1354,7 +1341,7 @@ input::placeholder {
   }
 
   input::placeholder {
-    color: #888888 !important;
+    color: $grey-color !important;
   }
 
   .form-group-with-bg--content {
@@ -1405,7 +1392,7 @@ input::placeholder {
   }
 
   .placeholderAmount {
-    color: #5e5e5e;
+    color: $silver-grey-color;
   }
 
   //Diasble form control styles
@@ -1454,7 +1441,7 @@ input::placeholder {
     opacity: 1 !important;
     pointer-events: none;
   }
-
+  
   .datepicker-control .input-group.view-mode .form-control {
     background-color: rgba(0, 167, 167, 0.15) !important;
     color: $app-backgrnd-color !important;
@@ -1489,7 +1476,7 @@ input::placeholder {
   textarea:disabled,
   .input-control:disabled,
   .form-control.view-mode {
-    -webkit-text-fill-color: #00a7a7;
+    -webkit-text-fill-color: $teal-color;
     opacity: 1;
   }
 
@@ -1499,7 +1486,6 @@ input::placeholder {
     .title,
     .input-label-grey {
       display: block;
-      //width: 260px;
       word-break: break-word;
     }
   }
@@ -1509,7 +1495,6 @@ input::placeholder {
     .title,
     .input-label-grey {
       display: block;
-      //width: 500px;
       word-break: break-word;
     }
   }
@@ -1519,7 +1504,6 @@ input::placeholder {
     .title,
     .input-label-grey {
       display: block;
-      //width: 500px;
       word-break: break-word;
     }
   }

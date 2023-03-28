@@ -1,4 +1,4 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { waitForAsync, ComponentFixture, TestBed } from '@angular/core/testing';
 import { DirectService } from './../../direct.service';
 
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
@@ -10,7 +10,7 @@ describe('HospitalPlanFormComponent', () => {
   let fixture: ComponentFixture<HospitalPlanFormComponent>;
   let directService: DirectService;
 
-  beforeEach(async(() => {
+  beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
       imports: [ReactiveFormsModule, FormsModule],
       declarations: [ HospitalPlanFormComponent],
@@ -74,7 +74,7 @@ describe('HospitalPlanFormComponent', () => {
     expect(dobObj.month).toBe('10');
     expect(dobObj.day).toBe('04');
   });
-  it('testing the Plan Type dropdown', async(() => {
+  it('testing the Plan Type dropdown', waitForAsync(() => {
     spyOn(component, 'planType');
     const dropdownButton = fixture.debugElement.nativeElement.querySelector('#planTypeDropDown button');
     const dropdownItem = fixture.debugElement.nativeElement.querySelector('.dropdown-item');

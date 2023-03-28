@@ -67,18 +67,20 @@ app-recommendation {
     flex-direction: column;
     height: 100%;
     overflow: scroll;
-    @include allmobiles{
-      //justify-content: space-between !important;
+
+    @include allmobiles {
       padding-bottom: 30px;
     }
-    @include max360{
+
+    @include max360 {
       top: 0px;
     }
-    .btn{
+
+    .btn {
       &.btn-primary {
         width: 320px !important;
         margin: 0 auto;
-  
+
         @include allmobiles {
           position: absolute !important;
           bottom: 30px;
@@ -90,40 +92,42 @@ app-recommendation {
     }
   }
 
-  .splash-screen-content{
+  .splash-screen-content {
     display: flex;
     flex-direction: column;
     justify-content: center;
-    align-items: center; 
+    align-items: center;
   }
 
   .custom-modal--content {
     text-align: center;
     padding-bottom: 45px;
   }
-  
+
   .custom-modal--icon {
     display: flex;
     justify-content: center;
-      @include desktop {
-        width: 340px;
-      }
 
-      @include tablet {
-        width: 340px;
-      }
+    @include desktop {
+      width: 340px;
+    }
 
-      @include allmobiles {
-        width: 285px;
-        height: 200px;
-        margin-top: 45px;
-      }
-      img{
-        width: 100%;
-        height: auto;
-        display: block;
-        vertical-align: top;
-      }
+    @include tablet {
+      width: 340px;
+    }
+
+    @include allmobiles {
+      width: 285px;
+      height: 200px;
+      margin-top: 45px;
+    }
+
+    img {
+      width: 100%;
+      height: auto;
+      display: block;
+      vertical-align: top;
+    }
   }
 
   .custom-modal--title {
@@ -181,6 +185,7 @@ app-recommendation {
       }
 
     }
+
     .risk-profile-block__content {
       .portfolio-img {
         img {
@@ -265,7 +270,7 @@ app-recommendation {
       margin-bottom: 30px;
     }
 
-    input[type=checkbox] + label {
+    input[type=checkbox]+label {
       background-position: 0 0;
     }
 
@@ -293,7 +298,7 @@ app-recommendation {
       position: relative;
       border: none;
       border-radius: 6px;
-      box-shadow: 0 10px 14px 0 rgba(0, 0, 0, 0.21) ;
+      box-shadow: 0 10px 14px 0 rgba(0, 0, 0, 0.21);
     }
 
     .btn__footer--fixed {

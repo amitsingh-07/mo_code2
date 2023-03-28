@@ -17,11 +17,11 @@ export class ToolTipModalComponent implements OnInit {
 
   ngOnInit() {
     this.router.events
-            .pipe(filter((event) => event instanceof NavigationEnd))
-            .subscribe(({ urlAfterRedirects }: NavigationEnd) => {
-                // dismiss all bootstrap modal dialog
-                this.activeModal.dismiss();
-            });
+      .pipe(filter((event) => event instanceof NavigationEnd))
+      .subscribe(({ urlAfterRedirects }: NavigationEnd) => {
+        // dismiss all bootstrap modal dialog
+        this.activeModal.dismiss();
+      });
   }
 
 }

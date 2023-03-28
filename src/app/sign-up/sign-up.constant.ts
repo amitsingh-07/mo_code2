@@ -4,7 +4,8 @@ export let SIGN_UP_CONFIG = {
     'email',
     'mobileno',
     'dob',
-    'sex'
+    'sex',
+    'uinfin'
   ],
   SHOW_BANK_DETAILS: [
     'PORTFOLIO_PURCHASED',
@@ -202,9 +203,8 @@ export let SIGN_UP_CONFIG = {
     'residentialstatus',
     'cpfbalances',
     'cpfhousingwithdrawal',
-    'email',
-    'mobileno',
     'noa',
+    'uinfin',
     'hdbownership.dateofpurchase',
     'hdbownership.monthlyloaninstalment',
     'hdbownership.loangranted',

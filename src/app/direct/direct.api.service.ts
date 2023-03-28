@@ -1,10 +1,7 @@
-import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-
 import { formConstants } from '../shared/form-constants';
 import { ApiService } from '../shared/http/api.service';
 import { AuthenticationService } from '../shared/http/auth/authentication.service';
-import { HospitalPlan } from './../guide-me/hospital-plan/hospital-plan';
 import { ILifeProtectionNeedsData } from './product-info/life-protection-form/life-protection.interface';
 import {
     ICriticalIllnessData,
@@ -28,7 +25,7 @@ import { DirectService } from './direct.service';
 })
 export class DirectApiService {
     constructor(
-        private http: HttpClient, private apiService: ApiService,
+        private apiService: ApiService,
         private authService: AuthenticationService, private directService: DirectService
     ) {
     }
@@ -143,18 +140,18 @@ export class DirectApiService {
 
     getLtcData() {
         const lcp = this.directService.getLongTermCareForm();
-        if(lcp.payoutType) {
-			const lcpData: ILongTermCareNeedsData = {
-				monthlyPayout: lcp.monthlyPayout,
-				payoutType: lcp.payoutType
-			} as ILongTermCareNeedsData;			
-			return lcpData;
-		} else {
-			const lcpData: ILongTermCareNeedsData = {
-				monthlyPayout: lcp.monthlyPayout
-			} as ILongTermCareNeedsData;			
-			return lcpData;
-		}
+        if (lcp.payoutType) {
+            const lcpData: ILongTermCareNeedsData = {
+                monthlyPayout: lcp.monthlyPayout,
+                payoutType: lcp.payoutType
+            } as ILongTermCareNeedsData;
+            return lcpData;
+        } else {
+            const lcpData: ILongTermCareNeedsData = {
+                monthlyPayout: lcp.monthlyPayout
+            } as ILongTermCareNeedsData;
+            return lcpData;
+        }
     }
 
     getDependentsData() {

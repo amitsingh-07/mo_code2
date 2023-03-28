@@ -1,4 +1,3 @@
-import { Location } from '@angular/common';
 import { Component, OnInit, ViewEncapsulation} from '@angular/core';
 import { Router } from '@angular/router';
 import { TranslateService } from '@ngx-translate/core';
@@ -16,7 +15,7 @@ export class ReviewYourDetailsComponent implements OnInit {
 
   constructor(private translate: TranslateService, private router: Router,
               public footerService: FooterService,
-              private _location: Location, public navbarService: NavbarService ) {
+              public navbarService: NavbarService ) {
     this.translate.use('en');
   }
 
@@ -30,6 +29,6 @@ export class ReviewYourDetailsComponent implements OnInit {
   }
 
   goBack() {
-    this._location.back();
+    this.navbarService.goBack();
   }
 }

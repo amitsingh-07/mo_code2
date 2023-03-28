@@ -1,13 +1,12 @@
 import { IntroScreenComponent } from '../intro-screen/intro-screen.component';
-import { async, ComponentFixture, TestBed, getTestBed } from '@angular/core/testing';
+import { waitForAsync, ComponentFixture, TestBed, getTestBed } from '@angular/core/testing';
 import { ReactiveFormsModule } from '@angular/forms';
 import { RouterTestingModule } from '@angular/router/testing';
 import { JwtModule } from '@auth0/angular-jwt';
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 import { TranslateModule } from '@ngx-translate/core';
 import { TranslateService } from '@ngx-translate/core';
-import { Injector, NO_ERRORS_SCHEMA } from '@angular/core';
-import { Component, Input, OnInit, ViewEncapsulation } from '@angular/core';
+import { Injector } from '@angular/core';
 describe('IntroScreenComponent', () => {
   let component: IntroScreenComponent;
   let fixture: ComponentFixture<IntroScreenComponent>;
@@ -15,7 +14,7 @@ describe('IntroScreenComponent', () => {
   let injector: Injector;
   let translations = require('../../../../assets/i18n/investment-engagement-journey/en.json');
 
-  beforeEach(async(() => {
+  beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
       declarations: [IntroScreenComponent],
       imports: [TranslateModule.forRoot(), RouterTestingModule.withRoutes([]),

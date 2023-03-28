@@ -2,6 +2,13 @@
 @import '../../../mixins';
 
 app-create-account {
+  .container-fluid {
+    &.max-width--1024{
+      @include allmobiles {
+        padding-top: 0;
+      }
+    }
+  }
   .checkbox-button a {
     color: $white-color;
     text-decoration: underline;
@@ -15,6 +22,7 @@ app-create-account {
     height: 200px;
     overflow-y: auto;
   }
+
   .input-group.date-picker {
     .dropdown-menu.show {
       @include allmobiles {
@@ -30,7 +38,7 @@ app-create-account {
     height: 43px;
     cursor: pointer;
     position: absolute;
-    top: 5%;
+    top: 38px;
     left: 20px;
     background-repeat: no-repeat;
     z-index: 999;
@@ -54,15 +62,16 @@ app-create-account {
         &:after {
           display: none;
         }
-        &.disabled{
-          background-color: $iceberg-blue-color  !important;
+
+        &.disabled {
+          background-color: $iceberg-blue-color !important;
           opacity: 1 !important;
           box-shadow: inset 0 0 0px $iceberg-blue-color;
-          -webkit-box-shadow: inset 0 0 0px $iceberg-blue-color  !important;
+          -webkit-box-shadow: inset 0 0 0px $iceberg-blue-color !important;
           cursor: none;
-    
+
           &:hover {
-            background-color: $iceberg-blue-color  !important;
+            background-color: $iceberg-blue-color !important;
           }
         }
       }
@@ -82,7 +91,7 @@ app-create-account {
     font-size: 10px;
     transform: translate3d(0, -50%, 0);
     opacity: 1;
-    color: #5e5e5e;
+    color: $silver-grey-color;
     z-index: 999;
   }
 
@@ -96,12 +105,13 @@ app-create-account {
       max-width: 170px !important;
       max-height: 155px !important;
       height: auto;
+      margin-top: 30px;
     }
   }
 
   .signup-wrapper__description {
     @include allmobiles {
-      font-family: $muli-regular  !important;
+      font-family: $muli-regular !important;
     }
   }
 
@@ -228,35 +238,35 @@ app-create-account {
   }
 
   input#crtAccInpt9.form-control:focus+.form-control-placeholder {
-    color: $silver-grey-color  !important;
+    color: $silver-grey-color !important;
   }
 
   .btn-primary.btn:disabled,
   .btn-primary.btn:disabled:hover {
-    border: solid 1px $btn-disabled-teal-color  !important;
-    background-color: $btn-disabled-light-bg  !important;
-    color: $btn-disabled-teal-color  !important;
+    border: solid 1px $btn-disabled-teal-color !important;
+    background-color: $btn-disabled-light-bg !important;
+    color: $btn-disabled-teal-color !important;
   }
 
   .form-group-floating-label {
 
     &:disabled,
     &.disabled {
-      background-color: $iceberg-blue-color  !important;
+      background-color: $iceberg-blue-color !important;
       opacity: 1 !important;
       box-shadow: inset 0 0 0px $iceberg-blue-color;
-      -webkit-box-shadow: inset 0 0 0px $iceberg-blue-color  !important;
+      -webkit-box-shadow: inset 0 0 0px $iceberg-blue-color !important;
       cursor: none;
 
       &:hover {
-        background-color: $iceberg-blue-color  !important;
+        background-color: $iceberg-blue-color !important;
       }
 
       .form-control-placeholder {
         font-size: 10px;
         transform: translate3d(0, -50%, 0);
         opacity: 1;
-        color: #5e5e5e;
+        color: $silver-grey-color;
         z-index: 999;
       }
     }
@@ -265,18 +275,18 @@ app-create-account {
 
       &:disabled,
       &.disabled {
-        color: $app-backgrnd-color  !important;
-        -webkit-text-fill-color: $app-backgrnd-color  !important;
-        background-color: $iceberg-blue-color  !important;
+        color: $app-backgrnd-color !important;
+        -webkit-text-fill-color: $app-backgrnd-color !important;
+        background-color: $iceberg-blue-color !important;
         opacity: 1 !important;
         box-shadow: inset 0 0 0px $iceberg-blue-color;
-        -webkit-box-shadow: inset 0 0 0px $iceberg-blue-color  !important;
+        -webkit-box-shadow: inset 0 0 0px $iceberg-blue-color !important;
         padding-bottom: 9px;
         padding-top: 12px;
         cursor: not-allowed;
 
         &:hover {
-          background-color: $iceberg-blue-color  !important;
+          background-color: $iceberg-blue-color !important;
         }
       }
     }
@@ -291,30 +301,30 @@ app-create-account {
 
       &:disabled,
       &.disabled {
-        color: $app-backgrnd-color  !important;
-        -webkit-text-fill-color: $app-backgrnd-color  !important;
-        background-color: $iceberg-blue-color  !important;
+        color: $app-backgrnd-color !important;
+        -webkit-text-fill-color: $app-backgrnd-color !important;
+        background-color: $iceberg-blue-color !important;
         opacity: 1 !important;
         box-shadow: inset 0 0 0px $iceberg-blue-color;
-        -webkit-box-shadow: inset 0 0 0px $iceberg-blue-color  !important;
+        -webkit-box-shadow: inset 0 0 0px $iceberg-blue-color !important;
         cursor: not-allowed;
 
         &:hover {
-          background-color: $iceberg-blue-color  !important;
+          background-color: $iceberg-blue-color !important;
         }
 
         input {
           &:disabled {
-            color: $app-backgrnd-color  !important;
-            -webkit-text-fill-color: $app-backgrnd-color  !important;
-            background-color: $iceberg-blue-color  !important;
+            color: $app-backgrnd-color !important;
+            -webkit-text-fill-color: $app-backgrnd-color !important;
+            background-color: $iceberg-blue-color !important;
             opacity: 1 !important;
             box-shadow: inset 0 0 0px $iceberg-blue-color;
-            -webkit-box-shadow: inset 0 0 0px $iceberg-blue-color  !important;
+            -webkit-box-shadow: inset 0 0 0px $iceberg-blue-color !important;
             cursor: not-allowed;
 
             &:hover {
-              background-color: $iceberg-blue-color  !important;
+              background-color: $iceberg-blue-color !important;
             }
           }
         }
@@ -347,20 +357,33 @@ app-create-account {
           top: 14px !important;
         }
 
+        .dropdown-menu{
+          &.show{
+            &+.form-control-placeholder{
+              top: 14px;
+              font-size: 10px;
+              transform: translate3d(0, -50%, 0);
+              opacity: 1;
+              color: $silver-grey-color;
+              z-index: 999;
+            }
+          }
+        }
+        
         .input-group-append {
           .btn-primary {
             &:disabled {
-              color: $app-backgrnd-color  !important;
-              -webkit-text-fill-color: $app-backgrnd-color  !important;
-              background-color: $iceberg-blue-color  !important;
+              color: $app-backgrnd-color !important;
+              -webkit-text-fill-color: $app-backgrnd-color !important;
+              background-color: $iceberg-blue-color !important;
               opacity: 1 !important;
               box-shadow: inset 0 0 0px $iceberg-blue-color;
-              -webkit-box-shadow: inset 0 0 0px $iceberg-blue-color  !important;
+              -webkit-box-shadow: inset 0 0 0px $iceberg-blue-color !important;
               cursor: not-allowed;
               border: none !important;
 
               &:hover {
-                background-color: $iceberg-blue-color  !important;
+                background-color: $iceberg-blue-color !important;
               }
             }
           }
@@ -374,7 +397,7 @@ app-create-account {
     background: $white-color;
     padding: 20px;
     display: flex;
-    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    box-shadow: 0px 4px 4px $box-shadow-color;
     border-radius: 6px;
     align-items: center;
     cursor: pointer;
@@ -384,6 +407,7 @@ app-create-account {
       height: 24px;
       display: flex;
     }
+
     .use-details-text {
       font-size: 16px;
       font-family: $muli-semi-bold;

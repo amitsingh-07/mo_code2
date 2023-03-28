@@ -1,7 +1,7 @@
 import { GuideMeService } from './../../guide-me/guide-me.service';
 import { Location } from '@angular/common';
 import { Component, Input, OnDestroy, OnInit, QueryList, ViewChildren, ViewEncapsulation, ChangeDetectorRef, AfterContentChecked } from '@angular/core';
-import { ActivatedRoute, NavigationEnd, NavigationStart, Router } from '@angular/router';
+import { NavigationEnd, NavigationStart, Router } from '@angular/router';
 import { NgbModal, NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
 import { TranslateService } from '@ngx-translate/core';
 import { Subscription, SubscriptionLike } from 'rxjs';
@@ -61,7 +61,7 @@ export class DirectResultsComponent implements IPageComponent, OnInit, OnDestroy
     private fbPixelService: FBPixelService,
     private router: Router, private translate: TranslateService, public navbarService: NavbarService,
     public modal: NgbModal, private selectedPlansService: SelectedPlansService,
-    private authService: AuthenticationService, private route: ActivatedRoute,
+    private authService: AuthenticationService,
     private stateStoreService: StateStoreService, private location: Location, private guidemeService: GuideMeService,
     private changeDetector: ChangeDetectorRef) {
 
@@ -206,16 +206,6 @@ export class DirectResultsComponent implements IPageComponent, OnInit, OnDestroy
       productLists.productList[0].bestValue = true;
       for (const productList of productLists.productList) {
 
-        if (this.state.selectedCategory.id === PRODUCT_CATEGORY_INDEX.OCCUPATIONAL_DISABILITY) {
-          if (productList.premium) {
-            if (productList.premium.deferredPeriod !== null) {
-              productList.premium.deferredPeriod += ' Months';
-            }
-            if (productList.premium.escalatingBenefit !== null) {
-              productList.premium.escalatingBenefit += '%';
-            }
-          }
-        }
 
         if (productList.insurer && productList.insurer.insurerName) {
           this.state.insurers[Formatter.createObjectKey(productList.insurer.insurerName)] = productList.insurer.insurerName;
@@ -306,12 +296,6 @@ export class DirectResultsComponent implements IPageComponent, OnInit, OnDestroy
       name: 'escalatingBenefit',
       filterTypes: this.state.escalatingBenefit, allBtn: true
     };
-    /*const fullPartialRider = {
-      title: this.state.filterTypes.FULL_PARTIAL_RIDER,
-      toolTip: { title: this.state.filterTypes.FULL_PARTIAL_RIDER, message: this.state.toolTips.FULL_PARTIAL_RIDER },
-      name: 'fullPartialRider',
-      filterTypes: this.state.fullPartialRider, allBtn: true
-    };*/
     const payoutYears = {
       title: this.state.filterTypes.PAYOUT_YEARS, name: 'payoutYears',
       filterTypes: this.state.payoutYears, allBtn: true
@@ -425,14 +409,6 @@ export class DirectResultsComponent implements IPageComponent, OnInit, OnDestroy
   }
 
   selectPlan(data) {
-    try {
-      const deferredPeriod = data.plan.premium.deferredPeriod.replace(' Months', '');
-      const escalatingBenefit = data.plan.premium.escalatingBenefit.replace('%', '');
-      data.plan.premium.deferredPeriod = deferredPeriod;
-      data.plan.premium.escalatingBenefit = escalatingBenefit;
-    } catch (e) {
-      // supress error
-    }
     const index: number = this.state.selectedPlans.indexOf(data.plan);
     if (data.selected) {
       if (index === -1) {

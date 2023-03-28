@@ -3,6 +3,7 @@ import { NavigationEnd, Router } from '@angular/router';
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 import { filter } from 'rxjs/operators';
 import { TranslateService } from '@ngx-translate/core';
+
 import { ConfigService } from '../../../config/config.service';
 
 @Component({

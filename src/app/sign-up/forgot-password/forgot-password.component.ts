@@ -1,4 +1,3 @@
-import { Location } from '@angular/common';
 import {
   AfterViewInit, ChangeDetectorRef, Component, OnInit, ViewEncapsulation
 } from '@angular/core';
@@ -52,7 +51,6 @@ export class ForgotPasswordComponent implements OnInit, AfterViewInit {
     private signUpService: SignUpService,
     private route: ActivatedRoute,
     private router: Router,
-    private _location: Location,
     private translate: TranslateService,
     private authService: AuthenticationService,
     private changeDetectorRef: ChangeDetectorRef) {
@@ -168,7 +166,7 @@ export class ForgotPasswordComponent implements OnInit, AfterViewInit {
     }
   }
   goBack() {
-    this._location.back();
+    this.navbarService.goBack();
   }
 
   refreshCaptcha() {

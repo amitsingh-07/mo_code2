@@ -15,11 +15,6 @@
           'COMMON.CONTINUE' | translate }}</button>
       </div>
     </div>
-    <!-- <div class="custom-modal-content">
-      <div>
-        <img src="assets/images/custom-modal-overlay-bg.svg" id="custModalImg2" />
-      </div>
-    </div> -->
   </div>
 </div>
 <!--Custom Modal /-->
@@ -57,10 +52,10 @@
             </div>
 
             <div class="verify-mobile-otp text-center">
-              <span class="btn button-with-otp seconds-timer"
-                *ngIf="isOtpSent">{{ 'VERIFY_MOBILE.FORM.RESEND_OTP' | translate }}({{ retrySecondsLeft }}{{ retrySeconds }})</span>
-              <span class="btn button-with-otp" (click)="requestNewCode()"
-                *ngIf="!isOtpSent">{{ 'VERIFY_MOBILE.FORM.RESEND_OTP' | translate }}</span>
+              <span class="btn button-with-otp seconds-timer" *ngIf="isOtpSent">{{ 'VERIFY_MOBILE.FORM.RESEND_OTP' |
+                translate }}({{ retrySecondsLeft }}{{ retrySeconds }})</span>
+              <span class="btn button-with-otp" (click)="requestNewCode()" *ngIf="!isOtpSent">{{
+                'VERIFY_MOBILE.FORM.RESEND_OTP' | translate }}</span>
             </div>
 
             <button (click)="save(verifyMobileForm)" [disabled]="!showOtpComponent" type="button"
