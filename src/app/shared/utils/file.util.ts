@@ -27,30 +27,25 @@ export class FileUtil {
         if (nav && nav.msSaveOrOpenBlob) {
           nav.msSaveOrOpenBlob(this.convertBase64toBlob(data, FILE_TYPE), fileName);
         } else {
-          this.createDownloadUrl(fileName, pdfUrl, false);
+          this.createDownloadUrl(fileName, pdfUrl);
         }
       }
     }
   }
 
-  public createDownloadUrl(fileName: string, pdfUrl: string, appendEnv: boolean): void {
-    let urlStr = pdfUrl;
-    if (appendEnv) {
-      urlStr = environment.apiBaseUrl + '/app/' + pdfUrl;
-    }
-    
+  public createDownloadUrl(fileName: string, pdfUrl: string): void {
     if (CapacitorUtils.isApp || CapacitorUtils.isIosWeb) {
-      Util.openExternalUrl(urlStr)
+      Util.openExternalUrl(environment.apiBaseUrl + '/app/' + pdfUrl)
     } else {
       const a = document.createElement('a');
       document.body.appendChild(a);
       a.setAttribute('style', 'display: none');
-      a.href = urlStr;
+      a.href = pdfUrl;
       a.download = fileName;
       a.click();
       setTimeout(() => {
         document.body.removeChild(a);
-        window.URL.revokeObjectURL(urlStr);
+        window.URL.revokeObjectURL(pdfUrl);
       }, 1000);
     }
   }
