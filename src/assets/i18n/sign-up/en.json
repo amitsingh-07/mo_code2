@@ -1,4 +1,23 @@
 {
+  "UPGRADE":{
+    "HEADER": "Upgrading In Progress",
+    "CONTENT": "We're working on providing you with a better experience, owl be right back!",
+    "ICON_TEXT": "Contact Us",
+    "FOOTER": "MoneyOwl Pte Ltd is a financial adviser and fund management company licensed by MAS. We are a joint Venture between NTUC Enterprise- Co-operative Ltd and Provided Holding Pte Ltd. Capital Markets Services Licence No:CMS100758. 2019-2020 MoneyOwl Pte Ltd. All Rights Reserved."
+  },
+  "CORPBIZ_LOGIN":{
+    "TITLE":"Log In to MoneyOwl",
+    "EXISTING_ACC": "Please log in to your existing account.",
+    "USERNAME_LABEL":"Mobile No./ Email Address",
+    "PASSWORD_LABEL": "Password",
+    "LOGIN_BTN": "Log In",
+    "FORGOT_LINK": "Forgot Your Password?",
+    "ASSIST": "If you require any assistance, please contact us at clientsupport@moneyowl.com.sg or 6329 9188. Our operating hours are Monday - Friday, 9am - 6pm.",
+    "TOOLTIP":{
+      "TOOLTIP_TITLE":"Log in to your existing account",
+      "TOOLTIP_MESSAGE":"Please log in to your existing MoneyOwl account to link and upgrade your account. You will gain access to additional benefits after your account has been successfully linked."
+    }
+  },
   "COMMON": {
     "APPLY_CHANGES": "Apply Changes",
     "CONTINUE": "Continue",

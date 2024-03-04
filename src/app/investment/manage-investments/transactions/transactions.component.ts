@@ -21,6 +21,7 @@ import { CapacitorUtils } from '../../../shared/utils/capacitor.util';
 export class TransactionsComponent implements OnInit {
   pageTitle: string;
   transactionHistory: any;
+  limitexceed: any;
   statementMonthsList: any;
   Object = Object;
   activeTransactionIndex;
@@ -93,7 +94,12 @@ export class TransactionsComponent implements OnInit {
         this.portfolio.customerPortfolioId).subscribe((response) => {
           this.loaderService.hideLoaderForced();
           this.transactionHistory = response.objectList;
+          console.log(this.transactionHistory);
+          //console.log(this.transactionHistory.transactionPeriodExceeded)
+          this.limitexceed = response.objectList.transactionPeriodExceeded;
+          console.log(this.limitexceed);
           this.transactionHistory = this.calculateSplitAmounts(this.transactionHistory);
+          console.log(this.transactionHistory);
           this.investmentEngagementJourneyService.sortByProperty(
             this.transactionHistory,
             'createdDate',

@@ -1,0 +1,47 @@
+<div class="content">
+  <div class="container-fluid">
+    <div class="login-wrapper">
+      <div class="login-title">
+        {{"CORPBIZ_LOGIN.TITLE" | translate}}
+      </div>
+      <div class="image-container">
+        <img src="assets/images/owlhead.svg" alt="">
+      </div>
+      <div class="sample">
+        <div class="col-flex-9 exisiting-acc-txt">{{"CORPBIZ_LOGIN.EXISTING_ACC" | translate}}</div>
+        <div class="col-flex-3 icon" (click)="showToolTipModal('TOOLTIP_TITLE','CORPBIZ_LOGIN.TOOLTIP.TOOLTIP_MESSAGE')"><img src="assets/images/Shape Copy@3x.svg" alt=""></div>
+      </div>
+      <div class="singpass">
+        <app-singpass [showSingpassLogin]="showSingpassLogin"></app-singpass>
+      </div>
+      <div class="h-separator-container">
+        <img class="separator-icon" src="assets/images/Group 89.svg" alt="">
+      </div>
+      <form >
+        <div class="flex-row mb10">
+          <div class="flex-col-12 stretch">
+            <div class="form-group-floating-label">
+              <input type="text" id="login_username_txt" class="form-control">
+              <label class="form-control-placeholder" for="login_username_txt" id="login_username_lbl">{{"CORPBIZ_LOGIN.USERNAME_LABEL" | translate}}</label>
+            </div>
+          </div>
+        </div>
+        <div class="flex-row mb15">
+          <div class="flex-col-12 stretch">
+            <div class="form-group-floating-label">
+              <input type="password" id="login_password_txt" class="form-control">
+              <label class="form-control-placeholder" for="login_password_txt" id="login_password_lbl">{{"CORPBIZ_LOGIN.PASSWORD_LABEL" | translate}}</label>
+            </div>
+          </div>
+        </div>
+        <button id="login_submit_btn" type="button" class="btn btn-primary width100">{{"CORPBIZ_LOGIN.LOGIN_BTN" | translate}}</button>
+        <div class="forgot-link mt30">
+          <a id="login_forgotpwd_link">{{"CORPBIZ_LOGIN.FORGOT_LINK" | translate}}</a>
+        </div>
+      </form>
+      <div class="client-assist mt30">{{"CORPBIZ_LOGIN.ASSIST" | translate}}
+     </div>
+    </div>
+
+  </div>
+</div>

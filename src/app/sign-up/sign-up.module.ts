@@ -14,7 +14,7 @@ import { ComprehensiveModule } from './../comprehensive/comprehensive.module';
 import { AccountCreatedComponent } from './account-created/account-created.component';
 import { AccountUpdatedComponent } from './account-updated/account-updated.component';
 import { AddUpdateBankComponent } from './add-update-bank/add-update-bank.component';
-import { AuthGuardService, SingpassLoginGuard } from './auth-guard.service';
+import { AuthGuardService, SingpassLoginGuard, sampleGuard } from './auth-guard.service';
 import { CreateAccountComponent } from './create-account/create-account.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { EditPasswordComponent } from './edit-password/edit-password.component';
@@ -28,6 +28,7 @@ import {
 } from './forgot-password-result/forgot-password-result.component';
 import { ForgotPasswordComponent } from './forgot-password/forgot-password.component';
 import { LoginComponent } from './login/login.component';
+import { Login2Component } from './login2/login2.component';
 import { PreLoginComponent } from './pre-login/pre-login.component';
 import { ResetPasswordComponent } from './reset-password/reset-password.component';
 import { SignUpAccessGuard, SignUpCorporateAccessGuard } from './sign-up-access-guard';
@@ -62,6 +63,9 @@ import { LoginService } from './login.service';
 import { InvestModalComponent } from './invest-modal/invest-modal.component';
 import { RecommendedCardComponent } from './recommended-card/recommended-card.component';
 import { RecommendedCardModalComponent } from './recommended-card-modal/recommended-card-modal.component';
+import { ApiService2 } from './data-service/data.service';
+import { UpgradingProgressComponent } from './upgrading-progress/upgrading-progress.component';
+import { LoginCorpbizComponent } from './coprbiz-login/login-corpbiz/login-corpbiz.component';
 
 export function createTranslateLoader(http: HttpClient) {
   return new MultiTranslateHttpLoader(
@@ -99,6 +103,7 @@ export function createTranslateLoader(http: HttpClient) {
     EmailVerificationComponent,
     VerifyMobileComponent,
     LoginComponent,
+    Login2Component,
     ForgotPasswordComponent,
     ForgotPasswordResultComponent,
     ResetPasswordComponent,
@@ -129,9 +134,11 @@ export function createTranslateLoader(http: HttpClient) {
     CorpBizActivationLinkComponent,
     InvestModalComponent,
     RecommendedCardComponent,
-    RecommendedCardModalComponent
+    RecommendedCardModalComponent,
+    UpgradingProgressComponent,
+    LoginCorpbizComponent
   ],
-  providers: [SignUpAccessGuard, SignUpCorporateAccessGuard, AuthGuardService, TwoFactorAuthGuardService, SingpassLoginGuard, LoginService],
+  providers: [SignUpAccessGuard, SignUpCorporateAccessGuard, AuthGuardService, TwoFactorAuthGuardService, SingpassLoginGuard, LoginService, ApiService2, sampleGuard],
   entryComponents: [EditMobileNumberComponent, SrsSuccessModalComponent]
 })
 export class SignUpModule { }

@@ -2118,7 +2118,7 @@ select:-webkit-autofill:focus {
 
       &.active {
         cursor: pointer;
-        
+
         .road-map__step-number,
         .road-map__step-title,
         .road-map__step-desc {
@@ -2180,7 +2180,7 @@ select:-webkit-autofill:focus {
     z-index: 1062;
     box-shadow: 0 2px 7px 0 rgba(68, 68, 68, 0.4);
     margin: env(safe-area-inset-top) env(safe-area-inset-right) env(safe-area-inset-left);
-    
+
     @include desktop {
       width: 400px;
       right: 200px;
@@ -2478,11 +2478,11 @@ select:-webkit-autofill:focus {
       background-color: $aquamarine-color;
       cursor: not-allowed;
       border: 1px solid $aquamarine-color;
-    }  
+    }
   }
 }
 
-//activate & linked singpass modal 
+//activate & linked singpass modal
 .activate-singpass-modal{
   .modal-content{
     max-width: 375px;
@@ -2566,7 +2566,7 @@ select:-webkit-autofill:focus {
   font-family: $muli-regular;
   text-align: left;
   span{
-      &:first-child{                
+      &:first-child{
           letter-spacing: -0.1px;
           padding-right: 5px;
           font-family: $muli-bold;

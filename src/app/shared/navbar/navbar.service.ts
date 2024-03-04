@@ -88,6 +88,7 @@ export class NavbarService {
   private logoutSubject = new Subject();
   logoutObservable$ = this.logoutSubject.asObservable();
   wiseIncomeDropDownShow = new BehaviorSubject(false);
+  //To display and hiding the navbar
   displayingWelcomeFlowContent$: BehaviorSubject<boolean> = new BehaviorSubject(false);
   welcomeJourneyCompleted: boolean = false;
   urlHistory = { currentUrl: null, previousUrl: []};
@@ -98,7 +99,7 @@ export class NavbarService {
     this.router.events.pipe(
       filter((event) => event instanceof NavigationStart)
     ).subscribe((event: NavigationStart) => {
-      if (CapacitorUtils.isApp) { 
+      if (CapacitorUtils.isApp) {
         this.handlingMobileAppNavigationUrlHistory(event);
       }
       this.unsubscribeBackPress();
@@ -106,7 +107,7 @@ export class NavbarService {
         this.modal.dismissAll();
       }
     });
-    
+
     this.modal.activeInstances.subscribe(list => {
 			this.activeModals = list.length;
 		});
@@ -237,7 +238,7 @@ export class NavbarService {
 
   goBack() {
     if (CapacitorUtils.isApp) {
-      this.isBackClicked = true; 
+      this.isBackClicked = true;
       this.urlHistory.previousUrl = this.urlHistory.previousUrl.filter(item => !item.includes(appConstants.MY_INFO_CALLBACK_URL) );
       this.urlHistory.currentUrl = this.urlHistory.previousUrl[this.urlHistory.previousUrl.length - 1];
       this.urlHistory.previousUrl.splice(this.urlHistory.previousUrl.length - 1, 1);

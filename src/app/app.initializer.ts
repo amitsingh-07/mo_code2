@@ -10,6 +10,7 @@ export function onAppInit(injector: Injector): () => Promise<any> {
       if (environment.hideHomepage) {
         const userPermittedRoutes = router.config[0].children.filter((i) => {
           if (i.path === '') {
+            //i.redirectTo = 'accounts/login2';
             i.redirectTo = 'accounts/login';
           }
           return i.path !== 'home'  && i.path !== 'learn';

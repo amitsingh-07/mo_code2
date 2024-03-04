@@ -317,7 +317,8 @@
           <div class="flex-row mb15">
             <div class="flex-col-12 stretch">
               <div
-                [ngClass]="{'inline-error': (submitted && account.confirmPassword.errors?.required) || (!confirmPwdFocus && !account.password.errors && account.confirmPassword.errors?.notEquivalent)}"
+                [ngClass]="{'inline-error': (submitted && account.confirmPassword.errors?.required) ||
+                (!confirmPwdFocus && !account.password.errors && account.confirmPassword.errors?.notEquivalent)}"
                 class="form-group-floating-label" (capsLock)="capsOn=$event">
                 <input id="crtAccInpt7" type="password" class="form-control" (blur)="showValidity('confirmPassword')"
                   (focus)="showValidity('confirmPassword')" formControlName="confirmPassword" #confirmPassword required

@@ -32,7 +32,8 @@
             <div class="flex-row" *ngIf="transactionHistory">
               <div class="flex-col-12 transction-screen">
                 <div class="transaction-panel__history white-bg">
-                  <div *ngFor="let group of transactionHistory; let i = index" class="transaction-group">
+                  //keyvalue:
+                  <div *ngFor="let group of transactionHistory | keyvalue; let i = index" class="transaction-group">
                     <div class="transaction-panel__history--date">{{group.groupName}}</div>
                     <div class="transaction-panel__history--details">
                       <div *ngFor="let transaction of group.value; let j = index">
@@ -46,7 +47,7 @@
                             <div class="history-type-transaction">
                               <div [class.buy]="transaction.transactionType.name.toUpperCase() === 'BUY'"
                                 class="transaction-panel__history--details--title--sale"
-                                *ngIf="transaction.transactionType && transaction.transactionType.name.toUpperCase() !== 'FUNDING' && transaction.transactionType.name.toUpperCase() !== 'CASH_WITHDRAW' && transaction.transactionType.name.toUpperCase() !== 'CASH_TRANSFER_IN' && 
+                                *ngIf="transaction.transactionType && transaction.transactionType.name.toUpperCase() !== 'FUNDING' && transaction.transactionType.name.toUpperCase() !== 'CASH_WITHDRAW' && transaction.transactionType.name.toUpperCase() !== 'CASH_TRANSFER_IN' &&
                                                                 transaction.transactionType.name.toUpperCase() !== 'CASH_TRANSFER_OUT' && transaction.transactionType.name.toUpperCase() !== 'DIVIDEND_PAYOUT' && transaction.transactionType.name.toUpperCase() !== 'DIVIDEND_REINVEST'">
                                 {{transaction.transactionType.name}}</div>
                               <div *ngIf="transaction.transactionType.name.toUpperCase() === 'FUNDING'">
@@ -58,13 +59,13 @@
                               <div *ngIf="transaction.transactionType.name.toUpperCase() === 'DIVIDEND_REINVEST'">
                                 {{ 'TRANSACTIONS.DIVIDEND_REINVEST' | translate }}</div>
                               <div class="portfolio-name"
-                                *ngIf="transaction.portfolio && transaction.transactionType.name.toUpperCase() !== 'CASH_TRANSFER_IN' && 
+                                *ngIf="transaction.portfolio && transaction.transactionType.name.toUpperCase() !== 'CASH_TRANSFER_IN' &&
                                 transaction.transactionType.name.toUpperCase() !== 'CASH_TRANSFER_OUT' && transaction.transactionType.name.toUpperCase() !== 'CASH_WITHDRAW' && transaction.transactionType.name.toUpperCase() !== 'DIVIDEND_REINVEST'">
                                 {{transaction.portfolio.name}}
                               </div>
                               <!-- cash portfolio transaction  -->
                               <div [class.transfer]="transaction.transactionType.name.toUpperCase() === 'CASH_TRANSFER_IN' ||
-                                   transaction.transactionType.name.toUpperCase() === 'CASH_TRANSFER_OUT'" *ngIf="transaction.transactionType.name.toUpperCase() === 'CASH_TRANSFER_IN' || 
+                                   transaction.transactionType.name.toUpperCase() === 'CASH_TRANSFER_OUT'" *ngIf="transaction.transactionType.name.toUpperCase() === 'CASH_TRANSFER_IN' ||
                                  transaction.transactionType.name.toUpperCase() === 'CASH_TRANSFER_OUT'">
                                 <span *ngIf="transaction.transactionType.name.toUpperCase() === 'CASH_TRANSFER_IN'">
                                   {{ 'TRANSACTIONS.CASH_ACCOUNT_TRANSFER_IN' | translate}}</span>
@@ -106,7 +107,10 @@
                     </div>
                   </div>
                 </div>
-                <div class="no-transaction" *ngIf="!transactionHistory || !transactionHistory.length">
+                <div class="alert alert-info" *ngIf="limitexceed">
+                  To see the transactions of more than 12 months!
+                </div>
+                <div class="no-transaction" *ngIf="!transactionHistory && !transactionHistory.length">
                   <div class="no-content">
                     <img src="assets/images/investment-account/light_owl.svg" width="170" height="170" />
                     <div class="mt15">{{ 'TRANSACTIONS.NO_TRANSACTION_HISTORY' | translate}}</div>

@@ -39,7 +39,6 @@ export class TwoFactorAuthGuardService implements CanActivate {
       this.route.navigate([SIGN_UP_ROUTE_PATHS.VERIFY_2FA]);
       return false;
     }
-	  
   }
 }
 
@@ -94,6 +93,6 @@ export class TwoFactorScreenGuardService implements CanActivate {
       this.authService.set2faVerifyAllowed(false);
       this.route.navigate([SIGN_UP_ROUTE_PATHS.LOGIN]);
       return false;
-    } 
+    }
   }
 }

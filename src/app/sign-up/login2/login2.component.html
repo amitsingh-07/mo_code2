@@ -1,0 +1,40 @@
+
+<div class="container">
+  <h1>Login form</h1>
+  <form [formGroup]="profileValue" (ngSubmit)="onSubmit(profileValue)">
+    <div class="form-floating">
+      <input type="text" class="form-control" id="floatingInput"  formControlName="username" required>
+      <label class="form-control-placeholder" for="floatingInput">Email Address</label>
+      <div *ngIf="userNameError">
+        <strong class="text-danger">{{userNameError}}</strong>
+      </div>
+
+
+      <!-- <div *ngIf="profileValue.get('username')?.touched">
+        <span class="alert alert-danger" *ngIf="profileValue.get('username')?.errors?.['required']">
+          Fill this Field.
+        </span>
+        <span class="alert alert-danger" *ngIf="profileValue.get('username')?.errors?.['email']">
+          Please enter valid email.
+        </span>
+      </div> -->
+
+
+    </div>
+    <br>
+    <div class="form-floating">
+      <input type="password" class="form-control" id="floatingPassword" formControlName="password" required>
+      <label for="floatingPassword">Password</label>
+
+      <div *ngIf="passwordError">
+        <strong class="text-danger">{{passwordError}}</strong>
+      </div>
+      <!-- <div *ngIf="profileValue.get('password')?.touched">
+        <span class="alert alert-danger" *ngIf="profileValue.get('password')?.errors?.['required']">Fill this field</span>
+        <span class="alert alert-danger" *ngIf="profileValue.get('password')?.errors?.['pattern']">Enter Valid Password</span>
+
+      </div> -->
+    </div>
+    <button type="submit" class="btn btn-primary" >Login</button>
+  </form>
+</div>

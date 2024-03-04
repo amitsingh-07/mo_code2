@@ -62,7 +62,7 @@
                     </span>
                     <button type="button" class="btn-with-icon show-sm" id="invest_button"
                       (click)="openInvestMenuModal()"
-                      *ngIf="getReferralInfo && !getReferralInfo.isWelcomeRewardsValid && !getReferralInfo.refereeExists">                   
+                      *ngIf="getReferralInfo && !getReferralInfo.isWelcomeRewardsValid && !getReferralInfo.refereeExists">
                       <span class="invest-btn-img"><img id="top-up_img"
                           src="assets/images/investment-account/plus-white.svg" alt="" /></span>
                       <span>{{'DASHBOARD.INVESTMENT.INVEST' | translate}}</span>
@@ -401,7 +401,7 @@
                 </span>
                 <span class="btn-with-icon" *ngIf="wills.completedWill" (click)="redirectTo('edit')">
                   <span class="edit-btn-img"><img src="assets/images/editIcon.svg"></span>
-                  <span>{{'DASHBOARD.INVESTMENT.EDIT' | translate}}</span>  
+                  <span>{{'DASHBOARD.INVESTMENT.EDIT' | translate}}</span>
                 </span>
               </div>
               <div class="widget-body">

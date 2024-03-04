@@ -1,0 +1,78 @@
+@import '../../../variables';
+@import '../../../mixins';
+
+.container-fluid{
+  &.max-width--1024{
+    padding: 0 !important;
+  }
+}
+.wrapper{
+  padding: 100px 30px 20px;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+}
+.header-content-container{
+  .header{
+    text-align: center;
+    font-size: 48px;
+    font-family: $muli-bold;
+    @include allmobiles{
+      font-size: 24px;
+    }
+  }
+  .content{
+    font-size: 21px;
+    font-family: $muli-semi-bold;
+    @include allmobiles{
+      font-size: 15px;
+    }
+  }
+}
+
+.content-container{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.image-container-2{
+  display: flex;
+  justify-content: space-between;
+}
+.image-container-2 .contacts{
+  display: flex;
+  align-items: flex-end;
+  margin-top: 10px;
+}
+.image-container-2 .contacts span{
+  margin-right: 10px;
+}
+.image-container-2 .contacts .text{
+  font-family: $muli-semi-bold;
+}
+.footer-content {
+  text-align: justify;
+}
+.footer-content{
+  margin-top: 15px;
+}
+.footer-content-container{
+  //padding-right: 30px;
+  //margin-top: 100px;
+  //position: fixed;
+  @include allmobiles {
+    //margin-top: 70px;
+  }
+}
+
+// @media screen and (min-device-width: 375px) and (max-device-width: 675){
+//   .footer-content-container{
+//     margin-top: 70px;
+//   }
+//   .header-content-container .content p{
+//     text-align: center;
+//   }
+// }

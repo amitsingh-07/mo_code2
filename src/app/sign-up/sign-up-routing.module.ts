@@ -4,7 +4,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { AccountCreatedComponent } from './account-created/account-created.component';
 import { AccountUpdatedComponent } from './account-updated/account-updated.component';
 import { AddUpdateBankComponent } from './add-update-bank/add-update-bank.component';
-import { AuthGuardService as AuthGuard, SingpassLoginGuard } from './auth-guard.service';
+import { AuthGuardService as AuthGuard, SingpassLoginGuard, sampleGuard } from './auth-guard.service';
 import { FinlitLoggedUserService as FinlitLoggedUserGuard } from './auth-guard.service';
 import { LoggedUserService as LoggedUserGuard } from './auth-guard.service';
 import { FacebookLoggedUserService as FacebookLoggedUserGuard } from './auth-guard.service';
@@ -22,6 +22,8 @@ import {
 } from './forgot-password-result/forgot-password-result.component';
 import { ForgotPasswordComponent } from './forgot-password/forgot-password.component';
 import { LoginComponent } from './login/login.component';
+import { Login2Component } from './login2/login2.component';
+import { UpgradingProgressComponent } from './upgrading-progress/upgrading-progress.component';
 import { PreLoginComponent } from './pre-login/pre-login.component';
 import { ResetPasswordComponent } from './reset-password/reset-password.component';
 import { SignUpAccessGuard, SignUpCorporateAccessGuard } from './sign-up-access-guard';
@@ -45,7 +47,7 @@ import { AddUpdateCpfiaComponent } from './add-update-cpfia/add-update-cpfia.com
 import { CorpBizSignupComponent } from './corp-biz-signup/corp-biz-signup.component';
 import { CorpBizSignupWithDataComponent } from './corp-biz-signup-with-data/corp-biz-signup-with-data.component';
 import { CorpBizActivationLinkComponent } from './corp-biz-activation-link/corp-biz-activation-link.component';
-
+import { LoginCorpbizComponent } from './coprbiz-login/login-corpbiz/login-corpbiz.component';
 const routes: Routes = [
   {
     path: SIGN_UP_ROUTES.ROOT,
@@ -89,6 +91,11 @@ const routes: Routes = [
     canActivate: [TwoFactorScreenGuardService],
     data: [{ twoFactorEnabled: SIGN_UP_CONFIG.VERIFY_MOBILE.TWO_FA }]
   },
+  // {
+  //   path: SIGN_UP_ROUTES.TWOFA_MOBILE,
+  //   component: VerifyMobileComponent,
+  //   canActivate: [sampleGuard]
+  // },
   {
     path: SIGN_UP_ROUTES.ACCOUNT_CREATED_FINLIT,
     component: AccountCreatedComponent,
@@ -127,6 +134,18 @@ const routes: Routes = [
     component: LoginComponent,
     canActivate: [SingpassLoginGuard],
     runGuardsAndResolvers: 'pathParamsOrQueryParamsChange'
+  },
+  {
+    path: SIGN_UP_ROUTES.LOGIN2,
+    component: Login2Component,
+  },
+  {
+    path: SIGN_UP_ROUTES.UPGRADE,
+    component: UpgradingProgressComponent,
+  },
+  {
+    path: SIGN_UP_ROUTES.CORPBIZ_LOGIN,
+    component: LoginCorpbizComponent,
   },
   {
     path: SIGN_UP_ROUTES.CORPORATE_LOGIN,
@@ -269,7 +288,7 @@ const routes: Routes = [
     component: CreateAccountMyinfoComponent,
     canActivate: [FacebookLoggedUserGuard],
     data: [{ organisationEnabled: SIGN_UP_CONFIG.LOGIN.CORPORATE_LOGIN }]
-  }, 
+  },
   {
     path: SIGN_UP_ROUTES.FINLIT_CREATE_ACCOUNT + '/:referralCode',
     component: CreateAccountComponent,

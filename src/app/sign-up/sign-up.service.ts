@@ -1,4 +1,4 @@
-import { Subject, BehaviorSubject } from 'rxjs';
+import { Subject, BehaviorSubject, Observable } from 'rxjs';
 
 import { DatePipe } from '@angular/common';
 import { Injectable } from '@angular/core';
@@ -21,6 +21,8 @@ import { InvestmentAccountService } from '../investment/investment-account/inves
 import { appConstants } from '../app.constants';
 import { Util } from '../shared/utils/util';
 import { environment } from './../../environments/environment';
+import { users } from './models/users';
+import { ToolTip2ModalComponent } from '../shared/modal/tooltip2-modal/tooltip2-modal.component';
 
 const SIGNUP_SESSION_STORAGE_KEY = 'app_signup_session_storage_key';
 const CUSTOMER_REF_SESSION_STORAGE_KEY = 'app_customer_ref_session_storage_key';
@@ -332,7 +334,10 @@ export class SignUpService {
     this.signUpFormData.userProfileInfo = userInfo;
     this.commit();
   }
-
+  // getInfo():Observable<users[]>{
+  //   //url: = "/src/assets/mock-data/authenticate.json"
+  //   return
+  // }
   logoutUser() {
     this.userSubject.next('LOGGED_OUT');
   }
@@ -1032,5 +1037,13 @@ export class SignUpService {
 
   getCorpBizMyInfoStatus() {
     return this.corpBizUserMyInfoData.isCorpBizMyInfoEnabled;
+  }
+
+  openTooltipModal(toolTipParam){
+    const ref = this.modal.open(ToolTip2ModalComponent, {
+      centered: true
+    });
+    ref.componentInstance.tooltipTitle = toolTipParam.TITLE;
+    ref.componentInstance.tooltipMessage = toolTipParam.DESCRIPTION;
   }
 }

@@ -62,6 +62,8 @@ export class ComprehensiveDashboardComponent implements OnInit {
   isSpeakToAdvisor = false;
   isAdvisorAppointment = false;
   reportStatusTypes: any;
+  // isInvestmentEnabled2: boolean = false;
+  // iFastMaintenance2:boolean = false;
 
   constructor(
     private router: Router,

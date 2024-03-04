@@ -9,6 +9,7 @@ import { environment } from './../../environments/environment';
 
 export interface IConfig {
   language: string;
+  //language2?: string,
   useMyInfo: boolean;
   maintenanceEnabled: boolean;
   marqueeEnabled: boolean;

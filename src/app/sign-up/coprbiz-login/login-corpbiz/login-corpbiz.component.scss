@@ -1,0 +1,68 @@
+@import '../../../../variables';
+@import '../../../../mixins';
+
+.content{
+
+  .container-fluid{
+    display: flex;
+    justify-content: center;
+    @include allmobiles{
+      padding: 10px;
+    }
+
+    .login-wrapper{
+      .login-title{
+        text-align: center;
+        font-family: $muli-semi-bold;
+        font-size: 24px;
+      }
+      .image-container{
+        display: flex;
+        justify-content: center;
+        margin-top: 15px;
+        margin-bottom: 15px;
+      }
+
+      .sample{
+        display: flex;
+        justify-content: space-around;
+        margin-bottom: 10px;
+        .exisiting-acc-txt{
+          font-size: 16px;
+          font-family: $muli-regular;
+        }
+      }
+      .singpass{
+        @include allmobiles{
+          margin: 10px;
+        }
+      }
+
+      .h-separator-container{
+        padding: 10px 0 10px;
+        margin-left: 30px;
+      }
+      form{
+        @include allmobiles{
+          margin: 10px
+        }
+      }
+      .forgot-link{
+        text-align: center;
+        font-size: 16px;
+        font-family: $muli-bold;
+      }
+      .client-assist{
+        width: 350px;
+        background: #02A0A0;
+        margin-left: 35px;
+        @include allmobiles{
+          margin-left: 10px;
+        }
+
+      }
+    }
+  }
+
+
+}

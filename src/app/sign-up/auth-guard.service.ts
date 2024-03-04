@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { CanActivate, Router, ActivatedRouteSnapshot } from '@angular/router';
+import { CanActivate, Router, ActivatedRouteSnapshot, RouterStateSnapshot, UrlTree } from '@angular/router';
 import { map } from 'rxjs/internal/operators/map';
 import { Observable } from 'rxjs/internal/Observable';
 
@@ -208,5 +208,25 @@ export class CorpbizWelcomeFlowAuthGuardService implements CanActivate {
       return false;
     }
     return true;
+  }
+}
+@Injectable({
+  providedIn: 'root'
+})
+export class sampleGuard implements CanActivate{
+
+  constructor(
+    private router: Router,
+    private authservice: AuthenticationService
+  ){}
+
+  canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): boolean | UrlTree | Observable<boolean | UrlTree> | Promise<boolean | UrlTree> {
+    let loggeduser = this.authservice.isAuthenticated2();
+    if(loggeduser){
+      return true;
+    }else{
+      this.router.navigate(['accounts/login2']);
+      return false;
+    }
   }
 }

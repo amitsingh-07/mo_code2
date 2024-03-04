@@ -3,8 +3,23 @@
     "responseCode": 6000,
     "responseDescription": "Successful response"
   },
-  "objectList": [{
+  "sessionId1": "/hNOveVcIsyrkjHqVSaj6NuPWSFbHpLbIvWvL4FRYyI=\r\n",
+  "objectList":
+    {
+      "secondList": [
+        {
+          "sessionId": "/hNOveVcIsyrkjHqVSaj6NuPWSFbHpLbIvWvL4FRYyI=\r\n"
+        },
+        {
+          "sessionId": "/hNOveVcIsyrkjHqVSaj6NuPWSFbHpLbIvWvL4FRYyI=\r\n"
+        },
+        {
+          "sessionId": "/hNOveVcIsyrkjHqVSaj6NuPWSFbHpLbIvWvL4FRYyI=\r\n"
+        }
+    ],
     "securityToken": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJub3JtYWxfdXNlciIsInJvbGVzIjoiUk9MRV9VU0VSLCIsImlhdCI6MTUzOTg2OTEzMCwiaXNzIjoiQXV0aG9yaXphdGlvbiIsImV4cCI6MTUzOTg3MjczMH0.JPoNS7Bbol8mCxdcmuUfJUKXe6UcWaCAHXMiTjQfaeI",
-    "sessionId": "/hNOveVcIsyrkjHqVSaj6NuPWSFbHpLbIvWvL4FRYyI=\r\n"
-  }]
+    "sessionId": "/hNOveVcIsyrkjHqVSaj6NuPWSFbHpLbIvWvL4FRYyI=\r\n",
+    "sessionId2": "/hNOveVcIsyrkjHqVSaj6NuPWSFbHpLbIvWvL4FRYyI=\r\n"
+    },
+  "sessionId": "/hNOveVcIsyrkjHqVSaj6NuPWSFbHpLbIvWvL4FRYyI=\r\n"
 }

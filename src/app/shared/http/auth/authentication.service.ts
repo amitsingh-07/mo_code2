@@ -21,7 +21,8 @@ const CORPORATE_DETAILS = 'app_corporate_details';
 const APP_WELCOME_FLOW = 'app_welcome_flow';
 
 @Injectable({ providedIn: 'root' })
-export class AuthenticationService {
+export class
+AuthenticationService {
   apiBaseUrl = '';
   private get2faAuth = new BehaviorSubject('');
   get2faAuthEvent = this.get2faAuth.asObservable();
@@ -46,7 +47,13 @@ export class AuthenticationService {
 
     this.apiBaseUrl = Util.getApiBaseUrl();
   }
-
+  isloggeduser = false;
+  login2(){
+    this.isloggeduser = true;
+  }
+  isAuthenticated2(){
+    return this.isloggeduser;
+  }
   getAppSecretKey() {
     return 'kH5l7sn1UbauaC46hT8tsSsztsDS5b/575zHBrNgQAA=';
   }
